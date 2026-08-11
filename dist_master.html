@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W6LR93V8');</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Himachal Explorer — All 12 Districts</title>
+<meta name="description" content="Explore all 12 districts of Himachal Pradesh — places to visit, best season, local food and travel tips, powered by live Firebase data.">
+<link rel="canonical" href="https://himachalexplorer.in/dist_master.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Districts of Himachal Pradesh","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Bilaspur","url":"https://himachalexplorer.in/dist_master.html?d=bilaspur"},
+{"@type":"ListItem","position":2,"name":"Chamba","url":"https://himachalexplorer.in/dist_master.html?d=chamba"},
+{"@type":"ListItem","position":3,"name":"Hamirpur","url":"https://himachalexplorer.in/dist_master.html?d=hamirpur"},
+{"@type":"ListItem","position":4,"name":"Kangra","url":"https://himachalexplorer.in/dist_master.html?d=kangra"},
+{"@type":"ListItem","position":5,"name":"Kinnaur","url":"https://himachalexplorer.in/dist_master.html?d=kinnaur"},
+{"@type":"ListItem","position":6,"name":"Kullu","url":"https://himachalexplorer.in/dist_master.html?d=kullu"},
+{"@type":"ListItem","position":7,"name":"Mandi","url":"https://himachalexplorer.in/dist_master.html?d=mandi"},
+{"@type":"ListItem","position":8,"name":"Shimla","url":"https://himachalexplorer.in/dist_master.html?d=shimla"},
+{"@type":"ListItem","position":9,"name":"Sirmour","url":"https://himachalexplorer.in/dist_master.html?d=sirmour"},
+{"@type":"ListItem","position":10,"name":"Solan","url":"https://himachalexplorer.in/dist_master.html?d=solan"},
+{"@type":"ListItem","position":11,"name":"Lahaul & Spiti","url":"https://himachalexplorer.in/dist_master.html?d=spiti"},
+{"@type":"ListItem","position":12,"name":"Una","url":"https://himachalexplorer.in/dist_master.html?d=una"}
+]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ─── TOKENS ─── */
+:root{
+  --ink:#0f0c07; --cream:#faf7f2; --warm:#f0ebe0;
+  --gold:#c8922a; --gold-l:#e8b84b; --pine:#1c3d1c;
+  --rust:#b5411a; --mist:#8a8070; --snow:#fff;
+  --card-radius:3px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden;}
+
+/* noise */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.4;}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:22px 60px;transition:all .4s;}
+nav.solid{background:rgba(15,12,7,.97);backdrop-filter:blur(20px);padding:16px 60px;border-bottom:1px solid rgba(200,146,42,.2);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px;}
+.nav-logo-mark{width:28px;height:28px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--gold);}
+.nav-links{display:flex;gap:32px;align-items:center;}
+.nav-links a{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+
+/* ─── HERO ─── */
+.hero{height:100vh;min-height:700px;position:relative;overflow:hidden;display:grid;place-items:center;background:var(--ink);}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 100% 70% at 50% 100%,rgba(28,61,28,.6) 0%,transparent 65%),radial-gradient(ellipse 60% 50% at 10% 10%,rgba(200,146,42,.08) 0%,transparent 60%);}
+.mtn{position:absolute;bottom:0;left:0;right:0;}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;animation:heroIn 1.2s cubic-bezier(.22,1,.36,1) both;}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.65rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;}
+.eyebrow::before,.eyebrow::after{content:'';flex:1;height:1px;width:40px;background:var(--gold);opacity:.5;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,12vw,9rem);font-weight:300;line-height:.88;color:#fff;letter-spacing:-2px;}
+.hero h1 em{font-style:italic;color:var(--gold-l);}
+.hero-sub{font-size:clamp(.9rem,1.5vw,1.1rem);color:rgba(255,255,255,.5);max-width:520px;margin:28px auto 0;line-height:1.8;}
+.hero-stats{display:flex;justify-content:center;gap:48px;margin-top:52px;padding-top:40px;border-top:1px solid rgba(255,255,255,.1);}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:var(--gold-l);line-height:1;}
+.stat-label{font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px;}
+.scroll-cue{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,.3);font-size:.6rem;letter-spacing:3px;text-transform:uppercase;}
+.scroll-line{width:1px;height:50px;background:linear-gradient(var(--gold),transparent);animation:scrollPulse 2s ease infinite;}
+
+/* ─── MARQUEE ─── */
+.marquee-strip{background:var(--gold);padding:18px 0;overflow:hidden;}
+.marquee-inner{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--ink);white-space:nowrap;animation:marquee 30s linear infinite;}
+
+/* ─── SECTION HEAD ─── */
+.sec-head{text-align:center;padding:90px 24px 50px;}
+.kicker{font-size:.62rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.sec-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;line-height:1.1;}
+.sec-head p{font-size:1rem;color:var(--mist);max-width:500px;margin:16px auto 0;line-height:1.7;}
+
+/* ─── FILTER BAR ─── */
+.filter-bar{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;padding:0 24px 40px;}
+.fbtn{padding:8px 20px;border:1px solid rgba(0,0,0,.15);border-radius:30px;font-size:.72rem;letter-spacing:1px;background:transparent;color:var(--mist);cursor:pointer;transition:all .25s;font-family:'Outfit',sans-serif;}
+.fbtn.active,.fbtn:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+/* ─── MASONRY GRID ─── */
+.masonry{columns:3;column-gap:3px;padding:0 3px 3px;max-width:1600px;margin:0 auto;}
+.m-card{break-inside:avoid;display:block;position:relative;overflow:hidden;margin-bottom:3px;text-decoration:none;background:var(--ink);cursor:pointer;}
+.m-card.dcard-highlight{outline:3px solid #c99248;outline-offset:-3px;animation:dcardPulse 1.3s ease-in-out 2}
+@keyframes dcardPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,146,72,.6)}50%{box-shadow:0 0 0 14px rgba(201,146,72,0)}}
+.m-card:nth-child(3n+1){height:520px;}
+.m-card:nth-child(3n+2){height:420px;}
+.m-card:nth-child(3n+3){height:480px;}
+.m-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .8s cubic-bezier(.25,.46,.45,.94),filter .4s;filter:brightness(.55);}
+.m-card:hover .m-img{transform:scale(1.08);filter:brightness(.35);}
+.m-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,12,7,.95) 0%,rgba(15,12,7,.2) 50%,transparent 100%);}
+.m-body{position:absolute;bottom:0;left:0;right:0;padding:28px 26px;}
+.m-no{font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.m-card h3{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:#fff;line-height:1;margin-bottom:8px;}
+.m-desc{font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.5;margin-bottom:14px;max-height:0;overflow:hidden;transition:max-height .4s,opacity .3s;opacity:0;}
+.m-card:hover .m-desc{max-height:80px;opacity:1;}
+.m-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;}
+.m-tag{padding:2px 8px;border:1px solid rgba(255,255,255,.2);border-radius:12px;font-size:.62rem;color:rgba(255,255,255,.6);}
+.m-arrow{display:inline-flex;align-items:center;gap:6px;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);opacity:0;transform:translateY(6px);transition:all .3s .1s;}
+.m-card:hover .m-arrow{opacity:1;transform:translateY(0);}
+
+/* ─── LOADING STATE ─── */
+.loading-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:1600px;margin:0 auto;padding:0 3px 3px;}
+.skel{background:var(--ink);position:relative;overflow:hidden;}
+.skel::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);animation:shimmer 1.6s infinite;}
+.skel:nth-child(3n+1){height:520px;}
+.skel:nth-child(3n+2){height:420px;}
+.skel:nth-child(3n+3){height:480px;}
+
+/* ─── DISTRICT DRAWER ─── */
+.drawer-overlay{position:fixed;inset:0;z-index:800;background:rgba(15,12,7,0);pointer-events:none;transition:background .4s;}
+.drawer-overlay.open{background:rgba(15,12,7,.6);pointer-events:all;}
+.drawer{position:fixed;top:0;right:-100%;width:min(780px,100vw);height:100vh;z-index:900;background:var(--cream);overflow-y:auto;transition:right .5s cubic-bezier(.22,1,.36,1);box-shadow:-20px 0 60px rgba(0,0,0,.3);}
+.drawer.open{right:0;}
+.drawer-close{position:sticky;top:0;z-index:10;display:flex;justify-content:flex-end;padding:20px 24px;background:var(--cream);border-bottom:1px solid rgba(0,0,0,.06);}
+.close-btn{width:40px;height:40px;border:1px solid rgba(0,0,0,.15);border-radius:50%;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--mist);transition:all .2s;}
+.close-btn:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+/* Drawer hero */
+.d-hero{height:300px;position:relative;overflow:hidden;background:var(--ink);}
+.d-hero-img{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.5);}
+.d-hero-body{position:absolute;bottom:0;left:0;right:0;padding:32px;}
+.d-no{font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.d-name{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:#fff;line-height:.9;}
+.d-tagline{font-size:.85rem;color:rgba(255,255,255,.55);margin-top:10px;font-style:italic;}
+
+/* Drawer body */
+.d-body{padding:36px 32px;}
+.d-section{margin-bottom:36px;}
+.d-section-title{font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(200,146,42,.2);}
+.d-desc{font-size:.95rem;line-height:1.85;color:#3a3020;}
+
+/* Info pills */
+.d-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.d-info-item{background:#fff;border:1px solid rgba(0,0,0,.07);padding:14px 16px;border-radius:2px;}
+.d-info-label{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--mist);margin-bottom:4px;}
+.d-info-val{font-size:.9rem;font-weight:500;color:var(--ink);}
+
+/* Tags */
+.d-tags-row{display:flex;flex-wrap:wrap;gap:6px;}
+.d-tag{padding:4px 12px;background:var(--warm);border:1px solid rgba(200,146,42,.3);border-radius:20px;font-size:.72rem;color:var(--ink);}
+
+/* Places list */
+.places-list{display:flex;flex-direction:column;gap:2px;}
+.place-item{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:start;padding:14px 0;border-bottom:1px solid rgba(0,0,0,.06);}
+.place-item:last-child{border-bottom:none;}
+.place-num{width:36px;height:36px;background:var(--ink);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;flex-shrink:0;border-radius:2px;}
+.place-info h4{font-size:.95rem;font-weight:500;color:var(--ink);margin-bottom:3px;}
+.place-type{font-size:.7rem;letter-spacing:1px;color:var(--mist);margin-bottom:5px;}
+.place-desc{font-size:.8rem;color:#5a5040;line-height:1.5;}
+.place-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
+.ptag{padding:1px 7px;border:1px solid rgba(0,0,0,.12);border-radius:10px;font-size:.6rem;color:var(--mist);}
+.place-meta{text-align:right;flex-shrink:0;}
+.place-season{font-size:.68rem;color:var(--gold);white-space:nowrap;}
+.place-vol{font-size:.65rem;color:var(--mist);margin-top:3px;}
+.place-coords{font-size:.6rem;color:rgba(0,0,0,.3);margin-top:4px;font-family:monospace;}
+.place-map-btn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 12px;background:var(--ink);color:#fff;border:none;border-radius:2px;font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background .2s;font-family:'Outfit',sans-serif;}
+.place-map-btn:hover{background:var(--gold);}
+.place-map-btn svg{width:11px;height:11px;flex-shrink:0;}
+.place-dist-badge{display:inline-flex;align-items:center;gap:4px;margin-top:5px;margin-left:2px;font-size:.68rem;color:var(--gold);font-weight:500;}
+.place-dist-badge svg{width:11px;height:11px;}
+
+/* Food & Famous */
+.d-food,.d-famous{font-size:.88rem;color:#4a3a28;line-height:1.7;}
+
+/* ─── WHY SECTION ─── */
+.why-section{padding:100px 60px;display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto;align-items:center;}
+.why-text h2{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:300;line-height:1.15;margin-bottom:24px;}
+.why-text h2 em{font-style:italic;color:var(--gold);}
+.why-text p{font-size:.95rem;line-height:1.85;color:#4a4030;margin-bottom:16px;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.why-item{background:#fff;border:1px solid rgba(0,0,0,.07);padding:24px;border-radius:2px;transition:box-shadow .3s;}
+.why-item:hover{box-shadow:0 8px 40px rgba(0,0,0,.08);}
+.why-icon{font-size:1.6rem;margin-bottom:10px;}
+.why-item h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;margin-bottom:6px;}
+.why-item p{font-size:.78rem;color:var(--mist);line-height:1.6;}
+
+/* ─── SEASONS ─── */
+.season-section{background:var(--ink);padding:90px 60px;}
+.season-section .sec-head h2{color:#fff;}
+.season-section .sec-head p{color:rgba(255,255,255,.4);}
+.season-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;max-width:1000px;margin:0 auto;}
+.season-col{background:rgba(255,255,255,.03);padding:30px 24px;}
+.season-col h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#fff;margin-bottom:4px;}
+.season-months{font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.season-col p{font-size:.8rem;color:rgba(255,255,255,.45);line-height:1.65;}
+.season-bar{height:3px;border-radius:2px;margin-bottom:20px;}
+
+/* ─── QUOTE ─── */
+.quote-section{padding:100px 60px;text-align:center;background:var(--warm);position:relative;overflow:hidden;}
+.quote-section::before{content:'"';position:absolute;top:-40px;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:30rem;color:rgba(0,0,0,.03);line-height:1;pointer-events:none;}
+blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:300;font-style:italic;color:var(--ink);max-width:800px;margin:0 auto;line-height:1.4;}
+blockquote cite{display:block;margin-top:24px;font-family:'Outfit',sans-serif;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;font-style:normal;color:var(--mist);}
+
+/* ─── FOOTER ─── */
+footer{background:var(--ink);padding:60px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;border-top:1px solid rgba(200,146,42,.2);}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:#fff;margin-bottom:12px;}
+footer p{font-size:.78rem;color:rgba(255,255,255,.35);line-height:1.7;}
+.footer-col h4{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.footer-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.4);text-decoration:none;margin-bottom:8px;transition:color .2s;}
+.footer-col a:hover{color:#fff;}
+.footer-bottom{background:rgba(0,0,0,.3);padding:16px 60px;display:flex;justify-content:space-between;font-size:.7rem;color:rgba(255,255,255,.2);letter-spacing:1px;}
+
+/* ─── ERROR STATE ─── */
+.error-state{text-align:center;padding:80px 24px;color:var(--mist);}
+.error-state h3{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--rust);margin-bottom:12px;}
+.retry-btn{margin-top:20px;padding:12px 28px;background:var(--ink);color:#fff;border:none;border-radius:2px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;}
+
+/* ─── REVEAL ─── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* ─── ANIMATIONS ─── */
+@keyframes heroIn{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:none;}}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@keyframes scrollPulse{0%,100%{opacity:1;transform:scaleY(1);}50%{opacity:.3;transform:scaleY(.6);}}
+@keyframes shimmer{from{transform:translateX(-100%);}to{transform:translateX(100%);}}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1100px){
+  .masonry{columns:2;}
+  .why-section{grid-template-columns:1fr;gap:40px;}
+  .season-grid{grid-template-columns:1fr 1fr;}
+  footer{grid-template-columns:1fr 1fr;}
+  nav,nav.solid{padding:16px 24px;}
+  .loading-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:640px){
+  .masonry{columns:1;}
+  .hero-stats{gap:24px;}
+  .why-grid{grid-template-columns:1fr;}
+  footer{grid-template-columns:1fr;padding:40px 24px;}
+  .footer-bottom{padding:16px 24px;flex-direction:column;gap:4px;}
+  .season-grid{grid-template-columns:1fr;}
+  .drawer{width:100vw;}
+  .d-info-grid{grid-template-columns:1fr;}
+  .loading-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a class="nav-logo" href="index.html">
+    <span class="nav-logo-mark">✦</span>
+    Himachal Explorer
+  </a>
+  <div class="nav-links">
+    <a href="#districts">Districts</a>
+    <a href="#why">Why Himachal</a>
+    <a href="#seasons">Seasons</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <svg class="mtn" viewBox="0 0 1440 320" preserveAspectRatio="none" style="height:45%;opacity:.08" fill="white">
+    <path d="M0,320 L80,180 L160,240 L260,100 L360,200 L440,80 L540,160 L620,60 L720,140 L820,40 L920,120 L1020,60 L1120,140 L1200,80 L1300,160 L1380,100 L1440,140 L1440,320Z"/>
+  </svg>
+  <svg class="mtn" viewBox="0 0 1440 320" preserveAspectRatio="none" style="height:30%;opacity:.15" fill="white">
+    <path d="M0,320 L120,260 L240,290 L360,220 L480,270 L600,200 L720,250 L840,190 L960,240 L1080,200 L1200,240 L1320,210 L1440,230 L1440,320Z"/>
+  </svg>
+  <div class="hero-content">
+    <div class="eyebrow">12 Districts · Live Firebase Data · 2026</div>
+    <h1>Himachal<br><em>Explorer</em></h1>
+    <p class="hero-sub">The definitive guide to India's mountain state — every district, every place, loaded live from Firebase.</p>
+    <div class="hero-stats">
+      <div><div class="stat-num">12</div><div class="stat-label">Districts</div></div>
+      <div><div class="stat-num" id="statPlaces">—</div><div class="stat-label">Places</div></div>
+      <div><div class="stat-num">4</div><div class="stat-label">Seasons</div></div>
+      <div><div class="stat-num">2026</div><div class="stat-label">Updated</div></div>
+    </div>
+  </div>
+  <div class="scroll-cue"><div class="scroll-line"></div>Explore</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    Kullu &nbsp;✦&nbsp; Shimla &nbsp;✦&nbsp; Lahaul &amp; Spiti &nbsp;✦&nbsp; Kinnaur &nbsp;✦&nbsp; Kangra &nbsp;✦&nbsp; Chamba &nbsp;✦&nbsp; Mandi &nbsp;✦&nbsp; Sirmour &nbsp;✦&nbsp; Solan &nbsp;✦&nbsp; Hamirpur &nbsp;✦&nbsp; Una &nbsp;✦&nbsp; Bilaspur &nbsp;✦&nbsp;
+    Kullu &nbsp;✦&nbsp; Shimla &nbsp;✦&nbsp; Lahaul &amp; Spiti &nbsp;✦&nbsp; Kinnaur &nbsp;✦&nbsp; Kangra &nbsp;✦&nbsp; Chamba &nbsp;✦&nbsp; Mandi &nbsp;✦&nbsp; Sirmour &nbsp;✦&nbsp; Solan &nbsp;✦&nbsp; Hamirpur &nbsp;✦&nbsp; Una &nbsp;✦&nbsp; Bilaspur &nbsp;✦&nbsp;
+  </div>
+</div>
+
+<!-- DISTRICTS -->
+<section id="districts">
+  <div class="sec-head reveal">
+    <p class="kicker">✦ All 12 Districts · Live Data</p>
+    <h2>Choose Your Destination</h2>
+    <p>Every district tells a different story. Data fetched live from Firebase.</p>
+  </div>
+  <div class="filter-bar reveal">
+    <button class="fbtn active" data-filter="all">All Districts</button>
+    <button class="fbtn" data-filter="adventure">Adventure</button>
+    <button class="fbtn" data-filter="heritage">Heritage</button>
+    <button class="fbtn" data-filter="spiritual">Spiritual</button>
+    <button class="fbtn" data-filter="nature">Nature</button>
+    <button class="fbtn" data-filter="offbeat">Offbeat</button>
+  </div>
+  <!-- Loading skeletons -->
+  <div id="loadingGrid" class="loading-grid">
+    <div class="skel"></div><div class="skel"></div><div class="skel"></div>
+    <div class="skel"></div><div class="skel"></div><div class="skel"></div>
+    <div class="skel"></div><div class="skel"></div><div class="skel"></div>
+  </div>
+  <!-- Live grid -->
+  <div class="masonry" id="districtGrid" style="display:none"></div>
+  <!-- Error -->
+  <div id="errorState" class="error-state" style="display:none">
+    <h3>Could not load districts</h3>
+    <p>Check Firebase config and network connection.</p>
+    <button class="retry-btn" onclick="fetchDistricts()">Retry</button>
+  </div>
+</section>
+
+<!-- WHY HIMACHAL -->
+<section id="why" class="why-section">
+  <div class="why-text reveal">
+    <h2>Why <em>Himachal Pradesh</em> is unlike anywhere else</h2>
+    <p>Himachal is not a destination — it is a state of mind. In one state you get subtropical tea gardens of Kangra, the icy moonscapes of Spiti, Tibetan Buddhist culture of McLeod Ganj, colonial hill stations, and forests where the light never fully reaches the ground.</p>
+    <p>Just 5 hours from Delhi yet containing some of India's most extreme terrain. That contrast is what keeps people returning year after year.</p>
+  </div>
+  <div class="why-grid reveal">
+    <div class="why-item"><div class="why-icon">🏔️</div><h4>Three Mountain Ranges</h4><p>Shivalik, Dhauladhar & Greater Himalaya all converge here.</p></div>
+    <div class="why-item"><div class="why-icon">🌡️</div><h4>Every Climate Zone</h4><p>From subtropical Una (42°C) to arctic Spiti (−30°C) within 300 km.</p></div>
+    <div class="why-item"><div class="why-icon">🕌</div><h4>Living Cultural Mosaic</h4><p>Hindu temples, Buddhist monasteries, Sikh gurudwaras — coexisting for millennia.</p></div>
+    <div class="why-item"><div class="why-icon">🍎</div><h4>India's Fruit Bowl</h4><p>Apples, apricots, cherries — orchards of Kinnaur and Kullu feed half the country.</p></div>
+  </div>
+</section>
+
+<!-- SEASONS -->
+<section id="seasons" class="season-section">
+  <div class="sec-head reveal">
+    <p class="kicker">✦ When to Go</p>
+    <h2 style="color:#fff">The Four Seasons of Himachal</h2>
+    <p>Each season transforms the landscape completely. There is no wrong time — only different Himachals.</p>
+  </div>
+  <div class="season-grid reveal">
+    <div class="season-col">
+      <div class="season-bar" style="background:linear-gradient(90deg,#e8b84b,#f0d070)"></div>
+      <h3>Spring</h3><div class="season-months">March — May</div>
+      <p>Rhododendron blooms. Snow retreating. Apple orchards in flower. Ideal for trekking. Manali and Shimla at their most vibrant.</p>
+    </div>
+    <div class="season-col">
+      <div class="season-bar" style="background:linear-gradient(90deg,#3a7a3a,#6cb06c)"></div>
+      <h3>Summer</h3><div class="season-months">June — August</div>
+      <p>High passes open — Rohtang, Kunzum, Baralacha. Spiti accessible. Monsoon brings mist and landslide risk on some roads.</p>
+    </div>
+    <div class="season-col">
+      <div class="season-bar" style="background:linear-gradient(90deg,#c8922a,#e07030)"></div>
+      <h3>Autumn</h3><div class="season-months">September — November</div>
+      <p>Golden season. Apple harvest in Kinnaur. Crystal skies. Kullu Dussehra (October) — a 7-day spectacle of gods.</p>
+    </div>
+    <div class="season-col">
+      <div class="season-bar" style="background:linear-gradient(90deg,#7ab0d0,#c0ddf0)"></div>
+      <h3>Winter</h3><div class="season-months">December — February</div>
+      <p>Snow transforms Shimla, Manali, Dalhousie. Skiing at Solang, Kufri, Narkanda. Lowest prices, fewest crowds.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-section reveal">
+  <blockquote>
+    "The mountains are calling and I must go — but Himachal is where the mountains call <em>back.</em>"
+    <cite>— Himachal Explorer, 2026</cite>
+  </blockquote>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Himachal Explorer</div>
+    <p>Comprehensive district-by-district travel guide, updated for 2026. Data powered by Firebase.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Districts</h4>
+    <a href="kullu.html">Kullu</a><a href="shimla.html">Shimla</a>
+    <a href="spiti.html">Lahaul &amp; Spiti</a><a href="kinnaur.html">Kinnaur</a>
+    <a href="kangra.html">Kangra</a><a href="chamba.html">Chamba</a>
+  </div>
+  <div class="footer-col">
+    <h4>More Districts</h4>
+    <a href="mandi.html">Mandi</a><a href="sirmour.html">Sirmour</a>
+    <a href="solan.html">Solan</a><a href="hamirpur.html">Hamirpur</a>
+    <a href="una.html">Una</a><a href="bilaspur.html">Bilaspur</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2026 Himachal Explorer · Firebase-powered</span>
+  <span>Himachal Explorer</span>
+</div>
+
+<!-- DRAWER OVERLAY -->
+<div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
+
+<!-- DISTRICT DRAWER -->
+<div class="drawer" id="drawer">
+  <div class="drawer-close">
+    <button class="close-btn" onclick="closeDrawer()">✕</button>
+  </div>
+  <div id="drawerContent"></div>
+</div>
+
+<!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+<script type="module">
+// ─────────────────────────────────────────────────────────
+// ██████  FIREBASE CONFIG — UPDATE THESE VALUES
+// ─────────────────────────────────────────────────────────
+const FB_CONFIG = {
+  databaseURL: "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app"
+};
+
+// ─────────────────────────────────────────────────────────
+// FALLBACK DATA (used if Firebase unavailable / no data yet)
+// ─────────────────────────────────────────────────────────
+const FALLBACK_DISTRICTS = [
+  {id:"kullu",no:"01",name:"Kullu",tagline:"Valley of Gods — Beas River & Himalayan Passes",tags:"adventure,nature",hq:"Kullu",area_km2:5503,altitude_m:"1220–4300",best_season:"Mar–Jun, Sep–Nov",temp_summer:"10–30°C",temp_winter:"-5–15°C",nearest_airport:"Bhuntar (Kullu-Manali Airport)",from_delhi_km:510,description:"Kullu district is the adventure capital of Himachal Pradesh. The Kullu Valley, carved by the Beas river, stretches from Larji gorge to Rohtang Pass. Manali is the gateway to Leh-Ladakh and Spiti. Famous for Kullu Dussehra festival, world-class trekking, skiing, river rafting and paragliding.",local_food:"Sidu, Trout fish curry, Aktori, Chha Gosht",famous_for:"Dussehra Festival, Rohtang Pass, River Rafting, Apple Orchards",hero_image:"assets/images/manali_1.jpg",page_url:"kullu.html",
+    places:{manali:{name:"Manali",type:"Town / Base",lat:32.2432,lng:77.1892,categories:"adventure,nature",description:"Gateway to Rohtang & Leh. Bustling bazaar, river walks, apple orchards.",best_time:"Year-round",tourist_volume:"High",order:1},rohtang_pass:{name:"Rohtang Pass",type:"Mountain Pass",lat:32.3714,lng:77.2378,categories:"adventure",description:"4,111 m pass. Snow even in June. Entry via permit only.",best_time:"May–Oct",tourist_volume:"Very High",order:2},solang_valley:{name:"Solang Valley",type:"Ski Resort",lat:32.3192,lng:77.1529,categories:"adventure,nature",description:"Skiing in winter, paragliding in summer. Cable car rides.",best_time:"Year-round",tourist_volume:"High",order:3},jibhi:{name:"Jibhi",type:"Village",lat:31.7893,lng:77.4232,categories:"offbeat,nature",description:"Hidden gem in Banjar valley. Waterfalls, cedar forest, Jalori Pass nearby.",best_time:"Mar–Nov",tourist_volume:"Medium",order:4},kasol:{name:"Kasol",type:"Village",lat:32.0094,lng:77.3143,categories:"offbeat,nature",description:"Parvati Valley backpacker hub. Gateway to Kheerganga trek.",best_time:"Mar–Nov",tourist_volume:"High",order:5}}},
+  {id:"shimla",no:"02",name:"Shimla",tagline:"Queen of Hills — Colonial Capital of British India",tags:"heritage,nature",hq:"Shimla",area_km2:5131,altitude_m:"300–3700",best_season:"Mar–Jun, Sep–Nov, Dec–Feb",temp_summer:"15–30°C",temp_winter:"-5–10°C",nearest_airport:"Shimla Airport (Jubbarhatti)",from_delhi_km:343,description:"Shimla served as the summer capital of British India from 1864. The district blends Victorian architecture — Viceregal Lodge, Christ Church, Gaiety Theatre — with dense cedar forests. Beyond the city: Narkanda for skiing, Rampur for tribal culture, Chail for the world's highest cricket ground.",local_food:"Madra, Babru, Chha Gosht, Sepu Badi",famous_for:"Toy Train (UNESCO), Viceregal Lodge, Apple Orchards, Skiing at Kufri",hero_image:"assets/images/sissu_1.jpg",page_url:"shimla.html",
+    places:{ridge_mall:{name:"The Ridge & Mall Road",type:"Urban / Heritage",lat:31.1048,lng:77.1734,categories:"heritage",description:"Heart of Shimla. Christ Church, promenade, panoramic Himalayan views.",best_time:"Year-round",tourist_volume:"Very High",order:1},jakhu:{name:"Jakhu Temple",type:"Temple / Trek",lat:31.1099,lng:77.1813,categories:"spiritual,heritage",description:"Highest point in Shimla. Lord Hanuman temple. 2 km hike or ropeway.",best_time:"Year-round",tourist_volume:"High",order:2},kufri:{name:"Kufri",type:"Hill Station / Ski",lat:31.0962,lng:77.2673,categories:"adventure,nature",description:"16 km from Shimla. Skiing in winter, yak rides, Himalayan Wildlife Zoo.",best_time:"Year-round",tourist_volume:"High",order:3},narkanda:{name:"Narkanda",type:"Ski Resort",lat:31.2741,lng:77.4554,categories:"adventure,nature",description:"65 km from Shimla. Apple capital. Hatu Peak (3400 m). Skiing in winter.",best_time:"Year-round",tourist_volume:"Medium",order:4},chail:{name:"Chail",type:"Heritage / Nature",lat:30.9694,lng:77.2014,categories:"heritage,nature",description:"Maharaja's summer retreat. World's highest cricket ground (2250 m).",best_time:"Year-round",tourist_volume:"Medium",order:5}}},
+  {id:"spiti",no:"03",name:"Lahaul & Spiti",tagline:"Cold Desert — Monasteries Above the Clouds",tags:"adventure,offbeat,nature",hq:"Keylong / Kaza",area_km2:13835,altitude_m:"3000–6500",best_season:"Jun–Sep",temp_summer:"5–25°C",temp_winter:"-30–0°C",nearest_airport:"Bhuntar / Chandigarh",from_delhi_km:700,description:"Lahaul & Spiti is Himachal's largest and most remote district — a high-altitude cold desert averaging 4,000 m. The Spiti Valley contains some of the world's oldest Buddhist monasteries: Key, Tabo (1,000 years old), Dhankar. Chandratal lake is one of India's most photographed Himalayan lakes.",local_food:"Tsampa, Chhang, Thukpa, Butter Tea",famous_for:"Key Monastery, Chandratal Lake, Tabo, Snow Leopard, Highest villages",hero_image:"assets/images/chango_1.jpg",page_url:"spiti.html",
+    places:{kaza:{name:"Kaza",type:"Town / Base",lat:32.2268,lng:78.0709,categories:"adventure,offbeat",description:"District HQ of Spiti. Gateway to all Spiti attractions. 3,800 m altitude.",best_time:"Jun–Sep",tourist_volume:"High",order:1},key_monastery:{name:"Key Monastery",type:"Monastery",lat:32.2971,lng:78.0134,categories:"spiritual,heritage",description:"1,000-year-old Tibetan Buddhist monastery at 4,166 m.",best_time:"Jun–Sep",tourist_volume:"Very High",order:2},chandratal:{name:"Chandratal Lake",type:"Lake",lat:32.4774,lng:77.6182,categories:"nature,adventure",description:"The Moon Lake at 4,250 m. Crystal blue crescent. Camping nearby.",best_time:"Jun–Sep",tourist_volume:"High",order:3},tabo:{name:"Tabo Monastery",type:"Heritage",lat:32.0978,lng:78.3857,categories:"spiritual,heritage",description:"Founded 996 CE. Called the Ajanta of the Himalayas.",best_time:"Jun–Sep",tourist_volume:"High",order:4},hikkim:{name:"Hikkim",type:"Village",lat:32.27,lng:78.09,categories:"offbeat",description:"World's highest post office (4,400 m).",best_time:"Jun–Sep",tourist_volume:"High",order:5}}},
+  {id:"kinnaur",no:"04",name:"Kinnaur",tagline:"Apple Orchards on Cliffsides — Last Villages of India",tags:"nature,offbeat,heritage",hq:"Reckong Peo",area_km2:6401,altitude_m:"1000–6816",best_season:"May–Jun, Sep–Oct",temp_summer:"10–28°C",temp_winter:"-15–8°C",nearest_airport:"Shimla / Chandigarh",from_delhi_km:535,description:"Kinnaur borders Tibet. Apple, apricot and grape orchards cling to sheer cliffsides. Chitkul is the last inhabited village on the Indo-Tibetan border road. Kalpa offers the finest views of Kinnaur Kailash (6,050 m). A permit is required for areas beyond Jangi.",local_food:"Kinnauri Dham, Chhang, Chilta, Babru, Dry Fruits",famous_for:"Apple Orchards, Kinnaur Kailash, Chitkul (last village), Sangla Valley",hero_image:"assets/images/kinnaur-kailash.webp",page_url:"kinnaur.html",
+    places:{kalpa:{name:"Kalpa",type:"Village / Viewpoint",lat:31.5333,lng:78.2561,categories:"nature,heritage",description:"Apple orchards with Kinnaur Kailash backdrop. Legendary sunrise views.",best_time:"Apr–Nov",tourist_volume:"High",order:1},chitkul:{name:"Chitkul",type:"Border Village",lat:31.348,lng:78.4369,categories:"offbeat,nature",description:"Last village on Indo-Tibetan border road. 3,450 m. Tibetan-style homes.",best_time:"May–Oct",tourist_volume:"Very High",order:2},sangla:{name:"Sangla Valley",type:"Valley",lat:31.4167,lng:78.3333,categories:"nature,offbeat",description:"The Baspa valley. Orchards, meadows, Kamru fort.",best_time:"May–Oct",tourist_volume:"High",order:3},nako:{name:"Nako",type:"Village / Lake",lat:31.8786,lng:78.6598,categories:"offbeat,spiritual",description:"High-altitude village with a sacred Buddhist lake and monastery. 3,662 m.",best_time:"May–Sep",tourist_volume:"Medium",order:4},kamru_fort:{name:"Kamru Fort",type:"Heritage / Fort",lat:31.4296,lng:78.2523,categories:"heritage",description:"Ancient fort above Sangla village. Kamakhya Devi temple inside.",best_time:"May–Oct",tourist_volume:"Medium",order:5}}},
+  {id:"kangra",no:"05",name:"Kangra",tagline:"Paragliding Capital — Dharamshala, Tea & Dhauladhar",tags:"adventure,spiritual,nature",hq:"Dharamshala",area_km2:5739,altitude_m:"400–5000",best_season:"Mar–Jun, Sep–Nov",temp_summer:"15–35°C",temp_winter:"0–15°C",nearest_airport:"Gaggal (Kangra Airport)",from_delhi_km:490,description:"Kangra is Himachal's most populated district. Dharamshala is home to the Dalai Lama. Bir-Billing is the paragliding capital of Asia. The ancient Kangra Fort, Brajeshwari temple and tea gardens of Palampur make this a district of extraordinary diversity.",local_food:"Khachdi, Chukh, Momos, Thukpa, Kangri Dham",famous_for:"Dalai Lama, Paragliding at Bir-Billing, Kangra Miniature Paintings, Tea Gardens",hero_image:"assets/images/bir-billing_1.jpg",page_url:"kangra.html",
+    places:{dharamshala:{name:"Dharamshala / McLeod Ganj",type:"Town / Buddhist Hub",lat:32.219,lng:76.3234,categories:"spiritual,heritage",description:"Home of Dalai Lama. Namgyal Monastery, Tibetan market.",best_time:"Year-round",tourist_volume:"Very High",order:1},bir_billing:{name:"Bir Billing",type:"Paragliding",lat:32.0403,lng:76.7222,categories:"adventure",description:"Asia's paragliding capital. World record flights.",best_time:"Mar–Jun, Sep–Nov",tourist_volume:"Very High",order:2},palampur:{name:"Palampur",type:"Tea Gardens",lat:32.1101,lng:76.5378,categories:"nature,heritage",description:"Himachal's tea capital. Lush Neugal Khad gorge.",best_time:"Year-round",tourist_volume:"High",order:3},kangra_fort:{name:"Kangra Fort",type:"Heritage / Fort",lat:32.0994,lng:76.2692,categories:"heritage",description:"One of India's oldest and largest forts. 4,000+ years of history.",best_time:"Year-round",tourist_volume:"High",order:4},triund:{name:"Triund Trek",type:"Trek",lat:32.27,lng:76.35,categories:"adventure,nature",description:"9 km trek from McLeod Ganj. Dhauladhar panorama.",best_time:"Mar–Jun, Sep–Nov",tourist_volume:"Very High",order:5}}},
+  {id:"chamba",no:"06",name:"Chamba",tagline:"Dalhousie, Khajjiar & Ancient Temple Kingdoms",tags:"heritage,nature,spiritual",hq:"Chamba",area_km2:6528,altitude_m:"650–6400",best_season:"Apr–Jun, Sep–Nov",temp_summer:"15–30°C",temp_winter:"-5–10°C",nearest_airport:"Gaggal / Pathankot",from_delhi_km:553,description:"Chamba is Himachal's most underrated district. The old Chamba town has ancient temples dating back 1,000+ years. Dalhousie is a former British cantonment with colonial charm. Khajjiar is the 'Mini Switzerland of India' — a circular meadow ringed by deodars.",local_food:"Madra, Babru, Mitha, Chamba Chukh, Dham",famous_for:"Khajjiar (Mini Switzerland), Dalhousie, Manimahesh Yatra, Chamba Rumal",hero_image:"assets/images/khajjiar_02.jpg",page_url:"chamba.html",
+    places:{dalhousie:{name:"Dalhousie",type:"Hill Station",lat:32.5376,lng:75.9699,categories:"heritage,nature",description:"Former British cantonment at 2,036 m. Churches, cottages, pine forests.",best_time:"Year-round",tourist_volume:"Very High",order:1},khajjiar:{name:"Khajjiar",type:"Meadow / Lake",lat:32.5493,lng:76.0476,categories:"nature",description:"Mini Switzerland of India. 1.5 km circular meadow, deodar ring, lake.",best_time:"Year-round",tourist_volume:"Very High",order:2},chamba_town:{name:"Chamba Town",type:"Heritage Town",lat:32.5535,lng:76.1281,categories:"heritage,spiritual",description:"Ancient capital. Lakshmi Narayan temple complex. Chaugan ground.",best_time:"Year-round",tourist_volume:"High",order:3},manimahesh:{name:"Manimahesh Lake",type:"Pilgrimage / Trek",lat:32.3833,lng:76.6167,categories:"spiritual,adventure",description:"Sacred lake at 4,080 m below Manimahesh Kailash (5,653 m). Annual yatra.",best_time:"Aug–Sep",tourist_volume:"High",order:4},bharmaur:{name:"Bharmaur",type:"Heritage Town",lat:32.45,lng:76.53,categories:"heritage,spiritual",description:"Former capital. Chaurasi temples complex — 84 ancient shrines.",best_time:"May–Oct",tourist_volume:"Medium",order:5}}},
+  {id:"mandi",no:"07",name:"Mandi",tagline:"Varanasi of the Hills — 81 Temples & Prashar Lake",tags:"spiritual,heritage,nature",hq:"Mandi",area_km2:3950,altitude_m:"760–4700",best_season:"Mar–Jun, Sep–Nov",temp_summer:"20–38°C",temp_winter:"0–18°C",nearest_airport:"Bhuntar / Chandigarh",from_delhi_km:425,description:"Mandi is called the 'Varanasi of the Hills' for its 81 ancient temples. Prashar Lake — a high-altitude lake with a 3-storey pagoda — is one of Himachal's most mystical destinations. Rewalsar Lake is sacred to Buddhists, Hindus and Sikhs simultaneously.",local_food:"Dham, Patande, Madra, Siddu, Mitha",famous_for:"81 Temples, Shivratri Festival, Prashar Lake, Rewalsar",hero_image:"assets/images/barot-valley_1.jpg",page_url:"mandi.html",
+    places:{prashar:{name:"Prashar Lake",type:"Lake / Trek",lat:31.8711,lng:77.1411,categories:"spiritual,nature",description:"2,730 m. Ancient 3-storey pagoda in the lake. Floating peat island.",best_time:"Apr–Jun, Sep–Oct",tourist_volume:"Very High",order:1},rewalsar:{name:"Rewalsar Lake",type:"Pilgrimage",lat:31.6389,lng:76.8389,categories:"spiritual",description:"Sacred to Hindu, Buddhist & Sikh faiths simultaneously.",best_time:"Year-round",tourist_volume:"High",order:2},mandi_town:{name:"Mandi Town",type:"Heritage Town",lat:31.7085,lng:76.9325,categories:"heritage,spiritual",description:"81 stone temples. Trilokinath temple. Beas river ghats.",best_time:"Year-round",tourist_volume:"High",order:3},barot:{name:"Barot Valley",type:"Valley / Nature",lat:32.05,lng:76.85,categories:"nature,offbeat",description:"Serene Uhl river valley. Trout fishing. Old British-era hydel project.",best_time:"Mar–Nov",tourist_volume:"Medium",order:4},shikari_devi:{name:"Shikari Devi",type:"Temple / Trek",lat:31.75,lng:77.05,categories:"spiritual,adventure",description:"Roofless temple at 3,359 m. Snow-covered in winter.",best_time:"May–Oct",tourist_volume:"Medium",order:5}}},
+  {id:"sirmour",no:"08",name:"Sirmour",tagline:"Renuka Lake, Fossils & Churdhar Gateway",tags:"nature,offbeat,spiritual",hq:"Nahan",area_km2:2825,altitude_m:"300–3647",best_season:"Oct–Mar (lower), May–Jun (peaks)",temp_summer:"22–40°C",temp_winter:"0–20°C",nearest_airport:"Chandigarh",from_delhi_km:290,description:"Sirmour is Himachal's southernmost and least touristed accessible district. Renuka Lake (HP's largest natural lake) is sacred to Lord Parashurama. The Shivalik fossil park contains million-year-old vertebrate fossils. Churdhar (3,647 m) is the highest peak of the outer Himalayas.",local_food:"Patande, Sidu, Babru, Gulgule, Meetha",famous_for:"Renuka Lake Fair, Fossil Park (Asia's first), Churdhar Trek, Paonta Sahib",hero_image:"assets/images/solang-valley_1.jpg",page_url:"sirmour.html",
+    places:{renuka:{name:"Renuka Lake",type:"Lake / Pilgrimage",lat:30.6089,lng:77.4532,categories:"spiritual,nature",description:"HP's largest lake. Renuka fair in November. Adjoining mini-zoo.",best_time:"Year-round",tourist_volume:"High",order:1},churdhar:{name:"Churdhar Peak",type:"Trek / Summit",lat:30.8394,lng:77.5094,categories:"adventure,nature",description:"3,647 m. Highest peak of outer Himalaya. Shirgul Maharaj temple at top.",best_time:"May–Jun, Sep–Oct",tourist_volume:"Medium",order:2},fossil_park:{name:"Suketi Fossil Park",type:"Geological Site",lat:30.67,lng:77.38,categories:"offbeat",description:"Asia's first fossil park. Life-size replicas of Shivalik fauna (5–8 million years old).",best_time:"Year-round",tourist_volume:"Medium",order:3},paonta:{name:"Paonta Sahib",type:"Pilgrimage",lat:30.4367,lng:77.6267,categories:"spiritual",description:"Historic Gurudwara on Yamuna. Guru Gobind Singh wrote here.",best_time:"Year-round",tourist_volume:"High",order:4},nahan:{name:"Nahan",type:"Heritage Town",lat:30.5583,lng:77.2989,categories:"heritage",description:"17th-century planned town. Rani Tal garden, Jagannath temple.",best_time:"Year-round",tourist_volume:"Medium",order:5}}},
+  {id:"solan",no:"09",name:"Solan",tagline:"Kasauli, Colonial Cantonments & Asia's Oldest Brewery",tags:"heritage,offbeat,nature",hq:"Solan",area_km2:1936,altitude_m:"400–2600",best_season:"Oct–Mar",temp_summer:"18–35°C",temp_winter:"0–18°C",nearest_airport:"Chandigarh",from_delhi_km:270,description:"Solan is closest to Chandigarh. Kasauli is one of India's best-preserved colonial hill stations. The Kasauli Brewery (1820) is Asia's oldest functioning brewery. Solan is called the 'Mushroom City of India'. Chail has the world's highest cricket ground (2,250 m).",local_food:"Mushroom dishes, Solan Tomato chutney, Babru, Himachali Dham",famous_for:"Kasauli Cantonment, Asia's Oldest Brewery, Mushroom Capital, Toy Train",hero_image:"assets/images/old-manali_1.jpg",page_url:"solan.html",
+    places:{kasauli:{name:"Kasauli",type:"Hill Station",lat:30.8996,lng:76.9672,categories:"heritage,nature",description:"Pristine 1842 British cantonment. No vehicles in mall area. Monkey Point.",best_time:"Year-round",tourist_volume:"Very High",order:1},brewery:{name:"Kasauli Brewery",type:"Heritage / Industry",lat:30.9,lng:76.965,categories:"heritage,offbeat",description:"Asia's oldest brewery (1820). Mohan Meakin. Guided tours available.",best_time:"Year-round",tourist_volume:"High",order:2},chail:{name:"Chail",type:"Heritage / Nature",lat:30.9694,lng:77.2014,categories:"heritage,nature",description:"World's highest cricket ground (2250 m). Former Patiala Maharaja retreat.",best_time:"Year-round",tourist_volume:"High",order:3},dagshai:{name:"Dagshai",type:"Cantonment",lat:30.8564,lng:76.9856,categories:"heritage,offbeat",description:"Former British prison camp. Museum. Well-preserved colonial cantonment.",best_time:"Year-round",tourist_volume:"Medium",order:4},barog:{name:"Barog",type:"Railway / Heritage",lat:30.9331,lng:77.0486,categories:"heritage,offbeat",description:"UNESCO toy train stop. Haunted Barog tunnel history. Forest rest house.",best_time:"Year-round",tourist_volume:"Medium",order:5}}},
+  {id:"hamirpur",no:"10",name:"Hamirpur",tagline:"Most Literate District — Sujanpur Fort & Beas River",tags:"heritage,offbeat",hq:"Hamirpur",area_km2:1118,altitude_m:"400–1000",best_season:"Oct–Mar",temp_summer:"25–42°C",temp_winter:"5–20°C",nearest_airport:"Gaggal / Chandigarh",from_delhi_km:385,description:"Hamirpur has the highest literacy rate in Himachal Pradesh. It is the political heartland of the state. Sujanpur Tira has a historic fort and riverside ghats on the Beas. Deotsidh (Baba Balak Nath) is one of the most important pilgrimage sites drawing millions from Punjab.",local_food:"Dham, Madra, Babru, Rajah (wheat-jaggery sweet), Siddu",famous_for:"Highest Literacy Rate, Sujanpur Tira Fort, Deotsidh Temple, Beas River",hero_image:"assets/images/awah-devi-temple_1.jpg",page_url:"hamirpur.html",
+    places:{sujanpur:{name:"Sujanpur Tira",type:"Heritage Fort Town",lat:31.8292,lng:76.5061,categories:"heritage",description:"18th-century planned town. Tarapur Fort, 8 temples, riverside ghats.",best_time:"Year-round",tourist_volume:"High",order:1},deotsidh:{name:"Deotsidh Temple",type:"Pilgrimage",lat:31.7108,lng:76.5289,categories:"spiritual",description:"Baba Balak Nath temple in a cave. Major pilgrimage from Punjab.",best_time:"Year-round",tourist_volume:"High",order:2},nadaun:{name:"Nadaun",type:"Historical Town",lat:31.7757,lng:76.3456,categories:"heritage",description:"Battle of Nadaun (1691) site. On Beas river. Historic ghats.",best_time:"Year-round",tourist_volume:"Low",order:3},tarapur_fort:{name:"Tarapur Fort",type:"Fort / Heritage",lat:31.8292,lng:76.5061,categories:"heritage",description:"Fort of Raja Sansar Chand of Kangra. Beas river views.",best_time:"Year-round",tourist_volume:"Medium",order:4},awah_devi:{name:"Awah Devi",type:"Temple",lat:31.68,lng:76.52,categories:"spiritual",description:"Hilltop goddess temple. Views over Kangra and Hamirpur valleys.",best_time:"Year-round",tourist_volume:"Medium",order:5}}},
+  {id:"una",no:"11",name:"Una",tagline:"Chintpurni Shakti Peetha & Swan River Foothills",tags:"spiritual,heritage",hq:"Una",area_km2:1540,altitude_m:"360–900",best_season:"Oct–Mar",temp_summer:"28–45°C",temp_winter:"5–22°C",nearest_airport:"Chandigarh",from_delhi_km:320,description:"Una is Himachal's gateway from Punjab. Chintpurni temple is one of the 51 Shakti Peethas and receives millions of devotees annually. The Amb temples are early medieval stone temples in excellent condition. Pong Dam is a Ramsar wetland hosting bar-headed geese in winter.",local_food:"Punjabi-Himachali fusion, Chana Madra, Makki di Roti, Sarsoon da Saag",famous_for:"Chintpurni Shakti Peetha, Amb Temples, Pong Dam Wetland (Ramsar), Swan River",hero_image:"assets/images/bhagsu-waterfall_1.jpg",page_url:"una.html",
+    places:{chintpurni:{name:"Chintpurni Temple",type:"Shakti Peetha",lat:31.5417,lng:76.3,categories:"spiritual",description:"One of 51 Shakti Peethas. Millions of visitors annually.",best_time:"Year-round",tourist_volume:"Very High",order:1},amb_temples:{name:"Amb Temples",type:"Heritage / Temples",lat:31.68,lng:76.12,categories:"heritage,spiritual",description:"8th–9th century Pratihara-style stone temples. ASI protected.",best_time:"Year-round",tourist_volume:"High",order:2},pong_dam:{name:"Pong Dam Wetland",type:"Wildlife",lat:31.95,lng:75.95,categories:"nature",description:"Ramsar wetland. Wintering ground for bar-headed geese.",best_time:"Nov–Mar",tourist_volume:"High",order:3},swan_park:{name:"Swan River Eco Park",type:"Nature",lat:31.47,lng:76.27,categories:"nature",description:"Developed riverside park along Swan. Walking trails, waterfowl.",best_time:"Oct–Mar",tourist_volume:"Medium",order:4},kutlehar:{name:"Kutlehar Fort",type:"Heritage / Fort",lat:31.65,lng:76.2,categories:"heritage,offbeat",description:"Ruined fort of former Kutlehar princely state. Views over Una valley.",best_time:"Year-round",tourist_volume:"Low",order:5}}},
+  {id:"bilaspur",no:"12",name:"Bilaspur",tagline:"Gobind Sagar Lake — The Story of a Drowned City",tags:"nature,adventure,spiritual",hq:"Bilaspur",area_km2:1167,altitude_m:"380–1800",best_season:"Oct–Mar",temp_summer:"25–42°C",temp_winter:"5–20°C",nearest_airport:"Chandigarh",from_delhi_km:340,description:"Bilaspur's old town was submerged when the Bhakra Dam created Gobind Sagar Lake in 1954. Gobind Sagar (540 km²) is one of India's largest man-made lakes and a major water sports centre. Naina Devi temple on a ridge overlooking the lake is one of the most important Shakti Peethas in northern India.",local_food:"Dham, Babru, Madra, Jhol, Mittha (sweet saffron rice)",famous_for:"Gobind Sagar Lake, Bhakra Dam, Naina Devi Shakti Peetha, Water Sports, Drowned City",hero_image:"assets/images/gobind-sagar-lake_1.jpg",page_url:"bilaspur.html",
+    places:{gobind_sagar:{name:"Gobind Sagar Lake",type:"Reservoir / Water Sports",lat:31.4,lng:76.7333,categories:"nature,adventure",description:"540 km² reservoir. Boat rides, water sports, angling. Stunning sunset point.",best_time:"Year-round",tourist_volume:"Very High",order:1},naina_devi:{name:"Naina Devi Temple",type:"Shakti Peetha",lat:31.4667,lng:76.65,categories:"spiritual",description:"Hilltop Shakti Peetha at 1219 m. Ropeway. Panoramic lake views.",best_time:"Year-round",tourist_volume:"Very High",order:2},bhakra_dam:{name:"Bhakra Dam",type:"Engineering / Heritage",lat:31.4167,lng:76.4333,categories:"heritage,offbeat",description:"One of India's highest gravity dams (226 m). Nehru called it 'New Temple of India'.",best_time:"Year-round",tourist_volume:"High",order:3},markand:{name:"Markand Temple",type:"Temple",lat:31.4,lng:76.8,categories:"spiritual,heritage",description:"Ancient Shiva temple complex on Gobind Sagar bank. Carved stone sculptures.",best_time:"Year-round",tourist_volume:"Medium",order:4},swarghat:{name:"Swarghat",type:"Nature / River",lat:31.55,lng:76.75,categories:"nature,offbeat",description:"Confluence point of Satluj into Gobind Sagar. Scenic river beach.",best_time:"Oct–Mar",tourist_volume:"Low",order:5}}}
+];
+
+// ─────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────
+let allDistricts = [];
+let activeFilter = 'all';
+let currentDistrict = null;
+let userLocation = null; // {lat, lng}
+
+// ─────────────────────────────────────────────────────────
+// GEOLOCATION — ask once, cache result
+// ─────────────────────────────────────────────────────────
+function getLocation() {
+  return new Promise((resolve) => {
+    if (!navigator.geolocation) return resolve(null);
+    navigator.geolocation.getCurrentPosition(
+      pos => { userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude }; resolve(userLocation); },
+      () => resolve(null),
+      { timeout: 6000 }
+    );
+  });
+}
+
+// Haversine distance in km
+function distKm(lat1, lng1, lat2, lng2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
+  return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
+}
+
+// Silently grab location if already granted
+if (navigator.geolocation) {
+  navigator.permissions?.query({name:'geolocation'}).then(p => {
+    if (p.state === 'granted') getLocation();
+  }).catch(() => {});
+}
+
+// ─────────────────────────────────────────────────────────
+// FIREBASE FETCH
+// ─────────────────────────────────────────────────────────
+async function fetchDistricts() {
+  document.getElementById('loadingGrid').style.display = 'grid';
+  document.getElementById('districtGrid').style.display = 'none';
+  document.getElementById('errorState').style.display = 'none';
+
+  try {
+    const url = `${FB_CONFIG.databaseURL}/districts.json`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+
+    if (res.ok) {
+      const data = await res.json();
+      if (data && typeof data === 'object' && Object.keys(data).length > 0) {
+        allDistricts = Object.values(data).sort((a,b)=> (a.no||'').localeCompare(b.no||''));
+        console.log(`✅ Firebase: loaded ${allDistricts.length} districts`);
+      } else {
+        throw new Error('Empty or null Firebase response — using fallback');
+      }
+    } else {
+      throw new Error(`Firebase HTTP ${res.status}`);
+    }
+  } catch (err) {
+    console.warn('⚠️ Firebase unavailable, using built-in data:', err.message);
+    allDistricts = FALLBACK_DISTRICTS;
+  }
+
+  renderGrid();
+  updateStats();
+  handleDistrictParam();
+}
+
+// ─────────────────────────────────────────────────────────
+// DEEP LINK — jump straight to the district clicked from the
+// homepage peak picker (dist_master.html?d=shimla). Handles the
+// couple of slug spellings that differ from our internal ids.
+// ─────────────────────────────────────────────────────────
+const DISTRICT_ALIAS = { 'lahaul-spiti':'spiti', 'lahaul':'spiti', 'lahaul&spiti':'spiti', 'sirmaur':'sirmour' };
+function handleDistrictParam() {
+  const params = new URLSearchParams(location.search);
+  let want = (params.get('d') || '').toLowerCase().trim();
+  if (!want) return;
+  want = DISTRICT_ALIAS[want] || want;
+
+  const match = allDistricts.find(d =>
+    (d.id || '').toLowerCase() === want ||
+    (d.name || '').toLowerCase().replace(/[^a-z]/g,'') === want.replace(/[^a-z]/g,'')
+  );
+  if (!match) return;
+
+  document.getElementById('districts')?.scrollIntoView({ behavior:'smooth', block:'start' });
+  setTimeout(() => {
+    const card = document.querySelector(`.m-card[data-did="${match.id}"]`);
+    if (card) {
+      card.classList.add('dcard-highlight');
+      card.scrollIntoView({ behavior:'smooth', block:'center' });
+      setTimeout(() => card.classList.remove('dcard-highlight'), 2600);
+    }
+    openDrawer(match);
+  }, 550);
+}
+
+// ─────────────────────────────────────────────────────────
+// RENDER GRID
+// ─────────────────────────────────────────────────────────
+function renderGrid() {
+  const grid = document.getElementById('districtGrid');
+  grid.innerHTML = '';
+
+  const filtered = activeFilter === 'all'
+    ? allDistricts
+    : allDistricts.filter(d => (d.tags||'').includes(activeFilter));
+
+  filtered.forEach((d, i) => {
+    const card = buildCard(d, i);
+    grid.appendChild(card);
+  });
+
+  document.getElementById('loadingGrid').style.display = 'none';
+  grid.style.display = 'block';
+}
+
+// ─────────────────────────────────────────────────────────
+// LOCAL IMAGE MAP — always prefer local files over remote URLs
+// ─────────────────────────────────────────────────────────
+const LOCAL_IMGS = {
+  kullu:    'assets/images/manali_1.jpg',
+  shimla:   'assets/images/sissu_1.jpg',
+  spiti:    'assets/images/chango_1.jpg',
+  kinnaur:  'assets/images/kinnaur-kailash.webp',
+  kangra:   'assets/images/bir-billing_1.jpg',
+  chamba:   'assets/images/khajjiar_02.jpg',
+  mandi:    'assets/images/barot-valley_1.jpg',
+  sirmour:  'assets/images/solang-valley_1.jpg',
+  solan:    'assets/images/old-manali_1.jpg',
+  hamirpur: 'assets/images/awah-devi-temple_1.jpg',
+  una:      'assets/images/bhagsu-waterfall_1.jpg',
+  bilaspur: 'assets/images/gobind-sagar-lake_1.jpg',
+};
+function resolveImg(d) {
+  return LOCAL_IMGS[d.id] || d.hero_image || 'assets/images/manali_1.jpg';
+}
+
+function buildCard(d, i) {
+  const a = document.createElement('div');
+  a.className = 'm-card';
+  a.dataset.tags = d.tags || '';
+  a.dataset.did = (d.id || '').toLowerCase();
+
+  const img = resolveImg(d);
+  const tagArr = (d.tags||'').split(',').map(t=>t.trim()).filter(Boolean);
+  const tagsHTML = tagArr.map(t=>`<span class="m-tag">${cap(t)}</span>`).join('');
+
+  // Top 3 place names as quick tags
+  const places = d.places ? Object.values(d.places).sort((a,b)=>(a.order||0)-(b.order||0)) : [];
+  const placeNames = places.slice(0,3).map(p=>`<span class="m-tag">📍 ${p.name}</span>`).join('');
+
+  a.innerHTML = `
+    <div class="m-img" style="background-image:url('${img}')"></div>
+    <div class="m-grad"></div>
+    <div class="m-body">
+      <div class="m-no">District ${d.no}</div>
+      <h3>${d.name}</h3>
+      <p class="m-desc">${d.tagline || ''}</p>
+      <div class="m-tags">${tagsHTML}${placeNames}</div>
+      <span class="m-arrow">Explore District →</span>
+    </div>`;
+
+  a.addEventListener('click', () => openDrawer(d));
+  return a;
+}
+
+// ─────────────────────────────────────────────────────────
+// PLACES HTML BUILDER (reused on location grant)
+// ─────────────────────────────────────────────────────────
+function buildPlacesHTML(places) {
+  return places.map((p,i)=>{
+    const mapsUrl = p.lat && p.lng
+      ? `https://www.google.com/maps?q=${p.lat},${p.lng}&z=14`
+      : null;
+    const distBadge = (userLocation && p.lat && p.lng)
+      ? `<div class="place-dist-badge">
+           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+           ${distKm(userLocation.lat, userLocation.lng, p.lat, p.lng)} km from you
+         </div>`
+      : '';
+    const mapBtn = mapsUrl
+      ? `<a class="place-map-btn" href="${mapsUrl}" target="_blank" rel="noopener">
+           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+           Open in Maps
+         </a>`
+      : '';
+    return `
+    <div class="place-item">
+      <div class="place-num">${i+1}</div>
+      <div class="place-info">
+        <h4>${p.name}</h4>
+        <div class="place-type">${p.type||''}</div>
+        <div class="place-desc">${p.description||''}</div>
+        <div class="place-tags">
+          ${(p.categories||'').split(',').map(c=>`<span class="ptag">${c.trim()}</span>`).join('')}
+        </div>
+        <div class="place-coords">${p.lat ? `${p.lat}° N, ${p.lng}° E` : ''}</div>
+        ${mapBtn}
+        ${distBadge}
+      </div>
+      <div class="place-meta">
+        <div class="place-season">${p.best_time||''}</div>
+        <div class="place-vol">${p.tourist_volume||''}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─────────────────────────────────────────────────────────
+// DRAWER
+// ─────────────────────────────────────────────────────────
+window.openDrawer = function(d) {
+  currentDistrict = d;
+  const places = d.places ? Object.values(d.places).sort((a,b)=>(a.order||0)-(b.order||0)) : [];
+  const img = resolveImg(d);
+
+  const tagsHTML = (d.tags||'').split(',').map(t=>t.trim()).filter(Boolean)
+    .map(t=>`<span class="d-tag">${cap(t)}</span>`).join('');
+
+  const infoItems = [
+    ['Headquarters', d.hq],
+    ['Area', `${d.area_km2 || '—'} km²`],
+    ['Altitude Range', d.altitude_m || '—'],
+    ['Best Season', d.best_season || '—'],
+    ['Summer Temp', d.temp_summer || '—'],
+    ['Winter Temp', d.temp_winter || '—'],
+    ['Nearest Airport', d.nearest_airport || '—'],
+    ['Distance from Delhi', `${d.from_delhi_km || '—'} km`],
+  ].map(([l,v])=>`
+    <div class="d-info-item">
+      <div class="d-info-label">${l}</div>
+      <div class="d-info-val">${v}</div>
+    </div>`).join('');
+
+  const placesHTML = buildPlacesHTML(places);
+
+  document.getElementById('drawerContent').innerHTML = `
+    <div class="d-hero">
+      <div class="d-hero-img" style="background-image:url('${img}')"></div>
+      <div class="d-hero-body">
+        <div class="d-no">District ${d.no}</div>
+        <div class="d-name">${d.name}</div>
+        <div class="d-tagline">${d.tagline||''}</div>
+      </div>
+    </div>
+    <div class="d-body">
+      <div class="d-section">
+        <div class="d-section-title">About the District</div>
+        <div class="d-desc">${d.description||''}</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Categories</div>
+        <div class="d-tags-row">${tagsHTML}</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">At a Glance</div>
+        <div class="d-info-grid">${infoItems}</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Places to Visit (${places.length})</div>
+        <div class="places-list">${placesHTML||'<p style="color:var(--mist)">No places data yet.</p>'}</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Local Food</div>
+        <div class="d-food">${d.local_food||'—'}</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Famous For</div>
+        <div class="d-famous">${d.famous_for||'—'}</div>
+      </div>
+      <div class="d-section" style="margin-top:8px">
+        <a href="${d.page_url||'#'}" style="display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:var(--ink);color:#fff;text-decoration:none;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;transition:background .2s;" onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='var(--ink)'">
+          View Full ${d.name} Guide →
+        </a>
+      </div>
+    </div>`;
+
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('drawer').scrollTop = 0;
+
+  // If location not yet obtained, ask now and refresh distance badges
+  if (!userLocation) {
+    getLocation().then(loc => {
+      if (loc && currentDistrict === d) {
+        // Re-render just the places list with distances
+        const pList = document.querySelector('#drawerContent .places-list');
+        if (pList) pList.innerHTML = buildPlacesHTML(places);
+      }
+    });
+  }
+};
+
+window.closeDrawer = function() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+};
+
+// ESC to close
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeDrawer(); });
+
+// ─────────────────────────────────────────────────────────
+// FILTER
+// ─────────────────────────────────────────────────────────
+document.querySelectorAll('.fbtn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    renderGrid();
+  });
+});
+
+// ─────────────────────────────────────────────────────────
+// STATS
+// ─────────────────────────────────────────────────────────
+function updateStats() {
+  let total = 0;
+  allDistricts.forEach(d => {
+    if(d.places) total += Object.keys(d.places).length;
+  });
+  const el = document.getElementById('statPlaces');
+  if(el) el.textContent = total + '+';
+}
+
+// ─────────────────────────────────────────────────────────
+// NAV SCROLL
+// ─────────────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('solid', scrollY > 80);
+});
+
+// ─────────────────────────────────────────────────────────
+// REVEAL OBSERVER
+// ─────────────────────────────────────────────────────────
+const obs = new IntersectionObserver(els => {
+  els.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ─────────────────────────────────────────────────────────
+// UTILS
+// ─────────────────────────────────────────────────────────
+function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+// ─────────────────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────────────────
+fetchDistricts();
+</script>
+</body>
+</html>

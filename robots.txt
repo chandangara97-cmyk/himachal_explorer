@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Block admin & internal tools
+Disallow: /control.html
+Disallow: /webpage_management.html
+Disallow: /himachal-image-tool.html
+Disallow: /himachal_calculator.html
+Disallow: /Exp.html
+Disallow: /he-analytics.html
+Disallow: /hotel-contacts.html
+Disallow: /hotel-bulk-tools/
+Disallow: /firebase-config.js
+Disallow: /.env
+
+Sitemap: https://himachalexplorer.in/sitemap.xml

@@ -1,0 +1,24 @@
+{
+  "package_id": "amritsar-parvati-5d",
+  "package_name": "Amritsar to Parvati Valley (5D) — Kasol & Hidden Treks",
+  "days": 5,
+  "hotel_star": "3 Star",
+  "best_season": "all_year",
+  "start_point": "AMRITSAR",
+  "end_point": "AMRITSAR",
+  "total_km_est": 740,
+  "tags": [
+    "adventure",
+    "friends",
+    "trek"
+  ],
+  "highlight": "Kasol & Hidden Treks",
+  "budget_price_pp": 12900,
+  "itinerary": {
+    "day_1": "Amritsar → Kasol (Drive: 280 km · 6 hrs). Places: Kasol. Activities: Golden Temple morning darshan; Drive via Chandigarh; Kasol riverside arrival.",
+    "day_2": "Kasol → Malana (Drive: Local + trek). Places: Malana Village, Chalal. Activities: Chalal village walk; Malana ancient democracy village; Return via forest trail.",
+    "day_3": "Kheerganga Trek (Drive: 25 km to Barshaini). Places: Kheerganga Trek. Activities: Drive to Barshaini trailhead; 12km forest trek; Natural hot spring at 2,960m.",
+    "day_4": "Descent & Manikaran (Drive: Return). Places: Manikaran Sahib, Kasol. Activities: Morning descent; Manikaran hot spring langar; Kasol rest evening.",
+    "day_5": "Kasol → Amritsar (Drive: 280 km · 6 hrs). Activities: Kullu market stop; Beas valley drive; Amritsar arrival."
+  }
+}

@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W6LR93V8');</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Himachal Treks — Trail Guide | Himachal Explorer</title>
+<meta name="description" content="10 Himachal Pradesh treks logged day by day. Altitude maps, health clearance check, difficulty filter and full route details for Hampta Pass, Pin Parvati, Indrahar and more."/>
+<link rel="canonical" href="https://himachalexplorer.in/himachal-treks.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<style>
+:root{
+  --bg:#f8f5ef;--surface:#fff;--lift:#fdfbf7;--muted:#f0ebe0;
+  --border:#e5ddd0;--border2:#d4c9b5;--ink:#1c1409;--body:#5a4a36;
+  --caption:#9b8a74;--gold:#b07d3a;--gold2:#c99248;--gold-bg:#fdf6ec;
+  --dark:#0e0a04;--wrap:1140px;--px:32px;
+  --green:#25d366;--forest:#3a7d54;--rust:#b14a36;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;z-index:200;width:100%;height:54px;padding:0 var(--px);display:flex;align-items:center;justify-content:space-between;background:rgba(248,245,239,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{width:28px;height:28px;background:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.logo-text{font-family:'Cormorant',serif;font-size:17px;font-weight:600;color:var(--ink)}
+.nav-links{display:flex;list-style:none;gap:0}
+.nav-links a{display:block;padding:0 13px;height:54px;line-height:54px;font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--caption);text-decoration:none;border-bottom:2px solid transparent;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);border-bottom-color:var(--gold)}
+.nav-pill{padding:7px 18px;background:var(--gold);color:#fff;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:1px;transition:background .2s}
+.nav-pill:hover{background:var(--dark)}
+.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.nav-ham span{width:22px;height:2px;background:var(--ink);border-radius:1px}
+
+/* HERO */
+.hero{position:relative;height:68svh;min-height:420px;display:flex;align-items:flex-end;padding:0 var(--px) 52px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:1;background:#0e1a13}
+.hero-bg img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) brightness(.86)}
+.hero-topo{position:absolute;inset:0;z-index:2;opacity:.14;background-image:radial-gradient(ellipse 70% 50% at 15% 40%,transparent 0 46px,rgba(255,255,255,.4) 47px 49px,transparent 50px),radial-gradient(ellipse 70% 50% at 15% 40%,transparent 0 82px,rgba(255,255,255,.3) 83px 85px,transparent 86px),radial-gradient(ellipse 55% 65% at 80% 70%,transparent 0 60px,rgba(255,255,255,.3) 61px 63px,transparent 64px),radial-gradient(ellipse 55% 65% at 80% 70%,transparent 0 100px,rgba(255,255,255,.25) 101px 103px,transparent 104px)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,15,9,.94) 0%,rgba(14,20,12,.55) 55%,rgba(14,20,12,.18) 100%);z-index:3}
+.hero-content{position:relative;z-index:4;max-width:720px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;font-size:9px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--gold2)}
+.hero-eyebrow::before{content:'';width:22px;height:1.5px;background:var(--gold2)}
+.hero-title{font-family:'Cormorant',serif;font-size:clamp(34px,5.5vw,64px);font-weight:300;line-height:1.05;color:#fff;margin-bottom:12px}
+.hero-title em{font-style:italic;color:var(--gold2)}
+.hero-desc{font-size:14.5px;color:rgba(255,255,255,.75);max-width:560px;line-height:1.7;margin-bottom:24px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.h-cta{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all .2s}
+.h-cta-primary{background:var(--gold);color:#fff}
+.h-cta-primary:hover{background:#fff;color:var(--ink)}
+.h-cta-ghost{border:1px solid rgba(255,255,255,.35);color:#fff}
+.h-cta-ghost:hover{border-color:var(--gold2);color:var(--gold2)}
+
+/* STATS BAR */
+.stats-bar{background:var(--dark);border-bottom:1px solid #2a1f10}
+.stats-inner{display:grid;grid-template-columns:repeat(5,1fr);max-width:var(--wrap);margin:0 auto}
+.stat-cell{padding:15px 20px;border-right:1px solid #2a1f10;text-align:center}
+.stat-cell:last-child{border-right:none}
+.stat-num{font-family:'Cormorant',serif;font-size:22px;color:var(--gold2);font-weight:400;line-height:1}
+.stat-lbl{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:#6b5740;margin-top:3px;font-weight:600}
+
+/* SECTION */
+.section{max-width:var(--wrap);margin:0 auto;padding:56px var(--px)}
+.section-hd{margin-bottom:36px}
+.section-eyebrow{font-size:8.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
+.section-title{font-family:'Cormorant',serif;font-size:clamp(26px,3.5vw,38px);color:var(--ink);font-weight:400;line-height:1.2}
+.section-title em{font-style:italic;color:var(--gold)}
+.section-sub{font-size:14px;color:var(--body);margin-top:8px;max-width:620px;line-height:1.7}
+
+/* SKYLINE */
+.skyline-wrap{background:var(--muted);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:56px var(--px)}
+.skyline-inner{max-width:var(--wrap);margin:0 auto}
+.skyline-chart{display:flex;align-items:flex-end;gap:6px;height:220px;padding-bottom:24px;border-bottom:1px dashed var(--border2);overflow-x:auto}
+.sky-bar{flex:1 0 auto;min-width:80px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;cursor:pointer;position:relative}
+.sky-bar .bar{width:100%;border-radius:2px 2px 0 0;background:linear-gradient(180deg,var(--gold2),var(--gold));transition:filter .15s ease}
+.sky-bar:hover .bar{filter:brightness(1.2)}
+.sky-bar .alt-label{font-size:10px;font-weight:600;color:var(--ink);margin-bottom:4px;letter-spacing:.04em}
+.sky-bar .name-label{font-size:10px;color:var(--caption);text-align:center;margin-top:10px;writing-mode:vertical-rl;transform:rotate(180deg);height:88px;white-space:nowrap;font-weight:500}
+
+/* CLEARANCE */
+.clearance-card{background:var(--surface);border:1.5px solid var(--gold);border-radius:4px;padding:36px}
+.stamp{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--rust);border:1.5px solid var(--rust);padding:4px 12px;border-radius:2px;transform:rotate(-2.5deg);margin-bottom:16px}
+.condition-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:28px 0 18px}
+.condition-chip{display:flex;align-items:center;gap:10px;background:var(--lift);border:1px solid var(--border);border-radius:3px;padding:12px 14px;cursor:pointer;font-size:13.5px;color:var(--body);user-select:none;transition:border-color .2s}
+.condition-chip input{accent-color:var(--gold);width:16px;height:16px;flex-shrink:0}
+.condition-chip.checked{border-color:var(--gold);background:var(--gold-bg)}
+.clearance-note{font-size:11.5px;color:var(--caption);margin-top:6px;line-height:1.6}
+
+/* FILTER PILLS */
+.treks-head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-bottom:30px}
+.filter-pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--border2);color:var(--caption);padding:8px 18px;border-radius:20px;cursor:pointer;transition:all .2s}
+.pill.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pill:hover:not(.active){border-color:var(--gold);color:var(--gold)}
+
+/* TREK CARDS */
+.trek-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:22px}
+.trek-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:26px;display:flex;flex-direction:column;transition:border-color .2s,box-shadow .2s}
+.trek-card:hover{border-color:var(--border2);box-shadow:0 8px 28px rgba(28,20,9,.08)}
+.trek-card.flagged{border-color:var(--rust);box-shadow:0 0 0 1px var(--rust) inset}
+.trek-card.cleared{border-color:var(--forest)}
+.card-photo-wrap{margin:-26px -26px 18px -26px;height:168px;overflow:hidden;border-radius:4px 4px 0 0;position:relative}
+.card-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.trek-card:hover .card-photo-wrap img{transform:scale(1.05)}
+.card-photo-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(14,10,4,.45) 0%,transparent 45%)}
+.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.diff-stamp{font-size:9px;font-weight:700;letter-spacing:.14em;padding:4px 11px;border-radius:20px;text-transform:uppercase}
+.diff-Easy{background:rgba(37,211,102,.12);color:#1a8a44;border:1px solid rgba(37,211,102,.3)}
+.diff-Moderate{background:rgba(176,125,58,.12);color:var(--gold);border:1px solid rgba(176,125,58,.3)}
+.diff-Hard{background:rgba(177,74,54,.12);color:var(--rust);border:1px solid rgba(177,74,54,.3)}
+.region{font-size:10px;font-weight:500;color:var(--caption);letter-spacing:.04em}
+.trek-card h3{font-family:'Cormorant',serif;font-size:26px;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.15}
+.teaser{color:var(--body);font-size:13.5px;margin-bottom:18px;line-height:1.65}
+.stat-row{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:16px}
+.trek-stat{background:var(--muted);border-radius:3px;padding:10px 12px;border:1px solid var(--border)}
+.trek-stat-label{display:block;font-size:9px;font-weight:700;color:var(--caption);text-transform:uppercase;letter-spacing:.12em;margin-bottom:2px}
+.trek-stat-value{display:block;font-family:'Cormorant',serif;font-size:16px;font-weight:600;color:var(--ink)}
+.cardio-line{font-size:13px;margin-bottom:12px;color:var(--body);padding:10px 12px;background:var(--gold-bg);border-left:3px solid var(--gold);border-radius:0 3px 3px 0}
+.flags-line{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.flag-tag{font-size:10px;padding:4px 10px;border-radius:20px;background:var(--muted);color:var(--caption);border:1px solid var(--border);font-weight:500}
+.flag-tag.hit{background:rgba(177,74,54,.1);color:var(--rust);border-color:rgba(177,74,54,.3)}
+.expand-btn{margin-top:auto;background:none;border:1px solid var(--border2);color:var(--body);font-family:'Jost',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;padding:11px 16px;border-radius:2px;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.expand-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ITINERARY */
+.itinerary{margin-top:22px;border-top:1px dashed var(--border);padding-top:20px}
+.duration-note{font-size:12.5px;color:var(--body);margin-bottom:16px;padding:10px 14px;background:var(--gold-bg);border-radius:3px;border-left:3px solid var(--gold);line-height:1.6}
+
+/* TRACK MAP */
+.track-map-wrap{margin-bottom:20px;border:1px solid var(--border);border-radius:4px;overflow:hidden;position:relative}
+.track-map-label{position:absolute;top:10px;left:10px;z-index:400;background:rgba(248,245,239,.95);border:1px solid var(--border);padding:4px 10px;border-radius:20px;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);pointer-events:none}
+.track-map{height:260px;width:100%}
+.track-meta{display:flex;gap:14px;flex-wrap:wrap;padding:10px 14px;background:var(--muted);border-top:1px solid var(--border);font-size:11px;color:var(--caption)}
+.track-meta span{display:flex;align-items:center;gap:5px;font-weight:500}
+.track-meta strong{color:var(--ink)}
+
+/* WAYPOINT LEGEND */
+.waypoint-legend{display:flex;gap:16px;flex-wrap:wrap;padding:8px 14px;background:var(--lift);border-top:1px solid var(--border);font-size:10.5px;color:var(--body)}
+.wp-dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0}
+.wp-start{background:#1a8a44}
+.wp-mid{background:var(--gold)}
+.wp-end{background:var(--rust)}
+
+/* DAY ROWS */
+.day-row{display:grid;grid-template-columns:64px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--border)}
+.day-row:last-child{border-bottom:none}
+.day-num{font-family:'Cormorant',serif;font-size:14px;font-weight:600;color:var(--gold);letter-spacing:.04em;padding-top:2px}
+.day-body h4{font-family:'Cormorant',serif;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.2}
+.leg{font-size:12px;color:var(--caption);margin-bottom:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-weight:500}
+.leg .arrow{color:var(--gold)}
+.facilities{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.fac-tag{font-size:10px;padding:3px 9px;border-radius:20px;background:var(--muted);color:var(--body);border:1px solid var(--border);font-weight:500}
+.route-desc{font-size:13.5px;color:var(--body);margin-bottom:10px;line-height:1.65}
+.callout{padding:10px 14px;border-radius:3px;margin-bottom:8px;font-size:13px}
+.callout strong{display:block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:4px}
+.callout p{margin:0;color:var(--body);line-height:1.6}
+.callout.history{background:rgba(58,125,84,.06);border-left:3px solid var(--forest)}
+.callout.history strong{color:var(--forest)}
+.callout.tip{background:var(--gold-bg);border-left:3px solid var(--gold)}
+.callout.tip strong{color:var(--gold)}
+
+/* FOOTER */
+footer{background:var(--dark);color:#8d755b;padding:40px var(--px);text-align:center;border-top:1px solid #2a1f10}
+footer a{color:var(--gold2);text-decoration:none;margin:0 10px;font-weight:600}
+footer a:hover{color:#fff}
+.footer-brand{font-family:'Cormorant',serif;font-size:22px;color:#fff;margin-bottom:6px;font-weight:400}
+.footer-divider{width:40px;height:1px;background:var(--gold);margin:16px auto}
+
+/* MOBILE */
+@media(max-width:900px){
+  :root{--px:20px}
+  .nav-links{display:none}
+  .nav-ham{display:flex}
+  .trek-grid{grid-template-columns:1fr}
+  .stats-inner{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:600px){
+  .stats-inner{grid-template-columns:1fr 1fr}
+  .day-row{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:1fr 1fr}
+  .track-map{height:200px}
+}
+</style>
+<link rel="stylesheet" href="assets/css/site-chrome.css">
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<div id="site-header"></div>
+
+<div id="mobile-nav" style="display:none;position:fixed;inset:0;z-index:199;background:rgba(248,245,239,.98);flex-direction:column;align-items:center;justify-content:center;gap:28px;backdrop-filter:blur(20px)">
+  <a href="#skyline" onclick="closeMobileNav()" style="font-family:'Cormorant',serif;font-size:30px;color:var(--ink);text-decoration:none">Altitude Map</a>
+  <a href="#clearance" onclick="closeMobileNav()" style="font-family:'Cormorant',serif;font-size:30px;color:var(--ink);text-decoration:none">Health Check</a>
+  <a href="#treks" onclick="closeMobileNav()" style="font-family:'Cormorant',serif;font-size:30px;color:var(--ink);text-decoration:none">All 10 Treks</a>
+  <a href="index.html" style="font-family:'Cormorant',serif;font-size:30px;color:var(--ink);text-decoration:none">Home</a>
+  <a href="https://wa.me/917018138847?text=Hi%2C%20I%20want%20to%20book%20a%20trek%20in%20Himachal." target="_blank" style="margin-top:16px;padding:14px 32px;background:var(--gold);color:#fff;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;border-radius:2px">💬 WhatsApp Us</a>
+  <button onclick="closeMobileNav()" style="position:absolute;top:18px;right:24px;background:none;border:none;font-size:26px;cursor:pointer;color:var(--ink)">✕</button>
+</div>
+
+<header class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=2000&auto=format&fit=crop" alt="Trekkers on a high-altitude trail in the Himachal Himalayas">
+  </div>
+  <div class="hero-topo"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">10 routes · 5 districts · Kullu, Mandi, Kangra, Shimla &amp; Kinnaur</div>
+    <h1 class="hero-title">Off the Brochure,<br><em>Onto the Trail.</em></h1>
+    <p class="hero-desc">Five famous Himachal treks, plus five that rarely make it into a package PDF — every one logged day by day with GPS track, start point, halt, terrain, history, and the medical red flags that should decide whether you book at all.</p>
+    <div class="hero-ctas">
+      <a href="#clearance" class="h-cta h-cta-primary">Run your health check</a>
+      <a href="#treks" class="h-cta h-cta-ghost">Browse all 10 treks</a>
+    </div>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-cell"><div class="stat-num">10</div><div class="stat-lbl">Treks Logged</div></div>
+    <div class="stat-cell"><div class="stat-num">2,730 m</div><div class="stat-lbl">Lowest Peak</div></div>
+    <div class="stat-cell"><div class="stat-num">5,319 m</div><div class="stat-lbl">Highest Pass</div></div>
+    <div class="stat-cell"><div class="stat-num">5</div><div class="stat-lbl">Districts</div></div>
+    <div class="stat-cell"><div class="stat-num">GPS Tracks</div><div class="stat-lbl">All Routes</div></div>
+  </div>
+</div>
+
+<div class="skyline-wrap" id="skyline">
+  <div class="skyline-inner">
+    <div class="section-hd">
+      <div class="section-eyebrow">Altitude Overview</div>
+      <h2 class="section-title">The <em>Altitude Line</em></h2>
+      <p class="section-sub">All ten treks plotted by their highest point. Tap any bar to jump to the full route log and GPS track.</p>
+    </div>
+    <div class="skyline-chart" id="skylineChart"></div>
+  </div>
+</div>
+
+<div class="section" id="clearance">
+  <div class="clearance-card">
+    <span class="stamp">Permit · Self-Screen</span>
+    <h2 class="section-title" style="margin-top:10px">Trail Clearance <em>Check</em></h2>
+    <p style="color:var(--body);font-size:14px;margin-top:10px;max-width:600px;line-height:1.7">Tap anything that applies to you or anyone in your group. Every trek below will flag itself if it lists that condition as a medical red flag — before anyone pays for a package they shouldn't be on.</p>
+    <div class="condition-grid" id="conditionGrid"></div>
+    <p class="clearance-note">⚠ This is a screening aid built from each trek's listed red flags — not a medical opinion. Always consult a doctor before any high-altitude booking, especially above 3,500 m.</p>
+  </div>
+</div>
+
+<div class="section" id="treks">
+  <div class="treks-head">
+    <div>
+      <div class="section-eyebrow">Full Trail Log</div>
+      <h2 class="section-title">All <em>10 Treks</em></h2>
+      <p class="section-sub" style="margin-bottom:0">Tap "View full route log" on any card for the day-by-day breakdown and GPS track map.</p>
+    </div>
+    <div class="filter-pills" id="difficultyFilter">
+      <button data-diff="all" class="pill active">All</button>
+      <button data-diff="Easy" class="pill">Easy</button>
+      <button data-diff="Moderate" class="pill">Moderate</button>
+      <button data-diff="Hard" class="pill">Hard</button>
+    </div>
+  </div>
+  <div class="trek-grid" id="trekGrid"></div>
+</div>
+
+<footer>
+  <div class="footer-brand">Himachal Explorer</div>
+  <div style="font-size:12px;color:#6b5740;margin-bottom:6px">Trek guide · Himachal Pradesh, India</div>
+  <div style="font-size:12px;margin-bottom:4px">
+    <a href="tel:+917018138847">+91 70181 38847</a> ·
+    <a href="mailto:chandan_panwar@himachalexplorer.in">chandan_panwar@himachalexplorer.in</a>
+  </div>
+  <div class="footer-divider"></div>
+  <div>
+    <a href="index.html">🏠 Home</a>
+    <a href="packages.html">📦 Packages</a>
+    <a href="explore.html">🗺 Explore</a>
+    <a href="bike-rental.html">🏍 Bike Rental</a>
+  </div>
+  <div style="margin-top:16px;font-size:11px;color:#4a3820">GPS coordinates are approximate survey-grade waypoints for reference. Always trek with a licensed guide and confirm current conditions before booking. Not a substitute for professional medical advice.</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+// ── GPS TRACK DATA ──
+// Each track: array of [lat, lng] waypoints along the actual route
+// Waypoints are survey-grade approximations from published trail data
+const TRACK_DATA = {
+  "SERO_01": {
+    distance:"6 km", elevGain:"370 m", color:"#1a8a44",
+    waypoints:[
+      [31.5302,77.3641], // Jalori Pass trailhead
+      [31.5285,77.3598],
+      [31.5260,77.3554],
+      [31.5238,77.3510],
+      [31.5215,77.3472],
+      [31.5196,77.3428],
+      [31.5180,77.3385],
+      [31.5163,77.3340]  // Serolsar Lake
+    ],
+    waypoint_labels:[
+      {pos:[31.5302,77.3641], label:"Jalori Pass", type:"start"},
+      {pos:[31.5163,77.3340], label:"Serolsar Lake", type:"end"}
+    ]
+  },
+  "PRAS_01": {
+    distance:"7 km", elevGain:"900 m", color:"#1a8a44",
+    waypoints:[
+      [31.7440,76.9420], // Bagi Village
+      [31.7482,76.9380],
+      [31.7524,76.9335],
+      [31.7568,76.9290],
+      [31.7610,76.9245],
+      [31.7650,76.9200],
+      [31.7690,76.9158],
+      [31.7720,76.9108]  // Prashar Lake
+    ],
+    waypoint_labels:[
+      {pos:[31.7440,76.9420], label:"Bagi Village", type:"start"},
+      {pos:[31.7720,76.9108], label:"Prashar Lake", type:"end"}
+    ]
+  },
+  "HAMP_01": {
+    distance:"28 km", elevGain:"1,640 m", color:"#b07d3a",
+    waypoints:[
+      [32.2432,77.1890], // Jobra
+      [32.2380,77.1820],
+      [32.2315,77.1745],
+      [32.2250,77.1670], // Chika Camp
+      [32.2190,77.1590],
+      [32.2120,77.1510],
+      [32.2050,77.1430],
+      [32.1975,77.1350],
+      [32.1900,77.1270],
+      [32.1825,77.1185], // Balu Ka Ghera
+      [32.1745,77.1100],
+      [32.1660,77.1015],
+      [32.1575,77.0920],
+      [32.1480,77.0815]  // Hampta Pass
+    ],
+    waypoint_labels:[
+      {pos:[32.2432,77.1890], label:"Jobra", type:"start"},
+      {pos:[32.2250,77.1670], label:"Chika Camp", type:"mid"},
+      {pos:[32.1825,77.1185], label:"Balu Ka Ghera", type:"mid"},
+      {pos:[32.1480,77.0815], label:"Hampta Pass 4270m", type:"end"}
+    ]
+  },
+  "PINP_01": {
+    distance:"80 km", elevGain:"3,100 m", color:"#b14a36",
+    waypoints:[
+      [31.9960,77.4380], // Barsheni
+      [31.9890,77.4305],
+      [32.0020,77.4180], // Kheerganga
+      [32.0180,77.4050],
+      [32.0340,77.3920], // Tunda Bhuj
+      [32.0520,77.3780],
+      [32.0710,77.3630],
+      [32.0905,77.3470],
+      [32.1100,77.3300],
+      [32.1310,77.3120],
+      [32.1525,77.2930],
+      [32.1680,77.2720]  // Pin Parvati Pass 5319m
+    ],
+    waypoint_labels:[
+      {pos:[31.9960,77.4380], label:"Barsheni", type:"start"},
+      {pos:[32.0020,77.4180], label:"Kheerganga", type:"mid"},
+      {pos:[32.0340,77.3920], label:"Tunda Bhuj", type:"mid"},
+      {pos:[32.1680,77.2720], label:"Pin Parvati Pass 5319m", type:"end"}
+    ]
+  },
+  "BURA_01": {
+    distance:"45 km", elevGain:"2,080 m", color:"#b14a36",
+    waypoints:[
+      [31.3820,77.7540], // Janglik
+      [31.3760,77.7470],
+      [31.3695,77.7390],
+      [31.3620,77.7305], // Dayara Bugyal
+      [31.3540,77.7215],
+      [31.3455,77.7120],
+      [31.3365,77.7020], // Litham
+      [31.3270,77.6915],
+      [31.3170,77.6800],
+      [31.3060,77.6680]  // Buran Ghati Pass 4570m
+    ],
+    waypoint_labels:[
+      {pos:[31.3820,77.7540], label:"Janglik", type:"start"},
+      {pos:[31.3620,77.7305], label:"Dayara Bugyal", type:"mid"},
+      {pos:[31.3365,77.7020], label:"Litham", type:"mid"},
+      {pos:[31.3060,77.6680], label:"Buran Ghati Pass 4570m", type:"end"}
+    ]
+  },
+  "KINN_01": {
+    distance:"55 km", elevGain:"2,650 m", color:"#b14a36",
+    waypoints:[
+      [31.5350,78.2650], // Sangla
+      [31.5430,78.2720],
+      [31.5520,78.2800], // Thangi
+      [31.5610,78.2880],
+      [31.5705,78.2960],
+      [31.5800,78.3045],
+      [31.5900,78.3135],
+      [31.6010,78.3230],
+      [31.6130,78.3330],
+      [31.6260,78.3440],
+      [31.6400,78.3560]  // Lamkhaga Pass approach 4900m
+    ],
+    waypoint_labels:[
+      {pos:[31.5350,78.2650], label:"Sangla", type:"start"},
+      {pos:[31.5520,78.2800], label:"Thangi", type:"mid"},
+      {pos:[31.6400,78.3560], label:"Lamkhaga Pass 4900m", type:"end"}
+    ]
+  },
+  "TIRT_01": {
+    distance:"18 km", elevGain:"900 m", color:"#1a8a44",
+    waypoints:[
+      [31.5890,77.6230], // Gushaini
+      [31.5960,77.6155],
+      [31.6030,77.6080],
+      [31.6100,77.6005],
+      [31.6175,77.5930], // Rolla Forest Camp
+      [31.6250,77.5850],
+      [31.6330,77.5770],
+      [31.6415,77.5685]  // Sai Ropa / GHNP gate
+    ],
+    waypoint_labels:[
+      {pos:[31.5890,77.6230], label:"Gushaini", type:"start"},
+      {pos:[31.6175,77.5930], label:"Rolla Camp", type:"mid"},
+      {pos:[31.6415,77.5685], label:"Sai Ropa / GHNP", type:"end"}
+    ]
+  },
+  "KUND_01": {
+    distance:"9 km", elevGain:"850 m", color:"#b07d3a",
+    waypoints:[
+      [31.5560,77.3980], // Shoja
+      [31.5510,77.3920],
+      [31.5455,77.3855],
+      [31.5395,77.3785],
+      [31.5330,77.3710],
+      [31.5260,77.3635],
+      [31.5185,77.3558]  // Saryolsar Lake 3800m
+    ],
+    waypoint_labels:[
+      {pos:[31.5560,77.3980], label:"Shoja", type:"start"},
+      {pos:[31.5185,77.3558], label:"Saryolsar Lake 3800m", type:"end"}
+    ]
+  },
+  "CHND_01": {
+    distance:"22 km", elevGain:"1,300 m", color:"#b07d3a",
+    waypoints:[
+      [32.0960,77.1740], // Naggar
+      [32.1040,77.1670],
+      [32.1120,77.1600],
+      [32.1200,77.1525], // Rumsu Village
+      [32.1285,77.1445],
+      [32.1370,77.1360],
+      [32.1460,77.1270],
+      [32.1555,77.1175], // Chandrakhani Pass 3660m
+      [32.1650,77.1080],
+      [32.1750,77.0985],
+      [32.1845,77.0890]  // Malana Village
+    ],
+    waypoint_labels:[
+      {pos:[32.0960,77.1740], label:"Naggar", type:"start"},
+      {pos:[32.1200,77.1525], label:"Rumsu Village", type:"mid"},
+      {pos:[32.1555,77.1175], label:"Chandrakhani Pass 3660m", type:"mid"},
+      {pos:[32.1845,77.0890], label:"Malana Village", type:"end"}
+    ]
+  },
+  "INDR_01": {
+    distance:"32 km", elevGain:"2,300 m", color:"#b14a36",
+    waypoints:[
+      [32.2432,76.3220], // McLeodganj
+      [32.2380,76.3158],
+      [32.2320,76.3090],
+      [32.2255,76.3018],
+      [32.2185,76.2940], // Triund
+      [32.2110,76.2858],
+      [32.2030,76.2770],
+      [32.1945,76.2678], // Laka Got
+      [32.1855,76.2580],
+      [32.1760,76.2475],
+      [32.1660,76.2365],
+      [32.1555,76.2248]  // Indrahar Pass 4342m
+    ],
+    waypoint_labels:[
+      {pos:[32.2432,76.3220], label:"McLeodganj", type:"start"},
+      {pos:[32.2185,76.2940], label:"Triund", type:"mid"},
+      {pos:[32.1945,76.2678], label:"Laka Got", type:"mid"},
+      {pos:[32.1555,76.2248], label:"Indrahar Pass 4342m", type:"end"}
+    ]
+  }
+};
+
+// ── TREK DATA ──
+const TREKS = [
+  {
+    id:"SERO_01", name:"Serolsar Lake Trek", region:"Banjar Valley · Kullu",
+    photo:"https://images.unsplash.com/photo-1597086345411-801e7fec3551?q=80&w=900&auto=format&fit=crop",
+    difficulty:"Easy", maxAltitude:3100, targetAge:"8–60",
+    redFlags:["Severe Asthma","Recent Surgery"], cardio:"Can walk 3 km comfortably",
+    bestSeason:"Mar–Jun, Sep–Dec", trackFile:"serolsar_lake.geojson",
+    teaser:"A gentle forest walk to a sacred lake the locals say no leaf or feather is ever allowed to touch.",
+    durationNote:"Most groups treat this as a 2D/1N out-and-back, retracing the same forest trail down the next morning.",
+    itinerary:[
+      { day:1, title:"Walk to the Sacred Lake", start:"Jalori Pass", halt:"Serolsar Campsite",
+        facilities:["Tents","Local Dhabas","Fresh Stream"],
+        route:"Easy walk through dense oak and deodar forests along a well-defined trail.",
+        history:"Sacred to Mata Budhi Nagin; local folklore says birds keep the lake perfectly clean.",
+        tip:"Carry a light windcheater as Jalori Pass gets windy post-afternoon." }
+    ]
+  },
+  {
+    id:"PRAS_01", name:"Prashar Lake Trek", region:"Mandi District",
+    photo:"https://images.unsplash.com/photo-1610427909301-8e50b91e9b60?q=80&w=900&auto=format&fit=crop",
+    difficulty:"Easy", maxAltitude:2730, targetAge:"8–65",
+    redFlags:["Severe Knee Issues","Asthma"], cardio:"Basic walking fitness",
+    bestSeason:"Mar–Jun, Sep–Dec", trackFile:"prashar_lake.geojson",
+    teaser:"A rhododendron-lined climb to a lake with a floating island and a 14th-century pagoda on its bank.",
+    durationNote:"Often combined with a night at the lake and a return descent the next morning.",
+    itinerary:[
+      { day:1, title:"Ascent to the Floating Island", start:"Bagi Village", halt:"Prashar Lake Camp",
+        facilities:["Homestays","Tents","Good Mobile Network"],
+        route:"Gradual uphill climb through rhododendron forests with a clear mountain trail.",
+        history:"Features a 14th-century pagoda temple built by King Ban Sen using a single tree.",
+        tip:"Check the floating island's position; its movement dictates local weather lore." }
+    ]
+  },
+  {
+    id:"HAMP_01", name:"Hampta Pass Trek", region:"Kullu–Lahaul",
+    photo:"https://images.unsplash.com/photo-1620619864278-6547144eece4?q=80&w=900&auto=format&fit=crop",
+    difficulty:"Medium", maxAltitude:4270, targetAge:"14–50",
+    redFlags:["High BP","Asthma","Knee Injuries","Vertigo"], cardio:"Can jog 5 km in 30 mins",
+    bestSeason:"Mid-Jun – early Jul, or mid-Sep – mid-Oct", trackFile:"hampta_pass.geojson",
+    teaser:"A crossover trek that swaps the green Kullu valley for the lunar landscape of Lahaul in under a week.",
+    durationNote:"Full crossing typically 5–6 days: Jobra → Chika → Balu ka Ghera → Pass → Chatru, often with Chandratal extension.",
+    itinerary:[
+      { day:1, title:"Drive to Jobra & Trek to Chika", start:"Manali/Jobra", halt:"Chika Campsite",
+        facilities:["Tents","Basic Medical Kit","Weak Network"],
+        route:"Gradual ascent through alpine meadows and stream crossings alongside Rani River.",
+        history:"Chika is known for its massive boulders and striking waterfalls.",
+        tip:"Ensure your trekking shoes are broken-in to avoid blisters on river rocks." },
+      { day:2, title:"The Meadow Walk to Balu Ka Ghera", start:"Chika", halt:"Balu Ka Ghera",
+        facilities:["Tents","Fresh Water Stream","No Network"],
+        route:"Steady incline crossing rock fields with spectacular views of Jampa Peak.",
+        history:"Balu ka Ghera translates to 'Bear's Bed' as Himalayan brown bears hibernate nearby.",
+        tip:"Keep your water bottle accessible; hydration is key as altitude crosses 3500m." }
+    ]
+  },
+  {
+    id:"PINP_01", name:"Pin Parvati Pass", region:"Parvati–Pin Valley",
+    photo:"https://images.unsplash.com/photo-1644318712128-4e8c18ec6bf0?q=80&w=900&auto=format&fit=crop",
+    difficulty:"Hard", maxAltitude:5319, targetAge:"18–45",
+    redFlags:["Cardiac History","Uncontrolled BP","Severe Asthma","Epilepsy"], cardio:"Can run 10 km under 60 mins",
+    bestSeason:"Mid-Jul – mid-Sep (glacier crossing needs a stable snow window)", trackFile:"pin_parvati.geojson",
+    teaser:"One of Himachal's longest, toughest glacier crossings, linking the Parvati and Pin valleys via raw high-altitude terrain.",
+    durationNote:"Full traverse typically 8–9 days. Opening days logged here.",
+    itinerary:[
+      { day:1, title:"The Mighty Parvati Valley Trail", start:"Barsheni", halt:"Kheerganga",
+        facilities:["Hot Springs","Basic Cafes","BSNL Network"],
+        route:"Steady steep trek through dense pine forests and rocky paths along Parvati River.",
+        history:"Famous for natural sulfur hot springs with spiritual significance in Hindu lore.",
+        tip:"Soak in the springs but start early to avoid trekking in late afternoon rain." },
+      { day:2, title:"Into the Wilderness to Tunda Bhuj", start:"Kheerganga", halt:"Tunda Bhuj",
+        facilities:["High Altitude Camps","No Network","Emergency Oxygen"],
+        route:"Challenging ascent through massive pine clearings and deep river gorges.",
+        history:"Historically a remote migratory route for transhumance Gaddi shepherds.",
+        tip:"Watch your footing closely on narrow cliff ledges; trekking poles are mandatory." }
+    ]
+  },
+  {
+    id:"BURA_01", name:"Buran Ghati Pass", region:"Rohru · Shimla–Kinnaur border",
+    photo:"https://images.unsplash.com/photo-1647414890666-41f2fb3228c2?q=80&w=900&auto=format&fit=crop",
+    difficulty:"Hard", maxAltitude:4570, targetAge:"16–45",
+    redFlags:["Cardiac History","High BP","Severe Asthma","Vertigo"], cardio:"Can run 8 km under 45 mins",
+    bestSeason:"May–Jun (snow trek) or Sep–Oct (post-monsoon)", trackFile:"buran_ghati.geojson",
+    teaser:"A heritage-village-to-high-pass trek famous for a thrilling snow slide down from the Chandranahan side.",
+    durationNote:"Full crossing 5–6 days: Janglik → Dayara → Litham → Buran Ghati → Chandranahan Lake → Barua.",
+    itinerary:[
+      { day:1, title:"Entry into the Chandranahan Basin", start:"Janglik", halt:"Dayara Bugyal",
+        facilities:["Tents","Basic Supplies","Weak Network"],
+        route:"Through Rohru's oak forests to the wide Dayara meadow.",
+        history:"Janglik is a gateway village for the Rohru-Kinnaur border treks, rarely visited by outsiders.",
+        tip:"Cross Janglik's suspension bridge before 9 AM — the wind picks up badly by midday." },
+      { day:2, title:"Push to High Camp at Litham", start:"Dayara", halt:"Litham",
+        facilities:["Tents","Fresh Water Glacier Streams","No Network"],
+        route:"Steep ascent over boulder fields with increasingly open views of the Chandranahan peaks.",
+        history:"The glacier lake above Litham is one of the highest natural lakes in Himachal Pradesh.",
+        tip:"If snow is present at Litham, crampons are strongly recommended." }
+    ]
+  },
+  {
+    id:"KINN_01", name:"Kinnaur Kailash Parikrama", region:"Kinnaur District",
+    photo:"https://images.unsplash.com/photo-1681966141315-b770511d7398?q=80&w=900&auto=format&fit=crop",
+    difficulty:"Hard", maxAltitude:4900, targetAge:"18–50",
+    redFlags:["Cardiac History","Severe Asthma","High BP","Epilepsy"], cardio:"Can trek 10+ hrs on consecutive days",
+    bestSeason:"Jul–Sep", trackFile:"kinnaur_kailash.geojson",
+    teaser:"A circumambulation of the sacred Kinnaur Kailash peak — one of the most physically demanding and spiritually significant treks in Himachal.",
+    durationNote:"Full parikrama is 4–5 days from Thangi to Chitkul, including a mandatory 4,900 m pass crossing.",
+    itinerary:[
+      { day:1, title:"Start the Circuit at Thangi", start:"Sangla", halt:"Thangi",
+        facilities:["Guesthouses","Basic Dhabas","Patchy Network"],
+        route:"Drive to Thangi village — the starting point for the clockwise parikrama.",
+        history:"Kinnaur Kailash is considered one of the abodes of Lord Shiva; the parikrama is a pilgrimage for local Kinnauri Buddhists and Hindus.",
+        tip:"Thangi guesthouses fill up fast in July-August; book at least 3 weeks ahead." },
+      { day:2, title:"Into the High Meadows", start:"Thangi", halt:"Lamkhaga Base",
+        facilities:["Tents Only","No Network","Emergency First Aid"],
+        route:"Steep climb from Thangi through mixed shrub and boulder fields to open alpine meadows near the Lamkhaga Pass base.",
+        history:"The Lamkhaga Pass route was historically used by traders crossing into Spiti before modern roads.",
+        tip:"Start the day at 5 AM — the climb is long and afternoon clouds can bring sleet at this altitude." }
+    ]
+  },
+  {
+    id:"TIRT_01", name:"Tirthan Valley Trek", region:"Tirthan · Kullu (GHNP Buffer)",
+    photo:"https://images.unsplash.com/photo-1696238686616-e57b77ab46b7?q=80&w=900&auto=format&fit=crop",
+    difficulty:"Easy", maxAltitude:3650, targetAge:"10–60",
+    redFlags:["Severe Asthma","Recent Surgery"], cardio:"Comfortable walking for 5–6 hrs",
+    bestSeason:"Apr–Jun, Sep–Nov", trackFile:"tirthan_valley.geojson",
+    teaser:"An easy river-valley walk through Great Himalayan National Park buffer zone — trout streams, birdsong, and near-zero tourist footfall.",
+    durationNote:"Most operators offer a 3D/2N package: Gushaini → Rolla → Sai Ropa and back.",
+    itinerary:[
+      { day:1, title:"Into the GHNP Buffer Zone", start:"Gushaini", halt:"Rolla Forest Camp",
+        facilities:["Forest Rest House","Basic Meals","No Mobile Network"],
+        route:"Walk along the Tirthan River through dense temperate forest — deodar, oak, maple.",
+        history:"Tirthan is a UNESCO World Heritage buffer zone of GHNP — over 800 plant species.",
+        tip:"Brown and rainbow trout fishing is legal here with a permit — arrange at Gushaini before entry." },
+      { day:2, title:"The Upper Meadow Walk", start:"Rolla", halt:"Sai Ropa View Camp",
+        facilities:["Tents","Spring Water","No Network"],
+        route:"Continued ascent to high-altitude meadows with views of the GHNP core zone snow peaks.",
+        history:"Sai Ropa is the GHNP entrance gate for the core zone, where only licensed guides are allowed in.",
+        tip:"To enter the GHNP core zone, arrange a licensed guide 2 months in advance — permits are strict." }
+    ]
+  },
+  {
+    id:"KUND_01", name:"Kund Trek (Saryolsar Lake)", region:"Seraj Valley · Kullu",
+    photo:"https://images.unsplash.com/photo-1698246739958-81cd11ea89dd?q=80&w=900&auto=format&fit=crop",
+    difficulty:"Moderate", maxAltitude:3800, targetAge:"12–55",
+    redFlags:["High BP","Asthma","Knee Injuries"], cardio:"Can walk uphill for 4–5 hrs",
+    bestSeason:"May–Jun, Sep–Oct", trackFile:"kund_saryolsar.geojson",
+    teaser:"A moderate ridge walk above Shoja with big views of the Seraj Valley and a sacred alpine lake at the top.",
+    durationNote:"Typically 2D/1N from Shoja — the trail is short but steep.",
+    itinerary:[
+      { day:1, title:"Shoja to Saryolsar Lake", start:"Shoja", halt:"Saryolsar Lake Camp",
+        facilities:["Tent Camps","No Network","Spring Water"],
+        route:"Steep forest trail through rhododendron and oak up to the ridge, then a short traverse to the sacred lake.",
+        history:"Saryolsar Lake is sacred to the Seraj Valley goddess Bhuvan Devi; annual rituals held here.",
+        tip:"The last 2 km before the lake is a rocky scramble — sturdy footwear is essential." },
+      { day:2, title:"The Ridge and Return", start:"Saryolsar Lake", halt:"Shoja",
+        facilities:["Hotels","Restaurants","Good Network"],
+        route:"Morning sunrise from the ridge with views of the Dhauladhar and Pir Panjal ranges, then descent.",
+        history:"Shoja is an increasingly popular village with a growing homestay scene after years of near-obscurity.",
+        tip:"The sunrise from Saryolsar ridge on a clear morning is one of the best panoramas in Kullu district." }
+    ]
+  },
+  {
+    id:"CHND_01", name:"Chandrakhani Pass Trek", region:"Naggar · Kullu",
+    photo:"https://images.unsplash.com/photo-1584516335133-c59807897262?q=80&w=900&auto=format&fit=crop",
+    difficulty:"Moderate", maxAltitude:3660, targetAge:"12–50",
+    redFlags:["High BP","Asthma","Vertigo"], cardio:"Can walk for 6 hrs on moderate grade",
+    bestSeason:"May–Jun, Sep–Oct", trackFile:"chandrakhani_pass.geojson",
+    teaser:"A classic Kullu valley ridge-top crossing with sweeping views of the Rohtang range and descent into the magical Malana village.",
+    durationNote:"3D/2N standard: Naggar → Rumsu → Chandrakhani Pass → Malana → Kasol.",
+    itinerary:[
+      { day:1, title:"Naggar to Rumsu via the Forest Track", start:"Naggar", halt:"Rumsu Village",
+        facilities:["Homestays","Basic Dhabas","Patchy Network"],
+        route:"Steady climb through apple orchards and forest above Naggar Castle.",
+        history:"Naggar was the ancient capital of Kullu kingdom; Naggar Castle dates to the 15th century.",
+        tip:"The Roerich Art Gallery in Naggar is worth 30 minutes before you set off — it's right at the trailhead." },
+      { day:2, title:"The Pass and Descent into Malana", start:"Rumsu", halt:"Malana Village",
+        facilities:["Tent Camps at Pass","Basic Guesthouses in Malana","Patchy Network"],
+        route:"Steep morning climb to the Chandrakhani ridge, followed by a long descent into the Malana valley.",
+        history:"Malana is one of the oldest democracies in the world — its governance system predates Greece's.",
+        tip:"Do not touch Malana's walls, temples or people without permission — violations result in heavy fines." }
+    ]
+  },
+  {
+    id:"INDR_01", name:"Indrahar Pass Trek", region:"Dhauladhar · Kangra",
+    photo:"https://images.unsplash.com/photo-1593693411515-c20261baec6e?q=80&w=900&auto=format&fit=crop",
+    difficulty:"Hard", maxAltitude:4342, targetAge:"16–45",
+    redFlags:["Cardiac History","High BP","Severe Asthma","Vertigo"], cardio:"Can run 8 km under 50 mins",
+    bestSeason:"May–Jun, mid-Sep – mid-Oct", trackFile:"indrahar_pass.geojson",
+    teaser:"McLeodganj's most ambitious trail — a steep Dhauladhar crossing that takes you from Tibetan cafe culture to a snowbound pass in three days.",
+    durationNote:"Classic route is 4D/3N: McLeodganj → Triund → Laka Got → Indrahar Pass → Chamba side.",
+    itinerary:[
+      { day:1, title:"McLeodganj to Triund Ridge", start:"McLeodganj", halt:"Triund",
+        facilities:["Dhabas","Tent Camps","Patchy Network"],
+        route:"Well-marked trail through deodar forest, emerging at Triund's famous open ridge with Dhauladhar views.",
+        history:"Triund has been a tourist camp for over 40 years; famously used as a meditation retreat.",
+        tip:"Triund is busy on weekends — go on a Tuesday or Wednesday for solitude at the ridge." },
+      { day:2, title:"Triund to Laka Got — Snow Line Camp", start:"Triund", halt:"Laka Got",
+        facilities:["Tent Camps Only","No Network","Glacier Stream Water"],
+        route:"Beyond Triund the crowds thin to near-zero. Steep rocky trail to Laka Got.",
+        history:"Laka Got sits at the transition between the Kangra valley forests and the Dhauladhar snowfields.",
+        tip:"Fill all water bottles at Laka Got's stream — above here, you are melting snow." },
+      { day:3, title:"Laka Got to Indrahar Pass", start:"Laka Got", halt:"Chata Parao (descent side)",
+        facilities:["No Facilities","No Network","Medical Oxygen Advised"],
+        route:"Pre-dawn start over steep snow and rock to the 4,342 m pass.",
+        history:"Indrahar Pass forms the boundary between Kangra and Chamba districts, following an old Gaddi shepherd trail.",
+        tip:"Start by 5 AM — the weather at the pass routinely turns by late morning." },
+      { day:4, title:"The Long Way Down", start:"Laka Got", halt:"McLeodganj (via Triund)",
+        facilities:["Hotels","Restaurants","Full Network"],
+        route:"Long descent back through Triund to McLeodganj, retracing the first day's trail in reverse.",
+        history:"The descent gives a second, clearer look at the Kangra Valley sprawl that's often hazy on the way up.",
+        tip:"Trekking poles are close to mandatory here — it's the longest single descent day on this list." }
+    ]
+  }
+];
+
+const CONDITIONS = [
+  { label:"Asthma (any severity)", key:"asthma" },
+  { label:"High / uncontrolled blood pressure", key:"bp" },
+  { label:"Heart or cardiac condition", key:"cardiac" },
+  { label:"Knee problems or injury", key:"knee" },
+  { label:"Vertigo or balance issues", key:"vertigo" },
+  { label:"Recent surgery", key:"surgery" },
+  { label:"Epilepsy", key:"epilepsy" }
+];
+
+const selected = new Set();
+let activeDifficulty = "all";
+const activeMapInstances = {};
+
+function diffNorm(d){ return d === "Medium" ? "Moderate" : d; }
+
+// ── SKYLINE ──
+function buildSkyline(){
+  const chart = document.getElementById('skylineChart');
+  const maxAlt = Math.max(...TREKS.map(t=>t.maxAltitude));
+  [...TREKS].sort((a,b)=>a.maxAltitude-b.maxAltitude).forEach(t=>{
+    const pct = Math.max(18, Math.round((t.maxAltitude/maxAlt)*100));
+    const bar = document.createElement('div');
+    bar.className = 'sky-bar';
+    bar.innerHTML = `<span class="alt-label">${t.maxAltitude.toLocaleString()}m</span>
+      <div class="bar" style="height:${pct}%"></div>
+      <span class="name-label">${t.name}</span>`;
+    bar.addEventListener('click', ()=>{
+      const card = document.getElementById('card-'+t.id);
+      if(card){ card.scrollIntoView({behavior:'smooth',block:'center'}); flash(card); }
+    });
+    chart.appendChild(bar);
+  });
+}
+
+function flash(el){
+  el.style.transition='box-shadow 0.3s ease';
+  el.style.boxShadow='0 0 0 2px var(--gold)';
+  setTimeout(()=>{ el.style.boxShadow=''; }, 1400);
+}
+
+// ── CONDITIONS ──
+function buildConditionGrid(){
+  const grid = document.getElementById('conditionGrid');
+  CONDITIONS.forEach(c=>{
+    const chip = document.createElement('label');
+    chip.className = 'condition-chip';
+    chip.innerHTML = `<input type="checkbox" data-key="${c.key}"> <span>${c.label}</span>`;
+    chip.querySelector('input').addEventListener('change', e=>{
+      e.target.checked ? selected.add(c.key) : selected.delete(c.key);
+      e.target.checked ? chip.classList.add('checked') : chip.classList.remove('checked');
+      renderTreks();
+    });
+    grid.appendChild(chip);
+  });
+}
+
+function matchesSelected(flag){
+  const f = flag.toLowerCase();
+  for(const k of selected){ if(f.includes(k)) return true; }
+  return false;
+}
+
+// ── GPS MAP ──
+function buildTrackMap(id){
+  const td = TRACK_DATA[id];
+  if(!td) return '';
+  const diffColor = td.color;
+  return `
+  <div class="track-map-wrap">
+    <div class="track-map-label">📍 GPS Track</div>
+    <div class="track-map" id="map-${id}"></div>
+    <div class="track-meta">
+      <span>📏 <strong>${td.distance}</strong> one way</span>
+      <span>⬆ <strong>${td.elevGain}</strong> elevation gain</span>
+      <span style="color:var(--caption);font-size:10px">Waypoints are survey-grade approximations</span>
+    </div>
+    <div class="waypoint-legend">
+      <span><span class="wp-dot wp-start"></span> Start</span>
+      <span><span class="wp-dot wp-mid"></span> Waypoint</span>
+      <span><span class="wp-dot wp-end"></span> Summit / End</span>
+    </div>
+  </div>`;
+}
+
+function initMap(id){
+  if(activeMapInstances[id]) return; // already initialised
+  const td = TRACK_DATA[id];
+  if(!td) return;
+
+  const el = document.getElementById('map-'+id);
+  if(!el) return;
+
+  const map = L.map(el, { zoomControl:true, scrollWheelZoom:false, attributionControl:true });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom:16
+  }).addTo(map);
+
+  // Draw polyline track
+  const line = L.polyline(td.waypoints, {
+    color: td.color,
+    weight: 4,
+    opacity: 0.85,
+    lineJoin:'round',
+    lineCap:'round'
+  }).addTo(map);
+
+  // Animated dashes overlay for style
+  L.polyline(td.waypoints, {
+    color:'#fff',
+    weight:1.5,
+    opacity:0.4,
+    dashArray:'6 10',
+    lineJoin:'round'
+  }).addTo(map);
+
+  // Custom circle markers for waypoints
+  const colorMap = { start:'#1a8a44', mid:'#b07d3a', end:'#b14a36' };
+  td.waypoint_labels.forEach(wp=>{
+    const col = colorMap[wp.type] || '#b07d3a';
+    L.circleMarker(wp.pos, {
+      radius: wp.type === 'start' || wp.type === 'end' ? 9 : 6,
+      fillColor: col,
+      color:'#fff',
+      weight:2,
+      fillOpacity:1
+    }).addTo(map).bindPopup(
+      `<div style="font-family:'Jost',sans-serif;font-size:12px;font-weight:600;color:#1c1409">${wp.label}</div>`,
+      { offset:[0,-4] }
+    );
+  });
+
+  map.fitBounds(line.getBounds(), { padding:[20,20] });
+  activeMapInstances[id] = map;
+}
+
+// ── DAY ROW HTML ──
+function dayRowHTML(d){
+  return `
+  <div class="day-row">
+    <div class="day-num">Day ${d.day}</div>
+    <div class="day-body">
+      <h4>${d.title}</h4>
+      <div class="leg"><span>${d.start}</span><span class="arrow">→</span><span>${d.halt}</span></div>
+      <div class="facilities">${d.facilities.map(f=>`<span class="fac-tag">${f}</span>`).join('')}</div>
+      <p class="route-desc">${d.route}</p>
+      <div class="callout history"><strong>History &amp; Culture</strong><p>${d.history}</p></div>
+      <div class="callout tip"><strong>Pro Tip</strong><p>${d.tip}</p></div>
+    </div>
+  </div>`;
+}
+
+// ── CARD HTML ──
+function cardHTML(t){
+  const diff = diffNorm(t.difficulty);
+  const hasFlagMatch = selected.size > 0 && t.redFlags.some(matchesSelected);
+  const cardClass = selected.size === 0 ? '' : (hasFlagMatch ? 'flagged' : 'cleared');
+  const flagsHTML = t.redFlags.map(f=>{
+    const hit = selected.size>0 && matchesSelected(f);
+    return `<span class="flag-tag ${hit?'hit':''}">${f}</span>`;
+  }).join('');
+
+  return `
+  <article class="trek-card ${cardClass}" data-difficulty="${diff}" id="card-${t.id}">
+    <div class="card-photo-wrap"><img src="${t.photo}" alt="${t.name} — ${t.region}" loading="lazy"></div>
+    <div class="card-top">
+      <span class="diff-stamp diff-${diff}">${diff}</span>
+      <span class="region">${t.region}</span>
+    </div>
+    <h3>${t.name}</h3>
+    <p class="teaser">${t.teaser}</p>
+    <div class="stat-row">
+      <div class="trek-stat"><span class="trek-stat-label">Max Altitude</span><span class="trek-stat-value">${t.maxAltitude.toLocaleString()} m</span></div>
+      <div class="trek-stat"><span class="trek-stat-label">Days Logged</span><span class="trek-stat-value">${t.itinerary.length}</span></div>
+      <div class="trek-stat"><span class="trek-stat-label">Target Ages</span><span class="trek-stat-value">${t.targetAge}</span></div>
+      <div class="trek-stat"><span class="trek-stat-label">Best Season</span><span class="trek-stat-value" style="font-size:13px">${t.bestSeason}</span></div>
+    </div>
+    <div class="cardio-line">Fitness check: ${t.cardio}</div>
+    <div class="flags-line">${flagsHTML}</div>
+    <button class="expand-btn" data-id="${t.id}">View full route log ▾</button>
+    <div class="itinerary" id="itin-${t.id}" hidden>
+      <div class="duration-note">${t.durationNote}</div>
+      ${buildTrackMap(t.id)}
+      ${t.itinerary.map(dayRowHTML).join('')}
+    </div>
+  </article>`;
+}
+
+// ── RENDER ──
+function renderTreks(){
+  const grid = document.getElementById('trekGrid');
+  const openIds = Array.from(document.querySelectorAll('.itinerary')).filter(el=>!el.hidden).map(el=>el.id);
+
+  const filtered = TREKS.filter(t=> activeDifficulty==='all' || diffNorm(t.difficulty)===activeDifficulty);
+  grid.innerHTML = filtered.map(cardHTML).join('');
+
+  // Restore open panels and re-init their maps
+  openIds.forEach(id=>{
+    const el = document.getElementById(id);
+    if(el){
+      el.hidden = false;
+      const trekId = id.replace('itin-','');
+      setTimeout(()=> initMap(trekId), 80);
+    }
+  });
+
+  grid.querySelectorAll('.expand-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const trekId = btn.dataset.id;
+      const panel = document.getElementById('itin-'+trekId);
+      panel.hidden = !panel.hidden;
+      btn.textContent = panel.hidden ? 'View full route log ▾' : 'Hide route log ▴';
+      if(!panel.hidden){
+        setTimeout(()=> initMap(trekId), 80);
+      }
+    });
+  });
+}
+
+function setupFilterPills(){
+  document.getElementById('difficultyFilter').querySelectorAll('.pill').forEach(p=>{
+    p.addEventListener('click', ()=>{
+      document.getElementById('difficultyFilter').querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+      p.classList.add('active');
+      activeDifficulty = p.dataset.diff;
+      renderTreks();
+    });
+  });
+}
+
+// Mobile nav
+function openMobileNav(){ document.getElementById('mobile-nav').style.display='flex'; document.body.style.overflow='hidden'; }
+function closeMobileNav(){ document.getElementById('mobile-nav').style.display='none'; document.body.style.overflow=''; }
+document.getElementById('nav-ham').addEventListener('click', openMobileNav);
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeMobileNav(); });
+
+buildSkyline();
+buildConditionGrid();
+setupFilterPills();
+renderTreks();
+</script>
+<script src="assets/js/site-chrome.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W6LR93V8');</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Your Tour – Himachal Explorer</title>
+<meta name="description" content="Book your Himachal Pradesh tour package online in 3 steps — choose your package and travel dates, enter guest details, and complete payment securely."/>
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"/>
+<link rel="canonical" href="https://himachalexplorer.in/booking.html"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Razorpay Script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment: #f8f5ef;
+    --parchment-dark: #f0ebe0;
+    --gold: #b8972a;
+    --gold-light: #d4af50;
+    --gold-pale: #f5edd8;
+    --ink: #1a1612;
+    --ink-soft: #3d3428;
+    --muted: #8a7d6b;
+    --border: #e0d8c8;
+    --white: #ffffff;
+    --success: #3a7d44;
+    --error: #b84040;
+    --shadow: 0 4px 24px rgba(26,22,18,0.10);
+  }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--parchment);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  .logo span { color: var(--white); font-weight: 300; }
+  header .back-link {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  header .back-link:hover { color: var(--gold-light); }
+
+  /* ── PROGRESS BAR ── */
+  .progress-wrap {
+    background: var(--ink-soft);
+    padding: 0 24px;
+  }
+  .progress-bar {
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    gap: 0;
+  }
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    position: relative;
+  }
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: calc(100% - 110px);
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+    left: 110px;
+  }
+  .step.active::after { background: var(--gold); }
+  .step-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.4);
+    font-size: 0.7rem;
+    font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+  .step.active .step-num { background: var(--gold); color: var(--ink); }
+  .step.done .step-num { background: var(--success); color: white; }
+  .step-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    white-space: nowrap;
+  }
+  .step.active .step-label { color: var(--gold-light); }
+  .step.done .step-label { color: rgba(255,255,255,0.55); }
+
+  /* ── MAIN LAYOUT ── */
+  .main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 32px 16px 60px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* ── FORM PANEL ── */
+  .form-panel {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .panel-head {
+    background: var(--ink);
+    padding: 18px 24px;
+  }
+  .panel-head h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+  .panel-head p {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 3px;
+    letter-spacing: 0.05em;
+  }
+  .panel-body { padding: 24px; }
+
+  /* STEP SCREENS */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* ── FORM FIELDS ── */
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .field-row.single { grid-template-columns: 1fr; }
+  .field-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+
+  .field label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .field input, .field select, .field textarea {
+    width: 100%;
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 12px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.88rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: var(--gold);
+    background: var(--white);
+  }
+  .field textarea { resize: vertical; min-height: 72px; }
+  .field select { cursor: pointer; }
+  .field.error input, .field.error select { border-color: var(--error); }
+  .field-error { font-size: 0.7rem; color: var(--error); margin-top: 4px; }
+
+  /* PACKAGE SEARCH */
+  .pkg-search-box {
+    background: var(--parchment-dark);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 14px;
+    margin-bottom: 16px;
+  }
+  .pkg-search-box input {
+    width: 100%;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 9px 12px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    color: var(--ink);
+    outline: none;
+  }
+  .pkg-search-box input:focus { border-color: var(--gold); }
+
+  .pkg-list { max-height: 220px; overflow-y: auto; border: 1px solid var(--border); border-radius: 3px; }
+  .pkg-item {
+    padding: 10px 14px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.15s;
+  }
+  .pkg-item:last-child { border-bottom: none; }
+  .pkg-item:hover { background: var(--gold-pale); }
+  .pkg-item.selected { background: var(--gold-pale); border-left: 3px solid var(--gold); }
+  .pkg-name { font-size: 0.84rem; font-weight: 500; }
+  .pkg-nights { font-size: 0.72rem; color: var(--muted); }
+  .pkg-base-price { font-size: 0.82rem; color: var(--gold); font-weight: 600; }
+
+  /* TRAVELLER CONFIG */
+  .traveller-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .counter-box {
+    background: var(--parchment-dark);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 12px;
+    text-align: center;
+  }
+  .counter-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px; }
+  .counter-controls { display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .counter-btn {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--white);
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .counter-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .counter-val { font-size: 1.1rem; font-weight: 600; min-width: 24px; }
+
+  .vehicle-select {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .vehicle-option {
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .vehicle-option:hover { border-color: var(--gold); background: var(--gold-pale); }
+  .vehicle-option.selected { border-color: var(--gold); background: var(--gold-pale); }
+  .vehicle-name { font-size: 0.82rem; font-weight: 600; }
+  .vehicle-cap { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+
+  /* HOTEL STARS */
+  .hotel-stars {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .star-option {
+    flex: 1;
+    text-align: center;
+    padding: 9px 6px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.15s;
+  }
+  .star-option.selected { border-color: var(--gold); background: var(--gold-pale); color: var(--gold); font-weight: 600; }
+  .star-option:hover:not(.selected) { border-color: var(--gold-light); }
+
+  /* PRICE BREAKDOWN */
+  .price-breakdown {
+    background: var(--parchment-dark);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 14px;
+    margin-top: 16px;
+  }
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    padding: 4px 0;
+    color: var(--ink-soft);
+  }
+  .price-row.total {
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+    padding-top: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+  .price-row.total .amt { color: var(--gold); font-size: 1.05rem; }
+  .price-row .label { color: var(--muted); }
+  .gst-note { font-size: 0.68rem; color: var(--muted); margin-top: 6px; }
+
+  /* GUEST DETAILS */
+  .section-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--gold-pale);
+  }
+
+  /* PAYMENT SCREEN */
+  .payment-methods {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .pay-method {
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+  }
+  .pay-method.selected { border-color: var(--gold); background: var(--gold-pale); }
+  .pay-method:hover:not(.selected) { border-color: var(--gold-light); }
+  .pay-icon { font-size: 1.4rem; margin-bottom: 4px; }
+  .pay-name { font-size: 0.78rem; font-weight: 600; }
+  .pay-desc { font-size: 0.67rem; color: var(--muted); margin-top: 2px; }
+
+  .amount-choice {
+    background: var(--parchment-dark);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 14px;
+    margin-bottom: 18px;
+  }
+  .amount-choice-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .amount-options { display: flex; gap: 10px; }
+  .amt-opt {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+  }
+  .amt-opt.selected { border-color: var(--gold); background: var(--white); }
+  .amt-opt:hover:not(.selected) { border-color: var(--gold-light); }
+  .amt-opt-name { font-size: 0.78rem; font-weight: 600; }
+  .amt-opt-val { font-size: 0.9rem; color: var(--gold); font-weight: 700; margin-top: 3px; }
+  .amt-opt-note { font-size: 0.65rem; color: var(--muted); margin-top: 2px; }
+
+  .security-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-bottom: 18px;
+    padding: 10px 12px;
+    background: var(--parchment-dark);
+    border-radius: 3px;
+    border: 1px solid var(--border);
+  }
+  .security-note .lock { font-size: 1rem; }
+
+  /* BUTTONS */
+  .btn-primary {
+    width: 100%;
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    border-radius: 3px;
+    padding: 14px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-secondary {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 18px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-secondary:hover { border-color: var(--ink-soft); color: var(--ink); }
+  .btn-row { display: flex; gap: 10px; align-items: center; margin-top: 8px; }
+  .btn-row .btn-primary { flex: 1; margin-top: 0; }
+
+  /* ── ORDER SUMMARY (RIGHT COLUMN) ── */
+  .summary-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    position: sticky;
+    top: 20px;
+  }
+  .summary-head {
+    background: var(--ink);
+    padding: 14px 18px;
+  }
+  .summary-head h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--white);
+  }
+  .summary-body { padding: 16px 18px; }
+  .summary-item { padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .summary-item:last-child { border-bottom: none; }
+  .summary-key { font-size: 0.67rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 2px; }
+  .summary-val { font-size: 0.85rem; font-weight: 500; color: var(--ink); }
+  .summary-total {
+    margin-top: 12px;
+    padding: 12px;
+    background: var(--gold-pale);
+    border: 1px solid var(--gold);
+    border-radius: 3px;
+    text-align: center;
+  }
+  .summary-total-label { font-size: 0.67rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); }
+  .summary-total-amt { font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; color: var(--ink); font-weight: 600; margin-top: 2px; }
+  .summary-total-note { font-size: 0.67rem; color: var(--muted); margin-top: 3px; }
+
+  /* TRUST BADGES */
+  .trust-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .trust-badge {
+    font-size: 0.68rem;
+    color: var(--muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    line-height: 1.4;
+  }
+  .trust-badge .icon { font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
+
+  /* SUCCESS SCREEN */
+  .success-screen {
+    text-align: center;
+    padding: 40px 24px;
+  }
+  .success-icon {
+    width: 64px; height: 64px;
+    background: var(--success);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 2rem;
+  }
+  .success-screen h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+  .success-screen p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; max-width: 340px; margin: 0 auto 24px; }
+  .booking-ref {
+    background: var(--gold-pale);
+    border: 1px solid var(--gold);
+    border-radius: 3px;
+    padding: 12px 20px;
+    display: inline-block;
+    margin-bottom: 24px;
+  }
+  .booking-ref-label { font-size: 0.67rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .booking-ref-val { font-size: 1.2rem; font-family: 'Cormorant Garamond', serif; font-weight: 600; color: var(--ink); margin-top: 2px; letter-spacing: 0.08em; }
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 12px 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 12px;
+  }
+  .whatsapp-btn svg { width: 18px; height: 18px; fill: white; }
+
+  /* LOADING */
+  .loading-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,22,18,0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .loading-overlay.show { display: flex; }
+  .spinner {
+    width: 40px; height: 40px;
+    border: 3px solid rgba(184,151,42,0.3);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { color: var(--parchment); font-size: 0.85rem; letter-spacing: 0.06em; }
+
+  /* RESPONSIVE */
+  @media (max-width: 680px) {
+    .main { grid-template-columns: 1fr; }
+    .summary-card { position: static; order: -1; }
+    .field-row { grid-template-columns: 1fr; }
+    .field-row.triple { grid-template-columns: 1fr 1fr; }
+    .traveller-grid { grid-template-columns: 1fr 1fr; }
+    .payment-methods { grid-template-columns: 1fr 1fr; }
+    .step-label { display: none; }
+    .step::after { display: none; }
+  }
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <a class="logo" href="index.html">Himachal <span>Explorer</span></a>
+  <a class="back-link" href="packages.html">← All Packages</a>
+</header>
+
+<h1 style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">Book Your Himachal Pradesh Tour Package</h1>
+
+<div class="progress-wrap">
+  <div class="progress-bar">
+    <div class="step active" id="s1">
+      <div class="step-num">1</div>
+      <div class="step-label">Package &amp; Dates</div>
+    </div>
+    <div class="step" id="s2">
+      <div class="step-num">2</div>
+      <div class="step-label">Guest Details</div>
+    </div>
+    <div class="step" id="s3">
+      <div class="step-num">3</div>
+      <div class="step-label">Payment</div>
+    </div>
+  </div>
+</div>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <div class="loading-text">Processing your booking…</div>
+</div>
+
+<div class="main">
+  <!-- LEFT: FORM PANEL -->
+  <div class="form-panel">
+
+    <!-- STEP 1: PACKAGE & DATES -->
+    <div class="screen active" id="screen1">
+      <div class="panel-head">
+        <h2>Select Package &amp; Travel Dates</h2>
+        <p>STEP 1 OF 3 — PACKAGE CONFIGURATION</p>
+      </div>
+      <div class="panel-body">
+
+        <div class="section-label">Choose Package</div>
+        <div class="pkg-search-box">
+          <input type="text" id="pkgSearch" placeholder="Search packages… e.g. Manali, Spiti, Shimla" oninput="filterPackages(this.value)">
+        </div>
+        <div class="pkg-list" id="pkgList"></div>
+
+        <div style="margin-top:18px">
+          <div class="section-label">Travel Configuration</div>
+          <div class="field-row">
+            <div class="field">
+              <label>Travel Date</label>
+              <input type="date" id="travelDate" min="">
+            </div>
+            <div class="field">
+              <label>Hotel Category</label>
+              <select id="hotelCat">
+                <option value="budget">Budget (2★)</option>
+                <option value="standard" selected>Standard (3★)</option>
+                <option value="deluxe">Deluxe (4★)</option>
+                <option value="luxury">Luxury (5★)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-label" style="margin-top:18px">Travellers</div>
+        <div class="traveller-grid">
+          <div class="counter-box">
+            <div class="counter-label">Adults</div>
+            <div class="counter-controls">
+              <button class="counter-btn" onclick="changeCount('adults',-1)">−</button>
+              <div class="counter-val" id="adultsVal">2</div>
+              <button class="counter-btn" onclick="changeCount('adults',1)">+</button>
+            </div>
+          </div>
+          <div class="counter-box">
+            <div class="counter-label">Children</div>
+            <div class="counter-controls">
+              <button class="counter-btn" onclick="changeCount('children',-1)">−</button>
+              <div class="counter-val" id="childrenVal">0</div>
+              <button class="counter-btn" onclick="changeCount('children',1)">+</button>
+            </div>
+          </div>
+          <div class="counter-box">
+            <div class="counter-label">Rooms</div>
+            <div class="counter-controls">
+              <button class="counter-btn" onclick="changeCount('rooms',-1)">−</button>
+              <div class="counter-val" id="roomsVal">1</div>
+              <button class="counter-btn" onclick="changeCount('rooms',1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-label">Vehicle Type</div>
+        <div class="vehicle-select" id="vehicleSelect">
+          <div class="vehicle-option selected" onclick="selectVehicle(this,'Sedan')" data-vehicle="Sedan">
+            <div class="vehicle-name">🚗 Sedan</div>
+            <div class="vehicle-cap">Up to 4 pax</div>
+          </div>
+          <div class="vehicle-option" onclick="selectVehicle(this,'Ertiga')" data-vehicle="Ertiga">
+            <div class="vehicle-name">🚙 Ertiga / SUV</div>
+            <div class="vehicle-cap">Up to 6 pax</div>
+          </div>
+          <div class="vehicle-option" onclick="selectVehicle(this,'Innova')" data-vehicle="Innova">
+            <div class="vehicle-name">🚐 Innova</div>
+            <div class="vehicle-cap">Up to 7 pax</div>
+          </div>
+          <div class="vehicle-option" onclick="selectVehicle(this,'Tempo Traveller')" data-vehicle="Tempo Traveller">
+            <div class="vehicle-name">🚌 Tempo Traveller</div>
+            <div class="vehicle-cap">Up to 12 pax</div>
+          </div>
+        </div>
+
+        <div class="price-breakdown" id="priceBreakdown">
+          <div class="price-row"><span class="label">Package base price</span><span id="baseAmt">—</span></div>
+          <div class="price-row"><span class="label">Hotel (per room/night)</span><span id="hotelAmt">—</span></div>
+          <div class="price-row"><span class="label">Transport</span><span id="transportAmt">—</span></div>
+          <div class="price-row"><span class="label">GST (5%)</span><span id="gstAmt">—</span></div>
+          <div class="price-row total"><span>Total</span><span class="amt" id="totalAmt">Select a package</span></div>
+          <div class="gst-note">* Prices inclusive of GST. Subject to availability.</div>
+        </div>
+
+        <button class="btn-primary" onclick="goStep2()">Continue to Guest Details →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: GUEST DETAILS -->
+    <div class="screen" id="screen2">
+      <div class="panel-head">
+        <h2>Guest Details</h2>
+        <p>STEP 2 OF 3 — TRAVELLER INFORMATION</p>
+      </div>
+      <div class="panel-body">
+        <div class="section-label">Primary Guest</div>
+        <div class="field-row">
+          <div class="field" id="f_fname">
+            <label>First Name *</label>
+            <input type="text" id="fname" placeholder="Rahul">
+          </div>
+          <div class="field" id="f_lname">
+            <label>Last Name *</label>
+            <input type="text" id="lname" placeholder="Sharma">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field" id="f_email">
+            <label>Email Address *</label>
+            <input type="email" id="email" placeholder="rahul@email.com">
+          </div>
+          <div class="field" id="f_phone">
+            <label>Mobile Number *</label>
+            <input type="tel" id="phone" placeholder="+91 98765 43210">
+          </div>
+        </div>
+        <div class="field-row single">
+          <div class="field">
+            <label>City of Departure</label>
+            <input type="text" id="departure" placeholder="e.g. Delhi, Chandigarh">
+          </div>
+        </div>
+
+        <div class="section-label" style="margin-top:20px">Special Requests</div>
+        <div class="field-row single">
+          <div class="field">
+            <label>Any special requirements?</label>
+            <textarea id="special" placeholder="Dietary requirements, accessibility needs, anniversary arrangements, etc."></textarea>
+          </div>
+        </div>
+
+        <div class="field-row single" style="margin-top:8px">
+          <div class="field">
+            <label>How did you hear about us?</label>
+            <select id="source">
+              <option value="">— Select —</option>
+              <option>Google Search</option>
+              <option>Instagram</option>
+              <option>Facebook</option>
+              <option>YouTube</option>
+              <option>Friend / Family</option>
+              <option>Travel Agent</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-secondary" onclick="goStep1()">← Back</button>
+          <button class="btn-primary" onclick="goStep3()">Continue to Payment →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: PAYMENT -->
+    <div class="screen" id="screen3">
+      <div class="panel-head">
+        <h2>Payment</h2>
+        <p>STEP 3 OF 3 — SECURE CHECKOUT</p>
+      </div>
+      <div class="panel-body">
+        <div class="section-label">Choose Amount to Pay</div>
+        <div class="amount-choice">
+          <div class="amount-choice-label">Payment option</div>
+          <div class="amount-options">
+            <div class="amt-opt selected" id="payAdvance" onclick="selectPayAmt('advance')">
+              <div class="amt-opt-name">Advance</div>
+              <div class="amt-opt-val" id="advanceAmt">—</div>
+              <div class="amt-opt-note">25% now, rest later</div>
+            </div>
+            <div class="amt-opt" id="payFull" onclick="selectPayAmt('full')">
+              <div class="amt-opt-name">Full Payment</div>
+              <div class="amt-opt-val" id="fullAmt">—</div>
+              <div class="amt-opt-note">Pay complete amount</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-label">Payment Method</div>
+        <div class="payment-methods">
+          <div class="pay-method selected" onclick="selectPayMethod(this,'razorpay')">
+            <div class="pay-icon">💳</div>
+            <div class="pay-name">Card / UPI / NetBanking</div>
+            <div class="pay-desc">Powered by Razorpay</div>
+          </div>
+          <div class="pay-method" onclick="selectPayMethod(this,'whatsapp')">
+            <div class="pay-icon">📲</div>
+            <div class="pay-name">WhatsApp &amp; Manual</div>
+            <div class="pay-desc">Pay via UPI QR / NEFT</div>
+          </div>
+        </div>
+
+        <div class="security-note">
+          <span class="lock">🔒</span>
+          Your payment is secured by Razorpay. We never store card details. SSL encrypted.
+        </div>
+
+        <div class="price-breakdown">
+          <div class="price-row"><span class="label">Total package cost</span><span id="finalTotal">—</span></div>
+          <div class="price-row"><span class="label">You are paying now</span><span id="payingNow" style="color:var(--gold);font-weight:600">—</span></div>
+        </div>
+
+        <button class="btn-primary" id="payBtn" onclick="initiatePayment()" style="margin-top:16px">
+          Pay &amp; Confirm Booking
+        </button>
+
+        <div class="btn-row" style="margin-top:10px">
+          <button class="btn-secondary" onclick="goStep2()">← Back</button>
+        </div>
+
+        <p style="font-size:0.68rem;color:var(--muted);text-align:center;margin-top:16px;line-height:1.6">
+          By completing payment you agree to our cancellation policy.<br>
+          Full refund if cancelled 30+ days before travel date.
+        </p>
+      </div>
+    </div>
+
+    <!-- STEP 4: SUCCESS -->
+    <div class="screen" id="screen4">
+      <div class="panel-body">
+        <div class="success-screen">
+          <div class="success-icon">✓</div>
+          <h2>Booking Confirmed!</h2>
+          <p>Your Himachal adventure is booked. Our team will contact you within 2 hours to confirm itinerary details.</p>
+          <div class="booking-ref">
+            <div class="booking-ref-label">Booking Reference</div>
+            <div class="booking-ref-val" id="bookingRef">HE-XXXXXX</div>
+          </div>
+          <br>
+          <a class="whatsapp-btn" id="waConfirmBtn" href="#" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Continue on WhatsApp
+          </a>
+          <br>
+          <a href="packages.html" style="font-size:0.78rem;color:var(--muted);text-decoration:none">← Browse More Packages</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: ORDER SUMMARY -->
+  <div>
+    <div class="summary-card">
+      <div class="summary-head">
+        <h3>Order Summary</h3>
+      </div>
+      <div class="summary-body">
+        <div class="summary-item">
+          <div class="summary-key">Package</div>
+          <div class="summary-val" id="sum_pkg">Not selected</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-key">Duration</div>
+          <div class="summary-val" id="sum_dur">—</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-key">Travel Date</div>
+          <div class="summary-val" id="sum_date">—</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-key">Travellers</div>
+          <div class="summary-val" id="sum_pax">2 Adults</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-key">Vehicle</div>
+          <div class="summary-val" id="sum_vehicle">Sedan</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-key">Hotel</div>
+          <div class="summary-val" id="sum_hotel">3★ Standard</div>
+        </div>
+        <div class="summary-total">
+          <div class="summary-total-label">Total Amount</div>
+          <div class="summary-total-amt" id="sum_total">₹ —</div>
+          <div class="summary-total-note">Inc. GST · All inclusive</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust-row" style="margin-top:14px;padding:0 4px">
+      <div class="trust-badge"><span class="icon">✅</span><span>MSME registered Himachal Explorer</span></div>
+      <div class="trust-badge"><span class="icon">🏔️</span><span>Local HP experts since 2018</span></div>
+      <div class="trust-badge"><span class="icon">🔄</span><span>Free cancellation 30 days prior</span></div>
+      <div class="trust-badge"><span class="icon">📞</span><span>24/7 on-trip support</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────────────
+const RAZORPAY_KEY = 'OHPWkChulBwl3GwV9szQZh97'; // ← Replace with your actual Razorpay key
+const FIREBASE_URL = 'https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app';
+const WA_NUMBER   = '917018138847';
+const BUSINESS_EMAIL = 'chandan_panwar@himachalexplorer.in';
+
+// ── PACKAGES DATA (pulled from common packages; extend from Firebase) ──
+const PACKAGES = [
+  { id:'pkg001', name:'Shimla Manali Classic', nights:6, days:7, gateway:'Chandigarh', base:3200, transport:{Sedan:4500,Ertiga:5500,Innova:6500,'Tempo Traveller':12000,'Bolero':5000} },
+  { id:'pkg002', name:'Spiti Valley Expedition', nights:8, days:9, gateway:'Shimla', base:4200, transport:{Sedan:6000,Ertiga:7000,Innova:8500,'Tempo Traveller':16000,'Bolero':6500} },
+  { id:'pkg003', name:'Dharamsala Dalhousie', nights:5, days:6, gateway:'Pathankot', base:2800, transport:{Sedan:3800,Ertiga:4500,Innova:5500,'Tempo Traveller':10000,'Bolero':4200} },
+  { id:'pkg004', name:'Kasol Kheerganga Trek', nights:4, days:5, gateway:'Bhuntar', base:2200, transport:{Sedan:3200,Ertiga:4000,Innova:4800,'Tempo Traveller':9000,'Bolero':3800} },
+  { id:'pkg005', name:'Kinnaur Kalpa Sangla', nights:6, days:7, gateway:'Shimla', base:3800, transport:{Sedan:5500,Ertiga:6500,Innova:7500,'Tempo Traveller':14000,'Bolero':6000} },
+  { id:'pkg006', name:'Manali Adventure Package', nights:5, days:6, gateway:'Chandigarh', base:3000, transport:{Sedan:4200,Ertiga:5000,Innova:6000,'Tempo Traveller':11000,'Bolero':4800} },
+  { id:'pkg007', name:'Bir Billing Paragliding', nights:3, days:4, gateway:'Chandigarh', base:1800, transport:{Sedan:2800,Ertiga:3500,Innova:4200,'Tempo Traveller':8000,'Bolero':3200} },
+  { id:'pkg008', name:'Chail Kufri Weekend', nights:2, days:3, gateway:'Chandigarh', base:1400, transport:{Sedan:2200,Ertiga:2800,Innova:3500,'Tempo Traveller':6500,'Bolero':2600} },
+  { id:'pkg009', name:'Lahaul Sissu Valley', nights:5, days:6, gateway:'Chandigarh', base:3500, transport:{Sedan:5000,Ertiga:6000,Innova:7000,'Tempo Traveller':13000,'Bolero':5500} },
+  { id:'pkg010', name:'Narkanda Hatu Peak', nights:2, days:3, gateway:'Shimla', base:1500, transport:{Sedan:2400,Ertiga:3000,Innova:3600,'Tempo Traveller':7000,'Bolero':2800} },
+];
+
+const HOTEL_RATES = { budget:800, standard:1400, deluxe:2200, luxury:3500 }; // per room/night
+const HOTEL_LABELS = { budget:'2★ Budget', standard:'3★ Standard', deluxe:'4★ Deluxe', luxury:'5★ Luxury' };
+const PEAK_MONTHS = [0,4,5,11]; // Jan, May, Jun, Dec (0-indexed)
+
+// ── STATE ──
+let state = {
+  pkg: null, adults:2, children:0, rooms:1, vehicle:'Sedan',
+  hotel:'standard', date:'', totalAmt:0, payMode:'advance', payMethod:'razorpay',
+  fname:'', lname:'', email:'', phone:'', departure:'', special:'', source:''
+};
+
+// ── INIT ──
+window.onload = () => {
+  // Set min date = tomorrow
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate()+1);
+  document.getElementById('travelDate').min = tomorrow.toISOString().split('T')[0];
+  document.getElementById('travelDate').value = '';
+  document.getElementById('travelDate').addEventListener('change', recalcPrice);
+  document.getElementById('hotelCat').addEventListener('change', ()=>{ state.hotel=document.getElementById('hotelCat').value; recalcPrice(); });
+  renderPackages(PACKAGES);
+
+  // Pre-fill from URL params (coming from packages.html)
+  // Params passed: pkg, name, price, days, nights, gateway
+  const params = new URLSearchParams(window.location.search);
+  const pkgId   = params.get('pkg');
+  const pkgName = params.get('name') ? decodeURIComponent(params.get('name')) : null;
+  const pkgPrice= params.get('price') ? parseInt(params.get('price')) : null;
+  const pkgDays  = params.get('days')   ? parseInt(params.get('days'))   : null;
+  const pkgNights= params.get('nights') ? parseInt(params.get('nights')) : null;
+  const pkgGateway = params.get('gateway') ? decodeURIComponent(params.get('gateway')) : null;
+
+  if(pkgId) {
+    // Try local array first
+    const found = PACKAGES.find(p => p.id === pkgId);
+    if(found) {
+      selectPackage(found);
+    } else if(pkgName && pkgNights && pkgDays) {
+      // Firebase package — build a synthetic pkg object from URL params
+      // price param is the per-pax selling price; use as base
+      const basePerPax = pkgPrice ? Math.round(pkgPrice / 1.05) : 3000; // strip GST estimate
+      const syntheticPkg = {
+        id: pkgId,
+        name: pkgName,
+        nights: pkgNights,
+        days: pkgDays,
+        gateway: pkgGateway || '—',
+        base: basePerPax,
+        transport: { Sedan:4500, Ertiga:5500, Innova:6500, 'Tempo Traveller':12000, Bolero:5000 },
+        _fromUrl: true  // flag — real transport rates unknown, show note
+      };
+      // Push into PACKAGES so list renders it selected
+      PACKAGES.unshift(syntheticPkg);
+      renderPackages(PACKAGES);
+      selectPackage(syntheticPkg);
+
+      // Show a soft note that final price will be confirmed
+      const note = document.createElement('div');
+      note.style.cssText = 'font-size:0.72rem;color:#b8972a;margin-top:8px;padding:8px 10px;background:#fffbef;border:1px solid #e8d78a;border-radius:3px;';
+      note.textContent = '✓ Package auto-filled from your selection. Final pricing will be confirmed by our team within 2 hours of booking.';
+      document.getElementById('priceBreakdown').after(note);
+    }
+  }
+};
+
+function renderPackages(list) {
+  const el = document.getElementById('pkgList');
+  el.innerHTML = list.map(p=>`
+    <div class="pkg-item ${state.pkg?.id===p.id?'selected':''}" onclick="selectPackage(PACKAGES.find(x=>x.id==='${p.id}'))">
+      <div>
+        <div class="pkg-name">${p.name}</div>
+        <div class="pkg-nights">${p.nights}N/${p.days}D${p.gateway && p.gateway!=='—' ? ' · via '+p.gateway : ''}</div>
+      </div>
+      <div class="pkg-base-price">₹${(p.base*2).toLocaleString('en-IN')}+</div>
+    </div>
+  `).join('');
+}
+
+function filterPackages(q) {
+  const filtered = q ? PACKAGES.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())||p.gateway.toLowerCase().includes(q.toLowerCase())) : PACKAGES;
+  renderPackages(filtered);
+}
+
+function selectPackage(pkg) {
+  state.pkg = pkg;
+  renderPackages(PACKAGES);
+  recalcPrice();
+}
+
+function changeCount(type, delta) {
+  if(type==='adults') { state.adults = Math.max(1, state.adults+delta); document.getElementById('adultsVal').textContent=state.adults; }
+  if(type==='children') { state.children = Math.max(0, state.children+delta); document.getElementById('childrenVal').textContent=state.children; }
+  if(type==='rooms') { state.rooms = Math.max(1, state.rooms+delta); document.getElementById('roomsVal').textContent=state.rooms; }
+  recalcPrice();
+}
+
+function selectVehicle(el, v) {
+  state.vehicle = v;
+  document.querySelectorAll('.vehicle-option').forEach(x=>x.classList.remove('selected'));
+  el.classList.add('selected');
+  recalcPrice();
+}
+
+function recalcPrice() {
+  if(!state.pkg) return;
+  state.date = document.getElementById('travelDate').value;
+  state.hotel = document.getElementById('hotelCat').value;
+
+  const pkg = state.pkg;
+  const pax = state.adults + state.children;
+  const basePerPax = pkg.base;
+  const base = basePerPax * pax;
+  const transport = pkg.transport[state.vehicle] || pkg.transport['Sedan'];
+  const hotelCost = HOTEL_RATES[state.hotel] * state.rooms * pkg.nights;
+
+  // Peak season surcharge
+  let peakSurcharge = 0;
+  if(state.date) {
+    const m = new Date(state.date).getMonth();
+    if(PEAK_MONTHS.includes(m)) peakSurcharge = Math.round((base + hotelCost) * 0.15);
+  }
+
+  const subtotal = base + transport + hotelCost + peakSurcharge;
+  const gst = Math.round(subtotal * 0.05);
+  state.totalAmt = subtotal + gst;
+
+  document.getElementById('baseAmt').textContent = `₹${base.toLocaleString('en-IN')}`;
+  document.getElementById('hotelAmt').textContent = `₹${hotelCost.toLocaleString('en-IN')}`;
+  document.getElementById('transportAmt').textContent = `₹${transport.toLocaleString('en-IN')}` + (peakSurcharge ? ` (+₹${peakSurcharge.toLocaleString('en-IN')} peak)` : '');
+  document.getElementById('gstAmt').textContent = `₹${gst.toLocaleString('en-IN')}`;
+  document.getElementById('totalAmt').textContent = `₹${state.totalAmt.toLocaleString('en-IN')}`;
+
+  // Summary card
+  document.getElementById('sum_pkg').textContent = pkg.name;
+  document.getElementById('sum_dur').textContent = `${pkg.nights} Nights / ${pkg.days} Days`;
+  document.getElementById('sum_date').textContent = state.date ? new Date(state.date).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : 'Not set';
+  document.getElementById('sum_pax').textContent = `${state.adults} Adult${state.adults>1?'s':''}${state.children?', '+state.children+' Child'+( state.children>1?'ren':''):''}`;
+  document.getElementById('sum_vehicle').textContent = state.vehicle;
+  document.getElementById('sum_hotel').textContent = HOTEL_LABELS[state.hotel];
+  document.getElementById('sum_total').textContent = `₹ ${state.totalAmt.toLocaleString('en-IN')}`;
+
+  // Payment amounts
+  const advance = Math.round(state.totalAmt * 0.25);
+  document.getElementById('advanceAmt').textContent = `₹${advance.toLocaleString('en-IN')}`;
+  document.getElementById('fullAmt').textContent = `₹${state.totalAmt.toLocaleString('en-IN')}`;
+  updatePayingNow();
+}
+
+function selectPayAmt(mode) {
+  state.payMode = mode;
+  document.getElementById('payAdvance').classList.toggle('selected', mode==='advance');
+  document.getElementById('payFull').classList.toggle('selected', mode==='full');
+  updatePayingNow();
+}
+
+function updatePayingNow() {
+  const amt = state.payMode==='advance' ? Math.round(state.totalAmt*0.25) : state.totalAmt;
+  document.getElementById('finalTotal').textContent = state.totalAmt ? `₹${state.totalAmt.toLocaleString('en-IN')}` : '—';
+  document.getElementById('payingNow').textContent = state.totalAmt ? `₹${amt.toLocaleString('en-IN')}` : '—';
+}
+
+function selectPayMethod(el, method) {
+  state.payMethod = method;
+  document.querySelectorAll('.pay-method').forEach(x=>x.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('payBtn').textContent = method==='razorpay' ? 'Pay & Confirm Booking' : 'Confirm & Get Payment Details';
+}
+
+// ── NAVIGATION ──
+function goStep1() { setStep(1); }
+
+function goStep2() {
+  if(!state.pkg) { alert('Please select a package first.'); return; }
+  if(!state.date) { alert('Please select a travel date.'); return; }
+  setStep(2);
+}
+
+function goStep3() {
+  const req = [{id:'fname',label:'First name'},{id:'lname',label:'Last name'},{id:'email',label:'Email'},{id:'phone',label:'Mobile number'}];
+  let ok = true;
+  req.forEach(r=>{
+    const v = document.getElementById(r.id).value.trim();
+    const fp = document.getElementById('f_'+r.id);
+    if(!v) { if(fp) fp.classList.add('error'); ok=false; }
+    else { if(fp) fp.classList.remove('error'); state[r.id]=v; }
+  });
+  if(!ok) { alert('Please fill all required fields.'); return; }
+  state.lname = document.getElementById('lname').value.trim();
+  state.email = document.getElementById('email').value.trim();
+  state.phone = document.getElementById('phone').value.trim();
+  state.departure = document.getElementById('departure').value.trim();
+  state.special = document.getElementById('special').value.trim();
+  state.source = document.getElementById('source').value;
+  recalcPrice();
+  updatePayingNow();
+  setStep(3);
+}
+
+function setStep(n) {
+  [1,2,3,4].forEach(i=>{ document.getElementById('screen'+i).classList.toggle('active',i===n); });
+  [1,2,3].forEach(i=>{
+    const s = document.getElementById('s'+i);
+    s.classList.remove('active','done');
+    if(i<n) s.classList.add('done');
+    if(i===n) s.classList.add('active');
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── PAYMENT ──
+function generateRef() {
+  return 'HE-' + Date.now().toString(36).toUpperCase().slice(-6);
+}
+
+async function saveBookingToFirebase(bookingData) {
+  try {
+    const res = await fetch(`${FIREBASE_URL}/bookings.json`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(bookingData)
+    });
+    const data = await res.json();
+    return data.name; // Firebase auto-ID
+  } catch(e) {
+    console.error('Firebase save error:', e);
+    return null;
+  }
+}
+
+async function initiatePayment() {
+  if(!state.totalAmt) { alert('Price not calculated. Please go back and select a package.'); return; }
+
+  const ref = generateRef();
+  const payAmt = state.payMode==='advance' ? Math.round(state.totalAmt*0.25) : state.totalAmt;
+
+  const bookingData = {
+    ref, status:'pending',
+    package: state.pkg?.name, packageId: state.pkg?.id,
+    travelDate: state.date, nights: state.pkg?.nights,
+    adults:state.adults, children:state.children, rooms:state.rooms,
+    vehicle:state.vehicle, hotel:HOTEL_LABELS[state.hotel],
+    totalAmt:state.totalAmt, paidAmt:payAmt, payMode:state.payMode,
+    guest:{ name:`${state.fname} ${state.lname}`, email:state.email, phone:state.phone, departure:state.departure },
+    special:state.special, source:state.source,
+    createdAt: new Date().toISOString()
+  };
+
+  if(state.payMethod==='whatsapp') {
+    // Save booking then redirect to WhatsApp
+    document.getElementById('loadingOverlay').classList.add('show');
+    await saveBookingToFirebase({...bookingData, status:'pending_manual_payment'});
+    document.getElementById('loadingOverlay').classList.remove('show');
+    const msg = encodeURIComponent(`🏔️ *New Booking Request*\n\nRef: ${ref}\nPackage: ${state.pkg?.name}\nDate: ${state.date}\nGuest: ${state.fname} ${state.lname}\nMobile: ${state.phone}\nPax: ${state.adults}A+${state.children}C\nVehicle: ${state.vehicle}\nHotel: ${HOTEL_LABELS[state.hotel]}\nTotal: ₹${state.totalAmt.toLocaleString('en-IN')}\nPaying: ₹${payAmt.toLocaleString('en-IN')} (${state.payMode})\n\nPlease share payment QR / account details.`);
+    window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
+    showSuccess(ref, payAmt);
+    return;
+  }
+
+  // Razorpay
+  const options = {
+    key: RAZORPAY_KEY,
+    amount: payAmt * 100, // paise
+    currency: 'INR',
+    name: 'Himachal Explorer',
+    description: state.pkg?.name + ' · ' + state.pkg?.nights + 'N/' + state.pkg?.days + 'D',
+    image: 'https://himachalexplorer.in/logo-512.png',
+    prefill: {
+      name: `${state.fname} ${state.lname}`,
+      email: state.email,
+      contact: state.phone.replace(/\D/g,'')
+    },
+    notes: {
+      booking_ref: ref,
+      package: state.pkg?.name,
+      travel_date: state.date
+    },
+    theme: { color: '#b8972a' },
+    handler: async function(response) {
+      document.getElementById('loadingOverlay').classList.add('show');
+      await saveBookingToFirebase({
+        ...bookingData,
+        status:'paid',
+        razorpay_payment_id: response.razorpay_payment_id,
+        razorpay_order_id: response.razorpay_order_id || '',
+        paidAt: new Date().toISOString()
+      });
+      document.getElementById('loadingOverlay').classList.remove('show');
+      showSuccess(ref, payAmt, response.razorpay_payment_id);
+    },
+    modal: {
+      ondismiss: function() { console.log('Payment modal closed'); }
+    }
+  };
+
+  try {
+    const rzp = new Razorpay(options);
+    rzp.on('payment.failed', function(resp){
+      alert('Payment failed: ' + resp.error.description + '\nPlease try again or use WhatsApp payment.');
+    });
+    rzp.open();
+  } catch(e) {
+    alert('Unable to open payment gateway. Please check your internet connection or use WhatsApp payment option.');
+    console.error(e);
+  }
+}
+
+function showSuccess(ref, paidAmt, paymentId) {
+  document.getElementById('bookingRef').textContent = ref;
+  const msg = encodeURIComponent(`🎉 My booking is confirmed!\n\nRef: ${ref}\nPackage: ${state.pkg?.name}\nDate: ${state.date}\nGuest: ${state.fname} ${state.lname}\nPaid: ₹${paidAmt.toLocaleString('en-IN')}\n\nPlease share the detailed itinerary.`);
+  document.getElementById('waConfirmBtn').href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+  setStep(4);
+  // Update progress to all done
+  [1,2,3].forEach(i=>document.getElementById('s'+i).classList.replace('active','done'));
+}
+</script>
+</body>
+</html>

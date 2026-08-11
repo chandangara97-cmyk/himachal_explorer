@@ -1,0 +1,23 @@
+{
+  "package_id": "amritsar-chamba-4d",
+  "package_name": "Amritsar to Chamba & Khajjiar (4D)",
+  "days": 4,
+  "hotel_star": "3 Star",
+  "best_season": "all_year",
+  "start_point": "AMRITSAR",
+  "end_point": "AMRITSAR",
+  "total_km_est": 680,
+  "tags": [
+    "heritage",
+    "scenic",
+    "family"
+  ],
+  "highlight": "Chamba & Khajjiar",
+  "budget_price_pp": 10100,
+  "itinerary": {
+    "day_1": "Amritsar → Dalhousie (Drive: 230 km · 5 hrs). Places: Dalhousie. Activities: Golden Temple morning visit; Drive via Pathankot; Dalhousie evening arrival.",
+    "day_2": "Dalhousie → Khajjiar → Chamba (Drive: 50 km · 2 hrs). Places: Khajjiar, Chamba Town. Activities: Khajjiar 'Mini Switzerland' meadow; Kalatop Wildlife Sanctuary walk; Chamba town arrival.",
+    "day_3": "Chamba Heritage (Drive: Local). Places: Chamba Town, Chamera Lake. Activities: Lakshmi Narayan Temple complex; Bhuri Singh Museum; Chamera Lake viewpoint.",
+    "day_4": "Chamba → Amritsar (Drive: 230 km · 5 hrs). Activities: Chamunda Devi Temple morning; Scenic highway drive; Amritsar arrival."
+  }
+}

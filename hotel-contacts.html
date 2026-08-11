@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W6LR93V8');</script>
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Hotel Contacts Manager | Himachal Explorer Admin</title>
+<meta name="robots" content="noindex,nofollow"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#15100a;--surface:#201810;--surface2:#291f13;--border:#3a2c18;
+  --gold:#c99248;--gold2:#e0ad6a;--text:#f0ebe0;--muted:#9b8a74;
+  --danger:#e0654f;--success:#5fb878;--budget:#7aa874;--premium:#c99248;--luxury:#b07dd8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);line-height:1.55;padding-bottom:60px}
+h1,h2,h3{font-family:'Cormorant',serif;font-weight:600}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+a{color:var(--gold2)}
+button{font-family:'Jost',sans-serif;cursor:pointer}
+input,select,textarea{font-family:'Jost',sans-serif;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:5px;padding:10px 11px;font-size:13.5px;width:100%}
+input:focus,select:focus,textarea:focus{outline:1.5px solid var(--gold);border-color:var(--gold)}
+label{display:block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:5px}
+
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:18px 0;position:sticky;top:0;z-index:50}
+.header-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+header h1{font-size:24px;color:#fff}
+header .sub{font-size:11.5px;color:var(--muted);margin-top:2px}
+.back-link{font-size:11px;text-decoration:none;color:var(--muted);font-weight:600;letter-spacing:.04em}
+.back-link:hover{color:var(--gold2)}
+
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:18px 0}
+.toolbar select,.toolbar input{width:auto;min-width:130px}
+.tier-filters{display:flex;gap:6px}
+.tier-btn{padding:8px 13px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface2);color:var(--muted);font-size:11.5px;font-weight:600}
+.tier-btn.active{border-color:var(--gold);color:#fff;background:var(--surface2)}
+.btn-add{margin-left:auto;background:var(--gold);color:#1c1409;border:none;padding:10px 18px;border-radius:5px;font-size:12px;font-weight:700;letter-spacing:.03em}
+.btn-add:hover{background:var(--gold2)}
+
+/* form panel */
+#formPanel{display:none;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:24px}
+#formPanel.open{display:block}
+#formPanel h2{font-size:19px;color:#fff;margin-bottom:14px}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:640px){.form-grid{grid-template-columns:1fr}}
+.field-full{grid-column:1/-1}
+.tier-select{display:flex;gap:8px}
+.tier-opt{flex:1;text-align:center;padding:10px;border-radius:5px;border:1.5px solid var(--border);background:var(--surface2);font-size:12px;font-weight:600;color:var(--muted)}
+.tier-opt input{display:none}
+.tier-opt.sel-budget{border-color:var(--budget);color:var(--budget)}
+.tier-opt.sel-premium{border-color:var(--premium);color:var(--premium)}
+.tier-opt.sel-luxury{border-color:var(--luxury);color:var(--luxury)}
+.gps-row{display:flex;gap:8px}
+.gps-row input{flex:1}
+.btn-gps{flex-shrink:0;background:var(--surface2);border:1.5px solid var(--border);color:var(--gold2);padding:0 14px;border-radius:5px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.btn-gps:hover{border-color:var(--gold)}
+.form-actions{display:flex;align-items:center;gap:12px;margin-top:16px}
+.btn-save{background:var(--gold);color:#1c1409;border:none;padding:11px 22px;border-radius:5px;font-size:12.5px;font-weight:700}
+.btn-save:disabled{opacity:.5;cursor:default}
+.btn-cancel{background:none;border:1.5px solid var(--border);color:var(--muted);padding:11px 18px;border-radius:5px;font-size:12px;font-weight:600}
+#formStatus{font-size:12px;font-weight:500}
+.hint{font-size:10.5px;color:var(--muted);margin-top:4px;line-height:1.5}
+
+/* list */
+.city-group{margin-bottom:26px}
+.city-group h2{font-size:21px;color:#fff;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.city-count{font-size:11px;color:var(--muted);font-weight:400;font-family:'Jost',sans-serif}
+.tier-section{margin-top:10px}
+.tier-section h3{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}
+.hotel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.hotel-card{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:14px;position:relative}
+.hotel-card.budget{border-left:3px solid var(--budget)}
+.hotel-card.premium{border-left:3px solid var(--premium)}
+.hotel-card.luxury{border-left:3px solid var(--luxury)}
+.hc-name{font-size:15.5px;font-weight:600;color:#fff;margin-bottom:4px;padding-right:50px}
+.hc-loc{font-size:11.5px;color:var(--muted);margin-bottom:8px}
+.hc-rate{font-size:13px;margin-bottom:6px}
+.hc-rate .old{text-decoration:line-through;color:var(--muted);margin-right:6px;font-size:11.5px}
+.hc-rate .off{color:var(--success);font-weight:700}
+.hc-meta{display:flex;gap:10px;font-size:11px;color:var(--muted);margin-bottom:8px;flex-wrap:wrap}
+.hc-meta a{color:var(--gold2);text-decoration:none}
+.hc-note{font-size:10.5px;color:var(--gold2);background:rgba(201,146,72,.1);border-radius:4px;padding:7px 9px;line-height:1.5;margin-bottom:10px}
+.hc-actions{display:flex;gap:8px}
+.hc-actions button{flex:1;padding:7px;border-radius:4px;font-size:10.5px;font-weight:600;border:1px solid var(--border);background:var(--surface2);color:var(--muted)}
+.hc-actions button:hover{border-color:var(--gold);color:var(--gold2)}
+.hc-actions .del:hover{border-color:var(--danger);color:var(--danger)}
+.hc-tier-tag{position:absolute;top:14px;right:14px;font-size:9px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;padding:3px 7px;border-radius:3px}
+.hc-tier-tag.budget{background:rgba(122,168,116,.18);color:var(--budget)}
+.hc-tier-tag.premium{background:rgba(201,146,72,.18);color:var(--premium)}
+.hc-tier-tag.luxury{background:rgba(176,125,216,.18);color:var(--luxury)}
+
+.empty-state{text-align:center;padding:50px 20px;color:var(--muted)}
+.loading{text-align:center;padding:40px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <div class="wrap header-row">
+    <div>
+      <h1>🏨 Hotel Contacts</h1>
+      <div class="sub">Manage hotel listings &amp; push directly to Firebase</div>
+    </div>
+    <a href="index.html" class="back-link">← Back to Site</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="toolbar">
+    <select id="filterCity"><option value="">All Locations</option></select>
+    <input id="filterSearch" placeholder="Search hotel name…"/>
+    <div class="tier-filters" id="tierFilters">
+      <button class="tier-btn active" data-tier="">All</button>
+      <button class="tier-btn" data-tier="budget">💰 Budget</button>
+      <button class="tier-btn" data-tier="premium">⭐ Premium</button>
+      <button class="tier-btn" data-tier="luxury">👑 Luxury</button>
+    </div>
+    <button class="btn-add" onclick="openForm()">+ Add Hotel</button>
+  </div>
+
+  <div id="formPanel">
+    <h2 id="formTitle">Add New Hotel</h2>
+    <div class="form-grid">
+      <div>
+        <label>Location / City *</label>
+        <select id="fCity"></select>
+      </div>
+      <div>
+        <label>Or New Location (slug)</label>
+        <input id="fCityNew" placeholder="e.g. sangla"/>
+      </div>
+      <div class="field-full">
+        <label>Tier *</label>
+        <div class="tier-select" id="tierSelect">
+          <label class="tier-opt sel-budget" data-tier="budget"><input type="radio" name="fTier" value="budget"/>💰 Budget</label>
+          <label class="tier-opt sel-premium" data-tier="premium"><input type="radio" name="fTier" value="premium" checked/>⭐ Premium</label>
+          <label class="tier-opt sel-luxury" data-tier="luxury"><input type="radio" name="fTier" value="luxury"/>👑 Luxury</label>
+        </div>
+      </div>
+      <div class="field-full">
+        <label>Hotel Name *</label>
+        <input id="fName" placeholder="e.g. Heaven in Jalori"/>
+      </div>
+      <div class="field-full">
+        <label>Address / Location Detail</label>
+        <input id="fLocation" placeholder="e.g. Near Jalori Pass, Village Khanag"/>
+      </div>
+      <div>
+        <label>Contact Phone</label>
+        <input id="fContact" placeholder="10-digit mobile"/>
+      </div>
+      <div>
+        <label>Rooms Available</label>
+        <input id="fRooms" type="number" min="0" placeholder="e.g. 6"/>
+      </div>
+      <div>
+        <label>B2B Rate — Standard (₹/night) *</label>
+        <input id="fRate" type="number" min="0" placeholder="e.g. 2500" oninput="autoDiscount()"/>
+        <div class="hint">Jul-Aug, Dec-Mar baseline</div>
+      </div>
+      <div>
+        <label>Peak Season Rate (₹/night)</label>
+        <input id="fRatePeak" type="number" min="0" placeholder="e.g. 3500"/>
+        <div class="hint">Apr-Jun, Sep-Oct surcharge</div>
+      </div>
+      <div>
+        <label>Off-Season / Promo Rate (₹/night)</label>
+        <input id="fRateOff" type="number" min="0" placeholder="auto-fill: 90% standard"/>
+        <div class="hint">Bulk/loyalty discount</div>
+      </div>
+      <div class="field-full">
+        <label>Photo URL (optional)</label>
+        <input id="fPhoto" placeholder="https://…"/>
+      </div>
+      <div class="field-full">
+        <label>Hotel Coordinates</label>
+        <div class="gps-row">
+          <input id="fLat" placeholder="Latitude" type="number" step="any"/>
+          <input id="fLng" placeholder="Longitude" type="number" step="any"/>
+          <button type="button" class="btn-gps" onclick="useGPS()">📍 Use Current Location</button>
+        </div>
+        <div class="hint">Stand at the hotel and tap "Use Current Location" to auto-fill — or paste coordinates from Google Maps.</div>
+      </div>
+      <div class="field-full">
+        <label>Negotiation / Discount Note (shown to visitors)</label>
+        <textarea id="fNote" rows="2"></textarea>
+        <div class="hint">Default tells the customer to mention Himachal Explorer for an automatic 10% discount — edit if this hotel's terms differ.</div>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn-save" id="saveBtn" onclick="saveHotel()">💾 Save &amp; Push to Firebase</button>
+      <button class="btn-cancel" onclick="closeForm()">Cancel</button>
+      <span id="formStatus"></span>
+    </div>
+  </div>
+
+  <div id="listArea"><div class="loading">Loading hotel contacts…</div></div>
+
+</div>
+
+<script>
+const DB = "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app";
+const DEFAULT_NOTE = "Mention Himachal Explorer when negotiating — get an automatic 10% discount.";
+const DEFAULT_PHOTO = "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=68&w=600&auto=format&fit=crop";
+const TIER_LABEL = { budget: "💰 Budget", premium: "⭐ Premium", luxury: "👑 Luxury" };
+
+const CITY_LABELS = {
+  manali: "Manali", shimla: "Shimla", dharamshala: "Dharamshala", kasol: "Kasol",
+  kinnaur: "Kinnaur", spiti: "Spiti Valley", dalhousie: "Dalhousie", jibhi: "Jibhi",
+  bir: "Bir Billing", chandratal: "Chandratal", solan: "Solan", sangla: "Sangla",
+  chitkul: "Chitkul", kasauli: "Kasauli", barog: "Barog", tirthan: "Tirthan Valley",
+  kareri: "Kareri Lake", triund: "Triund", rohru: "Rohru", chamba: "Chamba",
+  lahaul: "Lahaul Valley", sissu: "Sissu", keylong: "Keylong"
+};
+
+let allHotels = {};      // { city: { key: {...} } }
+let editing = null;      // { city, key } when editing, else null
+let activeTier = "";
+
+function populateCitySelects() {
+  const opts = Object.keys(CITY_LABELS).sort().map(c => `<option value="${c}">${CITY_LABELS[c]}</option>`).join("");
+  document.getElementById("filterCity").innerHTML += opts;
+  document.getElementById("fCity").innerHTML = opts;
+}
+
+function loadAllHotels() {
+  fetch(DB + "/hotels.json")
+    .then(r => r.ok ? r.json() : {})
+    .then(data => { allHotels = data || {}; renderList(); })
+    .catch(() => { document.getElementById("listArea").innerHTML = '<div class="empty-state">Couldn\'t load hotels — check your connection and reload.</div>'; });
+}
+
+function renderList() {
+  const cityFilter = document.getElementById("filterCity").value;
+  const search = document.getElementById("filterSearch").value.trim().toLowerCase();
+  const container = document.getElementById("listArea");
+  const cities = Object.keys(allHotels).filter(c => !cityFilter || c === cityFilter).sort();
+
+  let html = "";
+  let totalShown = 0;
+
+  cities.forEach(city => {
+    const entries = Object.entries(allHotels[city] || {}).filter(([key, h]) => {
+      if (activeTier && h.tier !== activeTier) return false;
+      if (search && !(h.name || "").toLowerCase().includes(search)) return false;
+      return true;
+    });
+    if (!entries.length) return;
+    totalShown += entries.length;
+
+    const byTier = { budget: [], premium: [], luxury: [] };
+    entries.forEach(([key, h]) => { (byTier[h.tier] || byTier.premium).push([key, h]); });
+
+    let tierHtml = "";
+    ["budget", "premium", "luxury"].forEach(t => {
+      if (!byTier[t].length) return;
+      tierHtml += `<div class="tier-section"><h3>${TIER_LABEL[t]}</h3><div class="hotel-grid">` +
+        byTier[t].map(([key, h]) => hotelCardHTML(city, key, h)).join("") +
+        `</div></div>`;
+    });
+
+    html += `<div class="city-group"><h2>${CITY_LABELS[city] || city}<span class="city-count">${entries.length} hotel${entries.length !== 1 ? "s" : ""}</span></h2>${tierHtml}</div>`;
+  });
+
+  container.innerHTML = totalShown ? html : '<div class="empty-state">No hotel contacts match these filters yet.</div>';
+}
+
+function hotelCardHTML(city, key, h) {
+  const mapLink = (h.lat && h.lng) ? `<a href="https://www.google.com/maps?q=${h.lat},${h.lng}" target="_blank" rel="noopener">📍 Map</a>` : "";
+  const waLink = h.contact ? `<a href="https://wa.me/91${h.contact}" target="_blank" rel="noopener">💬 ${h.contact}</a>` : "";
+  
+  // Build seasonal rate display
+  let rateHtml = "";
+  if (h.rate) {
+    rateHtml = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:10px;">`;
+    rateHtml += `<div style="background:rgba(95,184,120,.12);border-radius:5px;padding:8px;border-left:3px solid #5fb878;">
+      <div style="font-size:9px;color:var(--muted);letter-spacing:.05em;">Standard</div>
+      <div style="font-size:14px;font-weight:700;color:var(--text);">₹${h.rate}</div>
+      <div style="font-size:9px;color:var(--muted);">per night</div>
+    </div>`;
+    
+    if (h.ratePeak) {
+      rateHtml += `<div style="background:rgba(224,101,79,.12);border-radius:5px;padding:8px;border-left:3px solid #e0654f;">
+        <div style="font-size:9px;color:var(--muted);letter-spacing:.05em;">Peak</div>
+        <div style="font-size:14px;font-weight:700;color:var(--text);">₹${h.ratePeak}</div>
+        <div style="font-size:9px;color:var(--muted);">Apr-Jun, Sep-Oct</div>
+      </div>`;
+    }
+    
+    if (h.rateOff) {
+      rateHtml += `<div style="background:rgba(201,146,72,.12);border-radius:5px;padding:8px;border-left:3px solid #c99248;">
+        <div style="font-size:9px;color:var(--muted);letter-spacing:.05em;">Promo</div>
+        <div style="font-size:14px;font-weight:700;color:var(--success);">₹${h.rateOff}</div>
+        <div style="font-size:9px;color:var(--muted);">bulk/loyalty</div>
+      </div>`;
+    }
+    
+    rateHtml += `</div>`;
+  }
+  
+  return `
+    <div class="hotel-card ${h.tier}">
+      <span class="hc-tier-tag ${h.tier}">${h.tier}</span>
+      <div class="hc-name">${escapeHtml(h.name || "")}</div>
+      <div class="hc-loc">${escapeHtml(h.location || "")}</div>
+      ${rateHtml}
+      <div class="hc-meta">${waLink}${h.rooms ? `<span>${h.rooms} rooms</span>` : ""}${mapLink}</div>
+      ${h.discountNote ? `<div class="hc-note">💡 ${escapeHtml(h.discountNote)}</div>` : ""}
+      <div class="hc-actions">
+        <button onclick="editHotel('${city}','${key}')">✏️ Edit</button>
+        <button class="del" onclick="deleteHotel('${city}','${key}')">🗑️ Delete</button>
+      </div>
+    </div>`;
+}
+
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+
+function autoDiscount() {
+  const rate = parseFloat(document.getElementById("fRate").value);
+  const offEl = document.getElementById("fRateOff");
+  if (rate && !offEl.dataset.touched) offEl.value = Math.round(rate * 0.9);
+}
+document.getElementById("fRateOff").addEventListener("input", function(){ this.dataset.touched = "1"; });
+
+function useGPS() {
+  if (!navigator.geolocation) { alert("Geolocation isn't supported on this browser."); return; }
+  const btn = event.target;
+  btn.textContent = "📍 Locating…";
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      document.getElementById("fLat").value = pos.coords.latitude.toFixed(6);
+      document.getElementById("fLng").value = pos.coords.longitude.toFixed(6);
+      btn.textContent = "📍 Use Current Location";
+    },
+    () => { alert("Couldn't get location — check location permission."); btn.textContent = "📍 Use Current Location"; },
+    { enableHighAccuracy: true, timeout: 10000 }
+  );
+}
+
+function openForm(city, key, h) {
+  editing = (city && key) ? { city, key } : null;
+  document.getElementById("formTitle").textContent = editing ? "Edit Hotel" : "Add New Hotel";
+  document.getElementById("formPanel").classList.add("open");
+  document.getElementById("formStatus").textContent = "";
+
+  document.getElementById("fCity").value = city || "";
+  document.getElementById("fCityNew").value = "";
+  document.getElementById("fName").value = h ? h.name || "" : "";
+  document.getElementById("fLocation").value = h ? h.location || "" : "";
+  document.getElementById("fContact").value = h ? h.contact || "" : "";
+  document.getElementById("fRooms").value = h ? h.rooms || "" : "";
+  document.getElementById("fRate").value = h ? h.rate || "" : "";
+  document.getElementById("fRatePeak").value = h ? h.ratePeak || "" : "";
+  const offEl = document.getElementById("fRateOff");
+  offEl.value = h ? h.rateOff || "" : "";
+  offEl.dataset.touched = h ? "1" : "";
+  document.getElementById("fPhoto").value = h ? h.photo || "" : "";
+  document.getElementById("fLat").value = h ? h.lat || "" : "";
+  document.getElementById("fLng").value = h ? h.lng || "" : "";
+  document.getElementById("fNote").value = h ? (h.discountNote || DEFAULT_NOTE) : DEFAULT_NOTE;
+
+  document.querySelectorAll('input[name="fTier"]').forEach(r => r.checked = (h ? h.tier : "premium") === r.value);
+
+  document.getElementById("formPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function closeForm() {
+  document.getElementById("formPanel").classList.remove("open");
+  editing = null;
+}
+
+function editHotel(city, key) {
+  const h = allHotels[city][key];
+  openForm(city, key, h);
+}
+
+function deleteHotel(city, key) {
+  if (!confirm("Delete this hotel contact? This removes it from Firebase and the live site immediately.")) return;
+  fetch(DB + `/hotels/${city}/${key}.json`, { method: "DELETE" })
+    .then(() => { delete allHotels[city][key]; renderList(); })
+    .catch(() => alert("Couldn't delete — check your connection and try again."));
+}
+
+function saveHotel() {
+  const cityNew = document.getElementById("fCityNew").value.trim().toLowerCase().replace(/[^a-z0-9-]/g, "-");
+  const city = cityNew || document.getElementById("fCity").value;
+  const name = document.getElementById("fName").value.trim();
+  const tier = document.querySelector('input[name="fTier"]:checked').value;
+  const rate = parseFloat(document.getElementById("fRate").value);
+  const ratePeak = document.getElementById("fRatePeak").value ? parseFloat(document.getElementById("fRatePeak").value) : null;
+  const rateOff = document.getElementById("fRateOff").value ? parseFloat(document.getElementById("fRateOff").value) : Math.round(rate * 0.9);
+  const rooms = document.getElementById("fRooms").value ? parseInt(document.getElementById("fRooms").value) : null;
+  const contact = document.getElementById("fContact").value.trim();
+  const location = document.getElementById("fLocation").value.trim();
+  const photo = document.getElementById("fPhoto").value.trim() || DEFAULT_PHOTO;
+  const lat = document.getElementById("fLat").value ? parseFloat(document.getElementById("fLat").value) : null;
+  const lng = document.getElementById("fLng").value ? parseFloat(document.getElementById("fLng").value) : null;
+  const discountNote = document.getElementById("fNote").value.trim() || DEFAULT_NOTE;
+
+  const statusEl = document.getElementById("formStatus");
+  if (!city || !name || !rate) {
+    statusEl.style.color = "#e0654f";
+    statusEl.textContent = "Location, hotel name and B2B rate are required.";
+    return;
+  }
+
+  const record = { name, tier, rate, ratePeak, rateOff, rooms, contact, location, photo, lat, lng, discountNote, addedAt: (editing && allHotels[editing.city][editing.key].addedAt) || Date.now() };
+  const saveBtn = document.getElementById("saveBtn");
+  saveBtn.disabled = true;
+  statusEl.style.color = "var(--muted)";
+  statusEl.textContent = "Pushing to Firebase…";
+
+  let req;
+  if (editing && editing.city === city) {
+    req = fetch(DB + `/hotels/${city}/${editing.key}.json`, { method: "PATCH", body: JSON.stringify(record) })
+      .then(() => { allHotels[city][editing.key] = { ...allHotels[city][editing.key], ...record }; });
+  } else if (editing && editing.city !== city) {
+    // city changed — move record: delete old, create new
+    req = fetch(DB + `/hotels/${editing.city}/${editing.key}.json`, { method: "DELETE" })
+      .then(() => fetch(DB + `/hotels/${city}.json`, { method: "POST", body: JSON.stringify(record) }))
+      .then(r => r.json())
+      .then(res => {
+        delete allHotels[editing.city][editing.key];
+        allHotels[city] = allHotels[city] || {};
+        allHotels[city][res.name] = record;
+      });
+  } else {
+    req = fetch(DB + `/hotels/${city}.json`, { method: "POST", body: JSON.stringify(record) })
+      .then(r => r.json())
+      .then(res => { allHotels[city] = allHotels[city] || {}; allHotels[city][res.name] = record; });
+  }
+
+  req.then(() => {
+      statusEl.style.color = "#5fb878";
+      statusEl.textContent = "Saved ✓";
+      renderList();
+      setTimeout(closeForm, 700);
+    })
+    .catch(() => {
+      statusEl.style.color = "#e0654f";
+      statusEl.textContent = "Couldn't save — check connection and try again.";
+    })
+    .finally(() => { saveBtn.disabled = false; });
+}
+
+document.getElementById("filterCity").addEventListener("change", renderList);
+document.getElementById("filterSearch").addEventListener("input", renderList);
+document.getElementById("tierFilters").addEventListener("click", e => {
+  const btn = e.target.closest(".tier-btn");
+  if (!btn) return;
+  document.querySelectorAll(".tier-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  activeTier = btn.dataset.tier;
+  renderList();
+});
+
+populateCitySelects();
+loadAllHotels();
+</script>
+</body>
+</html>

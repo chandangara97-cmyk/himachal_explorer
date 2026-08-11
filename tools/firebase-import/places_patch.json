@@ -1,0 +1,16 @@
+{
+  "sarahan": {
+    "name": "Sarahan",
+    "category": "heritage",
+    "lat": 31.5167,
+    "lng": 77.8,
+    "tagline": "Home of the Bhimakali Temple, gateway to Kinnaur"
+  },
+  "dhankar": {
+    "name": "Dhankar",
+    "category": "heritage",
+    "lat": 32.073,
+    "lng": 78.199,
+    "tagline": "Cliffside monastery-fort overlooking the Spiti-Pin confluence"
+  }
+}

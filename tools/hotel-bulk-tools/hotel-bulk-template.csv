@@ -1,0 +1,19 @@
+city,name,tier,location,contact,rooms,rate,ratePeak,rateOff,photo,lat,lng,discountNote
+shimla,Example Hotel,premium,"Near Mall Road, Shimla",9876543210,6,2500,3500,2250,https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400,31.7741,77.1717,10% bulk discount for groups
+# INSTRUCTIONS:
+# 1. Keep city as single-word lowercase slug (shimla, sangla, kinnaur, etc)
+# 2. Tier must be: budget, premium, or luxury
+# 3. Contact: 10-digit phone number (without +91)
+# 4. Rooms: integer count or leave blank
+# 5. rate: per-night B2B rate in ₹
+# 6. ratePeak: higher rate for Apr-Jun, Sep-Oct (optional)
+# 7. rateOff: promotional/bulk discount rate (auto-calc 90% of rate if blank)
+# 8. photo: Unsplash URL recommended (w=400 for fast load)
+# 9. lat, lng: decimal GPS (optional, map will work without)
+# 10. discountNote: Brief promo text visible on card
+#
+# OPTIONAL COLUMNS CAN BE BLANK IF NOT USED
+# Save as UTF-8, comma-delimited, no quotes needed unless comma in value
+#
+# EXAMPLE ROW (delete template line above and add real data):
+# sangla,Kinner Camps,luxury,"Sangla Valley, overlooking Baspa River",8765432109,8,4000,5200,3600,https://images.unsplash.com/photo-1520763996368-72d11486902d?w=400,31.3203,78.5272,Book 3+ nights: save ₹500/night

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W6LR93V8');</script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You — Himachal Explorer</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #b07d3a;
+      --gold-light: #d4a55a;
+      --dark: #1a1510;
+      --mid: #2e2518;
+      --cream: #f5efe4;
+      --text: #3a2e1e;
+      --muted: #7a6a52;
+    }
+
+    html, body {
+      min-height: 100vh;
+      font-family: 'Jost', sans-serif;
+      background: var(--dark);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* Mountain silhouette background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(180deg,
+          #0d0b08 0%,
+          #1a1510 30%,
+          #241d12 60%,
+          #1a1510 100%
+        );
+      z-index: 0;
+    }
+
+    /* Stars */
+    .stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 60%;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle var(--d, 3s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    /* Mountain SVG */
+    .mountains {
+      position: fixed;
+      bottom: 0; left: 0;
+      width: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Main layout */
+    .page {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    /* Logo */
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 60px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    /* Checkmark */
+    .check-wrap {
+      width: 72px;
+      height: 72px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 40px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+      position: relative;
+    }
+    .check-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(176,125,58,0.25);
+    }
+    .check-icon {
+      width: 28px;
+      height: 28px;
+      stroke: var(--gold-light);
+      stroke-width: 2;
+      fill: none;
+      stroke-dasharray: 50;
+      stroke-dashoffset: 50;
+      animation: drawCheck 0.6s ease 0.8s forwards;
+    }
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Heading */
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(38px, 8vw, 64px);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    /* Divider */
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 24px auto;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.5s forwards;
+    }
+
+    /* Subtext */
+    .subtitle {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(245,239,228,0.7);
+      line-height: 1.7;
+      max-width: 400px;
+      margin: 0 auto 48px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.6s forwards;
+    }
+
+    /* Info card */
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(176,125,58,0.25);
+      border-radius: 4px;
+      padding: 28px 32px;
+      max-width: 360px;
+      width: 100%;
+      margin: 0 auto 40px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.7s forwards;
+    }
+    .card-label {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .card-contact {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .card-contact a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-note {
+      font-size: 12px;
+      color: rgba(245,239,228,0.45);
+      letter-spacing: 0.05em;
+    }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.85s forwards;
+      transition: color 0.3s;
+    }
+    .back-link:hover { color: var(--gold-light); }
+    .back-link svg {
+      width: 14px; height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      transition: transform 0.3s;
+    }
+    .back-link:hover svg { transform: translateX(-3px); }
+
+    /* Coordinates */
+    .coords {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: rgba(176,125,58,0.4);
+      z-index: 3;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<!-- Stars -->
+<div class="stars" id="stars"></div>
+
+<!-- Mountain silhouette -->
+<svg class="mountains" viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,320 L0,200 L80,160 L160,200 L240,120 L320,180 L400,80 L480,150 L560,60 L640,140 L720,40 L800,130 L880,70 L960,160 L1040,90 L1120,170 L1200,110 L1280,180 L1360,140 L1440,200 L1440,320 Z" fill="#0d0b08" opacity="0.9"/>
+  <path d="M0,320 L0,240 L100,200 L200,240 L300,160 L400,220 L500,140 L600,200 L700,120 L800,190 L900,150 L1000,210 L1100,170 L1200,230 L1300,190 L1440,250 L1440,320 Z" fill="#130f0a" opacity="0.95"/>
+  <path d="M0,320 L0,280 L160,250 L320,280 L480,240 L640,270 L800,245 L960,275 L1120,255 L1280,275 L1440,265 L1440,320 Z" fill="#1a1510"/>
+  <!-- Snow caps -->
+  <path d="M400,80 L380,100 L420,100 Z" fill="rgba(245,239,228,0.15)"/>
+  <path d="M560,60 L540,85 L580,85 Z" fill="rgba(245,239,228,0.2)"/>
+  <path d="M720,40 L695,70 L745,70 Z" fill="rgba(245,239,228,0.25)"/>
+  <path d="M880,70 L860,95 L900,95 Z" fill="rgba(245,239,228,0.15)"/>
+  <path d="M1040,90 L1020,115 L1060,115 Z" fill="rgba(245,239,228,0.12)"/>
+</svg>
+
+<!-- Main content -->
+<div class="page">
+  <div class="logo">Himachal Explorer</div>
+
+  <div class="check-wrap">
+    <svg class="check-icon" viewBox="0 0 24 24">
+      <polyline points="4,13 9,18 20,7"/>
+    </svg>
+  </div>
+
+  <h1>Message <em>Received</em></h1>
+  <div class="divider"></div>
+
+  <p class="subtitle">
+    Thank you for reaching out. Himachal Explorer will get back to you shortly with your personalised Himalayan itinerary.
+  </p>
+
+  <div class="card">
+    <div class="card-label">Direct Contact</div>
+    <div class="card-contact">
+      <a href="tel:+917018138847">+91-7018138847</a>
+    </div>
+    <div class="card-note">Call or WhatsApp — typically replies within 2 hours</div>
+  </div>
+
+  <a href="https://himachalexplorer.in" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>
+    Back to Himachal Explorer
+  </a>
+</div>
+
+<div class="coords">31.1048° N · 77.1734° E</div>
+
+<script>
+  // Generate stars
+  const container = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2 + 0.5;
+    s.style.cssText = `
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      width: ${size}px;
+      height: ${size}px;
+      --d: ${2 + Math.random() * 4}s;
+      --delay: ${Math.random() * 4}s;
+      opacity: ${Math.random() * 0.5 + 0.1};
+    `;
+    container.appendChild(s);
+  }
+</script>
+</body>
+</html>

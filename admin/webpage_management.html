@@ -1,0 +1,586 @@
+<!-- =========================
+     FILE 1: editor.html
+     Multi-file editor (DRAFT) + Publish (LIVE) with password 123
+     - Saves many files in Firebase RTDB under: projects/<ProjectName>/draft
+     - Publish button copies draft -> published and bumps version
+     - Auto Sync saves DRAFT (not live)
+========================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow"/>
+  <title>Himachal Cloud Multi-File Editor (Draft → Publish)</title>
+  <script>
+  (function(){
+    var k = sessionStorage.getItem('he_editor');
+    if(k !== 'HE@editor2026') {
+      var p = prompt('Editor password required:');
+      if(p !== 'HE@editor2026') { document.write('<h2 style="font-family:sans-serif;padding:40px">Access denied.</h2>'); throw new Error('Access denied'); }
+      sessionStorage.setItem('he_editor', p);
+    }
+  })();
+  </script>
+  <style>
+    :root{
+      --bg:#F6FAFF; --card:#FFFFFF; --text:#0D1B2A; --muted:#64748B;
+      --border:#E2E8F0; --dark:#0F172A; --accent:#2563EB;
+      --ok:#10B981; --warn:#F59E0B; --bad:#EF4444;
+      --sidebar-w: 285px; --bar-h: 60px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;height:100vh;display:flex;overflow:hidden;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    /* Sidebar */
+    .sidebar{width:var(--sidebar-w);background:var(--dark);color:#94A3B8;display:flex;flex-direction:column;border-right:1px solid #1E293B}
+    .side-top{padding:14px 14px 10px;border-bottom:1px solid #1E293B;display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .logo{font-weight:900;color:#fff;letter-spacing:.8px;font-size:13px}
+    .pill{font-size:11px;padding:4px 10px;border-radius:999px;border:1px solid rgba(226,232,240,.18);background:rgba(255,255,255,.06);color:#CBD5E1;white-space:nowrap}
+    .files{padding:12px;overflow:auto;flex:1}
+    .file{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 10px;border-radius:10px;cursor:pointer;transition:.15s;border:1px solid transparent}
+    .file:hover{background:#111C33}
+    .file.active{background:rgba(37,99,235,.20);border:1px solid rgba(37,99,235,.55);color:#fff}
+    .fname{display:flex;align-items:center;gap:8px;min-width:0}
+    .fname span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:190px}
+    .factions button{background:transparent;border:1px solid rgba(226,232,240,.20);color:#CBD5E1;border-radius:8px;padding:6px 8px;cursor:pointer;font-weight:900;font-size:12px}
+    .factions button:hover{border-color:rgba(226,232,240,.35)}
+    .side-bottom{padding:12px 12px 14px;border-top:1px solid #1E293B}
+    .row{display:flex;gap:8px;align-items:center;margin-top:8px}
+    .side-bottom input{
+      width:100%;height:36px;border-radius:10px;border:1px solid rgba(226,232,240,.16);
+      background:#0B1222;color:#E2E8F0;padding:0 10px;font-weight:800;outline:none
+    }
+    .side-bottom input::placeholder{color:#64748B}
+    .btn{
+      height:36px;border-radius:10px;border:1px solid rgba(226,232,240,.22);
+      background:#0B1222;color:#E2E8F0;padding:0 12px;cursor:pointer;font-weight:900;font-size:12px;
+      display:inline-flex;align-items:center;gap:8px;white-space:nowrap
+    }
+    .btn:hover{border-color:rgba(226,232,240,.35)}
+    .btn-accent{background:var(--accent);border-color:transparent;color:#fff}
+    .btn-accent:hover{filter:brightness(.96)}
+    .btn-danger{background:var(--bad);border-color:transparent;color:#fff}
+    .btn-danger:hover{background:#DC2626}
+    .mini{font-size:11px;color:#94A3B8;line-height:1.45;margin-top:10px}
+    .kbd{border:1px solid rgba(226,232,240,.25);padding:2px 6px;border-radius:7px;font-size:11px;color:#E2E8F0}
+
+    /* Main */
+    .main{flex:1;display:flex;flex-direction:column;min-width:0}
+    .topbar{
+      height:var(--bar-h);background:var(--card);border-bottom:1px solid var(--border);
+      display:flex;align-items:center;gap:10px;padding:0 12px;min-width:0
+    }
+    .dot{width:10px;height:10px;border-radius:999px;background:var(--warn)}
+    .title{font-weight:950;letter-spacing:.2px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:360px}
+    .cloud{
+      margin-left:6px;font-size:12px;font-weight:900;padding:6px 10px;border-radius:999px;
+      border:1px solid var(--border);background:#F8FAFC;color:#334155;white-space:nowrap
+    }
+    .spacer{flex:1}
+    .toggle{
+      display:flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:999px;
+      padding:6px 10px;background:#F8FAFC;font-size:12px;font-weight:950;color:#334155;user-select:none
+    }
+    .toggle input{transform:scale(1.05)}
+    .topbar input{
+      height:36px;border-radius:10px;border:1px solid var(--border);padding:0 10px;font-weight:900;color:#0F172A;outline:none;
+      width: 220px;
+    }
+    .topbar button{
+      height:36px;border-radius:10px;border:1px solid var(--border);
+      background:#fff;cursor:pointer;font-weight:950;font-size:12px;padding:0 12px;
+    }
+    .topbar button:hover{transform:translateY(-1px)}
+    .topbar .primary{background:var(--accent);color:#fff;border-color:transparent}
+    .topbar .primary:hover{filter:brightness(.96)}
+    .topbar .success{background:var(--ok);color:#fff;border-color:transparent}
+    .topbar .success:hover{filter:brightness(.96)}
+    textarea{
+      flex:1;width:100%;border:none;outline:none;padding:18px 18px 22px;background:#fff;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      font-size:14px;line-height:1.6;color:#334155;resize:none
+    }
+    .console{
+      height:160px;overflow:auto;background:#0B1222;color:#38BDF8;border-top:1px solid #12213F;
+      padding:12px 14px;font-family:ui-monospace,monospace;font-size:12px
+    }
+    .log-ok{color:#34D399}
+    .log-warn{color:#FBBF24}
+    .log-err{color:#F87171}
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="side-top">
+      <div class="logo">EDITOR (DRAFT)</div>
+      <div class="pill" id="connPill">Cloud: —</div>
+    </div>
+
+    <div class="files" id="fileList"></div>
+
+    <div class="side-bottom">
+      <div class="row">
+        <input id="newFileName" placeholder="new file name e.g. pages/home.html"/>
+        <button class="btn btn-accent" onclick="createFile()">+ Add</button>
+      </div>
+      <div class="row">
+        <button class="btn" onclick="renameCurrent()">Rename</button>
+        <button class="btn btn-danger" onclick="deleteCurrent()">Delete</button>
+      </div>
+
+      <div class="mini">
+        Draft path: <span class="kbd">projects/&lt;name&gt;/draft</span><br/>
+        Live path: <span class="kbd">projects/&lt;name&gt;/published</span><br/>
+        Auto-sync saves <b>DRAFT</b> only.
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div class="dot" id="dot"></div>
+      <div class="title" id="activeTitle">—</div>
+      <div class="cloud" id="statusChip">Connecting…</div>
+
+      <div class="spacer"></div>
+
+      <input id="projectName" value="Tourism"/>
+      <button onclick="fetchDraft()">☁ Fetch Draft</button>
+      <button class="primary" onclick="pushDraft()">⬆ Push Draft</button>
+      <button class="success" onclick="finalPublish()">✅ Final change to page</button>
+
+      <label class="toggle" title="When ON: saves DRAFT after you stop typing for 800ms">
+        <input type="checkbox" id="autoSync" checked/>
+        Auto Sync
+      </label>
+    </div>
+
+    <textarea id="editor" spellcheck="false"></textarea>
+
+    <div class="console" id="log">
+      > Editor ready.<br/>
+      > Write freely → saves into DRAFT.<br/>
+      > Click <b>Final change to page</b> (password 123) → publishes + refreshes live pages.<br/>
+    </div>
+  </main>
+
+  <!-- Firebase (CDN compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+  <script>
+    /***********************
+     * Firebase config (yours)
+     ***********************/
+    const firebaseConfig = {
+      apiKey: "AIzaSyAKaFrj7JobWLloNQqzvx3SSibyrsiwzug",
+      authDomain: "revnue-records.firebaseapp.com",
+      databaseURL: "https://revnue-records-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "revnue-records",
+      storageBucket: "revnue-records.firebasestorage.app",
+      messagingSenderId: "182348503564",
+      appId: "1:182348503564:web:480085405b09177245ac29"
+    };
+
+    /***********************
+     * REQUIRED BY YOU
+     ***********************/
+    const ADMIN_PASSWORD = "123";
+
+    /***********************
+     * DOM
+     ***********************/
+    const fileListEl = document.getElementById("fileList");
+    const editorEl = document.getElementById("editor");
+    const activeTitleEl = document.getElementById("activeTitle");
+    const statusChipEl = document.getElementById("statusChip");
+    const connPillEl = document.getElementById("connPill");
+    const dotEl = document.getElementById("dot");
+    const logEl = document.getElementById("log");
+    const projectNameEl = document.getElementById("projectName");
+    const autoSyncEl = document.getElementById("autoSync");
+    const newFileNameEl = document.getElementById("newFileName");
+
+    const LOCAL_KEY = "Himachal_MultiFile_DraftEditor";
+
+    /***********************
+     * Default multi-file project
+     ***********************/
+    const DEFAULT_PROJECT = {
+      files: {
+        "index.html":   { content: "<div class='hero'>Himachal Explorer</div>\n<div id='app'>Edit draft → publish → live refresh</div>\n", updatedAt: Date.now() },
+        "styles.css":   { content: "body{font-family:system-ui;background:#EAF3FF}\n.hero{margin:20px;background:white;border-radius:16px;padding:18px;font-weight:900}\n", updatedAt: Date.now() },
+        "logic.js":     { content: "console.log('LIVE script loaded');\n", updatedAt: Date.now() }
+      },
+      order: ["index.html","styles.css","logic.js"],
+      meta: { createdAt: Date.now(), lastLocalSave: Date.now() }
+    };
+
+    let project = loadLocal() || structuredClone(DEFAULT_PROJECT);
+    let activeFile = project.order[0] || "index.html";
+    let dirty = false;
+
+    /***********************
+     * Firebase state
+     ***********************/
+    let app=null, auth=null, db=null;
+    let cloudReady=false;
+
+    function safeName(name){
+      return String(name || "").trim().replace(/[.#$[\]]/g,"_");
+    }
+    function basePath(){
+      const pname = safeName(projectNameEl.value || "Tourism");
+      return `projects/${pname}`;
+    }
+    function draftPath(){ return `${basePath()}/draft`; }
+    function publishedPath(){ return `${basePath()}/published`; }
+    function publishedMetaPath(){ return `${basePath()}/publishedMeta`; }
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+    }
+    function log(msg, type="info"){
+      const t = new Date().toLocaleTimeString();
+      const cls = type==="ok" ? "log-ok" : type==="warn" ? "log-warn" : type==="err" ? "log-err" : "";
+      logEl.innerHTML += `<div class="${cls}">> [${t}] ${escapeHtml(msg)}</div>`;
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+    function setStatus(text, state){
+      statusChipEl.textContent = text;
+      connPillEl.textContent = text.startsWith("Cloud:") ? text : ("Cloud: " + text);
+      if(state==="ok") dotEl.style.background = "var(--ok)";
+      else if(state==="bad") dotEl.style.background = "var(--bad)";
+      else dotEl.style.background = "var(--warn)";
+    }
+
+    /***********************
+     * Local backup
+     ***********************/
+    function saveLocal(){
+      project.meta = project.meta || {};
+      project.meta.lastLocalSave = Date.now();
+      localStorage.setItem(LOCAL_KEY, JSON.stringify(project));
+    }
+    function loadLocal(){
+      try{
+        const raw = localStorage.getItem(LOCAL_KEY);
+        return raw ? JSON.parse(raw) : null;
+      }catch(e){ return null; }
+    }
+
+    /***********************
+     * File rendering + open
+     ***********************/
+    function iconFor(name){
+      const n = name.toLowerCase();
+      if(n.endsWith(".html")) return "📄";
+      if(n.endsWith(".css")) return "🎨";
+      if(n.endsWith(".js")) return "⚙️";
+      if(n.endsWith(".json")) return "🧾";
+      if(n.endsWith(".md")) return "📝";
+      return "📦";
+    }
+
+    function renderFiles(){
+      fileListEl.innerHTML = "";
+      project.order.forEach(fname=>{
+        const div = document.createElement("div");
+        div.className = "file" + (fname===activeFile ? " active" : "");
+        div.onclick = ()=>openFile(fname);
+
+        const left = document.createElement("div");
+        left.className = "fname";
+        left.innerHTML = `<span>${iconFor(fname)}</span><span title="${escapeHtml(fname)}">${escapeHtml(fname)}</span>`;
+
+        const right = document.createElement("div");
+        right.className = "factions";
+        right.innerHTML = `<button title="Save draft now" onclick="event.stopPropagation(); pushDraft()">⬆</button>`;
+
+        div.appendChild(left);
+        div.appendChild(right);
+        fileListEl.appendChild(div);
+      });
+    }
+
+    function openFile(fname){
+      if(dirty){
+        saveActiveToMemory();
+        saveLocal();
+        dirty = false;
+        log("Switched file (local saved unsaved changes).", "warn");
+      }
+      activeFile = fname;
+      editorEl.value = project.files[fname]?.content ?? "";
+      activeTitleEl.textContent = fname;
+      renderFiles();
+    }
+
+    function saveActiveToMemory(){
+      if(!project.files[activeFile]) project.files[activeFile] = { content:"", updatedAt: Date.now() };
+      project.files[activeFile].content = editorEl.value;
+      project.files[activeFile].updatedAt = Date.now();
+    }
+
+    /***********************
+     * CRUD
+     ***********************/
+    function createFile(){
+      const name = (newFileNameEl.value || "").trim();
+      if(!name){ log("Enter a new file name first.", "warn"); return; }
+      if(project.files[name]){ log("File already exists: " + name, "warn"); return; }
+
+      project.files[name] = { content:"", updatedAt: Date.now() };
+      project.order.push(name);
+
+      newFileNameEl.value = "";
+      saveLocal();
+      renderFiles();
+      openFile(name);
+      log("Created file: " + name, "ok");
+
+      if(autoSyncEl.checked) debounceDraftSave();
+    }
+
+    function renameCurrent(){
+      const oldName = activeFile;
+      const newName = prompt("Rename file to:", oldName);
+      if(!newName) return;
+      const nn = newName.trim();
+      if(!nn){ log("Invalid name.", "warn"); return; }
+      if(project.files[nn] && nn !== oldName){ log("Already exists: " + nn, "warn"); return; }
+
+      saveActiveToMemory();
+      project.files[nn] = project.files[oldName];
+      if(nn !== oldName) delete project.files[oldName];
+      project.order = project.order.map(x=> x===oldName ? nn : x);
+      activeFile = nn;
+
+      saveLocal();
+      renderFiles();
+      openFile(nn);
+      log(`Renamed: ${oldName} → ${nn}`, "ok");
+
+      if(autoSyncEl.checked) debounceDraftSave();
+    }
+
+    function deleteCurrent(){
+      if(project.order.length <= 1){
+        log("Cannot delete last file.", "warn");
+        return;
+      }
+      const name = activeFile;
+      if(!confirm("Delete file: " + name + " ?")) return;
+
+      delete project.files[name];
+      project.order = project.order.filter(x=>x!==name);
+      activeFile = project.order[0];
+
+      saveLocal();
+      renderFiles();
+      openFile(activeFile);
+      log("Deleted: " + name, "ok");
+
+      if(autoSyncEl.checked) debounceDraftSave();
+    }
+
+    /***********************
+     * Draft save/fetch
+     ***********************/
+    function pushDraft(){
+      saveActiveToMemory();
+      saveLocal();
+      saveDraftToCloud();
+    }
+
+    function saveDraftToCloud(){
+      if(!cloudReady || !db){
+        setStatus("Cloud: offline (local saved)", "bad");
+        log("Cloud not ready. Draft saved locally only.", "warn");
+        return;
+      }
+
+      setStatus("Cloud: saving draft…", "warn");
+      const payload = {
+        project,
+        updatedAt: firebase.database.ServerValue.TIMESTAMP
+      };
+
+      db.ref(draftPath()).set(payload)
+        .then(()=>{
+          setStatus("Cloud: draft saved", "ok");
+          log("Draft uploaded to Firebase.", "ok");
+        })
+        .catch(err=>{
+          setStatus("Cloud: error", "bad");
+          log("Draft save error: " + err.message, "err");
+        });
+    }
+
+    function fetchDraft(){
+      if(!cloudReady || !db){
+        setStatus("Cloud: offline", "bad");
+        log("Cloud not ready.", "err");
+        return;
+      }
+      if(dirty && !confirm("Unsaved edits exist. Fetch will overwrite editor. Continue?")) return;
+
+      setStatus("Cloud: fetching draft…", "warn");
+      db.ref(draftPath()).once("value")
+        .then(snap=>{
+          const val = snap.val();
+          if(!val || !val.project){
+            setStatus("Cloud: draft empty", "warn");
+            log("No draft found. Using local.", "warn");
+            return;
+          }
+          project = val.project;
+          if(!project.files) project.files = {};
+          if(!project.order) project.order = Object.keys(project.files);
+
+          saveLocal();
+          activeFile = project.order[0] || Object.keys(project.files)[0] || "index.html";
+          renderFiles();
+          openFile(activeFile);
+          dirty = false;
+
+          setStatus("Cloud: draft fetched", "ok");
+          log("Draft fetched from Firebase.", "ok");
+        })
+        .catch(err=>{
+          setStatus("Cloud: error", "bad");
+          log("Draft fetch error: " + err.message, "err");
+        });
+    }
+
+    /***********************
+     * Publish (password 123)
+     ***********************/
+    function finalPublish(){
+      if(!cloudReady || !db){
+        setStatus("Cloud: offline", "bad");
+        log("Cloud not ready.", "err");
+        return;
+      }
+
+      const pass = prompt("Enter password to publish:");
+      if(pass !== ADMIN_PASSWORD){
+        log("Publish blocked: wrong password.", "err");
+        return;
+      }
+
+      // include latest edits
+      saveActiveToMemory();
+      saveLocal();
+
+      setStatus("Cloud: publishing…", "warn");
+      log("Publishing…", "warn");
+
+      // publish payload
+      const publishPayload = {
+        project,
+        publishedAt: firebase.database.ServerValue.TIMESTAMP
+      };
+
+      // bump version so LIVE pages auto-refresh
+      const updates = {};
+      updates[publishedPath()] = publishPayload;
+      updates[publishedMetaPath() + "/version"] = firebase.database.ServerValue.increment(1);
+      updates[publishedMetaPath() + "/lastPublishedAt"] = firebase.database.ServerValue.TIMESTAMP;
+
+      db.ref().update(updates)
+        .then(()=>{
+          setStatus("Cloud: published ✅", "ok");
+          log("✅ Published. Live pages will refresh automatically.", "ok");
+        })
+        .catch(err=>{
+          setStatus("Cloud: error", "bad");
+          log("Publish error: " + err.message, "err");
+        });
+    }
+
+    /***********************
+     * Auto-sync (draft) on typing
+     ***********************/
+    let tmr = null;
+    function debounceDraftSave(){
+      if(!autoSyncEl.checked) return;
+      clearTimeout(tmr);
+      tmr = setTimeout(()=>{
+        saveActiveToMemory();
+        saveLocal();
+        saveDraftToCloud();
+      }, 800);
+    }
+
+    editorEl.addEventListener("input", ()=>{
+      dirty = true;
+      saveActiveToMemory();
+      saveLocal();
+      debounceDraftSave();
+    });
+
+    projectNameEl.addEventListener("change", ()=>{
+      log("Project switched to: " + projectNameEl.value, "ok");
+      fetchDraft();
+    });
+
+    /***********************
+     * Firebase init
+     ***********************/
+    function initFirebase(){
+      try{
+        app = firebase.initializeApp(firebaseConfig);
+        auth = firebase.auth();
+        db = firebase.database();
+      }catch(err){
+        cloudReady = false;
+        setStatus("Cloud: disabled", "bad");
+        log("Firebase init failed: " + err.message, "err");
+        return;
+      }
+
+      setStatus("Cloud: signing in…", "warn");
+      auth.onAuthStateChanged(user=>{
+        if(user){
+          cloudReady = true;
+          setStatus("Cloud: connected", "ok");
+          log("Signed in (anonymous).", "ok");
+          // pull once at startup
+          fetchDraft();
+        }else{
+          auth.signInAnonymously()
+            .then(()=>log("Anonymous sign-in started…", "ok"))
+            .catch(err=>{
+              cloudReady = false;
+              setStatus("Cloud: auth error", "bad");
+              log("Auth error: " + err.message, "err");
+            });
+        }
+      });
+    }
+
+    function boot(){
+      renderFiles();
+      openFile(activeFile);
+      saveLocal();
+      initFirebase();
+      log("Loaded local backup (if any).", "ok");
+    }
+    boot();
+  </script>
+
+  <!--
+    FIREBASE SETUP:
+    1) Authentication → Sign-in method → Enable: Anonymous
+    2) Realtime Database → Rules:
+       For quick testing (OPEN) you can use:
+       { "rules": { ".read": true, ".write": true } }
+       Better rules can be added later with proper login.
+  -->
+</body>
+</html>

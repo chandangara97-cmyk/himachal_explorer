@@ -1,0 +1,25 @@
+{
+  "package_id": "chamba-sach-6d",
+  "package_name": "Chamba & Sach Pass (6D) — The Most Dangerous Road",
+  "days": 6,
+  "hotel_star": "3 Star",
+  "best_season": "all_year",
+  "start_point": "PATHANKOT",
+  "end_point": "PATHANKOT",
+  "total_km_est": 520,
+  "tags": [
+    "expedition",
+    "adventure",
+    "offbeat"
+  ],
+  "highlight": "The Most Dangerous Road",
+  "budget_price_pp": 14650,
+  "itinerary": {
+    "day_1": "Pathankot → Dalhousie (Drive: 80 km · 2.5 hrs). Places: Dalhousie, Khajjiar. Activities: Khajjiar meadow stop; Dalhousie colonial walk; Dainkund Peak sunset.",
+    "day_2": "Dalhousie → Chamba (Drive: 50 km · 1.5 hrs). Places: Chamba Town. Activities: Bhuri Singh Museum; Chamba Rumal embroidery workshop; Lakshmi Narayan Temple.",
+    "day_3": "Chamba → Bharmour (Drive: 65 km · 2.5 hrs). Places: Bharmour, Manimahesh Lake. Activities: 84-temple complex; Manimahesh Lake short trek; Alpine meadow photography.",
+    "day_4": "Bharmour → Sach Pass (Drive: 90 km · 4 hrs). Places: Sach Pass, Pangi Valley. Activities: Sach Pass (4,420m) crossing; Snowfields and switchbacks; Killar valley panorama.",
+    "day_5": "Pangi Valley (Drive: Local 30 km). Places: Pangi Valley. Activities: Remote tribal villages; Chenab river gorge views; Killar fort ruins.",
+    "day_6": "Return to Pathankot (Drive: 260 km · 7 hrs). Activities: Early mountain departure; Chamba brief stop; Pathankot arrival."
+  }
+}

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W6LR93V8');</script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Explore Places — Himachal Pradesh Map | Himachal Explorer</title>
+<meta name="description" content="Interactive map of Himachal Pradesh heritage sites, temples, monasteries, viewpoints, and natural wonders — filter by district and explore live data." />
+<meta name="keywords" content="Himachal Pradesh map, Himachal places, Kullu map, Shimla map, Spiti Valley places, Kinnaur viewpoints, Kangra temples" />
+<link rel="canonical" href="https://himachalexplorer.in/explore.html" />
+<meta property="og:title" content="Explore Himachal Pradesh Places on Map" />
+<meta property="og:description" content="Interactive map of 80+ heritage sites across Kullu, Shimla, Spiti, Kangra & Kinnaur." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23b07d3a'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' fill='white' font-size='14' font-family='serif' font-weight='bold'>HE</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{
+  --bg:#f8f5ef;--surface:#fff;--lift:#fdfbf7;--muted:#f0ebe0;
+  --border:#e5ddd0;--border2:#d4c9b5;--ink:#1c1409;--body:#5a4a36;
+  --caption:#9b8a74;--gold:#b07d3a;--gold2:#c99248;--gold-bg:#fdf6ec;
+  --sh1:0 1px 4px rgba(28,20,9,.06);--sh2:0 4px 20px rgba(28,20,9,.09);--sh3:0 12px 48px rgba(28,20,9,.13);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* HEADER */
+header{height:60px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(248,245,239,.96);backdrop-filter:blur(14px);z-index:1000;box-shadow:var(--sh1);flex-shrink:0}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit}
+.logo{width:32px;height:32px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant',serif;font-size:15px;color:#fff;font-weight:600;flex-shrink:0}
+.brand-title{font-family:'Cormorant',serif;font-size:18px;font-weight:600;color:var(--ink);letter-spacing:.01em}
+.header-actions{display:flex;align-items:center;gap:20px}
+.hlink{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--caption);text-decoration:none;transition:color .2s}
+.hlink:hover{color:var(--gold)}
+.nav-pill{padding:8px 20px;background:var(--gold);color:#fff;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:background .2s;white-space:nowrap}
+.nav-pill:hover{background:#956830}
+
+.main-container{flex:1;display:flex;overflow:hidden;position:relative}
+
+/* PANELS */
+.panel-left{width:320px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:10;flex-shrink:0}
+.panel-right{width:380px;background:var(--lift);border-left:1px solid var(--border);display:flex;flex-direction:column;z-index:10;flex-shrink:0;position:relative}
+
+.search-box{padding:16px 18px;border-bottom:1px solid var(--border)}
+.search-wrapper{position:relative}
+.search-wrapper svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--caption)}
+.search-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:2px;padding:11px 12px 11px 36px;color:var(--ink);font-family:inherit;font-size:13px;transition:border-color .3s}
+.search-input:focus{outline:none;border-color:var(--gold);background:var(--surface)}
+.search-input::placeholder{color:var(--caption)}
+
+/* ── UPGRADED DISTRICT FILTER ── */
+.filters-wrap{border-bottom:1px solid var(--border);background:var(--lift)}
+.filters-label{padding:10px 18px 6px;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--caption)}
+.filters{padding:0 12px 12px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.filters::-webkit-scrollbar{display:none}
+
+.filter-card{
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  padding:10px 14px 9px;
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:12px;
+  cursor:pointer;
+  min-width:68px;
+  flex-shrink:0;
+  transition:all .22s ease;
+  position:relative;
+  overflow:hidden;
+}
+.filter-card::after{
+  content:'';position:absolute;inset:0;
+  background:var(--gold);opacity:0;
+  transition:opacity .22s;
+  border-radius:10px;
+}
+.filter-card:hover{border-color:var(--gold2);transform:translateY(-1px);box-shadow:0 4px 14px rgba(176,125,58,.18)}
+.filter-card.active{background:var(--gold-bg);border-color:var(--gold);box-shadow:0 0 0 3px rgba(176,125,58,.12),0 4px 16px rgba(176,125,58,.2)}
+.filter-card .dist-emoji{font-size:20px;line-height:1.1;position:relative;z-index:1}
+.filter-card .dist-name{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--body);white-space:nowrap;position:relative;z-index:1;transition:color .22s}
+.filter-card.active .dist-name{color:var(--gold)}
+.filter-card .dist-count{font-size:10px;font-weight:600;color:var(--caption);font-family:'Cormorant',serif;position:relative;z-index:1;transition:color .22s;line-height:1}
+.filter-card.active .dist-count{color:var(--gold2)}
+
+/* PLACE COUNT */
+.list-count{padding:8px 18px;font-size:10px;letter-spacing:.1em;color:var(--caption);text-transform:uppercase;font-weight:600;background:var(--lift);border-bottom:1px solid var(--border)}
+
+.list-scroll{flex:1;overflow-y:auto;padding:6px 0;background:var(--surface)}
+.place-item{padding:14px 20px;display:flex;align-items:flex-start;gap:14px;cursor:pointer;border-bottom:1px solid var(--bg);transition:background .25s}
+.place-item:hover{background:var(--lift)}
+.place-item.active{background:var(--gold-bg);border-left:3px solid var(--gold);padding-left:17px}
+.place-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:7px;opacity:.4;transition:opacity .3s;flex-shrink:0}
+.place-item:hover .place-dot,.place-item.active .place-dot{opacity:1}
+.place-info{flex:1;min-width:0}
+.place-district{font-size:8px;text-transform:uppercase;letter-spacing:.15em;color:var(--caption);margin-bottom:3px;font-weight:600}
+.place-name{font-family:'Cormorant',serif;font-size:17px;font-weight:500;color:var(--ink);line-height:1.2;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.place-item.active .place-name{color:var(--gold)}
+.place-meta{font-size:10px;color:var(--body);font-weight:400}
+
+/* MAP */
+#map{flex:1;background:#f3ece0;position:relative}
+.leaflet-container{background-color:#f3ece0!important;font-family:'Jost',sans-serif}
+
+/* Scoped tile filter so satellite imagery remains true-color */
+.theme-sepia .leaflet-tile {
+  filter: sepia(18%) saturate(.82) brightness(1.06) contrast(1.02) hue-rotate(8deg) !important;
+}
+
+/* Premium Custom Styling for Layer Switcher Toggle UI */
+.leaflet-control-layers {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
+  box-shadow: var(--sh2) !important;
+  font-family: 'Jost', sans-serif;
+  color: var(--body);
+  padding: 6px 10px !important;
+}
+.leaflet-control-layers-list label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin: 4px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.leaflet-bar{border:1px solid var(--border)!important;box-shadow:var(--sh1)!important;border-radius:3px!important;overflow:hidden}
+.leaflet-bar a{background-color:rgba(255,255,255,.95)!important;color:var(--body)!important;border-bottom:1px solid var(--border)!important;border-radius:0!important;transition:all .3s}
+.leaflet-bar a:hover{background-color:var(--gold)!important;color:#fff!important}
+.leaflet-control-attribution{background:rgba(248,245,239,.85)!important;font-size:8px!important;color:var(--caption)!important}
+.leaflet-control-attribution a{color:var(--gold)!important}
+.leaflet-popup-content-wrapper{background:rgba(255,255,255,.97)!important;color:var(--ink)!important;border:1px solid rgba(176,125,58,.3)!important;border-radius:3px!important;box-shadow:var(--sh2)!important;padding:0!important}
+.leaflet-popup-content{margin:0!important;padding:12px 16px!important}
+.leaflet-popup-tip{background:rgba(255,255,255,.97)!important}
+.leaflet-popup-close-button{color:var(--gold)!important;font-size:16px!important;padding:6px 8px!important}
+.pop-district{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.22em;color:var(--gold);margin-bottom:3px}
+.pop-name{font-family:'Cormorant',serif;font-size:16px;font-weight:600;line-height:1.2}
+.pop-cat{font-size:10px;color:var(--body);margin-top:2px;display:flex;align-items:center;gap:4px}
+
+/* ── MAP PIN LEGEND ── */
+.map-legend{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border:1px solid var(--border);padding:10px 12px;z-index:500;border-radius:8px;box-shadow:var(--sh2);max-width:160px}
+.legend-title{font-size:8px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--caption);margin-bottom:8px}
+.legend-item{display:flex;align-items:center;gap:7px;margin-bottom:5px;font-size:9px;color:var(--body);font-weight:500;letter-spacing:.04em}
+.legend-item:last-child{margin-bottom:0}
+.legend-pin{width:16px;height:21px;flex-shrink:0}
+
+.map-ui-box{position:absolute;bottom:20px;left:20px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border:1px solid var(--border);padding:10px 14px;z-index:500;display:flex;align-items:center;gap:14px;border-radius:3px;box-shadow:var(--sh2)}
+.coords-text{font-size:10px;font-weight:500;color:var(--caption);letter-spacing:.08em;font-family:'Jost',sans-serif}
+.center-btn{background:var(--muted);border:1px solid var(--border);color:var(--body);font-family:'Jost',sans-serif;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:5px 10px;cursor:pointer;transition:all .3s;border-radius:2px}
+.center-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+
+/* DETAIL PANEL */
+.empty-state{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;color:var(--caption)}
+.empty-state svg{width:40px;height:40px;color:var(--border2);margin-bottom:16px;stroke-width:1.5}
+.panel-sub{font-size:13px;font-weight:300;max-width:240px;line-height:1.6}
+
+.detail-view{flex:1;display:none;flex-direction:column;overflow:hidden;opacity:0;transition:opacity .35s ease}
+.detail-view.visible{opacity:1}
+
+.detail-photos{height:200px;width:100%;display:flex;overflow:hidden;flex-shrink:0;background:var(--bg)}
+.detail-photo{flex:1;overflow:hidden;position:relative;cursor:pointer;transition:flex .4s ease}
+.detail-photo:hover{flex:2}
+.detail-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.8);transition:filter .4s}
+.detail-photo:hover img{filter:saturate(1)}
+.detail-photo-num{position:absolute;bottom:6px;right:6px;font-size:8px;font-weight:700;color:#fff;background:rgba(28,20,9,.5);padding:2px 6px;border-radius:2px;letter-spacing:.1em}
+
+.detail-close{position:absolute;top:12px;right:12px;width:30px;height:30px;background:rgba(255,255,255,.9);border:1px solid var(--border);color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;z-index:20;transition:all .3s;border-radius:2px}
+.detail-close:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+
+.detail-body{flex:1;overflow-y:auto;padding:24px 24px 32px;display:flex;flex-direction:column;gap:16px}
+
+.detail-district{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px}
+.detail-district::before{content:'';width:12px;height:1.5px;background:var(--gold)}
+.detail-name{font-family:'Cormorant',serif;font-size:34px;color:var(--ink);font-weight:400;line-height:1.1}
+.detail-region{font-size:11px;font-weight:500;color:var(--caption);letter-spacing:.1em;text-transform:uppercase}
+.detail-tagline{font-size:14px;font-weight:300;color:var(--body);line-height:1.65;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.detail-what{font-size:13px;line-height:1.75;color:var(--body);font-weight:400}
+.detail-what strong{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.2em;color:var(--caption);margin-bottom:6px;font-weight:700}
+
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden;margin-top:auto}
+.detail-stat{background:var(--surface);padding:14px}
+.stat-label{font-size:8px;text-transform:uppercase;letter-spacing:.2em;color:var(--caption);margin-bottom:3px;font-weight:700}
+.stat-val{font-family:'Cormorant',serif;font-size:15px;font-weight:600;color:var(--ink)}
+
+.detail-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn-sm{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--border2);color:var(--body);cursor:pointer;transition:all .2s;border-radius:2px}
+.btn-sm:hover,.btn-sm.gold{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn-sm svg{width:11px;height:11px}
+
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2)}
+::-webkit-scrollbar-thumb:hover{background:var(--gold)}
+
+/* ── MOBILE / PORTRAIT ── */
+@media(max-width:1024px),(orientation:portrait){
+  body{overflow-y:auto;height:auto}
+  header{position:sticky;top:0;width:100%;padding:0 20px}
+  .brand-title{display:none}
+  .main-container{flex-direction:column;height:auto;overflow:visible}
+  .panel-left{width:100%;height:auto;max-height:none;border-right:none;border-bottom:1px solid var(--border)}
+  #map{width:100%;height:55vw;min-height:280px;max-height:380px;flex-shrink:0}
+  .panel-right{width:100%;border-left:none;border-top:1px solid var(--border)}
+  .list-scroll{max-height:320px}
+  .detail-photos{height:180px}
+  .detail-body{padding:18px 18px 28px}
+  .detail-name{font-size:28px}
+  .map-ui-box{bottom:10px;left:10px;padding:7px 10px;gap:8px}
+  .coords-text{display:none}
+  .map-legend{top:10px;right:10px;padding:8px 10px}
+}
+@media(max-width:600px){
+  header{padding:0 16px;height:54px}
+  .hlink:not(.nav-pill){display:none}
+  .filters{padding:0 10px 10px}
+  .search-box{padding:12px 16px}
+  .list-count{padding:6px 16px}
+  .place-item{padding:12px 16px}
+  #map{height:60vw;min-height:240px}
+  .detail-photos{height:160px}
+  .detail-body{gap:12px}
+  .detail-name{font-size:26px}
+  .detail-grid{grid-template-columns:1fr 1fr 1fr}
+  .map-legend{display:none}
+}
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<h1 style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">Explore Places — Himachal Pradesh Map</h1>
+
+<header>
+  <a href="index.html" class="brand">
+    <div class="logo">HE</div>
+    <span class="brand-title">Himachal Explorer</span>
+  </a>
+  <div class="header-actions">
+    <a href="index.html" class="hlink">Home</a>
+    <a href="packages.html" class="hlink">Itineraries</a>
+    <a href="packages.html" class="nav-pill">Plan Journey</a>
+  </div>
+</header>
+
+<div class="main-container">
+  <div class="panel-left">
+    <div class="search-box">
+      <div class="search-wrapper">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search places, temples, valleys…" />
+      </div>
+    </div>
+
+    <div class="filters-wrap">
+      <div class="filters-label">Filter by District</div>
+      <div class="filters" id="filterWrap"></div>
+    </div>
+
+    <div class="list-count" id="listCount">Loading places…</div>
+    <div class="list-scroll" id="placesList"></div>
+  </div>
+
+  <div id="map" class="theme-sepia">
+    <div class="map-legend" id="mapLegend">
+      <div class="legend-title">Place Type</div>
+      </div>
+
+    <div class="map-ui-box">
+      <div class="coords-text" id="coordsDisplay">31.10480° N , 77.17340° E</div>
+      <button class="center-btn" id="centerBtn">Center Map</button>
+    </div>
+  </div>
+
+  <div class="panel-right">
+    <div class="empty-state" id="emptyState">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <p class="panel-sub">Select a place from the list or tap a map marker to see detailed information.</p>
+    </div>
+    <div class="detail-view" id="detailView">
+      <div class="detail-photos" id="detailPhotos">
+        <button class="detail-close" id="detailClose">✕</button>
+      </div>
+      <div class="detail-body">
+        <span class="detail-district" id="detailDistrict"></span>
+        <h2 class="detail-name" id="detailName"></h2>
+        <div class="detail-region" id="detailRegion"></div>
+        <div class="detail-tagline" id="detailTagline"></div>
+        <div class="detail-what" id="detailWhat"></div>
+        <div class="detail-grid" id="detailGrid"></div>
+        <div class="detail-actions" id="detailActions"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey:"AIzaSyBmJDsXvokR8kYs_yoLPau1DqANPBBORJY",
+  authDomain:"garg-enterprise.firebaseapp.com",
+  databaseURL:"https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId:"garg-enterprise",
+  storageBucket:"garg-enterprise.firebasestorage.app",
+  messagingSenderId:"1097408452571",
+  appId:"1:1097408452571:web:1e5803fa8bbea4fbb5b9fe"
+};
+const app = initializeApp(firebaseConfig);
+const db  = getDatabase(app);
+const IMG = 'Places/';
+
+// ── DISTRICT CONFIG: emoji + display order ──
+const DISTRICT_META = {
+  'All':              { emoji:'🏔️', label:'All' },
+  'Kullu':            { emoji:'🌸', label:'Kullu' },
+  'Shimla':           { emoji:'🏛️', label:'Shimla' },
+  'Kangra':           { emoji:'🕉️', label:'Kangra' },
+  'Lahaul and Spiti': { emoji:'☸️', label:'Spiti' },
+  'Kinnaur':          { emoji:'⛰️', label:'Kinnaur' },
+  'Mandi':            { emoji:'🪔', label:'Mandi' },
+  'Chamba':           { emoji:'🏞️', label:'Chamba' },
+  'Solan':            { emoji:'🌲', label:'Solan' },
+  'Sirmaur':          { emoji:'🌊', label:'Sirmaur' },
+  'Una':              { emoji:'☀️', label:'Una' },
+  'Bilaspur':         { emoji:'💧', label:'Bilaspur' },
+  'Hamirpur':         { emoji:'🌾', label:'Hamirpur' },
+};
+
+// ── CATEGORY PIN CONFIG ──
+const CAT_CONFIG = [
+  { keys:['temple','mandir','devi','shiva','mata','shakti','shrine'],   color:'#c0392b', emoji:'🛕', label:'Temple'    },
+  { keys:['monastery','gompa','buddha','buddhist','lamasery'],          color:'#8e44ad', emoji:'☸️', label:'Monastery' },
+  { keys:['lake','sar','tso','pond','reservoir'],                        color:'#1a6e8e', emoji:'💧', label:'Lake'      },
+  { keys:['fort','palace','castle','qila','garh'],                       color:'#6d4c41', emoji:'🏰', label:'Fort'      },
+  { keys:['viewpoint','view','peak','pass','top','summit','ridge'],      color:'#2e7d32', emoji:'🏔️', label:'Viewpoint' },
+  { keys:['waterfall','falls','jharna'],                                  color:'#0288d1', emoji:'💦', label:'Waterfall' },
+  { keys:['valley','glen','gorge'],                                       color:'#558b2f', emoji:'🌿', label:'Valley'    },
+  { keys:['wildlife','sanctuary','park','reserve','nature'],             color:'#388e3c', emoji:'🦌', label:'Wildlife'  },
+  { keys:['museum','heritage','gallery','art'],                          color:'#7b5ea7', emoji:'🏺', label:'Heritage'  },
+  { keys:['market','bazar','bazaar','haat'],                             color:'#e65100', emoji:'🛒', label:'Market'    },
+  { keys:['hot spring','kund','kund','thermal'],                         color:'#b07d3a', emoji:'♨️', label:'Hot Spring'},
+  { keys:['glacier','snowfield'],                                         color:'#5c9eba', emoji:'🧊', label:'Glacier'   },
+];
+const DEFAULT_CAT = { color:'#7f8c8d', emoji:'📍', label:'Other' };
+
+function getCatConfig(place) {
+  const haystack = ((place.segment||'') + ' ' + (place.category||'')).toLowerCase();
+  for (const cfg of CAT_CONFIG) {
+    if (cfg.keys.some(k => haystack.includes(k))) return cfg;
+  }
+  return DEFAULT_CAT;
+}
+
+// ── BUILD SVG PIN HTML ──
+function makePinHTML(cfg, size = 'normal') {
+  const w = size === 'active' ? 32 : 24;
+  const h = size === 'active' ? 42 : 32;
+  const fs = size === 'active' ? 16 : 12;
+  const border = size === 'active' ? 3 : 2;
+  return `<svg width="${w}" height="${h}" viewBox="0 0 32 42" xmlns="http://www.w3.org/2000/svg">
+    <filter id="ps"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="rgba(0,0,0,0.3)"/></filter>
+    <path d="M16 1 C7.7 1 1 7.7 1 16 C1 28 16 41 16 41 C16 41 31 28 31 16 C31 7.7 24.3 1 16 1Z"
+      fill="${cfg.color}" stroke="white" stroke-width="${border}" filter="url(#ps)"/>
+    <text x="16" y="21" text-anchor="middle" font-size="${fs}" dominant-baseline="middle">${cfg.emoji}</text>
+  </svg>`;
+}
+
+function makeLeafletIcon(cfg, active = false) {
+  const size  = active ? [32, 42] : [24, 32];
+  const anchor = active ? [16, 42] : [12, 32];
+  return L.divIcon({
+    html: makePinHTML(cfg, active ? 'active' : 'normal'),
+    className: '',
+    iconSize: size,
+    iconAnchor: anchor,
+    popupAnchor: [0, active ? -42 : -32],
+  });
+}
+
+// URL param pre-filter
+const urlParams = new URLSearchParams(window.location.search);
+const regionParam = urlParams.get('region') || '';
+const REGION_MAP = { kullu:'Kullu', shimla:'Shimla', kangra:'Kangra', kinnaur:'Kinnaur', spiti:'Lahaul and Spiti' };
+let selectedDistrict = regionParam ? (REGION_MAP[regionParam.toLowerCase()] || 'All') : 'All';
+
+let places = [], markers = {}, markerCats = {};
+
+// ── CONSTRUCT MAP WITH MULTIPLE BASE LAYERS ──
+const heritageLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', { 
+  maxZoom:18, 
+  subdomains:'abcd' 
+});
+
+const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  maxZoom:18,
+  attribution: 'Tiles &copy; Esri'
+});
+
+const map = L.map('map', { 
+  zoomControl:false, 
+  attributionControl:false,
+  layers: [heritageLayer] // Set Heritage Map as default layer
+}).setView([31.8, 77.5], 8);
+
+const baseMaps = {
+  "Heritage Map": heritageLayer,
+  "Satellite View": satelliteLayer
+};
+
+// Add Layer controller interface to top-left corner
+L.control.layers(baseMaps, null, { position:'topleft' }).addTo(map);
+L.control.zoom({ position:'bottomright' }).addTo(map);
+
+// Watch layer changes to add/remove sepia filters dynamically
+map.on('baselayerchange', function(e) {
+  const mapDiv = document.getElementById('map');
+  if (e.name === 'Satellite View') {
+    mapDiv.classList.remove('theme-sepia');
+  } else {
+    mapDiv.classList.add('theme-sepia');
+  }
+});
+
+
+async function loadPlaces() {
+  const snap = await get(ref(db,'places'));
+  const data = snap.val() || {};
+  places = Object.keys(data).map(k => ({ id:k, ...data[k] }));
+  buildMarkers();
+  buildFilters();
+  buildLegend();
+  renderPlaces();
+}
+
+function buildMarkers() {
+  places.forEach(p => {
+    if (!p.latitude || !p.longitude) return;
+    const cfg = getCatConfig(p);
+    const icon = makeLeafletIcon(cfg, false);
+    const m = L.marker([parseFloat(p.latitude), parseFloat(p.longitude)], { icon });
+    m.bindPopup(`
+      <div style="min-width:160px">
+        <div class="pop-district">${p.district||''}</div>
+        <div class="pop-name">${p.name||''}</div>
+        <div class="pop-cat"><span>${cfg.emoji}</span>${p.segment||p.category||''}</div>
+      </div>`);
+    m.on('click', () => selectPlace(p.id));
+    markers[p.id] = m;
+    markerCats[p.id] = cfg;
+  });
+}
+
+function buildFilters() {
+  const districtCounts = {};
+  places.forEach(p => {
+    if (p.district) districtCounts[p.district] = (districtCounts[p.district]||0)+1;
+  });
+  const total = places.length;
+
+  const districts = ['All', ...Object.keys(districtCounts).sort((a,b) => a.localeCompare(b))];
+  const wrap = document.getElementById('filterWrap');
+
+  wrap.innerHTML = districts.map(d => {
+    const meta  = DISTRICT_META[d] || { emoji:'📍', label:d };
+    const count = d === 'All' ? total : (districtCounts[d]||0);
+    const active = d === selectedDistrict;
+    return `
+      <button class="filter-card${active?' active':''}" data-district="${d}" title="${meta.label} — ${count} places">
+        <span class="dist-emoji">${meta.emoji}</span>
+        <span class="dist-name">${meta.label}</span>
+        <span class="dist-count">${count}</span>
+      </button>`;
+  }).join('');
+
+  wrap.querySelectorAll('.filter-card').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedDistrict = btn.dataset.district;
+      wrap.querySelectorAll('.filter-card').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderPlaces();
+    });
+  });
+}
+
+function buildLegend() {
+  const usedKeys = new Set();
+  places.forEach(p => {
+    const cfg = getCatConfig(p);
+    usedKeys.add(cfg.label);
+  });
+
+  const legendEl = document.getElementById('mapLegend');
+  const rows = [...CAT_CONFIG, DEFAULT_CAT]
+    .filter(cfg => usedKeys.has(cfg.label))
+    .map(cfg => `
+      <div class="legend-item">
+        <svg class="legend-pin" viewBox="0 0 32 42" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 1C7.7 1 1 7.7 1 16C1 28 16 41 16 41C16 41 31 28 31 16C31 7.7 24.3 1 16 1Z"
+            fill="${cfg.color}" stroke="white" stroke-width="2"/>
+          <text x="16" y="21" text-anchor="middle" font-size="12" dominant-baseline="middle">${cfg.emoji}</text>
+        </svg>
+        ${cfg.label}
+      </div>`).join('');
+
+  legendEl.innerHTML = `<div class="legend-title">Place Type</div>${rows}`;
+}
+
+function renderPlaces() {
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = places.filter(p => {
+    const matchD = selectedDistrict === 'All' || p.district === selectedDistrict;
+    const matchS = !search || [p.name,p.district,p.category,p.segment,p.region,p.history_tagline]
+      .some(v => (v||'').toLowerCase().includes(search));
+    return matchD && matchS;
+  });
+
+  const countEl = document.getElementById('listCount');
+  countEl.textContent = `${filtered.length} place${filtered.length!==1?'s':''} ${selectedDistrict!=='All'?'in '+selectedDistrict:''}`;
+
+  const listEl = document.getElementById('placesList');
+  if (filtered.length === 0) {
+    listEl.innerHTML = `<div style="padding:32px 20px;text-align:center;color:var(--caption);font-size:13px;line-height:1.6">No places match your search. Try adjusting your filters.</div>`;
+  } else {
+    listEl.innerHTML = filtered.map(p => {
+      const cfg = getCatConfig(p);
+      return `
+        <div class="place-item" data-id="${p.id}">
+          <div class="place-dot" style="background:${cfg.color}"></div>
+          <div class="place-info">
+            <div class="place-district">${p.district||''} · ${p.segment||p.category||''}</div>
+            <div class="place-name">${p.name||'Unknown Place'}</div>
+            <div class="place-meta">${p.region||''}</div>
+          </div>
+        </div>`;
+    }).join('');
+    listEl.querySelectorAll('.place-item').forEach(el => el.addEventListener('click', () => selectPlace(el.dataset.id)));
+  }
+
+  Object.keys(markers).forEach(id => {
+    const show = filtered.some(p => p.id === id);
+    if (show) map.addLayer(markers[id]); else map.removeLayer(markers[id]);
+  });
+}
+
+function buildPhotoStrip(p) {
+  const photos = [p.photo_1, p.photo_2, p.photo_3].filter(Boolean);
+  const photosEl = document.getElementById('detailPhotos');
+
+  photosEl.innerHTML = '<button class="detail-close" id="detailClose">✕</button>';
+  document.getElementById('detailClose').addEventListener('click', closeDetail);
+
+  if (photos.length === 0) {
+    photosEl.style.background = 'var(--muted)';
+    photosEl.innerHTML += `<div style="flex:1;display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--caption)">No Photos Available</div>`;
+    return;
+  }
+
+  photos.forEach((ph, i) => {
+    const div = document.createElement('div');
+    div.className = 'detail-photo';
+    div.innerHTML = `<img src="${IMG}${ph}" alt="${p.name} photo ${i+1}" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="detail-photo-num">${i+1}/${photos.length}</div>`;
+    photosEl.appendChild(div);
+  });
+}
+
+let activeMarkerId = null;
+
+function selectPlace(id) {
+  const p = places.find(x => x.id === id);
+  if (!p) return;
+
+  document.getElementById('emptyState').style.display = 'none';
+  const dv = document.getElementById('detailView');
+  dv.style.display = 'flex';
+  requestAnimationFrame(() => dv.classList.add('visible'));
+
+  buildPhotoStrip(p);
+
+  document.getElementById('detailDistrict').textContent = p.district || '';
+  document.getElementById('detailName').textContent = p.name || '';
+  document.getElementById('detailRegion').textContent = p.region ? `${p.region} · ${p.segment||p.category||''}` : (p.segment||p.category||'');
+  document.getElementById('detailTagline').textContent = p.history_tagline || '';
+
+  const whatEl = document.getElementById('detailWhat');
+  whatEl.innerHTML = p.what_you_find
+    ? `<strong>What You'll Find</strong>${p.what_you_find}`
+    : '';
+
+  document.getElementById('detailGrid').innerHTML = `
+    <div class="detail-stat"><div class="stat-label">Latitude</div><div class="stat-val">${parseFloat(p.latitude||0).toFixed(5)}° N</div></div>
+    <div class="detail-stat"><div class="stat-label">Longitude</div><div class="stat-val">${parseFloat(p.longitude||0).toFixed(5)}° E</div></div>
+    ${p.category ? `<div class="detail-stat" style="grid-column:1/-1"><div class="stat-label">Category</div><div class="stat-val">${p.category}</div></div>` : ''}
+  `;
+
+  document.getElementById('detailActions').innerHTML = `
+    <a href="packages.html" class="btn-sm gold">Browse Packages <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  `;
+
+  document.querySelectorAll('.place-item').forEach(el => el.classList.remove('active'));
+  const activeEl = document.querySelector(`.place-item[data-id="${id}"]`);
+  if (activeEl) { activeEl.classList.add('active'); activeEl.scrollIntoView({ block:'nearest', behavior:'smooth' }); }
+
+  if (activeMarkerId && markers[activeMarkerId]) {
+    markers[activeMarkerId].setIcon(makeLeafletIcon(markerCats[activeMarkerId], false));
+  }
+
+  if (markers[id]) {
+    markers[id].setIcon(makeLeafletIcon(markerCats[id], true));
+    map.flyTo(markers[id].getLatLng(), 12, { duration:1.2 });
+  }
+  activeMarkerId = id;
+}
+
+function closeDetail() {
+  document.getElementById('emptyState').style.display = 'flex';
+  const dv = document.getElementById('detailView');
+  dv.classList.remove('visible');
+  setTimeout(() => { dv.style.display = 'none'; }, 350);
+  document.querySelectorAll('.place-item').forEach(el => el.classList.remove('active'));
+
+  Object.keys(markers).forEach(id => {
+    if (markers[id]) markers[id].setIcon(makeLeafletIcon(markerCats[id], false));
+  });
+  activeMarkerId = null;
+}
+
+document.getElementById('searchInput').addEventListener('input', renderPlaces);
+document.getElementById('centerBtn').addEventListener('click', () => map.flyTo([31.8,77.5], 8, { duration:1.2 }));
+map.on('mousemove', e => { document.getElementById('coordsDisplay').textContent = `${e.latlng.lat.toFixed(5)}° N , ${e.latlng.lng.toFixed(5)}° E`; });
+
+if (regionParam) {
+  document.querySelector('.filter-card.active')?.scrollIntoView({ inline:'center', behavior:'smooth' });
+}
+
+loadPlaces().catch(err => {
+  console.error('Firebase load error:', err);
+  document.getElementById('listCount').textContent = 'Failed to load — check connection';
+});
+</script>
+</body>
+</html>

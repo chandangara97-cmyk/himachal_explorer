@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Himachal Explorer — Image Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#b07d3a;--gold-l:#d4a55a;--dark:#0f0d0a;--card:#1a1510;
+  --border:rgba(176,125,58,0.2);--cream:#f5efe4;--muted:#7a6a52;
+  --green:#4caf7d;--red:#e05555;
+}
+body{font-family:'Jost',sans-serif;background:var(--dark);color:var(--cream);min-height:100vh}
+/* Header */
+header{padding:28px 24px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;letter-spacing:0.15em;color:var(--gold-l)}
+.brand span{color:var(--cream);font-style:italic}
+.badge{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;background:rgba(176,125,58,0.15);border:1px solid var(--border);color:var(--gold);padding:4px 10px;border-radius:2px}
+
+/* Tabs */
+.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 24px}
+.tab{padding:14px 20px;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s}
+.tab.active{color:var(--gold-l);border-bottom-color:var(--gold)}
+.tab:hover:not(.active){color:var(--cream)}
+
+/* Panels */
+.panel{display:none;padding:24px}
+.panel.active{display:block}
+
+/* Search panel */
+.search-grid{display:grid;grid-template-columns:1fr auto;gap:10px;margin-bottom:20px}
+.input-wrap{position:relative}
+.input-wrap input,select,textarea{
+  width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);
+  color:var(--cream);font-family:'Jost',sans-serif;font-size:14px;
+  padding:12px 16px;border-radius:3px;outline:none;transition:border 0.2s
+}
+.input-wrap input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+select option{background:#1a1510}
+
+.btn{
+  padding:12px 20px;background:var(--gold);color:#0f0d0a;font-family:'Jost',sans-serif;
+  font-size:12px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;
+  border:none;border-radius:3px;cursor:pointer;transition:background 0.2s;white-space:nowrap
+}
+.btn:hover{background:var(--gold-l)}
+.btn.secondary{background:rgba(176,125,58,0.15);color:var(--gold);border:1px solid var(--border)}
+.btn.secondary:hover{background:rgba(176,125,58,0.25)}
+.btn:disabled{opacity:0.4;cursor:not-allowed}
+
+/* Location selector */
+.loc-controls{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+.loc-controls select{flex:1;min-width:200px}
+.loc-tag{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);padding:0 4px}
+
+/* Image results */
+.results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.results-label{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.img-card{
+  position:relative;border-radius:4px;overflow:hidden;border:1px solid var(--border);
+  cursor:pointer;transition:all 0.25s;aspect-ratio:4/3;background:#111
+}
+.img-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.img-card img{width:100%;height:100%;object-fit:cover;display:block}
+.img-card .overlay{
+  position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,transparent 50%);
+  opacity:0;transition:opacity 0.2s;display:flex;flex-direction:column;justify-content:flex-end;padding:10px
+}
+.img-card:hover .overlay{opacity:1}
+.img-card .img-src{font-size:9px;letter-spacing:0.1em;color:rgba(245,239,228,0.6);text-transform:uppercase}
+.img-card .img-select-btn{
+  margin-top:6px;padding:5px 10px;background:var(--gold);color:#0f0d0a;
+  font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  border:none;border-radius:2px;cursor:pointer;width:100%
+}
+.img-card.selected{border-color:var(--green);box-shadow:0 0 0 2px rgba(76,175,125,0.3)}
+.img-card.selected::after{
+  content:'✓';position:absolute;top:8px;right:8px;
+  background:var(--green);color:#fff;width:22px;height:22px;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;display:grid;place-items:center
+}
+
+/* Filename preview */
+.filename-box{
+  margin-top:16px;background:rgba(255,255,255,0.03);border:1px solid var(--border);
+  border-radius:3px;padding:14px 16px;display:flex;align-items:center;gap:12px
+}
+.filename-text{font-size:13px;color:var(--gold-l);font-family:monospace;flex:1;word-break:break-all}
+.copy-btn{padding:6px 14px;font-size:10px}
+
+/* Rename panel */
+.upload-zone{
+  border:2px dashed var(--border);border-radius:6px;padding:40px 24px;
+  text-align:center;cursor:pointer;transition:all 0.2s;margin-bottom:20px
+}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--gold);background:rgba(176,125,58,0.05)}
+.upload-zone .icon{font-size:32px;margin-bottom:12px;opacity:0.5}
+.upload-zone h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;margin-bottom:6px}
+.upload-zone p{font-size:12px;color:var(--muted)}
+#fileInput{display:none}
+
+.rename-list{display:flex;flex-direction:column;gap:8px}
+.rename-row{
+  display:grid;grid-template-columns:80px 1fr auto 1fr auto;
+  gap:10px;align-items:center;
+  background:rgba(255,255,255,0.03);border:1px solid var(--border);
+  border-radius:3px;padding:10px 14px
+}
+.thumb{width:60px;height:45px;object-fit:cover;border-radius:2px}
+.orig-name{font-size:11px;color:var(--muted);word-break:break-all}
+.arrow{color:var(--gold);font-size:16px}
+.new-name-input{
+  background:rgba(255,255,255,0.06);border:1px solid var(--border);
+  color:var(--cream);font-family:monospace;font-size:12px;
+  padding:8px 12px;border-radius:3px;outline:none;width:100%
+}
+.new-name-input:focus{border-color:var(--gold)}
+.dl-btn{
+  padding:7px 12px;background:rgba(176,125,58,0.15);color:var(--gold);
+  border:1px solid var(--border);border-radius:2px;font-size:11px;
+  cursor:pointer;white-space:nowrap;transition:background 0.2s
+}
+.dl-btn:hover{background:rgba(176,125,58,0.3)}
+
+/* Batch section */
+.batch-bar{
+  display:flex;gap:10px;align-items:center;padding:14px 16px;
+  background:rgba(176,125,58,0.08);border:1px solid var(--border);
+  border-radius:3px;margin-bottom:16px;flex-wrap:wrap
+}
+.batch-info{font-size:12px;color:var(--muted);flex:1}
+.batch-info strong{color:var(--cream)}
+
+/* Loading */
+.loading{text-align:center;padding:40px;color:var(--muted)}
+.spinner{
+  width:28px;height:28px;border:2px solid var(--border);
+  border-top-color:var(--gold);border-radius:50%;
+  animation:spin 0.8s linear infinite;margin:0 auto 12px
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Checklist */
+.checklist-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:6px;margin-top:16px
+}
+.check-item{
+  display:flex;align-items:center;gap:8px;padding:8px 12px;
+  background:rgba(255,255,255,0.03);border-radius:3px;font-size:12px
+}
+.check-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.check-dot.missing{background:var(--red);opacity:0.8}
+.check-dot.found{background:var(--green)}
+.check-name{color:var(--cream);font-size:11px}
+
+/* Source links */
+.source-links{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.source-link{
+  padding:6px 14px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  border:1px solid var(--border);border-radius:2px;color:var(--muted);
+  text-decoration:none;transition:all 0.2s;cursor:pointer
+}
+.source-link:hover,.source-link.active{border-color:var(--gold);color:var(--gold-l)}
+
+/* Toast */
+.toast{
+  position:fixed;bottom:24px;right:24px;
+  background:#1e1a14;border:1px solid var(--gold);
+  padding:12px 20px;border-radius:4px;font-size:13px;
+  color:var(--cream);z-index:999;transform:translateY(80px);
+  transition:transform 0.3s;pointer-events:none
+}
+.toast.show{transform:translateY(0)}
+
+@media(max-width:600px){
+  .rename-row{grid-template-columns:60px 1fr;grid-template-rows:auto auto auto}
+  .arrow{display:none}
+  .search-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Himachal <span>Explorer</span></div>
+  <div class="badge">Image Manager</div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('search')">Find HD Images</div>
+  <div class="tab" onclick="switchTab('rename')">Rename Files</div>
+  <div class="tab" onclick="switchTab('checklist')">Location Checklist</div>
+</div>
+
+<!-- SEARCH PANEL -->
+<div class="panel active" id="panel-search">
+  <div class="loc-controls">
+    <select id="locationSelect" onchange="onLocationChange()">
+      <option value="">— Select a location —</option>
+    </select>
+    <span class="loc-tag">or</span>
+    <div class="input-wrap" style="flex:1">
+      <input type="text" id="customSearch" placeholder="Type custom location name..." onkeydown="if(event.key==='Enter')searchImages()"/>
+    </div>
+    <button class="btn" onclick="searchImages()">Search</button>
+  </div>
+
+  <div class="source-links">
+    <span style="font-size:11px;color:var(--muted);align-self:center;letter-spacing:0.1em;text-transform:uppercase">Open in:</span>
+    <span class="source-link" id="link-unsplash" onclick="openSource('unsplash')">Unsplash</span>
+    <span class="source-link" id="link-pexels" onclick="openSource('pexels')">Pexels</span>
+    <span class="source-link" id="link-pixabay" onclick="openSource('pixabay')">Pixabay</span>
+    <span class="source-link" id="link-wikimedia" onclick="openSource('wikimedia')">Wikimedia</span>
+    <span class="source-link" id="link-google" onclick="openSource('google')">Google (CC)</span>
+  </div>
+
+  <div id="searchResults"></div>
+
+  <div class="filename-box" id="filenameBox" style="display:none">
+    <div>
+      <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Save file as</div>
+      <div class="filename-text" id="filenameText"></div>
+    </div>
+    <button class="btn copy-btn secondary" onclick="copyFilename()">Copy Name</button>
+  </div>
+</div>
+
+<!-- RENAME PANEL -->
+<div class="panel" id="panel-rename">
+  <div class="upload-zone" id="dropZone" onclick="document.getElementById('fileInput').click()" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropFiles(event)">
+    <div class="icon">🖼️</div>
+    <h3>Drop your images here</h3>
+    <p>Or click to browse — rename them to match Himachal Explorer format</p>
+  </div>
+  <input type="file" id="fileInput" multiple accept="image/*" onchange="handleFiles(this.files)"/>
+
+  <div id="batchBar" style="display:none" class="batch-bar">
+    <div class="batch-info">
+      <strong id="fileCount">0</strong> files loaded — select location names and download renamed copies
+    </div>
+    <button class="btn secondary" onclick="autoMatchAll()">Auto-match Names</button>
+    <button class="btn" onclick="downloadAll()">Download All</button>
+  </div>
+
+  <div class="rename-list" id="renameList"></div>
+</div>
+
+<!-- CHECKLIST PANEL -->
+<div class="panel" id="panel-checklist">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+    <div>
+      <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">110 Locations</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300">Image Coverage Tracker</div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px"><div style="width:8px;height:8px;border-radius:50%;background:var(--green)"></div> Have image</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px"><div style="width:8px;height:8px;border-radius:50%;background:var(--red);opacity:0.8"></div> Missing</div>
+    </div>
+  </div>
+
+  <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:3px;padding:14px 16px;margin-bottom:16px">
+    <div style="font-size:11px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px">Paste your GitHub filenames below to mark as "found"</div>
+    <textarea id="githubFiles" rows="4" placeholder="Paste filenames from GitHub here, one per line e.g. manali_1.jpg, kasol_1.jpg ..." style="width:100%;resize:vertical"></textarea>
+    <button class="btn" style="margin-top:10px" onclick="updateChecklist()">Update Checklist</button>
+  </div>
+
+  <div style="display:flex;gap:16px;margin-bottom:12px;flex-wrap:wrap">
+    <div style="font-size:13px">Total: <strong>110</strong></div>
+    <div style="font-size:13px;color:var(--green)">Found: <strong id="foundCount">0</strong></div>
+    <div style="font-size:13px;color:var(--red)">Missing: <strong id="missingCount">110</strong></div>
+  </div>
+
+  <div class="checklist-grid" id="checklistGrid"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const LOCATIONS = [
+  "the-ridge","mall-road","jakhu-temple","shimla-state-museum","kufri","green-valley",
+  "chail","narkanda","hatu-peak","fagu","manali","old-manali","hadimba-temple",
+  "vashisht-hot-springs","solang-valley","atal-tunnel-viewpoint","sissu","naggar-castle",
+  "kasol","manikaran-sahib","kheerganga-trek","kullu","jalori-pass","jibhi","tirthan-valley",
+  "serolsar-lake","tosh","chamba","khajjiar","dalhousie","kalpa","reckong-peo","sangla",
+  "chitkul","kaza","key-monastery","tabo-monastery","pin-valley","chandratal-lake",
+  "dhankar-lake","mcleod-ganj","dharamshala","rohtang-pass","bir-billing","kangra-fort",
+  "kasauli","triund","nako-village","langza","barot-valley","prashar-lake","shoja",
+  "renuka-lake","malana","tattapani","janjehli","karsog-valley","tani-jubbar","mashobra",
+  "naldehra","craignano-nature-park","annandale","chadwick-falls","kotgarh",
+  "great-himalayan-national-park","kalga","pulga","chalal","jana-waterfall","bijli-mahadev",
+  "raison","sainj-valley","bahu-village","kalatop-wildlife-sanctuary","sach-pass",
+  "chamera-lake","bhuri-singh-museum","pangi-valley","bharmour","manimahesh-lake",
+  "kareri-lake","kareri-village","masroor-rock-cut-temples","andretta","palampur-tea-gardens",
+  "baijnath-temple","pong-dam-lake","saurabh-van-vihar","norbulingka-institute","rakcham",
+  "roghi-village","kinnaur-kailash-view-point","pooh","charang-valley","kibber-village",
+  "hikkim","komic","gue-mummy-village","kunzum-pass","rewalsar-lake","kamrunag-lake",
+  "sundernagar-lake","bada-dev-kamrunag","pandoh-dam","barog","dagshai","karol-tibba",
+  "mohan-shakti-heritage-park","gilbert-trail","churdhar-peak","haripurdhar","nahan",
+  "habban-valley","jamu-peak","chintpurni-temple","dera-baba-rudru","gobind-sagar-lake",
+  "awah-devi-temple","sujanpur-tira-fort","narvadeshwar-temple"
+];
+
+// Populate location dropdown
+const sel = document.getElementById('locationSelect');
+LOCATIONS.forEach(loc => {
+  const o = document.createElement('option');
+  o.value = loc;
+  o.textContent = loc.split('-').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
+  sel.appendChild(o);
+});
+
+// Populate checklist
+const grid = document.getElementById('checklistGrid');
+LOCATIONS.forEach(loc => {
+  const div = document.createElement('div');
+  div.className = 'check-item';
+  div.id = 'check-'+loc;
+  div.innerHTML = `<div class="check-dot missing" id="dot-${loc}"></div><div class="check-name">${loc.split('-').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ')}</div>`;
+  grid.appendChild(div);
+});
+
+let currentLocation = '';
+
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    const names=['search','rename','checklist'];
+    t.classList.toggle('active', names[i]===name);
+  });
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+}
+
+function onLocationChange() {
+  currentLocation = document.getElementById('locationSelect').value;
+  document.getElementById('customSearch').value = '';
+  if (currentLocation) {
+    showFilenameBox(currentLocation);
+    updateSourceLinks(currentLocation);
+  }
+}
+
+function getSearchTerm() {
+  const custom = document.getElementById('customSearch').value.trim();
+  const loc = document.getElementById('locationSelect').value;
+  return custom || loc;
+}
+
+function toDisplayName(slug) {
+  return slug.split('-').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ') + ' Himachal Pradesh';
+}
+
+function toFilename(slug, num=1) {
+  return `${slug}_${num}.jpg`;
+}
+
+function showFilenameBox(slug) {
+  document.getElementById('filenameBox').style.display = 'flex';
+  document.getElementById('filenameText').textContent = toFilename(slug);
+}
+
+function updateSourceLinks(slug) {
+  const q = encodeURIComponent(toDisplayName(slug));
+  document.getElementById('link-unsplash').dataset.url = `https://unsplash.com/s/photos/${encodeURIComponent(slug.replace(/-/g,' '))}`;
+  document.getElementById('link-pexels').dataset.url = `https://www.pexels.com/search/${q}/`;
+  document.getElementById('link-pixabay').dataset.url = `https://pixabay.com/images/search/${q}/`;
+  document.getElementById('link-wikimedia').dataset.url = `https://commons.wikimedia.org/w/index.php?search=${q}&title=Special:MediaSearch&type=image`;
+  document.getElementById('link-google').dataset.url = `https://www.google.com/search?q=${q}&tbm=isch&tbs=sur:cl`;
+}
+
+function openSource(name) {
+  const el = document.getElementById('link-'+name);
+  const url = el.dataset.url;
+  if (url) window.open(url, '_blank');
+  else {
+    const slug = getSearchTerm();
+    if (!slug) { showToast('Select a location first'); return; }
+    updateSourceLinks(slug);
+    window.open(document.getElementById('link-'+name).dataset.url, '_blank');
+  }
+}
+
+function searchImages() {
+  const term = getSearchTerm();
+  if (!term) { showToast('Select or type a location first'); return; }
+
+  currentLocation = term;
+  showFilenameBox(term);
+  updateSourceLinks(term);
+
+  const display = toDisplayName(term);
+  const res = document.getElementById('searchResults');
+  res.innerHTML = `
+    <div style="margin-bottom:12px">
+      <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">
+        HD image sources for <strong style="color:var(--gold-l)">${display}</strong>
+      </div>
+      <div style="display:grid;gap:10px">
+        ${buildSourceCard('unsplash', term, 'Unsplash', 'Free HD photos, commercial use allowed')}
+        ${buildSourceCard('pexels', term, 'Pexels', 'Free stock photos, no attribution required')}
+        ${buildSourceCard('pixabay', term, 'Pixabay', 'Free images, illustrations & vectors')}
+        ${buildSourceCard('wikimedia', term, 'Wikimedia Commons', 'Public domain & Creative Commons photos')}
+        ${buildSourceCard('google', term, 'Google Images (CC Filter)', 'Creative Commons licensed images')}
+      </div>
+    </div>
+    <div style="margin-top:20px;padding:14px 16px;background:rgba(176,125,58,0.07);border:1px solid var(--border);border-radius:3px;font-size:12px;color:var(--muted);line-height:1.7">
+      💡 <strong style="color:var(--cream)">How to use:</strong> Click any source above → download the image → come back to the <strong style="color:var(--gold-l)">Rename Files</strong> tab → drag & drop the image → it'll auto-suggest the filename <strong style="color:var(--gold-l);font-family:monospace">${toFilename(term)}</strong>
+    </div>
+  `;
+}
+
+function buildSourceCard(id, slug, name, desc) {
+  const q = encodeURIComponent(toDisplayName(slug));
+  const urls = {
+    unsplash: `https://unsplash.com/s/photos/${encodeURIComponent(slug.replace(/-/g,' '))}`,
+    pexels: `https://www.pexels.com/search/${q}/`,
+    pixabay: `https://pixabay.com/images/search/${q}/`,
+    wikimedia: `https://commons.wikimedia.org/w/index.php?search=${q}&title=Special:MediaSearch&type=image`,
+    google: `https://www.google.com/search?q=${q}&tbm=isch&tbs=sur:cl`
+  };
+  return `
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:3px">
+      <div>
+        <div style="font-size:13px;font-weight:500;margin-bottom:2px">${name}</div>
+        <div style="font-size:11px;color:var(--muted)">${desc}</div>
+      </div>
+      <a href="${urls[id]}" target="_blank" class="btn secondary" style="text-decoration:none;font-size:11px;padding:8px 14px">Open →</a>
+    </div>
+  `;
+}
+
+function copyFilename() {
+  const txt = document.getElementById('filenameText').textContent;
+  navigator.clipboard.writeText(txt).then(()=>showToast('Filename copied: '+txt));
+}
+
+// ---- RENAME ----
+let fileObjects = [];
+
+function handleFiles(files) {
+  fileObjects = [...fileObjects, ...Array.from(files)];
+  renderRenameList();
+}
+
+function dragOver(e) { e.preventDefault(); document.getElementById('dropZone').classList.add('drag'); }
+function dragLeave() { document.getElementById('dropZone').classList.remove('drag'); }
+function dropFiles(e) {
+  e.preventDefault();
+  dragLeave();
+  handleFiles(e.dataTransfer.files);
+}
+
+function renderRenameList() {
+  const list = document.getElementById('renameList');
+  const bar = document.getElementById('batchBar');
+  document.getElementById('fileCount').textContent = fileObjects.length;
+  bar.style.display = fileObjects.length ? 'flex' : 'none';
+  list.innerHTML = '';
+
+  fileObjects.forEach((file, i) => {
+    const url = URL.createObjectURL(file);
+    const suggested = suggestName(file.name, i);
+    const row = document.createElement('div');
+    row.className = 'rename-row';
+    row.innerHTML = `
+      <img src="${url}" class="thumb" alt=""/>
+      <div class="orig-name">${file.name}</div>
+      <div class="arrow">→</div>
+      <input class="new-name-input" id="newname-${i}" value="${suggested}" placeholder="${suggested}"/>
+      <button class="dl-btn" onclick="downloadSingle(${i})">Download</button>
+    `;
+    list.appendChild(row);
+  });
+}
+
+function suggestName(filename, index) {
+  const lower = filename.toLowerCase().replace(/[_\s]+/g,'-').replace(/\.[^.]+$/,'');
+  // Try to match against known locations
+  for (const loc of LOCATIONS) {
+    if (lower.includes(loc) || loc.includes(lower.substring(0,8))) {
+      return toFilename(loc, 1);
+    }
+  }
+  // Try partial word match
+  const words = lower.split('-').filter(w=>w.length>3);
+  for (const loc of LOCATIONS) {
+    for (const w of words) {
+      if (loc.includes(w)) return toFilename(loc, 1);
+    }
+  }
+  return `location-name_1.jpg`;
+}
+
+function autoMatchAll() {
+  fileObjects.forEach((file, i) => {
+    const input = document.getElementById('newname-'+i);
+    if (input && input.value === 'location-name_1.jpg') {
+      input.value = suggestName(file.name, i);
+    }
+  });
+  showToast('Auto-match complete');
+}
+
+async function downloadSingle(i) {
+  const file = fileObjects[i];
+  const newName = document.getElementById('newname-'+i).value || file.name;
+  const url = URL.createObjectURL(file);
+  const a = document.createElement('a');
+  a.href = url; a.download = newName; a.click();
+  URL.revokeObjectURL(url);
+  showToast('Downloaded: '+newName);
+}
+
+async function downloadAll() {
+  for (let i = 0; i < fileObjects.length; i++) {
+    await downloadSingle(i);
+    await new Promise(r=>setTimeout(r,300));
+  }
+}
+
+// ---- CHECKLIST ----
+function updateChecklist() {
+  const raw = document.getElementById('githubFiles').value;
+  const lines = raw.split(/[\n,\s]+/).map(l=>l.trim().toLowerCase()).filter(Boolean);
+
+  let found = 0;
+  LOCATIONS.forEach(loc => {
+    const hasFile = lines.some(l => l.startsWith(loc));
+    const dot = document.getElementById('dot-'+loc);
+    if (dot) {
+      dot.className = 'check-dot ' + (hasFile ? 'found' : 'missing');
+      if (hasFile) found++;
+    }
+  });
+
+  document.getElementById('foundCount').textContent = found;
+  document.getElementById('missingCount').textContent = 110 - found;
+  showToast(`${found} found, ${110-found} missing`);
+}
+
+// Toast
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2800);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "package_id": "chamba-pangi-5d",
+  "package_name": "Chamba Deep Circuit (5D) — Bharmour, Manimahesh & Pangi Valley",
+  "days": 5,
+  "hotel_star": "3 Star",
+  "best_season": "all_year",
+  "start_point": "PATHANKOT",
+  "end_point": "PATHANKOT",
+  "total_km_est": 340,
+  "tags": [
+    "expedition",
+    "offbeat",
+    "adventure"
+  ],
+  "highlight": "Bharmour, Manimahesh & Pangi Valley",
+  "budget_price_pp": 11450,
+  "itinerary": {
+    "day_1": "Pathankot → Chamba (Drive: 120 km · 3.5 hrs). Places: Chamba Town, Chamera Lake. Activities: Lakshmi Narayan Temple complex; Chamera Lake viewpoint; Old town evening.",
+    "day_2": "Chamba → Bharmour (Drive: 65 km · 2.5 hrs). Places: Bharmour. Activities: 84 temples of Bharmour; Chaurasi temple complex; Manimahesh trek orientation.",
+    "day_3": "Manimahesh Lake Trek (Drive: 45 km to Hadsar). Places: Manimahesh Lake. Activities: Drive to Hadsar trailhead; 14km trek to sacred lake (4,080m); Sunrise on Manimahesh Kailash.",
+    "day_4": "Bharmour → Pangi Valley (Drive: 120 km · 5 hrs). Places: Pangi Valley. Activities: Sach Pass (4,390m) crossing; Pangi valley landscapes; Killar village arrival.",
+    "day_5": "Pangi → Pathankot (Drive: 250 km via Chamba). Activities: Pangi tribal culture walk; Return via Chamba valley; Pathankot arrival."
+  }
+}

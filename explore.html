@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W6LR93V8');</script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Explore Himachal Pradesh — Interactive Map of 120+ Destinations | Himachal Explorer</title>
+<meta name="description" content="Interactive map of 120+ Himachal Pradesh destinations — heritage temples, monasteries, Himalayan viewpoints, trekking routes and alpine lakes. Filter by district: Kullu, Shimla, Spiti, Kangra, Kinnaur. Plan your trip with Himachal Explorer." />
+<meta name="keywords" content="himachal pradesh places to visit, himachal map, spiti valley destinations, manali places, shimla tourist spots, kasol trekking, kinnaur destinations, dharamshala places, himachal heritage temples, himalayan monasteries, himachal pradesh travel guide 2025" />
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+<meta name="author" content="Himachal Explorer — Himachal Explorer" />
+<meta name="language" content="English" />
+<meta name="geo.region" content="IN-HP" />
+<meta name="geo.placename" content="Himachal Pradesh, India" />
+<meta name="geo.position" content="31.1048;77.1734" />
+<meta name="ICBM" content="31.1048, 77.1734" />
+<meta name="theme-color" content="#e8a44a" />
+<link rel="canonical" href="https://himachalexplorer.in/explore.html" />
+<link rel="icon" type="image/png" sizes="32x32" href="https://himachalexplorer.in/favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://himachalexplorer.in/logo-512.png" />
+<link rel="manifest" href="https://himachalexplorer.in/site.webmanifest" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://himachalexplorer.in/explore.html" />
+<meta property="og:title" content="Explore Himachal Pradesh — Interactive Map of 120+ Destinations" />
+<meta property="og:description" content="Browse 120+ Himachal destinations on an interactive map — temples, monasteries, treks, lakes & viewpoints across all 12 districts." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1544084944-15269ec7b5a0?q=80&w=1200&auto=format&fit=crop" />
+<meta property="og:site_name" content="Himachal Explorer" />
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://himachalexplorer.in/"},{"@type":"ListItem","position":2,"name":"Explore Himachal Places","item":"https://himachalexplorer.in/explore.html"}]}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+/* ═══════════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════════ */
+:root {
+  --night:   #0d1421;
+  --night2:  #111827;
+  --night3:  #1a2332;
+  --panel:   #151e2e;
+  --panelb:  #1c2840;
+  --border:  rgba(255,255,255,.07);
+  --border2: rgba(255,255,255,.12);
+  --gold:    #e8a44a;
+  --gold2:   #f0b96a;
+  --gold-glow: rgba(232,164,74,.25);
+  --teal:    #4a8fa0;
+  --snow:    #f0f4f8;
+  --mist:    #8fa3b8;
+  --fog:     #5a6e84;
+  --green:   #34d399;
+  --red:     #f87171;
+  --amber:   #fbbf24;
+  --r: 6px;
+}
+
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0 }
+html, body { height:100%; font-family:'DM Sans', sans-serif; background:var(--night); color:var(--snow); overflow:hidden }
+
+/* ═══════════════════════════════════════════════════
+   SHELL
+═══════════════════════════════════════════════════ */
+.shell { display:flex; flex-direction:column; height:100vh }
+
+/* ═══════════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════════ */
+header {
+  height:54px; flex-shrink:0;
+  background:var(--night2);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between; padding:0 28px;
+  z-index:1100;
+}
+.brand { display:flex; align-items:center; gap:11px; text-decoration:none; color:inherit }
+.logo-mark {
+  width:34px; height:34px; border-radius:8px;
+  background:linear-gradient(135deg, var(--gold) 0%, #c97b28 100%);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Cormorant Garamond', serif; font-size:14px; color:#fff; font-weight:600;
+  letter-spacing:-.01em; flex-shrink:0;
+  box-shadow:0 2px 12px rgba(232,164,74,.3);
+}
+.brand-name {
+  font-family:'Cormorant Garamond', serif; font-size:18px; font-weight:600;
+  color:var(--snow); letter-spacing:.01em;
+}
+.brand-name em { color:var(--gold); font-style:normal }
+.header-nav { display:flex; align-items:center; gap:6px }
+.hn-link {
+  font-size:11.5px; font-weight:500; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--fog); text-decoration:none; padding:6px 14px; border-radius:4px;
+  transition:color .2s, background .2s;
+}
+.hn-link:hover { color:var(--snow); background:rgba(255,255,255,.06) }
+.hn-cta {
+  font-size:10.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  background:var(--gold); color:var(--night); padding:8px 18px; border-radius:5px;
+  text-decoration:none; transition:background .2s, box-shadow .2s;
+  box-shadow:0 2px 10px rgba(232,164,74,.25);
+}
+.hn-cta:hover { background:var(--gold2); box-shadow:0 4px 18px rgba(232,164,74,.4) }
+
+/* ═══════════════════════════════════════════════════
+   STATUS STRIP
+═══════════════════════════════════════════════════ */
+.status-strip {
+  height:36px; flex-shrink:0;
+  background:var(--panel);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:16px; padding:0 20px;
+  font-size:11px;
+}
+.ss-label {
+  font-weight:600; color:var(--mist); letter-spacing:.05em;
+  display:flex; align-items:center; gap:7px;
+}
+.ss-dot {
+  width:7px; height:7px; border-radius:50%; background:var(--fog); flex-shrink:0;
+  transition:background .3s, box-shadow .3s;
+}
+.ss-ok   .ss-dot { background:var(--green); box-shadow:0 0 8px rgba(52,211,153,.6) }
+.ss-err  .ss-dot { background:var(--red) }
+.ss-load .ss-dot { background:var(--amber); animation:pulse-dot 1s infinite }
+@keyframes pulse-dot { 0%,100%{opacity:1}50%{opacity:.3} }
+.ss-ok   .ss-label { color:rgba(52,211,153,.9) }
+.ss-err  .ss-label { color:rgba(248,113,113,.9) }
+#ss-text { font-weight:500 }
+.ss-divider { width:1px; height:16px; background:var(--border2); flex-shrink:0 }
+#place-count {
+  font-size:10.5px; font-weight:600; color:var(--gold);
+  margin-left:auto; letter-spacing:.04em;
+  background:rgba(232,164,74,.1); padding:3px 10px; border-radius:20px;
+  border:1px solid rgba(232,164,74,.2);
+}
+
+/* ═══════════════════════════════════════════════════
+   BODY SPLIT
+═══════════════════════════════════════════════════ */
+.body { display:flex; flex:1; overflow:hidden }
+
+/* ═══════════════════════════════════════════════════
+   SIDEBAR  — the command panel
+═══════════════════════════════════════════════════ */
+.sidebar {
+  width:340px; flex-shrink:0;
+  background:var(--panel);
+  border-right:1px solid var(--border);
+  display:flex; flex-direction:column; overflow:hidden;
+}
+
+/* ── Sidebar top controls ── */
+.ctrl-zone {
+  padding:14px 14px 10px;
+  border-bottom:1px solid var(--border);
+  display:flex; flex-direction:column; gap:10px;
+  background:var(--panelb);
+}
+
+/* search */
+.search-shell {
+  position:relative;
+}
+.search-shell svg {
+  position:absolute; left:11px; top:50%; transform:translateY(-50%);
+  pointer-events:none; opacity:.4;
+}
+#search {
+  width:100%; padding:9px 11px 9px 34px;
+  background:rgba(255,255,255,.05); border:1.5px solid var(--border2);
+  border-radius:var(--r); font-family:'DM Sans', sans-serif; font-size:13px;
+  color:var(--snow); outline:none; transition:border-color .2s, background .2s;
+}
+#search::placeholder { color:var(--fog) }
+#search:focus { border-color:var(--gold); background:rgba(232,164,74,.05) }
+
+/* two-col selects */
+.selects-row { display:grid; grid-template-columns:1fr 1fr; gap:8px }
+.sel-group { display:flex; flex-direction:column; gap:4px }
+.sel-label {
+  font-size:9px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--fog);
+}
+.ctrl-select {
+  width:100%; padding:7px 28px 7px 10px;
+  background:rgba(255,255,255,.05) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%238fa3b8' stroke-width='2.5'><path d='M6 9l6 6 6-6'/></svg>") no-repeat right 8px center;
+  background-size:10px;
+  border:1.5px solid var(--border2); border-radius:var(--r);
+  color:var(--snow); font-family:'DM Sans', sans-serif; font-size:12px; font-weight:500;
+  appearance:none; -webkit-appearance:none; cursor:pointer;
+  transition:border-color .2s;
+}
+.ctrl-select:focus { outline:none; border-color:var(--gold) }
+.ctrl-select option { background:#1a2332; color:var(--snow) }
+
+/* type filter pills */
+.type-pills-header {
+  font-size:9px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--fog);
+}
+#filter-row {
+  display:flex; gap:5px; flex-wrap:wrap;
+}
+.f-pill {
+  font-size:10px; font-weight:600; letter-spacing:.04em;
+  padding:4px 10px; border-radius:20px;
+  border:1.5px solid var(--border2);
+  cursor:pointer; color:var(--mist); background:rgba(255,255,255,.04);
+  transition:all .15s; white-space:nowrap; line-height:1.4;
+}
+.f-pill:hover { border-color:var(--gold); color:var(--gold); background:rgba(232,164,74,.08) }
+.f-pill.active {
+  background:var(--gold); color:var(--night); border-color:var(--gold);
+  box-shadow:0 2px 10px var(--gold-glow);
+}
+
+/* ── Result bar ── */
+.result-bar {
+  display:none; align-items:center; justify-content:space-between;
+  padding:6px 14px; border-bottom:1px solid var(--border);
+  background:rgba(232,164,74,.06); flex-shrink:0;
+}
+.rb-text { font-size:10.5px; font-weight:600; color:var(--gold); letter-spacing:.04em }
+.rb-clear {
+  font-size:9.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--fog); background:none; border:none; cursor:pointer;
+  padding:3px 8px; border-radius:3px; transition:color .2s, background .2s;
+}
+.rb-clear:hover { color:var(--red); background:rgba(248,113,113,.08) }
+
+/* ── List ── */
+#loc-list {
+  flex:1; overflow-y:auto; padding:10px; display:flex; flex-direction:column; gap:7px;
+  scrollbar-width:thin; scrollbar-color:rgba(255,255,255,.1) transparent;
+}
+#loc-list::-webkit-scrollbar { width:4px }
+#loc-list::-webkit-scrollbar-thumb { background:rgba(255,255,255,.1); border-radius:2px }
+
+/* ── Place card ── */
+.loc-card {
+  display:flex; border:1.5px solid var(--border);
+  border-radius:8px; cursor:pointer;
+  transition:border-color .18s, box-shadow .18s, transform .15s;
+  overflow:hidden; background:var(--night3); flex-shrink:0;
+}
+.loc-card:hover {
+  border-color:rgba(232,164,74,.4);
+  box-shadow:0 4px 20px rgba(0,0,0,.35);
+  transform:translateY(-1px);
+}
+.loc-card.active {
+  border-color:var(--gold);
+  box-shadow:0 0 0 2px var(--gold-glow), 0 6px 24px rgba(0,0,0,.4);
+}
+.card-thumb {
+  width:70px; flex-shrink:0; background:var(--panelb);
+  position:relative; overflow:hidden;
+}
+.card-thumb img { width:100%; height:100%; object-fit:cover; display:block }
+.card-thumb-ph {
+  width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+  font-size:24px; background:var(--panelb);
+}
+.card-content { flex:1; padding:10px 12px; min-width:0 }
+.card-name {
+  font-family:'Cormorant Garamond', serif; font-size:15px; font-weight:600;
+  color:var(--snow); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  line-height:1.2; margin-bottom:3px;
+}
+.card-badge {
+  display:inline-flex; align-items:center; gap:4px;
+  font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:4px;
+}
+.card-meta {
+  display:flex; align-items:center; gap:5px;
+  font-size:10.5px; color:var(--fog); line-height:1.3;
+}
+.card-meta svg { flex-shrink:0; opacity:.6 }
+.card-tagline {
+  font-size:10.5px; color:var(--mist); margin-top:5px; line-height:1.45;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  font-style:italic;
+}
+
+/* ── Empty state ── */
+.empty-state {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  flex:1; padding:40px 24px; text-align:center; gap:10px;
+}
+.empty-state svg { opacity:.2 }
+.empty-state p { font-size:13px; color:var(--fog) }
+.empty-state small { font-size:11px; color:var(--fog); opacity:.7 }
+
+/* ═══════════════════════════════════════════════════
+   MAP
+═══════════════════════════════════════════════════ */
+.map-wrap { flex:1; position:relative }
+#map { width:100%; height:100%; background:var(--night) }
+
+/* Map loader */
+#map-loader {
+  position:absolute; inset:0;
+  background:rgba(13,20,33,.75);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  z-index:1000; gap:14px; backdrop-filter:blur(6px);
+}
+.spinner {
+  width:40px; height:40px; border:3px solid rgba(255,255,255,.1);
+  border-top-color:var(--gold); border-radius:50%; animation:spin .9s linear infinite;
+}
+@keyframes spin { to{transform:rotate(360deg)} }
+#map-loader p { font-size:13px; color:var(--mist); font-weight:500 }
+#map-loader.hidden { display:none }
+
+/* ── Popup ── */
+.place-popup { font-family:'DM Sans', sans-serif; min-width:230px; max-width:270px }
+.popup-photos { display:grid; grid-template-columns:1fr 1fr 1fr; gap:3px; margin-bottom:10px; border-radius:6px; overflow:hidden }
+.popup-photos img { width:100%; height:54px; object-fit:cover; display:block }
+.popup-photos-single img { grid-column:1/4; height:120px }
+.popup-name { font-family:'Cormorant Garamond', serif; font-size:17px; font-weight:600; color:#1c1409; margin-bottom:2px; line-height:1.2 }
+.popup-cat { font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px }
+.popup-row { display:flex; align-items:flex-start; gap:6px; font-size:12px; color:#5a6e84; margin-top:4px }
+.popup-row svg { flex-shrink:0; margin-top:1px; opacity:.5 }
+.popup-tagline {
+  font-size:12px; color:#4a5568; line-height:1.55; margin:8px 0 10px;
+  padding:9px 11px; background:#f0f4f8; border-radius:5px; font-style:italic;
+  border-left:3px solid var(--gold);
+}
+.popup-nav-btn {
+  display:flex; align-items:center; justify-content:center; gap:7px; width:100%;
+  padding:9px; background:linear-gradient(135deg, var(--gold) 0%, #c97b28 100%);
+  color:#fff; border:none; border-radius:5px;
+  font-family:'DM Sans', sans-serif; font-size:11px; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase;
+  cursor:pointer; text-decoration:none; transition:opacity .2s;
+}
+.popup-nav-btn:hover { opacity:.85 }
+
+/* Leaflet overrides — styled to match panel */
+.leaflet-container { background:#e8eaed !important }
+.leaflet-control-zoom a {
+  background:var(--panel) !important; color:var(--snow) !important;
+  border-color:var(--border2) !important; font-weight:600;
+}
+.leaflet-control-zoom a:hover { background:var(--panelb) !important }
+.leaflet-control-layers {
+  background:var(--panel) !important; color:var(--snow) !important;
+  border:1px solid var(--border2) !important;
+  box-shadow:0 4px 24px rgba(0,0,0,.55) !important;
+  border-radius:8px !important; padding:4px 2px !important;
+}
+.leaflet-control-layers-base label {
+  color:var(--mist) !important; font-size:12px; font-family:'DM Sans',sans-serif;
+  padding:3px 0 !important;
+}
+.leaflet-control-layers-base label:hover { color:var(--gold) !important }
+.leaflet-popup-content-wrapper {
+  border-radius:10px !important;
+  box-shadow:0 8px 30px rgba(0,0,0,.18) !important;
+}
+.leaflet-popup-tip { background:#fff !important }
+
+/* ═══════════════════════════════════════════════════
+   MOBILE
+═══════════════════════════════════════════════════ */
+@media(max-width:680px) {
+  header { padding:0 14px }
+  .brand-name { font-size:15px }
+  .hn-link { display:none }
+  .hn-cta { padding:7px 14px; font-size:10px }
+  .body { flex-direction:column }
+  .sidebar { width:100%; height:56vh; border-right:none; border-bottom:1px solid var(--border) }
+  #loc-list { flex-direction:row; overflow-y:hidden; overflow-x:auto; flex-wrap:nowrap; padding:10px }
+  .loc-card { min-width:190px; flex-shrink:0; flex-direction:column }
+  .card-thumb { width:100%; height:90px }
+  .selects-row { grid-template-columns:1fr }
+  #place-count { display:none }
+}
+</style>
+<link rel="stylesheet" href="assets/css/site-chrome.css">
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<h1 style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">Explore Himachal Pradesh — Interactive Map of 120+ Destinations</h1>
+<div class="shell">
+
+  <!-- HEADER -->
+  <div id="site-header"></div>
+
+  <!-- STATUS STRIP -->
+  <div class="status-strip" id="status-strip">
+    <div id="status-pill" class="ss-load" style="display:flex;align-items:center;gap:7px">
+      <div class="ss-dot"></div>
+      <span class="ss-label"><span id="ss-text">Connecting…</span></span>
+    </div>
+    <div class="ss-divider"></div>
+    <span style="font-size:11px;color:var(--fog)">Live Database</span>
+    <span id="place-count" style="display:none">— places</span>
+  </div>
+
+  <div class="body">
+
+    <!-- SIDEBAR: command panel -->
+    <aside class="sidebar">
+      <div class="ctrl-zone">
+
+        <!-- Search -->
+        <div class="search-shell">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f0f4f8" stroke-width="2.2">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <input type="text" id="search" placeholder="Search places, districts, categories…" autocomplete="off"/>
+        </div>
+
+        <!-- District + Sort -->
+        <div class="selects-row">
+          <div class="sel-group">
+            <span class="sel-label">District</span>
+            <select id="district-select" class="ctrl-select">
+              <option value="all">All Districts</option>
+            </select>
+          </div>
+          <div class="sel-group">
+            <span class="sel-label">Sort By</span>
+            <select id="sort-select" class="ctrl-select">
+              <option value="name-asc">Name (A–Z)</option>
+              <option value="name-desc">Name (Z–A)</option>
+              <option value="district">District</option>
+              <option value="category">Category</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Type pills -->
+        <div>
+          <div class="type-pills-header" style="margin-bottom:6px">Type</div>
+          <div id="filter-row">
+            <button class="f-pill active" data-cat="all">All Types</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Result bar -->
+      <div class="result-bar" id="result-bar">
+        <span class="rb-text" id="result-bar-text"></span>
+        <button class="rb-clear" id="clear-filters-btn">✕ Clear</button>
+      </div>
+
+      <!-- Card list -->
+      <div id="loc-list">
+        <div class="empty-state">
+          <div class="spinner"></div>
+          <p>Fetching places from Firebase…</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAP -->
+    <div class="map-wrap">
+      <div id="map"></div>
+      <div id="map-loader">
+        <div class="spinner"></div>
+        <p>Loading Himachal Pradesh map…</p>
+      </div>
+    </div>
+
+  </div><!-- .body -->
+</div><!-- .shell -->
+
+<!-- Firebase + App -->
+<script type="module">
+import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
+import { getDatabase, ref, onValue }
+  from "https://www.gstatic.com/firebasejs/11.9.0/firebase-database.js";
+
+const app = initializeApp({
+  apiKey:            "AIzaSyBmJDsXvokR8kYs_yoLPau1DqANPBBORJY",
+  authDomain:        "garg-enterprise.firebaseapp.com",
+  databaseURL:       "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId:         "garg-enterprise",
+  storageBucket:     "garg-enterprise.firebasestorage.app",
+  messagingSenderId: "1097408452571",
+  appId:             "1:1097408452571:web:1e5803fa8bbea4fbb5b9fe",
+  measurementId:     "G-DTJFFCMFD3"
+});
+const db = getDatabase(app);
+
+// ── Leaflet map ──────────────────────────────────────────────────
+const map = L.map("map", { zoomControl: true, scrollWheelZoom: true })
+             .setView([31.5, 77.0], 8);
+
+// Google Maps — Road (default)
+const googleRoad = L.tileLayer(
+  "https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
+  { attribution:'© <a href="https://maps.google.com">Google Maps</a>', maxZoom:20 }
+).addTo(map);
+
+// Google Maps — Terrain
+const googleTerrain = L.tileLayer(
+  "https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
+  { attribution:'© <a href="https://maps.google.com">Google Maps</a>', maxZoom:20 }
+);
+
+// Google Maps — Satellite
+const googleSatellite = L.tileLayer(
+  "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+  { attribution:'© <a href="https://maps.google.com">Google Maps</a>', maxZoom:20 }
+);
+
+// Google Maps — Hybrid (Satellite + labels)
+const googleHybrid = L.tileLayer(
+  "https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
+  { attribution:'© <a href="https://maps.google.com">Google Maps</a>', maxZoom:20 }
+);
+
+L.control.layers({
+  "🗺️ Road": googleRoad,
+  "🏔️ Terrain": googleTerrain,
+  "🛰️ Satellite": googleSatellite,
+  "🌐 Hybrid": googleHybrid
+}, {}, { position:'topright' }).addTo(map);
+
+const markerGroup = L.featureGroup().addTo(map);
+
+// ── State ────────────────────────────────────────────────────────
+let allPlaces      = [];
+let activeTypeKey  = "all";
+let activeDistrict = "all";
+let sortMode       = "name-asc";
+let searchQuery    = "";
+let activeCard     = null;
+
+// ── District meta ────────────────────────────────────────────────
+const DISTRICT_META = {
+  'Kullu':           { emoji:'🌸', label:'Kullu' },
+  'Shimla':          { emoji:'🏛️', label:'Shimla' },
+  'Kangra':          { emoji:'🕉️', label:'Kangra' },
+  'Lahaul and Spiti':{ emoji:'☸️', label:'Spiti' },
+  'Kinnaur':         { emoji:'⛰️', label:'Kinnaur' },
+  'Mandi':           { emoji:'🪔', label:'Mandi' },
+  'Chamba':          { emoji:'🏞️', label:'Chamba' },
+  'Solan':           { emoji:'🌲', label:'Solan' },
+  'Sirmaur':         { emoji:'🌊', label:'Sirmaur' },
+  'Una':             { emoji:'☀️', label:'Una' },
+  'Bilaspur':        { emoji:'💧', label:'Bilaspur' },
+  'Hamirpur':        { emoji:'🌾', label:'Hamirpur' },
+};
+
+// ── Category config ──────────────────────────────────────────────
+const CAT_CONFIG = [
+  { keys:['temple','mandir','devi','shiva','mata','shakti','shrine'], color:'#e05252', emoji:'🛕', label:'Temple' },
+  { keys:['monastery','gompa','buddha','buddhist','lamasery'],        color:'#9c6dd6', emoji:'☸️', label:'Monastery' },
+  { keys:['lake','sar','tso','pond','reservoir'],                     color:'#3b9fcc', emoji:'💧', label:'Lake' },
+  { keys:['fort','palace','castle','qila','garh'],                    color:'#8d6e63', emoji:'🏰', label:'Fort' },
+  { keys:['viewpoint','view','peak','pass','top','summit','ridge'],   color:'#4caf7d', emoji:'🏔️', label:'Viewpoint' },
+  { keys:['waterfall','falls','jharna'],                              color:'#29b6d6', emoji:'💦', label:'Waterfall' },
+  { keys:['valley','glen','gorge'],                                   color:'#7cb342', emoji:'🌿', label:'Valley' },
+  { keys:['wildlife','sanctuary','park','reserve','nature'],          color:'#43a86d', emoji:'🦌', label:'Wildlife' },
+  { keys:['museum','heritage','gallery','art'],                       color:'#7b5ea7', emoji:'🏺', label:'Heritage' },
+  { keys:['market','bazar','bazaar','haat'],                          color:'#ef7a2e', emoji:'🛒', label:'Market' },
+  { keys:['hot spring','kund','thermal'],                             color:'#e8a44a', emoji:'♨️', label:'Hot Spring' },
+  { keys:['glacier','snowfield'],                                     color:'#7ec8e3', emoji:'🧊', label:'Glacier' },
+];
+const DEFAULT_CAT = { color:'#8fa3b8', emoji:'📍', label:'Other' };
+
+function getCatConfig(place) {
+  const hay = ((place.category||'')+' '+(place.segment||'')).toLowerCase();
+  for (const c of CAT_CONFIG) if (c.keys.some(k => hay.includes(k))) return c;
+  return DEFAULT_CAT;
+}
+
+// ── Custom map marker (glowing dot + label) ───────────────────────
+function makeIcon(place) {
+  const cfg = getCatConfig(place);
+  const name = place.name || place._key;
+  return L.divIcon({
+    className: "",
+    html: `<div style="display:flex;flex-direction:column;align-items:center;pointer-events:none">
+      <div style="
+        background:${cfg.color};
+        color:#fff;
+        font-family:'DM Sans',sans-serif;
+        font-size:10px;font-weight:600;letter-spacing:.02em;
+        padding:3px 8px;border-radius:4px;
+        white-space:nowrap;max-width:140px;overflow:hidden;text-overflow:ellipsis;
+        box-shadow:0 2px 10px rgba(0,0,0,.45),0 0 0 1.5px rgba(255,255,255,.15);
+        border:1px solid rgba(255,255,255,.2);
+        backdrop-filter:blur(2px);
+      ">${cfg.emoji} ${name}</div>
+      <div style="
+        width:0;height:0;
+        border-left:5px solid transparent;border-right:5px solid transparent;
+        border-top:6px solid ${cfg.color};
+      "></div>
+      <div style="
+        width:6px;height:6px;border-radius:50%;
+        background:${cfg.color};
+        box-shadow:0 0 8px ${cfg.color};
+        margin-top:1px;
+      "></div>
+    </div>`,
+    iconAnchor: [0, 46],
+    popupAnchor: [65, -46]
+  });
+}
+
+// ── Popup ────────────────────────────────────────────────────────
+function buildPopup(p) {
+  const cfg    = getCatConfig(p);
+  const photos = [p.photo_1, p.photo_2, p.photo_3, p.photo_4].filter(Boolean);
+
+  let photosHtml = "";
+  if (photos.length === 1) {
+    photosHtml = `<div class="popup-photos popup-photos-single"><img src="${photos[0]}" alt="${p.name}" onerror="this.style.display='none'"></div>`;
+  } else if (photos.length > 1) {
+    photosHtml = `<div class="popup-photos">
+      ${photos.slice(0,3).map(u => `<img src="${u}" alt="${p.name}" onerror="this.parentElement.removeChild(this)">`).join("")}
+    </div>`;
+  }
+
+  const tagline = p.history_tagline
+    ? `<div class="popup-tagline">${p.history_tagline}</div>` : "";
+
+  const district = p.district
+    ? `<div class="popup-row">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        ${p.district} District
+      </div>` : "";
+
+  const coords = `<div class="popup-row">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+    ${(+p.latitude).toFixed(4)}°N, ${(+p.longitude).toFixed(4)}°E
+  </div>`;
+
+  return `<div class="place-popup">
+    ${photosHtml}
+    <div class="popup-name">${p.name || p._key}</div>
+    <div class="popup-cat">${cfg.emoji} ${p.category || cfg.label}</div>
+    ${tagline}${district}${coords}
+    <a class="popup-nav-btn" href="https://www.google.com/maps/dir/?api=1&destination=${p.latitude},${p.longitude}" target="_blank" rel="noopener">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+      Navigate to ${p.name || "this place"}
+    </a>
+  </div>`;
+}
+
+// ── Sidebar card ─────────────────────────────────────────────────
+function buildCard(p, idx) {
+  const card = document.createElement("div");
+  card.className = "loc-card";
+  card.dataset.idx = idx;
+  const cfg = getCatConfig(p);
+
+  const photoUrl = p.photo_1 || p.photo_2 || p.photo_3 || p.photo_4 || "";
+  const photoHtml = photoUrl
+    ? `<img src="${photoUrl}" alt="${p.name}" loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=card-thumb-ph>${cfg.emoji}</div>'">`
+    : `<div class="card-thumb-ph">${cfg.emoji}</div>`;
+
+  card.innerHTML = `
+    <div class="card-thumb">${photoHtml}</div>
+    <div class="card-content">
+      <div class="card-name">${p.name || p._key}</div>
+      <div class="card-badge">${cfg.emoji} ${p.category || cfg.label}</div>
+      ${p.district ? `<div class="card-meta">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        ${p.district}
+      </div>` : ""}
+      ${p.history_tagline ? `<div class="card-tagline">${p.history_tagline}</div>` : ""}
+    </div>`;
+
+  card.addEventListener("click", () => {
+    if (activeCard) activeCard.classList.remove("active");
+    card.classList.add("active");
+    activeCard = card;
+    map.setView([+p.latitude, +p.longitude], 14, { animate:true });
+    markerGroup.eachLayer(layer => {
+      if (layer._placeKey === p._key) layer.openPopup();
+    });
+  });
+
+  return card;
+}
+
+// ── Render ───────────────────────────────────────────────────────
+function render(places) {
+  markerGroup.clearLayers();
+  const list = document.getElementById("loc-list");
+  list.innerHTML = "";
+
+  if (!places.length) {
+    list.innerHTML = `<div class="empty-state">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#f0f4f8" stroke-width="1.5">
+        <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+      </svg>
+      <p>No places match your filters.</p>
+      <small>Try clearing a filter or broadening your search.</small>
+    </div>`;
+    return;
+  }
+
+  places.forEach((p, i) => {
+    const marker = L.marker([+p.latitude, +p.longitude], { icon: makeIcon(p) });
+    marker._placeKey = p._key;
+    marker.bindPopup(buildPopup(p), { maxWidth:290, className:"leaflet-popup-custom" });
+    marker.addTo(markerGroup);
+    list.appendChild(buildCard(p, i));
+  });
+
+  if (places.length === 1) {
+    map.setView([+places[0].latitude, +places[0].longitude], 13);
+  } else {
+    try { map.fitBounds(markerGroup.getBounds(), { padding:[40,40] }); } catch(e){}
+  }
+}
+
+// ── Sort ─────────────────────────────────────────────────────────
+function sortPlaces(list) {
+  const sorted = [...list];
+  switch (sortMode) {
+    case "name-desc":
+      sorted.sort((a,b) => (b.name||b._key||"").localeCompare(a.name||a._key||""));
+      break;
+    case "district":
+      sorted.sort((a,b) => (a.district||"").localeCompare(b.district||"")||(a.name||"").localeCompare(b.name||""));
+      break;
+    case "category":
+      sorted.sort((a,b) => getCatConfig(a).label.localeCompare(getCatConfig(b).label)||(a.name||"").localeCompare(b.name||""));
+      break;
+    default:
+      sorted.sort((a,b) => (a.name||a._key||"").localeCompare(b.name||b._key||""));
+  }
+  return sorted;
+}
+
+// ── Build filters ────────────────────────────────────────────────
+function buildFilters(places) {
+  const typeCounts = {};
+  places.forEach(p => {
+    const label = getCatConfig(p).label;
+    typeCounts[label] = (typeCounts[label]||0)+1;
+  });
+  const usedTypes = [...CAT_CONFIG, DEFAULT_CAT].filter(c => typeCounts[c.label]);
+
+  const row = document.getElementById("filter-row");
+  row.innerHTML = `<button class="f-pill active" data-cat="all">All (${places.length})</button>`;
+  usedTypes.forEach(cfg => {
+    const btn = document.createElement("button");
+    btn.className = "f-pill";
+    btn.dataset.cat = cfg.label;
+    btn.textContent = `${cfg.emoji} ${cfg.label} ${typeCounts[cfg.label]}`;
+    row.appendChild(btn);
+  });
+  row.querySelectorAll(".f-pill").forEach(btn => {
+    btn.addEventListener("click", () => {
+      row.querySelectorAll(".f-pill").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeTypeKey = btn.dataset.cat;
+      applyFilters();
+    });
+  });
+}
+
+// ── District dropdown ────────────────────────────────────────────
+function buildDistrictSelect(places) {
+  const counts = {};
+  places.forEach(p => { if (p.district) counts[p.district] = (counts[p.district]||0)+1; });
+  const select = document.getElementById("district-select");
+  const districts = Object.keys(counts).sort((a,b)=>a.localeCompare(b));
+  select.innerHTML = `<option value="all">All Districts (${places.length})</option>` +
+    districts.map(d => {
+      const meta = DISTRICT_META[d] || { emoji:'📍', label:d };
+      return `<option value="${d}">${meta.emoji} ${meta.label} (${counts[d]})</option>`;
+    }).join("");
+  select.value = activeDistrict;
+}
+
+// ── Apply filters ────────────────────────────────────────────────
+function applyFilters() {
+  let filtered = allPlaces;
+  if (activeTypeKey !== "all")  filtered = filtered.filter(p => getCatConfig(p).label === activeTypeKey);
+  if (activeDistrict !== "all") filtered = filtered.filter(p => p.district === activeDistrict);
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    filtered = filtered.filter(p =>
+      (p.name||"").toLowerCase().includes(q) ||
+      (p.category||"").toLowerCase().includes(q) ||
+      (p.district||"").toLowerCase().includes(q) ||
+      (p.history_tagline||"").toLowerCase().includes(q) ||
+      (p._key||"").toLowerCase().includes(q)
+    );
+  }
+  filtered = sortPlaces(filtered);
+  updateResultBar(filtered.length);
+  render(filtered);
+}
+
+// ── Result bar ───────────────────────────────────────────────────
+function updateResultBar(count) {
+  const bar = document.getElementById("result-bar");
+  const anyActive = activeTypeKey !== "all" || activeDistrict !== "all" || !!searchQuery;
+  if (!anyActive) { bar.style.display = "none"; return; }
+  bar.style.display = "flex";
+  document.getElementById("result-bar-text").textContent =
+    `${count} place${count !== 1 ? "s" : ""} found`;
+}
+
+// ── Controls ─────────────────────────────────────────────────────
+document.getElementById("clear-filters-btn").addEventListener("click", () => {
+  activeTypeKey = "all"; activeDistrict = "all"; searchQuery = "";
+  document.getElementById("search").value = "";
+  document.getElementById("district-select").value = "all";
+  document.querySelectorAll("#filter-row .f-pill").forEach(b =>
+    b.classList.toggle("active", b.dataset.cat === "all"));
+  applyFilters();
+});
+document.getElementById("sort-select").addEventListener("change", function() {
+  sortMode = this.value; applyFilters();
+});
+document.getElementById("district-select").addEventListener("change", function() {
+  activeDistrict = this.value; applyFilters();
+});
+document.getElementById("search").addEventListener("input", function() {
+  searchQuery = this.value.trim(); applyFilters();
+});
+
+// ── Status helpers ───────────────────────────────────────────────
+function setStatus(msg, type) {
+  const pill = document.getElementById("status-pill");
+  pill.className = `ss-${type}`;
+  document.getElementById("ss-text").textContent = msg;
+}
+
+// ── Firebase ─────────────────────────────────────────────────────
+onValue(ref(db, "places"), snap => {
+  document.getElementById("map-loader").classList.add("hidden");
+  const data = snap.val();
+  if (!data) { setStatus("No data at /places", "err"); return; }
+
+  allPlaces = Object.entries(data)
+    .map(([key, val]) => ({ _key: key, ...val }))
+    .filter(p => p.latitude && p.longitude && !isNaN(+p.latitude) && !isNaN(+p.longitude));
+
+  const total = Object.keys(data).length;
+  const valid = allPlaces.length;
+
+  setStatus(`${valid} places loaded`, "ok");
+  const pc = document.getElementById("place-count");
+  pc.style.display = "";
+  pc.textContent = valid < total ? `${valid} / ${total} have coordinates` : `${total} places`;
+
+  buildFilters(allPlaces);
+  buildDistrictSelect(allPlaces);
+  applyFilters();
+
+}, err => {
+  document.getElementById("map-loader").classList.add("hidden");
+  setStatus(`Firebase error: ${err.message}`, "err");
+  document.getElementById("loc-list").innerHTML = `
+    <div class="empty-state">
+      <p style="color:#f87171">⚠️ ${err.message}</p>
+      <small>Check Firebase rules allow read access.</small>
+    </div>`;
+});
+</script>
+<script src="assets/js/site-chrome.js" defer></script>
+</body>
+</html>

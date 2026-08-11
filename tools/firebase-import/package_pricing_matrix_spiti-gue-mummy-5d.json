@@ -1,0 +1,89 @@
+{
+  "LAHAUL-SPITI__LAHAUL-SPITI": {
+    "pax": {
+      "2": {
+        "budget": 12800,
+        "premium": 16000,
+        "luxury": 21100,
+        "budget_peak": 14300,
+        "premium_peak": 17900,
+        "luxury_peak": 23600,
+        "vehicle": "suv_innova"
+      },
+      "3": {
+        "budget": 11750,
+        "premium": 14700,
+        "luxury": 19400,
+        "budget_peak": 13150,
+        "premium_peak": 16450,
+        "luxury_peak": 21700,
+        "vehicle": "suv_innova"
+      },
+      "4": {
+        "budget": 11250,
+        "premium": 14050,
+        "luxury": 18550,
+        "budget_peak": 12600,
+        "premium_peak": 15700,
+        "luxury_peak": 20750,
+        "vehicle": "suv_innova"
+      },
+      "5": {
+        "budget": 10900,
+        "premium": 13650,
+        "luxury": 18000,
+        "budget_peak": 12250,
+        "premium_peak": 15300,
+        "luxury_peak": 20200,
+        "vehicle": "tempo_traveller_9"
+      },
+      "6": {
+        "budget": 10700,
+        "premium": 13400,
+        "luxury": 17700,
+        "budget_peak": 12000,
+        "premium_peak": 15000,
+        "luxury_peak": 19800,
+        "vehicle": "tempo_traveller_9"
+      },
+      "7": {
+        "budget": 10550,
+        "premium": 13200,
+        "luxury": 17450,
+        "budget_peak": 11850,
+        "premium_peak": 14800,
+        "luxury_peak": 19550,
+        "vehicle": "tempo_traveller_9"
+      },
+      "8": {
+        "budget": 10450,
+        "premium": 13050,
+        "luxury": 17250,
+        "budget_peak": 11700,
+        "premium_peak": 14650,
+        "luxury_peak": 19300,
+        "vehicle": "tempo_traveller_12"
+      },
+      "9": {
+        "budget": 10350,
+        "premium": 12950,
+        "luxury": 17100,
+        "budget_peak": 11600,
+        "premium_peak": 14500,
+        "luxury_peak": 19150,
+        "vehicle": "tempo_traveller_12"
+      },
+      "10": {
+        "budget": 10300,
+        "premium": 12900,
+        "luxury": 17000,
+        "budget_peak": 11550,
+        "premium_peak": 14400,
+        "luxury_peak": 19050,
+        "vehicle": "tempo_traveller_12"
+      }
+    },
+    "hotel_budget": 2200,
+    "estimated": true
+  }
+}

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Himachal Explorer — Cost Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pine:#1a3a2e;--pine-light:#2d5c47;--pine-pale:#e8f0eb;
+  --gold:#c9922a;--gold-light:#f0d89a;--gold-pale:#fdf8ee;
+  --stone:#f7f5f0;--stone-mid:#e8e4dc;--stone-dark:#b8b2a7;
+  --ink:#1c1917;--ink-mid:#4a4540;--ink-light:#7a756e;
+  --white:#ffffff;
+  --snow:#e8f4fb;--snow-dark:#2563a8;
+  --danger:#c0392b;--danger-pale:#fcecea;
+  --success:#1a6b3c;--success-pale:#e8f5ee;
+  --radius:12px;--radius-sm:8px;
+  --shadow:0 2px 12px rgba(26,58,46,0.08);
+  --shadow-lg:0 8px 32px rgba(26,58,46,0.14);
+}
+body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);min-height:100vh;line-height:1.6}
+
+/* ── HEADER ── */
+.site-header{background:var(--pine);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);letter-spacing:0.01em}
+.logo span{color:var(--gold-light);font-style:italic}
+.header-badge{font-size:11px;font-weight:500;color:var(--gold-light);background:rgba(201,146,42,0.15);border:1px solid rgba(201,146,42,0.3);padding:4px 12px;border-radius:20px;letter-spacing:0.05em;text-transform:uppercase}
+
+/* ── HERO BANNER ── */
+.hero{background:linear-gradient(135deg,var(--pine) 0%,var(--pine-light) 100%);padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero h1{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--white);font-weight:600;margin-bottom:0.5rem;position:relative}
+.hero h1 em{color:var(--gold-light);font-style:italic}
+.hero p{color:rgba(255,255,255,0.72);font-size:1rem;font-weight:300;position:relative;max-width:560px;margin:0 auto}
+
+/* ── LAYOUT ── */
+.app{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
+.grid-2{display:grid;grid-template-columns:380px 1fr;gap:1.5rem;align-items:start}
+@media(max-width:800px){.grid-2{grid-template-columns:1fr}}
+
+/* ── PANEL ── */
+.panel{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.panel-head{background:var(--pine);color:var(--white);padding:1rem 1.25rem;display:flex;align-items:center;gap:10px}
+.panel-head h2{font-size:0.9rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase}
+.panel-head svg{width:18px;height:18px;stroke:var(--gold-light);fill:none;stroke-width:1.8;flex-shrink:0}
+.panel-body{padding:1.25rem}
+
+/* ── FORM ELEMENTS ── */
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-light);margin-bottom:6px}
+.field select,.field input[type=number]{width:100%;padding:10px 12px;border:1.5px solid var(--stone-mid);border-radius:var(--radius-sm);font-family:inherit;font-size:0.9rem;color:var(--ink);background:var(--white);appearance:none;transition:border-color 0.2s}
+.field select:focus,.field input[type=number]:focus{outline:none;border-color:var(--pine-light)}
+.select-wrap{position:relative}
+.select-wrap::after{content:'▾';position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--ink-light);pointer-events:none;font-size:12px}
+
+/* Tier buttons */
+.tier-group{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tier-btn{padding:10px 8px;border:1.5px solid var(--stone-mid);border-radius:var(--radius-sm);background:var(--white);cursor:pointer;text-align:center;transition:all 0.18s;font-family:inherit}
+.tier-btn .tier-name{font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-light)}
+.tier-btn .tier-vehicle{font-size:10px;color:var(--stone-dark);margin-top:2px}
+.tier-btn.active.budget{border-color:var(--pine-light);background:var(--pine-pale)}
+.tier-btn.active.budget .tier-name{color:var(--pine)}
+.tier-btn.active.premium{border-color:var(--gold);background:var(--gold-pale)}
+.tier-btn.active.premium .tier-name{color:var(--gold)}
+.tier-btn.active.luxury{border-color:#7c3aed;background:#f3f0ff}
+.tier-btn.active.luxury .tier-name{color:#5b21b6}
+
+/* Pax adjuster */
+.pax-row{display:flex;align-items:center;gap:12px}
+.pax-btn{width:36px;height:36px;border:1.5px solid var(--stone-mid);border-radius:var(--radius-sm);background:var(--white);cursor:pointer;font-size:1.2rem;color:var(--ink-mid);display:flex;align-items:center;justify-content:center;transition:all 0.15s;flex-shrink:0}
+.pax-btn:hover{border-color:var(--pine-light);background:var(--pine-pale)}
+.pax-display{flex:1;text-align:center}
+.pax-number{font-size:1.6rem;font-weight:500;color:var(--pine);font-family:'Playfair Display',serif}
+.pax-label{font-size:11px;color:var(--ink-light);text-transform:uppercase;letter-spacing:0.05em}
+
+/* Calc btn */
+.calc-btn{width:100%;padding:14px;background:var(--pine);color:var(--white);border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:1rem;font-weight:500;cursor:pointer;transition:background 0.2s;margin-top:0.5rem;letter-spacing:0.02em}
+.calc-btn:hover{background:var(--pine-light)}
+.calc-btn:active{transform:scale(0.99)}
+
+/* ── RESULTS ── */
+.results-empty{padding:3rem 1.5rem;text-align:center;color:var(--ink-light)}
+.results-empty svg{width:48px;height:48px;stroke:var(--stone-dark);fill:none;stroke-width:1.2;margin:0 auto 1rem;display:block}
+.results-empty p{font-size:0.9rem}
+
+/* Package header */
+.pkg-header{padding:1.25rem 1.25rem 1rem;border-bottom:1px solid var(--stone-mid)}
+.pkg-name{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--pine);line-height:1.3;margin-bottom:0.5rem}
+.pkg-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tag{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500;text-transform:capitalize}
+.tag-season{background:var(--gold-pale);color:var(--gold)}
+.tag-ideal{background:var(--pine-pale);color:var(--pine)}
+.tag-days{background:var(--snow);color:var(--snow-dark)}
+.tag-snow{background:#fef3f2;color:#b42318}
+.tag-drive{background:#f0fdf4;color:#15803d}
+
+/* Cost cards */
+.cost-section{padding:1rem 1.25rem}
+.cost-section h3{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink-light);margin-bottom:12px}
+.cost-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1rem}
+.cost-card{border-radius:var(--radius-sm);padding:0.9rem;text-align:center;border:1.5px solid transparent}
+.cost-card.budget{background:var(--pine-pale);border-color:rgba(45,92,71,0.2)}
+.cost-card.premium{background:var(--gold-pale);border-color:rgba(201,146,42,0.25)}
+.cost-card.luxury{background:#f3f0ff;border-color:rgba(124,58,237,0.2)}
+.cost-card.active{border-width:2px}
+.cost-card.budget.active{border-color:var(--pine)}
+.cost-card.premium.active{border-color:var(--gold)}
+.cost-card.luxury.active{border-color:#7c3aed}
+.cost-tier{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px}
+.cost-card.budget .cost-tier{color:var(--pine)}
+.cost-card.premium .cost-tier{color:var(--gold)}
+.cost-card.luxury .cost-tier{color:#5b21b6}
+.cost-per-person{font-size:1.3rem;font-weight:600;font-family:'Playfair Display',serif}
+.cost-card.budget .cost-per-person{color:var(--pine)}
+.cost-card.premium .cost-per-person{color:var(--gold)}
+.cost-card.luxury .cost-per-person{color:#5b21b6}
+.cost-total{font-size:11px;margin-top:4px;opacity:0.7}
+.cost-vehicle{font-size:10px;opacity:0.6;margin-top:2px}
+
+/* Breakdown */
+.breakdown{background:var(--stone);border-radius:var(--radius-sm);padding:1rem;margin-top:0.5rem}
+.breakdown-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:4px 0}
+.breakdown-row:not(:last-child){border-bottom:1px solid var(--stone-mid)}
+.breakdown-label{color:var(--ink-mid)}
+.breakdown-val{font-weight:500;color:var(--ink)}
+.breakdown-total{font-weight:600;font-size:14px;color:var(--pine);padding-top:8px;margin-top:4px;border-top:2px solid var(--stone-dark)!important}
+
+/* Itinerary */
+.itinerary{padding:0 1.25rem 1.25rem}
+.itin-head{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink-light);margin-bottom:10px}
+.day-item{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--stone-mid)}
+.day-item:last-child{border-bottom:none}
+.day-num{width:28px;height:28px;border-radius:50%;background:var(--pine);color:var(--white);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.day-text{font-size:13px;color:var(--ink-mid);line-height:1.5}
+
+/* Inclusions/Exclusions */
+.inc-exc{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:0 1.25rem 1.25rem}
+@media(max-width:600px){.inc-exc{grid-template-columns:1fr}}
+.inc-block h4,.exc-block h4{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px}
+.inc-block h4{color:var(--success)}
+.exc-block h4{color:var(--danger)}
+.inc-block ul,.exc-block ul{list-style:none}
+.inc-block li,.exc-block li{font-size:12px;color:var(--ink-mid);padding:3px 0;padding-left:16px;position:relative;line-height:1.4}
+.inc-block li::before{content:'✓';position:absolute;left:0;color:var(--success);font-weight:600}
+.exc-block li::before{content:'✗';position:absolute;left:0;color:var(--danger)}
+
+/* Route bar */
+.route-bar{background:var(--pine-pale);border-bottom:1px solid rgba(45,92,71,0.12);padding:0.75rem 1.25rem;font-size:12px;color:var(--pine-light);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.route-bar svg{width:14px;height:14px;stroke:var(--pine);flex-shrink:0}
+
+/* KM badge */
+.km-badge{background:var(--pine);color:var(--white);font-size:11px;font-weight:500;padding:2px 10px;border-radius:20px;margin-left:auto}
+
+/* No result */
+.no-result{padding:2rem;text-align:center;color:var(--ink-light);font-size:14px}
+
+/* Section divider */
+.divider{height:1px;background:var(--stone-mid);margin:0 1.25rem}
+
+/* Sticky note */
+.sticky-note{background:var(--gold-pale);border-left:3px solid var(--gold);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:0.75rem 1rem;margin:0 1.25rem 1.25rem;font-size:12px;color:var(--ink-mid);line-height:1.5}
+
+/* Season warning */
+.season-warn{background:var(--snow);border-left:3px solid var(--snow-dark);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:0.75rem 1rem;margin:0 1.25rem 1rem;font-size:12px;color:var(--snow-dark)}
+
+/* Animate */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.animate-in{animation:fadeUp 0.35s ease forwards}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div style="display:flex;align-items:center;gap:16px">
+    <a href="../packages.html" style="color:rgba(255,255,255,0.55);font-size:12px;text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .2s" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">
+      ← Packages
+    </a>
+    <div class="logo">Himachal <span>Explorer</span></div>
+  </div>
+  <div class="header-badge">Cost Calculator</div>
+</header>
+
+<div class="hero">
+  <h1>Package <em>Cost Calculator</em></h1>
+  <p>Gateway-aware pricing · Budget to Luxury · All 19 packages · Real-time breakdown</p>
+</div>
+
+<div class="app">
+  <div class="grid-2">
+
+    <!-- LEFT: INPUTS -->
+    <div class="panel" id="inputPanel">
+      <div class="panel-head">
+        <svg viewBox="0 0 24 24"><path d="M9 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
+        <h2>Booking Inputs</h2>
+      </div>
+      <div class="panel-body">
+
+        <div class="field">
+          <label>Select Package</label>
+          <div class="select-wrap">
+            <select id="pkgSel"></select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Gateway City (Pickup)</label>
+          <div class="select-wrap">
+            <select id="gatewaySel">
+              <option value="DELHI">Delhi</option>
+              <option value="CHANDIGARH" selected>Chandigarh</option>
+              <option value="AMRITSAR">Amritsar</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Drop City</label>
+          <div class="select-wrap">
+            <select id="dropSel">
+              <option value="DELHI">Delhi</option>
+              <option value="CHANDIGARH" selected>Chandigarh</option>
+              <option value="SHIMLA">Shimla</option>
+              <option value="DHARAMSHALA">Dharamshala</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Hotel Tier</label>
+          <div class="tier-group">
+            <button class="tier-btn budget active" data-tier="budget" onclick="setTier(this)">
+              <div class="tier-name">Budget</div>
+              <div class="tier-vehicle">Sedan</div>
+            </button>
+            <button class="tier-btn premium" data-tier="premium" onclick="setTier(this)">
+              <div class="tier-name">Premium</div>
+              <div class="tier-vehicle">Ertiga/Rumion · max 6</div>
+            </button>
+            <button class="tier-btn luxury" data-tier="luxury" onclick="setTier(this)">
+              <div class="tier-name">Luxury</div>
+              <div class="tier-vehicle">Tempo TL</div>
+            </button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Number of Travellers</label>
+          <div class="pax-row">
+            <button class="pax-btn" onclick="changePax(-1)">−</button>
+            <div class="pax-display">
+              <div class="pax-number" id="paxNum">4</div>
+              <div class="pax-label">persons</div>
+            </div>
+            <button class="pax-btn" onclick="changePax(1)">+</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Travel Month</label>
+          <div class="select-wrap">
+            <select id="monthSel">
+              <option value="1">January (Peak)</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May (Peak)</option>
+              <option value="6">June (Peak)</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December (Peak)</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="calc-btn" onclick="calculate()">Calculate Package Cost →</button>
+      </div>
+    </div>
+
+    <!-- RIGHT: RESULTS -->
+    <div id="resultsPanel">
+      <div class="panel" id="resultsInner">
+        <div class="results-empty" id="emptyState">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+          <p>Select a package and click<br><strong>Calculate Package Cost</strong><br>to see full pricing breakdown</p>
+        </div>
+        <div id="resultContent" style="display:none"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Data sourced from Firebase RTDB: garg-enterprise-default-rtdb -->
+<script>
+// GATEWAY_DATA: 360 entries from gateway_pricing, peak surcharge 15% from peak_season_config
+const PACKAGES = [{"id":"shimla-hidden-3d","name":"Shimla Offbeat Escape — Hidden Gems of Mashobra, Naldehra & Craignano (3D/2N)","days":3,"best_season":"all_year","ideal_for":"couple,nature","hotel_category":"3 Star","night_plan":"Shimla(2N)","route_path":"Delhi/Chandigarh/Shimla → Shimla → Mashobra → Naldehra → Craignano → Shimla → Delhi/Chandigarh","total_km":80,"highlights":"Mashobra Presidential Retreat; Naldehra Golf Course; Craignano Italian Gardens; Chadwick Falls","inclusions":"Pickup & drop,Private vehicle (as per itinerary),Driver allowance,Fuel,Toll & parking,Hotel stay (double sharing),Sightseeing as per plan,Support assistance","exclusions":"Flights/Train tickets,Entry tickets/activities,Meals unless stated,Personal expenses,Tips,Travel insurance,Extra sightseeing not in plan","day_notes":"Day 1: Arrive Shimla from Delhi/Chandigarh (5-6 hrs drive). Check-in & explore Mall Road, The Ridge, Christ Church. Day 2: Full day offbeat — Mashobra Presidential Retreat, Naldehra Golf Course, Craignano Italian Gardens. Day 3: Morning Chadwick Falls & Jakhu Temple, then depart for Delhi/Chandigarh.","snow_risk":"medium","drive_level":"low"},{"id":"shimla-apple-belt-4d","name":"Shimla Apple Country & Hidden Lakes Expedition (4D/3N)","days":4,"best_season":"summer,autumn","ideal_for":"family,nature,photography","hotel_category":"3 Star","night_plan":"Shimla(1N),Narkanda(2N)","route_path":"Delhi/Chandigarh → Shimla → Kotgarh → Narkanda → Hatu Peak → Shimla → Delhi/Chandigarh","total_km":220,"highlights":"Kotgarh Apple Orchards; Tani Jubbar Lake; Hatu Peak 360° views; Narkanda Ski Slopes","inclusions":"Pickup & drop,Private vehicle (as per itinerary),Driver allowance,Fuel,Toll & parking,Hotel stay (double sharing),Sightseeing as per plan,Support assistance","exclusions":"Flights/Train tickets,Entry tickets/activities,Meals unless stated,Personal expenses,Tips,Travel insurance,Extra sightseeing not in plan","day_notes":"Day 1: Arrive Shimla from Delhi/Chandigarh. Explore Mall Road & Jakhu Temple. Overnight Shimla. Day 2: Drive to Kotgarh apple orchards (best Aug–Oct), continue to Narkanda & Tani Jubbar Lake. Overnight Narkanda. Day 3: Sunrise at Hatu Peak (3400m), 360° Himalayan views, explore Narkanda market. Overnight Narkanda. Day 4: Visit Naldehra Golf Course, Shimla State Museum, depart for Delhi/Chandigarh.","snow_risk":"high","drive_level":"medium"},{"id":"parvati-hidden-4d","name":"Parvati Valley Hidden Gems — Kasol, Kheerganga & Tosh (4D/3N)","days":4,"best_season":"spring,summer,autumn","ideal_for":"nature,trek,couple","hotel_category":"3 Star","night_plan":"Kasol(3N)","route_path":"Delhi/Chandigarh → Bhuntar → Kasol → Kheerganga → Tosh → Manikaran → Delhi/Chandigarh","total_km":900,"highlights":"Kasol Parvati Riverside; Kheerganga Hot Spring Trek; Tosh Village Views; Manikaran Gurudwara","inclusions":"Pickup & drop,Private vehicle (as per itinerary),Driver allowance,Fuel,Toll & parking,Hotel stay (double sharing),Sightseeing as per plan,Support assistance","exclusions":"Flights/Train tickets,Entry tickets/activities,Meals unless stated,Personal expenses,Tips,Travel insurance,Extra sightseeing not in plan","day_notes":"Day 1: Depart Delhi (10 hrs) / Chandigarh (5 hrs) → Bhuntar → Kasol. Explore Kasol village & Parvati riverside. Overnight Kasol. Day 2: Trek to Kheerganga (12km) through Kalga & Rudranag — natural hot spring at top. Overnight Kasol. Day 3: Drive to Tosh village (4WD), panoramic Parvati Valley views, Pulga fairy meadows. Overnight Kasol. Day 4: Manikaran Sahib Gurudwara, hot springs, Bhuntar → Delhi/Chandigarh.","snow_risk":"medium","drive_level":"medium"},{"id":"parvati-trek-5d","name":"Parvati Valley Trek Expedition — Pin Parvati Base & Sar Pass Approach (5D/4N)","days":5,"best_season":"summer","ideal_for":"trek,adventure,nature","hotel_category":"3 Star","night_plan":"Kasol(2N),Kheerganga(1N),Barsheni(1N)","route_path":"Delhi/Chandigarh → Kasol → Kheerganga → Barsheni → Pulga → Tulga → Kasol → Delhi/Chandigarh","total_km":960,"highlights":"Kheerganga Natural Hot Spring; Sar Pass Base Trail; Pulga Fairy Meadows; Parvati River Camp","inclusions":"Pickup & drop,Private vehicle (as per itinerary),Driver allowance,Fuel,Toll & parking,Hotel stay (double sharing),Sightseeing as per plan,Support assistance","exclusions":"Flights/Train tickets,Entry tickets/activities,Meals unless stated,Personal expenses,Tips,Travel insurance,Extra sightseeing not in plan","day_notes":"Day 1: Depart Delhi (10 hrs) / Chandigarh (5 hrs) → Kasol. Riverside walk & camp setup. Overnight Kasol. Day 2: Trek Kasol → Chalal → Kheerganga (12km, 5 hrs). Natural hot spring bath. Overnight Kheerganga camp. Day 3: Kheerganga → Barsheni by trail & road. Explore upper Parvati. Overnight Barsheni. Day 4: Pulga & Tulga fairy meadow trails. Return to Kasol. Overnight Kasol. Day 5: Manikaran Sahib → Bhuntar → Delhi/Chandigarh.","snow_risk":"high","drive_level":"medium"},{"id":"kinnaur-complete-6d","name":"Kinnaur Full Circuit — Sangla, Chitkul & Hidden Villages (6D/5N)","days":6,"best_season":"summer,autumn","ideal_for":"nature,photography,slow_travel","hotel_category":"3 Star","night_plan":"Shimla(1N),Nako(1N),Kalpa(2N),Sangla(1N)","route_path":"Delhi/Chandigarh → Shimla → Nako → Kalpa → Sangla → Chitkul → Rakcham → Shimla → Delhi/Chandigarh","total_km":480,"highlights":"Nako High-Altitude Village & Lake; Roghi Suicide Point; Kinnaur Kailash Viewpoint; Chitkul Last Village; Rakcham Traditional Houses","inclusions":"Pickup & drop,Private vehicle (as per itinerary),Driver allowance,Fuel,Toll & parking,Hotel stay (double sharing),Sightseeing as per plan,Support assistance","exclusions":"Flights/Train tickets,Entry tickets/activities,Meals unless stated,Personal expenses,Tips,Travel insurance,Extra sightseeing not in plan","day_notes":"Day 1: Arrive Shimla from Delhi/Chandigarh. Overnight Shimla. Day 2: Drive Shimla → Rampur → Jeori → Nako (high altitude village & lake). Overnight Nako. Day 3: Kalpa village & Roghi Suicide Point, Kinnaur Kailash viewpoint. Overnight Kalpa. Day 4: Reckong Peo → Sangla Valley. Overnight Sangla. Day 5: Chitkul (last village on Indo-Tibet border) & Rakcham. Return to Sangla. Day 6: Depart Sangla → Shimla → Delhi/Chandigarh drop.","snow_risk":"high","drive_level":"very_high"},{"id":"delhi-himachal-best-value-7d","name":"Best of Himachal — Shimla, Jibhi & Parvati Valley (7D/6N)","days":7,"best_season":"all_year","ideal_for":"family,couple,friends","hotel_category":"3 Star","night_plan":"Shimla(2N),Jibhi(2N),Kasol(2N)","route_path":"Delhi/Chandigarh → Shimla → Narkanda → Jibhi → Kasol → Manikaran → Delhi/Chandigarh","total_km":680,"highlights":"Shimla Heritage + Kufri Snow; Naldehra Golf Course; Jibhi Waterfall & Forest; Serolsar Lake; Kasol Riverside; Manikaran Hot Springs","inclusions":"Pickup & drop,Private vehicle (as per itinerary),Driver allowance,Fuel,Toll & parking,Hotel stay (double sharing),Sightseeing as per plan,Support assistance","exclusions":"Flights/Train tickets,Entry tickets/activities,Meals unless stated,Personal expenses,Tips,Travel insurance,Extra sightseeing not in plan","day_notes":"Day 1: Depart Delhi (5.5 hrs) / Chandigarh (3 hrs) → Shimla. Mall Road & The Ridge. Day 2: Kufri snow point, Naldehra golf course. Day 3: Narkanda → Hatu Peak → Kotgarh apple orchards → drive to Jibhi. Day 4: Jibhi Waterfall, Bahu Chehni tower, Shoja forest drive. Day 5: Jalori Pass (3120m) hike → Serolsar Lake trek. Day 6: Kasol arrival, Chalal forest trail, Manikaran Sahib. Day 7: Morning Kasol → Bhuntar → Delhi/Chandigarh. Best value 3-region circuit.","snow_risk":"high","drive_level":"medium"},{"id":"delhi-himachal-complete-10d","name":"Grand Himachal Circuit — All Regions Explorer (10D/9N)","days":10,"best_season":"summer,autumn","ideal_for":"family,couple,friends,slow_travel","hotel_category":"3 Star","night_plan":"Shimla(2N),Jibhi(1N),Kasol(1N),Manali(2N),Dharamshala(2N),Chamba(1N)","route_path":"Delhi/Chandigarh → Shimla → Jibhi → Kasol → Manali → Dharamshala → Chamba → Delhi/Chandigarh","total_km":1200,"highlights":"Shimla Heritage; Jibhi & Serolsar; Parvati Valley; Solang & Atal Tunnel; Triund Trek; Khajjiar Mini Switzerland","inclusions":"Pickup & drop,Private vehicle (as per itinerary),Driver allowance,Fuel,Toll & parking,Hotel stay (double sharing),Sightseeing as per plan,Support assistance","exclusions":"Flights/Train tickets,Entry tickets/activities,Meals unless stated,Personal expenses,Tips,Travel insurance,Extra sightseeing not in plan","day_notes":"Day 1: Delhi/Chandigarh → Shimla. Mall Road, Jakhu Temple. Day 2: Kufri, Naldehra, Narkanda snow. Day 3: Shimla → Jibhi, Jalori Pass, Serolsar Lake. Day 4: Jibhi → Kasol, Chalal walk, Manikaran Sahib. Day 5: Kasol → Manali, Hadimba Temple, Vashisht hot springs. Day 6: Solang Valley, Atal Tunnel, Rohtang Pass (permit req). Day 7: Manali → Dharamshala, McLeodGanj, Triund hike. Day 8: Norbulingka, Kangra Fort, Bir Billing paragliding. Day 9: Khajjiar meadows, Dalhousie, Chamba town. Day 10: Chamba → Pathankot → Delhi/Chandigarh.","snow_risk":"high","drive_level":"high"},{"id":"delhi-kinnaur-spiti-10d","name":"Kinnaur & Spiti Grand Expedition (10D/9N)","days":10,"best_season":"summer","ideal_for":"expedition,photography,adventure","hotel_category":"Standard","night_plan":"Shimla(1N),Kalpa(2N),Sangla(1N),Tabo(1N),Kaza(3N),Manali(1N)","route_path":"Delhi/Chandigarh → Shimla → Kalpa → Chitkul → Nako → Tabo → Kaza → Chandratal → Manali → Delhi/Chandigarh","total_km":1800,"highlights":"Chitkul Last Village; Nako; Tabo 1000yr Monastery; Langza Fossils; Hikkim Post Office; Chandratal Moon Lake","inclusions":"Pickup & drop,Private vehicle (as per itinerary),Driver allowance,Fuel,Toll & parking,Hotel stay (double sharing),Sightseeing as per plan,Support assistance","exclusions":"Flights/Train tickets,Entry tickets/activities,Meals unless stated,Personal expenses,Tips,Travel insurance,Extra sightseeing not in plan","day_notes":"Day 1: Delhi/Chandigarh → Shimla (acclimatize). Day 2: Shimla → Rampur → Kalpa (apple orchards, Kinnaur Kailash views). Day 3: Roghi Suicide Point, Kinnaur Kailash viewpoint → Sangla. Day 4: Chitkul (last village on Indo-Tibet border), Rakcham, Baspa Valley. Day 5: Nako high-altitude lake, Pooh, Tabo 1000-year monastery. Day 6: Kaza → Langza fossil village, Hikkim world's highest post office. Day 7: Komic monastery, Kibber wildlife sanctuary, Key monastery. Day 8: Pin Valley NP, Dhankar Lake trek, Kunzum Pass (4551m). Day 9: Chandratal Moon Lake → Atal Tunnel → Manali. Day 10: Manali → Delhi/Chandigarh.","snow_risk":"high","drive_level":"very_high"},{"id":"chandigarh-jibhi-seraj-4d","name":"Chandigarh to Seraj Valley Escape — Jibhi, Shoja & Jalori (4D/3N)","days":4,"best_season":"spring,summer,autumn","ideal_for":"nature,couple,friends","hotel_category":"3 Star","night_plan":"Jibhi(3N)","route_path":"Delhi/Chandigarh/Shimla → Aut → Jibhi → Shoja → Jalori Pass → Serolsar Lake → Chandigarh/Delhi","total_km":380,"highlights":"Jibhi Hidden Waterfall; Bahu Chehni Kothi Tower; Shoja Oak Forest; Jalori Pass Snowfields; Serolsar Sacred Lake","inclusions":"Pickup & drop,Private vehicle (as per itinerary),Driver allowance,Fuel,Toll & parking,Hotel stay (double sharing),Sightseeing as per plan,Support assistance","exclusions":"Flights/Train tickets,Entry tickets/activities,Meals unless stated,Personal expenses,Tips,Travel insurance,Extra sightseeing not in plan","day_notes":"Day 1: Depart Delhi (8 hrs) / Chandigarh (4 hrs) / Shimla (3 hrs) → Aut → Jibhi. Explore Jibhi Waterfall & ancient Bahu Chehni tower. Overnight Jibhi. Day 2: Drive Shoja oak forest, Jalori Pass (3120m) hike, Jibhi Twin Waterfalls. Overnight Jibhi. Day 3: Trek to sacred Serolsar Lake & Raghupur Fort ruins via Jalori (5km easy). Overnight Jibhi. Day 4: Morning Tirthan riverside & GHNP gate, depart for Chandigarh/Delhi/Shimla.","snow_risk":"medium","drive_level":"medium"},{"id":"chandigarh-kasauli-barog-2d","name":"Chandigarh Weekend Getaway — Kasauli & Barog Heritage Railway (2D/1N)","days":2,"best_season":"all_year","ideal_for":"couple,family,weekend","hotel_category":"3 Star","night_plan":"Kasauli(1N)","route_path":"Delhi/Chandigarh → Kasauli → Barog → Dagshai → Chandigarh/Delhi","total_km":120,"highlights":"Kasauli Oldest Distillery in Asia; Gilbert Trail Birdwatching; Barog Heritage Railway Station; Dagshai Colonial Cantonment","inclusions":"Pickup & drop,Private vehicle (as per itinerary),Driver allowance,Fuel,Toll & parking,Hotel stay (double sharing),Sightseeing as per plan,Support assistance","exclusions":"Flights/Train tickets,Entry tickets/activities,Meals unless stated,Personal expenses,Tips,Travel insurance,Extra sightseeing not in plan","day_notes":"Day 1: Depart Delhi (5 hrs) / Chandigarh (1.5 hrs) → Kasauli. Explore Gilbert Trail birdwatching path, Asia's oldest Kasauli Brewery, Monkey Point sunset viewpoint. Overnight Kasauli. Day 2: Barog Heritage Railway Station (Kalka-Shimla toy train), Dagshai colonial cantonment museum, Karol Tibba short hike. Return to Chandigarh/Delhi.","snow_risk":"low","drive_level":"low"},{"id":"chandigarh-prashar-mandi-3d","name":"Chandigarh to Prashar Lake Adventure — Hidden Jewel of Mandi (3D/2N)","days":3,"best_season":"summer,autumn","ideal_for":"nature,trek,photography","hotel_category":"3 Star","night_plan":"Mandi(1N),Prashar(1N)","route_path":"Delhi/Chandigarh/Shimla → Mandi → Rewalsar → Prashar Lake → Barot Valley → Chandigarh/Delhi","total_km":320,"highlights":"Prashar Floating Island Lake; 13th-Century Pagoda; Barot Valley Trout Stream; Rewalsar Sacred Lake","inclusions":"Pickup & drop,Private vehicle (as per itinerary),Driver allowance,Fuel,Toll & parking,Hotel stay (double sharing),Sightseeing as per plan,Support assistance","exclusions":"Flights/Train tickets,Entry tickets/activities,Meals unless stated,Personal expenses,Tips,Travel insurance,Extra sightseeing not in plan","day_notes":"Day 1: Depart Delhi (7 hrs) / Chandigarh (3 hrs) / Shimla (3 hrs) → Mandi. En route Pandoh Dam & Rewalsar Sacred Lake (Buddhist-Hindu-Sikh pilgrimage). Explore Mandi temples. Overnight Mandi. Day 2: Trek / jeep to Prashar Lake (2730m) — mystical floating island, ancient pagoda temple. Overnight Prashar camp for magical sunrise. Day 3: Descend to Barot Valley trout hatchery, scenic drive back to Chandigarh/Delhi/Shimla.","snow_risk":"medium","drive_level":"medium"},{"id":"delhi-renuka-tattapani-3d","name":"Delhi to Renuka Lake & Tattapani Hot Springs (3D/2N)","days":3,"best_season":"all_year","ideal_for":"family,couple,nature","hotel_category":"3 Star","night_plan":"Nahan(1N),Tattapani(1N)","route_path":"Delhi/Chandigarh/Shimla → Nahan → Renuka Lake → Tattapani → Delhi/Chandigarh","total_km":440,"highlights":"Renuka Lake Wildlife Sanctuary & Boating; Tattapani Sulfur Hot Springs; Nahan Princely Town Heritage Walk","inclusions":"Pickup & drop,Private vehicle (as per itinerary),Driver allowance,Fuel,Toll & parking,Hotel stay (double sharing),Sightseeing as per plan,Support assistance","exclusions":"Flights/Train tickets,Entry tickets/activities,Meals unless stated,Personal expenses,Tips,Travel insurance,Extra sightseeing not in plan","day_notes":"Day 1: Depart Delhi (5 hrs) / Chandigarh (2 hrs) / Shimla (2 hrs) → Nahan. Visit Renuka Lake (HP's largest natural lake), Renuka Wildlife Sanctuary boating. Overnight Nahan. Day 2: Tattapani natural sulphur hot springs (best in winter), Gobind Sagar Lake views, Rewalsar Sacred Lake. Overnight Tattapani. Day 3: En route Prashar Lake (optional), Pandoh Dam viewpoint, return to Delhi/Chandigarh.","snow_risk":"low","drive_level":"medium"},{"id":"lower-hp-offbeat-3d","name":"Lower Himachal Offbeat Circuit — Chintpurni, Sujanpur & Gobind Sagar (3D/2N)","days":3,"best_season":"all_year","ideal_for":"spiritual,heritage,family","hotel_category":"3 Star","night_plan":"Hamirpur(2N)","route_path":"Delhi/Chandigarh → Chintpurni → Sujanpur Tira → Gobind Sagar → Chandigarh/Delhi","total_km":280,"highlights":"Chintpurni Shakti Peetha Temple; Sujanpur Tira Fort & Kangra Paintings; Gobind Sagar Lake Water Sports; Awah Devi Hilltop Temple","inclusions":"Pickup & drop,Private vehicle (as per itinerary),Driver allowance,Fuel,Toll & parking,Hotel stay (double sharing),Sightseeing as per plan,Support assistance","exclusions":"Flights/Train tickets,Entry tickets/activities,Meals unless stated,Personal expenses,Tips,Travel insurance,Extra sightseeing not in plan","day_notes":"Day 1: Depart Delhi (7 hrs) / Chandigarh (2.5 hrs) → Chintpurni Shakti Peetha temple, Awah Devi hilltop shrine. Check-in Hamirpur. Day 2: Sujanpur Tira 18th-century fort & Kangra paintings gallery, Bluebird Lake, Gobind Sagar Lake water sports (boating/kayaking). Overnight Hamirpur. Day 3: Narvadeshwar ancient temple, Bilaspur town walk, depart for Chandigarh/Delhi. Excellent in winter when upper HP is closed.","snow_risk":"low","drive_level":"low"},{"id":"chandigarh-best-value-5d","name":"Best Value Himachal Circuit from Chandigarh — Shimla to Kasol (5D/4N)","days":5,"best_season":"all_year","ideal_for":"friends,couple,family","hotel_category":"3 Star","night_plan":"Shimla(1N),Jibhi(2N),Kasol(1N)","route_path":"Delhi/Chandigarh → Shimla → Narkanda → Jibhi → Kasol → Manikaran → Chandigarh/Delhi","total_km":520,"highlights":"Shimla Heritage Walk & Mall Road; Narkanda Snow & Orchards; Jibhi Hidden Waterfall; Serolsar Lake; Kasol Parvati Riverside","inclusions":"Pickup & drop,Private vehicle (as per itinerary),Driver allowance,Fuel,Toll & parking,Hotel stay (double sharing),Sightseeing as per plan,Support assistance","exclusions":"Flights/Train tickets,Entry tickets/activities,Meals unless stated,Personal expenses,Tips,Travel insurance,Extra sightseeing not in plan","day_notes":"Day 1: Depart Delhi (5.5 hrs) / Chandigarh (3 hrs) → Shimla. Mall Road, Jakhu Temple, The Ridge. Overnight Shimla. Day 2: Shimla → Narkanda (Hatu Peak 3400m) → Kotgarh apple orchards → Jibhi. Overnight Jibhi. Day 3: Jalori Pass hike → Serolsar Lake trek (5km), Jibhi Waterfall. Overnight Jibhi. Day 4: Jibhi → Kasol (Parvati Valley), Chalal forest walk, Manikaran Sahib hot springs & Gurudwara. Overnight Kasol. Day 5: Kasol market → Bhuntar → Chandigarh/Delhi.","snow_risk":"high","drive_level":"medium"}];
+const GATEWAY_DATA = {"amritsar-chamba-4d|AMRITSAR|CHANDIGARH":{"total_km":910,"hotel_budget":19100,"hotel_premium":26648,"hotel_luxury":42200,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8775,"premium":13162,"luxury":17550},"amritsar-chamba-4d|AMRITSAR|DELHI":{"total_km":1130,"hotel_budget":19100,"hotel_premium":26648,"hotel_luxury":42200,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8775,"premium":13162,"luxury":17550},"amritsar-chamba-4d|AMRITSAR|DHARAMSHALA":{"total_km":900,"hotel_budget":19100,"hotel_premium":26648,"hotel_luxury":42200,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8775,"premium":13162,"luxury":17550},"amritsar-chamba-4d|AMRITSAR|SHIMLA":{"total_km":1030,"hotel_budget":19100,"hotel_premium":26648,"hotel_luxury":42200,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8775,"premium":13162,"luxury":17550},"amritsar-chamba-4d|CHANDIGARH|CHANDIGARH":{"total_km":1140,"hotel_budget":19100,"hotel_premium":26648,"hotel_luxury":42200,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8775,"premium":13162,"luxury":17550},"amritsar-chamba-4d|CHANDIGARH|DELHI":{"total_km":1360,"hotel_budget":19100,"hotel_premium":26648,"hotel_luxury":42200,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8775,"premium":13162,"luxury":17550},"amritsar-chamba-4d|CHANDIGARH|DHARAMSHALA":{"total_km":1130,"hotel_budget":19100,"hotel_premium":26648,"hotel_luxury":42200,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8775,"premium":13162,"luxury":17550},"amritsar-chamba-4d|CHANDIGARH|SHIMLA":{"total_km":1260,"hotel_budget":19100,"hotel_premium":26648,"hotel_luxury":42200,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8775,"premium":13162,"luxury":17550},"amritsar-chamba-4d|DELHI|CHANDIGARH":{"total_km":1360,"hotel_budget":19100,"hotel_premium":26648,"hotel_luxury":42200,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8775,"premium":13162,"luxury":17550},"amritsar-chamba-4d|DELHI|DELHI":{"total_km":1580,"hotel_budget":19100,"hotel_premium":26648,"hotel_luxury":42200,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8775,"premium":13162,"luxury":17550},"amritsar-chamba-4d|DELHI|DHARAMSHALA":{"total_km":1350,"hotel_budget":19100,"hotel_premium":26648,"hotel_luxury":42200,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8775,"premium":13162,"luxury":17550},"amritsar-chamba-4d|DELHI|SHIMLA":{"total_km":1480,"hotel_budget":19100,"hotel_premium":26648,"hotel_luxury":42200,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8775,"premium":13162,"luxury":17550},"amritsar-parvati-5d|AMRITSAR|CHANDIGARH":{"total_km":970,"hotel_budget":15928,"hotel_premium":21488,"hotel_luxury":36652,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8782,"premium":13172,"luxury":17563},"amritsar-parvati-5d|AMRITSAR|DELHI":{"total_km":1190,"hotel_budget":15928,"hotel_premium":21488,"hotel_luxury":36652,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8782,"premium":13172,"luxury":17563},"amritsar-parvati-5d|AMRITSAR|DHARAMSHALA":{"total_km":960,"hotel_budget":15928,"hotel_premium":21488,"hotel_luxury":36652,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8782,"premium":13172,"luxury":17563},"amritsar-parvati-5d|AMRITSAR|SHIMLA":{"total_km":1090,"hotel_budget":15928,"hotel_premium":21488,"hotel_luxury":36652,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8782,"premium":13172,"luxury":17563},"amritsar-parvati-5d|CHANDIGARH|CHANDIGARH":{"total_km":1200,"hotel_budget":15928,"hotel_premium":21488,"hotel_luxury":36652,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8782,"premium":13172,"luxury":17563},"amritsar-parvati-5d|CHANDIGARH|DELHI":{"total_km":1420,"hotel_budget":15928,"hotel_premium":21488,"hotel_luxury":36652,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8782,"premium":13172,"luxury":17563},"amritsar-parvati-5d|CHANDIGARH|DHARAMSHALA":{"total_km":1190,"hotel_budget":15928,"hotel_premium":21488,"hotel_luxury":36652,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8782,"premium":13172,"luxury":17563},"amritsar-parvati-5d|CHANDIGARH|SHIMLA":{"total_km":1320,"hotel_budget":15928,"hotel_premium":21488,"hotel_luxury":36652,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8782,"premium":13172,"luxury":17563},"amritsar-parvati-5d|DELHI|CHANDIGARH":{"total_km":1420,"hotel_budget":15928,"hotel_premium":21488,"hotel_luxury":36652,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8782,"premium":13172,"luxury":17563},"amritsar-parvati-5d|DELHI|DELHI":{"total_km":1640,"hotel_budget":15928,"hotel_premium":21488,"hotel_luxury":36652,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8782,"premium":13172,"luxury":17563},"amritsar-parvati-5d|DELHI|DHARAMSHALA":{"total_km":1410,"hotel_budget":15928,"hotel_premium":21488,"hotel_luxury":36652,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8782,"premium":13172,"luxury":17563},"amritsar-parvati-5d|DELHI|SHIMLA":{"total_km":1540,"hotel_budget":15928,"hotel_premium":21488,"hotel_luxury":36652,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8782,"premium":13172,"luxury":17563},"chamba-pangi-5d|AMRITSAR|CHANDIGARH":{"total_km":615,"hotel_budget":19248,"hotel_premium":26472,"hotel_luxury":43296,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9612,"premium":14418,"luxury":19224},"chamba-pangi-5d|AMRITSAR|DELHI":{"total_km":890,"hotel_budget":19248,"hotel_premium":26472,"hotel_luxury":43296,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9612,"premium":14418,"luxury":19224},"chamba-pangi-5d|AMRITSAR|DHARAMSHALA":{"total_km":540,"hotel_budget":19248,"hotel_premium":26472,"hotel_luxury":43296,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9612,"premium":14418,"luxury":19224},"chamba-pangi-5d|AMRITSAR|SHIMLA":{"total_km":760,"hotel_budget":19248,"hotel_premium":26472,"hotel_luxury":43296,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9612,"premium":14418,"luxury":19224},"chamba-pangi-5d|CHANDIGARH|CHANDIGARH":{"total_km":690,"hotel_budget":19248,"hotel_premium":26472,"hotel_luxury":43296,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9612,"premium":14418,"luxury":19224},"chamba-pangi-5d|CHANDIGARH|DELHI":{"total_km":965,"hotel_budget":19248,"hotel_premium":26472,"hotel_luxury":43296,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9612,"premium":14418,"luxury":19224},"chamba-pangi-5d|CHANDIGARH|DHARAMSHALA":{"total_km":615,"hotel_budget":19248,"hotel_premium":26472,"hotel_luxury":43296,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9612,"premium":14418,"luxury":19224},"chamba-pangi-5d|CHANDIGARH|SHIMLA":{"total_km":835,"hotel_budget":19248,"hotel_premium":26472,"hotel_luxury":43296,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9612,"premium":14418,"luxury":19224},"chamba-pangi-5d|DELHI|CHANDIGARH":{"total_km":965,"hotel_budget":19248,"hotel_premium":26472,"hotel_luxury":43296,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9612,"premium":14418,"luxury":19224},"chamba-pangi-5d|DELHI|DELHI":{"total_km":1240,"hotel_budget":19248,"hotel_premium":26472,"hotel_luxury":43296,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9612,"premium":14418,"luxury":19224},"chamba-pangi-5d|DELHI|DHARAMSHALA":{"total_km":890,"hotel_budget":19248,"hotel_premium":26472,"hotel_luxury":43296,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9612,"premium":14418,"luxury":19224},"chamba-pangi-5d|DELHI|SHIMLA":{"total_km":1110,"hotel_budget":19248,"hotel_premium":26472,"hotel_luxury":43296,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9612,"premium":14418,"luxury":19224},"chamba-sach-6d|AMRITSAR|CHANDIGARH":{"total_km":795,"hotel_budget":16392,"hotel_premium":21788,"hotel_luxury":38388,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":9698,"premium":14547,"luxury":19397},"chamba-sach-6d|AMRITSAR|DELHI":{"total_km":1070,"hotel_budget":16392,"hotel_premium":21788,"hotel_luxury":38388,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":9698,"premium":14547,"luxury":19397},"chamba-sach-6d|AMRITSAR|DHARAMSHALA":{"total_km":720,"hotel_budget":16392,"hotel_premium":21788,"hotel_luxury":38388,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":9698,"premium":14547,"luxury":19397},"chamba-sach-6d|AMRITSAR|SHIMLA":{"total_km":940,"hotel_budget":16392,"hotel_premium":21788,"hotel_luxury":38388,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":9698,"premium":14547,"luxury":19397},"chamba-sach-6d|CHANDIGARH|CHANDIGARH":{"total_km":870,"hotel_budget":16392,"hotel_premium":21788,"hotel_luxury":38388,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":9698,"premium":14547,"luxury":19397},"chamba-sach-6d|CHANDIGARH|DELHI":{"total_km":1145,"hotel_budget":16392,"hotel_premium":21788,"hotel_luxury":38388,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":9698,"premium":14547,"luxury":19397},"chamba-sach-6d|CHANDIGARH|DHARAMSHALA":{"total_km":795,"hotel_budget":16392,"hotel_premium":21788,"hotel_luxury":38388,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":9698,"premium":14547,"luxury":19397},"chamba-sach-6d|CHANDIGARH|SHIMLA":{"total_km":1015,"hotel_budget":16392,"hotel_premium":21788,"hotel_luxury":38388,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":9698,"premium":14547,"luxury":19397},"chamba-sach-6d|DELHI|CHANDIGARH":{"total_km":1145,"hotel_budget":16392,"hotel_premium":21788,"hotel_luxury":38388,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":9698,"premium":14547,"luxury":19397},"chamba-sach-6d|DELHI|DELHI":{"total_km":1420,"hotel_budget":16392,"hotel_premium":21788,"hotel_luxury":38388,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":9698,"premium":14547,"luxury":19397},"chamba-sach-6d|DELHI|DHARAMSHALA":{"total_km":1070,"hotel_budget":16392,"hotel_premium":21788,"hotel_luxury":38388,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":9698,"premium":14547,"luxury":19397},"chamba-sach-6d|DELHI|SHIMLA":{"total_km":1290,"hotel_budget":16392,"hotel_premium":21788,"hotel_luxury":38388,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":9698,"premium":14547,"luxury":19397},"chandigarh-best-value-5d|AMRITSAR|CHANDIGARH":{"total_km":750,"hotel_budget":20544,"hotel_premium":28416,"hotel_luxury":45888,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9936,"premium":14904,"luxury":19872},"chandigarh-best-value-5d|AMRITSAR|DELHI":{"total_km":1010,"hotel_budget":20544,"hotel_premium":28416,"hotel_luxury":45888,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9936,"premium":14904,"luxury":19872},"chandigarh-best-value-5d|AMRITSAR|DHARAMSHALA":{"total_km":1000,"hotel_budget":20544,"hotel_premium":28416,"hotel_luxury":45888,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9936,"premium":14904,"luxury":19872},"chandigarh-best-value-5d|AMRITSAR|SHIMLA":{"total_km":870,"hotel_budget":20544,"hotel_premium":28416,"hotel_luxury":45888,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9936,"premium":14904,"luxury":19872},"chandigarh-best-value-5d|CHANDIGARH|CHANDIGARH":{"total_km":520,"hotel_budget":20544,"hotel_premium":28416,"hotel_luxury":45888,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9936,"premium":14904,"luxury":19872},"chandigarh-best-value-5d|CHANDIGARH|DELHI":{"total_km":780,"hotel_budget":20544,"hotel_premium":28416,"hotel_luxury":45888,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9936,"premium":14904,"luxury":19872},"chandigarh-best-value-5d|CHANDIGARH|DHARAMSHALA":{"total_km":770,"hotel_budget":20544,"hotel_premium":28416,"hotel_luxury":45888,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9936,"premium":14904,"luxury":19872},"chandigarh-best-value-5d|CHANDIGARH|SHIMLA":{"total_km":640,"hotel_budget":20544,"hotel_premium":28416,"hotel_luxury":45888,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9936,"premium":14904,"luxury":19872},"chandigarh-best-value-5d|DELHI|CHANDIGARH":{"total_km":780,"hotel_budget":20544,"hotel_premium":28416,"hotel_luxury":45888,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9936,"premium":14904,"luxury":19872},"chandigarh-best-value-5d|DELHI|DELHI":{"total_km":1040,"hotel_budget":20544,"hotel_premium":28416,"hotel_luxury":45888,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9936,"premium":14904,"luxury":19872},"chandigarh-best-value-5d|DELHI|DHARAMSHALA":{"total_km":1030,"hotel_budget":20544,"hotel_premium":28416,"hotel_luxury":45888,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9936,"premium":14904,"luxury":19872},"chandigarh-best-value-5d|DELHI|SHIMLA":{"total_km":900,"hotel_budget":20544,"hotel_premium":28416,"hotel_luxury":45888,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":9936,"premium":14904,"luxury":19872},"chandigarh-jibhi-seraj-4d|AMRITSAR|CHANDIGARH":{"total_km":610,"hotel_budget":16848,"hotel_premium":23276,"hotel_luxury":37700,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8212,"premium":12319,"luxury":16425},"chandigarh-jibhi-seraj-4d|AMRITSAR|DELHI":{"total_km":870,"hotel_budget":16848,"hotel_premium":23276,"hotel_luxury":37700,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8212,"premium":12319,"luxury":16425},"chandigarh-jibhi-seraj-4d|AMRITSAR|DHARAMSHALA":{"total_km":860,"hotel_budget":16848,"hotel_premium":23276,"hotel_luxury":37700,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8212,"premium":12319,"luxury":16425},"chandigarh-jibhi-seraj-4d|AMRITSAR|SHIMLA":{"total_km":730,"hotel_budget":16848,"hotel_premium":23276,"hotel_luxury":37700,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8212,"premium":12319,"luxury":16425},"chandigarh-jibhi-seraj-4d|CHANDIGARH|CHANDIGARH":{"total_km":380,"hotel_budget":16848,"hotel_premium":23276,"hotel_luxury":37700,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8212,"premium":12319,"luxury":16425},"chandigarh-jibhi-seraj-4d|CHANDIGARH|DELHI":{"total_km":640,"hotel_budget":16848,"hotel_premium":23276,"hotel_luxury":37700,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8212,"premium":12319,"luxury":16425},"chandigarh-jibhi-seraj-4d|CHANDIGARH|DHARAMSHALA":{"total_km":630,"hotel_budget":16848,"hotel_premium":23276,"hotel_luxury":37700,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8212,"premium":12319,"luxury":16425},"chandigarh-jibhi-seraj-4d|CHANDIGARH|SHIMLA":{"total_km":500,"hotel_budget":16848,"hotel_premium":23276,"hotel_luxury":37700,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8212,"premium":12319,"luxury":16425},"chandigarh-jibhi-seraj-4d|DELHI|CHANDIGARH":{"total_km":640,"hotel_budget":16848,"hotel_premium":23276,"hotel_luxury":37700,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8212,"premium":12319,"luxury":16425},"chandigarh-jibhi-seraj-4d|DELHI|DELHI":{"total_km":900,"hotel_budget":16848,"hotel_premium":23276,"hotel_luxury":37700,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8212,"premium":12319,"luxury":16425},"chandigarh-jibhi-seraj-4d|DELHI|DHARAMSHALA":{"total_km":890,"hotel_budget":16848,"hotel_premium":23276,"hotel_luxury":37700,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8212,"premium":12319,"luxury":16425},"chandigarh-jibhi-seraj-4d|DELHI|SHIMLA":{"total_km":760,"hotel_budget":16848,"hotel_premium":23276,"hotel_luxury":37700,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":8212,"premium":12319,"luxury":16425},"chandigarh-kasauli-barog-2d|AMRITSAR|CHANDIGARH":{"total_km":350,"hotel_budget":9480,"hotel_premium":13020,"hotel_luxury":21360,"transport_budget":2400,"transport_premium":3900,"transport_luxury":4200,"budget":4770,"premium":7155,"luxury":9540},"chandigarh-kasauli-barog-2d|AMRITSAR|DELHI":{"total_km":610,"hotel_budget":9480,"hotel_premium":13020,"hotel_luxury":21360,"transport_budget":2400,"transport_premium":3900,"transport_luxury":4200,"budget":4770,"premium":7155,"luxury":9540},"chandigarh-kasauli-barog-2d|AMRITSAR|DHARAMSHALA":{"total_km":600,"hotel_budget":9480,"hotel_premium":13020,"hotel_luxury":21360,"transport_budget":2400,"transport_premium":3900,"transport_luxury":4200,"budget":4770,"premium":7155,"luxury":9540},"chandigarh-kasauli-barog-2d|AMRITSAR|SHIMLA":{"total_km":470,"hotel_budget":9480,"hotel_premium":13020,"hotel_luxury":21360,"transport_budget":2400,"transport_premium":3900,"transport_luxury":4200,"budget":4770,"premium":7155,"luxury":9540},"chandigarh-kasauli-barog-2d|CHANDIGARH|CHANDIGARH":{"total_km":120,"hotel_budget":9480,"hotel_premium":13020,"hotel_luxury":21360,"transport_budget":2400,"transport_premium":3900,"transport_luxury":4200,"budget":4770,"premium":7155,"luxury":9540},"chandigarh-kasauli-barog-2d|CHANDIGARH|DELHI":{"total_km":380,"hotel_budget":9480,"hotel_premium":13020,"hotel_luxury":21360,"transport_budget":2400,"transport_premium":3900,"transport_luxury":4200,"budget":4770,"premium":7155,"luxury":9540},"chandigarh-kasauli-barog-2d|CHANDIGARH|DHARAMSHALA":{"total_km":370,"hotel_budget":9480,"hotel_premium":13020,"hotel_luxury":21360,"transport_budget":2400,"transport_premium":3900,"transport_luxury":4200,"budget":4770,"premium":7155,"luxury":9540},"chandigarh-kasauli-barog-2d|CHANDIGARH|SHIMLA":{"total_km":240,"hotel_budget":9480,"hotel_premium":13020,"hotel_luxury":21360,"transport_budget":2400,"transport_premium":3900,"transport_luxury":4200,"budget":4770,"premium":7155,"luxury":9540},"chandigarh-kasauli-barog-2d|DELHI|CHANDIGARH":{"total_km":380,"hotel_budget":9480,"hotel_premium":13020,"hotel_luxury":21360,"transport_budget":2400,"transport_premium":3900,"transport_luxury":4200,"budget":4770,"premium":7155,"luxury":9540},"chandigarh-kasauli-barog-2d|DELHI|DELHI":{"total_km":640,"hotel_budget":9480,"hotel_premium":13020,"hotel_luxury":21360,"transport_budget":2400,"transport_premium":3900,"transport_luxury":4200,"budget":4770,"premium":7155,"luxury":9540},"chandigarh-kasauli-barog-2d|DELHI|DHARAMSHALA":{"total_km":630,"hotel_budget":9480,"hotel_premium":13020,"hotel_luxury":21360,"transport_budget":2400,"transport_premium":3900,"transport_luxury":4200,"budget":4770,"premium":7155,"luxury":9540},"chandigarh-kasauli-barog-2d|DELHI|SHIMLA":{"total_km":500,"hotel_budget":9480,"hotel_premium":13020,"hotel_luxury":21360,"transport_budget":2400,"transport_premium":3900,"transport_luxury":4200,"budget":4770,"premium":7155,"luxury":9540},"chandigarh-prashar-mandi-3d|AMRITSAR|CHANDIGARH":{"total_km":550,"hotel_budget":13760,"hotel_premium":19040,"hotel_luxury":30720,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6640,"premium":9960,"luxury":13280},"chandigarh-prashar-mandi-3d|AMRITSAR|DELHI":{"total_km":810,"hotel_budget":13760,"hotel_premium":19040,"hotel_luxury":30720,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6640,"premium":9960,"luxury":13280},"chandigarh-prashar-mandi-3d|AMRITSAR|DHARAMSHALA":{"total_km":800,"hotel_budget":13760,"hotel_premium":19040,"hotel_luxury":30720,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6640,"premium":9960,"luxury":13280},"chandigarh-prashar-mandi-3d|AMRITSAR|SHIMLA":{"total_km":670,"hotel_budget":13760,"hotel_premium":19040,"hotel_luxury":30720,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6640,"premium":9960,"luxury":13280},"chandigarh-prashar-mandi-3d|CHANDIGARH|CHANDIGARH":{"total_km":320,"hotel_budget":13760,"hotel_premium":19040,"hotel_luxury":30720,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6640,"premium":9960,"luxury":13280},"chandigarh-prashar-mandi-3d|CHANDIGARH|DELHI":{"total_km":580,"hotel_budget":13760,"hotel_premium":19040,"hotel_luxury":30720,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6640,"premium":9960,"luxury":13280},"chandigarh-prashar-mandi-3d|CHANDIGARH|DHARAMSHALA":{"total_km":570,"hotel_budget":13760,"hotel_premium":19040,"hotel_luxury":30720,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6640,"premium":9960,"luxury":13280},"chandigarh-prashar-mandi-3d|CHANDIGARH|SHIMLA":{"total_km":440,"hotel_budget":13760,"hotel_premium":19040,"hotel_luxury":30720,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6640,"premium":9960,"luxury":13280},"chandigarh-prashar-mandi-3d|DELHI|CHANDIGARH":{"total_km":580,"hotel_budget":13760,"hotel_premium":19040,"hotel_luxury":30720,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6640,"premium":9960,"luxury":13280},"chandigarh-prashar-mandi-3d|DELHI|DELHI":{"total_km":840,"hotel_budget":13760,"hotel_premium":19040,"hotel_luxury":30720,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6640,"premium":9960,"luxury":13280},"chandigarh-prashar-mandi-3d|DELHI|DHARAMSHALA":{"total_km":830,"hotel_budget":13760,"hotel_premium":19040,"hotel_luxury":30720,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6640,"premium":9960,"luxury":13280},"chandigarh-prashar-mandi-3d|DELHI|SHIMLA":{"total_km":700,"hotel_budget":13760,"hotel_premium":19040,"hotel_luxury":30720,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6640,"premium":9960,"luxury":13280},"delhi-himachal-best-value-7d|AMRITSAR|CHANDIGARH":{"total_km":1390,"hotel_budget":27064,"hotel_premium":37396,"hotel_luxury":60524,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":13166,"premium":19749,"luxury":26331},"delhi-himachal-best-value-7d|AMRITSAR|DELHI":{"total_km":1130,"hotel_budget":27064,"hotel_premium":37396,"hotel_luxury":60524,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":13166,"premium":19749,"luxury":26331},"delhi-himachal-best-value-7d|AMRITSAR|DHARAMSHALA":{"total_km":1610,"hotel_budget":27064,"hotel_premium":37396,"hotel_luxury":60524,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":13166,"premium":19749,"luxury":26331},"delhi-himachal-best-value-7d|AMRITSAR|SHIMLA":{"total_km":1500,"hotel_budget":27064,"hotel_premium":37396,"hotel_luxury":60524,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":13166,"premium":19749,"luxury":26331},"delhi-himachal-best-value-7d|CHANDIGARH|CHANDIGARH":{"total_km":1200,"hotel_budget":27064,"hotel_premium":37396,"hotel_luxury":60524,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":13166,"premium":19749,"luxury":26331},"delhi-himachal-best-value-7d|CHANDIGARH|DELHI":{"total_km":940,"hotel_budget":27064,"hotel_premium":37396,"hotel_luxury":60524,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":13166,"premium":19749,"luxury":26331},"delhi-himachal-best-value-7d|CHANDIGARH|DHARAMSHALA":{"total_km":1420,"hotel_budget":27064,"hotel_premium":37396,"hotel_luxury":60524,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":13166,"premium":19749,"luxury":26331},"delhi-himachal-best-value-7d|CHANDIGARH|SHIMLA":{"total_km":1310,"hotel_budget":27064,"hotel_premium":37396,"hotel_luxury":60524,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":13166,"premium":19749,"luxury":26331},"delhi-himachal-best-value-7d|DELHI|CHANDIGARH":{"total_km":940,"hotel_budget":27064,"hotel_premium":37396,"hotel_luxury":60524,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":13166,"premium":19749,"luxury":26331},"delhi-himachal-best-value-7d|DELHI|DELHI":{"total_km":680,"hotel_budget":27064,"hotel_premium":37396,"hotel_luxury":60524,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":13166,"premium":19749,"luxury":26331},"delhi-himachal-best-value-7d|DELHI|DHARAMSHALA":{"total_km":1160,"hotel_budget":27064,"hotel_premium":37396,"hotel_luxury":60524,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":13166,"premium":19749,"luxury":26331},"delhi-himachal-best-value-7d|DELHI|SHIMLA":{"total_km":1050,"hotel_budget":27064,"hotel_premium":37396,"hotel_luxury":60524,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":13166,"premium":19749,"luxury":26331},"delhi-himachal-complete-10d|AMRITSAR|CHANDIGARH":{"total_km":1910,"hotel_budget":38720,"hotel_premium":53680,"hotel_luxury":86240,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":18480,"premium":27720,"luxury":36960},"delhi-himachal-complete-10d|AMRITSAR|DELHI":{"total_km":1650,"hotel_budget":38720,"hotel_premium":53680,"hotel_luxury":86240,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":18480,"premium":27720,"luxury":36960},"delhi-himachal-complete-10d|AMRITSAR|DHARAMSHALA":{"total_km":2130,"hotel_budget":38720,"hotel_premium":53680,"hotel_luxury":86240,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":18480,"premium":27720,"luxury":36960},"delhi-himachal-complete-10d|AMRITSAR|SHIMLA":{"total_km":2020,"hotel_budget":38720,"hotel_premium":53680,"hotel_luxury":86240,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":18480,"premium":27720,"luxury":36960},"delhi-himachal-complete-10d|CHANDIGARH|CHANDIGARH":{"total_km":1720,"hotel_budget":38720,"hotel_premium":53680,"hotel_luxury":86240,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":18480,"premium":27720,"luxury":36960},"delhi-himachal-complete-10d|CHANDIGARH|DELHI":{"total_km":1460,"hotel_budget":38720,"hotel_premium":53680,"hotel_luxury":86240,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":18480,"premium":27720,"luxury":36960},"delhi-himachal-complete-10d|CHANDIGARH|DHARAMSHALA":{"total_km":1940,"hotel_budget":38720,"hotel_premium":53680,"hotel_luxury":86240,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":18480,"premium":27720,"luxury":36960},"delhi-himachal-complete-10d|CHANDIGARH|SHIMLA":{"total_km":1830,"hotel_budget":38720,"hotel_premium":53680,"hotel_luxury":86240,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":18480,"premium":27720,"luxury":36960},"delhi-himachal-complete-10d|DELHI|CHANDIGARH":{"total_km":1460,"hotel_budget":38720,"hotel_premium":53680,"hotel_luxury":86240,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":18480,"premium":27720,"luxury":36960},"delhi-himachal-complete-10d|DELHI|DELHI":{"total_km":1200,"hotel_budget":38720,"hotel_premium":53680,"hotel_luxury":86240,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":18480,"premium":27720,"luxury":36960},"delhi-himachal-complete-10d|DELHI|DHARAMSHALA":{"total_km":1680,"hotel_budget":38720,"hotel_premium":53680,"hotel_luxury":86240,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":18480,"premium":27720,"luxury":36960},"delhi-himachal-complete-10d|DELHI|SHIMLA":{"total_km":1570,"hotel_budget":38720,"hotel_premium":53680,"hotel_luxury":86240,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":18480,"premium":27720,"luxury":36960},"delhi-kinnaur-spiti-10d|AMRITSAR|CHANDIGARH":{"total_km":2510,"hotel_budget":31000,"hotel_premium":42096,"hotel_luxury":70796,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":16550,"premium":24824,"luxury":33099},"delhi-kinnaur-spiti-10d|AMRITSAR|DELHI":{"total_km":2250,"hotel_budget":31000,"hotel_premium":42096,"hotel_luxury":70796,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":16550,"premium":24824,"luxury":33099},"delhi-kinnaur-spiti-10d|AMRITSAR|DHARAMSHALA":{"total_km":2730,"hotel_budget":31000,"hotel_premium":42096,"hotel_luxury":70796,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":16550,"premium":24824,"luxury":33099},"delhi-kinnaur-spiti-10d|AMRITSAR|SHIMLA":{"total_km":2620,"hotel_budget":31000,"hotel_premium":42096,"hotel_luxury":70796,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":16550,"premium":24824,"luxury":33099},"delhi-kinnaur-spiti-10d|CHANDIGARH|CHANDIGARH":{"total_km":2320,"hotel_budget":31000,"hotel_premium":42096,"hotel_luxury":70796,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":16550,"premium":24824,"luxury":33099},"delhi-kinnaur-spiti-10d|CHANDIGARH|DELHI":{"total_km":2060,"hotel_budget":31000,"hotel_premium":42096,"hotel_luxury":70796,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":16550,"premium":24824,"luxury":33099},"delhi-kinnaur-spiti-10d|CHANDIGARH|DHARAMSHALA":{"total_km":2540,"hotel_budget":31000,"hotel_premium":42096,"hotel_luxury":70796,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":16550,"premium":24824,"luxury":33099},"delhi-kinnaur-spiti-10d|CHANDIGARH|SHIMLA":{"total_km":2430,"hotel_budget":31000,"hotel_premium":42096,"hotel_luxury":70796,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":16550,"premium":24824,"luxury":33099},"delhi-kinnaur-spiti-10d|DELHI|CHANDIGARH":{"total_km":2060,"hotel_budget":31000,"hotel_premium":42096,"hotel_luxury":70796,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":16550,"premium":24824,"luxury":33099},"delhi-kinnaur-spiti-10d|DELHI|DELHI":{"total_km":1800,"hotel_budget":31000,"hotel_premium":42096,"hotel_luxury":70796,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":16550,"premium":24824,"luxury":33099},"delhi-kinnaur-spiti-10d|DELHI|DHARAMSHALA":{"total_km":2280,"hotel_budget":31000,"hotel_premium":42096,"hotel_luxury":70796,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":16550,"premium":24824,"luxury":33099},"delhi-kinnaur-spiti-10d|DELHI|SHIMLA":{"total_km":2170,"hotel_budget":31000,"hotel_premium":42096,"hotel_luxury":70796,"transport_budget":8800,"transport_premium":14300,"transport_luxury":15400,"budget":16550,"premium":24824,"luxury":33099},"delhi-renuka-tattapani-3d|AMRITSAR|CHANDIGARH":{"total_km":1150,"hotel_budget":14720,"hotel_premium":20480,"hotel_luxury":32640,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6880,"premium":10320,"luxury":13760},"delhi-renuka-tattapani-3d|AMRITSAR|DELHI":{"total_km":890,"hotel_budget":14720,"hotel_premium":20480,"hotel_luxury":32640,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6880,"premium":10320,"luxury":13760},"delhi-renuka-tattapani-3d|AMRITSAR|DHARAMSHALA":{"total_km":1370,"hotel_budget":14720,"hotel_premium":20480,"hotel_luxury":32640,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6880,"premium":10320,"luxury":13760},"delhi-renuka-tattapani-3d|AMRITSAR|SHIMLA":{"total_km":1260,"hotel_budget":14720,"hotel_premium":20480,"hotel_luxury":32640,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6880,"premium":10320,"luxury":13760},"delhi-renuka-tattapani-3d|CHANDIGARH|CHANDIGARH":{"total_km":960,"hotel_budget":14720,"hotel_premium":20480,"hotel_luxury":32640,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6880,"premium":10320,"luxury":13760},"delhi-renuka-tattapani-3d|CHANDIGARH|DELHI":{"total_km":700,"hotel_budget":14720,"hotel_premium":20480,"hotel_luxury":32640,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6880,"premium":10320,"luxury":13760},"delhi-renuka-tattapani-3d|CHANDIGARH|DHARAMSHALA":{"total_km":1180,"hotel_budget":14720,"hotel_premium":20480,"hotel_luxury":32640,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6880,"premium":10320,"luxury":13760},"delhi-renuka-tattapani-3d|CHANDIGARH|SHIMLA":{"total_km":1070,"hotel_budget":14720,"hotel_premium":20480,"hotel_luxury":32640,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6880,"premium":10320,"luxury":13760},"delhi-renuka-tattapani-3d|DELHI|CHANDIGARH":{"total_km":700,"hotel_budget":14720,"hotel_premium":20480,"hotel_luxury":32640,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6880,"premium":10320,"luxury":13760},"delhi-renuka-tattapani-3d|DELHI|DELHI":{"total_km":440,"hotel_budget":14720,"hotel_premium":20480,"hotel_luxury":32640,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6880,"premium":10320,"luxury":13760},"delhi-renuka-tattapani-3d|DELHI|DHARAMSHALA":{"total_km":920,"hotel_budget":14720,"hotel_premium":20480,"hotel_luxury":32640,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6880,"premium":10320,"luxury":13760},"delhi-renuka-tattapani-3d|DELHI|SHIMLA":{"total_km":810,"hotel_budget":14720,"hotel_premium":20480,"hotel_luxury":32640,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6880,"premium":10320,"luxury":13760},"kangra-kareri-triund-4d|AMRITSAR|CHANDIGARH":{"total_km":630,"hotel_budget":10520,"hotel_premium":13780,"hotel_luxury":25040,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":6630,"premium":9945,"luxury":13260},"kangra-kareri-triund-4d|AMRITSAR|DELHI":{"total_km":860,"hotel_budget":10520,"hotel_premium":13780,"hotel_luxury":25040,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":6630,"premium":9945,"luxury":13260},"kangra-kareri-triund-4d|AMRITSAR|DHARAMSHALA":{"total_km":380,"hotel_budget":10520,"hotel_premium":13780,"hotel_luxury":25040,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":6630,"premium":9945,"luxury":13260},"kangra-kareri-triund-4d|AMRITSAR|SHIMLA":{"total_km":710,"hotel_budget":10520,"hotel_premium":13780,"hotel_luxury":25040,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":6630,"premium":9945,"luxury":13260},"kangra-kareri-triund-4d|CHANDIGARH|CHANDIGARH":{"total_km":660,"hotel_budget":10520,"hotel_premium":13780,"hotel_luxury":25040,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":6630,"premium":9945,"luxury":13260},"kangra-kareri-triund-4d|CHANDIGARH|DELHI":{"total_km":890,"hotel_budget":10520,"hotel_premium":13780,"hotel_luxury":25040,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":6630,"premium":9945,"luxury":13260},"kangra-kareri-triund-4d|CHANDIGARH|DHARAMSHALA":{"total_km":410,"hotel_budget":10520,"hotel_premium":13780,"hotel_luxury":25040,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":6630,"premium":9945,"luxury":13260},"kangra-kareri-triund-4d|CHANDIGARH|SHIMLA":{"total_km":740,"hotel_budget":10520,"hotel_premium":13780,"hotel_luxury":25040,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":6630,"premium":9945,"luxury":13260},"kangra-kareri-triund-4d|DELHI|CHANDIGARH":{"total_km":890,"hotel_budget":10520,"hotel_premium":13780,"hotel_luxury":25040,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":6630,"premium":9945,"luxury":13260},"kangra-kareri-triund-4d|DELHI|DELHI":{"total_km":1120,"hotel_budget":10520,"hotel_premium":13780,"hotel_luxury":25040,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":6630,"premium":9945,"luxury":13260},"kangra-kareri-triund-4d|DELHI|DHARAMSHALA":{"total_km":640,"hotel_budget":10520,"hotel_premium":13780,"hotel_luxury":25040,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":6630,"premium":9945,"luxury":13260},"kangra-kareri-triund-4d|DELHI|SHIMLA":{"total_km":970,"hotel_budget":10520,"hotel_premium":13780,"hotel_luxury":25040,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":6630,"premium":9945,"luxury":13260},"kinnaur-complete-6d|AMRITSAR|CHANDIGARH":{"total_km":950,"hotel_budget":22960,"hotel_premium":31640,"hotel_luxury":51520,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":11340,"premium":17010,"luxury":22680},"kinnaur-complete-6d|AMRITSAR|DELHI":{"total_km":1200,"hotel_budget":22960,"hotel_premium":31640,"hotel_luxury":51520,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":11340,"premium":17010,"luxury":22680},"kinnaur-complete-6d|AMRITSAR|DHARAMSHALA":{"total_km":1160,"hotel_budget":22960,"hotel_premium":31640,"hotel_luxury":51520,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":11340,"premium":17010,"luxury":22680},"kinnaur-complete-6d|AMRITSAR|SHIMLA":{"total_km":830,"hotel_budget":22960,"hotel_premium":31640,"hotel_luxury":51520,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":11340,"premium":17010,"luxury":22680},"kinnaur-complete-6d|CHANDIGARH|CHANDIGARH":{"total_km":720,"hotel_budget":22960,"hotel_premium":31640,"hotel_luxury":51520,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":11340,"premium":17010,"luxury":22680},"kinnaur-complete-6d|CHANDIGARH|DELHI":{"total_km":970,"hotel_budget":22960,"hotel_premium":31640,"hotel_luxury":51520,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":11340,"premium":17010,"luxury":22680},"kinnaur-complete-6d|CHANDIGARH|DHARAMSHALA":{"total_km":930,"hotel_budget":22960,"hotel_premium":31640,"hotel_luxury":51520,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":11340,"premium":17010,"luxury":22680},"kinnaur-complete-6d|CHANDIGARH|SHIMLA":{"total_km":600,"hotel_budget":22960,"hotel_premium":31640,"hotel_luxury":51520,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":11340,"premium":17010,"luxury":22680},"kinnaur-complete-6d|DELHI|CHANDIGARH":{"total_km":970,"hotel_budget":22960,"hotel_premium":31640,"hotel_luxury":51520,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":11340,"premium":17010,"luxury":22680},"kinnaur-complete-6d|DELHI|DELHI":{"total_km":1220,"hotel_budget":22960,"hotel_premium":31640,"hotel_luxury":51520,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":11340,"premium":17010,"luxury":22680},"kinnaur-complete-6d|DELHI|DHARAMSHALA":{"total_km":1180,"hotel_budget":22960,"hotel_premium":31640,"hotel_luxury":51520,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":11340,"premium":17010,"luxury":22680},"kinnaur-complete-6d|DELHI|SHIMLA":{"total_km":850,"hotel_budget":22960,"hotel_premium":31640,"hotel_luxury":51520,"transport_budget":5600,"transport_premium":9100,"transport_luxury":9800,"budget":11340,"premium":17010,"luxury":22680},"kinnaur-spiti-connect-7d|AMRITSAR|CHANDIGARH":{"total_km":1530,"hotel_budget":19164,"hotel_premium":25544,"hotel_luxury":44728,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":11191,"premium":16786,"luxury":22382},"kinnaur-spiti-connect-7d|AMRITSAR|DELHI":{"total_km":1800,"hotel_budget":19164,"hotel_premium":25544,"hotel_luxury":44728,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":11191,"premium":16786,"luxury":22382},"kinnaur-spiti-connect-7d|AMRITSAR|DHARAMSHALA":{"total_km":1410,"hotel_budget":19164,"hotel_premium":25544,"hotel_luxury":44728,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":11191,"premium":16786,"luxury":22382},"kinnaur-spiti-connect-7d|AMRITSAR|SHIMLA":{"total_km":1430,"hotel_budget":19164,"hotel_premium":25544,"hotel_luxury":44728,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":11191,"premium":16786,"luxury":22382},"kinnaur-spiti-connect-7d|CHANDIGARH|CHANDIGARH":{"total_km":1300,"hotel_budget":19164,"hotel_premium":25544,"hotel_luxury":44728,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":11191,"premium":16786,"luxury":22382},"kinnaur-spiti-connect-7d|CHANDIGARH|DELHI":{"total_km":1570,"hotel_budget":19164,"hotel_premium":25544,"hotel_luxury":44728,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":11191,"premium":16786,"luxury":22382},"kinnaur-spiti-connect-7d|CHANDIGARH|DHARAMSHALA":{"total_km":1180,"hotel_budget":19164,"hotel_premium":25544,"hotel_luxury":44728,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":11191,"premium":16786,"luxury":22382},"kinnaur-spiti-connect-7d|CHANDIGARH|SHIMLA":{"total_km":1200,"hotel_budget":19164,"hotel_premium":25544,"hotel_luxury":44728,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":11191,"premium":16786,"luxury":22382},"kinnaur-spiti-connect-7d|DELHI|CHANDIGARH":{"total_km":1550,"hotel_budget":19164,"hotel_premium":25544,"hotel_luxury":44728,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":11191,"premium":16786,"luxury":22382},"kinnaur-spiti-connect-7d|DELHI|DELHI":{"total_km":1820,"hotel_budget":19164,"hotel_premium":25544,"hotel_luxury":44728,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":11191,"premium":16786,"luxury":22382},"kinnaur-spiti-connect-7d|DELHI|DHARAMSHALA":{"total_km":1430,"hotel_budget":19164,"hotel_premium":25544,"hotel_luxury":44728,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":11191,"premium":16786,"luxury":22382},"kinnaur-spiti-connect-7d|DELHI|SHIMLA":{"total_km":1450,"hotel_budget":19164,"hotel_premium":25544,"hotel_luxury":44728,"transport_budget":6400,"transport_premium":10400,"transport_luxury":11200,"budget":11191,"premium":16786,"luxury":22382},"lower-hp-offbeat-3d|AMRITSAR|CHANDIGARH":{"total_km":510,"hotel_budget":13440,"hotel_premium":18560,"hotel_luxury":30080,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6560,"premium":9840,"luxury":13120},"lower-hp-offbeat-3d|AMRITSAR|DELHI":{"total_km":770,"hotel_budget":13440,"hotel_premium":18560,"hotel_luxury":30080,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6560,"premium":9840,"luxury":13120},"lower-hp-offbeat-3d|AMRITSAR|DHARAMSHALA":{"total_km":760,"hotel_budget":13440,"hotel_premium":18560,"hotel_luxury":30080,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6560,"premium":9840,"luxury":13120},"lower-hp-offbeat-3d|AMRITSAR|SHIMLA":{"total_km":630,"hotel_budget":13440,"hotel_premium":18560,"hotel_luxury":30080,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6560,"premium":9840,"luxury":13120},"lower-hp-offbeat-3d|CHANDIGARH|CHANDIGARH":{"total_km":280,"hotel_budget":13440,"hotel_premium":18560,"hotel_luxury":30080,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6560,"premium":9840,"luxury":13120},"lower-hp-offbeat-3d|CHANDIGARH|DELHI":{"total_km":540,"hotel_budget":13440,"hotel_premium":18560,"hotel_luxury":30080,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6560,"premium":9840,"luxury":13120},"lower-hp-offbeat-3d|CHANDIGARH|DHARAMSHALA":{"total_km":530,"hotel_budget":13440,"hotel_premium":18560,"hotel_luxury":30080,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6560,"premium":9840,"luxury":13120},"lower-hp-offbeat-3d|CHANDIGARH|SHIMLA":{"total_km":400,"hotel_budget":13440,"hotel_premium":18560,"hotel_luxury":30080,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6560,"premium":9840,"luxury":13120},"lower-hp-offbeat-3d|DELHI|CHANDIGARH":{"total_km":540,"hotel_budget":13440,"hotel_premium":18560,"hotel_luxury":30080,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6560,"premium":9840,"luxury":13120},"lower-hp-offbeat-3d|DELHI|DELHI":{"total_km":800,"hotel_budget":13440,"hotel_premium":18560,"hotel_luxury":30080,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6560,"premium":9840,"luxury":13120},"lower-hp-offbeat-3d|DELHI|DHARAMSHALA":{"total_km":790,"hotel_budget":13440,"hotel_premium":18560,"hotel_luxury":30080,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6560,"premium":9840,"luxury":13120},"lower-hp-offbeat-3d|DELHI|SHIMLA":{"total_km":660,"hotel_budget":13440,"hotel_premium":18560,"hotel_luxury":30080,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6560,"premium":9840,"luxury":13120},"manali-hidden-4d|AMRITSAR|CHANDIGARH":{"total_km":940,"hotel_budget":15048,"hotel_premium":20576,"hotel_luxury":34100,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7762,"premium":11644,"luxury":15525},"manali-hidden-4d|AMRITSAR|DELHI":{"total_km":1190,"hotel_budget":15048,"hotel_premium":20576,"hotel_luxury":34100,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7762,"premium":11644,"luxury":15525},"manali-hidden-4d|AMRITSAR|DHARAMSHALA":{"total_km":870,"hotel_budget":15048,"hotel_premium":20576,"hotel_luxury":34100,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7762,"premium":11644,"luxury":15525},"manali-hidden-4d|AMRITSAR|SHIMLA":{"total_km":900,"hotel_budget":15048,"hotel_premium":20576,"hotel_luxury":34100,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7762,"premium":11644,"luxury":15525},"manali-hidden-4d|CHANDIGARH|CHANDIGARH":{"total_km":780,"hotel_budget":15048,"hotel_premium":20576,"hotel_luxury":34100,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7762,"premium":11644,"luxury":15525},"manali-hidden-4d|CHANDIGARH|DELHI":{"total_km":1030,"hotel_budget":15048,"hotel_premium":20576,"hotel_luxury":34100,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7762,"premium":11644,"luxury":15525},"manali-hidden-4d|CHANDIGARH|DHARAMSHALA":{"total_km":710,"hotel_budget":15048,"hotel_premium":20576,"hotel_luxury":34100,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7762,"premium":11644,"luxury":15525},"manali-hidden-4d|CHANDIGARH|SHIMLA":{"total_km":740,"hotel_budget":15048,"hotel_premium":20576,"hotel_luxury":34100,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7762,"premium":11644,"luxury":15525},"manali-hidden-4d|DELHI|CHANDIGARH":{"total_km":1030,"hotel_budget":15048,"hotel_premium":20576,"hotel_luxury":34100,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7762,"premium":11644,"luxury":15525},"manali-hidden-4d|DELHI|DELHI":{"total_km":1280,"hotel_budget":15048,"hotel_premium":20576,"hotel_luxury":34100,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7762,"premium":11644,"luxury":15525},"manali-hidden-4d|DELHI|DHARAMSHALA":{"total_km":960,"hotel_budget":15048,"hotel_premium":20576,"hotel_luxury":34100,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7762,"premium":11644,"luxury":15525},"manali-hidden-4d|DELHI|SHIMLA":{"total_km":990,"hotel_budget":15048,"hotel_premium":20576,"hotel_luxury":34100,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7762,"premium":11644,"luxury":15525},"parvati-hidden-4d|AMRITSAR|CHANDIGARH":{"total_km":800,"hotel_budget":14900,"hotel_premium":20352,"hotel_luxury":33800,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7725,"premium":11588,"luxury":15450},"parvati-hidden-4d|AMRITSAR|DELHI":{"total_km":1050,"hotel_budget":14900,"hotel_premium":20352,"hotel_luxury":33800,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7725,"premium":11588,"luxury":15450},"parvati-hidden-4d|AMRITSAR|DHARAMSHALA":{"total_km":760,"hotel_budget":14900,"hotel_premium":20352,"hotel_luxury":33800,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7725,"premium":11588,"luxury":15450},"parvati-hidden-4d|AMRITSAR|SHIMLA":{"total_km":770,"hotel_budget":14900,"hotel_premium":20352,"hotel_luxury":33800,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7725,"premium":11588,"luxury":15450},"parvati-hidden-4d|CHANDIGARH|CHANDIGARH":{"total_km":680,"hotel_budget":14900,"hotel_premium":20352,"hotel_luxury":33800,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7725,"premium":11588,"luxury":15450},"parvati-hidden-4d|CHANDIGARH|DELHI":{"total_km":930,"hotel_budget":14900,"hotel_premium":20352,"hotel_luxury":33800,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7725,"premium":11588,"luxury":15450},"parvati-hidden-4d|CHANDIGARH|DHARAMSHALA":{"total_km":640,"hotel_budget":14900,"hotel_premium":20352,"hotel_luxury":33800,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7725,"premium":11588,"luxury":15450},"parvati-hidden-4d|CHANDIGARH|SHIMLA":{"total_km":650,"hotel_budget":14900,"hotel_premium":20352,"hotel_luxury":33800,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7725,"premium":11588,"luxury":15450},"parvati-hidden-4d|DELHI|CHANDIGARH":{"total_km":930,"hotel_budget":14900,"hotel_premium":20352,"hotel_luxury":33800,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7725,"premium":11588,"luxury":15450},"parvati-hidden-4d|DELHI|DELHI":{"total_km":1180,"hotel_budget":14900,"hotel_premium":20352,"hotel_luxury":33800,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7725,"premium":11588,"luxury":15450},"parvati-hidden-4d|DELHI|DHARAMSHALA":{"total_km":890,"hotel_budget":14900,"hotel_premium":20352,"hotel_luxury":33800,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7725,"premium":11588,"luxury":15450},"parvati-hidden-4d|DELHI|SHIMLA":{"total_km":900,"hotel_budget":14900,"hotel_premium":20352,"hotel_luxury":33800,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7725,"premium":11588,"luxury":15450},"parvati-trek-5d|AMRITSAR|CHANDIGARH":{"total_km":860,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"parvati-trek-5d|AMRITSAR|DELHI":{"total_km":1110,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"parvati-trek-5d|AMRITSAR|DHARAMSHALA":{"total_km":820,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"parvati-trek-5d|AMRITSAR|SHIMLA":{"total_km":830,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"parvati-trek-5d|CHANDIGARH|CHANDIGARH":{"total_km":740,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"parvati-trek-5d|CHANDIGARH|DELHI":{"total_km":990,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"parvati-trek-5d|CHANDIGARH|DHARAMSHALA":{"total_km":700,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"parvati-trek-5d|CHANDIGARH|SHIMLA":{"total_km":710,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"parvati-trek-5d|DELHI|CHANDIGARH":{"total_km":990,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"parvati-trek-5d|DELHI|DELHI":{"total_km":1240,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"parvati-trek-5d|DELHI|DHARAMSHALA":{"total_km":950,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"parvati-trek-5d|DELHI|SHIMLA":{"total_km":960,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"shimla-apple-belt-4d|AMRITSAR|CHANDIGARH":{"total_km":690,"hotel_budget":15648,"hotel_premium":21476,"hotel_luxury":35300,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7912,"premium":11869,"luxury":15825},"shimla-apple-belt-4d|AMRITSAR|DELHI":{"total_km":940,"hotel_budget":15648,"hotel_premium":21476,"hotel_luxury":35300,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7912,"premium":11869,"luxury":15825},"shimla-apple-belt-4d|AMRITSAR|DHARAMSHALA":{"total_km":900,"hotel_budget":15648,"hotel_premium":21476,"hotel_luxury":35300,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7912,"premium":11869,"luxury":15825},"shimla-apple-belt-4d|AMRITSAR|SHIMLA":{"total_km":570,"hotel_budget":15648,"hotel_premium":21476,"hotel_luxury":35300,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7912,"premium":11869,"luxury":15825},"shimla-apple-belt-4d|CHANDIGARH|CHANDIGARH":{"total_km":460,"hotel_budget":15648,"hotel_premium":21476,"hotel_luxury":35300,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7912,"premium":11869,"luxury":15825},"shimla-apple-belt-4d|CHANDIGARH|DELHI":{"total_km":710,"hotel_budget":15648,"hotel_premium":21476,"hotel_luxury":35300,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7912,"premium":11869,"luxury":15825},"shimla-apple-belt-4d|CHANDIGARH|DHARAMSHALA":{"total_km":670,"hotel_budget":15648,"hotel_premium":21476,"hotel_luxury":35300,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7912,"premium":11869,"luxury":15825},"shimla-apple-belt-4d|CHANDIGARH|SHIMLA":{"total_km":340,"hotel_budget":15648,"hotel_premium":21476,"hotel_luxury":35300,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7912,"premium":11869,"luxury":15825},"shimla-apple-belt-4d|DELHI|CHANDIGARH":{"total_km":710,"hotel_budget":15648,"hotel_premium":21476,"hotel_luxury":35300,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7912,"premium":11869,"luxury":15825},"shimla-apple-belt-4d|DELHI|DELHI":{"total_km":960,"hotel_budget":15648,"hotel_premium":21476,"hotel_luxury":35300,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7912,"premium":11869,"luxury":15825},"shimla-apple-belt-4d|DELHI|DHARAMSHALA":{"total_km":920,"hotel_budget":15648,"hotel_premium":21476,"hotel_luxury":35300,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7912,"premium":11869,"luxury":15825},"shimla-apple-belt-4d|DELHI|SHIMLA":{"total_km":590,"hotel_budget":15648,"hotel_premium":21476,"hotel_luxury":35300,"transport_budget":4000,"transport_premium":6500,"transport_luxury":7000,"budget":7912,"premium":11869,"luxury":15825},"shimla-hidden-3d|AMRITSAR|CHANDIGARH":{"total_km":550,"hotel_budget":11840,"hotel_premium":16160,"hotel_luxury":26880,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6160,"premium":9240,"luxury":12320},"shimla-hidden-3d|AMRITSAR|DELHI":{"total_km":800,"hotel_budget":11840,"hotel_premium":16160,"hotel_luxury":26880,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6160,"premium":9240,"luxury":12320},"shimla-hidden-3d|AMRITSAR|DHARAMSHALA":{"total_km":760,"hotel_budget":11840,"hotel_premium":16160,"hotel_luxury":26880,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6160,"premium":9240,"luxury":12320},"shimla-hidden-3d|AMRITSAR|SHIMLA":{"total_km":430,"hotel_budget":11840,"hotel_premium":16160,"hotel_luxury":26880,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6160,"premium":9240,"luxury":12320},"shimla-hidden-3d|CHANDIGARH|CHANDIGARH":{"total_km":320,"hotel_budget":11840,"hotel_premium":16160,"hotel_luxury":26880,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6160,"premium":9240,"luxury":12320},"shimla-hidden-3d|CHANDIGARH|DELHI":{"total_km":570,"hotel_budget":11840,"hotel_premium":16160,"hotel_luxury":26880,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6160,"premium":9240,"luxury":12320},"shimla-hidden-3d|CHANDIGARH|DHARAMSHALA":{"total_km":530,"hotel_budget":11840,"hotel_premium":16160,"hotel_luxury":26880,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6160,"premium":9240,"luxury":12320},"shimla-hidden-3d|CHANDIGARH|SHIMLA":{"total_km":200,"hotel_budget":11840,"hotel_premium":16160,"hotel_luxury":26880,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6160,"premium":9240,"luxury":12320},"shimla-hidden-3d|DELHI|CHANDIGARH":{"total_km":570,"hotel_budget":11840,"hotel_premium":16160,"hotel_luxury":26880,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6160,"premium":9240,"luxury":12320},"shimla-hidden-3d|DELHI|DELHI":{"total_km":820,"hotel_budget":11840,"hotel_premium":16160,"hotel_luxury":26880,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6160,"premium":9240,"luxury":12320},"shimla-hidden-3d|DELHI|DHARAMSHALA":{"total_km":780,"hotel_budget":11840,"hotel_premium":16160,"hotel_luxury":26880,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6160,"premium":9240,"luxury":12320},"shimla-hidden-3d|DELHI|SHIMLA":{"total_km":450,"hotel_budget":11840,"hotel_premium":16160,"hotel_luxury":26880,"transport_budget":3200,"transport_premium":5200,"transport_luxury":5600,"budget":6160,"premium":9240,"luxury":12320},"spiti-gue-mummy-5d|AMRITSAR|CHANDIGARH":{"total_km":1440,"hotel_budget":13112,"hotel_premium":17272,"hotel_luxury":31028,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8078,"premium":12118,"luxury":16157},"spiti-gue-mummy-5d|AMRITSAR|DELHI":{"total_km":1710,"hotel_budget":13112,"hotel_premium":17272,"hotel_luxury":31028,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8078,"premium":12118,"luxury":16157},"spiti-gue-mummy-5d|AMRITSAR|DHARAMSHALA":{"total_km":1320,"hotel_budget":13112,"hotel_premium":17272,"hotel_luxury":31028,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8078,"premium":12118,"luxury":16157},"spiti-gue-mummy-5d|AMRITSAR|SHIMLA":{"total_km":1340,"hotel_budget":13112,"hotel_premium":17272,"hotel_luxury":31028,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8078,"premium":12118,"luxury":16157},"spiti-gue-mummy-5d|CHANDIGARH|CHANDIGARH":{"total_km":1280,"hotel_budget":13112,"hotel_premium":17272,"hotel_luxury":31028,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8078,"premium":12118,"luxury":16157},"spiti-gue-mummy-5d|CHANDIGARH|DELHI":{"total_km":1550,"hotel_budget":13112,"hotel_premium":17272,"hotel_luxury":31028,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8078,"premium":12118,"luxury":16157},"spiti-gue-mummy-5d|CHANDIGARH|DHARAMSHALA":{"total_km":1160,"hotel_budget":13112,"hotel_premium":17272,"hotel_luxury":31028,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8078,"premium":12118,"luxury":16157},"spiti-gue-mummy-5d|CHANDIGARH|SHIMLA":{"total_km":1180,"hotel_budget":13112,"hotel_premium":17272,"hotel_luxury":31028,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8078,"premium":12118,"luxury":16157},"spiti-gue-mummy-5d|DELHI|CHANDIGARH":{"total_km":1550,"hotel_budget":13112,"hotel_premium":17272,"hotel_luxury":31028,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8078,"premium":12118,"luxury":16157},"spiti-gue-mummy-5d|DELHI|DELHI":{"total_km":1820,"hotel_budget":13112,"hotel_premium":17272,"hotel_luxury":31028,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8078,"premium":12118,"luxury":16157},"spiti-gue-mummy-5d|DELHI|DHARAMSHALA":{"total_km":1430,"hotel_budget":13112,"hotel_premium":17272,"hotel_luxury":31028,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8078,"premium":12118,"luxury":16157},"spiti-gue-mummy-5d|DELHI|SHIMLA":{"total_km":1450,"hotel_budget":13112,"hotel_premium":17272,"hotel_luxury":31028,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":8078,"premium":12118,"luxury":16157},"spiti-village-circuit-5d|AMRITSAR|CHANDIGARH":{"total_km":1340,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"spiti-village-circuit-5d|AMRITSAR|DELHI":{"total_km":1610,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"spiti-village-circuit-5d|AMRITSAR|DHARAMSHALA":{"total_km":1220,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"spiti-village-circuit-5d|AMRITSAR|SHIMLA":{"total_km":1240,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"spiti-village-circuit-5d|CHANDIGARH|CHANDIGARH":{"total_km":1180,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"spiti-village-circuit-5d|CHANDIGARH|DELHI":{"total_km":1450,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"spiti-village-circuit-5d|CHANDIGARH|DHARAMSHALA":{"total_km":1060,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"spiti-village-circuit-5d|CHANDIGARH|SHIMLA":{"total_km":1080,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"spiti-village-circuit-5d|DELHI|CHANDIGARH":{"total_km":1450,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"spiti-village-circuit-5d|DELHI|DELHI":{"total_km":1720,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"spiti-village-circuit-5d|DELHI|DHARAMSHALA":{"total_km":1330,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850},"spiti-village-circuit-5d|DELHI|SHIMLA":{"total_km":1350,"hotel_budget":12500,"hotel_premium":16348,"hotel_luxury":29800,"transport_budget":4800,"transport_premium":7800,"transport_luxury":8400,"budget":7925,"premium":11887,"luxury":15850}};
+
+const PEAK_MONTHS = new Set([5, 6, 12, 1]); // DB: peak_season_config
+const TRANSPORT_RATES = {
+  budget:{offpeak:3200,peak:4900,cap:4,name:'Sedan (Dzire / Etios)'},
+  premium:{offpeak:5200,peak:5800,cap:6,name:'SUV Standard (Ertiga / Rumion)'},
+  luxury:{offpeak:5600,peak:8800,cap:12,name:'Tempo Traveller 12 Seater'}
+};
+const HOTEL_RATES = {
+  budget:{night:1480,meal:0},
+  premium:{night:2020,meal:0},
+  luxury:{night:3360,meal:0}
+};
+
+let selectedTier = 'budget';
+let pax = 4;
+
+function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN')}
+
+function setTier(btn){
+  document.querySelectorAll('.tier-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedTier = btn.dataset.tier;
+}
+
+function changePax(d){
+  pax = Math.max(1, Math.min(20, pax+d));
+  document.getElementById('paxNum').textContent = pax;
+}
+
+function populatePackages(){
+  const sel = document.getElementById('pkgSel');
+  PACKAGES.forEach(p=>{
+    const o = document.createElement('option');
+    o.value = p.id;
+    o.textContent = p.name.replace(/\u2014/g,'—');
+    sel.appendChild(o);
+  });
+}
+
+function getSeasonLabel(s){
+  if(!s||s==='all_year') return 'All Year';
+  return s.split(',').map(x=>x.charAt(0).toUpperCase()+x.slice(1)).join(', ');
+}
+
+function checkSeasonWarning(pkg, month){
+  const m = parseInt(month);
+  const s = pkg.best_season||'';
+  if(s==='all_year'||!s) return null;
+  const seasons = s.split(',');
+  const monthSeasons = {
+    1:'winter',2:'winter',3:'spring',4:'spring',
+    5:'summer',6:'summer',7:'monsoon',8:'monsoon',
+    9:'autumn',10:'autumn',11:'autumn',12:'winter'
+  };
+  const curSeason = monthSeasons[m];
+  if(!seasons.includes(curSeason) && !seasons.includes('all_year')){
+    return `Note: Best season is <strong>${getSeasonLabel(s)}</strong>. Your selected month may not be ideal for this package.`;
+  }
+  return null;
+}
+
+function calculate(){
+  const pkgId = document.getElementById('pkgSel').value;
+  const gateway = document.getElementById('gatewaySel').value;
+  const drop = document.getElementById('dropSel').value;
+  const month = parseInt(document.getElementById('monthSel').value);
+  const isPeak = PEAK_MONTHS.has(month);
+  
+  const pkg = PACKAGES.find(p=>p.id===pkgId);
+  if(!pkg) return;
+
+  const key = pkgId+'|'+gateway+'|'+drop;
+  const gd = GATEWAY_DATA[key];
+  
+  if(!gd){
+    document.getElementById('emptyState').style.display='none';
+    document.getElementById('resultContent').style.display='block';
+    document.getElementById('resultContent').innerHTML = '<div class="no-result">No pricing data available for this gateway/drop combination.</div>';
+    return;
+  }
+
+  const tier = selectedTier;
+  const rate = TRANSPORT_RATES[tier];
+  const peakMult = isPeak ? 1.15 : 1;
+
+  const totalDays = (pkg.days||3)+1;
+  const totalKm = gd.total_km||0;
+
+  // Vehicles needed based on pax and vehicle capacity
+  const vehicles = Math.ceil(pax/rate.cap);
+
+  // ── HOTEL ──
+  // Gateway data stores hotel total for a 4-pax base trip; normalise to per-person
+  const hotelBase4pax = (tier==='budget'?gd.hotel_budget:tier==='premium'?gd.hotel_premium:gd.hotel_luxury)||0;
+  const hotelPP = Math.round((hotelBase4pax / 4) * peakMult);
+  const hotelTotal = hotelPP * pax;
+
+  // ── TRANSPORT ──
+  // Gateway data stores transport cost for 1 vehicle (4-pax base); scale by number of vehicles & peak
+  const transportBase1vehicle = (tier==='budget'?gd.transport_budget:tier==='premium'?gd.transport_premium:gd.transport_luxury)||0;
+  const transportTotal = Math.round(transportBase1vehicle * vehicles * peakMult);
+  const transportPP = Math.round(transportTotal / pax);
+
+  // ── SINGLE OCCUPANCY SUPPLEMENT ──
+  // Solo traveller pays 40% extra on hotel (double-sharing rate × 1.4)
+  const soloSupplement = (pax === 1) ? Math.round(hotelPP * 0.4) : 0;
+
+  // ── FINAL COSTS (hotel + transport, both correctly scaled) ──
+  const pricePP = hotelPP + transportPP + soloSupplement;
+  const grandTotal = pricePP * pax;
+
+  // ── ALL TIERS for comparison cards (always shown at selected pax) ──
+  function tierPP(hotelKey, transportKey, t){
+    const h = Math.round(((gd[hotelKey]||0)/4) * peakMult);
+    const tRate = TRANSPORT_RATES[t];
+    const v = Math.ceil(pax/tRate.cap);
+    const tr = Math.round(((gd[transportKey]||0) * v * peakMult) / pax);
+    const solo = (pax===1) ? Math.round(h*0.4) : 0;
+    return h + tr + solo;
+  }
+  const budgetPP  = tierPP('hotel_budget',  'transport_budget',  'budget');
+  const premiumPP = tierPP('hotel_premium', 'transport_premium', 'premium');
+  const luxuryPP  = tierPP('hotel_luxury',  'transport_luxury',  'luxury');
+
+  const seasonWarn = checkSeasonWarning(pkg, month);
+  
+  const days = pkg.days||3;
+  const dayNotes = (pkg.day_notes||'').split('. Day ').filter(Boolean);
+  
+  const inclusions = (pkg.inclusions||'').split(',');
+  const exclusions = (pkg.exclusions||'').split(',');
+  
+  const highlights = (pkg.highlights||'').split(';').filter(Boolean);
+
+  let html = '';
+
+  // Package name & tags
+  html += `<div class="pkg-header animate-in">
+    <div class="pkg-name">${pkg.name}</div>
+    <div style="font-size:12px;color:var(--pine-light);margin:4px 0 8px;line-height:1.4">${pkg.route_path||''}</div>
+    <div class="pkg-tags">
+      <span class="tag tag-days">${totalDays}D/${days}N</span>
+      <span class="tag tag-season">${getSeasonLabel(pkg.best_season)}</span>
+      ${(pkg.ideal_for||'').split(',').map(t=>`<span class="tag tag-ideal">${t.trim()}</span>`).join('')}
+      ${pkg.snow_risk==='high'?'<span class="tag tag-snow">Snow risk: High</span>':''}
+      ${pkg.drive_level==='high'?'<span class="tag tag-drive" style="background:#fffbeb;color:#b45309">Drive: Challenging</span>':''}
+    </div>
+  </div>`;
+
+  // Route + km
+  html += `<div class="route-bar animate-in" style="animation-delay:0.05s">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    <span><strong>${gateway}</strong> → <strong>${drop}</strong> · ${totalDays} days incl. travel day</span>
+    <span class="km-badge">${totalKm} km total</span>
+  </div>`;
+
+  if(seasonWarn){
+    html += `<div class="season-warn animate-in" style="animation-delay:0.08s">${seasonWarn}</div>`;
+  }
+  if(isPeak){
+    html += `<div class="season-warn animate-in" style="animation-delay:0.09s">Peak season surcharge (15%) applied for ${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][month-1]}.</div>`;
+  }
+
+  // Cost cards — all 3 tiers
+  html += `<div class="cost-section animate-in" style="animation-delay:0.1s">
+    <h3>Price per person · ${pax} travellers · ${rate.name}</h3>
+    <div class="cost-grid">
+      <div class="cost-card budget ${tier==='budget'?'active':''}">
+        <div class="cost-tier">Budget</div>
+        <div class="cost-per-person">${fmt(budgetPP)}</div>
+        <div class="cost-total">Total: ${fmt(budgetPP*pax)}</div>
+        <div class="cost-vehicle">Sedan · max 4 pax</div>
+      </div>
+      <div class="cost-card premium ${tier==='premium'?'active':''}">
+        <div class="cost-tier">Premium</div>
+        <div class="cost-per-person">${fmt(premiumPP)}</div>
+        <div class="cost-total">Total: ${fmt(premiumPP*pax)}</div>
+        <div class="cost-vehicle">Ertiga/Rumion · max 6</div>
+      </div>
+      <div class="cost-card luxury ${tier==='luxury'?'active':''}">
+        <div class="cost-tier">Luxury</div>
+        <div class="cost-per-person">${fmt(luxuryPP)}</div>
+        <div class="cost-total">Total: ${fmt(luxuryPP*pax)}</div>
+        <div class="cost-vehicle">Tempo TL · max 12</div>
+      </div>
+    </div>
+
+    <div class="breakdown animate-in" style="animation-delay:0.13s">
+      <div class="breakdown-row"><span class="breakdown-label">Hotel (${days} nights · ${tier})</span><span class="breakdown-val">${fmt(hotelPP)} /pp</span></div>
+      <div class="breakdown-row"><span class="breakdown-label">Transport (${totalKm} km · ${vehicles} vehicle${vehicles>1?'s':''}${isPeak?' · peak':' · off-peak'})</span><span class="breakdown-val">${fmt(transportPP)} /pp</span></div>
+      ${soloSupplement>0?`<div class="breakdown-row"><span class="breakdown-label">Single occupancy supplement (+40%)</span><span class="breakdown-val">${fmt(soloSupplement)} /pp</span></div>`:''}
+      <div class="breakdown-row breakdown-total"><span class="breakdown-label">Selected tier total /pp</span><span class="breakdown-val">${fmt(pricePP)}</span></div>
+      <div class="breakdown-row breakdown-total"><span class="breakdown-label">Grand total (${pax} pax)</span><span class="breakdown-val" style="font-size:1.05rem;color:var(--pine)">${fmt(grandTotal)}</span></div>
+    </div>
+  </div>`;
+
+  html += '<div class="divider"></div>';
+
+  // Highlights
+  if(highlights.length>0){
+    html += `<div class="cost-section animate-in" style="animation-delay:0.16s">
+      <h3>Package highlights</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        ${highlights.map(h=>`<span style="background:var(--pine-pale);color:var(--pine);font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid rgba(45,92,71,0.2)">${h.trim()}</span>`).join('')}
+      </div>
+    </div>`;
+    html += '<div class="divider"></div>';
+  }
+
+  // Night plan
+  if(pkg.night_plan){
+    html += `<div class="cost-section animate-in" style="animation-delay:0.18s">
+      <h3>Night stops</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        ${pkg.night_plan.split(',').map(n=>`<span style="background:var(--gold-pale);color:var(--gold);font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid rgba(201,146,42,0.25)">${n.trim()}</span>`).join('')}
+      </div>
+    </div>`;
+    html += '<div class="divider"></div>';
+  }
+
+  // Day-by-day itinerary
+  if(pkg.day_notes){
+    const rawDays = pkg.day_notes.split(/Day \d+:/i).filter(Boolean);
+    html += `<div class="itinerary animate-in" style="animation-delay:0.2s;padding-top:1rem">
+      <div class="itin-head">Day-by-day itinerary</div>`;
+    rawDays.forEach((d,i)=>{
+      html += `<div class="day-item">
+        <div class="day-num">${i+1}</div>
+        <div class="day-text">${d.trim()}</div>
+      </div>`;
+    });
+    html += '</div>';
+    html += '<div class="divider"></div>';
+  }
+
+  // Inclusions / Exclusions
+  html += `<div class="inc-exc animate-in" style="animation-delay:0.22s;padding-top:1rem">
+    <div class="inc-block">
+      <h4>✓ Inclusions</h4>
+      <ul>${inclusions.map(i=>`<li>${i.trim()}</li>`).join('')}</ul>
+    </div>
+    <div class="exc-block">
+      <h4>✗ Exclusions</h4>
+      <ul>${exclusions.map(e=>`<li>${e.trim()}</li>`).join('')}</ul>
+    </div>
+  </div>`;
+
+  // Important notes
+  if(pkg.day_notes||pkg.snow_risk){
+    html += `<div style="padding:0 1.25rem 1.25rem" class="animate-in" style="animation-delay:0.25s">
+      <div class="sticky-note">
+        <strong>Important:</strong> Prices are per person on double sharing basis. Single occupancy (1 traveller) adds 40% automatically. Children (5–12 yrs) at 50% discount. Cancellation: 15+ days = 90% refund; 7–14 days = 60%; 3–6 days = 30%; &lt;72 hrs = no refund.
+      </div>
+    </div>`;
+  }
+
+  document.getElementById('emptyState').style.display='none';
+  document.getElementById('resultContent').style.display='block';
+  document.getElementById('resultContent').innerHTML = html;
+}
+
+populatePackages();
+
+// ─── AUTO-SELECT FROM URL PARAMS ─────────────────────────────────────────────
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const pkgParam = params.get('pkg');
+  const paxParam = params.get('pax');
+  const tierParam = params.get('tier');
+
+  if(pkgParam){
+    const sel = document.getElementById('pkgSel');
+    if([...sel.options].some(o=>o.value===pkgParam)){
+      sel.value = pkgParam;
+    }
+  }
+  if(paxParam){
+    const n = parseInt(paxParam);
+    if(n>=1 && n<=20){
+      pax = n;
+      document.getElementById('paxNum').textContent = pax;
+    }
+  }
+  if(tierParam && ['budget','premium','luxury'].includes(tierParam)){
+    document.querySelectorAll('.tier-btn').forEach(b=>{
+      b.classList.toggle('active', b.dataset.tier===tierParam);
+    });
+    selectedTier = tierParam;
+  }
+  // Auto-calculate if package was specified
+  if(pkgParam){ calculate(); }
+})();
+</script>
+</body>
+</html>

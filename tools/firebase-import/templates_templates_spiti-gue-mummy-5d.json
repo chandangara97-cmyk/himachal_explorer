@@ -1,0 +1,24 @@
+{
+  "package_id": "spiti-gue-mummy-5d",
+  "package_name": "Spiti Mysteries (5D) — Gue Mummy & Kunzum Pass",
+  "days": 5,
+  "hotel_star": "3 Star",
+  "best_season": "summer",
+  "start_point": "LAHAUL-SPITI",
+  "end_point": "LAHAUL-SPITI",
+  "total_km_est": 280,
+  "tags": [
+    "expedition",
+    "heritage",
+    "photography"
+  ],
+  "highlight": "Gue Mummy & Kunzum Pass",
+  "budget_price_pp": 11250,
+  "itinerary": {
+    "day_1": "Kaza Local (Drive: Local). Places: Kaza, Key Monastery. Activities: Key Monastery (4,166m); Kaza market; Kibber village evening.",
+    "day_2": "Gue Mummy Village (Drive: 60 km). Places: Gue Mummy Village, Tabo Monastery. Activities: Gue — 500-year-old mummified monk; Spiti desert drive; Tabo monastery murals.",
+    "day_3": "Nako & Kinnaur Entry (Drive: 100 km). Places: Nako Village. Activities: Nako Lake monastery; Hanging valley views; Reckong Peo night.",
+    "day_4": "Return → Chandratal (Drive: 150 km). Places: Kunzum Pass, Chandratal Lake. Activities: Kunzum Pass (4,590m); Chandratal Moon Lake; High-altitude camping.",
+    "day_5": "Depart (Drive: Local). Places: Kaza. Activities: Sunrise over Chandratal; Return to Kaza; Depart Lahaul-Spiti."
+  }
+}

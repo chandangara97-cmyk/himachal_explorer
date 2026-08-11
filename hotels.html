@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W6LR93V8');</script>
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Partner Hotels | Himachal Explorer</title>
+<meta name="description" content="Curated partner hotels across Himachal Pradesh — Budget, Premium & Luxury stays with seasonal pricing."/>
+<meta name="robots" content="index,follow"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── TOKENS ─────────────────────────────────────────────────── */
+:root{
+  --bg:#f8f5ef;--surface:#fff;--border:#e8e3d6;--ink:#1c1409;--body:#5a4a36;--muted:#9a8e7e;
+  --gold:#b07d3a;--gold2:#d4a574;--glow:rgba(176,125,58,.25);
+  --bud:#4e8c49;--bud2:#7ab874;--bud-bg:#f2f8f1;--bud-border:#c6e0c4;
+  --pre:#b07d3a;--pre2:#d4a574;--pre-bg:#fdf8f0;--pre-border:#e5c99a;
+  --lux:#7c3aed;--lux2:#a78bfa;--lux-bg:#f5f0ff;--lux-border:#c4b0f5;
+  --danger:#e0654f;--success:#4caf7d;
+  --ease:cubic-bezier(.4,0,.2,1);
+  --px:clamp(16px,4vw,40px);
+  --wrap:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Cormorant',serif}
+a{text-decoration:none;color:var(--gold)}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--px)}
+
+/* ── NAV ─────────────────────────────────────────────────────── */
+nav{position:sticky;top:0;z-index:200;background:rgba(248,245,239,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);height:54px;display:flex;align-items:center;padding:0 var(--px);gap:20px;justify-content:space-between}
+.nav-logo{font-family:'Cormorant',serif;font-size:18px;font-weight:400;color:var(--ink);display:flex;align-items:center;gap:8px}
+.nav-logo svg{color:var(--gold)}
+.nav-links{display:flex;gap:6px;list-style:none}
+.nav-links a{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--body);padding:6px 14px;border-radius:30px;transition:all .2s}
+.nav-links a:hover{color:var(--gold);background:rgba(176,125,58,.08)}
+.nav-wa{display:flex;align-items:center;gap:6px;padding:7px 16px;background:#25d366;color:#fff;border-radius:30px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;transition:background .2s}
+.nav-wa:hover{background:#1da851}
+@media(max-width:768px){.nav-links{display:none}}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{position:relative;min-height:420px;display:flex;align-items:flex-end;padding:60px var(--px) 48px;overflow:hidden;background:#0c0804}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.45;display:block}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(12,8,4,.95) 0%,rgba(12,8,4,.6) 50%,rgba(28,20,9,.4) 100%)}
+.hero-content{position:relative;z-index:2;max-width:620px}
+.hero-eyebrow{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.hero-eyebrow::before{content:'';width:24px;height:1.5px;background:var(--gold2)}
+.hero h1{font-family:'Cormorant',serif;font-size:clamp(40px,6vw,72px);font-weight:300;color:#fff;line-height:1.05;margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--gold2)}
+.hero-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,.72);max-width:440px;line-height:1.7;margin-bottom:28px}
+.hero-tier-pills{display:flex;gap:10px;flex-wrap:wrap}
+.hero-pill{display:flex;align-items:center;gap:7px;padding:9px 18px;border-radius:30px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:none;transition:all .25s var(--ease)}
+.hero-pill-bud{background:var(--bud);color:#fff;box-shadow:0 4px 16px rgba(78,140,73,.4)}
+.hero-pill-bud:hover{background:#3d6e39;transform:translateY(-2px)}
+.hero-pill-pre{background:var(--pre);color:#fff;box-shadow:0 4px 16px rgba(176,125,58,.4)}
+.hero-pill-pre:hover{background:#8f6228;transform:translateY(-2px)}
+.hero-pill-lux{background:var(--lux);color:#fff;box-shadow:0 4px 16px rgba(124,58,237,.4)}
+.hero-pill-lux:hover{background:#6d28d9;transform:translateY(-2px)}
+
+/* ── SEARCH BAR ───────────────────────────────────────────────── */
+.search-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:16px var(--px);display:flex;gap:12px;align-items:center;position:sticky;top:54px;z-index:190;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.search-wrap{position:relative;flex:1;max-width:360px}
+.search-wrap svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--muted);pointer-events:none}
+#filterSearch{width:100%;padding:10px 12px 10px 38px;border:1.5px solid var(--border);border-radius:30px;font-family:'Jost',sans-serif;font-size:13px;color:var(--ink);background:var(--bg);transition:border-color .2s}
+#filterSearch:focus{outline:none;border-color:var(--gold);background:#fff}
+#filterCity{padding:10px 14px;border:1.5px solid var(--border);border-radius:30px;font-family:'Jost',sans-serif;font-size:12px;color:var(--ink);background:var(--bg);cursor:pointer;min-width:140px}
+#filterCity:focus{outline:none;border-color:var(--gold)}
+.search-count{font-size:11px;color:var(--muted);margin-left:auto;white-space:nowrap}
+.search-count strong{color:var(--ink)}
+
+/* ── TIER SECTION WRAPPER ─────────────────────────────────────── */
+.tier-section{padding:56px 0 64px}
+.tier-section + .tier-section{border-top:1px solid var(--border)}
+
+/* Budget section */
+.tier-section-budget{background:var(--bud-bg)}
+/* Premium section */
+.tier-section-premium{background:var(--pre-bg)}
+/* Luxury section */
+.tier-section-luxury{background:var(--lux-bg)}
+
+/* ── TIER SECTION HEADER ──────────────────────────────────────── */
+.tier-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;gap:16px;flex-wrap:wrap}
+.tier-head-left{}
+.tier-eyebrow{display:flex;align-items:center;gap:10px;font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;margin-bottom:8px}
+.tier-eyebrow-bud{color:var(--bud)}
+.tier-eyebrow-pre{color:var(--pre)}
+.tier-eyebrow-lux{color:var(--lux)}
+.tier-eyebrow::before{content:'';width:20px;height:1.5px}
+.tier-eyebrow-bud::before{background:var(--bud)}
+.tier-eyebrow-pre::before{background:var(--pre)}
+.tier-eyebrow-lux::before{background:var(--lux)}
+.tier-title{font-family:'Cormorant',serif;font-size:clamp(28px,4vw,44px);font-weight:300;line-height:1.1;color:var(--ink)}
+.tier-title em{font-style:italic}
+.tier-title-bud em{color:var(--bud)}
+.tier-title-pre em{color:var(--pre)}
+.tier-title-lux em{color:var(--lux)}
+.tier-desc{font-size:13px;font-weight:300;color:var(--body);margin-top:8px;max-width:480px;line-height:1.65}
+.tier-count-badge{flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;width:72px;height:72px;border-radius:50%;border:2px solid}
+.tier-count-badge-bud{border-color:var(--bud-border);background:rgba(78,140,73,.08)}
+.tier-count-badge-pre{border-color:var(--pre-border);background:rgba(176,125,58,.08)}
+.tier-count-badge-lux{border-color:var(--lux-border);background:rgba(124,58,237,.08)}
+.tier-count-num{font-family:'Cormorant',serif;font-size:28px;font-weight:400;line-height:1}
+.tier-count-num-bud{color:var(--bud)}
+.tier-count-num-pre{color:var(--pre)}
+.tier-count-num-lux{color:var(--lux)}
+.tier-count-lbl{font-size:8px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* ── HOTEL CARDS ──────────────────────────────────────────────── */
+.hotels-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:20px}
+
+.hcard{background:var(--surface);border-radius:14px;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);display:flex;flex-direction:column;border:1.5px solid var(--border)}
+.hcard:hover{transform:translateY(-6px)}
+.hcard-budget:hover{box-shadow:0 16px 40px rgba(78,140,73,.18),0 0 0 1.5px var(--bud-border)}
+.hcard-premium:hover{box-shadow:0 16px 40px rgba(176,125,58,.18),0 0 0 1.5px var(--pre-border)}
+.hcard-luxury:hover{box-shadow:0 16px 40px rgba(124,58,237,.18),0 0 0 1.5px var(--lux-border)}
+
+/* Image */
+.hcard-img{position:relative;height:200px;overflow:hidden;background:#e0dbd0}
+.hcard-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+.hcard:hover .hcard-img img{transform:scale(1.07)}
+.hcard-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,14,4,.7) 0%,rgba(20,14,4,.1) 50%,transparent 100%)}
+.hcard-city-tag{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);color:#fff;font-size:9.5px;font-weight:600;padding:4px 10px;border-radius:20px;letter-spacing:.06em}
+.hcard-name-overlay{position:absolute;bottom:12px;left:14px;right:14px}
+.hcard-hotel-name{font-family:'Cormorant',serif;font-size:20px;font-weight:400;color:#fff;line-height:1.2;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.hcard-loc{font-size:10.5px;color:rgba(255,255,255,.75);margin-top:3px;display:flex;align-items:center;gap:4px}
+
+/* Body */
+.hcard-body{padding:16px 18px;flex:1;display:flex;flex-direction:column;gap:14px}
+
+/* Price strip */
+.hcard-prices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hcard-price-box{border-radius:8px;padding:10px 8px;text-align:center}
+.hcard-price-box-std{background:rgba(78,140,73,.08);border:1px solid rgba(78,140,73,.2)}
+.hcard-price-box-peak{background:rgba(224,101,79,.07);border:1px solid rgba(224,101,79,.2)}
+.hcard-price-box-promo{background:rgba(76,175,125,.08);border:1px solid rgba(76,175,125,.2)}
+.hcard-price-lbl{font-size:8.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.hcard-price-amt{font-family:'Cormorant',serif;font-size:20px;font-weight:400;line-height:1;color:var(--ink)}
+.hcard-price-sub{font-size:8px;color:var(--muted);margin-top:3px;line-height:1.3}
+
+/* Meta row */
+.hcard-meta{display:flex;gap:12px;align-items:center;font-size:11.5px;color:var(--body)}
+.hcard-meta-item{display:flex;align-items:center;gap:5px}
+.hcard-meta svg{width:13px;height:13px;flex-shrink:0;color:var(--muted)}
+
+/* Promo note */
+.hcard-promo{background:rgba(176,125,58,.07);border:1px solid rgba(176,125,58,.18);border-radius:8px;padding:10px 12px;font-size:11.5px;color:var(--body);font-style:italic;line-height:1.5;display:flex;gap:7px}
+
+/* Actions */
+.hcard-actions{padding:14px 18px;border-top:1px solid var(--border);display:flex;gap:8px;margin-top:auto}
+.hcard-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 12px;border-radius:8px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.hcard-btn-wa{background:#25d366;color:#fff}
+.hcard-btn-wa:hover{background:#1da851;text-decoration:none}
+.hcard-btn-map-budget{background:var(--bud-bg);border:1.5px solid var(--bud-border);color:var(--bud)}
+.hcard-btn-map-budget:hover{background:var(--bud);color:#fff;text-decoration:none}
+.hcard-btn-map-premium{background:var(--pre-bg);border:1.5px solid var(--pre-border);color:var(--pre)}
+.hcard-btn-map-premium:hover{background:var(--pre);color:#fff;text-decoration:none}
+.hcard-btn-map-luxury{background:var(--lux-bg);border:1.5px solid var(--lux-border);color:var(--lux)}
+.hcard-btn-map-luxury:hover{background:var(--lux);color:#fff;text-decoration:none}
+
+/* ── ACCENT STRIPE on cards by tier ──────────────────────────── */
+.hcard-budget{border-top:3px solid var(--bud)}
+.hcard-premium{border-top:3px solid var(--pre)}
+.hcard-luxury{border-top:3px solid var(--lux)}
+
+/* ── EMPTY SECTION ────────────────────────────────────────────── */
+.tier-empty{text-align:center;padding:48px 20px;color:var(--muted);grid-column:1/-1}
+.tier-empty h4{font-size:20px;color:var(--body);margin-bottom:8px}
+.tier-empty p{font-size:13px}
+
+/* ── LOADING ──────────────────────────────────────────────────── */
+.page-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;gap:16px;color:var(--muted)}
+.spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── FOOTER ───────────────────────────────────────────────────── */
+footer{background:var(--ink);padding:32px var(--px);text-align:center}
+.foot-brand{font-family:'Cormorant',serif;font-size:20px;font-weight:300;color:#e8d9c0;margin-bottom:8px}
+.foot-brand em{font-style:italic;color:var(--gold2)}
+.foot-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.foot-links a{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#7a6248;transition:color .2s}
+.foot-links a:hover{color:var(--gold2)}
+.foot-copy{font-size:10px;color:#4a3820;margin-top:14px}
+
+/* ── FLOATING WA ──────────────────────────────────────────────── */
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:999;width:52px;height:52px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .22s;text-decoration:none}
+.wa-float:hover{transform:scale(1.1)}
+.wa-float svg{width:26px;height:26px;color:#fff}
+
+/* ── RESPONSIVE ───────────────────────────────────────────────── */
+@media(max-width:640px){
+  .hotels-grid{grid-template-columns:1fr}
+  .tier-head{flex-direction:column;align-items:flex-start;gap:10px}
+  .tier-count-badge{display:none}
+  .hcard-prices{grid-template-columns:repeat(2,1fr)}
+  .search-bar{flex-wrap:wrap}
+  #filterCity{width:100%}
+}
+@media(max-width:480px){
+  .hero h1{font-size:34px}
+  .hero-tier-pills{flex-direction:column;gap:8px}
+  .hero-pill{justify-content:center}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+</style>
+<link rel="stylesheet" href="assets/css/site-chrome.css">
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<!-- NAV -->
+<div id="site-header"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1626621331169-5f312e16f4e4?q=75&w=1600&auto=format&fit=crop" alt="Himachal Pradesh mountains"/>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Partner Hotels · Himachal Pradesh</div>
+    <h1>Find Your Perfect<br/><em>Mountain Stay</em></h1>
+    <p class="hero-sub">Curated hotels across Himachal Pradesh in three tiers — honest pricing, real photos, direct WhatsApp booking.</p>
+    <div class="hero-tier-pills">
+      <button class="hero-pill hero-pill-bud" onclick="scrollToTier('budget')">💰 Budget Stays</button>
+      <button class="hero-pill hero-pill-pre" onclick="scrollToTier('premium')">⭐ Premium Hotels</button>
+      <button class="hero-pill hero-pill-lux" onclick="scrollToTier('luxury')">👑 Luxury Resorts</button>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH BAR -->
+<div class="search-bar">
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input id="filterSearch" type="text" placeholder="Search hotel name…" autocomplete="off"/>
+  </div>
+  <select id="filterCity"><option value="">All Cities</option></select>
+  <div class="search-count">Showing <strong id="totalCount">0</strong> hotels</div>
+</div>
+
+<!-- TIER SECTIONS -->
+<section class="tier-section tier-section-budget" id="section-budget">
+  <div class="wrap">
+    <div class="tier-head reveal">
+      <div class="tier-head-left">
+        <div class="tier-eyebrow tier-eyebrow-bud">💰 Budget Tier</div>
+        <h2 class="tier-title tier-title-bud">Comfortable Stays,<br/><em>Honest Prices</em></h2>
+        <p class="tier-desc">Clean rooms, good food, mountain views — everything you need without overpaying. Great for solo travellers, groups, and long stays.</p>
+      </div>
+      <div class="tier-count-badge tier-count-badge-bud">
+        <span class="tier-count-num tier-count-num-bud" id="count-budget">–</span>
+        <span class="tier-count-lbl">Hotels</span>
+      </div>
+    </div>
+    <div class="hotels-grid" id="grid-budget">
+      <div class="page-loading" style="grid-column:1/-1"><div class="spinner"></div><span>Loading hotels…</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tier-section tier-section-premium" id="section-premium">
+  <div class="wrap">
+    <div class="tier-head reveal">
+      <div class="tier-head-left">
+        <div class="tier-eyebrow tier-eyebrow-pre">⭐ Premium Tier</div>
+        <h2 class="tier-title tier-title-pre">Elevated Comfort,<br/><em>Memorable Stays</em></h2>
+        <p class="tier-desc">Superior rooms, better amenities, curated experiences. Ideal for couples, families and travellers who want that extra comfort in the hills.</p>
+      </div>
+      <div class="tier-count-badge tier-count-badge-pre">
+        <span class="tier-count-num tier-count-num-pre" id="count-premium">–</span>
+        <span class="tier-count-lbl">Hotels</span>
+      </div>
+    </div>
+    <div class="hotels-grid" id="grid-premium">
+      <div class="page-loading" style="grid-column:1/-1"><div class="spinner"></div><span>Loading hotels…</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tier-section tier-section-luxury" id="section-luxury">
+  <div class="wrap">
+    <div class="tier-head reveal">
+      <div class="tier-head-left">
+        <div class="tier-eyebrow tier-eyebrow-lux">👑 Luxury Tier</div>
+        <h2 class="tier-title tier-title-lux">Uncompromising<br/><em>Himalayan Luxury</em></h2>
+        <p class="tier-desc">Heritage properties, private suites, spa treatments and panoramic Himalayan views. For those who want the mountains at their finest.</p>
+      </div>
+      <div class="tier-count-badge tier-count-badge-lux">
+        <span class="tier-count-num tier-count-num-lux" id="count-luxury">–</span>
+        <span class="tier-count-lbl">Hotels</span>
+      </div>
+    </div>
+    <div class="hotels-grid" id="grid-luxury">
+      <div class="page-loading" style="grid-column:1/-1"><div class="spinner"></div><span>Loading hotels…</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-brand">Himachal <em>Explorer</em></div>
+  <p style="font-size:12px;color:#7a6248;font-weight:300;margin-top:6px">Partner Hotels Network · Book Direct via WhatsApp</p>
+  <div class="foot-links">
+    <a href="index.html">🏠 Home</a>
+    <a href="packages.html">📦 Packages</a>
+    <a href="explore.html">🗺 Explore</a>
+    <a href="yui.html">🧭 Route Builder</a>
+    <a href="bike-rental.html">🏍 Bike Rental</a>
+    <a href="https://wa.me/917018138847" target="_blank" rel="noopener">💬 WhatsApp</a>
+  </div>
+  <p class="foot-copy">© 2025–26 Himachal Explorer · Shimla, Himachal Pradesh</p>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/917018138847" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+/* ── IMAGE MAP ───────────────────────────────────────────────── */
+const HOTEL_IMGS = {
+  shimla:{budget:"https://images.unsplash.com/photo-1626016570174-9e76489d8e07?q=75&w=700&auto=format&fit=crop",premium:"https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=75&w=700&auto=format&fit=crop",luxury:"https://images.unsplash.com/photo-1566073771259-6a8506099945?q=75&w=700&auto=format&fit=crop",default:"https://images.unsplash.com/photo-1626016570174-9e76489d8e07?q=75&w=700&auto=format&fit=crop"},
+  manali:{budget:"https://images.unsplash.com/photo-1626621331169-5f312e16f4e4?q=75&w=700&auto=format&fit=crop",premium:"https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=75&w=700&auto=format&fit=crop",luxury:"https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=75&w=700&auto=format&fit=crop",default:"https://images.unsplash.com/photo-1626621331169-5f312e16f4e4?q=75&w=700&auto=format&fit=crop"},
+  dharamshala:{budget:"https://images.unsplash.com/photo-1626197031210-1e89dc8bd962?q=75&w=700&auto=format&fit=crop",premium:"https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=75&w=700&auto=format&fit=crop",luxury:"https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=75&w=700&auto=format&fit=crop",default:"https://images.unsplash.com/photo-1626197031210-1e89dc8bd962?q=75&w=700&auto=format&fit=crop"},
+  kasol:{budget:"https://images.unsplash.com/photo-1606694822879-1e61e36c4d7e?q=75&w=700&auto=format&fit=crop",premium:"https://images.unsplash.com/photo-1540390769625-2fc3f8b1d50c?q=75&w=700&auto=format&fit=crop",luxury:"https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=75&w=700&auto=format&fit=crop",default:"https://images.unsplash.com/photo-1606694822879-1e61e36c4d7e?q=75&w=700&auto=format&fit=crop"},
+  spiti:{budget:"https://images.unsplash.com/photo-1606599810694-07379b72b91a?q=75&w=700&auto=format&fit=crop",premium:"https://images.unsplash.com/photo-1573843981267-be1999ff37cd?q=75&w=700&auto=format&fit=crop",luxury:"https://images.unsplash.com/photo-1566073771259-6a8506099945?q=75&w=700&auto=format&fit=crop",default:"https://images.unsplash.com/photo-1606599810694-07379b72b91a?q=75&w=700&auto=format&fit=crop"},
+  kinnaur:{budget:"https://images.unsplash.com/photo-1585543947540-351b8f518bd7?q=75&w=700&auto=format&fit=crop",premium:"https://images.unsplash.com/photo-1499856871958-5b9357976b82?q=75&w=700&auto=format&fit=crop",luxury:"https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=75&w=700&auto=format&fit=crop",default:"https://images.unsplash.com/photo-1585543947540-351b8f518bd7?q=75&w=700&auto=format&fit=crop"},
+  dalhousie:{budget:"https://images.unsplash.com/photo-1501854140801-50d01698950b?q=75&w=700&auto=format&fit=crop",premium:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=75&w=700&auto=format&fit=crop",luxury:"https://images.unsplash.com/photo-1566073771259-6a8506099945?q=75&w=700&auto=format&fit=crop",default:"https://images.unsplash.com/photo-1501854140801-50d01698950b?q=75&w=700&auto=format&fit=crop"},
+  jibhi:{budget:"https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=75&w=700&auto=format&fit=crop",premium:"https://images.unsplash.com/photo-1540390769625-2fc3f8b1d50c?q=75&w=700&auto=format&fit=crop",luxury:"https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=75&w=700&auto=format&fit=crop",default:"https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=75&w=700&auto=format&fit=crop"},
+  kullu:{budget:"https://images.unsplash.com/photo-1626621331169-5f312e16f4e4?q=75&w=700&auto=format&fit=crop",premium:"https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=75&w=700&auto=format&fit=crop",luxury:"https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=75&w=700&auto=format&fit=crop",default:"https://images.unsplash.com/photo-1626621331169-5f312e16f4e4?q=75&w=700&auto=format&fit=crop"},
+  kangra:{budget:"https://images.unsplash.com/photo-1626197031210-1e89dc8bd962?q=75&w=700&auto=format&fit=crop",premium:"https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=75&w=700&auto=format&fit=crop",luxury:"https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=75&w=700&auto=format&fit=crop",default:"https://images.unsplash.com/photo-1626197031210-1e89dc8bd962?q=75&w=700&auto=format&fit=crop"},
+  mandi:{default:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=75&w=700&auto=format&fit=crop"},
+  chamba:{default:"https://images.unsplash.com/photo-1501854140801-50d01698950b?q=75&w=700&auto=format&fit=crop"},
+  solan:{default:"https://images.unsplash.com/photo-1469022563149-aa64dbd37dae?q=75&w=700&auto=format&fit=crop"},
+  rampur:{default:"https://images.unsplash.com/photo-1585543947540-351b8f518bd7?q=75&w=700&auto=format&fit=crop"},
+  sirmour:{default:"https://images.unsplash.com/photo-1501854140801-50d01698950b?q=75&w=700&auto=format&fit=crop"},
+  bilaspur:{default:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=75&w=700&auto=format&fit=crop"},
+  hamirpur:{default:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=75&w=700&auto=format&fit=crop"},
+  una:{default:"https://images.unsplash.com/photo-1469022563149-aa64dbd37dae?q=75&w=700&auto=format&fit=crop"}
+};
+const FALLBACK_IMG = "https://images.unsplash.com/photo-1626621331169-5f312e16f4e4?q=75&w=700&auto=format&fit=crop";
+
+function getHotelImg(city, h) {
+  if (h.photo && !h.photo.startsWith("assets/")) return h.photo;
+  const m = HOTEL_IMGS[city] || {};
+  return m[h.tier] || m.default || FALLBACK_IMG;
+}
+
+/* ── DATA ────────────────────────────────────────────────────── */
+const DB = "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app";
+const CITY_LABELS = {
+  shimla:"Shimla",manali:"Manali",dharamshala:"Dharamshala",kasol:"Kasol",
+  kinnaur:"Kinnaur",spiti:"Spiti Valley",dalhousie:"Dalhousie",jibhi:"Jibhi",
+  kullu:"Kullu",kangra:"Kangra",mandi:"Mandi",chamba:"Chamba",solan:"Solan",
+  rampur:"Rampur",sirmour:"Sirmaur",bilaspur:"Bilaspur",hamirpur:"Hamirpur",una:"Una"
+};
+
+let allHotels = {};
+let filterSearch = "";
+let filterCity = "";
+
+/* ── LOAD ────────────────────────────────────────────────────── */
+function loadHotels() {
+  fetch(DB + "/hotels.json")
+    .then(r => r.json())
+    .then(data => {
+      allHotels = data || {};
+      populateCityFilter();
+      renderAll();
+    })
+    .catch(() => {
+      ["budget","premium","luxury"].forEach(t => {
+        document.getElementById("grid-" + t).innerHTML =
+          '<div class="tier-empty"><h4>⚠️ Connection Error</h4><p>Couldn\'t load hotels. Check your internet and refresh.</p></div>';
+      });
+    });
+}
+
+function populateCityFilter() {
+  const sel = document.getElementById("filterCity");
+  const cities = [...new Set(
+    Object.keys(allHotels).concat(Object.keys(CITY_LABELS))
+  )].sort();
+  cities.forEach(c => {
+    if (!allHotels[c] || Object.keys(allHotels[c]).length === 0) return;
+    const o = document.createElement("option");
+    o.value = c; o.textContent = CITY_LABELS[c] || c;
+    sel.appendChild(o);
+  });
+}
+
+/* ── RENDER ──────────────────────────────────────────────────── */
+function renderAll() {
+  const tiers = ["budget","premium","luxury"];
+  const counts = {budget:0,premium:0,luxury:0};
+  const html = {budget:[],premium:[],luxury:[]};
+
+  Object.entries(allHotels).forEach(([city, hotels]) => {
+    if (filterCity && city !== filterCity) return;
+    Object.entries(hotels || {}).forEach(([, h]) => {
+      if (!h.name || !h.tier) return;
+      if (!counts.hasOwnProperty(h.tier)) return;
+      if (filterSearch && !h.name.toLowerCase().includes(filterSearch)) return;
+      html[h.tier].push(hotelCardHTML(city, h));
+      counts[h.tier]++;
+    });
+  });
+
+  let total = 0;
+  tiers.forEach(t => {
+    document.getElementById("count-" + t).textContent = counts[t];
+    document.getElementById("grid-" + t).innerHTML = html[t].length
+      ? html[t].join("")
+      : `<div class="tier-empty"><h4>No ${t} hotels found</h4><p>Try changing your city or search term.</p></div>`;
+    // show/hide the whole section based on active tier filter
+    total += counts[t];
+  });
+  document.getElementById("totalCount").textContent = total;
+}
+
+/* ── CARD ────────────────────────────────────────────────────── */
+function hotelCardHTML(city, h) {
+  const img = getHotelImg(city, h);
+  const cityLabel = CITY_LABELS[city] || city;
+  const t = h.tier;
+  const mapBtnClass = `hcard-btn hcard-btn-map-${t}`;
+
+  const waBtn = h.contact
+    ? `<a href="https://wa.me/91${h.contact}?text=${encodeURIComponent(`Hi, I'm interested in ${h.name} in ${cityLabel}. I found it on himachalexplorer.in.`)}" target="_blank" rel="noopener" class="hcard-btn hcard-btn-wa">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        WhatsApp
+      </a>`
+    : `<a href="https://wa.me/917018138847?text=${encodeURIComponent(`Hi, I'm looking for a ${t} hotel in ${cityLabel}. I found this via himachalexplorer.in.`)}" target="_blank" rel="noopener" class="hcard-btn hcard-btn-wa">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Enquire
+      </a>`;
+
+  const mapBtn = (h.lat && h.lng)
+    ? `<a href="https://www.google.com/maps?q=${h.lat},${h.lng}" target="_blank" rel="noopener" class="${mapBtnClass}">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Map
+      </a>`
+    : "";
+
+  const priceBoxes = [
+    h.rate     ? `<div class="hcard-price-box hcard-price-box-std"><div class="hcard-price-lbl">Standard</div><div class="hcard-price-amt">₹${h.rate}</div><div class="hcard-price-sub">Jul–Aug · Dec–Mar</div></div>` : "",
+    h.ratePeak ? `<div class="hcard-price-box hcard-price-box-peak"><div class="hcard-price-lbl">Peak</div><div class="hcard-price-amt">₹${h.ratePeak}</div><div class="hcard-price-sub">Apr–Jun · Sep–Oct</div></div>` : "",
+    h.rateOff  ? `<div class="hcard-price-box hcard-price-box-promo"><div class="hcard-price-lbl">Promo</div><div class="hcard-price-amt">₹${h.rateOff}</div><div class="hcard-price-sub">Bulk / Loyalty</div></div>` : ""
+  ].filter(Boolean).join("");
+
+  const metaItems = [
+    h.rooms   ? `<span class="hcard-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M22 4v16M2 12h20M6 12v4M10 12v4M14 12v4M18 12v4"/></svg>${h.rooms} rooms</span>` : "",
+    h.contact ? `<span class="hcard-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.5 12.36a19.79 19.79 0 01-3.07-8.67A2 2 0 013.41 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 9.91a16 16 0 006.09 6.09l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>${h.contact}</span>` : ""
+  ].filter(Boolean).join("");
+
+  return `
+  <div class="hcard hcard-${t}">
+    <div class="hcard-img">
+      <img src="${esc(img)}" alt="${esc(h.name)}" loading="lazy" onerror="this.src='${FALLBACK_IMG}'"/>
+      <div class="hcard-img-overlay"></div>
+      <span class="hcard-city-tag">📍 ${esc(cityLabel)}</span>
+      <div class="hcard-name-overlay">
+        <div class="hcard-hotel-name">${esc(h.name)}</div>
+        ${h.location ? `<div class="hcard-loc">🏠 ${esc(h.location)}</div>` : ""}
+      </div>
+    </div>
+    <div class="hcard-body">
+      ${priceBoxes ? `<div class="hcard-prices">${priceBoxes}</div>` : ""}
+      ${metaItems  ? `<div class="hcard-meta">${metaItems}</div>` : ""}
+      ${h.discountNote ? `<div class="hcard-promo">💡 ${esc(h.discountNote)}</div>` : ""}
+    </div>
+    <div class="hcard-actions">
+      ${waBtn}
+      ${mapBtn}
+    </div>
+  </div>`;
+}
+
+function esc(s) {
+  return String(s||"").replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ── FILTERS ─────────────────────────────────────────────────── */
+document.getElementById("filterSearch").addEventListener("input", e => {
+  filterSearch = e.target.value.toLowerCase().trim();
+  renderAll();
+});
+document.getElementById("filterCity").addEventListener("change", e => {
+  filterCity = e.target.value;
+  renderAll();
+});
+
+/* ── SCROLL TO TIER ──────────────────────────────────────────── */
+function scrollToTier(t) {
+  const el = document.getElementById("section-" + t);
+  if (el) el.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+/* ── REVEAL ON SCROLL ────────────────────────────────────────── */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); ro.unobserve(e.target); } });
+}, {threshold:.12});
+document.querySelectorAll(".reveal").forEach(el => ro.observe(el));
+
+loadHotels();
+</script>
+<script src="assets/js/site-chrome.js" defer></script>
+</body>
+</html>

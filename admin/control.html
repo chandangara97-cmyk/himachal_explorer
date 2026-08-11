@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <!--
+      SECURITY WARNING (not fixable from the frontend alone):
+      This prompt() password check is cosmetic only — the password and the
+      Firebase config below are both plainly visible to anyone who views
+      page source, so this does NOT protect your database.
+      To actually secure this panel:
+        1. In the Firebase console, add Firebase Authentication and lock
+           Realtime Database read/write rules to authenticated admin UIDs only.
+        2. Remove the hardcoded password from this file entirely.
+        3. Rotate the exposed Firebase API key/config if this repo is or
+           has ever been public.
+      This file is already blocked in robots.txt, but that only stops search
+      engines from indexing it — it does not stop someone with the URL.
+    -->
+    <script>
+    (function(){
+      var k = sessionStorage.getItem('he_admin');
+      if(k !== 'HE@admin2026') {
+        var p = prompt('Admin password required:');
+        if(p !== 'HE@admin2026') { document.write('<h2 style="font-family:sans-serif;padding:40px">Access denied.</h2>'); throw new Error('Access denied'); }
+        sessionStorage.setItem('he_admin', p);
+      }
+    })();
+    </script>
+    <title>Himachal Explorer — Data Administration Panel</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #888; border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans">
+
+    <header class="bg-slate-800 border-b border-slate-700 sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center font-bold text-slate-900">G</div>
+                <h1 class="text-xl font-bold tracking-wide text-slate-100">Himachal Explorer <span class="text-amber-400 text-xs font-semibold px-2 py-0.5 bg-slate-700 rounded ml-2">RTDB Admin v2.0</span></h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="btn-fetch" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-4 rounded-md transition duration-150 shadow flex items-center space-x-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.253 8H18"></path></svg>
+                    <span>Fetch Live Data</span>
+                </button>
+                <button id="btn-push-all" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 px-4 rounded-md transition duration-150 shadow flex items-center space-x-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                    <span>Push to Firebase</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <div class="lg:col-span-3 space-y-6">
+            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-sm">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Linked Final Pages</h2>
+                <div class="space-y-2 text-sm" id="listing-links-box">
+                    <p class="text-slate-500 italic">Fetch data to build listing links...</p>
+                </div>
+            </div>
+
+            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-sm">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Districts Registry</h2>
+                <div class="space-y-1 max-h-[300px] overflow-y-auto custom-scrollbar" id="district-list-nav">
+                    <p class="text-slate-500 text-xs italic">Awaiting connection...</p>
+                </div>
+            </div>
+            
+            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-sm">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Packages Registry</h2>
+                <div class="space-y-1 max-h-[300px] overflow-y-auto custom-scrollbar" id="package-list-nav">
+                    <p class="text-slate-500 text-xs italic">Awaiting connection...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-6 bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-sm flex flex-col min-h-[600px]">
+            <div class="flex justify-between items-center border-b border-slate-700 pb-4 mb-4">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-100" id="editor-title">Dynamic Schema Form Editor</h2>
+                    <p class="text-xs text-slate-400" id="editor-subtitle">Select an entry from the sidebar registry to adjust property fields</p>
+                </div>
+                <button id="btn-save-element" disabled class="bg-blue-600 hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-semibold py-1.5 px-3 rounded transition">
+                    Commit Changes Local
+                </button>
+            </div>
+
+            <form id="dynamic-form" class="space-y-4 flex-1 overflow-y-auto pr-2 max-h-[650px] custom-scrollbar">
+                <div class="flex flex-col items-center justify-center h-full text-slate-500 py-20">
+                    <svg class="w-12 h-12 mb-3 stroke-current opacity-40" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    <p class="text-sm">Click any element item metadata to modify fields</p>
+                </div>
+            </form>
+        </div>
+
+        <div class="lg:col-span-3 bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-sm flex flex-col">
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Adjacent JSON Stream</h2>
+                <button id="btn-download-json" class="text-xs font-semibold text-amber-400 hover:underline flex items-center space-x-1">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    <span>Save File</span>
+                </button>
+            </div>
+            <textarea id="json-mirror" readonly class="w-full flex-1 min-h-[400px] bg-slate-950 text-emerald-400 font-mono text-xs p-3 rounded-lg border border-slate-800 resize-none focus:outline-none custom-scrollbar shadow-inner" placeholder="{ 'status': 'No data synced locally' }"></textarea>
+            <div class="mt-3 text-[11px] text-slate-500 leading-relaxed bg-slate-900 p-2.5 rounded border border-slate-750">
+                <b class="text-slate-400">Note:</b> Working locally modifies the active view context object inside the raw JSON backup state buffer. Save changes to keep the data updated.
+            </div>
+        </div>
+
+    </main>
+
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+          "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
+        }
+      }
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "firebase/app";
+        import { getDatabase, ref, get, set } from "firebase/database";
+
+        // Firebase Client-Config Credentials Provided via User Configuration Map
+        const firebaseConfig = {
+          apiKey: "AIzaSyBmJDsXvokR8kYs_yoLPau1DqANPBBORJY",
+          authDomain: "garg-enterprise.firebaseapp.com",
+          databaseURL: "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "garg-enterprise",
+          storageBucket: "garg-enterprise.firebasestorage.app",
+          messagingSenderId: "1097408452571",
+          appId: "1:1097408452571:web:1e5803fa8bbea4fbb5b9fe",
+          measurementId: "G-DTJFFCMFD3"
+        };
+
+        // Initialize Native Modules Architecture
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Core App In-Memory State Pipeline Cache Data
+        let globalDatabaseState = {};
+        let activeSelectionContext = { path: '', data: null, type: '' };
+
+        // DOM Nodes Registry Selectors
+        const btnFetch = document.getElementById('btn-fetch');
+        const btnPushAll = document.getElementById('btn-push-all');
+        const btnSaveElement = document.getElementById('btn-save-element');
+        const btnDownloadJson = document.getElementById('btn-download-json');
+        const districtNav = document.getElementById('district-list-nav');
+        const packageNav = document.getElementById('package-list-nav');
+        const linksBox = document.getElementById('listing-links-box');
+        const dynamicForm = document.getElementById('dynamic-form');
+        const jsonMirror = document.getElementById('json-mirror');
+        const editorTitle = document.getElementById('editor-title');
+        const editorSubtitle = document.getElementById('editor-subtitle');
+
+        // Initial Event Binding Initialization Setup
+        window.addEventListener('DOMContentLoaded', () => {
+            btnFetch.addEventListener('click', fetchLiveData);
+            btnPushAll.addEventListener('click', pushDataToFirebase);
+            btnSaveElement.addEventListener('click', saveActiveElementState);
+            btnDownloadJson.addEventListener('click', downloadJsonLocalFile);
+            fetchLiveData(); // Auto fetch on page bootstrap rendering load
+        });
+
+        // 1. Fetch live snapshot record state sequence routine
+        async function fetchLiveData() {
+            showToast('Loading data streams from Realtime Database...', 'info');
+            try {
+                const snapshot = await get(ref(db, '/'));
+                if (snapshot.exists()) {
+                    globalDatabaseState = snapshot.val();
+                    updateJsonMirror();
+                    buildNavigationMenus();
+                    showToast('Database pipeline updated successfully!', 'success');
+                } else {
+                    showToast('Connected, but database root path evaluated empty.', 'warning');
+                }
+            } catch (error) {
+                console.error(error);
+                showToast(`Fetch Pipeline Interrupted: ${error.message}`, 'error');
+            }
+        }
+
+        // 2. Local State Mirror Synchronization Writer Utilities
+        function updateJsonMirror() {
+            jsonMirror.value = JSON.stringify(globalDatabaseState, null, 2);
+        }
+
+        // 3. UI Template Nav Generator Engine Routine
+        function buildNavigationMenus() {
+            linksBox.innerHTML = '';
+            districtNav.innerHTML = '';
+            packageNav.innerHTML = '';
+
+            // Inject a quick-add action button right at the top of the package sidebar registry
+            const addPkgBtn = document.createElement('button');
+            addPkgBtn.className = "w-full text-left px-3 py-2 text-xs rounded-md font-bold text-amber-400 bg-slate-700/40 hover:bg-slate-700 hover:text-amber-300 transition truncate block border border-dashed border-amber-500/40 mb-2";
+            addPkgBtn.innerHTML = `➕ Create New Package`;
+            addPkgBtn.onclick = initializeNewPackageForm;
+            packageNav.appendChild(addPkgBtn);
+
+            // Map Districts Iteration Structure Setup
+            if (globalDatabaseState.districts) {
+                Object.keys(globalDatabaseState.districts).forEach(key => {
+                    const dist = globalDatabaseState.districts[key];
+                    
+                    const targetUrl = dist.page_url ? dist.page_url : `${key}.html`;
+                    const linkAnchor = document.createElement('a');
+                    linkAnchor.href = `./${targetUrl}`;
+                    linkAnchor.target = '_blank';
+                    linkAnchor.className = "flex items-center justify-between text-slate-300 hover:text-amber-400 bg-slate-900/40 p-2 rounded border border-slate-750 transition text-xs group";
+                    linkAnchor.innerHTML = `<span>🗺️ ${dist.name || key.toUpperCase()} View</span>
+                                             <svg class="w-3 h-3 opacity-0 group-hover:opacity-100 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>`;
+                    linksBox.appendChild(linkAnchor);
+
+                    const rowBtn = document.createElement('button');
+                    rowBtn.className = "w-full text-left px-3 py-2 text-xs rounded-md font-medium text-slate-300 hover:bg-slate-700/60 hover:text-white transition truncate block border border-transparent";
+                    rowBtn.innerHTML = `📍 ${dist.name || key.toUpperCase()}`;
+                    rowBtn.onclick = () => loadObjectIntoForm(`districts/${key}`, dist, 'District Structure');
+                    districtNav.appendChild(rowBtn);
+                });
+            } else {
+                districtNav.innerHTML = '<p class="text-slate-500 text-xs italic">No districts tree root structural branch found.</p>';
+            }
+
+            // Map Dynamic Travel Packages Generic Structure Root Branches If Exist
+            const topLevelKeys = Object.keys(globalDatabaseState).filter(k => k !== 'districts');
+            if (topLevelKeys.length > 0) {
+                topLevelKeys.forEach(key => {
+                    const node = globalDatabaseState[key];
+                    if (typeof node === 'object' && node !== null) {
+                        const rowBtn = document.createElement('button');
+                        rowBtn.className = "w-full text-left px-3 py-2 text-xs rounded-md font-medium text-slate-300 hover:bg-slate-700/60 hover:text-white transition truncate block border border-transparent";
+                        rowBtn.innerHTML = `📦 ${key.replace(/[-_]/g, ' ')}`;
+                        rowBtn.onclick = () => loadObjectIntoForm(key, node, 'Package Node Cluster');
+                        packageNav.appendChild(rowBtn);
+                    }
+                });
+            }
+        }
+
+        // Helper: Extract unique previously stored entries across the database to populate smart dropdown fields
+        function getUniquePastEntries(fieldName) {
+            const analyticalSet = new Set();
+            
+            // Scan structural data points systematically
+            const scanObjectDeeply = (obj) => {
+                if (!obj || typeof obj !== 'object') return;
+                Object.keys(obj).forEach(k => {
+                    if (k === fieldName && (typeof obj[k] === 'string' || typeof obj[k] === 'number')) {
+                        analyticalSet.add(obj[k]);
+                    } else if (typeof obj[k] === 'object') {
+                        scanObjectDeeply(obj[k]);
+                    }
+                });
+            };
+
+            scanObjectDeeply(globalDatabaseState);
+            return Array.from(analyticalSet).sort((a, b) => String(a).localeCompare(String(b), undefined, {numeric: true}));
+        }
+
+        // Action initializer to generate clean boilerplate schemas for dynamic travel packages
+        function initializeNewPackageForm() {
+            const temporaryPackagePayloadId = `package_${Date.now()}`;
+            const boilerplatePackageStructure = {
+                package_id: temporaryPackagePayloadId,
+                package_name: "Premium Vacation Package",
+                place_id: "",
+                number_of_person: 2,
+                number_of_days: 5,
+                detailed_description: "",
+                is_active: true,
+                price_estimate: 15000
+            };
+
+            loadObjectIntoForm(`packages/${temporaryPackagePayloadId}`, boilerplatePackageStructure, 'Package Node Cluster');
+            showToast('New package structural baseline generated!', 'info');
+        }
+
+        // 4. Client Inter-Reactive Form Schema Generator Engine
+        function loadObjectIntoForm(pathString, dataObject, schemaLabel) {
+            activeSelectionContext = { path: pathString, data: JSON.parse(JSON.stringify(dataObject)), type: schemaLabel };
+            
+            editorTitle.innerText = `Editing: ${pathString}`;
+            editorSubtitle.innerText = `Type schema designation: [${schemaLabel}]`;
+            btnSaveElement.removeAttribute('disabled');
+
+            dynamicForm.innerHTML = '';
+            generateFormFieldsRecursively(activeSelectionContext.data, dynamicForm, []);
+        }
+
+        function generateFormFieldsRecursively(currentObjectLevel, formContainer, depthRouteArray) {
+            Object.keys(currentObjectLevel).forEach(fieldKey => {
+                const val = currentObjectLevel[fieldKey];
+                const currentFieldFullRoute = [...depthRouteArray, fieldKey];
+                const uniqueInputDOMId = `field_${currentFieldFullRoute.join('__')}`;
+
+                if (typeof val === 'object' && val !== null && !Array.isArray(val)) {
+                    const sectionDivider = document.createElement('div');
+                    sectionDivider.className = "mt-6 mb-2 border-b border-slate-700 pb-1";
+                    sectionDivider.innerHTML = `<h3 class="text-xs font-bold text-amber-500 tracking-wider uppercase ml-1">📂 Subsection: ${fieldKey.toUpperCase()}</h3>`;
+                    formContainer.appendChild(sectionDivider);
+                    
+                    const nestedFormWrapper = document.createElement('div');
+                    nestedFormWrapper.className = "pl-3 border-l-2 border-slate-700 space-y-4 my-2";
+                    formContainer.appendChild(nestedFormWrapper);
+
+                    generateFormFieldsRecursively(val, nestedFormWrapper, currentFieldFullRoute);
+                    return;
+                }
+
+                const fieldDiv = document.createElement('div');
+                fieldDiv.className = "flex flex-col space-y-1 bg-slate-900/30 p-2 rounded border border-slate-750";
+
+                const labelElement = document.createElement('label');
+                labelElement.className = "text-xs font-semibold text-slate-400 capitalize tracking-wide flex items-center justify-between";
+                labelElement.setAttribute('for', uniqueInputDOMId);
+                labelElement.innerHTML = `<span>${fieldKey.replace(/_/g, ' ')}</span> <span class="text-[10px] text-slate-600 font-mono select-none">${typeof val}</span>`;
+                fieldDiv.appendChild(labelElement);
+
+                // --- SMART INJECTION ENGINE FOR ACCURATE PRE-EXISTING INPUT DATA DROPDOWNS ---
+                const targetKeysForDropdown = ['place_id', 'number_of_person', 'number_of_days', 'detailed_description'];
+                
+                if (targetKeysForDropdown.includes(fieldKey)) {
+                    const uniquePastValuesList = getUniquePastEntries(fieldKey);
+                    
+                    // Create an interactive container layout providing both a select menu and direct typing fallbacks
+                    const interactiveComboWrapper = document.createElement('div');
+                    interactiveComboWrapper.className = "space-y-1.5";
+
+                    const selectDropdownControl = document.createElement('select');
+                    selectDropdownControl.className = "w-full text-xs bg-slate-800 border border-slate-700 rounded p-1.5 text-amber-400 font-medium outline-none focus:border-amber-500 custom-scrollbar";
+                    
+                    // Inject contextual lookup headers
+                    selectDropdownControl.innerHTML = `<option value="">-- Select Existing Historic Record (Or Type Below) --</option>`;
+                    uniquePastValuesList.forEach(historicalValue => {
+                        const optionNode = document.createElement('option');
+                        optionNode.value = historicalValue;
+                        // Keep long string values clean inside smaller dropdown UI boxes
+                        optionNode.innerText = String(historicalValue).length > 60 ? String(historicalValue).substring(0, 60) + '...' : historicalValue;
+                        if(String(historicalValue) === String(val)) optionNode.setAttribute('selected', 'true');
+                        selectDropdownControl.appendChild(optionNode);
+                    });
+
+                    // Input Field handling fallback editing entries manually
+                    let innerTextOrInputControl;
+                    if (fieldKey === 'detailed_description' || (typeof val === 'string' && val.length > 80)) {
+                        innerTextOrInputControl = document.createElement('textarea');
+                        innerTextOrInputControl.rows = 4;
+                        innerTextOrInputControl.className = "w-full text-xs bg-slate-800 border border-slate-700 rounded p-2 text-slate-200 custom-scrollbar focus:border-amber-500 outline-none";
+                    } else {
+                        innerTextOrInputControl = document.createElement('input');
+                        innerTextOrInputControl.type = (typeof val === 'number' || fieldKey.includes('number')) ? 'number' : 'text';
+                        innerTextOrInputControl.className = "w-full text-sm bg-slate-800 border border-slate-700 rounded px-2.5 py-1.5 text-slate-200 focus:border-amber-500 outline-none";
+                    }
+
+                    innerTextOrInputControl.id = uniqueInputDOMId;
+                    innerTextOrInputControl.value = val !== null ? val : '';
+                    innerTextOrInputControl.setAttribute('data-route', JSON.stringify(currentFieldFullRoute));
+                    innerTextOrInputControl.setAttribute('data-datatype', (fieldKey.includes('number') || typeof val === 'number') ? 'number' : 'string');
+
+                    // Bind select change updates directly to the manual value handler
+                    selectDropdownControl.addEventListener('change', (e) => {
+                        if(e.target.value !== "") {
+                            innerTextOrInputControl.value = e.target.value;
+                        }
+                    });
+
+                    interactiveComboWrapper.appendChild(selectDropdownControl);
+                    interactiveComboWrapper.appendChild(innerTextOrInputControl);
+                    fieldDiv.appendChild(interactiveComboWrapper);
+
+                } else if (typeof val === 'boolean') {
+                    const selectElement = document.createElement('select');
+                    selectElement.id = uniqueInputDOMId;
+                    selectElement.className = "w-full text-sm bg-slate-800 border border-slate-700 rounded p-1.5 focus:border-amber-500 outline-none font-medium text-amber-400";
+                    selectElement.innerHTML = `<option value="true" ${val === true ? 'selected' : ''}>True / Enabled</option>
+                                               <option value="false" ${val === false ? 'selected' : ''}>False / Disabled</option>`;
+                    selectElement.setAttribute('data-route', JSON.stringify(currentFieldFullRoute));
+                    selectElement.setAttribute('data-datatype', 'boolean');
+                    fieldDiv.appendChild(selectElement);
+                } else if (typeof val === 'string' && val.length > 80) {
+                    const textAreaControl = document.createElement('textarea');
+                    textAreaControl.id = uniqueInputDOMId;
+                    textAreaControl.rows = 4;
+                    textAreaControl.className = "w-full text-xs bg-slate-800 border border-slate-700 rounded p-2 focus:border-amber-500 outline-none text-slate-200 leading-relaxed custom-scrollbar";
+                    textAreaControl.value = val;
+                    textAreaControl.setAttribute('data-route', JSON.stringify(currentFieldFullRoute));
+                    textAreaControl.setAttribute('data-datatype', 'string');
+                    fieldDiv.appendChild(textAreaControl);
+                } else {
+                    const txtNumberInput = document.createElement('input');
+                    txtNumberInput.id = uniqueInputDOMId;
+                    txtNumberInput.type = typeof val === 'number' ? 'number' : 'text';
+                    if(typeof val === 'number') txtNumberInput.step = "any";
+                    txtNumberInput.className = "w-full text-sm bg-slate-800 border border-slate-700 rounded px-2.5 py-1.5 focus:border-amber-500 outline-none text-slate-200";
+                    txtNumberInput.value = val !== null ? val : '';
+                    txtNumberInput.setAttribute('data-route', JSON.stringify(currentFieldFullRoute));
+                    txtNumberInput.setAttribute('data-datatype', typeof val);
+                    fieldDiv.appendChild(txtNumberInput);
+                }
+
+                formContainer.appendChild(fieldDiv);
+            });
+        }
+
+        // 5. Save and commit element properties updates locally to object memory
+        function saveActiveElementState() {
+            if (!activeSelectionContext.path) return;
+
+            const inputElements = dynamicForm.querySelectorAll('[data-route]');
+            
+            inputElements.forEach(elem => {
+                const elementRouteArray = JSON.parse(elem.getAttribute('data-route'));
+                const elementDataType = elem.getAttribute('data-datatype');
+                let valueToSet = elem.value;
+
+                if (elementDataType === 'number') {
+                    valueToSet = Number(valueToSet);
+                } else if (elementDataType === 'boolean') {
+                    valueToSet = (valueToSet === 'true');
+                }
+
+                let targetPointer = activeSelectionContext.data;
+                for (let i = 0; i < elementRouteArray.length - 1; i++) {
+                    targetPointer = targetPointer[elementRouteArray[i]];
+                }
+                targetPointer[elementRouteArray[elementRouteArray.length - 1]] = valueToSet;
+            });
+
+            const routeSegmentsPath = activeSelectionContext.path.split('/');
+            let globalPointer = globalDatabaseState;
+            
+            for (let i = 0; i < routeSegmentsPath.length - 1; i++) {
+                if (!globalPointer[routeSegmentsPath[i]]) {
+                    globalPointer[routeSegmentsPath[i]] = {};
+                }
+                globalPointer = globalPointer[routeSegmentsPath[i]];
+            }
+            globalPointer[routeSegmentsPath[routeSegmentsPath.length - 1]] = activeSelectionContext.data;
+
+            updateJsonMirror();
+            buildNavigationMenus();
+            showToast('Changes committed locally. Keep editing or click "Push to Firebase" to save online.', 'info');
+        }
+
+        // 6. Global Batch Database Synchronization Up-stream Transaction Runner
+        async function pushDataToFirebase() {
+            showToast('Uploading updates to Firebase Server...', 'info');
+            try {
+                await set(ref(db, '/'), globalDatabaseState);
+                showToast('Firebase Database updated successfully!', 'success');
+            } catch (error) {
+                console.error(error);
+                showToast(`Firebase Sync Denied: ${error.message}`, 'error');
+            }
+        }
+
+        // 7. Save and compile locally structured schema adjacent JSON context mirror file stream text download utilities
+        function downloadJsonLocalFile() {
+            try {
+                const serializedContentStr = JSON.stringify(globalDatabaseState, null, 2);
+                const fileBlobStream = new Blob([serializedContentStr], { type: 'application/json' });
+                const blobUrlReference = URL.createObjectURL(fileBlobStream);
+                
+                const temporalAnchorLinkNode = document.createElement('a');
+                temporalAnchorLinkNode.href = blobUrlReference;
+                temporalAnchorLinkNode.download = "garg-enterprise-default-rtdb-export.json";
+                document.body.appendChild(temporalAnchorLinkNode);
+                temporalAnchorLinkNode.click();
+                
+                document.body.removeChild(temporalAnchorLinkNode);
+                URL.revokeObjectURL(blobUrlReference);
+                showToast('Adjacent backup database file exported successfully!', 'success');
+            } catch (e) {
+                showToast(`Backup compilation failed: ${e.message}`, 'error');
+            }
+        }
+
+        // Utility: Modular Event-driven Application Alerts Notifications System Engine Box
+        function showToast(messageStr, typeDesignationStr = 'info') {
+            const toastBox = document.getElementById('toast-container');
+            const alertCard = document.createElement('div');
+            alertCard.className = "p-3 rounded-lg shadow-lg text-xs font-semibold text-white tracking-wide flex items-center space-x-2 transition duration-300 transform translate-y-0 opacity-100 pointer-events-auto max-w-sm";
+            
+            if(typeDesignationStr === 'success') alertCard.classList.add('bg-emerald-600', 'border-l-4', 'border-emerald-400');
+            else if(typeDesignationStr === 'error') alertCard.classList.add('bg-rose-600', 'border-l-4', 'border-rose-400');
+            else if(typeDesignationStr === 'warning') alertCard.classList.add('bg-amber-600', 'border-l-4', 'border-amber-400');
+            else alertCard.classList.add('bg-slate-700', 'border-l-4', 'border-slate-400');
+
+            alertCard.innerText = messageStr;
+            toastBox.appendChild(alertCard);
+
+            setTimeout(() => {
+                alertCard.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => alertCard.remove(), 300);
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

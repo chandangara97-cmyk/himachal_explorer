@@ -1,0 +1,23 @@
+{
+  "package_id": "manali-hidden-4d",
+  "package_name": "Manali Hidden Circuit (4D) — Bijli Mahadev, Jana Falls & Raison",
+  "days": 4,
+  "hotel_star": "3 Star",
+  "best_season": "all_year",
+  "start_point": "MANALI",
+  "end_point": "MANALI",
+  "total_km_est": 140,
+  "tags": [
+    "offbeat",
+    "nature",
+    "couple"
+  ],
+  "highlight": "Bijli Mahadev, Jana Falls & Raison",
+  "budget_price_pp": 8150,
+  "itinerary": {
+    "day_1": "Manali Orientation (Drive: Local). Places: Hadimba Temple, Vashisht Hot Springs, Old Manali. Activities: Hadimba Temple; Vashisht hot springs; Old Manali village walk.",
+    "day_2": "Bijli Mahadev Trek (Drive: 14 km + trek). Places: Bijli Mahadev. Activities: Drive to Chansari; 3km trek (2,460m); Kullu valley panorama.",
+    "day_3": "Jana Waterfall & Naggar (Drive: 30 km). Places: Jana Waterfall, Naggar Castle. Activities: Jana Waterfall trail; Naggar Castle heritage; Nicholas Roerich Gallery.",
+    "day_4": "Solang & Depart (Drive: 15 km). Places: Solang Valley, Rohtang Pass. Activities: Solang Valley adventure; Rohtang Pass view; Afternoon depart."
+  }
+}
