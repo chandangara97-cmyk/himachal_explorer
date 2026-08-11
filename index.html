@@ -577,7 +577,7 @@ h1.hero-title em{font-style:italic;color:var(--gold2);display:block}
 .hero-actions{display:flex;gap:10px;margin-top:28px;animation:fadeUp .9s ease .9s both;flex-wrap:wrap}
 
 /* ─── HERO MOVING STRIP — replaces the old button row ─── */
-.hero-marquee-wrap{margin-top:40px;padding:18px 0 16px;background:linear-gradient(150deg,rgba(28,20,9,.4) 0%,rgba(10,7,3,.3) 100%);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);border:1px solid rgba(201,146,72,.22);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.06);animation:fadeUp .9s ease .9s both;max-width:100%}
+.hero-marquee-wrap{margin-top:64px;padding:18px 0 16px;background:linear-gradient(150deg,rgba(28,20,9,.4) 0%,rgba(10,7,3,.3) 100%);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);border:1px solid rgba(201,146,72,.22);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.06);animation:fadeUp .9s ease .9s both;max-width:100%}
 .hero-marquee-cap{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold2);font-weight:700;padding:0 18px 12px;display:flex;align-items:center;gap:9px}
 .hero-marquee-cap::before{content:'';width:18px;height:1.5px;background:linear-gradient(90deg,var(--gold2),transparent);box-shadow:0 0 6px var(--glow-soft)}
 .nx-fixed-grid{display:flex;gap:12px;padding:0 18px;flex-wrap:wrap}
@@ -588,7 +588,7 @@ h1.hero-title em{font-style:italic;color:var(--gold2);display:block}
 .nx-fixed-grid.nx-one-row::-webkit-scrollbar-thumb{background:rgba(201,146,72,.4);border-radius:10px}
 .nx-fixed-grid.nx-one-row::-webkit-scrollbar-track{background:transparent}
 @media(max-width:680px){.nx-fixed-grid .nx-card{width:132px}}
-@media(max-width:520px){.hero-marquee-wrap{border-radius:16px;margin-top:28px}.hero-marquee-cap{font-size:8px;padding:0 14px 10px}.nx-fixed-grid .nx-card{width:120px}.nx-fixed-grid{gap:9px;padding:0 14px 4px}}
+@media(max-width:520px){.hero-marquee-wrap{border-radius:16px;margin-top:42px}.hero-marquee-cap{font-size:8px;padding:0 14px 10px}.nx-fixed-grid .nx-card{width:120px}.nx-fixed-grid{gap:9px;padding:0 14px 4px}}
 
 /* ─── HERO TRENDING DASHBOARD (right side, floats over the video) ───
    Desktop/tablet only — hidden below 1080px so the hero video, badge
@@ -810,6 +810,11 @@ section{padding:56px 0}
 
 /* SVG mountain shape */
 .dpeak-svg-wrap{position:absolute;bottom:0;left:0;right:0;top:0;overflow:hidden}
+.dpeak-photo{position:absolute;inset:0;z-index:1;overflow:hidden}
+.dpeak-photo img{width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.04);transition:transform .6s cubic-bezier(.22,1,.36,1),filter .5s ease;filter:saturate(.85) brightness(.8)}
+.dpeak:hover .dpeak-photo img{transform:scale(1.12);filter:saturate(1) brightness(.88)}
+.dpeak-scrim{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(6,4,2,.92) 0%,rgba(6,4,2,.35) 55%,rgba(6,4,2,.15) 100%);transition:background .4s}
+.dpeak:hover .dpeak-scrim{background:linear-gradient(to top,rgba(6,4,2,.85) 0%,rgba(6,4,2,.2) 55%,rgba(6,4,2,.05) 100%)}
 .dpeak svg.peak-shape{position:absolute;bottom:0;left:0;width:100%;height:100%;overflow:visible;transition:filter .5s ease;filter:drop-shadow(0 -2px 10px rgba(201,146,72,.16))}
 .dpeak:hover svg.peak-shape{filter:drop-shadow(0 -6px 28px rgba(201,146,72,.55))}
 
@@ -1511,7 +1516,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="nx-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
         </a>
 
-        <a href="bike-rental.html" class="nx-card" onclick="return openPartnerPopup(event)">
+        <a href="bike-rental.html" class="nx-card">
           <img loading="lazy" src="https://images.unsplash.com/photo-1716741011671-db4d7c6a8293?q=68&w=600&auto=format&fit=crop" alt="Bike Rental" decoding="async"/>
           <div class="nx-ov"></div>
           <div class="nx-icon" data-tooltip="Rent a scooty or bike from our partner, Rent Bull Bike"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-3l-2 5.5H4l-1 3h4"/><path d="M15 6l3 5.5h2l1 3h-3.5"/></svg></div>
@@ -1524,7 +1529,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="nx-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
         </a>
 
-        <a href="taxi-service.html" class="nx-card" onclick="return openTaxiPopup(event)">
+        <a href="taxi-service.html" class="nx-card">
           <img loading="lazy" src="https://images.unsplash.com/photo-1736951649095-7855f0e0f86b?q=68&w=600&auto=format&fit=crop" alt="Taxi Booking" decoding="async"/>
           <div class="nx-ov"></div>
           <div class="nx-icon" data-tooltip="Book a fixed-fare taxi or airport transfer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M5 17a2 2 0 01-2-2v-1.5l1.7-5.1A2 2 0 016.6 7h10.8a2 2 0 011.9 1.4L21 13.5V15a2 2 0 01-2 2M5 17v2.5a.5.5 0 00.5.5h2a.5.5 0 00.5-.5V17m10 0v2.5a.5.5 0 00.5.5h2a.5.5 0 00.5-.5V17"/><circle cx="7.5" cy="13.5" r="1.2"/><circle cx="16.5" cy="13.5" r="1.2"/></svg></div>
@@ -1678,20 +1683,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="dpeak" data-district="Shimla">
         <a href="shimla.html" class="dpeak-link" aria-label="Explore Shimla district"></a>
         <div class="dpeak-num">01</div>
-        <div class="dpeak-svg-wrap">
-          <svg class="peak-shape" viewBox="0 0 100 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="pg1" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#835a2b"/>
-                <stop offset="100%" stop-color="#372211"/>
-              </linearGradient>
-            </defs>
-            <polygon class="peak-body" points="50,6 0,260 100,260" fill="url(#pg1)"/>
-            <polygon class="peak-snow" points="50,6 32,58 68,58"/>
-            <line class="peak-glow-line" x1="50" y1="58" x2="20" y2="180"/>
-            <line class="peak-glow-line" x1="50" y1="58" x2="78" y2="200"/>
-          </svg>
-        </div>
+        <div class="dpeak-photo"><img loading="lazy" src="assets/images/temple.jpg" alt="Bhimakali Temple, Sarahan — Shimla district" decoding="async"/></div>
+        <div class="dpeak-scrim" aria-hidden="true"></div>
         <div class="dpeak-label">
           <div class="dpeak-name">Shimla</div>
           <div class="dpeak-alt">2,200 m</div>
@@ -1702,20 +1695,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="dpeak" data-district="Kullu">
         <a href="kullu.html" class="dpeak-link" aria-label="Explore Kullu district"></a>
         <div class="dpeak-num">02</div>
-        <div class="dpeak-svg-wrap">
-          <svg class="peak-shape" viewBox="0 0 100 290" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="pg2" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#9f6226"/>
-                <stop offset="100%" stop-color="#402613"/>
-              </linearGradient>
-            </defs>
-            <polygon class="peak-body" points="42,0 8,290 100,290" fill="url(#pg2)"/>
-            <polygon class="peak-snow" points="42,0 24,52 60,52"/>
-            <line class="peak-glow-line" x1="42" y1="52" x2="15" y2="200"/>
-            <line class="peak-glow-line" x1="42" y1="52" x2="72" y2="220"/>
-          </svg>
-        </div>
+        <div class="dpeak-photo"><img loading="lazy" src="assets/images/manali_1.jpg" alt="Manali — Kullu district" decoding="async"/></div>
+        <div class="dpeak-scrim" aria-hidden="true"></div>
         <div class="dpeak-label">
           <div class="dpeak-name">Kullu</div>
           <div class="dpeak-alt">1,220 m</div>
@@ -1726,21 +1707,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="dpeak" data-district="Lahaul &amp; Spiti">
         <a href="spiti.html" class="dpeak-link" aria-label="Explore Lahaul & Spiti district"></a>
         <div class="dpeak-num">03</div>
-        <div class="dpeak-svg-wrap">
-          <svg class="peak-shape" viewBox="0 0 100 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="pg3" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#c17833"/>
-                <stop offset="100%" stop-color="#492d15"/>
-              </linearGradient>
-            </defs>
-            <polygon class="peak-body" points="55,0 0,320 100,320" fill="url(#pg3)"/>
-            <polygon class="peak-snow" points="55,0 35,55 75,55"/>
-            <polygon class="peak-snow" style="opacity:.5" points="30,38 18,65 44,65"/>
-            <line class="peak-glow-line" x1="55" y1="55" x2="18" y2="220"/>
-            <line class="peak-glow-line" x1="55" y1="55" x2="85" y2="240"/>
-          </svg>
-        </div>
+        <div class="dpeak-photo"><img loading="lazy" src="assets/images/key-monastery-spiti.jpg" alt="Key Monastery — Lahaul &amp; Spiti district" decoding="async"/></div>
+        <div class="dpeak-scrim" aria-hidden="true"></div>
         <div class="dpeak-label">
           <div class="dpeak-name">Lahaul–Spiti</div>
           <div class="dpeak-alt">4,270 m</div>
@@ -1751,20 +1719,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="dpeak" data-district="Kinnaur">
         <a href="kinnaur.html" class="dpeak-link" aria-label="Explore Kinnaur district"></a>
         <div class="dpeak-num">04</div>
-        <div class="dpeak-svg-wrap">
-          <svg class="peak-shape" viewBox="0 0 100 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="pg4" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#855122"/>
-                <stop offset="100%" stop-color="#3a2211"/>
-              </linearGradient>
-            </defs>
-            <polygon class="peak-body" points="60,4 10,300 100,300" fill="url(#pg4)"/>
-            <polygon class="peak-snow" points="60,4 43,54 77,54"/>
-            <line class="peak-glow-line" x1="60" y1="54" x2="22" y2="210"/>
-            <line class="peak-glow-line" x1="60" y1="54" x2="88" y2="230"/>
-          </svg>
-        </div>
+        <div class="dpeak-photo"><img loading="lazy" src="assets/images/kinnaur-kailash-viewpoint_01.jpg" alt="Kinnaur Kailash viewpoint — Kinnaur district" decoding="async"/></div>
+        <div class="dpeak-scrim" aria-hidden="true"></div>
         <div class="dpeak-label">
           <div class="dpeak-name">Kinnaur</div>
           <div class="dpeak-alt">3,600 m</div>
@@ -1775,20 +1731,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="dpeak" data-district="Mandi">
         <a href="mandi.html" class="dpeak-link" aria-label="Explore Mandi district"></a>
         <div class="dpeak-num">05</div>
-        <div class="dpeak-svg-wrap">
-          <svg class="peak-shape" viewBox="0 0 100 270" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="pg5" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#714422"/>
-                <stop offset="100%" stop-color="#31190c"/>
-              </linearGradient>
-            </defs>
-            <polygon class="peak-body" points="48,10 5,270 95,270" fill="url(#pg5)"/>
-            <polygon class="peak-snow" points="48,10 33,56 63,56"/>
-            <line class="peak-glow-line" x1="48" y1="56" x2="16" y2="190"/>
-            <line class="peak-glow-line" x1="48" y1="56" x2="76" y2="210"/>
-          </svg>
-        </div>
+        <div class="dpeak-photo"><img loading="lazy" src="assets/images/barot-valley_1.jpg" alt="Barot Valley — Mandi district" decoding="async"/></div>
+        <div class="dpeak-scrim" aria-hidden="true"></div>
         <div class="dpeak-label">
           <div class="dpeak-name">Mandi</div>
           <div class="dpeak-alt">800 m</div>
@@ -1799,20 +1743,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="dpeak" data-district="Kangra">
         <a href="kangra.html" class="dpeak-link" aria-label="Explore Kangra district"></a>
         <div class="dpeak-num">06</div>
-        <div class="dpeak-svg-wrap">
-          <svg class="peak-shape" viewBox="0 0 100 310" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="pg6" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#ae6b22"/>
-                <stop offset="100%" stop-color="#462b15"/>
-              </linearGradient>
-            </defs>
-            <polygon class="peak-body" points="50,2 2,310 98,310" fill="url(#pg6)"/>
-            <polygon class="peak-snow" points="50,2 30,58 70,58"/>
-            <line class="peak-glow-line" x1="50" y1="58" x2="14" y2="220"/>
-            <line class="peak-glow-line" x1="50" y1="58" x2="82" y2="245"/>
-          </svg>
-        </div>
+        <div class="dpeak-photo"><img loading="lazy" src="assets/images/kangra-fort_1.jpg" alt="Kangra Fort — Kangra district" decoding="async"/></div>
+        <div class="dpeak-scrim" aria-hidden="true"></div>
         <div class="dpeak-label">
           <div class="dpeak-name">Kangra</div>
           <div class="dpeak-alt">1,450 m</div>
@@ -1823,20 +1755,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="dpeak" data-district="Chamba">
         <a href="chamba.html" class="dpeak-link" aria-label="Explore Chamba district"></a>
         <div class="dpeak-num">07</div>
-        <div class="dpeak-svg-wrap">
-          <svg class="peak-shape" viewBox="0 0 100 295" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="pg7" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#985e26"/>
-                <stop offset="100%" stop-color="#3c2211"/>
-              </linearGradient>
-            </defs>
-            <polygon class="peak-body" points="52,0 4,295 100,295" fill="url(#pg7)"/>
-            <polygon class="peak-snow" points="52,0 34,50 70,50"/>
-            <line class="peak-glow-line" x1="52" y1="50" x2="16" y2="210"/>
-            <line class="peak-glow-line" x1="52" y1="50" x2="84" y2="225"/>
-          </svg>
-        </div>
+        <div class="dpeak-photo"><img loading="lazy" src="assets/images/khajjiar_1.jpg" alt="Khajjiar — Chamba district" decoding="async"/></div>
+        <div class="dpeak-scrim" aria-hidden="true"></div>
         <div class="dpeak-label">
           <div class="dpeak-name">Chamba</div>
           <div class="dpeak-alt">996 m</div>
@@ -1895,20 +1815,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="dpeak" data-district="Bilaspur">
         <a href="bilaspur.html" class="dpeak-link" aria-label="Explore Bilaspur district"></a>
         <div class="dpeak-num">10</div>
-        <div class="dpeak-svg-wrap">
-          <svg class="peak-shape" viewBox="0 0 100 255" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="pg10" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#69441e"/>
-                <stop offset="100%" stop-color="#2d170a"/>
-              </linearGradient>
-            </defs>
-            <polygon class="peak-body" points="50,18 6,255 94,255" fill="url(#pg10)"/>
-            <polygon class="peak-snow" points="50,18 36,58 64,58"/>
-            <line class="peak-glow-line" x1="50" y1="58" x2="20" y2="180"/>
-            <line class="peak-glow-line" x1="50" y1="58" x2="78" y2="194"/>
-          </svg>
-        </div>
+        <div class="dpeak-photo"><img loading="lazy" src="assets/images/gobind-sagar-lake_1.jpg" alt="Gobind Sagar Lake — Bilaspur district" decoding="async"/></div>
+        <div class="dpeak-scrim" aria-hidden="true"></div>
         <div class="dpeak-label">
           <div class="dpeak-name">Bilaspur</div>
           <div class="dpeak-alt">673 m</div>
