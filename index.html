@@ -569,6 +569,7 @@ nav[aria-label="Main navigation"]{position:fixed;top:20px;z-index:100;width:100%
 .hero-howto-hint .info-btn{width:16px;height:16px;font-size:12px}
 @media(max-width:680px){.hero-howto{top:66px;padding:8px 14px}.hero-howto-hint{font-size:13px}}
 @media(max-width:520px){.hero-howto{display:none}}
+@media(max-height:700px){.hero-howto{display:none}}
 .hero-badge{display:inline-flex;align-items:center;gap:9px;margin-bottom:18px;font-size:9px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);animation:fadeUp .9s ease .3s both}
 .hero-badge::before{content:'';width:20px;height:1.5px;background:var(--gold)}
 h1.hero-title{font-family:'Cormorant',serif;font-size:clamp(44px,8vw,88px);font-weight:300;line-height:1;color:#fff;animation:fadeUp .9s ease .5s both}
@@ -577,6 +578,20 @@ h1.hero-title em{font-style:italic;color:var(--gold2);display:block}
 .hero-actions{display:flex;gap:10px;margin-top:28px;animation:fadeUp .9s ease .9s both;flex-wrap:wrap}
 
 /* ─── HERO MOVING STRIP — replaces the old button row ─── */
+.hero-qq{margin-top:20px;max-width:480px;animation:fadeUp .9s ease .85s both;position:relative;z-index:3}
+.hero-qq-trigger[hidden],.hero-qq-fields[hidden]{display:none!important}
+.hero-qq-trigger{display:inline-flex;align-items:center;gap:9px;padding:11px 20px;background:rgba(28,20,9,.42);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,146,72,.4);border-radius:30px;color:#fff;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:.04em;cursor:pointer;transition:background .2s,border-color .2s}
+.hero-qq-trigger:hover{background:rgba(28,20,9,.62);border-color:var(--gold2)}
+.hero-qq-trigger svg{width:14px;height:14px;color:var(--gold2)}
+.hero-qq-fields{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;background:rgba(28,20,9,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,146,72,.28);border-radius:12px;padding:12px;animation:fadeUp .35s ease both}
+.hero-qq-fields input{flex:1 1 130px;min-width:0;padding:10px 12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);border-radius:7px;color:#fff;font-family:'Jost',sans-serif;font-size:12.5px}
+.hero-qq-fields input::placeholder{color:rgba(255,255,255,.55)}
+.hero-qq-fields input:focus{outline:none;border-color:var(--gold2)}
+.hero-qq-fields button[type=submit]{flex:1 1 100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;margin-top:2px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#fff;border:none;border-radius:7px;font-family:'Jost',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.03em;cursor:pointer;transition:opacity .2s}
+.hero-qq-fields button[type=submit]:hover{opacity:.88}
+.hero-qq-fields button svg{width:15px;height:15px}
+@media(min-width:480px){.hero-qq-fields button[type=submit]{flex:0 0 auto;padding:11px 20px}}
+@media(max-width:520px){.hero-qq-fields{max-width:100%;padding:10px}.hero-qq-fields input{font-size:12px;padding:9px 10px}}
 .hero-marquee-wrap{margin-top:64px;padding:18px 0 16px;background:linear-gradient(150deg,rgba(28,20,9,.4) 0%,rgba(10,7,3,.3) 100%);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);border:1px solid rgba(201,146,72,.22);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.06);animation:fadeUp .9s ease .9s both;max-width:100%}
 .hero-marquee-cap{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold2);font-weight:700;padding:0 18px 12px;display:flex;align-items:center;gap:9px}
 .hero-marquee-cap::before{content:'';width:18px;height:1.5px;background:linear-gradient(90deg,var(--gold2),transparent);box-shadow:0 0 6px var(--glow-soft)}
@@ -1485,6 +1500,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-badge">Heritage Travel Guide · Himachal Pradesh</div>
     <h1 class="hero-title">Himalayan<br/><em>Sanctuary</em></h1>
     <p class="hero-desc">Curated tour packages & live maps for Manali, Shimla, Spiti Valley, Kasol, Kinnaur & beyond.</p>
+
+    <form class="hero-qq" id="heroQuickQuery" aria-label="Quick trip query">
+      <button type="button" class="hero-qq-trigger" id="hqqTrigger">
+        <span>Get a Quick Quote</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <div class="hero-qq-fields" id="hqqFields" hidden>
+        <input type="text" id="hqqName" placeholder="Your Name" required>
+        <input type="tel" id="hqqPhone" placeholder="WhatsApp Number" required pattern="[0-9]{10}" maxlength="10">
+        <input type="text" id="hqqInterest" placeholder="Destination / Package" required>
+        <button type="submit">Send on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </form>
   </div>
   <div class="hero-marquee-wrap">
     <div class="hero-marquee-cap">Jump Right In — Tap A Photo</div>
@@ -3410,6 +3438,29 @@ document.addEventListener('click', function(e) {
   });
 
   window.addEventListener('scroll', function(){ tip.classList.remove('show'); activeEl = null; }, true);
+})();
+</script>
+<script>
+(function(){
+  var form = document.getElementById('heroQuickQuery');
+  if(!form) return;
+  var trigger = document.getElementById('hqqTrigger');
+  var fields = document.getElementById('hqqFields');
+  var howto = document.querySelector('.hero-howto');
+  trigger.addEventListener('click', function(){
+    fields.hidden = false;
+    trigger.hidden = true;
+    if(howto) howto.style.display = 'none';
+    document.getElementById('hqqName').focus();
+  });
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('hqqName').value.trim();
+    var phone = document.getElementById('hqqPhone').value.trim();
+    var interest = document.getElementById('hqqInterest').value.trim();
+    var msg = 'Hi Himachal Explorer! My name is ' + name + ' (' + phone + '). I\'m interested in: ' + interest + '. Please share details.';
+    window.open('https://wa.me/917018138847?text=' + encodeURIComponent(msg), '_blank');
+  });
 })();
 </script>
 </body>
