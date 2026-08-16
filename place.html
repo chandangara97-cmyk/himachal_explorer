@@ -302,6 +302,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="detail-what" id="detailWhat"></div>
         <div class="detail-grid" id="detailGrid"></div>
         <div class="detail-actions" id="detailActions"></div>
+        <div id="detailLiveNote" style="display:flex;align-items:center;gap:6px;font-size:9.5px;color:var(--caption);margin-top:14px;font-style:italic"></div>
       </div>
     </div>
   </div>
@@ -624,6 +625,33 @@ function selectPlace(id) {
     map.flyTo(markers[id].getLatLng(), 12, { duration:1.2 });
   }
   activeMarkerId = id;
+
+  refreshPlaceLive(id, p);
+}
+
+let _placeLiveReqId = 0;
+async function refreshPlaceLive(id, localPlace) {
+  const reqId = ++_placeLiveReqId;
+  const note = document.getElementById('detailLiveNote');
+  note.innerHTML = `<span style="width:6px;height:6px;border-radius:50%;background:var(--gold2);flex-shrink:0"></span> Refreshing latest details from Firebase…`;
+  try {
+    const res = await fetch(`https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app/places/${encodeURIComponent(id)}.json`);
+    const live = res.ok ? await res.json() : null;
+    if (reqId !== _placeLiveReqId || activeMarkerId !== id) return; // user moved on
+    if (live) {
+      const merged = Object.assign({}, localPlace, live);
+      document.getElementById('detailDistrict').textContent = merged.district || '';
+      document.getElementById('detailName').textContent = merged.name || '';
+      document.getElementById('detailRegion').textContent = merged.region ? `${merged.region} · ${merged.segment||merged.category||''}` : (merged.segment||merged.category||'');
+      document.getElementById('detailTagline').textContent = merged.history_tagline || '';
+      const whatEl = document.getElementById('detailWhat');
+      whatEl.innerHTML = merged.what_you_find ? `<strong>What You'll Find</strong>${merged.what_you_find}` : '';
+    }
+    note.textContent = '✓ Showing the latest saved details';
+  } catch (err) {
+    console.warn('Live place refresh failed for', id, err);
+    if (reqId === _placeLiveReqId) note.textContent = '';
+  }
 }
 
 function closeDetail() {

@@ -660,6 +660,9 @@ function buildPopup(p) {
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
       Navigate to ${p.name || "this place"}
     </a>
+    <a class="popup-nav-btn" href="javascript:void(0)" onclick="openLivePlaceCard('${p._key}', window.__hePlaceByKey && window.__hePlaceByKey['${p._key}'])" style="margin-top:6px;background:#b07d3a">
+      🔎 Full live details
+    </a>
   </div>`;
 }
 
@@ -696,6 +699,7 @@ function buildCard(p, idx) {
     markerGroup.eachLayer(layer => {
       if (layer._placeKey === p._key) layer.openPopup();
     });
+    if (typeof openLivePlaceCard === "function") openLivePlaceCard(p._key, p);
   });
 
   return card;
@@ -718,7 +722,9 @@ function render(places) {
     return;
   }
 
+  window.__hePlaceByKey = window.__hePlaceByKey || {};
   places.forEach((p, i) => {
+    window.__hePlaceByKey[p._key] = p;
     const marker = L.marker([+p.latitude, +p.longitude], { icon: makeIcon(p) });
     marker._placeKey = p._key;
     marker.bindPopup(buildPopup(p), { maxWidth:290, className:"leaflet-popup-custom" });
@@ -883,5 +889,6 @@ onValue(ref(db, "places"), snap => {
 });
 </script>
 <script src="assets/js/site-chrome.js" defer></script>
+<script src="assets/js/place-live-modal.js" defer></script>
 </body>
 </html>
