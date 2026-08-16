@@ -2948,7 +2948,13 @@ function renderCards() {
 // day-wise itinerary, photos and live per-person pricing) instead of only
 // opening the in-page quick-preview panel.
 function goToPackagePage(pkgId) {
-  window.location.href = `package-detail.html?id=${encodeURIComponent(pkgId)}`;
+  const pkg = (typeof PACKAGES !== 'undefined' ? PACKAGES : []).find(p => p.package_id === pkgId);
+  const label = pkg ? pkg.package_name : 'Package Details';
+  if (window.openPackageCinema) {
+    window.openPackageCinema(pkgId, label);
+  } else {
+    window.location.href = `package-detail.html?id=${encodeURIComponent(pkgId)}`;
+  }
 }
 
 // ─── OPEN DETAIL (3-column) ───────────────────────────────────────────────────
@@ -3054,7 +3060,7 @@ function openDetail(pkgId) {
     </div>
 
     <div class="dp-actions">
-      <button class="dp-btn dp-btn-primary" style="flex:1" onclick="window.location.href='package-detail.html?id=${pkgId}'">Click here to see package details →</button>
+      <button class="dp-btn dp-btn-primary" style="flex:1" onclick="goToPackagePage('${pkgId}')">Click here to see package details →</button>
       <a class="dp-btn dp-btn-outline" style="flex:1;text-decoration:none;display:flex;align-items:center;justify-content:center" href="booking.html?pkg=${pkgId}&name=${encodeURIComponent(pkg.package_name)}&price=${getPriceWithFallback(pkg.package_id, state.gateway||'DELHI', state.drop||'DELHI', state.pax||4, state.tier||'budget')}&days=${pkg.days}&nights=${pkg.days-1}&gateway=${encodeURIComponent(pkg.start_point||'')}">💳 Book & Get Cost</a>
     </div>
 
@@ -3515,6 +3521,95 @@ loadPricingMatrix().then(() => renderCards()); // re-render with live prices whe
     </nav>
   </div>
 </section>
+
+<!-- ══ PACKAGE CINEMA OVERLAY — full package detail, no page navigation ══ -->
+<style>
+.pkg-cinema-overlay{position:fixed;inset:0;z-index:6000;background:#0c0803;display:none;flex-direction:column;opacity:0;transition:opacity .35s ease}
+.pkg-cinema-overlay.open{display:flex;opacity:1}
+.pkg-cinema-topbar{height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:rgba(12,8,3,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,146,72,.22)}
+.pkg-cinema-title{font-family:'Cormorant Garamond',serif;font-size:17px;color:#f5efe4;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60vw}
+.pkg-cinema-actions{display:flex;align-items:center;gap:8px}
+.pkg-cinema-btn{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);color:#f5efe4;font-size:11px;font-weight:600;letter-spacing:.05em;padding:8px 14px;border-radius:20px;cursor:pointer;text-decoration:none;transition:all .2s}
+.pkg-cinema-btn:hover{background:var(--gold);border-color:var(--gold)}
+.pkg-cinema-close{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);color:#f5efe4;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s;flex-shrink:0}
+.pkg-cinema-close:hover{background:var(--gold);border-color:var(--gold)}
+.pkg-cinema-body{flex:1;position:relative;overflow:hidden}
+.pkg-cinema-body iframe{width:100%;height:100%;border:none;display:block;background:#fff}
+.pkg-cinema-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#0c0803;transition:opacity .3s ease}
+.pkg-cinema-loading.hide{opacity:0;pointer-events:none}
+.pkg-cinema-spinner{width:34px;height:34px;border:2.5px solid rgba(201,146,72,.25);border-top-color:var(--gold2);border-radius:50%;animation:pkgCinemaSpin .8s linear infinite}
+@keyframes pkgCinemaSpin{to{transform:rotate(360deg)}}
+.pkg-cinema-loading span{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,239,228,.55)}
+@media(max-width:600px){
+  .pkg-cinema-title{font-size:14px;max-width:42vw}
+  .pkg-cinema-btn span{display:none}
+  .pkg-cinema-btn{padding:8px 10px}
+}
+</style>
+
+<div class="pkg-cinema-overlay" id="pkgCinemaOverlay" role="dialog" aria-modal="true">
+  <div class="pkg-cinema-topbar">
+    <div class="pkg-cinema-title" id="pkgCinemaTitle">Package Details</div>
+    <div class="pkg-cinema-actions">
+      <a class="pkg-cinema-btn" id="pkgCinemaOpenTab" href="#" target="_blank" rel="noopener">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+        <span>Open Full Page</span>
+      </a>
+      <button class="pkg-cinema-close" id="pkgCinemaClose" aria-label="Close">✕</button>
+    </div>
+  </div>
+  <div class="pkg-cinema-body">
+    <div class="pkg-cinema-loading" id="pkgCinemaLoading">
+      <div class="pkg-cinema-spinner"></div>
+      <span>Loading Package Details…</span>
+    </div>
+    <iframe id="pkgCinemaFrame" title="Package details" src="about:blank"></iframe>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay  = document.getElementById('pkgCinemaOverlay');
+  const frame    = document.getElementById('pkgCinemaFrame');
+  const loading  = document.getElementById('pkgCinemaLoading');
+  const titleEl  = document.getElementById('pkgCinemaTitle');
+  const openTab  = document.getElementById('pkgCinemaOpenTab');
+  const closeBtn = document.getElementById('pkgCinemaClose');
+
+  window.openPackageCinema = function(pkgId, label){
+    loading.classList.remove('hide');
+    titleEl.textContent = label || 'Package Details';
+    const url = `package-detail.html?id=${encodeURIComponent(pkgId)}&embed=1`;
+    openTab.href = `package-detail.html?id=${encodeURIComponent(pkgId)}`;
+    frame.src = url;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (history.pushState) history.pushState({ pkgCinema: pkgId }, '', location.pathname + '#pkg-' + pkgId);
+  };
+
+  window.closePackageCinema = function(){
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { frame.src = 'about:blank'; loading.classList.remove('hide'); }, 350);
+    if (location.hash.startsWith('#pkg-') && history.pushState) {
+      history.pushState({}, '', location.pathname + location.search.replace(/[?&]?embed=1/, ''));
+    }
+  };
+
+  frame.addEventListener('load', () => {
+    if (frame.src !== 'about:blank') loading.classList.add('hide');
+  });
+
+  closeBtn.addEventListener('click', closePackageCinema);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closePackageCinema(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closePackageCinema();
+  });
+  window.addEventListener('popstate', () => {
+    if (overlay.classList.contains('open')) closePackageCinema();
+  });
+})();
+</script>
 
 </body>
 </html>
