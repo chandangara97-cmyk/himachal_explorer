@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kangra – Bir – Palampur Circuit | Himachal Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root {
+  --paper: #f6f1e6;
+  --paper-deep: #efe6d3;
+  --white: #fffdf9;
+  --ink: #1b160f;
+  --ink-soft: #2c2419;
+  --body: #5b5142;
+  --muted: #948a76;
+  --line: #e4d9c3;
+  --gold: #ad8140;
+  --gold-deep: #8c6530;
+  --gold-light: #d9b877;
+  --pine: #333f2e;
+  --pine-light: #5b6d51;
+  --shadow-sm: 0 2px 12px rgba(27,22,15,.06);
+  --shadow-md: 0 14px 34px rgba(27,22,15,.10);
+  --shadow-lg: 0 30px 70px rgba(27,22,15,.24);
+  --radius: 16px;
+  --radius-sm: 9px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: Jost, sans-serif; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+.icon { width: 19px; height: 19px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* Eyebrow / section label — the recurring structural device */
+.eyebrow { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; letter-spacing: 3px; color: var(--gold-deep); text-transform: uppercase; margin-bottom: 18px; }
+.eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); flex-shrink: 0; }
+
+/* Navigation */
+.top { position: sticky; top: 0; z-index: 1000; height: 74px; background: rgba(246,241,230,.92); border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; backdrop-filter: blur(14px) saturate(140%); }
+.brand { display: flex; align-items: center; gap: 10px; font-family: "Cormorant Garamond", serif; font-size: 23px; font-weight: 700; letter-spacing: .5px; color: var(--ink); }
+.brand .mark { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(150deg, var(--gold-light), var(--gold-deep)); display: flex; align-items: center; justify-content: center; color: #fff; box-shadow: var(--shadow-sm); }
+.brand .mark svg { width: 17px; height: 17px; stroke: #fff; }
+.navlinks { display: flex; gap: 34px; font-size: 13.5px; font-weight: 500; letter-spacing: .3px; color: #4d453b; }
+.navlinks a { position: relative; padding-bottom: 4px; }
+.navlinks a::after { content: ''; position: absolute; left: 0; right: 100%; bottom: 0; height: 1px; background: var(--gold); transition: right .25s ease; }
+.navlinks a:hover { color: var(--gold-deep); }
+.navlinks a:hover::after { right: 0; }
+.wa-btn { background: var(--pine); color: #fff; border-radius: 24px; padding: 11px 22px; font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-sm); transition: transform .2s ease, box-shadow .2s ease; }
+.wa-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.wa-btn svg { width: 16px; height: 16px; }
+
+/* Hero Section */
+.hero { position: relative; min-height: 640px; color: #fff; background: var(--ink); overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .78; transform: scale(1.04); }
+.hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,16,10,.55) 0%, rgba(20,16,10,.35) 32%, rgba(20,16,10,.72) 78%, rgba(20,16,10,.92) 100%); z-index: 1; }
+.hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(20,16,10,.55) 0%, transparent 45%); z-index: 1; }
+.hero-inner { position: relative; z-index: 2; max-width: 1320px; margin: auto; padding: 64px 24px 56px; display: grid; grid-template-columns: 1fr 330px; gap: 48px; align-items: end; min-height: 640px; }
+.hero-content .badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(6px); color: #fff; font-size: 10.5px; font-weight: 600; letter-spacing: 1.6px; padding: 7px 14px; border-radius: 20px; margin-bottom: 22px; text-transform: uppercase; }
+.hero-content .badge svg { width: 12px; height: 12px; stroke: var(--gold-light); }
+.hero-content h1 { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: clamp(42px, 5.4vw, 70px); line-height: 1.05; letter-spacing: -.5px; margin-bottom: 14px; text-shadow: 0 2px 24px rgba(0,0,0,.25); }
+.hero-content .subtitle { font-size: 17px; font-weight: 300; color: #e9e3d6; letter-spacing: .3px; margin-bottom: 30px; }
+.meta-info { display: flex; gap: 26px; margin-bottom: 34px; font-size: 13.5px; color: #ece5d5; }
+.meta-info span { display: flex; align-items: center; gap: 9px; }
+.meta-info .icon { stroke: var(--gold-light); }
+.price-block { margin-bottom: 32px; }
+.price-block .from { font-size: 12.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #c9c0ac; margin-bottom: 2px; }
+.price-block .amount { font-family: "Cormorant Garamond", serif; font-size: 46px; font-weight: 600; color: #fff; }
+.price-block .desc { font-size: 12px; color: #b8ae98; margin-top: 2px; }
+.rating { font-size: 13.5px; color: var(--gold-light); margin-bottom: 32px; display: flex; align-items: center; gap: 9px; }
+.rating .stars { display: flex; gap: 2px; }
+.rating svg { width: 14px; height: 14px; fill: var(--gold-light); stroke: none; }
+.hero-actions { display: flex; gap: 14px; }
+.btn { border: none; border-radius: 8px; padding: 15px 26px; font-size: 13.5px; font-weight: 600; letter-spacing: .3px; cursor: pointer; text-align: center; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+.btn-primary { background: linear-gradient(155deg, var(--gold-light), var(--gold-deep)); color: #fff; box-shadow: 0 10px 24px rgba(140,101,48,.35); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(140,101,48,.45); }
+.btn-outline { background: transparent; border: 1px solid rgba(255,255,255,.5); color: #fff; }
+.btn-outline:hover { background: rgba(255,255,255,.12); border-color: #fff; }
+
+/* Hero Right Card */
+.hero-card { background: rgba(255,253,249,.97); backdrop-filter: blur(10px); color: var(--ink); padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow-lg); display: grid; grid-template-columns: 1fr; gap: 3px; border: 1px solid rgba(255,255,255,.6); }
+.card-item { display: flex; gap: 15px; align-items: center; padding: 11px 4px; }
+.card-item + .card-item { border-top: 1px solid var(--line); }
+.card-item .icon-wrap { width: 36px; height: 36px; border-radius: 50%; background: var(--paper-deep); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.card-item .icon-wrap svg { stroke: var(--gold-deep); width: 17px; height: 17px; }
+.card-item div span { display: block; font-size: 11px; color: var(--muted); letter-spacing: .3px; }
+.card-item div strong { font-family: "Cormorant Garamond", serif; font-size: 18px; font-weight: 600; color: var(--ink); }
+
+/* Main Wrapper */
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* Route Timeline — signature waypoint ribbon */
+.route-section { margin: 56px 0 48px; }
+.route-timeline { display: flex; align-items: flex-start; overflow-x: auto; padding: 10px 4px 14px; scrollbar-width: thin; }
+.route-step { display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 108px; gap: 12px; position: relative; }
+.route-step img { width: 68px; height: 68px; object-fit: cover; border-radius: 50%; border: 3px solid var(--white); box-shadow: 0 0 0 1.5px var(--gold), var(--shadow-md); transition: transform .3s ease; }
+.route-step:hover img { transform: scale(1.08); }
+.route-step span { font-family: "Cormorant Garamond", serif; font-size: 15.5px; font-weight: 600; color: var(--ink-soft); max-width: 110px; }
+.route-arrow { flex-grow: 1; min-width: 36px; height: 68px; display: flex; align-items: center; position: relative; margin: 0 -2px; }
+.route-arrow::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: linear-gradient(90deg, var(--gold-deep), var(--gold-light)); transform: translateY(-50%); }
+.route-arrow::after { content: '◆'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); color: var(--gold); font-size: 8px; background: var(--paper); padding: 0 4px; }
+
+/* About Section */
+.about-section { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); display: grid; grid-template-columns: 1.1fr 1fr; overflow: hidden; margin-bottom: 44px; box-shadow: var(--shadow-sm); }
+.about-content { padding: 48px 46px; display: flex; flex-direction: column; justify-content: center; }
+.about-content h2 { font-family: "Cormorant Garamond", serif; font-size: 30px; font-weight: 600; margin-bottom: 16px; color: var(--ink); }
+.about-content p { color: var(--body); font-size: 15.5px; margin-bottom: 32px; }
+.features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; text-align: center; }
+.feature { display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 11.5px; color: var(--ink-soft); font-weight: 500; letter-spacing: .2px; }
+.feature .icon-wrap { width: 46px; height: 46px; border-radius: 50%; background: var(--paper-deep); display: flex; align-items: center; justify-content: center; transition: background .25s ease; }
+.feature:hover .icon-wrap { background: var(--gold-light); }
+.feature svg { stroke: var(--gold-deep); width: 20px; height: 20px; }
+.about-img { position: relative; min-height: 320px; }
+.about-img img { width: 100%; height: 100%; object-fit: cover; }
+.about-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,253,249,.18), transparent 22%); }
+
+/* 2-Column Layout */
+.two-col-layout { display: grid; grid-template-columns: 1.8fr 1fr; gap: 44px; margin-bottom: 44px; }
+.section-title { font-size: 11px; font-weight: 600; letter-spacing: 3px; color: var(--gold-deep); margin-bottom: 22px; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+.section-title::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+
+/* Itinerary */
+.itinerary-list { display: flex; flex-direction: column; gap: 16px; }
+.day-card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; display: grid; grid-template-columns: 58px 170px 1fr 148px; gap: 22px; align-items: center; transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease; }
+.day-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--gold-light); }
+.day-badge { width: 52px; height: 52px; background: linear-gradient(150deg, var(--gold-light), var(--gold-deep)); color: #fff; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: "Cormorant Garamond", serif; font-size: 21px; font-weight: 600; line-height: 1; box-shadow: var(--shadow-sm); }
+.day-badge small { font-family: Jost, sans-serif; font-size: 8.5px; text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 2px; opacity: .9; }
+.day-img { height: 104px; width: 100%; object-fit: cover; border-radius: 10px; }
+.day-info h3 { font-family: "Cormorant Garamond", serif; font-size: 19px; font-weight: 600; margin-bottom: 9px; color: var(--ink); }
+.day-info ul { list-style: none; font-size: 12.5px; color: var(--body); }
+.day-info ul li { position: relative; padding-left: 14px; margin-bottom: 4px; }
+.day-info ul li::before { content: ''; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+.day-stay-sm { border-left: 1px solid var(--line); padding-left: 20px; }
+.day-stay-sm span { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+.day-stay-sm strong { display: block; font-family: "Cormorant Garamond", serif; font-size: 17px; font-weight: 600; margin-top: 5px; color: var(--pine); }
+
+/* Stay Experience */
+.stay-list { display: flex; flex-direction: column; gap: 16px; }
+.stay-card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; display: grid; grid-template-columns: 108px 1fr; gap: 16px; align-items: center; transition: box-shadow .25s ease, transform .25s ease; overflow: hidden; }
+.stay-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.stay-card img { height: 96px; width: 100%; object-fit: cover; border-radius: 8px; }
+.stay-info h4 { font-family: "Cormorant Garamond", serif; font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.stay-info .type { font-size: 10.5px; color: var(--gold-deep); font-weight: 600; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 9px; }
+.stay-info ul { list-style: none; font-size: 11.5px; color: var(--body); }
+.stay-info ul li { margin-bottom: 4px; padding-left: 16px; position: relative; }
+.stay-info ul li::before { content: ''; position: absolute; left: 0; top: 5px; width: 8px; height: 8px; border-radius: 2px; background: var(--pine-light); }
+
+/* 4-Column Bottom Section */
+.four-col-layout { display: grid; grid-template-columns: 1fr 1fr 1.15fr 1.5fr; gap: 22px; margin-bottom: 44px; align-items: stretch; }
+.box-panel { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 22px; transition: box-shadow .25s ease; }
+.box-panel:hover { box-shadow: var(--shadow-sm); }
+.box-panel h3 { font-family: "Cormorant Garamond", serif; font-size: 21px; font-weight: 600; margin-bottom: 18px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 9px; }
+.box-panel h3 svg { stroke: var(--gold-deep); }
+.box-list { list-style: none; font-size: 13px; color: var(--body); }
+.box-list li { margin-bottom: 11px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+.box-list.inc li::before { content: ''; flex-shrink: 0; margin-top: 5px; width: 8px; height: 8px; border-radius: 50%; background: var(--pine-light); }
+.box-list.exc li::before { content: ''; flex-shrink: 0; margin-top: 5px; width: 8px; height: 1.5px; background: #b47b55; }
+
+.price-box { background: linear-gradient(165deg, var(--paper-deep), #f2ead9); text-align: center; display: flex; flex-direction: column; justify-content: center; position: relative; border-style: dashed; border-color: var(--gold-light); }
+.price-box::before, .price-box::after { content: ''; position: absolute; width: 20px; height: 20px; border-radius: 50%; background: var(--paper); left: 50%; transform: translateX(-50%); }
+.price-box::before { top: -11px; }
+.price-box::after { bottom: -11px; }
+.price-box .label { font-size: 12.5px; font-family: Jost, sans-serif; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+.price-box .price-val { font-family: "Cormorant Garamond", serif; font-size: 44px; font-weight: 600; color: var(--ink); line-height: 1; margin: 6px 0; }
+.price-box .price-val span:last-child { font-size: 15px; font-weight: 400; color: var(--muted); }
+.price-box .occ { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.price-box .total { font-size: 14px; font-weight: 600; color: var(--pine); margin: 16px 0; border-top: 1px dashed var(--gold-light); padding-top: 16px; letter-spacing: .3px; }
+
+.map-box { padding: 0; position: relative; overflow: hidden; display: flex; flex-direction: column; border-color: var(--line); }
+.map-box img { width: 100%; height: 100%; object-fit: cover; }
+.map-box-head { padding: 18px 20px; background: var(--paper-deep); border-bottom: 1px solid var(--line); }
+.map-box-head h3 { text-align: left; font-size: 17px; margin: 0; justify-content: flex-start; }
+#route-map { width: 100%; height: 226px; background: var(--paper-deep); flex-grow: 1; }
+#route-map .leaflet-routing-container { display: none; }
+.route-map-loading { position: absolute; inset: 0; top: 63px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--muted); background: var(--paper-deep); gap: 8px; }
+.route-pin { width: 24px; height: 24px; border-radius: 50% 50% 50% 0; background: linear-gradient(150deg, var(--gold-light), var(--gold-deep)); border: 2px solid #fff; box-shadow: var(--shadow-sm); transform: rotate(-45deg); display: flex; align-items: center; justify-content: center; }
+.route-pin span { transform: rotate(45deg); color: #fff; font-size: 10px; font-weight: 700; font-family: Jost, sans-serif; }
+
+/* Gallery & FAQ */
+.bottom-split { display: grid; grid-template-columns: 2fr 1.4fr; gap: 44px; margin-bottom: 60px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 110px; gap: 10px; }
+.gallery-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; transition: transform .4s ease, filter .4s ease; }
+.gallery-grid a { overflow: hidden; border-radius: 10px; display: block; position: relative; }
+.gallery-grid a:hover img { transform: scale(1.08); }
+.gallery-grid .main-img-wrap { grid-column: span 2; grid-row: span 2; }
+.gallery-footer { grid-column: 1 / -1; text-align: right; margin-top: 12px; }
+.gallery-footer button { background: var(--white); border: 1px solid var(--line); padding: 10px 18px; border-radius: var(--radius-sm); cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 500; transition: border-color .2s ease, color .2s ease; }
+.gallery-footer button:hover { border-color: var(--gold); color: var(--gold-deep); }
+
+.faq-list { display: flex; flex-direction: column; gap: 10px; }
+.faq-item { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 17px 19px; cursor: pointer; font-size: 14px; font-weight: 500; color: var(--ink-soft); transition: border-color .2s ease, box-shadow .2s ease; }
+.faq-item:hover { border-color: var(--gold-light); box-shadow: var(--shadow-sm); }
+.faq-q { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.faq-q .plus { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; color: var(--gold-deep); font-size: 15px; transition: transform .25s ease, background .25s ease; }
+.faq-item.open .plus { transform: rotate(45deg); background: var(--gold-light); color: #fff; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease, margin-top .3s ease; font-size: 13px; color: var(--body); font-weight: 400; }
+.faq-item.open .faq-a { max-height: 200px; margin-top: 12px; }
+
+/* CTA Banner */
+.cta-banner { position: relative; background: var(--pine); color: #fff; border-radius: var(--radius); padding: 46px 48px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 56px; overflow: hidden; }
+.cta-banner::before { content: ''; position: absolute; inset: 0; opacity: .16; background-image: repeating-radial-gradient(circle at 15% 30%, transparent 0, transparent 26px, rgba(255,255,255,.5) 27px), repeating-radial-gradient(circle at 85% 75%, transparent 0, transparent 34px, rgba(255,255,255,.4) 35px); }
+.cta-banner > * { position: relative; z-index: 1; }
+.cta-banner h2 { font-family: "Cormorant Garamond", serif; font-size: 34px; font-weight: 600; margin-bottom: 8px; }
+.cta-banner p { font-size: 14.5px; color: #cfd6c9; }
+.cta-buttons { display: flex; gap: 15px; }
+.btn-whatsapp { background: #3d8b52; color: white; display: flex; align-items: center; gap: 9px; box-shadow: 0 10px 24px rgba(0,0,0,.25); white-space: nowrap; }
+.btn-whatsapp:hover { transform: translateY(-2px); background: #348049; }
+.cta-banner .btn-primary { background: linear-gradient(155deg, var(--gold-light), var(--gold-deep)); }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; text-align: center; padding-top: 44px; align-items: center; }
+  .meta-info, .hero-actions { justify-content: center; }
+  .two-col-layout, .about-section, .bottom-split { grid-template-columns: 1fr; }
+  .about-img { height: 260px; }
+  .four-col-layout { grid-template-columns: 1fr 1fr; }
+  .navlinks { display: none; }
+}
+
+@media (max-width: 768px) {
+  .day-card { grid-template-columns: 50px 1fr; gap: 15px; }
+  .day-img, .day-stay-sm { display: none; }
+  .four-col-layout { grid-template-columns: 1fr; }
+  .route-timeline { padding-bottom: 20px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .cta-banner { flex-direction: column; text-align: center; gap: 22px; padding: 38px 26px; }
+  .cta-buttons { width: 100%; flex-direction: column; }
+  .hero-content .amount { font-size: 38px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Icon sprite -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="icon-mountain" viewBox="0 0 24 24"><path d="M3 20 L9 8 L13 15 L16 10 L21 20 Z"/></symbol>
+  <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="15" rx="2"/><line x1="3.5" y1="10" x2="20.5" y2="10"/><line x1="8" y1="3.5" x2="8" y2="7.5"/><line x1="16" y1="3.5" x2="16" y2="7.5"/></symbol>
+  <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M12 21c-4.2-4.6-6.5-8.2-6.5-11.2A6.5 6.5 0 1 1 18.5 9.8C18.5 12.8 16.2 16.4 12 21z"/><circle cx="12" cy="9.5" r="2.2"/></symbol>
+  <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="icon-bed" viewBox="0 0 24 24"><path d="M3 18v-6a2 2 0 0 1 2-2h6.5a2 2 0 0 1 2 2v1"/><path d="M3 18v2M21 18v2"/><rect x="12.5" y="10" width="8.5" height="4.5" rx="1.5"/><path d="M3 15h18v3H3z"/><circle cx="7" cy="12.3" r="1.2"/></symbol>
+  <symbol id="icon-van" viewBox="0 0 24 24"><path d="M3 16V9a1 1 0 0 1 1-1h9l4 4h3a1 1 0 0 1 1 1v3"/><path d="M3 16h1M21 16h-1"/><circle cx="7.5" cy="17" r="1.8"/><circle cx="17" cy="17" r="1.8"/><path d="M9.5 16h5"/></symbol>
+  <symbol id="icon-hotel" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1.5"/><line x1="8" y1="8" x2="8" y2="8.01"/><line x1="12" y1="8" x2="12" y2="8.01"/><line x1="16" y1="8" x2="16" y2="8.01"/><line x1="8" y1="12" x2="8" y2="12.01"/><line x1="12" y1="12" x2="12" y2="12.01"/><line x1="16" y1="12" x2="16" y2="12.01"/><path d="M9 20v-3.5a3 3 0 0 1 6 0V20"/></symbol>
+  <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19c0-3 2.5-5.2 5.5-5.2s5.5 2.2 5.5 5.2"/><circle cx="17" cy="9.5" r="2.3"/><path d="M15.5 13.6c2.4.3 4 2.2 4 4.9"/></symbol>
+  <symbol id="icon-utensils" viewBox="0 0 24 24"><path d="M7 3v6a2 2 0 0 0 2 2v10M7 3v6M9 3v6M7 11h2"/><path d="M16 3c-1.5 1-2 3-2 5.5S15 12 16 12v9"/></symbol>
+  <symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.2 1 5.9L12 17l-5.2 2.8 1-5.9-4.3-4.2 5.9-.8z"/></symbol>
+  <symbol id="icon-sparkle" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/></symbol>
+  <symbol id="icon-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 6-6 2 2-6z"/></symbol>
+  <symbol id="icon-briefcase" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="3" y1="13" x2="21" y2="13"/></symbol>
+  <symbol id="icon-x-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></symbol>
+  <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 1 1-3.3-6.5L21 4l-1 3.6A7.96 7.96 0 0 1 21 12z"/></symbol>
+  <symbol id="icon-map" viewBox="0 0 24 24"><path d="M9 3L3 5.5v15L9 18l6 2.5 6-2.5v-15L15 5.5 9 3z"/><path d="M9 3v15M15 5.5v15"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="brand">
+    <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-mountain"/></svg></span>
+    HIMACHAL EXPLORER
+  </div>
+  <nav class="navlinks">
+    <a href="#">Home</a>
+    <a href="#">Destinations</a>
+    <a href="#">Packages</a>
+    <a href="#">Hotels</a>
+    <a href="#">Treks</a>
+    <a href="#">Blog</a>
+    <a href="#">About Us</a>
+  </nav>
+  <a href="#" class="wa-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><use href="#icon-chat"/></svg> WhatsApp</a>
+</header>
+
+<section class="hero">
+  <img id="hero-bg" src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=2000&auto=format&fit=crop" alt="" class="hero-bg">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><use href="#icon-sparkle"/></svg> BEST SELLER</span>
+      <h1 id="hero-title">Kangra – Bir – Palampur Circuit</h1>
+      <p class="subtitle" id="hero-subtitle">Himalayan Escape • Mountains, Culture & Adventure</p>
+
+      <div class="meta-info">
+        <span id="meta-days"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-calendar"/></svg> 03 Nights / 04 Days</span>
+        <span id="meta-start"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-pin"/></svg> CHANDIGARH</span>
+      </div>
+
+      <div class="price-block">
+        <div class="from">Starting from</div>
+        <div class="amount"><span id="hero-price">₹7,282</span> <span style="font-size: 16px; font-family: Jost; font-weight: 300;">/ person</span></div>
+        <div class="desc">Double Occupancy</div>
+      </div>
+
+      <div class="rating">
+        <span class="stars">
+          <svg viewBox="0 0 24 24"><use href="#icon-star"/></svg><svg viewBox="0 0 24 24"><use href="#icon-star"/></svg><svg viewBox="0 0 24 24"><use href="#icon-star"/></svg><svg viewBox="0 0 24 24"><use href="#icon-star"/></svg><svg viewBox="0 0 24 24"><use href="#icon-star"/></svg>
+        </span>
+        4.8 · 120+ Reviews
+      </div>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary">Get a Quick Quote</button>
+        <a class="btn btn-outline" id="wa-enquire-hero" target="_blank" rel="noopener">Enquire Now</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="card-item"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-clock"/></svg></span><div><span>Duration</span><strong id="card-duration">4 Days</strong></div></div>
+      <div class="card-item"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-bed"/></svg></span><div><span>Stay</span><strong id="card-nights">3 Nights</strong></div></div>
+      <div class="card-item"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-van"/></svg></span><div><span>Transport</span><strong>Private Vehicle</strong></div></div>
+      <div class="card-item"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-hotel"/></svg></span><div><span>Stay Type</span><strong id="card-hotel">Comfortable</strong></div></div>
+      <div class="card-item"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-users"/></svg></span><div><span>Occupancy</span><strong>Double</strong></div></div>
+      <div class="card-item"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-utensils"/></svg></span><div><span>Meals</span><strong>Included</strong></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <section class="route-section reveal">
+    <div class="eyebrow"><svg class="icon" viewBox="0 0 24 24" style="stroke:var(--gold-deep)"><use href="#icon-compass"/></svg> Journey Route</div>
+    <div class="route-timeline" id="route-timeline">
+      <!-- populated dynamically from route_stops -->
+    </div>
+  </section>
+
+  <section class="about-section reveal">
+    <div class="about-content">
+      <div class="eyebrow"><svg class="icon" viewBox="0 0 24 24" style="stroke:var(--gold-deep)"><use href="#icon-mountain"/></svg> About This Journey</div>
+      <h2>A journey worth the drive</h2>
+      <p id="about-text">Experience the perfect blend of spirituality, adventure and serenity in the picturesque landscapes of Himachal Pradesh.</p>
+      <div class="features">
+        <div class="feature"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-mountain"/></svg></span> Scenic Beauty</div>
+        <div class="feature"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-map"/></svg></span> Local Culture</div>
+        <div class="feature"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-compass"/></svg></span> Adventure</div>
+        <div class="feature"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-bed"/></svg></span> Comfortable Stay</div>
+      </div>
+    </div>
+    <div class="about-img">
+      <img id="about-img" src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=800&auto=format&fit=crop" alt="Himachal Landscape">
+    </div>
+  </section>
+
+  <div class="two-col-layout">
+    <div class="left-col reveal">
+      <div class="section-title">Day-Wise Itinerary</div>
+      <div class="itinerary-list" id="itinerary-list">
+        <!-- populated dynamically -->
+      </div>
+    </div>
+
+    <div class="right-col reveal">
+      <div class="section-title">Stay Experience</div>
+      <div class="stay-list" id="stay-list">
+        <!-- populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <div class="four-col-layout reveal">
+    <div class="box-panel">
+      <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-briefcase"/></svg> Inclusions</h3>
+      <ul class="box-list inc" id="inclusions-list"></ul>
+    </div>
+
+    <div class="box-panel">
+      <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-x-circle"/></svg> Exclusions</h3>
+      <ul class="box-list exc" id="exclusions-list"></ul>
+    </div>
+
+    <div class="box-panel price-box">
+      <div class="label">Package Price</div>
+      <div class="price-val"><span id="box-price">₹7,282</span> <span>/ person</span></div>
+      <div class="occ">Double Occupancy</div>
+      <div class="total"><span id="box-days-label">4 Days / 3 Nights</span></div>
+      <a class="btn btn-primary" id="wa-enquire-box" style="width: 100%; display:block;" target="_blank" rel="noopener">Get Detailed Quote</a>
+    </div>
+
+    <div class="box-panel map-box">
+      <div class="map-box-head">
+        <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-map"/></svg> Explore Your Route</h3>
+      </div>
+      <div id="route-map"></div>
+      <div class="route-map-loading" id="route-map-loading">Loading road route…</div>
+    </div>
+  </div>
+
+  <div class="bottom-split reveal">
+    <div>
+      <div class="section-title">Gallery</div>
+      <div class="gallery-grid">
+        <a href="#" class="main-img-wrap"><img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=500&h=500&fit=crop" alt="Gallery 1"></a>
+        <a href="#"><img src="https://images.unsplash.com/photo-1596895111956-bf5705318c4e?w=250&h=250&fit=crop" alt="Gallery 2"></a>
+        <a href="#"><img src="https://images.unsplash.com/photo-1605649487212-47bf1b285324?w=250&h=250&fit=crop" alt="Gallery 3"></a>
+        <a href="#"><img src="https://images.unsplash.com/photo-1622037149097-f58c73400b98?w=250&h=250&fit=crop" alt="Gallery 4"></a>
+        <a href="#"><img src="https://images.unsplash.com/photo-1588698505499-56360ef8e2ef?w=250&h=250&fit=crop" alt="Gallery 5"></a>
+      </div>
+      <div class="gallery-footer">
+        <button>View Full Gallery</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title">Frequently Asked Questions</div>
+      <div class="faq-list" id="faq-list">
+        <div class="faq-item"><div class="faq-q">Is transportation private? <span class="plus">+</span></div><div class="faq-a">Yes — every package includes a private vehicle with an experienced driver for your group only. No shared seating.</div></div>
+        <div class="faq-item"><div class="faq-q">What type of rooms are provided? <span class="plus">+</span></div><div class="faq-a">Comfortable, well-reviewed hotels matched to your chosen category, with private bathrooms and daily housekeeping.</div></div>
+        <div class="faq-item"><div class="faq-q">Can the package be customised? <span class="plus">+</span></div><div class="faq-a">Absolutely. Message us on WhatsApp with your dates and preferences and we'll tailor the itinerary for you.</div></div>
+        <div class="faq-item"><div class="faq-q">What is the cancellation policy? <span class="plus">+</span></div><div class="faq-a">Full details are shared at booking confirmation. Reach out on WhatsApp for the current terms before you pay.</div></div>
+        <div class="faq-item"><div class="faq-q">Is this package suitable for families? <span class="plus">+</span></div><div class="faq-a">Yes — the pace and stops work well for families, and the itinerary can be softened further on request.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-banner reveal">
+    <div>
+      <h2>Ready to explore Himachal?</h2>
+      <p>Book your unforgettable journey with Himachal Explorer.</p>
+    </div>
+    <div class="cta-buttons">
+      <a class="btn btn-whatsapp" id="wa-enquire-cta" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><use href="#icon-chat"/></svg> WhatsApp Us</a>
+      <button class="btn btn-primary">Get Quote</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function () {
+  var STOCK_IMAGES = [
+    "https://images.unsplash.com/photo-1596895111956-bf5705318c4e?w=200&h=150&fit=crop",
+    "https://images.unsplash.com/photo-1610041131154-15286ff0086c?w=200&h=150&fit=crop",
+    "https://images.unsplash.com/photo-1605649487212-47bf1b285324?w=200&h=150&fit=crop",
+    "https://images.unsplash.com/photo-1622037149097-f58c73400b98?w=200&h=150&fit=crop",
+    "https://images.unsplash.com/photo-1588698505499-56360ef8e2ef?w=200&h=150&fit=crop",
+    "https://images.unsplash.com/photo-1598326284344-9318b76b26c7?w=200&h=150&fit=crop"
+  ];
+  var STAY_IMAGES = [
+    "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=200&h=150&fit=crop",
+    "https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=200&h=150&fit=crop",
+    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=200&h=150&fit=crop"
+  ];
+  var WA_NUMBER = "917018138847";
+
+  function waLink(pkgTitle) {
+    var text = "Hi, I want to enquire about the " + pkgTitle + " package.";
+    return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text);
+  }
+
+  function fmtPrice(n) {
+    if (n == null) return "Contact for price";
+    return "₹" + n.toLocaleString("en-IN");
+  }
+
+  function populate(pkg) {
+    document.title = pkg.title + " | Himachal Explorer";
+    var setText = function (id, val) { var el = document.getElementById(id); if (el && val != null) el.textContent = val; };
+
+    setText("hero-title", pkg.title);
+    setText("hero-subtitle", (pkg.tags ? pkg.tags.split(",").map(function(t){return t.trim().replace(/^\w/, function(c){return c.toUpperCase();});}).join(" • ") : "Mountains, Culture & Adventure"));
+    setText("meta-days", "");
+    var metaDaysEl = document.getElementById("meta-days");
+    if (metaDaysEl) { metaDaysEl.innerHTML = '<svg class="icon" viewBox="0 0 24 24"><use href="#icon-calendar"/></svg> ' + (pkg.days ? pkg.days + " Days" : "") + (pkg.days ? " / " + (pkg.days - 1) + " Nights" : ""); }
+    var metaStartEl = document.getElementById("meta-start");
+    if (metaStartEl) { metaStartEl.innerHTML = '<svg class="icon" viewBox="0 0 24 24"><use href="#icon-pin"/></svg> From ' + (pkg.start_point || "Chandigarh"); }
+    setText("hero-price", fmtPrice(pkg.price));
+    setText("box-price", fmtPrice(pkg.price));
+    setText("box-days-label", (pkg.days || "-") + " Days / " + (pkg.days ? pkg.days - 1 : "-") + " Nights");
+    setText("card-duration", (pkg.days || "-") + " Days");
+    setText("card-nights", (pkg.days ? pkg.days - 1 : "-") + " Nights");
+    setText("card-hotel", pkg.hotel_star || "Comfortable");
+    if (pkg.image) {
+      var bg = document.getElementById("hero-bg"); if (bg) bg.src = pkg.image;
+      var ai = document.getElementById("about-img"); if (ai) ai.src = pkg.image;
+    }
+    if (pkg.itinerary && pkg.itinerary.length) {
+      setText("about-text", "A carefully curated " + pkg.days + "-day journey through Himachal Pradesh — " +
+        pkg.itinerary.map(function(d){return d.title;}).join(" → ") + ".");
+    }
+
+    var wa = waLink(pkg.title);
+    ["wa-enquire-hero", "wa-enquire-box", "wa-enquire-cta"].forEach(function (id) {
+      var el = document.getElementById(id); if (el) el.href = wa;
+    });
+
+    // Journey route strip
+    var timeline = document.getElementById("route-timeline");
+    if (timeline && pkg.route_stops && pkg.route_stops.length) {
+      timeline.innerHTML = "";
+      pkg.route_stops.forEach(function (s, i) {
+        if (i > 0) {
+          var arrow = document.createElement("div");
+          arrow.className = "route-arrow";
+          timeline.appendChild(arrow);
+        }
+        var step = document.createElement("div");
+        step.className = "route-step";
+        var img = document.createElement("img");
+        img.src = STOCK_IMAGES[i % STOCK_IMAGES.length];
+        img.alt = s.name;
+        var span = document.createElement("span");
+        span.textContent = s.name;
+        step.appendChild(img);
+        step.appendChild(span);
+        timeline.appendChild(step);
+      });
+    }
+
+    // Day-wise itinerary
+    var itinList = document.getElementById("itinerary-list");
+    if (itinList && pkg.itinerary) {
+      itinList.innerHTML = "";
+      pkg.itinerary.forEach(function (day, i) {
+        var stayIn = day.places && day.places.length ? day.places[day.places.length - 1] : "—";
+        var card = document.createElement("div");
+        card.className = "day-card";
+        card.innerHTML =
+          '<div class="day-badge"><small>DAY</small>' + String(day.day).padStart(2, "0") + '</div>' +
+          '<img src="' + STOCK_IMAGES[i % STOCK_IMAGES.length] + '" class="day-img" alt="Day ' + day.day + '">' +
+          '<div class="day-info"><h3>' + day.title + '</h3><ul><li>' +
+            (day.description || "").split(" · ").join("</li><li>") +
+          '</li></ul></div>' +
+          '<div class="day-stay-sm"><span>' + (i === pkg.itinerary.length - 1 ? "Tour" : "Stay in") + '</span><strong>' +
+            (i === pkg.itinerary.length - 1 ? "Concludes" : stayIn) + '</strong></div>';
+        itinList.appendChild(card);
+      });
+    }
+
+    // Stay experience — one card per overnight stop (all days except the last)
+    var stayList = document.getElementById("stay-list");
+    if (stayList && pkg.itinerary) {
+      stayList.innerHTML = "";
+      pkg.itinerary.slice(0, -1).forEach(function (day, i) {
+        var stayIn = day.places && day.places.length ? day.places[day.places.length - 1] : day.title;
+        var card = document.createElement("div");
+        card.className = "stay-card";
+        card.innerHTML =
+          '<img src="' + STAY_IMAGES[i % STAY_IMAGES.length] + '" alt="' + stayIn + '">' +
+          '<div class="stay-info"><h4>' + stayIn + ' Stay</h4><div class="type">' + (pkg.hotel_star || "Comfortable Hotel") + '</div>' +
+          '<ul><li>Comfortable Rooms</li><li>Breakfast Included</li><li>Great Location</li></ul></div>';
+        stayList.appendChild(card);
+      });
+    }
+
+    // Inclusions / exclusions
+    var incList = document.getElementById("inclusions-list");
+    if (incList && pkg.inclusions) {
+      incList.innerHTML = pkg.inclusions.map(function (x) { return "<li>" + x + "</li>"; }).join("");
+    }
+    var excList = document.getElementById("exclusions-list");
+    if (excList && pkg.exclusions) {
+      excList.innerHTML = pkg.exclusions.map(function (x) { return "<li>" + x + "</li>"; }).join("");
+    }
+
+    // Map
+    drawMap(pkg.route_stops);
+  }
+
+  function drawMap(stops) {
+    var mapEl = document.getElementById("route-map");
+    var loadingEl = document.getElementById("route-map-loading");
+    if (!mapEl || typeof L === "undefined" || !stops || stops.length < 2) {
+      if (loadingEl) loadingEl.style.display = "none";
+      return;
+    }
+
+    var map = L.map(mapEl, { scrollWheelZoom: false, zoomControl: false }).setView([stops[0].lat, stops[0].lng], 8);
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    var pinIcon = function (num) {
+      return L.divIcon({
+        className: "",
+        html: '<div class="route-pin"><span>' + num + '</span></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 22]
+      });
+    };
+
+    var bounds = [];
+    stops.forEach(function (s, i) {
+      L.marker([s.lat, s.lng], { icon: pinIcon(i + 1) }).addTo(map).bindPopup(s.name);
+      bounds.push([s.lat, s.lng]);
+    });
+
+    function drawStraightFallback() {
+      L.polyline(bounds, { color: "#ad8140", weight: 3, opacity: 0.9, dashArray: "6,6" }).addTo(map);
+      map.fitBounds(bounds, { padding: [20, 20] });
+      if (loadingEl) loadingEl.textContent = "Showing straight-line route (road data unavailable)";
+      setTimeout(function () { if (loadingEl) loadingEl.style.display = "none"; }, 2000);
+    }
+
+    var coordStr = stops.map(function (s) { return s.lng + "," + s.lat; }).join(";");
+    var osrmUrl = "https://router.project-osrm.org/route/v1/driving/" + coordStr + "?overview=full&geometries=geojson";
+
+    fetch(osrmUrl)
+      .then(function (res) { if (!res.ok) throw new Error("OSRM request failed"); return res.json(); })
+      .then(function (data) {
+        if (!data.routes || !data.routes.length) throw new Error("No route found");
+        var coords = data.routes[0].geometry.coordinates.map(function (c) { return [c[1], c[0]]; });
+        L.polyline(coords, { color: "#ad8140", weight: 4, opacity: 0.95 }).addTo(map);
+        map.fitBounds(coords, { padding: [20, 20] });
+        if (loadingEl) loadingEl.style.display = "none";
+      })
+      .catch(function () {
+        drawStraightFallback();
+      });
+  }
+
+  // Entry point: read ?slug= and load matching package data
+  var params = new URLSearchParams(window.location.search);
+  var slug = params.get("slug");
+
+  fetch("./pkg-data/packages.json")
+    .then(function (res) { if (!res.ok) throw new Error("Could not load package data"); return res.json(); })
+    .then(function (all) {
+      var pkg = slug ? all[slug] : null;
+      if (!pkg) {
+        // Fallback: no/unknown slug — use the first package so the page never looks broken
+        var firstKey = Object.keys(all)[0];
+        pkg = all[firstKey];
+      }
+      populate(pkg);
+    })
+    .catch(function (err) {
+      console.error("Failed to load package data:", err);
+    });
+})();
+</script>
+<script>
+// Scroll-reveal for static sections + FAQ accordion (purely presentational, additive)
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in-view'); });
+  } else if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('in-view'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in-view'); });
+  }
+
+  document.querySelectorAll('.faq-item').forEach(function (item) {
+    var q = item.querySelector('.faq-q');
+    if (q) q.addEventListener('click', function () { item.classList.toggle('open'); });
+  });
+})();
+</script>
+</body>
+</html>
