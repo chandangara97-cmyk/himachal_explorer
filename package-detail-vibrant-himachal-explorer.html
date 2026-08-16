@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tour Package | Himachal Explorer</title>
+<meta id="meta-desc" name="description" content="Himachal Explorer tour package details, itinerary, stay and pricing.">
+<link rel="canonical" id="canonical" href="https://himachalexplorer.in/package-detail.html">
+<link rel="icon" type="image/png" href="favicon-32.png">
+<meta name="theme-color" content="#b88a45">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fbf8f2;--paper2:#f5f0e7;--white:#fffdfa;
+  --ink:#211b14;--body:#62584b;--muted:#958979;
+  --line:#e5ddd0;--line2:#d8cdbd;
+  --gold:#b88a45;--gold2:#d0a25a;--gold3:#e7cf9f;
+  --sage:#75866b;--sage2:#e9eee5;--olive:#5d6c54;
+  --dark:#2a261f;--shadow:0 12px 38px rgba(58,45,28,.09);
+  --shadow2:0 4px 18px rgba(58,45,28,.07);--radius:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Jost,sans-serif;line-height:1.55}
+a{text-decoration:none;color:inherit}
+button,select{font:inherit}
+img{max-width:100%;display:block}
+.top{
+  position:sticky;top:0;z-index:1000;height:64px;background:rgba(251,248,242,.97);
+  border-bottom:1px solid var(--line);display:flex;align-items:center;
+  padding:0 max(18px,calc((100% - 1280px)/2));gap:28px;backdrop-filter:blur(12px)
+}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Cormorant Garamond",serif;font-size:19px;font-weight:600;line-height:.8;letter-spacing:.05em;white-space:nowrap}
+.brand-mark{width:36px;height:36px;display:grid;place-items:center;color:var(--gold);font-size:21px}
+.brand small{font-family:Jost,sans-serif;font-size:8px;color:var(--muted);letter-spacing:.28em}
+.navlinks{display:flex;gap:25px;margin-left:auto;font-size:12px;color:#4d453b}
+.navlinks a:hover{color:var(--gold)}
+.wa{background:#657054;color:#fff;border-radius:10px;padding:9px 16px;font-size:11px;font-weight:600}
+.state{min-height:70vh;display:grid;place-items:center;color:var(--muted)}
+.state[hidden],main[hidden]{display:none}
+.spinner{width:34px;height:34px;border:3px solid #e8e0d4;border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.hero{position:relative;min-height:560px;overflow:hidden;color:#fff;background:#403a31}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(28,24,19,.82) 0%,rgba(28,24,19,.52) 46%,rgba(28,24,19,.15) 76%),
+             linear-gradient(0deg,rgba(20,18,15,.66),transparent 55%)
+}
+.hero-inner{position:relative;z-index:2;max-width:1280px;margin:auto;min-height:560px;padding:34px 24px 48px;display:flex;align-items:flex-end;justify-content:space-between;gap:34px}
+.breadcrumb{font-size:11px;color:rgba(255,255,255,.75);position:absolute;top:22px;left:24px}
+.hero-copy{max-width:760px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#f0d7a5;text-transform:uppercase;letter-spacing:.18em;font-size:10px;font-weight:600;margin-bottom:12px}
+.eyebrow:before{content:"";width:24px;height:1px;background:#e0b768}
+.hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(46px,6vw,74px);font-weight:500;line-height:.98;margin:0 0 10px;letter-spacing:-.01em}
+.hero h1 span{color:#e6c27e}
+.sub{font-family:"Cormorant Garamond",serif;font-size:21px;line-height:1.2;color:#f2eee7;max-width:700px;margin:0 0 18px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:21px}
+.meta{padding:6px 11px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.09);border-radius:999px;font-size:10px}
+.hero-actions{display:flex;gap:9px;flex-wrap:wrap}
+.btn{border:0;border-radius:7px;padding:12px 20px;font-size:11px;font-weight:600;letter-spacing:.03em;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.btn.primary{background:var(--gold);color:#fff;box-shadow:0 7px 18px rgba(184,138,69,.24)}
+.btn.primary:hover{background:#a97b38}
+.btn.light{background:#fff;color:#574a39}
+.btn.outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.55)}
+.hero-facts{
+  width:270px;flex:0 0 270px;background:rgba(255,253,248,.95);color:var(--ink);
+  border-radius:9px;padding:18px 20px;box-shadow:0 16px 40px rgba(0,0,0,.16)
+}
+.hero-fact{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid #eee7dc}
+.hero-fact:last-child{border-bottom:0}
+.hero-fact i{font-style:normal;color:var(--gold);font-size:15px;text-align:center}
+.hero-fact small{display:block;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.hero-fact b{display:block;font-family:"Cormorant Garamond",serif;font-size:16px;font-weight:600;color:#4c4032}
+
+.wrap{max-width:1280px;margin:auto;padding:0 24px}
+.facts{position:relative;z-index:5;margin:-1px auto 0;background:var(--white);border:1px solid var(--line);border-top:0;display:grid;grid-template-columns:repeat(6,1fr);box-shadow:var(--shadow2)}
+.fact{padding:16px 12px;text-align:center;border-right:1px solid var(--line)}
+.fact:last-child{border:0}
+.fact b{display:block;font-family:"Cormorant Garamond",serif;font-size:18px;font-weight:600;color:#554736}
+.fact span{display:block;font-size:9px;color:var(--muted);margin-top:1px;text-transform:uppercase;letter-spacing:.08em}
+
+.route{margin:20px 0 0;background:var(--white);border:1px solid var(--line);border-radius:9px;padding:16px 18px;overflow:auto}
+.route-title{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#655644;margin-bottom:13px}
+.route-line{display:flex;align-items:flex-start;min-width:max-content;justify-content:space-between}
+.route-stop{display:flex;flex-direction:column;align-items:center;gap:7px;font-family:"Cormorant Garamond",serif;font-size:14px;font-weight:600;color:#514638;min-width:85px}
+.route-stop:before{content:"";width:48px;height:48px;border-radius:11px;background:linear-gradient(135deg,#ddd6c9,#f5f0e7);display:block}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px #f3ead9;margin-top:-35px;margin-bottom:19px}
+.arrow{height:1px;width:32px;background:#cfc4b4;margin:25px 8px 0;position:relative}
+.arrow:after{content:"›";position:absolute;right:-3px;top:-10px;color:var(--gold);font-size:18px}
+
+.section{padding:48px 0}
+.section:nth-of-type(odd){background:linear-gradient(180deg,rgba(245,240,231,.42),transparent)}
+.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:20px}
+.kicker{font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:.19em;font-weight:700}
+.section h2{font-family:"Cormorant Garamond",serif;font-size:34px;font-weight:600;line-height:1.05;margin:5px 0 0;color:#433a2f}
+.intro{max-width:740px;color:var(--body);font-size:13px}
+
+.about{display:grid;grid-template-columns:1fr 1.12fr;gap:0;align-items:stretch}
+.about-card{background:var(--white);border:1px solid var(--line);padding:30px;border-radius:9px 0 0 9px}
+.about-card .intro{font-size:14px;line-height:1.8}
+.about-img{min-height:330px;overflow:hidden;border-radius:0 9px 9px 0;background:#ddd5c8}
+.about-img img{width:100%;height:100%;object-fit:cover}
+.highlights{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:22px}
+.highlight{background:var(--sage2);padding:12px;border-radius:6px;font-size:11px;color:#56624e}
+
+.journey{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:22px;align-items:start}
+.days{display:flex;flex-direction:column;gap:9px}
+.day{background:var(--white);border:1px solid var(--line);border-radius:9px;padding:10px;display:grid;grid-template-columns:52px 150px 1fr 145px;gap:12px;align-items:center;box-shadow:var(--shadow2)}
+.dayno{width:42px;height:42px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-size:17px;font-weight:600}
+.day h3{margin:0 0 3px;font-family:"Cormorant Garamond",serif;font-size:18px;font-weight:600;color:#493e30}
+.drive{font-size:9px;color:var(--gold);font-weight:600;margin-bottom:5px}
+.acts{margin:5px 0 0;padding-left:15px;color:var(--body);font-size:10px}
+.day-photo{height:92px;border-radius:7px;overflow:hidden;background:#e9e3d8}
+.day-photo img{width:100%;height:100%;object-fit:cover}
+.day-stay{font-size:10px;color:var(--muted);border-left:1px solid var(--line);padding-left:14px}
+.day-stay b{display:block;color:#594a39;font-family:"Cormorant Garamond",serif;font-size:15px}
+.photos{display:none}
+.map-card{position:sticky;top:80px;background:var(--white);border:1px solid var(--line);border-radius:9px;overflow:hidden;box-shadow:var(--shadow2)}
+.map-top{padding:18px}.map-top h3{margin:0;color:#4a4034;font-family:"Cormorant Garamond",serif;font-size:20px}.map-top p{margin:4px 0 13px;color:var(--muted);font-size:10px}
+.map-preview{height:220px;background:linear-gradient(145deg,#e8ece3,#f5efe2);position:relative;display:grid;place-items:center}.map-preview:before{content:"HIMACHAL";position:absolute;font-size:34px;font-weight:700;letter-spacing:.12em;color:rgba(93,108,84,.08)}
+#map{height:300px;display:none}.map-foot{padding:10px 15px;font-size:9px;color:var(--muted);border-top:1px solid var(--line)}
+
+.stays{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.stay{background:var(--white);border:1px solid var(--line);border-radius:9px;overflow:hidden;display:grid;grid-template-columns:120px 1fr}
+.stay-img{height:145px;background:#e5dfd4}.stay-img img{width:100%;height:100%;object-fit:cover}.stay-body{padding:15px}.stay h3{margin:0;color:#4b4033;font-family:"Cormorant Garamond",serif;font-size:19px}.stay p{margin:2px 0;color:var(--gold);font-size:9px}.ticks{margin:9px 0 0;padding:0;list-style:none;color:var(--body);font-size:10px}.ticks li{margin:4px 0}.ticks li:before{content:"✓";color:var(--sage);font-weight:800;margin-right:6px}
+
+.bottom-grid{display:grid;grid-template-columns:1fr 1fr .95fr 1.35fr;gap:10px}
+.panel,.price,.map-mini{background:var(--white);border:1px solid var(--line);border-radius:9px;padding:19px}
+.panel.in{background:#f3f6ef}.panel.out{background:#fbf7f1}
+.panel h3{margin:0 0 11px;font-family:"Cormorant Garamond",serif;font-size:19px;font-weight:600}.panel.in h3{color:#65755d}.panel.out h3{color:#77624a}
+.panel ul{margin:0;padding:0;list-style:none;color:var(--body);font-size:10px}.panel li{margin:7px 0}.panel.in li:before{content:"✓";color:var(--sage);margin-right:7px}.panel.out li:before{content:"×";color:#b47b55;margin-right:7px}
+.price{background:#f1ede4}.price .small{font-size:9px;color:var(--muted);letter-spacing:.1em}.price .big{font-family:"Cormorant Garamond",serif;font-size:38px;color:#3e362c;margin:3px 0}.price .per{font-size:10px;color:var(--muted)}.price hr{border:0;border-top:1px solid var(--line);margin:13px 0}.price select{width:100%;margin:6px 0 9px;border:1px solid var(--line2);background:#fff;color:var(--ink);padding:8px;border-radius:6px;font-size:11px}.price .total{font-size:11px;color:var(--body)}.price .btn{width:100%;margin-top:9px}
+.map-mini{padding:0;overflow:hidden;min-height:220px;background:linear-gradient(135deg,#e7e9df,#f5efe5);position:relative}.map-mini:before{content:"ROUTE";position:absolute;inset:0;display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-size:38px;color:rgba(93,108,84,.14)}.map-mini .btn{position:absolute;left:15px;bottom:15px}
+
+.gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:150px;gap:8px}.gallery .g{border-radius:8px;overflow:hidden;background:#e6dfd3}.gallery .g:first-child{grid-row:span 2}.gallery img{width:100%;height:100%;object-fit:cover}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:8px}.faq details{background:var(--white);border:1px solid var(--line);border-radius:7px;padding:13px 15px}.faq summary{cursor:pointer;font-size:11px;font-weight:600;color:#4c4237}.faq p{font-size:10px;color:var(--muted);margin:8px 0 0}
+
+.final{margin:22px 0 70px;border-radius:10px;overflow:hidden;position:relative;background:#35332e;color:#fff;padding:30px 34px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.final:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,18,15,.8),rgba(20,18,15,.35));pointer-events:none}
+.final>*{position:relative}.final h2{font-family:"Cormorant Garamond",serif;margin:0 0 3px;font-size:29px;font-weight:600}.final p{margin:0;color:#eee7dc;font-size:11px}
+
+.sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:120;background:rgba(255,253,248,.97);border-top:1px solid var(--line);box-shadow:0 -7px 25px rgba(50,40,25,.1);padding:8px 12px;display:none;align-items:center;justify-content:space-between;gap:8px}
+.sticky-price b{font-family:"Cormorant Garamond",serif;font-size:21px;color:#514434}.sticky-price span,.sticky-price small{font-size:9px;color:var(--muted)}
+.sticky-actions{display:flex;gap:6px}.sticky-actions .btn{padding:9px 12px;font-size:10px}
+
+@media(max-width:1050px){
+  .navlinks{gap:15px}.hero-facts{width:240px;flex-basis:240px}
+  .day{grid-template-columns:45px 125px 1fr}.day-stay{display:none}
+  .bottom-grid{grid-template-columns:1fr 1fr}.map-mini{grid-column:1/-1}
+}
+@media(max-width:820px){
+  .navlinks{display:none}.hero-inner{align-items:flex-end}.hero-facts{display:none}
+  .facts{grid-template-columns:repeat(3,1fr)}.fact:nth-child(3){border-right:0}
+  .about{grid-template-columns:1fr}.about-card{border-radius:9px 9px 0 0}.about-img{min-height:280px;border-radius:0 0 9px 9px}
+  .journey{grid-template-columns:1fr}.map-card{position:relative;top:auto}
+  .stays{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .top{height:56px;padding:0 12px}.brand{font-size:16px}.brand-mark{width:30px;height:30px}.wa{padding:8px 11px}
+  .hero{min-height:590px}.hero-inner{min-height:590px;padding:62px 16px 30px}.breadcrumb{left:16px;top:17px;font-size:9px}
+  .hero h1{font-size:46px}.sub{font-size:18px}.hero-meta{gap:6px}.meta{font-size:9px;padding:5px 8px}.hero-actions .btn{flex:1;padding:11px 10px;font-size:10px}
+  .wrap{padding:0 12px}.facts{margin-top:0;grid-template-columns:repeat(2,1fr)}.fact{padding:12px 7px;border-bottom:1px solid var(--line)}.fact:nth-child(odd){border-right:1px solid var(--line)}.fact:nth-child(even){border-right:0}.fact b{font-size:16px}
+  .route{border-radius:7px;padding:14px 12px}.route-line{justify-content:flex-start}.route-stop{font-size:12px;min-width:75px}.route-stop:before{width:38px;height:38px}.dot{margin-top:-29px;margin-bottom:15px}.arrow{width:18px;margin-left:2px;margin-right:2px}
+  .section{padding:35px 0}.section-head{display:block}.section h2{font-size:29px}.intro{font-size:12px}
+  .about-card{padding:20px}.about-card .intro{font-size:13px}.highlights{grid-template-columns:1fr 1fr}.highlight{font-size:10px;padding:10px}
+  .day{grid-template-columns:40px 1fr;padding:10px;gap:9px;align-items:start}.dayno{width:36px;height:36px;font-size:15px}.day h3{font-size:17px}.drive{font-size:8px}.day-photo{height:120px;margin-top:8px}.acts{font-size:9px}
+  .day .day-content{display:block}.day-stay{display:none}
+  .stays{grid-template-columns:1fr}.stay{grid-template-columns:105px 1fr}.stay-img{height:125px}
+  .bottom-grid{grid-template-columns:1fr}.map-mini{grid-column:auto;min-height:180px}
+  .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:110px}.gallery .g:first-child{grid-column:span 2}
+  .faq{grid-template-columns:1fr}.final{padding:25px 20px;display:block;margin-bottom:75px}.final .btn{margin-top:14px;width:100%}
+  .sticky-cta{display:flex}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important}}
+</style>
+<link rel="stylesheet" href="assets/css/responsive-guard.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html"><span class="brand-mark">⌂</span><span>HIMACHAL<br><small>EXPLORER</small></span></a>
+  <nav class="navlinks"><a href="index.html">Home</a><a href="explore.html">Destinations</a><a href="packages.html">Packages</a><a href="hotels.html">Hotels</a><a href="treks.html">Treks</a><a href="about.html">About Us</a></nav>
+  <a class="wa" href="https://wa.me/917018138847" target="_blank" rel="noopener">◉ WhatsApp</a>
+</header>
+
+<div id="loading" class="state"><div><div class="spinner"></div><p>Loading your journey…</p></div></div>
+<div id="error" class="state" hidden><div><h2>Package not found</h2><p>We couldn't find this package.</p><a class="btn primary" href="packages.html">Browse packages</a></div></div>
+
+<main id="main" hidden>
+<section class="hero">
+  <img id="heroImg" alt="" loading="eager">
+  <div class="hero-inner">
+    <div class="breadcrumb">Home &nbsp;›&nbsp; Packages &nbsp;›&nbsp; <span id="crumb">Your Journey</span></div>
+    <div class="hero-copy">
+      <div class="eyebrow" id="heroBadge">Tour Package</div>
+      <h1 id="title">—</h1>
+      <p class="sub" id="subtitle">A carefully planned Himachal journey.</p>
+      <div class="hero-meta">
+        <span class="meta" id="daysMeta">— Days</span><span class="meta" id="nightsMeta">— Nights</span><span class="meta" id="stayMeta">Stay</span><span class="meta" id="startMeta">Start</span>
+      </div>
+      <div class="hero-actions"><a class="btn primary" href="#pricing">Get a Quick Quote</a><a class="btn outline" id="heroQuote" target="_blank" rel="noopener">Enquire Now</a></div>
+    </div>
+    <aside class="hero-facts">
+      <div class="hero-fact"><i>◷</i><div><small>Duration</small><b id="hfDuration">—</b></div></div>
+      <div class="hero-fact"><i>▣</i><div><small>Stay</small><b id="hfStay">—</b></div></div>
+      <div class="hero-fact"><i>⌂</i><div><small>Transport</small><b id="hfTransport">—</b></div></div>
+      <div class="hero-fact"><i>⌘</i><div><small>Start</small><b id="hfStart">—</b></div></div>
+      <div class="hero-fact"><i>♧</i><div><small>Season</small><b id="hfSeason">Flexible</b></div></div>
+    </aside>
+  </div>
+</section>
+
+<div class="wrap">
+  <section class="facts" id="facts"></section>
+
+  <section class="route"><div class="route-title">Journey Route</div><div class="route-line" id="routeLine"></div></section>
+
+  <section class="section" id="about">
+    <div class="section-head"><div><div class="kicker">The experience</div><h2>About this journey</h2></div></div>
+    <div class="about"><div class="about-card"><p class="intro" id="aboutText"></p><div class="highlights" id="highlights"></div></div><div class="about-img"><img id="aboutImg" alt="" loading="lazy"></div></div>
+  </section>
+
+  <section class="section" id="itinerary">
+    <div class="section-head"><div><div class="kicker">Day by day</div><h2>Your journey, beautifully planned</h2></div><div class="intro" id="journeyIntro"></div></div>
+    <div class="journey">
+      <div class="days" id="days"></div>
+      <aside class="map-card">
+        <div class="map-top"><h3>Explore your route</h3><p>See the complete journey on an interactive map. The map loads only when you ask for it.</p><button class="btn primary" id="showMap">Show Interactive Map</button></div>
+        <div class="map-preview" id="mapPreview"></div><div id="map"></div>
+        <div class="map-foot">Road route is indicative. Actual route may vary with traffic, weather and local road conditions.</div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="staySection"><div class="section-head"><div><div class="kicker">Where you stay</div><h2>Stay experience</h2></div></div><div class="stays" id="stays"></div></section>
+
+  <section class="section" id="pricing">
+    <div class="section-head"><div><div class="kicker">Transparent pricing</div><h2>Package details & price</h2></div></div>
+    <div class="bottom-grid">
+      <div class="panel in"><h3>Inclusions</h3><ul id="included"></ul></div>
+      <div class="panel out"><h3>Exclusions</h3><ul id="excluded"></ul></div>
+      <div class="price"><div class="small">PACKAGE PRICE</div><div class="big" id="priceBig">Ask</div><div class="per">per person</div><hr><label class="small">Group size</label><select id="pax"><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select><div class="total">Estimated total: <b id="totalPrice">—</b></div><button class="btn primary" id="quoteBtn">Get Detailed Quote</button></div>
+      <div class="map-mini"><button class="btn primary" onclick="document.getElementById('itinerary').scrollIntoView({behavior:'smooth'})">Explore Route</button></div>
+    </div>
+  </section>
+
+  <section class="section"><div class="section-head"><div><div class="kicker">Visual journey</div><h2>Gallery</h2></div></div><div class="gallery" id="gallery"></div></section>
+
+  <section class="section"><div class="section-head"><div><div class="kicker">Need to know</div><h2>Frequently asked questions</h2></div></div><div class="faq"><details><summary>Can this package be customised?</summary><p>Yes. Travel dates, stay category, group size, route and activities can be adjusted after enquiry.</p></details><details><summary>Is transportation private?</summary><p>Package transportation follows the vehicle and group-size information returned with the package.</p></details><details><summary>What happens after I enquire?</summary><p>We confirm dates, group size, rooms and live rates on WhatsApp before final booking.</p></details><details><summary>Are prices final?</summary><p>Displayed prices are package estimates where a live pricing record is not available. Final pricing is confirmed for your dates.</p></details></div></section>
+
+  <section class="final"><div><h2>Ready to explore Himachal?</h2><p id="finalText">Let Himachal Explorer plan the journey around you.</p></div><a class="btn primary" id="finalQuote" target="_blank" rel="noopener">WhatsApp Us</a></section>
+</div>
+</main>
+
+<div class="sticky-cta" id="sticky"><div class="sticky-price"><span>From </span><b id="stickyPrice">₹—</b><small>/person</small></div><div class="sticky-actions"><a class="btn" style="background:#edf2e9;color:#5d6c54" id="stickyWa" target="_blank" rel="noopener">WhatsApp</a><a class="btn primary" href="#pricing">Get Quote</a></div></div>
+
+<script src="assets/js/images.js"></script>
+<script src="assets/js/packages-data.js"></script>
+<script src="assets/js/pkg-engine.js"></script>
+<script>
+const DB='https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app';
+const PHONE='917018138847';
+const params=new URLSearchParams(location.search);
+const slug=params.get('slug')||params.get('id')||'';
+let pkg=null, prices=null, itin=null;
+
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const money=n=>Number.isFinite(Number(n))?'₹'+Math.round(Number(n)).toLocaleString('en-IN'):'Ask';
+const wa=text=>`https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`;
+
+function routeNames(p){
+  const arr=[];
+  if(p.start_point)arr.push(p.start_point);
+  const days=itin?.itinerary||[];
+  days.forEach(d=>(d.places||[]).forEach(pid=>{const pl=(window.PLACES||{})[pid];if(pl?.name&&!arr.some(x=>x.toLowerCase()===pl.name.toLowerCase()))arr.push(pl.name)}));
+  if(p.end_point&&arr[arr.length-1]?.toLowerCase()!==p.end_point.toLowerCase())arr.push(p.end_point);
+  if(arr.length<2&&p.itinerary)Object.values(p.itinerary).forEach(t=>{const m=String(t).match(/([A-Z][A-Za-z ]{2,})/);if(m&&!arr.includes(m[1]))arr.push(m[1])});
+  return arr.slice(0,12);
+}
+function photosFor(pl){
+  const live=[pl?.photo_1,pl?.photo_2,pl?.photo_3].filter(Boolean);
+  return live.length?live:(pl?.photos||[]).filter(Boolean);
+}
+function placeImage(pid){
+  const pl=(window.PLACES||{})[pid];
+  const ph=photosFor(pl);
+  return ph[0]?`assets/images/${ph[0]}`:(window.resolveDayImage?window.resolveDayImage({title:pl?.name||pid,places:[pid]}):window.FALLBACK_IMG||'');
+}
+function dayImage(d){return d.places?.length?placeImage(d.places[0]):(window.resolveDayImage?window.resolveDayImage(d):window.FALLBACK_IMG||'')}
+
+function render(){
+  const season={all_year:'Year-round',summer:'Mar–Jun & Sep–Nov',winter:'Dec–Feb',monsoon:'Jul–Sep',spring:'Mar–May',autumn:'Sep–Nov'};
+  const route=routeNames(pkg);
+  const hero=window.resolveHeroImage?window.resolveHeroImage(pkg,itin?.itinerary):window.FALLBACK_IMG;
+  $('heroImg').src=hero||'';$('heroImg').alt=pkg.package_name||'Himachal Explorer';
+  $('crumb').textContent=pkg.package_name||'Your Journey';
+  $('hfDuration').textContent=`${pkg.days||'—'} Days / ${Math.max(0,(pkg.days||1)-1)} Nights`;
+  $('hfStay').textContent=pkg.hotel_star||'Comfortable';
+  $('hfTransport').textContent=pkg.transport||'Private';
+  $('hfStart').textContent=pkg.start_point||'Flexible';
+  $('hfSeason').textContent=season[pkg.best_season]||pkg.best_season||'Flexible';
+  const raw=(pkg.package_name||'Himachal Journey');
+  const parts=raw.split('—');
+  $('title').innerHTML=esc(parts[0])+(parts[1]?`<br><span>${esc(parts.slice(1).join('—').trim())}</span>`:'');
+  $('subtitle').textContent=pkg.description||pkg.short_description||'A carefully planned Himachal journey with stays, sightseeing and transfers.';
+  $('heroBadge').textContent=((pkg.tags||'Himachal').split(',')[0].trim()||'Himachal')+' Package';
+  $('daysMeta').textContent=`${pkg.days||'—'} Days`;
+  $('nightsMeta').textContent=`${Math.max(0,(pkg.days||1)-1)} Nights`;
+  $('stayMeta').textContent=pkg.hotel_star||'Comfortable Stay';
+  $('startMeta').textContent=`Starts ${pkg.start_point||'—'}`;
+  $('heroQuote').href=wa(`Hello Himachal Explorer, I want a quotation for "${pkg.package_name}" (${pkg.days||''} days) starting from ${pkg.start_point||'—'}.`);
+  $('aboutImg').src=hero||'';$('aboutImg').alt=pkg.package_name||'';
+  $('aboutText').textContent=pkg.description||pkg.short_description||`Experience ${pkg.package_name||'Himachal'} with a day-wise plan, comfortable stays and private travel support.`;
+  const hs=[`${pkg.days||'—'} day journey`,pkg.hotel_star||'Stay options',pkg.start_point?`Start: ${pkg.start_point}`:'Flexible start',pkg.best_season?season[pkg.best_season]||pkg.best_season:'Flexible dates'];
+  $('highlights').innerHTML=hs.map(x=>`<div class="highlight">${esc(x)}</div>`).join('');
+  $('facts').innerHTML=[
+    [pkg.days||'—','Days'],[Math.max(0,(pkg.days||1)-1),'Nights'],[pkg.hotel_star||'—','Stay'],[pkg.start_point||'—','Start'],[pkg.end_point||'—','End'],[pkg.transport||'Private','Transport']
+  ].map(x=>`<div class="fact"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
+  $('routeLine').innerHTML=route.map((x,i)=>`${i?'<span class="arrow"></span>':''}<span class="route-stop"><i class="dot"></i>${esc(x)}</span>`).join('');
+  const inc=Array.isArray(pkg.inclusions)?pkg.inclusions:(pkg.inclusions||pkg.included||'').toString().split(/[,|\\n]+/).map(x=>x.trim()).filter(Boolean);
+  const exc=Array.isArray(pkg.exclusions)?pkg.exclusions:(pkg.exclusions||pkg.excluded||'').toString().split(/[,|\\n]+/).map(x=>x.trim()).filter(Boolean);
+  $('included').innerHTML=(inc.length?inc:['Accommodation as per package','Planned sightseeing','Transfers as specified','Driver / vehicle charges']).map(x=>`<li>${esc(x)}</li>`).join('');
+  $('excluded').innerHTML=(exc.length?exc:['Personal expenses','Optional activities','Meals not mentioned','Anything not specified above']).map(x=>`<li>${esc(x)}</li>`).join('');
+  renderDays();
+  renderStays();
+  renderPricing();
+  renderGallery();
+  const text=`Hello Himachal Explorer, please share the final quotation for "${pkg.package_name}" for my group.`;
+  $('quoteBtn').onclick=()=>window.open(wa(text),'_blank');
+  $('finalQuote').href=wa(text);$('stickyWa').href=wa(text);
+  $('finalText').textContent=`${pkg.package_name||'This journey'} — enquire for dates, group size and a personalised quotation.`;
+  const base=pkg.budget_price_pp||pkg.price_pp||prices?.[Object.keys(prices||{})[0]]?.pax?.['4']?.budget;
+  $('priceBig').textContent=money(base);$('stickyPrice').textContent=money(base);
+}
+function renderDays(){
+  const days=itin?.itinerary||[];
+  if(!days.length&&pkg.itinerary){
+    Object.entries(pkg.itinerary).sort(([a],[b])=>parseInt(a.replace(/\D/g,''))-parseInt(b.replace(/\D/g,''))).forEach(([k,v])=>days.push({day:parseInt(k.replace(/\D/g,'')),title:v,places:[],acts:[]}));
+  }
+  $('days').innerHTML=days.length?days.map(d=>{
+    const pl=(d.places||[]).map(pid=>(window.PLACES||{})[pid]).filter(Boolean);
+    const ph=pl.map((p,i)=>{const src=photosFor(p)[0];return src?`<div class="photo"><img src="assets/images/${esc(src)}" alt="${esc(p.name)}" loading="lazy"><span>${esc(p.name)}</span></div>`:''}).join('');
+    const acts=(d.acts||[]).map(a=>`<li>${esc(a)}</li>`).join('');
+    const firstPl=(d.places||[])[0]; const firstPlace=(window.PLACES||{})[firstPl]; const img=dayImage(d);
+    return `<article class="day"><div class="dayno">${String(d.day).padStart(2,'0')}</div><div class="day-photo">${img?`<img src="${esc(img)}" alt="${esc(d.title||'Day '+d.day)}" loading="lazy">`:''}</div><div><div class="drive">${d.drive?`🚗 ${esc(d.drive)}`:''}</div><h3>${esc(d.title||'Journey continues')}</h3>${acts?`<ul class="acts">${acts}</ul>`:''}</div><div class="day-stay"><span>Stay in</span><b>${esc(firstPlace?.name||'As per itinerary')}</b></div></article>`;
+  }).join(''):`<div class="day"><div class="dayno">01</div><div><h3>Itinerary details</h3><p class="intro">Detailed day-wise itinerary is available after package data loads.</p></div></div>`;
+  $('journeyIntro').textContent=`${days.length||pkg.days||''} days of carefully sequenced travel, with location-specific information pulled from the site's existing package data.`;
+}
+function renderStays(){
+  const names=(pkg.hotel_names||pkg.stays||'').toString().split(',').map(x=>x.trim()).filter(Boolean);
+  const fallback=[pkg.hotel_star||'Comfort Stay','Package Stay','Upgraded Stay'];
+  const list=(names.length?names:fallback).slice(0,3);
+  $('stays').innerHTML=list.map((n,i)=>`<article class="stay"><div class="stay-img"><img src="${esc(heroForStay(i))}" alt="${esc(n)}" loading="lazy"></div><div class="stay-body"><h3>${esc(n)}</h3><p>${esc(pkg.hotel_star||'As per selected package tier')}</p><ul class="ticks"><li>Comfortable accommodation</li><li>Location selected for the itinerary</li><li>Subject to availability at booking</li></ul></div></article>`).join('');
+}
+function heroForStay(i){const days=itin?.itinerary||[];const d=days[i%Math.max(1,days.length)];return d?dayImage(d):(window.FALLBACK_IMG||'')}
+function renderPricing(){
+  const gateways=Object.keys(prices||{});
+  let data=gateways.length?prices[gateways[0]]:null;
+  const pax=String($('pax').value);
+  let pd=data?.pax?.[pax]||data?.pax?.[4];
+  if(!pd&&window.estimatePrice)pd={budget:window.estimatePrice(pkg,Number(pax),'budget'),premium:window.estimatePrice(pkg,Number(pax),'premium'),luxury:window.estimatePrice(pkg,Number(pax),'luxury')};
+  const val=pd?.budget||pkg.budget_price_pp||pkg.price_pp;
+  $('priceBig').textContent=money(val);$('totalPrice').textContent=val?money(Number(val)*Number(pax)):'—';
+}
+$('pax').addEventListener('change',renderPricing);
+
+function renderGallery(){
+  const seen=new Set(), items=[];
+  (itin?.itinerary||[]).forEach(d=>{const src=dayImage(d);if(src&&!seen.has(src)){seen.add(src);items.push({src,label:d.title||`Day ${d.day}`})}});
+  if(!items.length&&window.resolveGallery)window.resolveGallery(itin?.itinerary||[],window.PLACES).forEach(x=>{if(x.img&&!seen.has(x.img)){seen.add(x.img);items.push({src:x.img,label:x.label})}});
+  $('gallery').innerHTML=items.slice(0,5).map(x=>`<div class="g"><img src="${esc(x.src)}" alt="${esc(x.label)}" loading="lazy"></div>`).join('');
+}
+
+let mapLoaded=false;
+$('showMap').addEventListener('click',async()=>{
+  if(mapLoaded){$('mapPreview').style.display='none';$('map').style.display='block';return}
+  mapLoaded=true;$('showMap').disabled=true;$('showMap').textContent='Loading map…';
+  const s=document.createElement('script');s.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';document.head.appendChild(s);
+  await new Promise(r=>s.onload=r);
+  const css=document.createElement('link');css.rel='stylesheet';css.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';document.head.appendChild(css);
+  $('mapPreview').style.display='none';$('map').style.display='block';
+  const m=L.map('map',{scrollWheelZoom:false}).setView([31.1048,77.1734],8);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors'}).addTo(m);
+  const pts=[];
+  (itin?.itinerary||[]).forEach(d=>(d.places||[]).forEach(pid=>{const p=(window.PLACES||{})[pid];if(p&&typeof p.lat==='number')pts.push({lat:p.lat,lng:p.lng,name:p.name})}));
+  if(pkg.start_point){const g={Delhi:[28.7041,77.1025],Chandigarh:[30.7333,76.7794],Amritsar:[31.634,74.872]};const x=g[pkg.start_point];if(x)pts.unshift({lat:x[0],lng:x[1],name:pkg.start_point})}
+  pts.forEach((p,i)=>L.marker([p.lat,p.lng]).addTo(m).bindPopup(`<b>${esc(p.name)}</b>`));
+  if(pts.length>1){L.polyline(pts.map(p=>[p.lat,p.lng]),{color:'#d58d28',weight:4}).addTo(m);m.fitBounds(pts.map(p=>[p.lat,p.lng]),{padding:[30,30]})}
+  setTimeout(()=>m.invalidateSize(),100);
+  $('showMap').textContent='Map Loaded';
+});
+
+async function load(){
+  if(!slug){$('loading').hidden=true;$('error').hidden=false;return}
+  const local=(window.PACKAGES||[]).find(p=>p.package_id===slug);
+  const localItin=(window.ITINERARIES||{})[slug]||null;
+  try{
+    const [a,b]=await Promise.all([fetch(`${DB}/templates/templates/${encodeURIComponent(slug)}.json`),fetch(`${DB}/package_pricing_matrix/${encodeURIComponent(slug)}.json`)]);
+    const live=a.ok?await a.json():null;prices=b.ok?await b.json():null;
+    pkg=live?Object.assign({},local||{},live):local;
+  }catch(e){console.warn('Live package fetch failed; using local package data.',e);pkg=local}
+  if(!pkg){$('loading').hidden=true;$('error').hidden=false;return}
+  itin=localItin;
+  pkg._localItinerary=localItin?.itinerary||null;
+  render();
+  $('loading').hidden=true;$('main').hidden=false;
+  const base=pkg.budget_price_pp||pkg.price_pp;
+  document.title=`${pkg.package_name||'Tour Package'} | Himachal Explorer`;
+  $('meta-desc').content=`${pkg.package_name||'Himachal tour package'} — ${pkg.days||''} day itinerary, stay and pricing from Himachal Explorer.`;
+  $('canonical').href=`https://himachalexplorer.in/package-detail.html?slug=${encodeURIComponent(slug)}`;
+}
+load();
+</script>
+</body>
+</html>
