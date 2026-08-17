@@ -72,9 +72,13 @@ site never reads places from the database. So the simplest fix for the
 into the `PLACES` object in that file directly, no Firebase step needed. Say
 the word and I'll make that edit for you in the project files instead.
 
-## The 11 slugs covered
+## The slugs covered
 
-amritsar-chamba-4d, amritsar-parvati-5d, chamba-pangi-5d, chamba-sach-6d,
-kangra-kareri-triund-4d, kinnaur-spiti-connect-7d, manali-hidden-4d,
-parvati-hidden-4d, parvati-trek-5d, spiti-gue-mummy-5d,
-spiti-village-circuit-5d
+chamba-pangi-5d, chamba-sach-6d
+
+(The other 9 legacy slugs this README originally referenced —
+amritsar-chamba-4d, amritsar-parvati-5d, kangra-kareri-triund-4d,
+kinnaur-spiti-connect-7d, manali-hidden-4d, parvati-hidden-4d,
+parvati-trek-5d, spiti-gue-mummy-5d, spiti-village-circuit-5d —
+were removed from the live package list; their entries in this
+import batch are no longer applicable.)

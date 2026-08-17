@@ -140,6 +140,9 @@ img { max-width: 100%; display: block; }
 .day-info ul { list-style: none; font-size: 12.5px; color: var(--body); }
 .day-info ul li { position: relative; padding-left: 14px; margin-bottom: 4px; }
 .day-info ul li::before { content: ''; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+.day-places-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.place-pill { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 20px; background: var(--sand, #f4efe4); border: 1px solid var(--line); font-size: 11px; color: var(--pine, #3a352c); cursor: pointer; transition: background .2s ease, border-color .2s ease; }
+.place-pill:hover, .place-pill:focus-visible { background: var(--gold-light, #ecd9b0); border-color: var(--gold, #ad8140); }
 .day-stay-sm { border-left: 1px solid var(--line); padding-left: 20px; }
 .day-stay-sm span { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
 .day-stay-sm strong { display: block; font-family: "Cormorant Garamond", serif; font-size: 17px; font-weight: 600; margin-top: 5px; color: var(--pine); }
@@ -519,6 +522,14 @@ img { max-width: 100%; display: block; }
       itinList.innerHTML = "";
       pkg.itinerary.forEach(function (day, i) {
         var stayIn = day.places && day.places.length ? day.places[day.places.length - 1] : "—";
+        var placesRow = (day.places && day.places.length)
+          ? '<div class="day-places-row">' +
+              day.places.map(function (p) {
+                return '<span class="place-pill route-step" data-place-name="' +
+                  p.replace(/"/g, "&quot;") + '"><span>' + p + '</span></span>';
+              }).join("") +
+            '</div>'
+          : "";
         var card = document.createElement("div");
         card.className = "day-card";
         card.innerHTML =
@@ -526,7 +537,7 @@ img { max-width: 100%; display: block; }
           '<img src="' + STOCK_IMAGES[i % STOCK_IMAGES.length] + '" class="day-img" alt="Day ' + day.day + '">' +
           '<div class="day-info"><h3>' + day.title + '</h3><ul><li>' +
             (day.description || "").split(" · ").join("</li><li>") +
-          '</li></ul></div>' +
+          '</li></ul>' + placesRow + '</div>' +
           '<div class="day-stay-sm"><span>' + (i === pkg.itinerary.length - 1 ? "Tour" : "Stay in") + '</span><strong>' +
             (i === pkg.itinerary.length - 1 ? "Concludes" : stayIn) + '</strong></div>';
         itinList.appendChild(card);
@@ -658,5 +669,7 @@ img { max-width: 100%; display: block; }
   });
 })();
 </script>
+<script src="assets/js/place-live-modal.js" defer></script>
+<script src="assets/js/package-route-place-popup.js" defer></script>
 </body>
 </html>

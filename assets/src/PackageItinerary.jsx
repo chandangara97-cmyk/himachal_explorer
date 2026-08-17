@@ -95,35 +95,8 @@ const PLACES = {
 
 // ─── ITINERARY DATA ────────────────────────────────────────────────────────
 const ITINERARIES = {
-  "amritsar-chamba-4d": {
-    name: "Amritsar to Chamba & Khajjiar",
-    days: 4, start: "AMRITSAR", km: 680,
-    budget: 7020, premium: 10530, luxury: 14040,
-    tags: ["family", "heritage", "scenic"],
-    region: "Chamba",
-    highlight: "Mini Switzerland of India",
-    itinerary: [
-      { day: 1, title: "Amritsar → Dalhousie", drive: "290 km · 7 hrs", stays: "Dalhousie", places: ["dalhousie"], activities: ["Check in at Dalhousie", "Evening walk on Gandhi Chowk", "Sunset over Pir Panjal range"] },
-      { day: 2, title: "Dalhousie → Chamba Town", drive: "55 km · 1.5 hrs", stays: "Chamba", places: ["chamba", "bhuri-singh-museum", "chamera-lake"], activities: ["Bhuri Singh Museum", "Chamera Lake boat ride", "Ancient Lakshmi Narayan temples", "Evening on the Chaugan ground"] },
-      { day: 3, title: "Khajjiar Day Trip", drive: "24 km · 45 min", stays: "Chamba", places: ["khajjiar", "kalatop-wildlife-sanctuary"], activities: ["Khajjiar meadow walk", "Kalatop Wildlife Sanctuary", "Paragliding over the meadow", "Return to Chamba for dinner"] },
-      { day: 4, title: "Chamba → Amritsar", drive: "345 km · 8 hrs", stays: "—", places: [], activities: ["Early morning Ravi riverside walk", "Depart for Amritsar via Pathankot", "Drop at Amritsar airport/station"] },
-    ]
-  },
-  "amritsar-parvati-5d": {
-    name: "Amritsar to Parvati Valley",
-    days: 5, start: "AMRITSAR", km: 740,
-    budget: 7318, premium: 10977, luxury: 14636,
-    tags: ["friends", "adventure", "trek"],
-    region: "Parvati Valley",
-    highlight: "Kasol & Hidden Treks",
-    itinerary: [
-      { day: 1, title: "Amritsar → Kasol", drive: "340 km · 8 hrs", stays: "Kasol", places: ["kasol"], activities: ["Riverside camp check-in", "Evening at Kasol cafes", "Parvati river walk"] },
-      { day: 2, title: "Kasol — Manikaran & Chalal", drive: "Local", stays: "Kasol", places: ["manikaran", "chalal"], activities: ["Manikaran Sahib Gurudwara", "Hot spring dip", "Chalal village hike (3km)", "Evening bonfire"] },
-      { day: 3, title: "Tosh Village Trek", drive: "15 km · 45 min", stays: "Tosh / Kasol", places: ["tosh", "pulga"], activities: ["Drive to Barshaini", "2hr hike up to Tosh village", "Panoramic Parvati Valley views", "Optional: Pulga extension"] },
-      { day: 4, title: "Kheerganga Trek", drive: "Local", stays: "Kasol", places: ["kheerganga"], activities: ["12km forest trek to Kheerganga", "Natural hot spring soak at 2,960m", "Overnight camping (optional)"] },
-      { day: 5, title: "Kasol → Amritsar", drive: "340 km · 8 hrs", stays: "—", places: [], activities: ["Morning Parvati walk", "Depart via Mandi–Chandigarh highway", "Drop at Amritsar"] },
-    ]
-  },
+  
+  
   "chamba-pangi-5d": {
     name: "Chamba Deep Circuit",
     days: 5, start: "PATHANKOT", km: 340,
@@ -246,20 +219,7 @@ const ITINERARIES = {
       { day: 10, title: "Manali → Delhi", drive: "560 km · 11 hrs", stays: "—", places: [], activities: ["Early departure via NH3", "Mandi, Chandigarh, Delhi", "Overnight arrival"] },
     ]
   },
-  "kangra-kareri-triund-4d": {
-    name: "Kangra Lakes & Treks",
-    days: 4, start: "DHARAMSHALA", km: 160,
-    budget: 5304, premium: 7956, luxury: 10608,
-    tags: ["trek", "adventure", "spiritual"],
-    region: "Kangra",
-    highlight: "Kareri Lake & Triund",
-    itinerary: [
-      { day: 1, title: "Dharamshala → McLeod Ganj", drive: "10 km · 30 min", stays: "McLeod Ganj", places: ["mcleodganj", "dharamshala"], activities: ["Tsuglagkhang Complex (Dalai Lama temple)", "Bhagsu Nag waterfall trail", "Tibetan market evening"] },
-      { day: 2, title: "Triund Trek", drive: "Local", stays: "Triund / McLeod Ganj", places: ["triund"], activities: ["9km trek up to Triund (2,875m)", "Dhauladhar snowline views", "Overnight camping or return to McLeod"] },
-      { day: 3, title: "Kareri Lake Trek", drive: "20 km · 45 min to trailhead", stays: "Kareri / Dharamshala", places: ["kareri-lake", "kareri-village"], activities: ["Drive to Ghera village", "14km trek to Kareri Lake (2,950m)", "Glacial lake overnight or return"] },
-      { day: 4, title: "Kangra Valley Exploration", drive: "40 km circuit", stays: "—", places: ["kangra-fort", "baijnath-temple"], activities: ["Kangra Fort (3,500+ years old)", "Baijnath Temple", "Tea gardens of Palampur", "Depart Dharamshala"] },
-    ]
-  },
+  
   "kangra-offbeat-4d": {
     name: "Kangra Hidden Gems",
     days: 4, start: "DHARAMSHALA", km: 180,
@@ -290,20 +250,7 @@ const ITINERARIES = {
       { day: 6, title: "Reckong Peo → Shimla", drive: "195 km · 6 hrs", stays: "—", places: ["narkanda"], activities: ["Mountain highway drive", "Narkanda apple belt stop", "Evening arrival at Shimla"] },
     ]
   },
-  "manali-hidden-4d": {
-    name: "Manali Hidden Circuit",
-    days: 4, start: "MANALI", km: 140,
-    budget: 6210, premium: 9315, luxury: 12420,
-    tags: ["offbeat", "nature", "couple"],
-    region: "Manali",
-    highlight: "Bijli Mahadev, Jana Falls & Raison",
-    itinerary: [
-      { day: 1, title: "Manali Orientation", drive: "Local", stays: "Manali", places: ["manali", "old-manali", "hadimba", "vashisht"], activities: ["Hadimba Temple in deodar forest", "Vashisht hot springs", "Old Manali village walk", "Manu Temple"] },
-      { day: 2, title: "Bijli Mahadev Trek", drive: "14 km · 30 min drive + trek", stays: "Manali", places: ["bijli-mahadev"], activities: ["Drive to Chansari", "3km forested trek to Bijli Mahadev (2,460m)", "Lightning-struck shivalinga", "Kullu valley panorama"] },
-      { day: 3, title: "Jana Waterfall & Naggar", drive: "30 km · 1 hr", stays: "Manali", places: ["jana-waterfall", "naggar"], activities: ["Jana Waterfall hidden trail", "Naggar Castle heritage walk", "Nicholas Roerich Art Gallery", "Raison riverside camp"] },
-      { day: 4, title: "Solang Valley & Departure", drive: "15 km · 30 min", stays: "—", places: ["solang", "rohtang-pass"], activities: ["Solang Valley adventure (zorbing, cable car)", "Rohtang Pass viewpoint (permit needed)", "Afternoon depart Manali"] },
-    ]
-  },
+  
   "manali-lahaul-5d": {
     name: "Manali & Lahaul Valley",
     days: 5, start: "MANALI", km: 280,
@@ -346,35 +293,8 @@ const ITINERARIES = {
       { day: 3, title: "Barot → Mandi", drive: "70 km · 2.5 hrs", stays: "—", places: ["rewalsar-lake", "kamrunag-lake"], activities: ["Rewalsar Lake and Buddhist monastery", "Mandi Shivratri Fair town walk", "Depart by afternoon"] },
     ]
   },
-  "parvati-hidden-4d": {
-    name: "Parvati Valley Hidden Villages",
-    days: 4, start: "BHUNTAR", km: 120,
-    budget: 6180, premium: 9270, luxury: 12360,
-    tags: ["offbeat", "adventure", "friends"],
-    region: "Parvati Valley",
-    highlight: "Malana, Kalga & Pulga",
-    itinerary: [
-      { day: 1, title: "Bhuntar → Kasol → Malana", drive: "35 km + trek", stays: "Malana / Kasol", places: ["kasol", "malana"], activities: ["Kasol check-in", "Malana trek (3km from Jari)", "Ancient democracy village visit (no touching rule)", "Return to Kasol"] },
-      { day: 2, title: "Tosh Village Trek", drive: "15 km · 45 min drive + trek", stays: "Tosh", places: ["tosh"], activities: ["Drive to Barshaini", "2hr hike to Tosh (2,400m)", "Epic Parvati valley views", "Rustic guesthouse stay"] },
-      { day: 3, title: "Kalga & Pulga", drive: "From Barshaini", stays: "Kasol", places: ["kalga", "pulga", "chalal"], activities: ["Kalga village forest trail", "Pulga — the final outpost village", "Chalal bridge walk", "Riverside bonfire at Kasol"] },
-      { day: 4, title: "Kasol → Bhuntar", drive: "35 km · 1 hr", stays: "—", places: ["manikaran"], activities: ["Manikaran Sahib morning", "Hot spring geothermal food kitchen", "Return to Bhuntar"] },
-    ]
-  },
-  "parvati-trek-5d": {
-    name: "Parvati Valley Trek Expedition",
-    days: 5, start: "BHUNTAR", km: 180,
-    budget: 6604, premium: 9906, luxury: 13208,
-    tags: ["trek", "adventure", "friends"],
-    region: "Parvati Valley",
-    highlight: "Kheerganga & Hot Springs",
-    itinerary: [
-      { day: 1, title: "Bhuntar → Kasol", drive: "35 km · 1 hr", stays: "Kasol", places: ["kasol", "chalal"], activities: ["Kasol orientation walk", "Chalal village hike (1hr)", "Riverside café dinner"] },
-      { day: 2, title: "Kasol → Manikaran → Barsheni", drive: "25 km · 45 min", stays: "Nakthan / Tosh", places: ["manikaran", "tosh"], activities: ["Manikaran hot spring", "Drive to Barshaini", "Tosh village 2hr hike", "Overnight at Tosh"] },
-      { day: 3, title: "Barshaini → Kheerganga Trek", drive: "Drive back to Barshaini", stays: "Kheerganga camp", places: ["kheerganga"], activities: ["12km forest trek via Nakthan", "Pine forests and waterfalls", "Natural hot spring at summit", "Overnight camping at 2,960m"] },
-      { day: 4, title: "Kheerganga → Kasol", drive: "12km trek down", stays: "Kasol", places: ["kasol", "pulga", "kalga"], activities: ["Morning descent through forest", "Kalga and Pulga exploration", "Kasol evening rest"] },
-      { day: 5, title: "Kasol → Bhuntar", drive: "35 km · 1 hr", stays: "—", places: ["manikaran"], activities: ["Manikaran morning visit", "Depart via Kullu to Bhuntar"] },
-    ]
-  },
+  
+  
   "seraj-offbeat-4d": {
     name: "Seraj Hidden Valley",
     days: 4, start: "AUT", km: 150,
@@ -430,36 +350,8 @@ const ITINERARIES = {
       { day: 4, title: "Habban → Nahan", drive: "70 km · 2.5 hrs", stays: "—", places: ["renuka-lake"], activities: ["Morning Renuka lake walk", "Nahan Rani Tal garden", "Depart from Nahan"] },
     ]
   },
-  "spiti-gue-mummy-5d": {
-    name: "Spiti Mysteries",
-    days: 5, start: "LAHAUL-SPITI", km: 280,
-    budget: 6732, premium: 10098, luxury: 13464,
-    tags: ["offbeat", "heritage", "adventure"],
-    region: "Kinnaur & Spiti",
-    highlight: "Gue Mummy & Kunzum Pass",
-    itinerary: [
-      { day: 1, title: "Kaza Arrival & Orientation", drive: "Local", stays: "Kaza", places: ["kaza", "key-monastery"], activities: ["Kaza market walk", "Key Monastery sunset visit", "Acclimatise at 3,800m"] },
-      { day: 2, title: "Village Circuit — Langza, Hikkim, Komic", drive: "80 km circuit", stays: "Kaza", places: ["langza", "hikkim", "komic"], activities: ["Langza fossil hunting (4,400m)", "Hikkim post office postcard", "Komic Tangyud Gompa", "Kibber wildlife trek"] },
-      { day: 3, title: "Gue Mummy Village", drive: "110 km · 4 hrs", stays: "Sumdo / Kaza", places: ["gue-mummy"], activities: ["Gue — 500yr-old mummified monk", "Spiti-Kinnaur border landscape", "Nako village return stop"] },
-      { day: 4, title: "Pin Valley National Park", drive: "50 km · 2 hrs", stays: "Kaza", places: ["pin-valley"], activities: ["Mud village cold desert walk", "Sagnam meadow bird walk", "Snow leopard territory drive"] },
-      { day: 5, title: "Kunzum Pass & Chandratal", drive: "115 km · 5 hrs", stays: "Chandratal / Depart", places: ["kunzum", "chandratal"], activities: ["Kunzum Pass goddess puja (4,590m)", "Chandratal Moon Lake (4,300m)", "Depart towards Manali"] },
-    ]
-  },
-  "spiti-village-circuit-5d": {
-    name: "Spiti Village Circuit",
-    days: 5, start: "LAHAUL-SPITI", km: 180,
-    budget: 6604, premium: 9906, luxury: 13208,
-    tags: ["offbeat", "culture", "adventure"],
-    region: "Kinnaur & Spiti",
-    highlight: "Langza, Hikkim, Komic & Kibber",
-    itinerary: [
-      { day: 1, title: "Kaza Base Camp", drive: "Local", stays: "Kaza", places: ["kaza", "key-monastery"], activities: ["Key Monastery (4,166m)", "Kaza market and local food", "Acclimatise"] },
-      { day: 2, title: "Fossil Triangle — Langza, Hikkim, Komic", drive: "80 km circuit", stays: "Kaza", places: ["langza", "hikkim", "komic"], activities: ["Langza marine fossils", "Hikkim world's highest post office (4,400m)", "Komic monastery drive"] },
-      { day: 3, title: "Kibber & Wildlife Walk", drive: "30 km · 1 hr", stays: "Kibber / Kaza", places: ["kibber"], activities: ["Kibber village walk (4,205m)", "Snow leopard spotting walk", "Gorge trail towards Chicham bridge"] },
-      { day: 4, title: "Tabo Monastery & Pin Valley", drive: "90 km", stays: "Tabo", places: ["tabo", "pin-valley"], activities: ["Tabo 1,000yr monastery murals", "Pin Valley cold desert walk", "Mud village exploration"] },
-      { day: 5, title: "Tabo → Kaza → Depart", drive: "80 km", stays: "—", places: ["kaza", "chandratal"], activities: ["Morning Kaza valley panorama", "Chandratal day trip (if time permits)", "Depart towards Manali or Shimla"] },
-    ]
-  },
+  
+  
   "tirthan-sainj-5d": {
     name: "Tirthan & Sainj Valley",
     days: 5, start: "AUT", km: 200,
@@ -508,23 +400,7 @@ const ITINERARIES = {
       { day: 3, title: "Tattapani → Delhi", drive: "280 km · 6 hrs", stays: "—", places: ["shimla"], activities: ["Optional Shimla stop", "NH5 scenic drive", "Evening Delhi arrival"] },
     ]
   },
-  "kinnaur-spiti-connect-7d": {
-    name: "Kinnaur-Spiti Connect",
-    days: 7, start: "SHIMLA", km: 680,
-    budget: 9792, premium: 14688, luxury: 19584,
-    tags: ["adventure", "offbeat", "expedition"],
-    region: "Kinnaur & Spiti",
-    highlight: "The Road Less Traveled",
-    itinerary: [
-      { day: 1, title: "Shimla → Reckong Peo", drive: "195 km · 6 hrs", stays: "Reckong Peo", places: ["narkanda", "reckong-peo"], activities: ["Narkanda apple belt", "Reckong Peo arrival", "Kalpa evening view"] },
-      { day: 2, title: "Kinnaur — Sangla & Chitkul", drive: "80 km · 3 hrs", stays: "Chitkul", places: ["sangla", "rakcham", "chitkul"], activities: ["Sangla Kamru Fort", "Rakcham village", "Chitkul last village"] },
-      { day: 3, title: "Chitkul → Nako → Tabo", drive: "190 km · 8 hrs", stays: "Tabo", places: ["nako", "tabo"], activities: ["Nako Lake monastery", "Malling Nala gorge", "Tabo monastery murals"] },
-      { day: 4, title: "Tabo → Kaza", drive: "45 km · 1.5 hrs", stays: "Kaza", places: ["pin-valley", "kaza"], activities: ["Pin Valley walk", "Kaza market", "Key Monastery sunset"] },
-      { day: 5, title: "Spiti Village Circuit", drive: "80 km", stays: "Kaza", places: ["langza", "hikkim", "komic", "kibber"], activities: ["Langza fossils", "Hikkim post office", "Komic gompa", "Kibber village"] },
-      { day: 6, title: "Kunzum Pass & Chandratal", drive: "115 km", stays: "Chandratal / Kaza", places: ["kunzum", "chandratal"], activities: ["Kunzum goddess temple", "Chandratal Moon Lake (4,300m)", "High-altitude camping"] },
-      { day: 7, title: "Chandratal → Manali (Lahaul-Spiti end point)", drive: "115 km · 5 hrs", stays: "—", places: ["sissu", "atal-tunnel-viewpoint"], activities: ["Atal Tunnel crossing", "Sissu waterfall", "Manali drop or continue"] },
-    ]
-  },
+  
   "lower-hp-offbeat-3d": {
     name: "Lower Himachal Offbeat",
     days: 3, start: "CHANDIGARH", km: 280,
