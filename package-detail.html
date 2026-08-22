@@ -3,7 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kangra – Bir – Palampur Circuit | Himachal Explorer</title>
+<title id="pageTitle">Himachal Pradesh Tour Package | Himachal Explorer</title>
+<meta name="description" id="pageDesc" content="Curated Himachal Pradesh tour package with day-wise itinerary, live pricing and route map. Book on WhatsApp with Himachal Explorer.">
+<link rel="canonical" id="pageCanon" href="https://himachalexplorer.in/package-detail.html">
+<meta property="og:type" content="website">
+<meta property="og:title" id="ogTitle" content="Himachal Pradesh Tour Package | Himachal Explorer">
+<meta property="og:description" id="ogDesc" content="Curated Himachal Pradesh tour package with day-wise itinerary, live pricing and route map.">
+<meta property="og:image" id="ogImage" content="https://himachalexplorer.in/assets/images/1hero.jpg">
+<meta property="og:url" id="ogUrl" content="https://himachalexplorer.in/package-detail.html">
+<script type="application/ld+json" id="pkgSchema">{}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -474,6 +482,53 @@ img { max-width: 100%; display: block; }
     document.title = pkg.title + " | Himachal Explorer";
     var setText = function (id, val) { var el = document.getElementById(id); if (el && val != null) el.textContent = val; };
 
+    // ── SEO: title / description / canonical / OG / JSON-LD ─────────────────
+    // Mirrors the TouristTrip schema convention already used on the static
+    // pkg/<slug>.html pages — see tools/firebase-import for how that content
+    // is sourced. Runs per package since this is a single dynamic template
+    // serving all packages via ?slug=.
+    (function updateSEO() {
+      var days = pkg.days;
+      var nights = days ? days - 1 : null;
+      var priceTxt = pkg.price ? "₹" + Number(pkg.price).toLocaleString("en-IN") : null;
+      var canonicalUrl = "https://himachalexplorer.in/package-detail.html?slug=" + encodeURIComponent(pkg.slug || "");
+      var desc = pkg.title +
+        (days ? " — " + days + "-day Himachal Pradesh tour." : ".") +
+        (pkg.hotel_star ? " " + pkg.hotel_star + "." : "") +
+        (priceTxt ? " Starting from " + priceTxt + "/person" : "") +
+        (pkg.start_point ? " from " + pkg.start_point : "") +
+        ". Book on WhatsApp.";
+
+      var descEl = document.getElementById("pageDesc"); if (descEl) descEl.content = desc;
+      var canonEl = document.getElementById("pageCanon"); if (canonEl) canonEl.href = canonicalUrl;
+      var ogTitleEl = document.getElementById("ogTitle"); if (ogTitleEl) ogTitleEl.content = pkg.title + " | Himachal Explorer";
+      var ogDescEl = document.getElementById("ogDesc"); if (ogDescEl) ogDescEl.content = desc;
+      var ogUrlEl = document.getElementById("ogUrl"); if (ogUrlEl) ogUrlEl.content = canonicalUrl;
+      if (pkg.image) { var ogImgEl = document.getElementById("ogImage"); if (ogImgEl) ogImgEl.content = pkg.image; }
+
+      var schemaEl = document.getElementById("pkgSchema");
+      if (schemaEl) {
+        var schema = {
+          "@context": "https://schema.org",
+          "@type": "TouristTrip",
+          "name": pkg.title,
+          "description": desc,
+          "url": canonicalUrl,
+          "touristType": ["friends", "couple", "family"],
+          "provider": {
+            "@type": "TravelAgency",
+            "name": "Himachal Explorer",
+            "url": "https://himachalexplorer.in",
+            "telephone": "+917018138847"
+          }
+        };
+        if (pkg.price) {
+          schema.offers = { "@type": "Offer", "price": String(pkg.price), "priceCurrency": "INR", "availability": "https://schema.org/InStock" };
+        }
+        schemaEl.textContent = JSON.stringify(schema);
+      }
+    })();
+
     setText("hero-title", pkg.title);
     setText("hero-subtitle", (pkg.tags ? pkg.tags.split(",").map(function(t){return t.trim().replace(/^\w/, function(c){return c.toUpperCase();});}).join(" • ") : "Mountains, Culture & Adventure"));
     setText("meta-days", "");
@@ -488,7 +543,7 @@ img { max-width: 100%; display: block; }
     setText("card-nights", (pkg.days ? pkg.days - 1 : "-") + " Nights");
     setText("card-hotel", pkg.hotel_star || "Comfortable");
     if (pkg.image) {
-      var bg = document.getElementById("hero-bg"); if (bg) bg.src = pkg.image;
+      var bg = document.getElementById("hero-bg"); if (bg) { bg.src = pkg.image; bg.alt = pkg.title + " — Himachal Pradesh tour"; }
       var ai = document.getElementById("about-img"); if (ai) ai.src = pkg.image;
     }
     if (pkg.itinerary && pkg.itinerary.length) {
