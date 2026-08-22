@@ -226,35 +226,15 @@ footer{background:#150f06;padding:22px var(--px);display:flex;align-items:center
   .dn-line{width:20px!important}
 }
 </style>
+<link rel="stylesheet" href="assets/css/site-chrome.css">
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
-<!-- NAV -->
-<nav aria-label="Main navigation">
-  <a href="index.html" class="logo">
-    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="border-radius:50%;border:1.5px solid var(--gold)">
-      <circle cx="16" cy="16" r="16" fill="#f8f5ef"/>
-      <path d="M4 24 L10 14 L14 19 L18 11 L28 24Z" fill="#b07d3a" opacity=".18"/>
-      <path d="M4 24 L10 14 L14 19 L18 11 L28 24" stroke="#b07d3a" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-      <circle cx="18" cy="10" r="1.5" fill="#c99248"/>
-    </svg>
-    <span class="logo-text">Himachal Explorer</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="explore.html">Explore Map</a></li>
-    <li><a href="packages.html">Itineraries</a></li>
-    <li><a href="index.html#districts" class="active">Districts</a></li>
-  </ul>
-  <a href="tel:+917018138847" class="nav-phone">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12.36a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.41 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-    +91-70181 38847
-  </a>
-  <a href="packages.html" class="nav-pill">Plan Journey</a>
-</nav>
+<!-- NAV (shared site-wide header) -->
+<div id="site-header"></div>
 
 <!-- MAIN — rendered by JS -->
 <main id="main"></main>
@@ -644,5 +624,6 @@ function initReveal() {
   document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
 }
 </script>
+<script src="assets/js/site-chrome.js" defer></script>
 </body>
 </html>

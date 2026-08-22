@@ -1560,50 +1560,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </a>
 </nav>
 
-<!-- MAIN NAV -->
-<nav class="site-nav">
-  <a href="index.html" class="site-nav-logo">
-    <img src="logo-512.png" alt="Himachal Explorer Logo" onerror="this.onerror=null;this.src='./logo-512.png'"/>
-    <div class="site-nav-logo-text">
-      Himachal Explorer
-      <span>Curated Journeys</span>
-    </div>
-  </a>
-
-  <div class="site-nav-divider"></div>
-
-  <div class="site-nav-links">
-    <a href="index.html" class="site-nav-link">
-      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Home
-    </a>
-    <a href="explore.html" class="site-nav-link active">
-      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6-10l6-3m0 13l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 10m0 3V7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      All Packages &amp; Map
-    </a>
-  </div>
-
-  <div class="site-nav-contact">
-    <div class="site-nav-person">
-      <div class="site-nav-avatar">CP</div>
-      <div class="site-nav-pinfo">
-        <div class="site-nav-pname">Himachal Explorer</div>
-        <div class="site-nav-pphone">+91 70181 38847</div>
-      </div>
-    </div>
-    <div class="site-nav-person">
-      <div class="site-nav-avatar">VK</div>
-      <div class="site-nav-pinfo">
-        <div class="site-nav-pname">Vijay Kawar</div>
-        <div class="site-nav-pphone">+91 86278 82520</div>
-      </div>
-    </div>
-    <a href="mailto:chandan_panwar@himachalexplorer.in" class="site-nav-contact-btn">
-      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Contact Us
-    </a>
-  </div>
-</nav>
+<!-- MAIN NAV (shared site-wide header) -->
+<div id="site-header"></div>
+<style>#site-header .he-header-spacer{display:none}</style>
 
 <!-- WEATHER TICKER -->
 <div class="weather-bar" id="weatherBar">
@@ -3483,6 +3442,7 @@ setInterval(fetchWeather, 15 * 60 * 1000);
 
 <div id="site-seo-links"></div>
 <link rel="stylesheet" href="assets/css/site-chrome.css">
+<script src="assets/js/site-chrome.js" defer></script>
 <script src="assets/js/seo-crosslinks.js" defer></script>
 </body>
 </html>

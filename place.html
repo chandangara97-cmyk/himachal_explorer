@@ -236,6 +236,7 @@ header{height:60px;border-bottom:1px solid var(--border);display:flex;align-item
   .map-legend{display:none}
 }
 </style>
+<link rel="stylesheet" href="assets/css/site-chrome.css">
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
@@ -244,17 +245,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <h1 style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">Explore Places — Himachal Pradesh Map</h1>
 
-<header>
-  <a href="index.html" class="brand">
-    <div class="logo">HE</div>
-    <span class="brand-title">Himachal Explorer</span>
-  </a>
-  <div class="header-actions">
-    <a href="index.html" class="hlink">Home</a>
-    <a href="packages.html" class="hlink">Itineraries</a>
-    <a href="packages.html" class="nav-pill">Plan Journey</a>
-  </div>
-</header>
+<div id="site-header"></div>
 
 <div class="main-container">
   <div class="panel-left">
@@ -680,5 +671,6 @@ loadPlaces().catch(err => {
   document.getElementById('listCount').textContent = 'Failed to load — check connection';
 });
 </script>
+<script src="assets/js/site-chrome.js" defer></script>
 </body>
 </html>
