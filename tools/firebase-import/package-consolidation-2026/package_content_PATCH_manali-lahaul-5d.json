@@ -1,0 +1,83 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Manali Acclimatisation",
+      "dist_time": "Local",
+      "description": "Hadimba Temple · Solang Valley · Vashisht hot springs",
+      "acts": [
+        "Hadimba Temple",
+        "Solang Valley",
+        "Vashisht hot springs"
+      ],
+      "places": [
+        "hadimba",
+        "solang",
+        "vashisht"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Manali → Sissu",
+      "dist_time": "60 km",
+      "description": "Atal Tunnel (world's longest) · Sissu waterfall · Lahaul landscape",
+      "acts": [
+        "Atal Tunnel (world's longest)",
+        "Sissu waterfall",
+        "Lahaul landscape"
+      ],
+      "places": [
+        "atal-tunnel-viewpoint",
+        "sissu"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Sissu → Keylong",
+      "dist_time": "50 km",
+      "description": "Keylong district HQ · Kardang Monastery · Jispa meadow camp",
+      "acts": [
+        "Keylong district HQ",
+        "Kardang Monastery",
+        "Jispa meadow camp"
+      ],
+      "places": []
+    },
+    {
+      "day": 4,
+      "title": "Chandratal Day Trip",
+      "dist_time": "100 km",
+      "description": "Kunzum Pass (4,590m) · Chandratal Lake (4,300m) · Return via same route",
+      "acts": [
+        "Kunzum Pass (4,590m)",
+        "Chandratal Lake (4,300m)",
+        "Return via same route"
+      ],
+      "places": [
+        "kunzum",
+        "chandratal"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Return to Manali",
+      "dist_time": "60 km",
+      "description": "Rohtang Pass view · Atal Tunnel return · Depart Manali",
+      "acts": [
+        "Rohtang Pass view",
+        "Atal Tunnel return",
+        "Depart Manali"
+      ],
+      "places": [
+        "rohtang-pass",
+        "manali"
+      ]
+    }
+  ],
+  "highlight": "Sissu, Atal Tunnel & Keylong",
+  "curated_tags": [
+    "adventure",
+    "photography",
+    "nature"
+  ]
+}

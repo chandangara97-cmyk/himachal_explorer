@@ -1,0 +1,39 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Chandigarh → Kasauli",
+      "dist_time": "60 km · 1.5 hrs",
+      "description": "Kasauli Monkey Point walk · Kasauli Brewery viewpoint · Gilbert Trail forest",
+      "acts": [
+        "Kasauli Monkey Point walk",
+        "Kasauli Brewery viewpoint",
+        "Gilbert Trail forest"
+      ],
+      "places": [
+        "kasauli"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Kasauli → Barog → Chandigarh",
+      "dist_time": "100 km · 2.5 hrs",
+      "description": "Barog Railway tunnel hike · Kalka-Shimla toy train view · Pinjore Gardens return",
+      "acts": [
+        "Barog Railway tunnel hike",
+        "Kalka-Shimla toy train view",
+        "Pinjore Gardens return"
+      ],
+      "places": [
+        "barog"
+      ]
+    }
+  ],
+  "highlight": "Kasauli & Barog Railway",
+  "curated_tags": [
+    "couple",
+    "family",
+    "weekend"
+  ],
+  "image": "assets/images/barot-dam-shanan_1.jpg"
+}

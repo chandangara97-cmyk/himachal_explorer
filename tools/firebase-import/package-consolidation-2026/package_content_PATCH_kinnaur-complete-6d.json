@@ -1,0 +1,96 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Shimla → Reckong Peo",
+      "dist_time": "195 km · 6 hrs",
+      "description": "Narkanda Hatu Peak · Kotgarh orchards · Reckong Peo arrival",
+      "acts": [
+        "Narkanda Hatu Peak",
+        "Kotgarh orchards",
+        "Reckong Peo arrival"
+      ],
+      "places": [
+        "narkanda",
+        "kotgarh",
+        "reckong-peo"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Reckong Peo → Sangla",
+      "dist_time": "80 km · 3 hrs",
+      "description": "Kalpa sunrise over Kinner Kailash · Roghi village walk · Sangla Kamru Fort",
+      "acts": [
+        "Kalpa sunrise over Kinner Kailash",
+        "Roghi village walk",
+        "Sangla Kamru Fort"
+      ],
+      "places": [
+        "kalpa",
+        "sangla"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Sangla → Chitkul",
+      "dist_time": "25 km · 1 hr",
+      "description": "Rakcham Kinnauri village · Chitkul last village · Baspa River sunset",
+      "acts": [
+        "Rakcham Kinnauri village",
+        "Chitkul last village",
+        "Baspa River sunset"
+      ],
+      "places": [
+        "rakcham",
+        "chitkul"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Chitkul → Nako",
+      "dist_time": "130 km · 5 hrs",
+      "description": "Nako Lake and Monastery · Desert landscape entry",
+      "acts": [
+        "Nako Lake and Monastery",
+        "Desert landscape entry"
+      ],
+      "places": [
+        "nako"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Nako → Reckong Peo",
+      "dist_time": "90 km",
+      "description": "Pooh monastery · Kinnaur Kailash viewpoint",
+      "acts": [
+        "Pooh monastery",
+        "Kinnaur Kailash viewpoint"
+      ],
+      "places": [
+        "reckong-peo"
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Reckong Peo → Shimla",
+      "dist_time": "195 km · 6 hrs",
+      "description": "Apple belt stop · Shimla evening arrival",
+      "acts": [
+        "Apple belt stop",
+        "Shimla evening arrival"
+      ],
+      "places": [
+        "narkanda"
+      ]
+    }
+  ],
+  "highlight": "Sangla, Chitkul & Hidden Villages",
+  "curated_tags": [
+    "nature",
+    "photography",
+    "slow_travel"
+  ],
+  "image": "assets/images/kinnaur-kailash-viewpoint_02.jpg"
+}

@@ -1,0 +1,161 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Delhi → Shimla",
+      "dist_time": "350 km",
+      "description": "Arrive Shimla · Mall Road orientation",
+      "acts": [
+        "Arrive Shimla",
+        "Mall Road orientation"
+      ],
+      "places": [
+        "shimla",
+        "mall-road"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Shimla",
+      "dist_time": "Local",
+      "description": "Kufri snow · Naldehra golf · Chadwick Falls",
+      "acts": [
+        "Kufri snow",
+        "Naldehra golf",
+        "Chadwick Falls"
+      ],
+      "places": [
+        "kufri",
+        "naldehra",
+        "chadwick-falls"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Shimla → Jibhi",
+      "dist_time": "180 km",
+      "description": "Jibhi waterfall · Shoja meadow · Homestay",
+      "acts": [
+        "Jibhi waterfall",
+        "Shoja meadow",
+        "Homestay"
+      ],
+      "places": [
+        "jibhi",
+        "shoja"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Jalori Pass & Tirthan",
+      "dist_time": "50 km loop",
+      "description": "Jalori Pass · Serolsar Lake trek · Tirthan trout walk",
+      "acts": [
+        "Jalori Pass",
+        "Serolsar Lake trek",
+        "Tirthan trout walk"
+      ],
+      "places": [
+        "jalori",
+        "serolsar-lake",
+        "tirthan-valley"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Jibhi → Kasol",
+      "dist_time": "130 km",
+      "description": "Manikaran Sahib · Kasol cafes · Chalal hike",
+      "acts": [
+        "Manikaran Sahib",
+        "Kasol cafes",
+        "Chalal hike"
+      ],
+      "places": [
+        "kasol",
+        "manikaran"
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Kasol Treks",
+      "dist_time": "Local",
+      "description": "Tosh village morning · Kheerganga or Kalga",
+      "acts": [
+        "Tosh village morning",
+        "Kheerganga or Kalga"
+      ],
+      "places": [
+        "kheerganga",
+        "tosh"
+      ]
+    },
+    {
+      "day": 7,
+      "title": "Kasol → Manali",
+      "dist_time": "120 km",
+      "description": "Kullu Shawl market · Manali arrival · Old Manali walk",
+      "acts": [
+        "Kullu Shawl market",
+        "Manali arrival",
+        "Old Manali walk"
+      ],
+      "places": [
+        "manali"
+      ]
+    },
+    {
+      "day": 8,
+      "title": "Manali Adventure",
+      "dist_time": "Local",
+      "description": "Solang Valley activities · Hadimba Temple · Vashisht hot springs",
+      "acts": [
+        "Solang Valley activities",
+        "Hadimba Temple",
+        "Vashisht hot springs"
+      ],
+      "places": [
+        "solang",
+        "hadimba",
+        "old-manali"
+      ]
+    },
+    {
+      "day": 9,
+      "title": "Manali → Dharamshala",
+      "dist_time": "250 km",
+      "description": "Norbulingka Institute · McLeod Ganj walk · Tibetan food",
+      "acts": [
+        "Norbulingka Institute",
+        "McLeod Ganj walk",
+        "Tibetan food"
+      ],
+      "places": [
+        "mcleodganj",
+        "dharamshala"
+      ]
+    },
+    {
+      "day": 10,
+      "title": "Kangra → Delhi",
+      "dist_time": "500 km",
+      "description": "Kangra Fort morning · Baijnath Temple · Depart for Delhi",
+      "acts": [
+        "Kangra Fort morning",
+        "Baijnath Temple",
+        "Depart for Delhi"
+      ],
+      "places": [
+        "kangra-fort",
+        "baijnath_temple"
+      ]
+    }
+  ],
+  "highlight": "All Regions Grand Tour",
+  "curated_tags": [
+    "family",
+    "couple",
+    "friends"
+  ],
+  "image": "assets/images/solang-valley_1.jpg"
+}

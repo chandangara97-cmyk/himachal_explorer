@@ -1,0 +1,67 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Aut → Jibhi",
+      "dist_time": "35 km · 1 hr",
+      "description": "Wooden bridge stream walk · Jibhi waterfall trail · Homestay local thali",
+      "acts": [
+        "Wooden bridge stream walk",
+        "Jibhi waterfall trail",
+        "Homestay local thali"
+      ],
+      "places": [
+        "jibhi"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Jalori Pass & Serolsar Lake",
+      "dist_time": "20 km",
+      "description": "Jalori Pass sunrise (3,120m) · Serolsar Lake 5km trek · Shoja meadow evening",
+      "acts": [
+        "Jalori Pass sunrise (3,120m)",
+        "Serolsar Lake 5km trek",
+        "Shoja meadow evening"
+      ],
+      "places": [
+        "jalori",
+        "serolsar-lake",
+        "shoja"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Tirthan Valley",
+      "dist_time": "40 km",
+      "description": "Tirthan River trout spotting · GHNP entry walk · Village interaction",
+      "acts": [
+        "Tirthan River trout spotting",
+        "GHNP entry walk",
+        "Village interaction"
+      ],
+      "places": [
+        "tirthan-valley",
+        "ghnp"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Jibhi → Aut",
+      "dist_time": "35 km",
+      "description": "Morning forest walk · Drive through Banjar · Depart from Aut",
+      "acts": [
+        "Morning forest walk",
+        "Drive through Banjar",
+        "Depart from Aut"
+      ],
+      "places": []
+    }
+  ],
+  "highlight": "Jibhi, Shoja & Jalori Pass",
+  "curated_tags": [
+    "offbeat",
+    "couple",
+    "photography"
+  ]
+}

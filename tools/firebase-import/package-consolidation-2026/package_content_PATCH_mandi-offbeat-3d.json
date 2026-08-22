@@ -1,0 +1,52 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Mandi → Prashar Lake",
+      "dist_time": "50 km + 7km trek",
+      "description": "Baggi village trailhead · 7km trek (2,730m) · Floating island & stargazing",
+      "acts": [
+        "Baggi village trailhead",
+        "7km trek (2,730m)",
+        "Floating island & stargazing"
+      ],
+      "places": [
+        "prashar"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Prashar → Barot",
+      "dist_time": "60 km",
+      "description": "Uhl River trout angling · Nargu Wildlife walk · Barot village life",
+      "acts": [
+        "Uhl River trout angling",
+        "Nargu Wildlife walk",
+        "Barot village life"
+      ],
+      "places": [
+        "barot-valley"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Barot → Mandi",
+      "dist_time": "70 km",
+      "description": "Rewalsar Lake monastery · Mandi town walk · Depart afternoon",
+      "acts": [
+        "Rewalsar Lake monastery",
+        "Mandi town walk",
+        "Depart afternoon"
+      ],
+      "places": [
+        "kamrunag-lake"
+      ]
+    }
+  ],
+  "highlight": "Prashar Lake, Barot & Kamrunag",
+  "curated_tags": [
+    "nature",
+    "trek",
+    "photography"
+  ]
+}

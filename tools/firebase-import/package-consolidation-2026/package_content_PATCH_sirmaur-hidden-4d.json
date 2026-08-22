@@ -1,0 +1,67 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Nahan → Renuka Lake",
+      "dist_time": "40 km",
+      "description": "Renuka Lake temple aarti · Simbalbara Wildlife Sanctuary · Sunset over water",
+      "acts": [
+        "Renuka Lake temple aarti",
+        "Simbalbara Wildlife Sanctuary",
+        "Sunset over water"
+      ],
+      "places": [
+        "nahan",
+        "renuka-lake"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Renuka → Habban",
+      "dist_time": "80 km",
+      "description": "Rajgarh apple country · Habban valley orchards · Scenic terraced fields",
+      "acts": [
+        "Rajgarh apple country",
+        "Habban valley orchards",
+        "Scenic terraced fields"
+      ],
+      "places": [
+        "habban-valley"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Churdhar Trek",
+      "dist_time": "40 km to base",
+      "description": "Churdhar peak (3,647m) trek · Panoramic Himalayan views · Return to base",
+      "acts": [
+        "Churdhar peak (3,647m) trek",
+        "Panoramic Himalayan views",
+        "Return to base"
+      ],
+      "places": [
+        "churdhar"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Return to Nahan",
+      "dist_time": "80 km",
+      "description": "Trilokpur Temple morning · Shivalik foothills drive · Nahan departure",
+      "acts": [
+        "Trilokpur Temple morning",
+        "Shivalik foothills drive",
+        "Nahan departure"
+      ],
+      "places": [
+        "renuka-lake"
+      ]
+    }
+  ],
+  "highlight": "Renuka Lake, Churdhar & Habban",
+  "curated_tags": [
+    "nature",
+    "trek",
+    "wildlife"
+  ]
+}

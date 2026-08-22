@@ -1,0 +1,54 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Delhi → Renuka Lake",
+      "dist_time": "290 km · 6 hrs",
+      "description": "Nahan scenic town · Renuka Lake afternoon · Renuka Ji temple aarti",
+      "acts": [
+        "Nahan scenic town",
+        "Renuka Lake afternoon",
+        "Renuka Ji temple aarti"
+      ],
+      "places": [
+        "nahan",
+        "renuka-lake"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Renuka → Tattapani",
+      "dist_time": "120 km · 3 hrs",
+      "description": "Hot sulphur springs soak · River beach relaxation · Sutlej gorge sunset",
+      "acts": [
+        "Hot sulphur springs soak",
+        "River beach relaxation",
+        "Sutlej gorge sunset"
+      ],
+      "places": [
+        "tattapani"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Tattapani → Delhi",
+      "dist_time": "280 km · 6 hrs",
+      "description": "Optional Shimla stop · NH5 scenic drive · Delhi evening arrival",
+      "acts": [
+        "Optional Shimla stop",
+        "NH5 scenic drive",
+        "Delhi evening arrival"
+      ],
+      "places": [
+        "shimla"
+      ]
+    }
+  ],
+  "highlight": "Renuka Lake & Tattapani Hot Springs",
+  "curated_tags": [
+    "family",
+    "couple",
+    "nature"
+  ],
+  "image": "assets/images/gobind-sagar-lake_1.jpg"
+}

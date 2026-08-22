@@ -911,6 +911,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
+<script src="assets/js/package-data.js"></script>
+<script>
+  window.FIREBASE_STATUS_PATHS = [
+    { path: "/templates_index", label: "Package identity" },
+    { path: "/package_content", label: "Itinerary/images" },
+    { path: "/vehicle_rate_card", label: "Transport pricing" },
+  ];
+</script>
+<script src="assets/js/firebase-status-bar.js"></script>
 <script>
 // ── CONFIG ──────────────────────────────────────────────────────────
 const RAZORPAY_KEY = 'OHPWkChulBwl3GwV9szQZh97'; // ← Replace with your actual Razorpay key
@@ -918,19 +927,36 @@ const FIREBASE_URL = 'https://garg-enterprise-default-rtdb.asia-southeast1.fireb
 const WA_NUMBER   = '917018138847';
 const BUSINESS_EMAIL = 'chandan_panwar@himachalexplorer.in';
 
-// ── PACKAGES DATA (pulled from common packages; extend from Firebase) ──
-const PACKAGES = [
-  { id:'pkg001', name:'Shimla Manali Classic', nights:6, days:7, gateway:'Chandigarh', base:3200, transport:{Sedan:4500,Ertiga:5500,Innova:6500,'Tempo Traveller':12000,'Bolero':5000} },
-  { id:'pkg002', name:'Spiti Valley Expedition', nights:8, days:9, gateway:'Shimla', base:4200, transport:{Sedan:6000,Ertiga:7000,Innova:8500,'Tempo Traveller':16000,'Bolero':6500} },
-  { id:'pkg003', name:'Dharamsala Dalhousie', nights:5, days:6, gateway:'Pathankot', base:2800, transport:{Sedan:3800,Ertiga:4500,Innova:5500,'Tempo Traveller':10000,'Bolero':4200} },
-  { id:'pkg004', name:'Kasol Kheerganga Trek', nights:4, days:5, gateway:'Bhuntar', base:2200, transport:{Sedan:3200,Ertiga:4000,Innova:4800,'Tempo Traveller':9000,'Bolero':3800} },
-  { id:'pkg005', name:'Kinnaur Kalpa Sangla', nights:6, days:7, gateway:'Shimla', base:3800, transport:{Sedan:5500,Ertiga:6500,Innova:7500,'Tempo Traveller':14000,'Bolero':6000} },
-  { id:'pkg006', name:'Manali Adventure Package', nights:5, days:6, gateway:'Chandigarh', base:3000, transport:{Sedan:4200,Ertiga:5000,Innova:6000,'Tempo Traveller':11000,'Bolero':4800} },
-  { id:'pkg007', name:'Bir Billing Paragliding', nights:3, days:4, gateway:'Chandigarh', base:1800, transport:{Sedan:2800,Ertiga:3500,Innova:4200,'Tempo Traveller':8000,'Bolero':3200} },
-  { id:'pkg008', name:'Chail Kufri Weekend', nights:2, days:3, gateway:'Chandigarh', base:1400, transport:{Sedan:2200,Ertiga:2800,Innova:3500,'Tempo Traveller':6500,'Bolero':2600} },
-  { id:'pkg009', name:'Lahaul Sissu Valley', nights:5, days:6, gateway:'Chandigarh', base:3500, transport:{Sedan:5000,Ertiga:6000,Innova:7000,'Tempo Traveller':13000,'Bolero':5500} },
-  { id:'pkg010', name:'Narkanda Hatu Peak', nights:2, days:3, gateway:'Shimla', base:1500, transport:{Sedan:2400,Ertiga:3000,Innova:3600,'Tempo Traveller':7000,'Bolero':2800} },
-];
+// ── PACKAGES DATA ──────────────────────────────────────────────────────
+// SINGLE SOURCE OF TRUTH: loaded from Firebase via assets/js/package-data.js
+// (populated in the async init below). The ids/names/prices below used to
+// be a hardcoded mock list ('pkg001'..'pkg010') that didn't match any real
+// package — don't reintroduce a local copy here.
+let PACKAGES = [];
+let VEHICLE_RATES = {};
+
+const VEHICLE_KEY_MAP = { Sedan:'sedan', Ertiga:'suv_ertiga', Innova:'suv_innova', 'Tempo Traveller':'tempo_12', Bolero:'suv_bolero' };
+
+function buildTransportEstimate(pkg) {
+  const out = {};
+  Object.keys(VEHICLE_KEY_MAP).forEach(label => {
+    const est = PackageData.estimateVehicleCost(pkg, VEHICLE_KEY_MAP[label], VEHICLE_RATES);
+    out[label] = est || Math.round((pkg.days || 1) * 1800); // flat fallback if rate card unavailable
+  });
+  return out;
+}
+
+function fromPackageData(pkg) {
+  return {
+    id: pkg.id,
+    name: pkg.name,
+    nights: pkg.days ? pkg.days - 1 : 0,
+    days: pkg.days,
+    gateway: pkg.start_point || '—',
+    base: pkg.budget_price_pp ? Math.round(pkg.budget_price_pp / 2) : 3000, // per-adult estimate (matrix price is per person at pax=2)
+    transport: buildTransportEstimate(pkg),
+  };
+}
 
 const HOTEL_RATES = { budget:800, standard:1400, deluxe:2200, luxury:3500 }; // per room/night
 const HOTEL_LABELS = { budget:'2★ Budget', standard:'3★ Standard', deluxe:'4★ Deluxe', luxury:'5★ Luxury' };
@@ -952,49 +978,28 @@ window.onload = () => {
   document.getElementById('travelDate').value = '';
   document.getElementById('travelDate').addEventListener('change', recalcPrice);
   document.getElementById('hotelCat').addEventListener('change', ()=>{ state.hotel=document.getElementById('hotelCat').value; recalcPrice(); });
-  renderPackages(PACKAGES);
 
-  // Pre-fill from URL params (coming from packages.html)
-  // Params passed: pkg, name, price, days, nights, gateway
-  const params = new URLSearchParams(window.location.search);
-  const pkgId   = params.get('pkg');
-  const pkgName = params.get('name') ? decodeURIComponent(params.get('name')) : null;
-  const pkgPrice= params.get('price') ? parseInt(params.get('price')) : null;
-  const pkgDays  = params.get('days')   ? parseInt(params.get('days'))   : null;
-  const pkgNights= params.get('nights') ? parseInt(params.get('nights')) : null;
-  const pkgGateway = params.get('gateway') ? decodeURIComponent(params.get('gateway')) : null;
+  const pkgListEl = document.getElementById('pkgList');
+  if (pkgListEl) pkgListEl.innerHTML = '<div style="padding:24px;text-align:center;color:#888;font-size:0.8rem;">Loading packages…</div>';
 
-  if(pkgId) {
-    // Try local array first
-    const found = PACKAGES.find(p => p.id === pkgId);
-    if(found) {
-      selectPackage(found);
-    } else if(pkgName && pkgNights && pkgDays) {
-      // Firebase package — build a synthetic pkg object from URL params
-      // price param is the per-pax selling price; use as base
-      const basePerPax = pkgPrice ? Math.round(pkgPrice / 1.05) : 3000; // strip GST estimate
-      const syntheticPkg = {
-        id: pkgId,
-        name: pkgName,
-        nights: pkgNights,
-        days: pkgDays,
-        gateway: pkgGateway || '—',
-        base: basePerPax,
-        transport: { Sedan:4500, Ertiga:5500, Innova:6500, 'Tempo Traveller':12000, Bolero:5000 },
-        _fromUrl: true  // flag — real transport rates unknown, show note
-      };
-      // Push into PACKAGES so list renders it selected
-      PACKAGES.unshift(syntheticPkg);
-      renderPackages(PACKAGES);
-      selectPackage(syntheticPkg);
+  PackageData.load().then(data => {
+    VEHICLE_RATES = data.vehicleRates || {};
+    PACKAGES = data.packages.map(fromPackageData);
+    renderPackages(PACKAGES);
 
-      // Show a soft note that final price will be confirmed
-      const note = document.createElement('div');
-      note.style.cssText = 'font-size:0.72rem;color:#b8972a;margin-top:8px;padding:8px 10px;background:#fffbef;border:1px solid #e8d78a;border-radius:3px;';
-      note.textContent = '✓ Package auto-filled from your selection. Final pricing will be confirmed by our team within 2 hours of booking.';
-      document.getElementById('priceBreakdown').after(note);
+    // Pre-fill from URL params (coming from packages.html)
+    // Params passed: pkg, name, price, days, nights, gateway
+    const params = new URLSearchParams(window.location.search);
+    const pkgId = params.get('pkg');
+
+    if (pkgId) {
+      const found = PACKAGES.find(p => p.id === pkgId);
+      if (found) selectPackage(found);
     }
-  }
+  }).catch(err => {
+    console.error('Failed to load packages from Firebase:', err);
+    if (pkgListEl) pkgListEl.innerHTML = '<div style="padding:24px;text-align:center;color:#c33;font-size:0.8rem;">Couldn\u2019t load packages — please refresh.</div>';
+  });
 };
 
 function renderPackages(list) {

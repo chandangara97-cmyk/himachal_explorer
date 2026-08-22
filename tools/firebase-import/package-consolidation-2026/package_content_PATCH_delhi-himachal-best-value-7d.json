@@ -1,0 +1,115 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Delhi → Shimla",
+      "dist_time": "350 km · 7 hrs",
+      "description": "Pinjore Gardens stop · Shimla Mall Road · Jakhu Temple visit",
+      "acts": [
+        "Pinjore Gardens stop",
+        "Shimla Mall Road",
+        "Jakhu Temple visit"
+      ],
+      "places": [
+        "shimla",
+        "mall-road"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Shimla Local",
+      "dist_time": "Local",
+      "description": "Chadwick Falls walk · Craignano nature park · Christ Church tour",
+      "acts": [
+        "Chadwick Falls walk",
+        "Craignano nature park",
+        "Christ Church tour"
+      ],
+      "places": [
+        "chadwick-falls",
+        "craignano",
+        "naldehra"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Shimla → Jibhi",
+      "dist_time": "150 km · 4.5 hrs",
+      "description": "Kotgarh apple orchards · Jalori Pass stop · Jibhi check-in",
+      "acts": [
+        "Kotgarh apple orchards",
+        "Jalori Pass stop",
+        "Jibhi check-in"
+      ],
+      "places": [
+        "kotgarh",
+        "jalori",
+        "jibhi"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Jibhi → Tirthan",
+      "dist_time": "30 km · 1 hr",
+      "description": "Serolsar Lake trek · GHNP buffer walk · Tirthan riverside",
+      "acts": [
+        "Serolsar Lake trek",
+        "GHNP buffer walk",
+        "Tirthan riverside"
+      ],
+      "places": [
+        "serolsar-lake",
+        "tirthan-valley"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Tirthan → Kasol",
+      "dist_time": "120 km · 3.5 hrs",
+      "description": "Aut suspension bridge · Kasol riverside village · Chalal evening hike",
+      "acts": [
+        "Aut suspension bridge",
+        "Kasol riverside village",
+        "Chalal evening hike"
+      ],
+      "places": [
+        "kasol",
+        "chalal"
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Kasol Day",
+      "dist_time": "Local",
+      "description": "Manikaran Sahib morning · Kheerganga 1-day trek option · Parvati Valley twilight",
+      "acts": [
+        "Manikaran Sahib morning",
+        "Kheerganga 1-day trek option",
+        "Parvati Valley twilight"
+      ],
+      "places": [
+        "manikaran",
+        "kheerganga"
+      ]
+    },
+    {
+      "day": 7,
+      "title": "Kasol → Delhi",
+      "dist_time": "520 km · 10 hrs",
+      "description": "Early departure · Chandigarh food stop · Delhi arrival",
+      "acts": [
+        "Early departure",
+        "Chandigarh food stop",
+        "Delhi arrival"
+      ],
+      "places": []
+    }
+  ],
+  "highlight": "Shimla, Jibhi & Kasol",
+  "curated_tags": [
+    "family",
+    "couple",
+    "friends"
+  ],
+  "image": "assets/images/manali_1.jpg"
+}

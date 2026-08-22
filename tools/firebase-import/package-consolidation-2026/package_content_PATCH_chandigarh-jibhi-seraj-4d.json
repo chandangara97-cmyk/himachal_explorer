@@ -1,0 +1,67 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Chandigarh → Jibhi",
+      "dist_time": "240 km · 5.5 hrs",
+      "description": "Bilaspur lake view stop · Jibhi waterfall walk · Wooden bridge village",
+      "acts": [
+        "Bilaspur lake view stop",
+        "Jibhi waterfall walk",
+        "Wooden bridge village"
+      ],
+      "places": [
+        "jibhi"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Jalori Pass & Serolsar Lake",
+      "dist_time": "20 km · 45 min",
+      "description": "Jalori Pass sunrise (3,120m) · Serolsar Lake 5km trek · Budhi Nagin temple",
+      "acts": [
+        "Jalori Pass sunrise (3,120m)",
+        "Serolsar Lake 5km trek",
+        "Budhi Nagin temple"
+      ],
+      "places": [
+        "jalori",
+        "serolsar-lake"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Shoja & Tirthan",
+      "dist_time": "30 km · 1 hr",
+      "description": "Shoja meadow morning · Tirthan River trout spotting · GHNP buffer zone walk",
+      "acts": [
+        "Shoja meadow morning",
+        "Tirthan River trout spotting",
+        "GHNP buffer zone walk"
+      ],
+      "places": [
+        "shoja",
+        "tirthan-valley"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Jibhi → Chandigarh",
+      "dist_time": "240 km · 5.5 hrs",
+      "description": "Banjar market stop · Mandi town lunch · Chandigarh arrival",
+      "acts": [
+        "Banjar market stop",
+        "Mandi town lunch",
+        "Chandigarh arrival"
+      ],
+      "places": []
+    }
+  ],
+  "highlight": "Jibhi, Shoja & Jalori",
+  "curated_tags": [
+    "nature",
+    "couple",
+    "friends"
+  ],
+  "image": "assets/images/jibhi_1.jpg"
+}

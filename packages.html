@@ -1844,6 +1844,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/js/package-data.js"></script>
+<script>
+  window.FIREBASE_STATUS_PATHS = [
+    { path: "/templates_index", label: "Package identity" },
+    { path: "/package_content", label: "Itineraries/images" },
+    { path: "/package_pricing_matrix", label: "Pricing" },
+    { path: "/places", label: "Place lookups" },
+  ];
+</script>
+<script src="assets/js/firebase-status-bar.js"></script>
 <script>
   /**
  * ============================================================
@@ -2155,138 +2165,15 @@ const CAT_COLORS = {
   "dam":"#60a5fa","hillstation":"#34d399","river-side":"#38bdf8","town":"#94a3b8"};
 
 // ─── ITINERARY DATA ───────────────────────────────────────────────────────────
-const ITINERARIES = {
-  "chandigarh-grand-himachal-16d":{highlight:"Shimla, Kinnaur, Spiti, Manali & Dharamshala — Grand Circuit",tags:["expedition","signature","photography","grand-tour"],itinerary:[
-    {day:1,title:"Chandigarh → Kasauli",drive:"65 km · 2 hrs",places:["kasauli"],acts:["Chandigarh pickup","Pinjore Gardens en route","Kasauli evening walk"]},
-    {day:2,title:"Kasauli → Shimla via Chail & Kufri",drive:"120 km · 4 hrs",places:["chail","kufri","shimla"],acts:["Chail Palace & cricket ground","Kufri snow-point viewpoint","Shimla Mall Road evening"]},
-    {day:3,title:"Naldehra & Tattapani Excursion",drive:"Local · 60 km",places:["naldehra","tattapani"],acts:["Naldehra golf course meadow","Tattapani hot springs on the Sutlej","Return to Shimla"]},
-    {day:4,title:"Shimla → Narkanda, Hatu Peak",drive:"65 km · 2 hrs",places:["narkanda"],acts:["Apple orchard drive via Kufri","Hatu Peak viewpoint (3,100m)","Narkanda overnight"]},
-    {day:5,title:"Sarahan (Shrikhand Mahadev) → Sangla Valley",drive:"150 km · 5 hrs",places:["sarahan","sangla"],acts:["Sarahan Bhimakali Temple","Karcham hydro-valley drive","Sangla Valley arrival"]},
-    {day:6,title:"Raksham, Chitkul → Rekong Peo",drive:"70 km",places:["rakcham","chitkul","reckong-peo"],acts:["Rakcham riverside village","Chitkul — last Indian village","Reckong Peo overnight"]},
-    {day:7,title:"Nako, Pu, Dhankar → Tabo",drive:"180 km",places:["nako","dhankar","tabo"],acts:["Nako Lake monastery","Dhankar monastery cliffside","Tabo ancient murals"]},
-    {day:8,title:"Tabo → Kaza",drive:"45 km",places:["kaza"],acts:["Key Monastery sunset","Kaza market walk","Local sightseeing"]},
-    {day:9,title:"Kaza — Spiti Village Circuit",drive:"Local · 80 km",places:["langza","hikkim","komic","kibber"],acts:["Langza fossils & Buddha statue","Hikkim — world's highest post office","Komic & Kibber villages"]},
-    {day:10,title:"Kunzum Pass, Chandra Tal Lake",drive:"115 km",places:["kunzum","chandratal"],acts:["Kunzum Pass goddess temple","Chandra Tal Moon Lake (4,300m)","Overnight near the lake"]},
-    {day:11,title:"Manali Arrival",drive:"115 km",places:["rohtang-pass","manali"],acts:["Rohtang Pass crossing","Manali Mall Road evening","Hadimba Temple visit"]},
-    {day:12,title:"Manali Local Sightseeing",drive:"Local",places:["manali"],acts:["Solang Valley adventure sports","Old Manali cafés","Vashisht hot springs"]},
-    {day:13,title:"Manali → Dharamshala, McLeodGanj",drive:"240 km · 7 hrs",places:["mcleodganj","dharamshala"],acts:["Drive via Mandi-Kangra highway","McLeodGanj Tibetan market","Tsuglagkhang Temple visit"]},
-    {day:14,title:"Khajjiar & Dalhousie Excursion",drive:"100 km",places:["khajjiar","dalhousie"],acts:["Khajjiar 'Mini Switzerland' meadow","Dalhousie colonial walk","Subhash Baoli viewpoint"]},
-    {day:15,title:"Chamba Excursion",drive:"Local",places:["chamba"],acts:["Lakshmi Narayan Temple complex","Bhuri Singh Museum","Chamera Lake viewpoint"]},
-    {day:16,title:"Return to Chandigarh / Delhi",drive:"270 km · 7 hrs",places:[],acts:["Early mountain departure","Highway breakfast stop","Chandigarh / Delhi drop-off"]}
-  ]},
-  
-  
-  "chamba-pangi-5d":{highlight:"Bharmour, Manimahesh & Pangi Valley",tags:["expedition","offbeat","adventure"],itinerary:[
-    {day:1,title:"Pathankot → Chamba",drive:"120 km · 3.5 hrs",places:["chamba","chamera-lake"],acts:["Lakshmi Narayan Temple complex","Chamera Lake viewpoint","Old town evening"]},
-    {day:2,title:"Chamba → Bharmour",drive:"65 km · 2.5 hrs",places:["bharmour"],acts:["84 temples of Bharmour","Chaurasi temple complex","Manimahesh trek orientation"]},
-    {day:3,title:"Manimahesh Lake Trek",drive:"45 km to Hadsar",places:["manimahesh"],acts:["Drive to Hadsar trailhead","14km trek to sacred lake (4,080m)","Sunrise on Manimahesh Kailash"]},
-    {day:4,title:"Bharmour → Pangi Valley",drive:"120 km · 5 hrs",places:["pangi-valley"],acts:["Sach Pass (4,390m) crossing","Pangi valley landscapes","Killar village arrival"]},
-    {day:5,title:"Pangi → Pathankot",drive:"250 km via Chamba",places:[],acts:["Pangi tribal culture walk","Return via Chamba valley","Pathankot arrival"]}
-  ]},
-  "chamba-sach-6d":{highlight:"The Most Dangerous Road",tags:["expedition","adventure","offbeat"],itinerary:[
-    {day:1,title:"Pathankot → Dalhousie",drive:"80 km · 2.5 hrs",places:["dalhousie","khajjiar"],acts:["Khajjiar meadow stop","Dalhousie colonial walk","Dainkund Peak sunset"]},
-    {day:2,title:"Dalhousie → Chamba",drive:"50 km · 1.5 hrs",places:["chamba"],acts:["Bhuri Singh Museum","Chamba Rumal embroidery workshop","Lakshmi Narayan Temple"]},
-    {day:3,title:"Chamba → Bharmour",drive:"65 km · 2.5 hrs",places:["bharmour","manimahesh"],acts:["84-temple complex","Manimahesh Lake short trek","Alpine meadow photography"]},
-    {day:4,title:"Bharmour → Sach Pass",drive:"90 km · 4 hrs",places:["sach-pass","pangi-valley"],acts:["Sach Pass (4,420m) crossing","Snowfields and switchbacks","Killar valley panorama"]},
-    {day:5,title:"Pangi Valley",drive:"Local 30 km",places:["pangi-valley"],acts:["Remote tribal villages","Chenab river gorge views","Killar fort ruins"]},
-    {day:6,title:"Return to Pathankot",drive:"260 km · 7 hrs",places:[],acts:["Early mountain departure","Chamba brief stop","Pathankot arrival"]}
-  ]},
-  "chandigarh-best-value-5d":{highlight:"Shimla to Kasol",tags:["friends","couple","family"],itinerary:[
-    {day:1,title:"Chandigarh → Shimla",drive:"120 km · 3 hrs",places:["shimla","mall-road","the-ridge"],acts:["Pinjore Gardens stop","Mall Road walk","Jakhu Hill sunset"]},
-    {day:2,title:"Shimla → Narkanda",drive:"65 km · 2 hrs",places:["narkanda","kotgarh"],acts:["Kotgarh apple orchards","Hatu Peak viewpoint (3,100m)","Narkanda overnight"]},
-    {day:3,title:"Narkanda → Jibhi",drive:"100 km · 3.5 hrs",places:["jalori","jibhi","serolsar-lake"],acts:["Jalori Pass meadow walk","Serolsar Lake hike","Jibhi wooden house village"]},
-    {day:4,title:"Jibhi → Kasol",drive:"90 km · 3 hrs",places:["kasol","chalal"],acts:["Kasol riverside check-in","Chalal village hike","Parvati river evening"]},
-    {day:5,title:"Kasol → Chandigarh",drive:"260 km · 6 hrs",places:["manikaran"],acts:["Manikaran Sahib morning","Hot spring visit","Chandigarh return"]}
-  ]},
-  "chandigarh-jibhi-seraj-4d":{highlight:"Jibhi, Shoja & Jalori",tags:["nature","couple","friends"],itinerary:[
-    {day:1,title:"Chandigarh → Jibhi",drive:"240 km · 5.5 hrs",places:["jibhi"],acts:["Bilaspur lake view stop","Jibhi waterfall walk","Wooden bridge village"]},
-    {day:2,title:"Jalori Pass & Serolsar Lake",drive:"20 km · 45 min",places:["jalori","serolsar-lake"],acts:["Jalori Pass sunrise (3,120m)","Serolsar Lake 5km trek","Budhi Nagin temple"]},
-    {day:3,title:"Shoja & Tirthan",drive:"30 km · 1 hr",places:["shoja","tirthan-valley"],acts:["Shoja meadow morning","Tirthan River trout spotting","GHNP buffer zone walk"]},
-    {day:4,title:"Jibhi → Chandigarh",drive:"240 km · 5.5 hrs",places:[],acts:["Banjar market stop","Mandi town lunch","Chandigarh arrival"]}
-  ]},
-  "chandigarh-kasauli-barog-2d":{highlight:"Kasauli & Barog Railway",tags:["couple","family","weekend"],itinerary:[
-    {day:1,title:"Chandigarh → Kasauli",drive:"60 km · 1.5 hrs",places:["kasauli"],acts:["Kasauli Monkey Point walk","Kasauli Brewery viewpoint","Gilbert Trail forest"]},
-    {day:2,title:"Kasauli → Barog → Chandigarh",drive:"100 km · 2.5 hrs",places:["barog"],acts:["Barog Railway tunnel hike","Kalka-Shimla toy train view","Pinjore Gardens return"]}
-  ]},
-  "chandigarh-prashar-mandi-3d":{highlight:"Hidden Jewel of Mandi",tags:["nature","trek","photography"],itinerary:[
-    {day:1,title:"Chandigarh → Prashar Lake",drive:"190 km · 5 hrs + 7km trek",places:["prashar"],acts:["Mandi town lunch","Baggi village trailhead","7km trek (2,730m)","Floating island & temple"]},
-    {day:2,title:"Prashar → Barot Valley",drive:"60 km · 2.5 hrs",places:["barot-valley"],acts:["Sunrise over Dhauladhar","Drive to Barot","Uhl River trout fishing"]},
-    {day:3,title:"Barot → Chandigarh",drive:"220 km · 5 hrs",places:["prashar"],acts:["Rewalsar Lake morning","Mandi town walk","Chandigarh return"]}
-  ]},
-  "delhi-himachal-best-value-7d":{highlight:"Shimla, Jibhi & Kasol",tags:["family","couple","friends"],itinerary:[
-    {day:1,title:"Delhi → Shimla",drive:"350 km · 7 hrs",places:["shimla","mall-road"],acts:["Pinjore Gardens stop","Shimla Mall Road","Jakhu Temple visit"]},
-    {day:2,title:"Shimla Local",drive:"Local",places:["chadwick-falls","craignano","naldehra"],acts:["Chadwick Falls walk","Craignano nature park","Christ Church tour"]},
-    {day:3,title:"Shimla → Jibhi",drive:"150 km · 4.5 hrs",places:["kotgarh","jalori","jibhi"],acts:["Kotgarh apple orchards","Jalori Pass stop","Jibhi check-in"]},
-    {day:4,title:"Jibhi → Tirthan",drive:"30 km · 1 hr",places:["serolsar-lake","tirthan-valley"],acts:["Serolsar Lake trek","GHNP buffer walk","Tirthan riverside"]},
-    {day:5,title:"Tirthan → Kasol",drive:"120 km · 3.5 hrs",places:["kasol","chalal"],acts:["Aut suspension bridge","Kasol riverside village","Chalal evening hike"]},
-    {day:6,title:"Kasol Day",drive:"Local",places:["manikaran","kheerganga"],acts:["Manikaran Sahib morning","Kheerganga 1-day trek option","Parvati Valley twilight"]},
-    {day:7,title:"Kasol → Delhi",drive:"520 km · 10 hrs",places:[],acts:["Early departure","Chandigarh food stop","Delhi arrival"]}
-  ]},
-  "delhi-kinnaur-spiti-10d":{highlight:"Grand Kinnaur-Spiti Expedition",tags:["expedition","photography","adventure"],itinerary:[
-    {day:1,title:"Delhi → Shimla",drive:"350 km",places:["shimla","mall-road"],acts:["Drive via NH5","Shimla Mall Road arrival"]},
-    {day:2,title:"Shimla → Reckong Peo",drive:"195 km",places:["narkanda","reckong-peo","kalpa"],acts:["Kotgarh apple belt","Reckong Peo arrival","Kalpa sunset view"]},
-    {day:3,title:"Kinnaur — Sangla & Chitkul",drive:"80 km",places:["sangla","rakcham","chitkul"],acts:["Sangla Kamru Fort","Rakcham village","Chitkul last village"]},
-    {day:4,title:"Chitkul → Nako",drive:"130 km",places:["nako"],acts:["Nako Lake monastery","Desert landscape entry"]},
-    {day:5,title:"Nako → Tabo",drive:"45 km",places:["tabo"],acts:["Tabo monastery ancient murals","Mud village walk"]},
-    {day:6,title:"Tabo → Kaza",drive:"45 km",places:["pin-valley","kaza"],acts:["Pin Valley walk","Key Monastery sunset"]},
-    {day:7,title:"Spiti Village Circuit",drive:"80 km",places:["langza","hikkim","komic","kibber"],acts:["Langza fossils","Hikkim post office","Komic gompa"]},
-    {day:8,title:"Kunzum Pass → Chandratal",drive:"115 km",places:["kunzum","chandratal"],acts:["Kunzum goddess temple","Chandratal Moon Lake (4,300m)"]},
-    {day:9,title:"Chandratal → Manali",drive:"115 km",places:["rohtang-pass","manali"],acts:["Rohtang Pass view","Manali arrival"]},
-    {day:10,title:"Manali → Delhi",drive:"560 km",places:[],acts:["Early departure","Delhi arrival via NH3"]}
-  ]},
-  
-  "kinnaur-complete-6d":{highlight:"Sangla, Chitkul & Hidden Villages",tags:["nature","photography","slow_travel"],itinerary:[
-    {day:1,title:"Shimla → Reckong Peo",drive:"195 km · 6 hrs",places:["narkanda","kotgarh","reckong-peo"],acts:["Narkanda Hatu Peak","Kotgarh orchards","Reckong Peo arrival"]},
-    {day:2,title:"Reckong Peo → Sangla",drive:"80 km · 3 hrs",places:["kalpa","sangla"],acts:["Kalpa sunrise over Kinner Kailash","Roghi village walk","Sangla Kamru Fort"]},
-    {day:3,title:"Sangla → Chitkul",drive:"25 km · 1 hr",places:["rakcham","chitkul"],acts:["Rakcham Kinnauri village","Chitkul last village","Baspa River sunset"]},
-    {day:4,title:"Chitkul → Nako",drive:"130 km · 5 hrs",places:["nako"],acts:["Nako Lake and Monastery","Desert landscape entry"]},
-    {day:5,title:"Nako → Reckong Peo",drive:"90 km",places:["reckong-peo"],acts:["Pooh monastery","Kinnaur Kailash viewpoint"]},
-    {day:6,title:"Reckong Peo → Shimla",drive:"195 km · 6 hrs",places:["narkanda"],acts:["Apple belt stop","Shimla evening arrival"]}
-  ]},
-  
-  "lower-hp-offbeat-3d":{highlight:"Chintpurni, Sujanpur & Gobind Sagar",tags:["spiritual","heritage","family"],itinerary:[
-    {day:1,title:"Chandigarh → Sujanpur",drive:"180 km · 4 hrs",places:["chintpurni","sujanpur-fort"],acts:["Chintpurni Shakti Peetha","Sujanpur Fort & ghats","Beas river evening"]},
-    {day:2,title:"Gobind Sagar & Bhakra",drive:"80 km",places:["gobind-sagar"],acts:["Gobind Sagar boat ride","Bhakra Dam viewpoint","Naina Devi temple"]},
-    {day:3,title:"Return",drive:"200 km",places:[],acts:["Awah Devi Temple","Shivalik foothills drive","Chandigarh arrival"]}
-  ]},
-  
-  
-  
-  "shimla-apple-belt-4d":{highlight:"Apple Orchards & Hidden Lakes",tags:["family","nature","photography"],itinerary:[
-    {day:1,title:"Shimla → Narkanda",drive:"65 km",places:["narkanda","kotgarh","tani-jubbar"],acts:["Kotgarh orchards","Tani Jubbar Lake trail","Hatu Peak sunset (3,100m)"]},
-    {day:2,title:"Narkanda → Tattapani",drive:"100 km",places:["tattapani"],acts:["Sutlej river canyon","Hot sulphur springs","River beach relaxation"]},
-    {day:3,title:"Tattapani → Chail → Shimla",drive:"80 km",places:["chail","shimla"],acts:["Chail Palace & highest cricket ground","Kufri snow point","Mall Road evening"]},
-    {day:4,title:"Shimla Hidden Gems",drive:"Local",places:["chadwick-falls","craignano","naldehra"],acts:["Chadwick Falls walk","Craignano nature park","Naldehra golf course"]}
-  ]},
-  "shimla-hidden-3d":{highlight:"Mashobra, Naldehra & Craignano",tags:["couple","nature"],itinerary:[
-    {day:1,title:"Shimla Arrival",drive:"Local",places:["mall-road","the-ridge","shimla"],acts:["Mall Road & Ridge walk","Jakhu Temple sunrise","Scandal Point evening"]},
-    {day:2,title:"Mashobra & Naldehra",drive:"25 km circuit",places:["mashobra","naldehra"],acts:["Wildflower Hall gardens","Naldehra golf course","Apple orchard walk"]},
-    {day:3,title:"Hidden Shimla",drive:"Local",places:["craignano","chadwick-falls"],acts:["Craignano nature park","Chadwick Falls forest hike","Shimla heritage market"]}
-  ]},
-  
-  
-  "delhi-himachal-complete-10d":{highlight:"All Regions Grand Tour",tags:["family","couple","friends"],itinerary:[
-    {day:1,title:"Delhi → Shimla",drive:"350 km",places:["shimla","mall-road"],acts:["Arrive Shimla","Mall Road orientation"]},
-    {day:2,title:"Shimla",drive:"Local",places:["kufri","naldehra","chadwick-falls"],acts:["Kufri snow","Naldehra golf","Chadwick Falls"]},
-    {day:3,title:"Shimla → Jibhi",drive:"180 km",places:["jibhi","shoja"],acts:["Jibhi waterfall","Shoja meadow","Homestay"]},
-    {day:4,title:"Jalori Pass & Tirthan",drive:"50 km loop",places:["jalori","serolsar-lake","tirthan-valley"],acts:["Jalori Pass","Serolsar Lake trek","Tirthan trout walk"]},
-    {day:5,title:"Jibhi → Kasol",drive:"130 km",places:["kasol","manikaran"],acts:["Manikaran Sahib","Kasol cafes","Chalal hike"]},
-    {day:6,title:"Kasol Treks",drive:"Local",places:["kheerganga","tosh"],acts:["Tosh village morning","Kheerganga or Kalga"]},
-    {day:7,title:"Kasol → Manali",drive:"120 km",places:["manali"],acts:["Kullu Shawl market","Manali arrival","Old Manali walk"]},
-    {day:8,title:"Manali Adventure",drive:"Local",places:["solang","hadimba","old-manali"],acts:["Solang Valley activities","Hadimba Temple","Vashisht hot springs"]},
-    {day:9,title:"Manali → Dharamshala",drive:"250 km",places:["mcleodganj","dharamshala"],acts:["Norbulingka Institute","McLeod Ganj walk","Tibetan food"]},
-    {day:10,title:"Kangra → Delhi",drive:"500 km",places:["kangra-fort","baijnath_temple"],acts:["Kangra Fort morning","Baijnath Temple","Depart for Delhi"]}
-  ]},
-  "delhi-renuka-tattapani-3d":{highlight:"Renuka Lake & Tattapani Hot Springs",tags:["family","couple","nature"],itinerary:[
-    {day:1,title:"Delhi → Renuka Lake",drive:"290 km · 6 hrs",places:["nahan","renuka-lake"],acts:["Nahan scenic town","Renuka Lake afternoon","Renuka Ji temple aarti"]},
-    {day:2,title:"Renuka → Tattapani",drive:"120 km · 3 hrs",places:["tattapani"],acts:["Hot sulphur springs soak","River beach relaxation","Sutlej gorge sunset"]},
-    {day:3,title:"Tattapani → Delhi",drive:"280 km · 6 hrs",places:["shimla"],acts:["Optional Shimla stop","NH5 scenic drive","Delhi evening arrival"]}
-  ]}};
-
-// ─── PACKAGES ─────────────────────────────────────────────────────────────────
-const PACKAGES = [{"days": 16, "end_point": "CHANDIGARH", "package_id": "chandigarh-grand-himachal-16d", "package_name": "Grand Himachal Explorer (16D) — Shimla, Kinnaur, Spiti, Manali & Dharamshala", "start_point": "CHANDIGARH", "status": "active", "total_km_est": 1550, "tags": "expedition,signature,photography,grand-tour", "best_season": "spring,summer,autumn", "hotel_star": "3 Star", "featured": true}, {"days": 5, "end_point": "PATHANKOT", "package_id": "chamba-pangi-5d", "package_name": "Chamba Deep Circuit (5D) — Bharmour, Manimahesh & Pangi Valley", "start_point": "PATHANKOT", "status": "active", "total_km_est": 340}, {"days": 6, "end_point": "PATHANKOT", "package_id": "chamba-sach-6d", "package_name": "Chamba & Sach Pass (6D) — The Most Dangerous Road", "start_point": "PATHANKOT", "status": "active", "total_km_est": 520}, {"days": 5, "end_point": "CHANDIGARH", "package_id": "chandigarh-best-value-5d", "package_name": "Best Value Himachal (5D) from Chandigarh — Shimla to Kasol", "start_point": "CHANDIGARH", "status": "active", "total_km_est": 520, "tags": "friends,couple,family", "best_season": "all_year", "hotel_star": "3 Star"}, {"days": 4, "end_point": "CHANDIGARH", "package_id": "chandigarh-jibhi-seraj-4d", "package_name": "Chandigarh to Seraj Valley (4D) — Jibhi, Shoja & Jalori", "start_point": "CHANDIGARH", "status": "active", "total_km_est": 380, "tags": "nature,couple,friends", "best_season": "spring,summer,autumn", "hotel_star": "3 Star"}, {"days": 2, "end_point": "CHANDIGARH", "package_id": "chandigarh-kasauli-barog-2d", "package_name": "Chandigarh Weekend Escape (2D) — Kasauli & Barog Railway", "start_point": "CHANDIGARH", "status": "active", "total_km_est": 120, "tags": "couple,family,weekend", "best_season": "all_year", "hotel_star": "3 Star"}, {"days": 3, "end_point": "CHANDIGARH", "package_id": "chandigarh-prashar-mandi-3d", "package_name": "Chandigarh to Prashar Lake (3D) — Hidden Jewel of Mandi", "start_point": "CHANDIGARH", "status": "active", "total_km_est": 320, "tags": "nature,trek,photography", "best_season": "summer,autumn", "hotel_star": "3 Star"}, {"days": 7, "end_point": "DELHI", "package_id": "delhi-himachal-best-value-7d", "package_name": "Best of Himachal (7D) — Shimla, Jibhi & Kasol", "start_point": "DELHI", "status": "active", "total_km_est": 680, "tags": "family,couple,friends", "best_season": "all_year", "hotel_star": "3 Star"}, {"days": 10, "end_point": "DELHI", "package_id": "delhi-himachal-complete-10d", "package_name": "Complete Himachal (10D) — All Regions Grand Tour", "start_point": "DELHI", "status": "active", "total_km_est": 1200, "tags": "family,couple,friends", "best_season": "summer,autumn", "hotel_star": "3 Star"}, {"days": 10, "end_point": "DELHI", "package_id": "delhi-kinnaur-spiti-10d", "package_name": "Kinnaur & Spiti Grand Expedition (10D)", "start_point": "DELHI", "status": "active", "total_km_est": 1800, "tags": "expedition,photography,adventure", "best_season": "summer", "hotel_star": "Standard"}, {"days": 3, "end_point": "DELHI", "package_id": "delhi-renuka-tattapani-3d", "package_name": "Delhi to Hidden HP (3D) — Renuka Lake & Tattapani Hot Springs", "start_point": "DELHI", "status": "active", "total_km_est": 440, "tags": "family,couple,nature", "best_season": "all_year", "hotel_star": "3 Star"}, {"days": 6, "end_point": "SHIMLA", "package_id": "kinnaur-complete-6d", "package_name": "Kinnaur Complete Circuit (6D) — Sangla, Chitkul & Hidden Villages", "start_point": "SHIMLA", "status": "active", "total_km_est": 480, "tags": "nature,photography,slow_travel", "best_season": "summer,autumn", "hotel_star": "3 Star"}, {"days": 3, "end_point": "CHANDIGARH", "package_id": "lower-hp-offbeat-3d", "package_name": "Lower Himachal Offbeat (3D) — Chintpurni, Sujanpur & Gobind Sagar", "start_point": "CHANDIGARH", "status": "active", "total_km_est": 280, "tags": "spiritual,heritage,family", "best_season": "all_year", "hotel_star": "3 Star"}, {"days": 4, "end_point": "SHIMLA", "package_id": "shimla-apple-belt-4d", "package_name": "Shimla Apple Belt & Hidden Lakes (4D)", "start_point": "SHIMLA", "status": "active", "total_km_est": 220, "tags": "family,nature,photography", "best_season": "summer,autumn", "hotel_star": "3 Star"}, {"days": 3, "end_point": "SHIMLA", "package_id": "shimla-hidden-3d", "package_name": "Shimla Hidden Gems (3D) — Mashobra, Naldehra & Craignano", "start_point": "SHIMLA", "status": "active", "total_km_est": 80, "tags": "couple,nature", "best_season": "all_year", "hotel_star": "3 Star"}];
-
-const PKG_IMG = {"chandigarh-grand-himachal-16d":"https://images.unsplash.com/photo-1544084944-15269ec7b5a0?q=80&w=1200&auto=format&fit=crop","chandigarh-best-value-5d":"assets/images/jibhi_2.jpg","chandigarh-jibhi-seraj-4d":"assets/images/jibhi_1.jpg","chandigarh-kasauli-barog-2d":"assets/images/barot-dam-shanan_1.jpg","chandigarh-prashar-mandi-3d":"assets/images/barot-valley_1.jpg","delhi-himachal-best-value-7d":"assets/images/manali_1.jpg","delhi-himachal-complete-10d":"assets/images/solang-valley_1.jpg","delhi-kinnaur-spiti-10d":"assets/images/kinnaur-kailash-viewpoint_01.jpg","delhi-renuka-tattapani-3d":"assets/images/gobind-sagar-lake_1.jpg","kinnaur-complete-6d":"assets/images/kinnaur-kailash-viewpoint_02.jpg","lower-hp-offbeat-3d":"assets/images/gobind-sagar-lake_2.webp","shimla-apple-belt-4d":"assets/images/pexels-simarphotos-32031273.jpg","shimla-hidden-3d":"assets/images/old-manali_1.jpg","chandigarh-manali-dharamshala-chamba-10d":"assets/images/bhagsu-waterfall_1.jpg","chandigarh-manali-spiti-shimla-14d":"assets/images/nako-village-walk_01.webp","shimla-rohru-chandan-nahan-6d":"assets/images/beas-kund-trek_1.jpg","shimla-rohru-deep-adventure-7d":"assets/images/trek.jpeg"};
+// ─── PACKAGE DATA ───────────────────────────────────────────────────────────
+// SINGLE SOURCE OF TRUTH: PACKAGES / ITINERARIES / PKG_IMG are populated
+// from Firebase at load time (see assets/js/package-data.js + the INIT
+// block below). Do not hardcode package data here — edit it in Firebase
+// (/templates_index and /package_content) instead, and every page that
+// reads from PackageData picks up the change automatically.
+let PACKAGES = [];
+let ITINERARIES = {};
+let PKG_IMG = {};;
 
 const REGION_MAP = {
   shimla: id => /shimla|kasauli|barog|sirmaur/.test(id),
@@ -3289,8 +3176,51 @@ fetchWeather();
 setInterval(fetchWeather, 15 * 60 * 1000);
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
-renderCards(); // render immediately with hardcoded prices
-loadPricingMatrix().then(() => renderCards()); // re-render with live prices when ready
+// PACKAGES / ITINERARIES / PKG_IMG all come from Firebase (single source of
+// truth — see assets/js/package-data.js). No local copies live in this file.
+(function () {
+  const grid = document.getElementById('packagesGrid');
+  if (grid) grid.innerHTML = '<div style="padding:60px 20px;text-align:center;color:#888;font-size:14px;grid-column:1/-1;">Loading tours…</div>';
+
+  PackageData.load().then(data => {
+    PACKAGES = data.packages.map(pkg => ({
+      days: pkg.days,
+      end_point: pkg.end_point,
+      package_id: pkg.id,
+      package_name: pkg.name,
+      start_point: pkg.start_point,
+      status: pkg.status,
+      total_km_est: pkg.total_km_est,
+      tags: pkg.tags,
+      best_season: pkg.best_season,
+      hotel_star: pkg.hotel_star,
+      featured: pkg.featured,
+    }));
+
+    ITINERARIES = {};
+    PKG_IMG = {};
+    data.packages.forEach(pkg => {
+      ITINERARIES[pkg.id] = {
+        highlight: pkg.highlight,
+        tags: (pkg.tags || '').split(',').filter(Boolean),
+        itinerary: (pkg.itinerary || []).map(d => ({
+          day: d.day,
+          title: d.title,
+          drive: d.dist_time,
+          places: d.places,
+          acts: (d.acts && d.acts.length) ? d.acts : (d.description ? d.description.split(' · ').filter(Boolean) : []),
+        })),
+      };
+      if (pkg.image) PKG_IMG[pkg.id] = pkg.image;
+    });
+
+    renderCards(); // render immediately with hardcoded/fallback prices
+    loadPricingMatrix().then(() => renderCards()); // re-render with live prices when ready
+  }).catch(err => {
+    console.error('Failed to load package data from Firebase:', err);
+    if (grid) grid.innerHTML = '<div style="padding:60px 20px;text-align:center;color:#c33;font-size:14px;grid-column:1/-1;">Couldn\u2019t load tours right now — please refresh.</div>';
+  });
+})();
 
 // ─── TILE PREFETCH (speed-only optimization) ───────────────────────────────────
 // Warms the browser's HTTP cache with the base-map tiles covering Himachal
@@ -3551,6 +3481,9 @@ loadPricingMatrix().then(() => renderCards()); // re-render with live prices whe
 })();
 </script>
 
+<div id="site-seo-links"></div>
+<link rel="stylesheet" href="assets/css/site-chrome.css">
+<script src="assets/js/seo-crosslinks.js" defer></script>
 </body>
 </html>
 

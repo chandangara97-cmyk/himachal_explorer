@@ -435,6 +435,14 @@ img { max-width: 100%; display: block; }
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/js/package-data.js"></script>
+<script>
+  window.FIREBASE_STATUS_PATHS = [
+    { path: "/templates_index", label: "Package identity" },
+    { path: "/package_content", label: "Itinerary/images" },
+  ];
+</script>
+<script src="assets/js/firebase-status-bar.js"></script>
 <script>
 (function () {
   var STOCK_IMAGES = [
@@ -627,20 +635,41 @@ img { max-width: 100%; display: block; }
       });
   }
 
-  // Entry point: read ?slug= (or ?id=, used by packages.html's links) and load matching package data
+  // Entry point: read ?slug= (or ?id=, used by packages.html's links) and load
+  // matching package data. SINGLE SOURCE OF TRUTH: this comes from Firebase
+  // via assets/js/package-data.js — the old static pkg-data/packages.json
+  // snapshot is no longer read (see tools/firebase-import/package-consolidation-2026/
+  // for how that data now lives in Firebase instead).
   var params = new URLSearchParams(window.location.search);
   var slug = params.get("slug") || params.get("id");
 
-  fetch("./pkg-data/packages.json")
-    .then(function (res) { if (!res.ok) throw new Error("Could not load package data"); return res.json(); })
-    .then(function (all) {
-      var pkg = slug ? all[slug] : null;
+  // Adapt a PackageData-normalized package into the shape populate() expects.
+  function toDetailShape(pkg) {
+    return {
+      slug: pkg.id,
+      title: pkg.name,
+      image: pkg.image,
+      price: pkg.budget_price_pp,
+      days: pkg.days,
+      hotel_star: pkg.hotel_star,
+      start_point: pkg.start_point,
+      tags: pkg.tags,
+      itinerary: pkg.itinerary,
+      inclusions: pkg.inclusions,
+      exclusions: pkg.exclusions,
+      route_stops: pkg.route_stops,
+    };
+  }
+
+  PackageData.load()
+    .then(function (data) {
+      var pkg = slug ? data.byId[slug] : null;
       if (!pkg) {
         // Fallback: no/unknown slug — use the first package so the page never looks broken
-        var firstKey = Object.keys(all)[0];
-        pkg = all[firstKey];
+        pkg = data.packages[0];
       }
-      populate(pkg);
+      if (!pkg) throw new Error("No packages available from Firebase");
+      populate(toDetailShape(pkg));
     })
     .catch(function (err) {
       console.error("Failed to load package data:", err);
@@ -672,5 +701,8 @@ img { max-width: 100%; display: block; }
 <script src="assets/js/place-live-modal.js" defer></script>
 <script src="assets/js/package-route-place-popup.js" defer></script>
 <script src="assets/js/place-thumbnails.js" defer></script>
+<div id="site-seo-links"></div>
+<link rel="stylesheet" href="assets/css/site-chrome.css">
+<script src="assets/js/seo-crosslinks.js" defer></script>
 </body>
 </html>

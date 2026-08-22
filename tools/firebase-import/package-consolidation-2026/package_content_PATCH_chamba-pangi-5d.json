@@ -1,0 +1,79 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Pathankot → Chamba",
+      "dist_time": "120 km · 3.5 hrs",
+      "description": "Lakshmi Narayan Temple complex · Chamera Lake viewpoint · Old town evening",
+      "acts": [
+        "Lakshmi Narayan Temple complex",
+        "Chamera Lake viewpoint",
+        "Old town evening"
+      ],
+      "places": [
+        "chamba",
+        "chamera-lake"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Chamba → Bharmour",
+      "dist_time": "65 km · 2.5 hrs",
+      "description": "84 temples of Bharmour · Chaurasi temple complex · Manimahesh trek orientation",
+      "acts": [
+        "84 temples of Bharmour",
+        "Chaurasi temple complex",
+        "Manimahesh trek orientation"
+      ],
+      "places": [
+        "bharmour"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Manimahesh Lake Trek",
+      "dist_time": "45 km to Hadsar",
+      "description": "Drive to Hadsar trailhead · 14km trek to sacred lake (4,080m) · Sunrise on Manimahesh Kailash",
+      "acts": [
+        "Drive to Hadsar trailhead",
+        "14km trek to sacred lake (4,080m)",
+        "Sunrise on Manimahesh Kailash"
+      ],
+      "places": [
+        "manimahesh"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Bharmour → Pangi Valley",
+      "dist_time": "120 km · 5 hrs",
+      "description": "Sach Pass (4,390m) crossing · Pangi valley landscapes · Killar village arrival",
+      "acts": [
+        "Sach Pass (4,390m) crossing",
+        "Pangi valley landscapes",
+        "Killar village arrival"
+      ],
+      "places": [
+        "pangi-valley"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Pangi → Pathankot",
+      "dist_time": "250 km via Chamba",
+      "description": "Pangi tribal culture walk · Return via Chamba valley · Pathankot arrival",
+      "acts": [
+        "Pangi tribal culture walk",
+        "Return via Chamba valley",
+        "Pathankot arrival"
+      ],
+      "places": []
+    }
+  ],
+  "highlight": "Bharmour, Manimahesh & Pangi Valley",
+  "curated_tags": [
+    "expedition",
+    "offbeat",
+    "adventure"
+  ]
+}

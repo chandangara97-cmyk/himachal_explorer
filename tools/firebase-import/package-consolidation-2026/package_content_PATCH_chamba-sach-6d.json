@@ -1,0 +1,95 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Pathankot → Dalhousie",
+      "dist_time": "80 km · 2.5 hrs",
+      "description": "Khajjiar meadow stop · Dalhousie colonial walk · Dainkund Peak sunset",
+      "acts": [
+        "Khajjiar meadow stop",
+        "Dalhousie colonial walk",
+        "Dainkund Peak sunset"
+      ],
+      "places": [
+        "dalhousie",
+        "khajjiar"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Dalhousie → Chamba",
+      "dist_time": "50 km · 1.5 hrs",
+      "description": "Bhuri Singh Museum · Chamba Rumal embroidery workshop · Lakshmi Narayan Temple",
+      "acts": [
+        "Bhuri Singh Museum",
+        "Chamba Rumal embroidery workshop",
+        "Lakshmi Narayan Temple"
+      ],
+      "places": [
+        "chamba"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Chamba → Bharmour",
+      "dist_time": "65 km · 2.5 hrs",
+      "description": "84-temple complex · Manimahesh Lake short trek · Alpine meadow photography",
+      "acts": [
+        "84-temple complex",
+        "Manimahesh Lake short trek",
+        "Alpine meadow photography"
+      ],
+      "places": [
+        "bharmour",
+        "manimahesh"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Bharmour → Sach Pass",
+      "dist_time": "90 km · 4 hrs",
+      "description": "Sach Pass (4,420m) crossing · Snowfields and switchbacks · Killar valley panorama",
+      "acts": [
+        "Sach Pass (4,420m) crossing",
+        "Snowfields and switchbacks",
+        "Killar valley panorama"
+      ],
+      "places": [
+        "sach-pass",
+        "pangi-valley"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Pangi Valley",
+      "dist_time": "Local 30 km",
+      "description": "Remote tribal villages · Chenab river gorge views · Killar fort ruins",
+      "acts": [
+        "Remote tribal villages",
+        "Chenab river gorge views",
+        "Killar fort ruins"
+      ],
+      "places": [
+        "pangi-valley"
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Return to Pathankot",
+      "dist_time": "260 km · 7 hrs",
+      "description": "Early mountain departure · Chamba brief stop · Pathankot arrival",
+      "acts": [
+        "Early mountain departure",
+        "Chamba brief stop",
+        "Pathankot arrival"
+      ],
+      "places": []
+    }
+  ],
+  "highlight": "The Most Dangerous Road",
+  "curated_tags": [
+    "expedition",
+    "adventure",
+    "offbeat"
+  ]
+}

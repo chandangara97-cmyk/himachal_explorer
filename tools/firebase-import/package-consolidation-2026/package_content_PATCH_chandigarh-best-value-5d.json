@@ -1,0 +1,87 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Chandigarh → Shimla",
+      "dist_time": "120 km · 3 hrs",
+      "description": "Pinjore Gardens stop · Mall Road walk · Jakhu Hill sunset",
+      "acts": [
+        "Pinjore Gardens stop",
+        "Mall Road walk",
+        "Jakhu Hill sunset"
+      ],
+      "places": [
+        "shimla",
+        "mall-road",
+        "the-ridge"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Shimla → Narkanda",
+      "dist_time": "65 km · 2 hrs",
+      "description": "Kotgarh apple orchards · Hatu Peak viewpoint (3,100m) · Narkanda overnight",
+      "acts": [
+        "Kotgarh apple orchards",
+        "Hatu Peak viewpoint (3,100m)",
+        "Narkanda overnight"
+      ],
+      "places": [
+        "narkanda",
+        "kotgarh"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Narkanda → Jibhi",
+      "dist_time": "100 km · 3.5 hrs",
+      "description": "Jalori Pass meadow walk · Serolsar Lake hike · Jibhi wooden house village",
+      "acts": [
+        "Jalori Pass meadow walk",
+        "Serolsar Lake hike",
+        "Jibhi wooden house village"
+      ],
+      "places": [
+        "jalori",
+        "jibhi",
+        "serolsar-lake"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Jibhi → Kasol",
+      "dist_time": "90 km · 3 hrs",
+      "description": "Kasol riverside check-in · Chalal village hike · Parvati river evening",
+      "acts": [
+        "Kasol riverside check-in",
+        "Chalal village hike",
+        "Parvati river evening"
+      ],
+      "places": [
+        "kasol",
+        "chalal"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Kasol → Chandigarh",
+      "dist_time": "260 km · 6 hrs",
+      "description": "Manikaran Sahib morning · Hot spring visit · Chandigarh return",
+      "acts": [
+        "Manikaran Sahib morning",
+        "Hot spring visit",
+        "Chandigarh return"
+      ],
+      "places": [
+        "manikaran"
+      ]
+    }
+  ],
+  "highlight": "Shimla to Kasol",
+  "curated_tags": [
+    "friends",
+    "couple",
+    "family"
+  ],
+  "image": "assets/images/jibhi_2.jpg"
+}

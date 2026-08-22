@@ -1,0 +1,249 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Chandigarh → Kasauli",
+      "dist_time": "65 km · 2 hrs",
+      "description": "Chandigarh pickup · Pinjore Gardens en route · Kasauli evening walk",
+      "acts": [
+        "Chandigarh pickup",
+        "Pinjore Gardens en route",
+        "Kasauli evening walk"
+      ],
+      "places": [
+        "kasauli"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Kasauli → Shimla via Chail & Kufri",
+      "dist_time": "120 km · 4 hrs",
+      "description": "Chail Palace & cricket ground · Kufri snow-point viewpoint · Shimla Mall Road evening",
+      "acts": [
+        "Chail Palace & cricket ground",
+        "Kufri snow-point viewpoint",
+        "Shimla Mall Road evening"
+      ],
+      "places": [
+        "chail",
+        "kufri",
+        "shimla"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Naldehra & Tattapani Excursion",
+      "dist_time": "Local · 60 km",
+      "description": "Naldehra golf course meadow · Tattapani hot springs on the Sutlej · Return to Shimla",
+      "acts": [
+        "Naldehra golf course meadow",
+        "Tattapani hot springs on the Sutlej",
+        "Return to Shimla"
+      ],
+      "places": [
+        "naldehra",
+        "tattapani"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Shimla → Narkanda, Hatu Peak",
+      "dist_time": "65 km · 2 hrs",
+      "description": "Apple orchard drive via Kufri · Hatu Peak viewpoint (3,100m) · Narkanda overnight",
+      "acts": [
+        "Apple orchard drive via Kufri",
+        "Hatu Peak viewpoint (3,100m)",
+        "Narkanda overnight"
+      ],
+      "places": [
+        "narkanda"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Sarahan (Shrikhand Mahadev) → Sangla Valley",
+      "dist_time": "150 km · 5 hrs",
+      "description": "Sarahan Bhimakali Temple · Karcham hydro-valley drive · Sangla Valley arrival",
+      "acts": [
+        "Sarahan Bhimakali Temple",
+        "Karcham hydro-valley drive",
+        "Sangla Valley arrival"
+      ],
+      "places": [
+        "sarahan",
+        "sangla"
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Raksham, Chitkul → Rekong Peo",
+      "dist_time": "70 km",
+      "description": "Rakcham riverside village · Chitkul — last Indian village · Reckong Peo overnight",
+      "acts": [
+        "Rakcham riverside village",
+        "Chitkul — last Indian village",
+        "Reckong Peo overnight"
+      ],
+      "places": [
+        "rakcham",
+        "chitkul",
+        "reckong-peo"
+      ]
+    },
+    {
+      "day": 7,
+      "title": "Nako, Pu, Dhankar → Tabo",
+      "dist_time": "180 km",
+      "description": "Nako Lake monastery · Dhankar monastery cliffside · Tabo ancient murals",
+      "acts": [
+        "Nako Lake monastery",
+        "Dhankar monastery cliffside",
+        "Tabo ancient murals"
+      ],
+      "places": [
+        "nako",
+        "dhankar",
+        "tabo"
+      ]
+    },
+    {
+      "day": 8,
+      "title": "Tabo → Kaza",
+      "dist_time": "45 km",
+      "description": "Key Monastery sunset · Kaza market walk · Local sightseeing",
+      "acts": [
+        "Key Monastery sunset",
+        "Kaza market walk",
+        "Local sightseeing"
+      ],
+      "places": [
+        "kaza"
+      ]
+    },
+    {
+      "day": 9,
+      "title": "Kaza — Spiti Village Circuit",
+      "dist_time": "Local · 80 km",
+      "description": "Langza fossils & Buddha statue · Hikkim — world's highest post office · Komic & Kibber villages",
+      "acts": [
+        "Langza fossils & Buddha statue",
+        "Hikkim — world's highest post office",
+        "Komic & Kibber villages"
+      ],
+      "places": [
+        "langza",
+        "hikkim",
+        "komic",
+        "kibber"
+      ]
+    },
+    {
+      "day": 10,
+      "title": "Kunzum Pass, Chandra Tal Lake",
+      "dist_time": "115 km",
+      "description": "Kunzum Pass goddess temple · Chandra Tal Moon Lake (4,300m) · Overnight near the lake",
+      "acts": [
+        "Kunzum Pass goddess temple",
+        "Chandra Tal Moon Lake (4,300m)",
+        "Overnight near the lake"
+      ],
+      "places": [
+        "kunzum",
+        "chandratal"
+      ]
+    },
+    {
+      "day": 11,
+      "title": "Manali Arrival",
+      "dist_time": "115 km",
+      "description": "Rohtang Pass crossing · Manali Mall Road evening · Hadimba Temple visit",
+      "acts": [
+        "Rohtang Pass crossing",
+        "Manali Mall Road evening",
+        "Hadimba Temple visit"
+      ],
+      "places": [
+        "rohtang-pass",
+        "manali"
+      ]
+    },
+    {
+      "day": 12,
+      "title": "Manali Local Sightseeing",
+      "dist_time": "Local",
+      "description": "Solang Valley adventure sports · Old Manali cafés · Vashisht hot springs",
+      "acts": [
+        "Solang Valley adventure sports",
+        "Old Manali cafés",
+        "Vashisht hot springs"
+      ],
+      "places": [
+        "manali"
+      ]
+    },
+    {
+      "day": 13,
+      "title": "Manali → Dharamshala, McLeodGanj",
+      "dist_time": "240 km · 7 hrs",
+      "description": "Drive via Mandi-Kangra highway · McLeodGanj Tibetan market · Tsuglagkhang Temple visit",
+      "acts": [
+        "Drive via Mandi-Kangra highway",
+        "McLeodGanj Tibetan market",
+        "Tsuglagkhang Temple visit"
+      ],
+      "places": [
+        "mcleodganj",
+        "dharamshala"
+      ]
+    },
+    {
+      "day": 14,
+      "title": "Khajjiar & Dalhousie Excursion",
+      "dist_time": "100 km",
+      "description": "Khajjiar 'Mini Switzerland' meadow · Dalhousie colonial walk · Subhash Baoli viewpoint",
+      "acts": [
+        "Khajjiar 'Mini Switzerland' meadow",
+        "Dalhousie colonial walk",
+        "Subhash Baoli viewpoint"
+      ],
+      "places": [
+        "khajjiar",
+        "dalhousie"
+      ]
+    },
+    {
+      "day": 15,
+      "title": "Chamba Excursion",
+      "dist_time": "Local",
+      "description": "Lakshmi Narayan Temple complex · Bhuri Singh Museum · Chamera Lake viewpoint",
+      "acts": [
+        "Lakshmi Narayan Temple complex",
+        "Bhuri Singh Museum",
+        "Chamera Lake viewpoint"
+      ],
+      "places": [
+        "chamba"
+      ]
+    },
+    {
+      "day": 16,
+      "title": "Return to Chandigarh / Delhi",
+      "dist_time": "270 km · 7 hrs",
+      "description": "Early mountain departure · Highway breakfast stop · Chandigarh / Delhi drop-off",
+      "acts": [
+        "Early mountain departure",
+        "Highway breakfast stop",
+        "Chandigarh / Delhi drop-off"
+      ],
+      "places": []
+    }
+  ],
+  "highlight": "Shimla, Kinnaur, Spiti, Manali & Dharamshala — Grand Circuit",
+  "curated_tags": [
+    "expedition",
+    "signature",
+    "photography",
+    "grand-tour"
+  ],
+  "image": "https://images.unsplash.com/photo-1544084944-15269ec7b5a0?q=80&w=1200&auto=format&fit=crop"
+}

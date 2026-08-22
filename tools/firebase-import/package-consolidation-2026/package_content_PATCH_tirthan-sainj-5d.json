@@ -1,0 +1,82 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Aut → Tirthan Valley",
+      "dist_time": "30 km",
+      "description": "Tirthan River walk · Gushaini village arrival · Forest trout stream",
+      "acts": [
+        "Tirthan River walk",
+        "Gushaini village arrival",
+        "Forest trout stream"
+      ],
+      "places": [
+        "tirthan-valley"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "GHNP Entry",
+      "dist_time": "20 km to entry",
+      "description": "GHNP entry check post · Rolla waterfall trek · Bird spotting",
+      "acts": [
+        "GHNP entry check post",
+        "Rolla waterfall trek",
+        "Bird spotting"
+      ],
+      "places": [
+        "ghnp"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Tirthan → Sainj Valley",
+      "dist_time": "40 km",
+      "description": "Sainj valley meadow walk · Shangarh meadow (3,100m) · Remote village homestay",
+      "acts": [
+        "Sainj valley meadow walk",
+        "Shangarh meadow (3,100m)",
+        "Remote village homestay"
+      ],
+      "places": [
+        "sainj-valley"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Jalori Pass & Serolsar",
+      "dist_time": "50 km",
+      "description": "Jalori Pass sunrise (3,120m) · Serolsar Lake trek · Jibhi waterfall trail",
+      "acts": [
+        "Jalori Pass sunrise (3,120m)",
+        "Serolsar Lake trek",
+        "Jibhi waterfall trail"
+      ],
+      "places": [
+        "jalori",
+        "serolsar-lake",
+        "jibhi"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Return to Aut",
+      "dist_time": "60 km",
+      "description": "Jibhi village last stop · Banjar market · Aut departure",
+      "acts": [
+        "Jibhi village last stop",
+        "Banjar market",
+        "Aut departure"
+      ],
+      "places": [
+        "tirthan-valley"
+      ]
+    }
+  ],
+  "highlight": "Great Himalayan National Park",
+  "curated_tags": [
+    "nature",
+    "wildlife",
+    "family"
+  ]
+}

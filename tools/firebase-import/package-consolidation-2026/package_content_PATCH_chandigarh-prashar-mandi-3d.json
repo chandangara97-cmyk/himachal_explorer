@@ -1,0 +1,54 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Chandigarh → Prashar Lake",
+      "dist_time": "190 km · 5 hrs + 7km trek",
+      "description": "Mandi town lunch · Baggi village trailhead · 7km trek (2,730m) · Floating island & temple",
+      "acts": [
+        "Mandi town lunch",
+        "Baggi village trailhead",
+        "7km trek (2,730m)",
+        "Floating island & temple"
+      ],
+      "places": [
+        "prashar"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Prashar → Barot Valley",
+      "dist_time": "60 km · 2.5 hrs",
+      "description": "Sunrise over Dhauladhar · Drive to Barot · Uhl River trout fishing",
+      "acts": [
+        "Sunrise over Dhauladhar",
+        "Drive to Barot",
+        "Uhl River trout fishing"
+      ],
+      "places": [
+        "barot-valley"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Barot → Chandigarh",
+      "dist_time": "220 km · 5 hrs",
+      "description": "Rewalsar Lake morning · Mandi town walk · Chandigarh return",
+      "acts": [
+        "Rewalsar Lake morning",
+        "Mandi town walk",
+        "Chandigarh return"
+      ],
+      "places": [
+        "prashar"
+      ]
+    }
+  ],
+  "highlight": "Hidden Jewel of Mandi",
+  "curated_tags": [
+    "nature",
+    "trek",
+    "photography"
+  ],
+  "image": "assets/images/barot-valley_1.jpg"
+}

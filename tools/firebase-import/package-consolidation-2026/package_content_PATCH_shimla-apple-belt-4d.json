@@ -1,0 +1,72 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Shimla → Narkanda",
+      "dist_time": "65 km",
+      "description": "Kotgarh orchards · Tani Jubbar Lake trail · Hatu Peak sunset (3,100m)",
+      "acts": [
+        "Kotgarh orchards",
+        "Tani Jubbar Lake trail",
+        "Hatu Peak sunset (3,100m)"
+      ],
+      "places": [
+        "narkanda",
+        "kotgarh",
+        "tani-jubbar"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Narkanda → Tattapani",
+      "dist_time": "100 km",
+      "description": "Sutlej river canyon · Hot sulphur springs · River beach relaxation",
+      "acts": [
+        "Sutlej river canyon",
+        "Hot sulphur springs",
+        "River beach relaxation"
+      ],
+      "places": [
+        "tattapani"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Tattapani → Chail → Shimla",
+      "dist_time": "80 km",
+      "description": "Chail Palace & highest cricket ground · Kufri snow point · Mall Road evening",
+      "acts": [
+        "Chail Palace & highest cricket ground",
+        "Kufri snow point",
+        "Mall Road evening"
+      ],
+      "places": [
+        "chail",
+        "shimla"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Shimla Hidden Gems",
+      "dist_time": "Local",
+      "description": "Chadwick Falls walk · Craignano nature park · Naldehra golf course",
+      "acts": [
+        "Chadwick Falls walk",
+        "Craignano nature park",
+        "Naldehra golf course"
+      ],
+      "places": [
+        "chadwick-falls",
+        "craignano",
+        "naldehra"
+      ]
+    }
+  ],
+  "highlight": "Apple Orchards & Hidden Lakes",
+  "curated_tags": [
+    "family",
+    "nature",
+    "photography"
+  ],
+  "image": "assets/images/pexels-simarphotos-32031273.jpg"
+}

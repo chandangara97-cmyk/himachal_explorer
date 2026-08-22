@@ -1,0 +1,56 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Shimla Arrival",
+      "dist_time": "Local",
+      "description": "Mall Road & Ridge walk · Jakhu Temple sunrise · Scandal Point evening",
+      "acts": [
+        "Mall Road & Ridge walk",
+        "Jakhu Temple sunrise",
+        "Scandal Point evening"
+      ],
+      "places": [
+        "mall-road",
+        "the-ridge",
+        "shimla"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Mashobra & Naldehra",
+      "dist_time": "25 km circuit",
+      "description": "Wildflower Hall gardens · Naldehra golf course · Apple orchard walk",
+      "acts": [
+        "Wildflower Hall gardens",
+        "Naldehra golf course",
+        "Apple orchard walk"
+      ],
+      "places": [
+        "mashobra",
+        "naldehra"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Hidden Shimla",
+      "dist_time": "Local",
+      "description": "Craignano nature park · Chadwick Falls forest hike · Shimla heritage market",
+      "acts": [
+        "Craignano nature park",
+        "Chadwick Falls forest hike",
+        "Shimla heritage market"
+      ],
+      "places": [
+        "craignano",
+        "chadwick-falls"
+      ]
+    }
+  ],
+  "highlight": "Mashobra, Naldehra & Craignano",
+  "curated_tags": [
+    "couple",
+    "nature"
+  ],
+  "image": "assets/images/old-manali_1.jpg"
+}

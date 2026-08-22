@@ -1,0 +1,153 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Delhi → Shimla",
+      "dist_time": "350 km",
+      "description": "Drive via NH5 · Shimla Mall Road arrival",
+      "acts": [
+        "Drive via NH5",
+        "Shimla Mall Road arrival"
+      ],
+      "places": [
+        "shimla",
+        "mall-road"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Shimla → Reckong Peo",
+      "dist_time": "195 km",
+      "description": "Kotgarh apple belt · Reckong Peo arrival · Kalpa sunset view",
+      "acts": [
+        "Kotgarh apple belt",
+        "Reckong Peo arrival",
+        "Kalpa sunset view"
+      ],
+      "places": [
+        "narkanda",
+        "reckong-peo",
+        "kalpa"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Kinnaur — Sangla & Chitkul",
+      "dist_time": "80 km",
+      "description": "Sangla Kamru Fort · Rakcham village · Chitkul last village",
+      "acts": [
+        "Sangla Kamru Fort",
+        "Rakcham village",
+        "Chitkul last village"
+      ],
+      "places": [
+        "sangla",
+        "rakcham",
+        "chitkul"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Chitkul → Nako",
+      "dist_time": "130 km",
+      "description": "Nako Lake monastery · Desert landscape entry",
+      "acts": [
+        "Nako Lake monastery",
+        "Desert landscape entry"
+      ],
+      "places": [
+        "nako"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Nako → Tabo",
+      "dist_time": "45 km",
+      "description": "Tabo monastery ancient murals · Mud village walk",
+      "acts": [
+        "Tabo monastery ancient murals",
+        "Mud village walk"
+      ],
+      "places": [
+        "tabo"
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Tabo → Kaza",
+      "dist_time": "45 km",
+      "description": "Pin Valley walk · Key Monastery sunset",
+      "acts": [
+        "Pin Valley walk",
+        "Key Monastery sunset"
+      ],
+      "places": [
+        "pin-valley",
+        "kaza"
+      ]
+    },
+    {
+      "day": 7,
+      "title": "Spiti Village Circuit",
+      "dist_time": "80 km",
+      "description": "Langza fossils · Hikkim post office · Komic gompa",
+      "acts": [
+        "Langza fossils",
+        "Hikkim post office",
+        "Komic gompa"
+      ],
+      "places": [
+        "langza",
+        "hikkim",
+        "komic",
+        "kibber"
+      ]
+    },
+    {
+      "day": 8,
+      "title": "Kunzum Pass → Chandratal",
+      "dist_time": "115 km",
+      "description": "Kunzum goddess temple · Chandratal Moon Lake (4,300m)",
+      "acts": [
+        "Kunzum goddess temple",
+        "Chandratal Moon Lake (4,300m)"
+      ],
+      "places": [
+        "kunzum",
+        "chandratal"
+      ]
+    },
+    {
+      "day": 9,
+      "title": "Chandratal → Manali",
+      "dist_time": "115 km",
+      "description": "Rohtang Pass view · Manali arrival",
+      "acts": [
+        "Rohtang Pass view",
+        "Manali arrival"
+      ],
+      "places": [
+        "rohtang-pass",
+        "manali"
+      ]
+    },
+    {
+      "day": 10,
+      "title": "Manali → Delhi",
+      "dist_time": "560 km",
+      "description": "Early departure · Delhi arrival via NH3",
+      "acts": [
+        "Early departure",
+        "Delhi arrival via NH3"
+      ],
+      "places": []
+    }
+  ],
+  "highlight": "Grand Kinnaur-Spiti Expedition",
+  "curated_tags": [
+    "expedition",
+    "photography",
+    "adventure"
+  ],
+  "image": "assets/images/kinnaur-kailash-viewpoint_01.jpg"
+}

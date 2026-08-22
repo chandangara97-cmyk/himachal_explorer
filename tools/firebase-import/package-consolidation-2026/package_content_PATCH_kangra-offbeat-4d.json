@@ -1,0 +1,70 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Dharamshala → Andretta",
+      "dist_time": "40 km · 1.5 hrs",
+      "description": "Norbulingka Tibetan arts institute · Andretta pottery centre · Artist studios",
+      "acts": [
+        "Norbulingka Tibetan arts institute",
+        "Andretta pottery centre",
+        "Artist studios"
+      ],
+      "places": [
+        "mcleodganj",
+        "andretta"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Masroor Rock Cut Temples",
+      "dist_time": "70 km · 2.5 hrs",
+      "description": "Masroor 8th-century temples · Kangra Fort · Heritage town walk",
+      "acts": [
+        "Masroor 8th-century temples",
+        "Kangra Fort",
+        "Heritage town walk"
+      ],
+      "places": [
+        "masroor-temples",
+        "kangra-fort"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Pong Dam Wetland",
+      "dist_time": "50 km",
+      "description": "Pong Dam birdwatching · Bir Billing paragliding view · Palampur tea gardens",
+      "acts": [
+        "Pong Dam birdwatching",
+        "Bir Billing paragliding view",
+        "Palampur tea gardens"
+      ],
+      "places": [
+        "pong-dam",
+        "bir-billing"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Return",
+      "dist_time": "30 km",
+      "description": "Baijnath Temple morning puja · Dharamshala market · Afternoon depart",
+      "acts": [
+        "Baijnath Temple morning puja",
+        "Dharamshala market",
+        "Afternoon depart"
+      ],
+      "places": [
+        "dharamshala",
+        "baijnath_temple"
+      ]
+    }
+  ],
+  "highlight": "Masroor Temples, Andretta & Pong Lake",
+  "curated_tags": [
+    "heritage",
+    "culture",
+    "photography"
+  ]
+}

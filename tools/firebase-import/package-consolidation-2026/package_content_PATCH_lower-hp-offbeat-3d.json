@@ -1,0 +1,52 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Chandigarh → Sujanpur",
+      "dist_time": "180 km · 4 hrs",
+      "description": "Chintpurni Shakti Peetha · Sujanpur Fort & ghats · Beas river evening",
+      "acts": [
+        "Chintpurni Shakti Peetha",
+        "Sujanpur Fort & ghats",
+        "Beas river evening"
+      ],
+      "places": [
+        "chintpurni",
+        "sujanpur-fort"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Gobind Sagar & Bhakra",
+      "dist_time": "80 km",
+      "description": "Gobind Sagar boat ride · Bhakra Dam viewpoint · Naina Devi temple",
+      "acts": [
+        "Gobind Sagar boat ride",
+        "Bhakra Dam viewpoint",
+        "Naina Devi temple"
+      ],
+      "places": [
+        "gobind-sagar"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Return",
+      "dist_time": "200 km",
+      "description": "Awah Devi Temple · Shivalik foothills drive · Chandigarh arrival",
+      "acts": [
+        "Awah Devi Temple",
+        "Shivalik foothills drive",
+        "Chandigarh arrival"
+      ],
+      "places": []
+    }
+  ],
+  "highlight": "Chintpurni, Sujanpur & Gobind Sagar",
+  "curated_tags": [
+    "spiritual",
+    "heritage",
+    "family"
+  ],
+  "image": "assets/images/gobind-sagar-lake_2.webp"
+}

@@ -1,0 +1,68 @@
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Mandi → Janjehli",
+      "dist_time": "100 km · 3.5 hrs",
+      "description": "Prashar Lake en route · Janjehli meadow · Alpine forest walk",
+      "acts": [
+        "Prashar Lake en route",
+        "Janjehli meadow",
+        "Alpine forest walk"
+      ],
+      "places": [
+        "prashar",
+        "janjehli"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Shikari Mata Trek",
+      "dist_time": "Local",
+      "description": "12km trek to Shikari Mata (3,300m) · Fir & cedar forests · Dhauladhar views",
+      "acts": [
+        "12km trek to Shikari Mata (3,300m)",
+        "Fir & cedar forests",
+        "Dhauladhar views"
+      ],
+      "places": [
+        "janjehli"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Janjehli → Karsog",
+      "dist_time": "70 km",
+      "description": "Ancient Karsog temples · Kamrunag Lake approach · Saffron fields",
+      "acts": [
+        "Ancient Karsog temples",
+        "Kamrunag Lake approach",
+        "Saffron fields"
+      ],
+      "places": [
+        "karsog",
+        "kamrunag-lake"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Karsog → Mandi",
+      "dist_time": "65 km",
+      "description": "Rewalsar Lake morning · Mandi temples · Depart afternoon",
+      "acts": [
+        "Rewalsar Lake morning",
+        "Mandi temples",
+        "Depart afternoon"
+      ],
+      "places": [
+        "prashar"
+      ]
+    }
+  ],
+  "highlight": "Alpine Meadows & Ancient Temples",
+  "curated_tags": [
+    "trek",
+    "nature",
+    "spiritual"
+  ]
+}
