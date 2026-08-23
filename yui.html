@@ -9,8 +9,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Plan Your Himachal Route — Himachal Explorer</title>
-<meta name="description" content="Build a custom Himachal Pradesh travel route — pick your starting gateway, choose destinations, and see live distance, drive-time and cost estimates on an interactive map."/>
+<title>Build Your Himachal Trip — Route Planner | Himachal Explorer</title>
+<meta name="description" content="Build a custom Himachal Pradesh travel route — choose your starting gateway, add destinations, avoid unnecessary backtracking, and see road distance, drive time and cost estimates."/>
 <link rel="canonical" href="https://himachalexplorer.in/yui.html"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -377,6 +377,11 @@ header{
 .tier-row{display:flex;justify-content:space-between;font-size:.76rem;padding:3px 0;opacity:.9}
 .tier-row.std{border-top:1px solid rgba(255,255,255,.2);margin-top:5px;padding-top:7px;font-weight:600;opacity:1;font-size:.82rem}
 .night-plan{font-size:.72rem;opacity:.75;line-height:1.5;margin-bottom:12px}
+.route-leg{display:grid;grid-template-columns:1fr auto;gap:6px;padding:7px 0;border-top:1px solid rgba(255,255,255,.12);font-size:.7rem}
+.route-leg-name{color:rgba(255,255,255,.86)}
+.route-leg-meta{color:var(--gold2);font-weight:600;white-space:nowrap}
+.route-leg-sub{grid-column:1/-1;color:rgba(255,255,255,.55);font-size:.64rem}
+.route-opt-note{font-size:.68rem;color:var(--caption);line-height:1.45;margin-top:5px}
 .btn-wa{
   width:100%;padding:11px;background:#25D366;color:var(--surface);
   border:none;border-radius:7px;font-size:.84rem;font-weight:600;
@@ -598,7 +603,7 @@ header{
   .sidebar{max-height:45vh}
   .map-wrap{height:55vh}
 }
-</style>
+.planner-kicker{font-size:.68rem;letter-spacing:.22em;font-weight:800;color:var(--gold);margin-bottom:6px}\n</style>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
@@ -632,6 +637,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ═══ SIDEBAR ═══════════════════════════════════════════════ -->
 <aside class="sidebar">
   <div class="sb-header">
+    <div class="planner-kicker">TRIP PLANNER</div>
     <h1>Plan Your Himachal Journey</h1>
     <p>Choose a package or build a custom route — see it live on the map.</p>
   </div>
@@ -690,9 +696,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           Search above or click directly on the map to add stops.
         </div>
       </div>
-      <button class="btn-build" id="btnBuild" disabled onclick="buildCustomRoute()" style="margin-top:12px">
-        🗺 Draw Custom Route on Map
-      </button>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+        <button class="btn-build" id="btnBuild" disabled onclick="buildCustomRoute()">
+          🗺 Draw Route
+        </button>
+        <button class="btn-sec" id="btnOptimize" disabled onclick="optimizeCustomRoute()" style="padding:12px;font-weight:600">
+          ✨ Optimize Order
+        </button>
+      </div>
+      <div id="routeLegs" style="display:none;margin-top:12px"></div>
     </div>
 
     <div class="summary-card" id="summaryCard">
@@ -700,8 +712,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="sum-grid">
         <div class="sum-stat"><span class="val" id="sumStops">—</span><span class="lbl">Stops</span></div>
         <div class="sum-stat"><span class="val" id="sumDays">—</span><span class="lbl">Est. Days</span></div>
-        <div class="sum-stat"><span class="val" id="sumKm">—</span><span class="lbl">Km</span></div>
+        <div class="sum-stat"><span class="val" id="sumKm">—</span><span class="lbl">Road Km</span></div>
       </div>
+      <div id="sumDriveTime" style="font-size:.72rem;opacity:.82;margin:-4px 0 10px"></div>
+      <div id="summaryLegs" style="display:none"></div>
       <div class="night-plan" id="sumNights"></div>
       <div class="cost-tiers" id="costTiers"></div>
       <button class="btn-wa" id="btnWA">
@@ -2052,6 +2066,147 @@ async function _runDbDiagnostic() {
 </body>
 </html>
 
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   ROUTE ENGINE V2 — exact road metrics + sensible day estimates
+   This layer replaces the old synthetic distance/day calculation.
+═══════════════════════════════════════════════════════════════ */
+let routeMetrics = { legs: [], totalKm: 0, totalHours: 0 };
+
+function _fmtHours(hours){
+  if (!Number.isFinite(hours) || hours <= 0) return '—';
+  const h=Math.floor(hours), m=Math.round((hours-h)*60);
+  return h ? `${h}h ${m ? m+'m' : ''}`.trim() : `${m}m`;
+}
+function _haversine(a,b){
+  const R=6371, dLat=(b.lat-a.lat)*Math.PI/180, dLon=(b.lng-a.lng)*Math.PI/180;
+  const x=Math.sin(dLat/2)**2+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLon/2)**2;
+  return 2*R*Math.asin(Math.sqrt(x));
+}
+function _estimateDriveHours(km){
+  // Planning fallback only; OSRM remains authoritative when available.
+  return km <= 80 ? km/32 : km <= 180 ? km/35 : km/40;
+}
+
+async function _routeLeg(p1,p2){
+  try{
+    const url=`https://router.project-osrm.org/route/v1/driving/${p1.lng},${p1.lat};${p2.lng},${p2.lat}?overview=full&geometries=geojson&steps=false`;
+    const res=await fetch(url,{cache:'no-store'});
+    if(!res.ok) throw new Error('OSRM HTTP '+res.status);
+    const data=await res.json();
+    if(data.code==='Ok' && data.routes?.[0]){
+      const r=data.routes[0];
+      return {km:r.distance/1000,hours:r.duration/3600,coords:r.geometry.coordinates.map(c=>[c[1],c[0]]),source:'road'};
+    }
+  }catch(e){ console.warn('OSRM leg failed',p1.name,p2.name,e.message); }
+  const km=_haversine(p1,p2), hours=_estimateDriveHours(km);
+  return {km,hours,coords:[[p1.lat,p1.lng],[p2.lat,p2.lng]],source:'estimate'};
+}
+
+function _renderRouteLegs(){
+  const box=document.getElementById('routeLegs');
+  const summaryBox=document.getElementById('summaryLegs');
+  if(!box || routeMetrics.legs.length===0) return;
+  const html=routeMetrics.legs.map((l,i)=>`<div class="route-leg" style="color:var(--body);border-color:var(--border)">\
+    <div><strong>${i+1}. ${l.from.name} → ${l.to.name}</strong><div style="font-size:.63rem;color:var(--caption)">${l.source==='road'?'Road routing':'Planning estimate'}</div></div>\
+    <div style="font-weight:700;color:var(--gold)">${l.km.toFixed(0)} km</div>\
+    <div style="grid-column:1/-1;font-size:.66rem;color:var(--caption)">${_fmtHours(l.hours)} driving</div></div>`).join('');
+  box.style.display='block';
+  box.innerHTML=`<div class="slabel" style="margin-bottom:5px">Road-by-road breakdown</div>${html}`;
+  if(summaryBox){
+    summaryBox.style.display='block';
+    summaryBox.innerHTML=routeMetrics.legs.map((l,i)=>`<div class="route-leg"><div class="route-leg-name">${i+1}. ${l.from.name} → ${l.to.name}</div><div class="route-leg-meta">${l.km.toFixed(0)} km</div><div class="route-leg-sub">${_fmtHours(l.hours)} driving${l.source==='estimate'?' · estimate':''}</div></div>`).join('');
+  }
+}
+
+async function drawRouteVectors(){
+  if(routeLayer) map.removeLayer(routeLayer);
+  markerLayer.forEach(m=>map.removeLayer(m));
+  markerLayer=[]; routeLayer=L.featureGroup(); routeMetrics={legs:[],totalKm:0,totalHours:0};
+  const routePromises=[];
+  for(let i=0;i<stops.length-1;i++) routePromises.push(_routeLeg(stops[i],stops[i+1]));
+  const legs=await Promise.all(routePromises);
+  legs.forEach((leg,i)=>{
+    const p1=stops[i],p2=stops[i+1],col=DAY_COLORS[i%DAY_COLORS.length];
+    routeMetrics.legs.push({...leg,from:p1,to:p2});
+    routeMetrics.totalKm+=leg.km; routeMetrics.totalHours+=leg.hours;
+    L.polyline(leg.coords,{color:col,weight:5,opacity:.86,dashArray:leg.source==='estimate'?'7,7':null}).addTo(routeLayer);
+  });
+  routeLayer.addTo(map);
+  stops.forEach((stop,idx)=>{
+    const pinColor=idx===0?'#b07d3a':'#1c1409', innerText=idx===0?'▶':idx;
+    const icon=L.divIcon({className:'route-flag-pin',html:`<div style="width:26px;height:26px;background:${pinColor};color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;box-shadow:0 3px 8px rgba(0,0,0,.3);border:2px solid #fff">${innerText}</div>`,iconSize:[26,26],iconAnchor:[13,13]});
+    const m=L.marker([stop.lat,stop.lng],{icon}).addTo(map);
+    m.bindPopup(`<strong>${stop.name}</strong><div style="font-size:11px;color:#9b8a74">${idx===0?'Starting point':'Stop '+idx}</div>`);
+    markerLayer.push(m);
+  });
+  try{map.fitBounds(routeLayer.getBounds(),{padding:[40,40]});}catch(e){}
+  updateSummaryCardData();
+}
+
+function updateSummaryCardData(){
+  const card=document.getElementById('summaryCard'); if(!card) return;
+  if(stops.length<2){card.classList.remove('visible');return;}
+  card.classList.add('visible');
+  const totalStopsCount=stops.length;
+  const totalKm=Math.round(routeMetrics.totalKm||0);
+  const totalHours=routeMetrics.totalHours||0;
+  // One overnight per destination stop is the transparent baseline; long legs add a day when needed.
+  const overnightStops=Math.max(1,totalStopsCount-1);
+  const computedDays=Math.max(2,overnightStops+1,Math.ceil(totalHours/7)+1);
+  document.getElementById('sumStops').innerText=totalStopsCount;
+  document.getElementById('sumDays').innerText=computedDays;
+  document.getElementById('sumKm').innerText=totalKm?totalKm.toLocaleString('en-IN'):'—';
+  const drive=document.getElementById('sumDriveTime');
+  if(drive) drive.innerText=totalHours?`🚗 Estimated driving time: ${_fmtHours(totalHours)} · ${routeMetrics.legs.every(x=>x.source==='road')?'road routing':'some legs estimated'}`:'';
+  const night=document.getElementById('sumNights');
+  if(night) night.innerText=overnightStops?`Suggested overnight sequence: ${stops.slice(1).map(s=>s.name).join(' → ')}`:'';
+  _renderRouteLegs();
+  let calculatedCostBase;
+  if(selectedPkg) calculatedCostBase=calculateDynamicPrice(selectedPkg);
+  else {
+    const perPersonDay=globalTier==='budget'?2200:globalTier==='luxury'?5500:3200;
+    calculatedCostBase=perPersonDay*computedDays*Math.max(1,globalPax);
+  }
+  const premiumCost=calculatedCostBase;
+  const budgetCost=selectedPkg?calculatedCostBase*.65:(2200*computedDays*Math.max(1,globalPax));
+  const luxuryCost=selectedPkg?calculatedCostBase*1.8:(5500*computedDays*Math.max(1,globalPax));
+  const tiers=document.getElementById('costTiers');
+  if(tiers) tiers.innerHTML=`<div class="tier-row"><span>Economy planning estimate</span><strong>₹${Math.round(budgetCost).toLocaleString('en-IN')}</strong></div><div class="tier-row std"><span>Premium planning estimate</span><strong style="color:var(--gold2)">₹${Math.round(premiumCost).toLocaleString('en-IN')}</strong></div><div class="tier-row"><span>Luxury planning estimate</span><strong>₹${Math.round(luxuryCost).toLocaleString('en-IN')}</strong></div><div class="route-opt-note">Planning estimate only. Final hotel, vehicle, meal and activity pricing is confirmed after enquiry.</div>`;
+  const message=`Hi Himachal Explorer! Please plan this route: ${stops.map(s=>s.name).join(' → ')}. ${totalKm?`Road distance: ${totalKm} km. `:''}${totalHours?`Driving: ${_fmtHours(totalHours)}. `:''}${computedDays} days for ${globalPax} traveller${globalPax===1?'':'s'}. Please send a detailed itinerary and final quote.`;
+  const waUrl=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+  const btn=document.getElementById('btnWA'); if(btn) btn.onclick=()=>window.open(waUrl,'_blank');
+  const strip=document.getElementById('waStripBtn'); if(strip) strip.onclick=()=>window.open(waUrl,'_blank');
+  document.getElementById('waCustomStrip')?.classList.toggle('visible',!selectedPkg);
+  const legend=document.getElementById('dayLegend'), items=document.getElementById('dlItems');
+  if(legend&&items){legend.classList.add('visible');items.innerHTML=routeMetrics.legs.map((l,i)=>`<div class="dl-item"><span class="dl-dot" style="background:${DAY_COLORS[i%DAY_COLORS.length]}"></span><span>Leg ${i+1}: ${l.from.name} → ${l.to.name}</span></div>`).join('');}
+}
+
+function optimizeCustomRoute(){
+  if(!startCity || stops.length<3) return;
+  const rest=stops.slice(1);
+  const remaining=rest.slice(); const ordered=[startCity]; let cur=startCity;
+  while(remaining.length){
+    let best=0,bestD=Infinity;
+    remaining.forEach((p,i)=>{const d=_haversine(cur,p);if(d<bestD){bestD=d;best=i;}});
+    cur=remaining.splice(best,1)[0]; ordered.push(cur);
+  }
+  const old=stops.map(s=>s.id).join('|'); const neu=ordered.map(s=>s.id).join('|');
+  if(old===neu) return;
+  stops=ordered; selectedPkg=null; renderStopsList(); triggerRouteGeneration();
+  const note=document.getElementById('routeLegs');
+  if(note) note.insertAdjacentHTML('afterbegin','<div class="route-opt-note">✨ Route reordered from the starting point using nearest-next logic to reduce obvious backtracking. Review the map before booking.</div>');
+}
+
+// Keep existing UI wiring but ensure the new Optimize button tracks route state.
+const _oldAddStop=addStop;
+addStop=function(place){_oldAddStop(place);const b=document.getElementById('btnOptimize');if(b)b.disabled=stops.length<3;};
+const _oldRemoveStop=removeStop;
+removeStop=function(i){_oldRemoveStop(i);const b=document.getElementById('btnOptimize');if(b)b.disabled=stops.length<3;};
+const _oldSelectGateway=selectGateway;
+selectGateway=function(name){_oldSelectGateway(name);const b=document.getElementById('btnOptimize');if(b)b.disabled=stops.length<3;};
+</script>
+
 <!-- ══ PREMIER MOBILE ENHANCEMENT — yui.html ══ -->
 <style>
 @media(max-width:768px){
@@ -2765,9 +2920,9 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
         document.querySelectorAll('#yshGwGrid .ysh-gw-pill').forEach(p => p.classList.remove('active'));
         pill.classList.add('active');
         // Sync to desktop gateway selection
-        const gwId = pill.dataset.gw;
-        const desktopPill = document.querySelector(`#gwGrid .gw-pill[data-gw="${gwId}"]`);
-        if (desktopPill) desktopPill.click();
+        const gwId = pill.dataset.gw || (pill.textContent.trim().split(/\s+/).find(x => /^[A-Z]{3,}$/.test(x)) || '');
+        const desktopPill = Array.from(document.querySelectorAll('#gwGrid .gw-pill')).find(el => el.textContent.includes(gwId));
+        if (desktopPill) desktopPill.click(); else if (typeof selectGateway === 'function' && gwId) selectGateway(gwId);
         // Show add stops
         const addStops = document.getElementById('yshAddStopsSection');
         if (addStops) addStops.style.display = 'block';

@@ -1804,6 +1804,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="assets/js/package-data.js"></script>
+<script src="images.js"></script>
 <script>
   window.FIREBASE_STATUS_PATHS = [
     { path: "/templates_index", label: "Package identity" },
@@ -2143,6 +2144,36 @@ const REGION_MAP = {
   parvati: id => /parvati|kasol/.test(id),
   chamba: id => /chamba|amritsar-chamba/.test(id),
   mandi: id => /mandi|janjehli|prashar/.test(id)};
+
+// Every package card needs its OWN photo. Firebase's per-package `image`
+// field (PKG_IMG) is the ideal source, but many /package_content entries
+// don't have one set yet — that used to fall back to a single hardcoded
+// local file (assets/images/manali_1.jpg), so any package without its own
+// Firebase image silently showed the Manali photo. This resolves a
+// destination-specific photo from images.js (DEST_IMAGES) instead, so
+// packages without a dedicated image still show a photo of the place they
+// actually go to, not someone else's destination.
+const PKG_DEST_MAP = [
+  [/spiti/,                         'Kaza'],
+  [/kinnaur/,                       'Kalpa'],
+  [/manali|lahaul|tirthan|seraj/,   'Manali'],
+  [/kasol|parvati|tosh/,            'Kasol'],
+  [/kangra|dharamshala|mcleod/,     'Dharamshala'],
+  [/chamba/,                        'Chamba'],
+  [/dalhousie/,                     'Dalhousie'],
+  [/keylong/,                       'Keylong'],
+  [/mandi|janjehli|prashar/,        'Manali'],
+  [/shimla|kasauli|barog|narkanda/, 'Shimla'],
+  [/sirmaur|lower-hp/,              'Shimla'],
+];
+
+function getPackageFallbackImg(pkg) {
+  const id = pkg.package_id || '';
+  for (const [re, destKey] of PKG_DEST_MAP) {
+    if (re.test(id)) return (window.getDestImg && window.getDestImg(destKey)) || null;
+  }
+  return null;
+}
 
 function getRegionLabel(pkg) {
   const id = pkg.package_id;
@@ -2667,7 +2698,7 @@ function renderCards() {
   grid.innerHTML = list.map((pkg, idx) => {
     const tags = pkg.tags ? pkg.tags.split(',').slice(0,3) : [];
     const isWished = state.wishlist.has(pkg.package_id);
-    const imgUrl = PKG_IMG[pkg.package_id] || 'assets/images/manali_1.jpg';
+    const imgUrl = PKG_IMG[pkg.package_id] || getPackageFallbackImg(pkg) || window.FALLBACK_IMG || 'assets/images/manali_1.jpg';
     const region = getRegionLabel(pkg);
     const isSpiti = /spiti|kinnaur/.test(pkg.package_id);
     const isSelected = pkg.package_id === state.selectedId;

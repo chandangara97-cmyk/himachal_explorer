@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<!--
+  SECURITY WARNING (same caveat as admin/control.html):
+  This prompt() password is cosmetic only — it does not protect the
+  database. Real protection means Firebase Auth + RTDB rules locked to
+  admin UIDs. This page writes ONLY to /package_content/{id}/image and
+  only for fields it explicitly shows you before writing.
+-->
+<script>
+(function(){
+  var k = sessionStorage.getItem('he_admin');
+  if(k !== 'HE@admin2026') {
+    var p = prompt('Admin password required:');
+    if(p !== 'HE@admin2026') { document.write('<h2 style="font-family:sans-serif;padding:40px">Access denied.</h2>'); throw new Error('Access denied'); }
+    sessionStorage.setItem('he_admin', p);
+  }
+})();
+</script>
+<title>Himachal Explorer — Package Image Backfill</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="../images.js"></script>
+<style>
+  .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: #1e293b; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+  .thumb { width:72px; height:48px; object-fit:cover; border-radius:6px; background:#1e293b; }
+</style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans">
+
+<header class="bg-slate-800 border-b border-slate-700 sticky top-0 z-50 shadow-md">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center flex-wrap gap-3">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center font-bold text-slate-900">G</div>
+      <div>
+        <h1 class="text-lg font-bold tracking-wide text-slate-100">Package Image Backfill</h1>
+        <p class="text-xs text-slate-400">Writes a real image directly into <code class="text-amber-400">/package_content/&lt;id&gt;/image</code> — permanent fix, not a runtime patch.</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button id="btn-fetch" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-4 rounded-md transition text-sm">Load Packages</button>
+      <button id="btn-backfill-missing" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 px-4 rounded-md transition text-sm" disabled>Backfill All Missing</button>
+      <button id="btn-export-shared" class="bg-slate-700 hover:bg-slate-600 text-slate-100 font-medium py-2 px-4 rounded-md transition text-sm" disabled>Export "Needs Unique Photo" List</button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 py-6">
+
+  <div id="summary" class="hidden grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
+    <div class="bg-slate-800 border border-slate-700 rounded-xl p-4">
+      <div class="text-2xl font-bold" id="sum-total">–</div>
+      <div class="text-xs text-slate-400">Total active packages</div>
+    </div>
+    <div class="bg-slate-800 border border-slate-700 rounded-xl p-4">
+      <div class="text-2xl font-bold text-emerald-400" id="sum-has-image">–</div>
+      <div class="text-xs text-slate-400">Already have their own image</div>
+    </div>
+    <div class="bg-slate-800 border border-slate-700 rounded-xl p-4">
+      <div class="text-2xl font-bold text-amber-400" id="sum-missing">–</div>
+      <div class="text-xs text-slate-400">Missing image (will be backfilled)</div>
+    </div>
+    <div class="bg-slate-800 border border-slate-700 rounded-xl p-4">
+      <div class="text-2xl font-bold text-rose-400" id="sum-shared">–</div>
+      <div class="text-xs text-slate-400">Will share a destination photo with others</div>
+    </div>
+  </div>
+
+  <div id="empty-state" class="text-center text-slate-500 py-24">
+    <p class="text-sm">Click "Load Packages" to fetch /templates_index + /package_content and audit images.</p>
+  </div>
+
+  <div id="table-wrap" class="hidden bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-slate-900/60 text-slate-400 text-xs uppercase tracking-wider">
+        <tr>
+          <th class="text-left px-4 py-3">Preview</th>
+          <th class="text-left px-4 py-3">Package</th>
+          <th class="text-left px-4 py-3">Status</th>
+          <th class="text-left px-4 py-3">Image URL (editable before saving)</th>
+          <th class="text-right px-4 py-3">Action</th>
+        </tr>
+      </thead>
+      <tbody id="pkg-rows" class="divide-y divide-slate-700"></tbody>
+    </table>
+  </div>
+</main>
+
+<div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
+
+<script type="importmap">
+{
+  "imports": {
+    "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+    "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
+  }
+}
+</script>
+
+<script type="module">
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, get, set } from "firebase/database";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBmJDsXvokR8kYs_yoLPau1DqANPBBORJY",
+  authDomain: "garg-enterprise.firebaseapp.com",
+  databaseURL: "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "garg-enterprise",
+  storageBucket: "garg-enterprise.firebasestorage.app",
+  messagingSenderId: "1097408452571",
+  appId: "1:1097408452571:web:1e5803fa8bbea4fbb5b9fe",
+  measurementId: "G-DTJFFCMFD3"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// Same destination map used in the packages.html / package-detail.html
+// runtime fallback — kept here too so the backfilled value matches exactly
+// what the site would already be showing, just written permanently.
+const PKG_DEST_MAP = [
+  [/spiti/,                         'Kaza'],
+  [/kinnaur/,                       'Kalpa'],
+  [/manali|lahaul|tirthan|seraj/,   'Manali'],
+  [/kasol|parvati|tosh/,            'Kasol'],
+  [/kangra|dharamshala|mcleod/,     'Dharamshala'],
+  [/chamba/,                        'Chamba'],
+  [/dalhousie/,                     'Dalhousie'],
+  [/keylong/,                       'Keylong'],
+  [/mandi|janjehli|prashar/,        'Manali'],
+  [/shimla|kasauli|barog|narkanda/, 'Shimla'],
+  [/sirmaur|lower-hp/,              'Shimla'],
+];
+function destKeyFor(id) {
+  for (const [re, key] of PKG_DEST_MAP) if (re.test(id)) return key;
+  return null;
+}
+function fallbackImgFor(id) {
+  const key = destKeyFor(id);
+  return key ? (window.getDestImg ? window.getDestImg(key) : null) : null;
+}
+
+let ROWS = []; // { id, name, currentImage, hasOwn, proposed, destKey }
+
+const btnFetch = document.getElementById('btn-fetch');
+const btnBackfill = document.getElementById('btn-backfill-missing');
+const btnExport = document.getElementById('btn-export-shared');
+const tableWrap = document.getElementById('table-wrap');
+const emptyState = document.getElementById('empty-state');
+const rowsEl = document.getElementById('pkg-rows');
+const summary = document.getElementById('summary');
+
+btnFetch.addEventListener('click', loadPackages);
+btnBackfill.addEventListener('click', backfillAllMissing);
+btnExport.addEventListener('click', exportSharedList);
+
+async function loadPackages() {
+  showToast('Fetching /templates_index + /package_content…', 'info');
+  try {
+    const [idxSnap, contentSnap] = await Promise.all([
+      get(ref(db, '/templates_index')),
+      get(ref(db, '/package_content')),
+    ]);
+    const idx = idxSnap.exists() ? idxSnap.val() : {};
+    const content = contentSnap.exists() ? contentSnap.val() : {};
+    const ids = new Set([...Object.keys(idx), ...Object.keys(content)]);
+
+    ROWS = [];
+    ids.forEach(id => {
+      const i = idx[id] || {};
+      if (i.status && i.status !== 'active') return; // skip draft/retired, matches package-data.js
+      const c = content[id] || {};
+      const currentImage = c.image || '';
+      const proposed = fallbackImgFor(id);
+      ROWS.push({
+        id,
+        name: i.package_name || id,
+        currentImage,
+        hasOwn: !!currentImage,
+        proposed: currentImage || proposed || (window.FALLBACK_IMG || ''),
+        destKey: destKeyFor(id),
+      });
+    });
+    ROWS.sort((a, b) => a.id.localeCompare(b.id));
+    render();
+    showToast(`Loaded ${ROWS.length} packages.`, 'success');
+  } catch (e) {
+    console.error(e);
+    showToast('Fetch failed: ' + e.message, 'error');
+  }
+}
+
+function render() {
+  emptyState.classList.add('hidden');
+  tableWrap.classList.remove('hidden');
+  summary.classList.remove('hidden');
+  btnBackfill.disabled = false;
+  btnExport.disabled = false;
+
+  // count how many packages would end up pointing at the same photo
+  const shareCount = {};
+  ROWS.forEach(r => {
+    if (!r.hasOwn && r.destKey) shareCount[r.destKey] = (shareCount[r.destKey] || 0) + 1;
+  });
+
+  const totalHasOwn = ROWS.filter(r => r.hasOwn).length;
+  const totalMissing = ROWS.length - totalHasOwn;
+  const totalShared = ROWS.filter(r => !r.hasOwn && r.destKey && shareCount[r.destKey] > 1).length;
+
+  document.getElementById('sum-total').textContent = ROWS.length;
+  document.getElementById('sum-has-image').textContent = totalHasOwn;
+  document.getElementById('sum-missing').textContent = totalMissing;
+  document.getElementById('sum-shared').textContent = totalShared;
+
+  rowsEl.innerHTML = ROWS.map((r, idx) => {
+    const badge = r.hasOwn
+      ? '<span class="px-2 py-0.5 rounded-full bg-emerald-900/50 text-emerald-400 text-[11px] font-semibold">Has own image</span>'
+      : (r.destKey
+          ? `<span class="px-2 py-0.5 rounded-full bg-amber-900/50 text-amber-400 text-[11px] font-semibold">Will use ${r.destKey} photo${shareCount[r.destKey] > 1 ? ' (shared x' + shareCount[r.destKey] + ')' : ''}</span>`
+          : '<span class="px-2 py-0.5 rounded-full bg-rose-900/50 text-rose-400 text-[11px] font-semibold">No destination match — generic fallback</span>');
+
+    return `<tr class="hover:bg-slate-700/30" data-idx="${idx}">
+      <td class="px-4 py-3"><img class="thumb" src="${r.proposed}" onerror="this.style.opacity=0.2" alt=""></td>
+      <td class="px-4 py-3">
+        <div class="font-medium text-slate-100">${r.name}</div>
+        <div class="text-[11px] text-slate-500 font-mono">${r.id}</div>
+      </td>
+      <td class="px-4 py-3">${badge}</td>
+      <td class="px-4 py-3">
+        <input type="text" class="w-full text-xs bg-slate-900 border border-slate-700 rounded px-2 py-1.5 text-slate-200 focus:border-amber-500 outline-none img-input" value="${r.proposed.replace(/"/g,'&quot;')}">
+      </td>
+      <td class="px-4 py-3 text-right">
+        <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-1.5 px-3 rounded transition save-btn">Save</button>
+      </td>
+    </tr>`;
+  }).join('');
+
+  rowsEl.querySelectorAll('tr').forEach(tr => {
+    const idx = Number(tr.getAttribute('data-idx'));
+    const input = tr.querySelector('.img-input');
+    input.addEventListener('input', () => { tr.querySelector('.thumb').src = input.value; });
+    tr.querySelector('.save-btn').addEventListener('click', () => saveOne(idx, input.value.trim()));
+  });
+}
+
+async function saveOne(idx, url) {
+  const r = ROWS[idx];
+  if (!url) { showToast('Enter an image URL first.', 'error'); return; }
+  try {
+    await set(ref(db, `/package_content/${r.id}/image`), url);
+    r.currentImage = url;
+    r.hasOwn = true;
+    showToast(`Saved image for ${r.id}`, 'success');
+    render();
+  } catch (e) {
+    console.error(e);
+    showToast('Save failed: ' + e.message, 'error');
+  }
+}
+
+async function backfillAllMissing() {
+  const missing = ROWS.filter(r => !r.hasOwn);
+  if (!missing.length) { showToast('Nothing missing — every package already has its own image.', 'info'); return; }
+  if (!confirm(`Write a destination-matched image into Firebase for ${missing.length} package(s)? This permanently sets /package_content/<id>/image for each. You can still edit any row afterward.`)) return;
+
+  let ok = 0, fail = 0;
+  for (const r of missing) {
+    try {
+      await set(ref(db, `/package_content/${r.id}/image`), r.proposed);
+      r.currentImage = r.proposed;
+      r.hasOwn = true;
+      ok++;
+    } catch (e) {
+      console.error(e);
+      fail++;
+    }
+  }
+  showToast(`Backfill complete: ${ok} saved${fail ? ', ' + fail + ' failed' : ''}.`, fail ? 'error' : 'success');
+  render();
+}
+
+function exportSharedList() {
+  const shareCount = {};
+  ROWS.forEach(r => { if (!r.hasOwn && r.destKey) shareCount[r.destKey] = (shareCount[r.destKey] || 0) + 1; });
+  const needsUnique = ROWS.filter(r => !r.hasOwn && r.destKey && shareCount[r.destKey] > 1);
+  if (!needsUnique.length) { showToast('No packages currently sharing a destination photo.', 'info'); return; }
+
+  const csv = ['package_id,package_name,shared_destination,current_fallback_url']
+    .concat(needsUnique.map(r => `${r.id},"${r.name.replace(/"/g,'""')}",${r.destKey},${r.proposed}`))
+    .join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'packages-needing-unique-photo.csv';
+  a.click();
+  showToast(`Exported ${needsUnique.length} package(s) that still share a photo.`, 'success');
+}
+
+function showToast(msg, type) {
+  const colors = { info: 'bg-slate-700', success: 'bg-emerald-600', error: 'bg-rose-600', warning: 'bg-amber-600' };
+  const t = document.createElement('div');
+  t.className = `${colors[type]||colors.info} text-white text-sm px-4 py-2.5 rounded-lg shadow-lg pointer-events-auto`;
+  t.textContent = msg;
+  document.getElementById('toast-container').appendChild(t);
+  setTimeout(() => t.remove(), 4000);
+}
+</script>
+</body>
+</html>

@@ -430,6 +430,7 @@ img { max-width: 100%; display: block; }
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="assets/js/package-data.js"></script>
+<script src="images.js"></script>
 <script>
   window.FIREBASE_STATUS_PATHS = [
     { path: "/templates_index", label: "Package identity" },
@@ -684,12 +685,38 @@ img { max-width: 100%; display: block; }
   var params = new URLSearchParams(window.location.search);
   var slug = params.get("slug") || params.get("id");
 
+  // Same destination-fallback used on packages.html: when a package has no
+  // /package_content.image set in Firebase yet, don't show a random generic
+  // photo — show a photo of the place this specific package actually visits.
+  var PKG_DEST_MAP = [
+    [/spiti/,                         'Kaza'],
+    [/kinnaur/,                       'Kalpa'],
+    [/manali|lahaul|tirthan|seraj/,   'Manali'],
+    [/kasol|parvati|tosh/,            'Kasol'],
+    [/kangra|dharamshala|mcleod/,     'Dharamshala'],
+    [/chamba/,                        'Chamba'],
+    [/dalhousie/,                     'Dalhousie'],
+    [/keylong/,                       'Keylong'],
+    [/mandi|janjehli|prashar/,        'Manali'],
+    [/shimla|kasauli|barog|narkanda/, 'Shimla'],
+    [/sirmaur|lower-hp/,              'Shimla'],
+  ];
+  function getPackageFallbackImg(id) {
+    id = id || '';
+    for (var i = 0; i < PKG_DEST_MAP.length; i++) {
+      if (PKG_DEST_MAP[i][0].test(id)) {
+        return (window.getDestImg && window.getDestImg(PKG_DEST_MAP[i][1])) || null;
+      }
+    }
+    return null;
+  }
+
   // Adapt a PackageData-normalized package into the shape populate() expects.
   function toDetailShape(pkg) {
     return {
       slug: pkg.id,
       title: pkg.name,
-      image: pkg.image,
+      image: pkg.image || getPackageFallbackImg(pkg.id) || window.FALLBACK_IMG,
       price: pkg.budget_price_pp,
       days: pkg.days,
       hotel_star: pkg.hotel_star,
