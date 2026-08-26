@@ -759,6 +759,64 @@ header{
   <div class="wow-cloud c2" style="left:55%;top:14%"></div>
 </div>
 
+<!-- ═══ Trending Locations rail (right side, 10% viewport width) ═══ -->
+<div id="trendingRail" class="trending-rail" aria-label="Trending locations"></div>
+
+<!-- ═══ Trending Locations popup (shown after choosing a starting point) ═══ -->
+<div id="trendPopupOverlay" class="trend-popup-overlay" style="display:none">
+  <div class="trend-popup">
+    <button class="trend-popup-close" onclick="closeTrendPopup()" type="button">✕</button>
+    <div class="trend-popup-kicker">TOP 5 · MOST VISITED</div>
+    <h3 id="trendPopupTitle">Trending Locations</h3>
+    <div class="trend-popup-list" id="trendPopupList"></div>
+  </div>
+</div>
+<style>
+/* Trending rail + popup — additive, does not touch existing layout rules */
+.trending-rail{
+  position:fixed;top:70px;right:0;z-index:3000;
+  width:clamp(92px,10vw,170px);
+  max-height:70vh;overflow-y:auto;
+  display:flex;flex-direction:column;gap:8px;
+  padding:12px 8px;
+  background:rgba(253,246,236,.92);backdrop-filter:blur(6px);
+  border:1px solid var(--border);border-right:none;
+  border-radius:12px 0 0 12px;
+  box-shadow:-4px 4px 18px rgba(28,20,9,.1);
+}
+.trend-rail-title{font-family:'Jost',sans-serif;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:2px;font-weight:700}
+.trend-chip{
+  background:#fff;border:1px solid var(--border);border-radius:9px;
+  padding:8px 6px;cursor:pointer;text-align:center;transition:all .18s;
+}
+.trend-chip:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 14px rgba(28,20,9,.12)}
+.trend-chip-name{display:block;font-size:.68rem;font-weight:600;color:var(--ink);line-height:1.25;word-break:break-word}
+
+.trend-popup-overlay{
+  position:fixed;inset:0;z-index:9000;background:rgba(15,10,5,.55);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+}
+.trend-popup{
+  background:var(--surface);border-radius:16px;max-width:420px;width:100%;
+  padding:26px 24px;position:relative;box-shadow:0 24px 60px rgba(15,10,5,.35);
+}
+.trend-popup-close{position:absolute;top:14px;right:14px;background:none;border:none;font-size:1rem;color:var(--steel);cursor:pointer}
+.trend-popup-kicker{font-family:'Jost',sans-serif;font-size:.65rem;letter-spacing:.2em;color:var(--gold);font-weight:800;margin-bottom:6px}
+.trend-popup h3{font-family:'Cormorant',serif;font-size:1.35rem;color:var(--ink);margin-bottom:16px}
+.trend-popup-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.trend-popup-chip{
+  background:var(--bg);border:1px solid var(--border);border-radius:10px;
+  padding:10px;text-align:left;cursor:pointer;transition:all .18s;
+}
+.trend-popup-chip:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 18px rgba(28,20,9,.14)}
+.tpc-name{font-family:'Cormorant',serif;font-weight:700;color:var(--ink);font-size:.95rem}
+.tpc-tag{font-size:.66rem;color:var(--steel);margin-top:2px}
+
+@media(max-width:900px){
+  .trending-rail{display:none} /* sidebar already stacks above the map here; rail would overlap map controls */
+}
+</style>
+
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -3402,6 +3460,142 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       });
     }
   }, true);
+
+})();
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   TRENDING LOCATIONS LAYER — additive, wraps existing functions
+   rather than editing them, so nothing already working can break.
+═══════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+
+  /* Rank places by how often they appear across packages.
+     If scoped to a gateway and that pool is thin, pad with global ranking.
+     Already-added stops are always excluded. */
+  function computeTrending(gatewayName){
+    var pool = gatewayName ? PACKAGES.filter(function(p){ return p.gateway === gatewayName; }) : PACKAGES;
+    var freq = {};
+    pool.forEach(function(p){ (p.route_stops||[]).forEach(function(id){ freq[id] = (freq[id]||0)+1; }); });
+    var ranked = Object.keys(freq).sort(function(a,b){ return freq[b]-freq[a]; });
+
+    if (ranked.length < 5){
+      var gfreq = {};
+      PACKAGES.forEach(function(p){ (p.route_stops||[]).forEach(function(id){ gfreq[id] = (gfreq[id]||0)+1; }); });
+      var granked = Object.keys(gfreq).sort(function(a,b){ return gfreq[b]-gfreq[a]; });
+      granked.forEach(function(id){ if (ranked.indexOf(id) === -1) ranked.push(id); });
+    }
+
+    var selectedIds = {};
+    (stops||[]).forEach(function(s){ selectedIds[s.id] = true; });
+    ranked = ranked.filter(function(id){ return !selectedIds[id]; });
+
+    return ranked.slice(0,5).map(function(id){ return PLACES.find(function(p){ return p.id === id; }); }).filter(Boolean);
+  }
+
+  window.chooseLocation = function(placeId){
+    var place = PLACES.find(function(p){ return p.id === placeId; });
+    if (place) addStop(place);
+  };
+
+  window.closeTrendPopup = function(){
+    var el = document.getElementById('trendPopupOverlay');
+    if (el) el.style.display = 'none';
+  };
+
+  function showTrendingPopup(gatewayName){
+    var top5 = computeTrending(gatewayName);
+    if (!top5.length) return;
+    var overlay = document.getElementById('trendPopupOverlay');
+    var list = document.getElementById('trendPopupList');
+    var title = document.getElementById('trendPopupTitle');
+    if (!overlay || !list || !title) return;
+    title.innerText = 'Trending near ' + gatewayName;
+    list.innerHTML = top5.map(function(p){
+      return '<button class="trend-popup-chip" type="button" onclick="chooseLocation(\'' + p.id + '\');closeTrendPopup();">' +
+        '<div class="tpc-name">' + p.name + '</div>' +
+        '<div class="tpc-tag">' + (p.district ? p.district + ' District' : '') + '</div>' +
+      '</button>';
+    }).join('');
+    overlay.style.display = 'flex';
+  }
+
+  function refreshTrendingRail(){
+    var rail = document.getElementById('trendingRail');
+    if (!rail) return;
+    var top5 = computeTrending(typeof selectedGw !== 'undefined' ? selectedGw : null);
+    if (!top5.length){ rail.innerHTML = ''; return; }
+    rail.innerHTML = '<div class="trend-rail-title">🔥 Trending</div>' + top5.map(function(p){
+      return '<button class="trend-chip" type="button" onclick="chooseLocation(\'' + p.id + '\')" title="' + p.name + '">' +
+        '<span class="trend-chip-name">' + p.name + '</span>' +
+      '</button>';
+    }).join('');
+  }
+
+  /* Show packages that include a given location — used when the
+     traveler adds a destination (the "second location" onward). */
+  function renderPackagesForLocation(placeId, placeName){
+    var matched = PACKAGES.filter(function(p){ return (p.route_stops||[]).indexOf(placeId) !== -1; });
+    if (!matched.length) return;
+
+    var list = document.getElementById('sidebarPackagesList');
+    var section = document.getElementById('sidebarPackagesSection');
+    var label = document.getElementById('selectedGatewayName');
+    if (!list || !section) return;
+
+    if (label) label.innerText = (typeof selectedGw !== 'undefined' && selectedGw ? selectedGw + ' · ' : '') + 'featuring ' + placeName;
+    section.style.display = 'block';
+    list.innerHTML = '';
+
+    matched.forEach(function(p){
+      var routeNames = (p.route_stops||[]).map(function(id){
+        var pl = PLACES.find(function(x){ return x.id === id; });
+        return pl ? pl.name : id;
+      });
+      var div = document.createElement('div');
+      div.className = 'pkg-card' + (typeof selectedPkg !== 'undefined' && selectedPkg && selectedPkg.id === p.id ? ' selected' : '');
+      div.onclick = function(){ selectPackageRoute(p); };
+      div.innerHTML =
+        '<div style="padding:11px 13px;">' +
+          '<div style="font-family:\'Cormorant\',serif;font-size:1rem;font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:5px">' + p.name + '</div>' +
+          '<div style="font-size:.7rem;color:var(--caption);line-height:1.6">' + routeNames.join(' → ') + '</div>' +
+        '</div>';
+      list.appendChild(div);
+    });
+  }
+
+  /* ── Wrap existing functions (never redefine their original behavior) ── */
+  if (typeof setupBaseUi === 'function'){
+    var _oldSetupBaseUi = setupBaseUi;
+    setupBaseUi = function(){ _oldSetupBaseUi(); refreshTrendingRail(); };
+  }
+
+  if (typeof renderStopsList === 'function'){
+    var _oldRenderStopsList = renderStopsList;
+    renderStopsList = function(){ _oldRenderStopsList(); refreshTrendingRail(); };
+  }
+
+  if (typeof selectGateway === 'function'){
+    var _oldSelectGateway = selectGateway;
+    selectGateway = function(name){
+      _oldSelectGateway(name);
+      setTimeout(function(){ showTrendingPopup(name); }, 550);
+    };
+  }
+
+  if (typeof addStop === 'function'){
+    var _oldAddStopForLoc = addStop;
+    addStop = function(place){
+      var before = (stops||[]).length;
+      _oldAddStopForLoc(place);
+      var after = (stops||[]).length;
+      if (after > before && after >= 2){
+        renderPackagesForLocation(place.id, place.name);
+      }
+    };
+  }
 
 })();
 </script>
