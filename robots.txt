@@ -2,14 +2,10 @@ User-agent: *
 Allow: /
 
 # Block admin & internal tools
-Disallow: /control.html
-Disallow: /webpage_management.html
-Disallow: /himachal-image-tool.html
-Disallow: /himachal_calculator.html
-Disallow: /Exp.html
-Disallow: /he-analytics.html
+Disallow: /admin/
+Disallow: /legacy/
+Disallow: /tools/
 Disallow: /hotel-contacts.html
-Disallow: /hotel-bulk-tools/
 Disallow: /firebase-config.js
 Disallow: /.env
 

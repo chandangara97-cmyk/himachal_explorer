@@ -603,9 +603,162 @@ header{
   .sidebar{max-height:45vh}
   .map-wrap{height:55vh}
 }
-.planner-kicker{font-size:.68rem;letter-spacing:.22em;font-weight:800;color:var(--gold);margin-bottom:6px}\n</style>
+.planner-kicker{font-size:.68rem;letter-spacing:.22em;font-weight:800;color:var(--gold);margin-bottom:6px}
+
+/* ═══════════════════════════════════════════════════════════════
+   WOW LAYER — cinematic entrance + sensory overhaul (additive only)
+═══════════════════════════════════════════════════════════════ */
+@keyframes wowFadeOut{to{opacity:0;visibility:hidden}}
+@keyframes wowTitleUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes wowSubIn{from{opacity:0}to{opacity:1}}
+@keyframes wowPeakRise{from{transform:translateY(40px)}to{transform:translateY(0)}}
+@keyframes wowCloudDrift{from{transform:translateX(-10%)}to{transform:translateX(110%)}}
+@keyframes wowShimmerText{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@keyframes wowGlowPulse{0%,100%{box-shadow:0 0 0 0 rgba(176,125,58,.45)}50%{box-shadow:0 0 0 8px rgba(176,125,58,0)}}
+@keyframes wowSweep{from{transform:translateX(-130%) skewX(-15deg)}to{transform:translateX(230%) skewX(-15deg)}}
+@keyframes wowCountPop{0%{transform:scale(1)}40%{transform:scale(1.35);color:#fff}100%{transform:scale(1)}}
+@keyframes wowSparkleUp{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.3)}}
+@keyframes wowSpin3D{from{transform:perspective(600px) rotateY(0)}to{transform:perspective(600px) rotateY(360deg)}}
+
+#wowSplash{
+  position:fixed;inset:0;z-index:20000;
+  background:radial-gradient(ellipse at 50% 30%,#2a1f10 0%,#1c1409 60%,#0f0a05 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;animation:wowFadeOut .9s ease forwards;animation-delay:2.4s;
+}
+#wowSplash.wow-skip{animation-duration:.5s;animation-delay:0s}
+.wow-peaks{position:absolute;bottom:0;left:0;width:100%;height:46%;animation:wowPeakRise 1.4s cubic-bezier(.16,1,.3,1) both}
+.wow-peaks svg{width:100%;height:100%;display:block}
+.wow-cloud{position:absolute;top:18%;width:220px;height:60px;opacity:.14;filter:blur(1px);
+  background:radial-gradient(circle,#fff 0%,transparent 70%);animation:wowCloudDrift 14s linear infinite}
+.wow-cloud.c2{top:32%;width:160px;height:44px;animation-duration:19s;animation-delay:-6s;opacity:.1}
+.wow-cloud.c3{top:10%;width:280px;height:70px;animation-duration:24s;animation-delay:-11s;opacity:.09}
+.wow-title{
+  position:relative;z-index:2;text-align:center;animation:wowTitleUp .9s cubic-bezier(.16,1,.3,1) both;animation-delay:.25s;
+}
+.wow-title h2{
+  font-family:'Cormorant',serif;font-weight:600;font-size:2.4rem;color:#fdf6ec;
+  letter-spacing:.02em;
+  background:linear-gradient(90deg,#fdf6ec,#e8b84b,#fdf6ec,#c99248,#fdf6ec);
+  background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:wowShimmerText 3.2s linear infinite;
+}
+.wow-title p{
+  margin-top:10px;font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.24em;
+  text-transform:uppercase;color:#c99248;opacity:0;animation:wowSubIn .8s ease forwards;animation-delay:.9s;
+}
+.wow-splash-skip{
+  position:absolute;bottom:26px;right:26px;z-index:3;font-family:'Jost',sans-serif;
+  font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);border-radius:20px;
+  padding:7px 16px;cursor:pointer;transition:all .2s;
+}
+.wow-splash-skip:hover{background:rgba(255,255,255,.18);color:#fff}
+
+/* Ambient background — sits behind app, subtle */
+.wow-ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.wow-ambient .wow-cloud{opacity:.35;filter:blur(2px)}
+.app{position:relative;z-index:1}
+
+/* Header logo shimmer */
+.logo{
+  background:linear-gradient(90deg,var(--ink) 20%,var(--gold2) 40%,var(--ink) 60%);
+  background-size:220% auto;-webkit-background-clip:text;background-clip:text;
+}
+.logo:hover{animation:wowShimmerText 1.6s linear infinite}
+
+/* Nav active glow */
+.hdr-nav a.active{text-shadow:0 0 10px rgba(176,125,58,.4)}
+
+/* Gateway pills — selection glow */
+.gw-pill{position:relative;overflow:hidden}
+.gw-pill.active{animation:wowGlowPulse 1.6s ease-out 1}
+.gw-pill:active{transform:scale(.96)}
+
+/* Tabs — livelier active state */
+.tab{position:relative;transition:color .2s,transform .15s}
+.tab.active{transform:translateY(-1px)}
+.tab.active::after{
+  content:'';position:absolute;left:20%;right:20%;bottom:-2px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  animation:wowShimmerText 1.8s linear infinite;background-size:200% auto
+}
+
+/* Buttons — sheen sweep */
+.btn-build,.btn-wa,.pkg-use-btn{position:relative;overflow:hidden}
+.btn-build::before,.btn-wa::before,.pkg-use-btn::before{
+  content:'';position:absolute;top:0;left:0;width:40%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:translateX(-130%) skewX(-15deg);pointer-events:none;
+}
+.btn-build:hover::before,.btn-wa:hover::before,.pkg-use-btn:hover::before{animation:wowSweep .9s ease}
+.btn-build:hover:not(:disabled),.btn-wa:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(28,20,9,.22)}
+.btn-build,.btn-wa,.pkg-use-btn{transition:transform .15s,box-shadow .15s,background .18s}
+
+/* Package cards — lift + glow on hover */
+.pkg-card{transition:all .25s cubic-bezier(.16,1,.3,1)}
+.pkg-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(28,20,9,.16)}
+
+/* Summary card — living gradient */
+.summary-card{
+  background:linear-gradient(115deg,var(--ink) 0%,#3d2e1e 45%,var(--ink) 100%);
+  background-size:220% 220%;
+}
+.summary-card.visible{animation:popIn .3s ease,wowGradientDrift 6s ease-in-out infinite}
+@keyframes wowGradientDrift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.sum-stat .val{transition:transform .2s}
+.sum-stat .val.wow-pop{animation:wowCountPop .5s ease}
+
+/* Route status dot + map border glow while routing */
+.map-wrap{transition:box-shadow .4s ease}
+.map-wrap.wow-routing{box-shadow:inset 0 0 0 2px rgba(201,146,72,.55)}
+
+/* Day legend dots — gentle glow */
+.dl-dot{box-shadow:0 0 0 3px rgba(0,0,0,.03)}
+
+/* AI avatar glow */
+.ai-avatar.bot{box-shadow:0 0 12px rgba(201,146,72,.5)}
+.ai-msg.bot .ai-bubble{animation:popIn .25s ease}
+
+/* Sparkle particle (spawned by JS) */
+.wow-sparkle{
+  position:fixed;z-index:9500;pointer-events:none;font-size:14px;
+  animation:wowSparkleUp .8s ease-out forwards;
+}
+
+@media(prefers-reduced-motion:reduce){
+  #wowSplash,.wow-title,.wow-peaks,.logo,.tab.active::after,.summary-card.visible,
+  .btn-build::before,.btn-wa::before,.pkg-use-btn::before{animation:none!important}
+}
+</style>
 </head>
 <body>
+
+<!-- ═══ WOW: Cinematic entrance splash ═══════════════════════════ -->
+<div id="wowSplash" aria-hidden="true">
+  <div class="wow-cloud" style="left:5%"></div>
+  <div class="wow-cloud c2" style="left:40%"></div>
+  <div class="wow-cloud c3" style="left:-10%"></div>
+  <div class="wow-title">
+    <h2>Himachal Explorer</h2>
+    <p>Charting your journey</p>
+  </div>
+  <div class="wow-peaks">
+    <svg viewBox="0 0 1440 300" preserveAspectRatio="none">
+      <polygon points="0,300 0,180 220,60 420,160 640,40 900,170 1180,70 1440,190 1440,300" fill="#0f0a05"/>
+      <polygon points="0,300 0,230 260,140 520,220 760,120 1020,210 1280,130 1440,220 1440,300" fill="#1c1409" opacity=".9"/>
+      <polygon points="0,300 0,265 320,210 620,260 900,200 1180,255 1440,215 1440,300" fill="#3d2e1e" opacity=".85"/>
+    </svg>
+  </div>
+  <button class="wow-splash-skip" id="wowSkipBtn" type="button">Skip ▸</button>
+</div>
+
+<!-- ═══ WOW: Ambient background (subtle, behind app) ═══════════════ -->
+<div class="wow-ambient" aria-hidden="true">
+  <div class="wow-cloud" style="left:8%;top:8%"></div>
+  <div class="wow-cloud c2" style="left:55%;top:14%"></div>
+</div>
+
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -3145,5 +3298,110 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   } else {
     setTimeout(init, 300);
   }
+})();
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   WOW LAYER JS — purely additive. Never touches existing state,
+   only observes DOM/class changes and layers decoration on top.
+═══════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+
+  /* ── 1. Splash intro: auto-dismiss + skip ── */
+  var splash = document.getElementById('wowSplash');
+  var skipBtn = document.getElementById('wowSkipBtn');
+  function dismissSplash(){
+    if (!splash || splash.dataset.gone) return;
+    splash.dataset.gone = '1';
+    splash.classList.add('wow-skip');
+    setTimeout(function(){ splash.remove(); }, 520);
+  }
+  if (skipBtn) skipBtn.addEventListener('click', dismissSplash);
+  if (splash) setTimeout(dismissSplash, 3300); // matches CSS animation timing, plus safety margin
+  // Respect users who've already seen it this session — shorten on repeat visits
+  try{
+    if (sessionStorage.getItem('heSplashSeen') === '1' && splash){
+      splash.style.animationDelay = '.15s';
+      splash.style.animationDuration = '.5s';
+    }
+    sessionStorage.setItem('heSplashSeen','1');
+  }catch(e){}
+
+  /* ── 2. Sparkle burst helper ── */
+  function sparkleBurst(el, count){
+    if (!el) return;
+    var r = el.getBoundingClientRect();
+    var cx = r.left + r.width/2, cy = r.top + r.height/2;
+    var glyphs = ['✨','⭐','🏔️','✦'];
+    for (var i=0; i<(count||10); i++){
+      var s = document.createElement('span');
+      s.className = 'wow-sparkle';
+      s.textContent = glyphs[Math.floor(Math.random()*glyphs.length)];
+      var ang = Math.random()*Math.PI*2, dist = 40+Math.random()*70;
+      s.style.setProperty('--dx', (Math.cos(ang)*dist)+'px');
+      s.style.setProperty('--dy', (Math.sin(ang)*dist - 20)+'px');
+      s.style.left = (cx + (Math.random()*20-10)) + 'px';
+      s.style.top = (cy + (Math.random()*20-10)) + 'px';
+      document.body.appendChild(s);
+      (function(node){ setTimeout(function(){ node.remove(); }, 850); })(s);
+    }
+  }
+
+  /* ── 3. Count-up + pop animation whenever summary stats change ── */
+  ['sumStops','sumDays','sumKm'].forEach(function(id){
+    var node = document.getElementById(id);
+    if (!node) return;
+    var mo = new MutationObserver(function(){
+      node.classList.remove('wow-pop');
+      void node.offsetWidth; // restart animation
+      node.classList.add('wow-pop');
+    });
+    mo.observe(node, { childList: true, characterData: true, subtree: true });
+  });
+
+  /* ── 4. Sparkle + glow when a route is successfully built ── */
+  var summaryCard = document.getElementById('summaryCard');
+  if (summaryCard){
+    var wasVisible = summaryCard.classList.contains('visible');
+    new MutationObserver(function(){
+      var isVisible = summaryCard.classList.contains('visible');
+      if (isVisible && !wasVisible){
+        sparkleBurst(summaryCard, 14);
+      }
+      wasVisible = isVisible;
+    }).observe(summaryCard, { attributes:true, attributeFilter:['class'] });
+  }
+
+  /* ── 5. Map glow while a route is actively being fetched ── */
+  var loader = document.getElementById('loader');
+  var mapWrap = document.querySelector('.map-wrap');
+  if (loader && mapWrap){
+    new MutationObserver(function(){
+      mapWrap.classList.toggle('wow-routing', loader.classList.contains('visible'));
+    }).observe(loader, { attributes:true, attributeFilter:['class'] });
+  }
+
+  /* ── 6. Little celebration burst on WhatsApp / Build clicks ── */
+  ['btnWA','btnBuild'].forEach(function(id){
+    var btn = document.getElementById(id);
+    if (btn) btn.addEventListener('click', function(){ sparkleBurst(btn, 8); });
+  });
+
+  /* ── 7. Gateway pill selection glow (re-trigger animation on click) ── */
+  document.addEventListener('click', function(e){
+    var pill = e.target.closest && e.target.closest('.gw-pill');
+    if (pill){
+      requestAnimationFrame(function(){
+        if (pill.classList.contains('active')){
+          pill.style.animation = 'none';
+          void pill.offsetWidth;
+          pill.style.animation = '';
+        }
+      });
+    }
+  }, true);
+
 })();
 </script>
