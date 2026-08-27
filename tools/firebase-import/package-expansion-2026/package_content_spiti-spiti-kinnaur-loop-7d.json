@@ -1,0 +1,141 @@
+{
+  "image": "https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600",
+  "inclusions": [
+    "Private cab with experienced driver",
+    "Hotel accommodation (3 Star)",
+    "Driver allowance & night halt charges",
+    "Hill state permits & tolls",
+    "Day-wise itinerary & personal support"
+  ],
+  "exclusions": [
+    "Flights or train tickets",
+    "Meals (unless specified)",
+    "Personal expenses",
+    "Travel insurance"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Kalpa Viewpoint Day",
+      "description": "Kalpa village and views of the Kinner Kailash range.",
+      "places": [
+        "Kalpa"
+      ],
+      "dist_time": "Local"
+    },
+    {
+      "day": 2,
+      "title": "Sangla-Chitkul Express",
+      "description": "Sangla Valley and onward to Chitkul, the last village on the old Hindustan-Tibet road.",
+      "places": [
+        "Sangla",
+        "Chitkul"
+      ],
+      "dist_time": "90 km - 3.5 hrs"
+    },
+    {
+      "day": 3,
+      "title": "Kinnaur Valley Short Trail",
+      "description": "Sangla, Kalpa and the district town of Reckong Peo.",
+      "places": [
+        "Sangla",
+        "Kalpa",
+        "Reckong Peo"
+      ],
+      "dist_time": "Multi-stop"
+    },
+    {
+      "day": 4,
+      "title": "Spiti Gateway",
+      "description": "Cross into Spiti via Kunzum Pass to reach Kaza.",
+      "places": [
+        "Kaza",
+        "Kunzum Pass"
+      ],
+      "dist_time": "150 km - 6 hrs"
+    },
+    {
+      "day": 5,
+      "title": "Spiti Monastery Circuit",
+      "description": "Key Monastery, Kibber village and the fossil village of Langza.",
+      "places": [
+        "Key Monastery",
+        "Kibber",
+        "Langza"
+      ],
+      "dist_time": "Multi-stop"
+    },
+    {
+      "day": 6,
+      "title": "Chandratal-Spiti Combo",
+      "description": "Lake camping at Chandratal combined with the Spiti village circuit.",
+      "places": [
+        "Chandratal Lake",
+        "Kaza"
+      ],
+      "dist_time": "Multi-stop + Camp"
+    },
+    {
+      "day": 7,
+      "title": "Spiti-Kinnaur Loop",
+      "description": "Full loop covering both the Spiti and Kinnaur valleys.",
+      "places": [
+        "Kaza",
+        "Sangla"
+      ],
+      "dist_time": "Grand loop"
+    }
+  ],
+  "route_stops": [
+    {
+      "name": "RECKONG PEO",
+      "lat": 31.53,
+      "lng": 78.27
+    },
+    {
+      "name": "Kalpa",
+      "lat": 31.539,
+      "lng": 78.254
+    },
+    {
+      "name": "Sangla",
+      "lat": 31.429,
+      "lng": 78.262
+    },
+    {
+      "name": "Chitkul",
+      "lat": 31.346,
+      "lng": 78.436
+    },
+    {
+      "name": "Kaza",
+      "lat": 32.227,
+      "lng": 78.067
+    },
+    {
+      "name": "Kunzum Pass",
+      "lat": 32.3667,
+      "lng": 77.6333
+    },
+    {
+      "name": "Key Monastery",
+      "lat": 32.299,
+      "lng": 78.012
+    },
+    {
+      "name": "Kibber",
+      "lat": 32.3333,
+      "lng": 78.0167
+    },
+    {
+      "name": "Langza",
+      "lat": 32.27,
+      "lng": 78.07
+    },
+    {
+      "name": "Chandratal Lake",
+      "lat": 32.482,
+      "lng": 77.615
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "image": "https://drive.google.com/thumbnail?id=10_KfuO452VEIuDthPCL8kXMQblL0URWq&sz=w600",
+  "inclusions": [
+    "Private cab with experienced driver",
+    "Hotel accommodation (3 Star)",
+    "Driver allowance & night halt charges",
+    "Hill state permits & tolls",
+    "Day-wise itinerary & personal support"
+  ],
+  "exclusions": [
+    "Flights or train tickets",
+    "Meals (unless specified)",
+    "Personal expenses",
+    "Travel insurance"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Kasol Cafe Trail",
+      "description": "Arrival in Kasol, riverside cafes and the Parvati river walk.",
+      "places": [
+        "Kasol"
+      ],
+      "dist_time": "Local"
+    },
+    {
+      "day": 2,
+      "title": "Tosh Getaway",
+      "description": "Day trip to the village of Tosh at the edge of the valley.",
+      "places": [
+        "Tosh"
+      ],
+      "dist_time": "12 km - 40 min"
+    },
+    {
+      "day": 3,
+      "title": "Kheerganga Trek",
+      "description": "Trek up to the Kheerganga hot springs, overnight in the meadow.",
+      "places": [
+        "Kheerganga"
+      ],
+      "dist_time": "Trek - 4-5 hrs one-way"
+    }
+  ],
+  "route_stops": [
+    {
+      "name": "KASOL",
+      "lat": 32.01,
+      "lng": 77.316
+    },
+    {
+      "name": "Tosh",
+      "lat": 32.025,
+      "lng": 77.45
+    },
+    {
+      "name": "Kheerganga",
+      "lat": 32.033,
+      "lng": 77.451
+    }
+  ]
+}

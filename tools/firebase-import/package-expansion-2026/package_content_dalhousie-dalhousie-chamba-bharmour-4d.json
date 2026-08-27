@@ -1,0 +1,77 @@
+{
+  "image": "https://drive.google.com/thumbnail?id=19upYXK2gJjwrC4Hv5V_3UqeOqwyz1zk6&sz=w600",
+  "inclusions": [
+    "Private cab with experienced driver",
+    "Hotel accommodation (3 Star)",
+    "Driver allowance & night halt charges",
+    "Hill state permits & tolls",
+    "Day-wise itinerary & personal support"
+  ],
+  "exclusions": [
+    "Flights or train tickets",
+    "Meals (unless specified)",
+    "Personal expenses",
+    "Travel insurance"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Dalhousie Colonial Trail",
+      "description": "Colonial-era Dalhousie town, churches and Mall Road.",
+      "places": [
+        "Dalhousie"
+      ],
+      "dist_time": "Local"
+    },
+    {
+      "day": 2,
+      "title": "Khajjiar - Mini Switzerland",
+      "description": "Day trip to the Khajjiar meadow and lake.",
+      "places": [
+        "Khajjiar"
+      ],
+      "dist_time": "22 km - 45 min"
+    },
+    {
+      "day": 3,
+      "title": "Chamba Heritage Circuit",
+      "description": "Chamba town temples and the Bhuri Singh Museum.",
+      "places": [
+        "Chamba Town"
+      ],
+      "dist_time": "56 km - 2 hrs"
+    },
+    {
+      "day": 4,
+      "title": "Dalhousie-Chamba-Bharmour",
+      "description": "Extended temple circuit through to Bharmour.",
+      "places": [
+        "Chamba Town",
+        "Bharmour"
+      ],
+      "dist_time": "65 km - 2.5 hrs"
+    }
+  ],
+  "route_stops": [
+    {
+      "name": "DALHOUSIE",
+      "lat": 32.538,
+      "lng": 75.97
+    },
+    {
+      "name": "Khajjiar",
+      "lat": 32.549,
+      "lng": 76.059
+    },
+    {
+      "name": "Chamba Town",
+      "lat": 32.556,
+      "lng": 76.126
+    },
+    {
+      "name": "Bharmour",
+      "lat": 32.4439,
+      "lng": 76.5133
+    }
+  ]
+}

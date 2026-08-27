@@ -1,0 +1,54 @@
+{
+  "image": "https://drive.google.com/thumbnail?id=1ywkB_gHrhtYuwAZFLccRt-53R-25Ihlx&sz=w600",
+  "inclusions": [
+    "Private cab with experienced driver",
+    "Hotel accommodation (3 Star)",
+    "Driver allowance & night halt charges",
+    "Hill state permits & tolls",
+    "Day-wise itinerary & personal support"
+  ],
+  "exclusions": [
+    "Flights or train tickets",
+    "Meals (unless specified)",
+    "Personal expenses",
+    "Travel insurance"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "McLeod Ganj Heritage Walk",
+      "description": "Dalai Lama Temple complex, local markets and Bhagsu Falls.",
+      "places": [
+        "McLeod Ganj",
+        "Bhagsu Falls"
+      ],
+      "dist_time": "Local"
+    },
+    {
+      "day": 2,
+      "title": "Triund Trek Getaway",
+      "description": "Trek up to Triund with an overnight under the Dhauladhar range.",
+      "places": [
+        "Triund"
+      ],
+      "dist_time": "Trek - 4 hrs one-way"
+    }
+  ],
+  "route_stops": [
+    {
+      "name": "MCLEOD GANJ",
+      "lat": 32.2426,
+      "lng": 76.3213
+    },
+    {
+      "name": "Bhagsu Falls",
+      "lat": 32.2465,
+      "lng": 76.3315
+    },
+    {
+      "name": "Triund",
+      "lat": 32.2618,
+      "lng": 76.3503
+    }
+  ]
+}

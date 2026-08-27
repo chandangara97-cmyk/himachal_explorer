@@ -1,0 +1,34 @@
+{
+  "image": "https://drive.google.com/thumbnail?id=1bHLbIYMa3xO9LkVwT-xdU_SFYGGqIFmZ&sz=w600",
+  "inclusions": [
+    "Private cab with experienced driver",
+    "Hotel accommodation (3 Star)",
+    "Driver allowance & night halt charges",
+    "Hill state permits & tolls",
+    "Day-wise itinerary & personal support"
+  ],
+  "exclusions": [
+    "Flights or train tickets",
+    "Meals (unless specified)",
+    "Personal expenses",
+    "Travel insurance"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Kasol Cafe Trail",
+      "description": "Arrival in Kasol, riverside cafes and the Parvati river walk.",
+      "places": [
+        "Kasol"
+      ],
+      "dist_time": "Local"
+    }
+  ],
+  "route_stops": [
+    {
+      "name": "KASOL",
+      "lat": 32.01,
+      "lng": 77.316
+    }
+  ]
+}

@@ -1,0 +1,6336 @@
+{
+  "templates_index/shimla-shimla-ridge-and-mall-road-1d": {
+    "package_id": "shimla-shimla-ridge-and-mall-road-1d",
+    "package_name": "Shimla Ridge & Mall Road (1D/0N)",
+    "days": 1,
+    "start_point": "CHANDIGARH / DELHI / SHIMLA",
+    "best_season": "Mar-Jun, Sep-Dec",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 3200,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/shimla-shimla-kufri-duo-2d": {
+    "package_id": "shimla-shimla-kufri-duo-2d",
+    "package_name": "Shimla-Kufri Duo (2D/1N)",
+    "days": 2,
+    "start_point": "CHANDIGARH / DELHI / SHIMLA",
+    "best_season": "Mar-Jun, Sep-Dec",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 5000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/shimla-shimla-chail-kufri-3d": {
+    "package_id": "shimla-shimla-chail-kufri-3d",
+    "package_name": "Shimla-Chail-Kufri (3D/2N)",
+    "days": 3,
+    "start_point": "CHANDIGARH / DELHI / SHIMLA",
+    "best_season": "Mar-Jun, Sep-Dec",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 7500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/shimla-shimla-nature-trail-4d": {
+    "package_id": "shimla-shimla-nature-trail-4d",
+    "package_name": "Shimla Nature Trail (4D/3N)",
+    "days": 4,
+    "start_point": "CHANDIGARH / DELHI / SHIMLA",
+    "best_season": "Mar-Jun, Sep-Dec",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 10000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/shimla-shimla-kasauli-explorer-5d": {
+    "package_id": "shimla-shimla-kasauli-explorer-5d",
+    "package_name": "Shimla-Kasauli Explorer (5D/4N)",
+    "days": 5,
+    "start_point": "CHANDIGARH / DELHI / SHIMLA",
+    "best_season": "Mar-Jun, Sep-Dec",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 12500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/shimla-shimla-sarahan-circuit-6d": {
+    "package_id": "shimla-shimla-sarahan-circuit-6d",
+    "package_name": "Shimla-Sarahan Circuit (6D/5N)",
+    "days": 6,
+    "start_point": "CHANDIGARH / DELHI / SHIMLA",
+    "best_season": "Mar-Jun, Sep-Dec",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 15000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/shimla-shimla-kinnaur-gateway-7d": {
+    "package_id": "shimla-shimla-kinnaur-gateway-7d",
+    "package_name": "Shimla-Kinnaur Gateway (7D/6N)",
+    "days": 7,
+    "start_point": "CHANDIGARH / DELHI / SHIMLA",
+    "best_season": "Mar-Jun, Sep-Dec",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 17500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/shimla-shimla-sangla-adventure-8d": {
+    "package_id": "shimla-shimla-sangla-adventure-8d",
+    "package_name": "Shimla-Sangla Adventure (8D/7N)",
+    "days": 8,
+    "start_point": "CHANDIGARH / DELHI / SHIMLA",
+    "best_season": "Mar-Jun, Sep-Dec",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 20000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/shimla-shimla-kinnaur-chitkul-9d": {
+    "package_id": "shimla-shimla-kinnaur-chitkul-9d",
+    "package_name": "Shimla-Kinnaur-Chitkul (9D/8N)",
+    "days": 9,
+    "start_point": "CHANDIGARH / DELHI / SHIMLA",
+    "best_season": "Mar-Jun, Sep-Dec",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 22500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/shimla-shimla-grand-himalayan-loop-10d": {
+    "package_id": "shimla-shimla-grand-himalayan-loop-10d",
+    "package_name": "Shimla Grand Himalayan Loop (10D/9N)",
+    "days": 10,
+    "start_point": "CHANDIGARH / DELHI / SHIMLA",
+    "best_season": "Mar-Jun, Sep-Dec",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 25000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/manali-solang-valley-adventure-sprint-1d": {
+    "package_id": "manali-solang-valley-adventure-sprint-1d",
+    "package_name": "Solang Valley Adventure Sprint (1D/0N)",
+    "days": 1,
+    "start_point": "MANALI",
+    "best_season": "Mar-Jun, Sep-Dec (snow Dec-Feb)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 3200,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/manali-manali-discovery-2d": {
+    "package_id": "manali-manali-discovery-2d",
+    "package_name": "Manali Discovery (2D/1N)",
+    "days": 2,
+    "start_point": "MANALI",
+    "best_season": "Mar-Jun, Sep-Dec (snow Dec-Feb)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 5000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/manali-rohtang-pass-expedition-3d": {
+    "package_id": "manali-rohtang-pass-expedition-3d",
+    "package_name": "Rohtang Pass Expedition (3D/2N)",
+    "days": 3,
+    "start_point": "MANALI",
+    "best_season": "Mar-Jun, Sep-Dec (snow Dec-Feb)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 7500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/manali-manali-kasol-crossover-4d": {
+    "package_id": "manali-manali-kasol-crossover-4d",
+    "package_name": "Manali-Kasol Crossover (4D/3N)",
+    "days": 4,
+    "start_point": "MANALI",
+    "best_season": "Mar-Jun, Sep-Dec (snow Dec-Feb)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 10000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/manali-hampta-pass-trek-easy-5d": {
+    "package_id": "manali-hampta-pass-trek-easy-5d",
+    "package_name": "Hampta Pass Trek (Easy) (5D/4N)",
+    "days": 5,
+    "start_point": "MANALI",
+    "best_season": "Mar-Jun, Sep-Dec (snow Dec-Feb)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 12500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/manali-hampta-pass-full-trek-6d": {
+    "package_id": "manali-hampta-pass-full-trek-6d",
+    "package_name": "Hampta Pass Full Trek (6D/5N)",
+    "days": 6,
+    "start_point": "MANALI",
+    "best_season": "Mar-Jun, Sep-Dec (snow Dec-Feb)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 15000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/manali-manali-spiti-gateway-7d": {
+    "package_id": "manali-manali-spiti-gateway-7d",
+    "package_name": "Manali-Spiti Gateway (7D/6N)",
+    "days": 7,
+    "start_point": "MANALI",
+    "best_season": "Mar-Jun, Sep-Dec (snow Dec-Feb)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 17500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/manali-bhrigu-lake-manali-circuit-8d": {
+    "package_id": "manali-bhrigu-lake-manali-circuit-8d",
+    "package_name": "Bhrigu Lake + Manali Circuit (8D/7N)",
+    "days": 8,
+    "start_point": "MANALI",
+    "best_season": "Mar-Jun, Sep-Dec (snow Dec-Feb)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 20000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/manali-manali-grand-adventure-9d": {
+    "package_id": "manali-manali-grand-adventure-9d",
+    "package_name": "Manali Grand Adventure (9D/8N)",
+    "days": 9,
+    "start_point": "MANALI",
+    "best_season": "Mar-Jun, Sep-Dec (snow Dec-Feb)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 22500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/manali-manali-spiti-kinnaur-loop-10d": {
+    "package_id": "manali-manali-spiti-kinnaur-loop-10d",
+    "package_name": "Manali-Spiti-Kinnaur Loop (10D/9N)",
+    "days": 10,
+    "start_point": "MANALI",
+    "best_season": "Mar-Jun, Sep-Dec (snow Dec-Feb)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 25000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/kasol-kasol-cafe-trail-1d": {
+    "package_id": "kasol-kasol-cafe-trail-1d",
+    "package_name": "Kasol Cafe Trail (1D/0N)",
+    "days": 1,
+    "start_point": "BHUNTAR",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 3200,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/kasol-kasol-tosh-getaway-2d": {
+    "package_id": "kasol-kasol-tosh-getaway-2d",
+    "package_name": "Kasol-Tosh Getaway (2D/1N)",
+    "days": 2,
+    "start_point": "BHUNTAR",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 5000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/kasol-kheerganga-trek-3d": {
+    "package_id": "kasol-kheerganga-trek-3d",
+    "package_name": "Kheerganga Trek (3D/2N)",
+    "days": 3,
+    "start_point": "BHUNTAR",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 7500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/kasol-malana-kasol-explorer-4d": {
+    "package_id": "kasol-malana-kasol-explorer-4d",
+    "package_name": "Malana-Kasol Explorer (4D/3N)",
+    "days": 4,
+    "start_point": "BHUNTAR",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 10000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/kasol-parvati-valley-immersion-5d": {
+    "package_id": "kasol-parvati-valley-immersion-5d",
+    "package_name": "Parvati Valley Immersion (5D/4N)",
+    "days": 5,
+    "start_point": "BHUNTAR",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 12500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/kasol-manikaran-pilgrimage-parvati-6d": {
+    "package_id": "kasol-manikaran-pilgrimage-parvati-6d",
+    "package_name": "Manikaran Pilgrimage + Parvati (6D/5N)",
+    "days": 6,
+    "start_point": "BHUNTAR",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 15000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/kasol-parvati-spiti-connector-7d": {
+    "package_id": "kasol-parvati-spiti-connector-7d",
+    "package_name": "Parvati-Spiti Connector (7D/6N)",
+    "days": 7,
+    "start_point": "BHUNTAR",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 17500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/kasol-parvati-valley-deep-trail-8d": {
+    "package_id": "kasol-parvati-valley-deep-trail-8d",
+    "package_name": "Parvati Valley Deep Trail (8D/7N)",
+    "days": 8,
+    "start_point": "BHUNTAR",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 20000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/kasol-parvati-kinnaur-adventure-9d": {
+    "package_id": "kasol-parvati-kinnaur-adventure-9d",
+    "package_name": "Parvati-Kinnaur Adventure (9D/8N)",
+    "days": 9,
+    "start_point": "BHUNTAR",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 22500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/kasol-parvati-grand-circuit-10d": {
+    "package_id": "kasol-parvati-grand-circuit-10d",
+    "package_name": "Parvati Grand Circuit (10D/9N)",
+    "days": 10,
+    "start_point": "BHUNTAR",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 25000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/dharamshala-mcleod-ganj-heritage-walk-1d": {
+    "package_id": "dharamshala-mcleod-ganj-heritage-walk-1d",
+    "package_name": "McLeod Ganj Heritage Walk (1D/0N)",
+    "days": 1,
+    "start_point": "DHARAMSHALA",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 3200,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/dharamshala-triund-trek-getaway-2d": {
+    "package_id": "dharamshala-triund-trek-getaway-2d",
+    "package_name": "Triund Trek Getaway (2D/1N)",
+    "days": 2,
+    "start_point": "DHARAMSHALA",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 5000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/dharamshala-bir-billing-paragliding-special-3d": {
+    "package_id": "dharamshala-bir-billing-paragliding-special-3d",
+    "package_name": "Bir Billing Paragliding Special (3D/2N)",
+    "days": 3,
+    "start_point": "DHARAMSHALA",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 7500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/dharamshala-dharamshala-bir-circuit-4d": {
+    "package_id": "dharamshala-dharamshala-bir-circuit-4d",
+    "package_name": "Dharamshala-Bir Circuit (4D/3N)",
+    "days": 4,
+    "start_point": "DHARAMSHALA",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 10000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/dharamshala-dhauladhar-explorer-5d": {
+    "package_id": "dharamshala-dhauladhar-explorer-5d",
+    "package_name": "Dhauladhar Explorer (5D/4N)",
+    "days": 5,
+    "start_point": "DHARAMSHALA",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 12500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/dharamshala-kangra-valley-deep-dive-6d": {
+    "package_id": "dharamshala-kangra-valley-deep-dive-6d",
+    "package_name": "Kangra Valley Deep Dive (6D/5N)",
+    "days": 6,
+    "start_point": "DHARAMSHALA",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 15000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/dharamshala-dharamshala-adventure-week-7d": {
+    "package_id": "dharamshala-dharamshala-adventure-week-7d",
+    "package_name": "Dharamshala Adventure Week (7D/6N)",
+    "days": 7,
+    "start_point": "DHARAMSHALA",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 17500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/dharamshala-indrahar-pass-trek-8d": {
+    "package_id": "dharamshala-indrahar-pass-trek-8d",
+    "package_name": "Indrahar Pass Trek (8D/7N)",
+    "days": 8,
+    "start_point": "DHARAMSHALA",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 20000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/dharamshala-dhauladhar-grand-trail-9d": {
+    "package_id": "dharamshala-dhauladhar-grand-trail-9d",
+    "package_name": "Dhauladhar Grand Trail (9D/8N)",
+    "days": 9,
+    "start_point": "DHARAMSHALA",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 22500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/dharamshala-kangra-chamba-dalhousie-expedition-10d": {
+    "package_id": "dharamshala-kangra-chamba-dalhousie-expedition-10d",
+    "package_name": "Kangra-Chamba-Dalhousie Expedition (10D/9N)",
+    "days": 10,
+    "start_point": "DHARAMSHALA",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 25000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/spiti-kalpa-viewpoint-day-trip-1d": {
+    "package_id": "spiti-kalpa-viewpoint-day-trip-1d",
+    "package_name": "Kalpa Viewpoint Day Trip (1D/0N)",
+    "days": 1,
+    "start_point": "SHIMLA",
+    "best_season": "May-Oct (road-dependent)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 4200,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/spiti-sangla-chitkul-express-2d": {
+    "package_id": "spiti-sangla-chitkul-express-2d",
+    "package_name": "Sangla-Chitkul Express (2D/1N)",
+    "days": 2,
+    "start_point": "SHIMLA",
+    "best_season": "May-Oct (road-dependent)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 6800,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/spiti-kinnaur-valley-short-trail-3d": {
+    "package_id": "spiti-kinnaur-valley-short-trail-3d",
+    "package_name": "Kinnaur Valley Short Trail (3D/2N)",
+    "days": 3,
+    "start_point": "SHIMLA",
+    "best_season": "May-Oct (road-dependent)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 10200,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/spiti-spiti-gateway-4d": {
+    "package_id": "spiti-spiti-gateway-4d",
+    "package_name": "Spiti Gateway (4D/3N)",
+    "days": 4,
+    "start_point": "SHIMLA",
+    "best_season": "May-Oct (road-dependent)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 13600,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/spiti-spiti-monastery-circuit-5d": {
+    "package_id": "spiti-spiti-monastery-circuit-5d",
+    "package_name": "Spiti Monastery Circuit (5D/4N)",
+    "days": 5,
+    "start_point": "SHIMLA",
+    "best_season": "May-Oct (road-dependent)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 17000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/spiti-chandratal-spiti-combo-6d": {
+    "package_id": "spiti-chandratal-spiti-combo-6d",
+    "package_name": "Chandratal-Spiti Combo (6D/5N)",
+    "days": 6,
+    "start_point": "SHIMLA",
+    "best_season": "May-Oct (road-dependent)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 20400,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/spiti-spiti-kinnaur-loop-7d": {
+    "package_id": "spiti-spiti-kinnaur-loop-7d",
+    "package_name": "Spiti-Kinnaur Loop (7D/6N)",
+    "days": 7,
+    "start_point": "SHIMLA",
+    "best_season": "May-Oct (road-dependent)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 23800,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/spiti-spiti-high-altitude-villages-8d": {
+    "package_id": "spiti-spiti-high-altitude-villages-8d",
+    "package_name": "Spiti High-Altitude Villages (8D/7N)",
+    "days": 8,
+    "start_point": "SHIMLA",
+    "best_season": "May-Oct (road-dependent)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 27200,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/spiti-spiti-grand-expedition-9d": {
+    "package_id": "spiti-spiti-grand-expedition-9d",
+    "package_name": "Spiti Grand Expedition (9D/8N)",
+    "days": 9,
+    "start_point": "SHIMLA",
+    "best_season": "May-Oct (road-dependent)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 30600,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/spiti-spiti-kinnaur-sarahan-circuit-10d": {
+    "package_id": "spiti-spiti-kinnaur-sarahan-circuit-10d",
+    "package_name": "Spiti-Kinnaur-Sarahan Circuit (10D/9N)",
+    "days": 10,
+    "start_point": "SHIMLA",
+    "best_season": "May-Oct (road-dependent)",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 34000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/dalhousie-dalhousie-colonial-trail-1d": {
+    "package_id": "dalhousie-dalhousie-colonial-trail-1d",
+    "package_name": "Dalhousie Colonial Trail (1D/0N)",
+    "days": 1,
+    "start_point": "DALHOUSIE",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 3200,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/dalhousie-dalhousie-khajjiar-duo-2d": {
+    "package_id": "dalhousie-dalhousie-khajjiar-duo-2d",
+    "package_name": "Dalhousie-Khajjiar Duo (2D/1N)",
+    "days": 2,
+    "start_point": "DALHOUSIE",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 5000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/dalhousie-chamba-heritage-circuit-3d": {
+    "package_id": "dalhousie-chamba-heritage-circuit-3d",
+    "package_name": "Chamba Heritage Circuit (3D/2N)",
+    "days": 3,
+    "start_point": "DALHOUSIE",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 7500,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/dalhousie-dalhousie-chamba-bharmour-4d": {
+    "package_id": "dalhousie-dalhousie-chamba-bharmour-4d",
+    "package_name": "Dalhousie-Chamba-Bharmour (4D/3N)",
+    "days": 4,
+    "start_point": "DALHOUSIE",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 10000,
+    "status": "active",
+    "tags": ""
+  },
+  "templates_index/dalhousie-chamba-valley-explorer-5d": {
+    "package_id": "dalhousie-chamba-valley-explorer-5d",
+    "package_name": "Chamba Valley Explorer (5D/4N)",
+    "days": 5,
+    "start_point": "DALHOUSIE",
+    "best_season": "Mar-Jun, Sep-Nov",
+    "hotel_star": "3 Star",
+    "budget_price_pp": 12500,
+    "status": "active",
+    "tags": ""
+  },
+  "package_content/shimla-shimla-ridge-and-mall-road-1d": {
+    "image": "https://drive.google.com/thumbnail?id=1ut5eL2H-hIjMeELodJDuY4ZrZCauGBoZ&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Shimla Ridge & Mall Road",
+        "description": "Arrival in Shimla, evening stroll on The Ridge and Mall Road, Christ Church view.",
+        "places": [
+          "Shimla"
+        ],
+        "dist_time": "Local"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "SHIMLA",
+        "lat": 31.1048,
+        "lng": 77.1734
+      }
+    ]
+  },
+  "package_content/shimla-shimla-kufri-duo-2d": {
+    "image": "https://drive.google.com/thumbnail?id=1ut5eL2H-hIjMeELodJDuY4ZrZCauGBoZ&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Shimla Ridge & Mall Road",
+        "description": "Arrival in Shimla, evening stroll on The Ridge and Mall Road, Christ Church view.",
+        "places": [
+          "Shimla"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Kufri Excursion",
+        "description": "Day trip to Kufri for pony rides, Himalayan Nature Park and valley views.",
+        "places": [
+          "Kufri"
+        ],
+        "dist_time": "16 km - 1 hr"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "SHIMLA",
+        "lat": 31.1048,
+        "lng": 77.1734
+      },
+      {
+        "name": "Kufri",
+        "lat": 31.0978,
+        "lng": 77.267
+      }
+    ]
+  },
+  "package_content/shimla-shimla-chail-kufri-3d": {
+    "image": "https://drive.google.com/thumbnail?id=1ut5eL2H-hIjMeELodJDuY4ZrZCauGBoZ&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Shimla Ridge & Mall Road",
+        "description": "Arrival in Shimla, evening stroll on The Ridge and Mall Road, Christ Church view.",
+        "places": [
+          "Shimla"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Kufri Excursion",
+        "description": "Day trip to Kufri for pony rides, Himalayan Nature Park and valley views.",
+        "places": [
+          "Kufri"
+        ],
+        "dist_time": "16 km - 1 hr"
+      },
+      {
+        "day": 3,
+        "title": "Chail Getaway",
+        "description": "Drive to Chail, visit the Chail Palace grounds and the world's highest cricket ground.",
+        "places": [
+          "Chail"
+        ],
+        "dist_time": "45 km - 1.5 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "SHIMLA",
+        "lat": 31.1048,
+        "lng": 77.1734
+      },
+      {
+        "name": "Kufri",
+        "lat": 31.0978,
+        "lng": 77.267
+      },
+      {
+        "name": "Chail",
+        "lat": 30.969,
+        "lng": 77.196
+      }
+    ]
+  },
+  "package_content/shimla-shimla-nature-trail-4d": {
+    "image": "https://drive.google.com/thumbnail?id=1zyML626vzyNAfQaMMYLr1lsIBCBjUvqQ&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Shimla Ridge & Mall Road",
+        "description": "Arrival in Shimla, evening stroll on The Ridge and Mall Road, Christ Church view.",
+        "places": [
+          "Shimla"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Kufri Excursion",
+        "description": "Day trip to Kufri for pony rides, Himalayan Nature Park and valley views.",
+        "places": [
+          "Kufri"
+        ],
+        "dist_time": "16 km - 1 hr"
+      },
+      {
+        "day": 3,
+        "title": "Chail Getaway",
+        "description": "Drive to Chail, visit the Chail Palace grounds and the world's highest cricket ground.",
+        "places": [
+          "Chail"
+        ],
+        "dist_time": "45 km - 1.5 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Naldehra & Mashobra",
+        "description": "Naldehra golf course meadows and Mashobra orchard drive.",
+        "places": [
+          "Naldehra",
+          "Mashobra"
+        ],
+        "dist_time": "25 km - 1 hr"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "SHIMLA",
+        "lat": 31.1048,
+        "lng": 77.1734
+      },
+      {
+        "name": "Kufri",
+        "lat": 31.0978,
+        "lng": 77.267
+      },
+      {
+        "name": "Chail",
+        "lat": 30.969,
+        "lng": 77.196
+      },
+      {
+        "name": "Naldehra",
+        "lat": 31.1664,
+        "lng": 77.2343
+      },
+      {
+        "name": "Mashobra",
+        "lat": 31.1345,
+        "lng": 77.2198
+      }
+    ]
+  },
+  "package_content/shimla-shimla-kasauli-explorer-5d": {
+    "image": "https://drive.google.com/thumbnail?id=1ut5eL2H-hIjMeELodJDuY4ZrZCauGBoZ&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Shimla Ridge & Mall Road",
+        "description": "Arrival in Shimla, evening stroll on The Ridge and Mall Road, Christ Church view.",
+        "places": [
+          "Shimla"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Kufri Excursion",
+        "description": "Day trip to Kufri for pony rides, Himalayan Nature Park and valley views.",
+        "places": [
+          "Kufri"
+        ],
+        "dist_time": "16 km - 1 hr"
+      },
+      {
+        "day": 3,
+        "title": "Chail Getaway",
+        "description": "Drive to Chail, visit the Chail Palace grounds and the world's highest cricket ground.",
+        "places": [
+          "Chail"
+        ],
+        "dist_time": "45 km - 1.5 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Naldehra & Mashobra",
+        "description": "Naldehra golf course meadows and Mashobra orchard drive.",
+        "places": [
+          "Naldehra",
+          "Mashobra"
+        ],
+        "dist_time": "25 km - 1 hr"
+      },
+      {
+        "day": 5,
+        "title": "Kasauli Day Trip",
+        "description": "Colonial-era Kasauli town, Sunset Point and Christ Church.",
+        "places": [
+          "Kasauli"
+        ],
+        "dist_time": "65 km - 2 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "SHIMLA",
+        "lat": 31.1048,
+        "lng": 77.1734
+      },
+      {
+        "name": "Kufri",
+        "lat": 31.0978,
+        "lng": 77.267
+      },
+      {
+        "name": "Chail",
+        "lat": 30.969,
+        "lng": 77.196
+      },
+      {
+        "name": "Naldehra",
+        "lat": 31.1664,
+        "lng": 77.2343
+      },
+      {
+        "name": "Mashobra",
+        "lat": 31.1345,
+        "lng": 77.2198
+      },
+      {
+        "name": "Kasauli",
+        "lat": 30.9013,
+        "lng": 76.9649
+      }
+    ]
+  },
+  "package_content/shimla-shimla-sarahan-circuit-6d": {
+    "image": "https://drive.google.com/thumbnail?id=10_KfuO452VEIuDthPCL8kXMQblL0URWq&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Shimla Ridge & Mall Road",
+        "description": "Arrival in Shimla, evening stroll on The Ridge and Mall Road, Christ Church view.",
+        "places": [
+          "Shimla"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Kufri Excursion",
+        "description": "Day trip to Kufri for pony rides, Himalayan Nature Park and valley views.",
+        "places": [
+          "Kufri"
+        ],
+        "dist_time": "16 km - 1 hr"
+      },
+      {
+        "day": 3,
+        "title": "Chail Getaway",
+        "description": "Drive to Chail, visit the Chail Palace grounds and the world's highest cricket ground.",
+        "places": [
+          "Chail"
+        ],
+        "dist_time": "45 km - 1.5 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Naldehra & Mashobra",
+        "description": "Naldehra golf course meadows and Mashobra orchard drive.",
+        "places": [
+          "Naldehra",
+          "Mashobra"
+        ],
+        "dist_time": "25 km - 1 hr"
+      },
+      {
+        "day": 5,
+        "title": "Kasauli Day Trip",
+        "description": "Colonial-era Kasauli town, Sunset Point and Christ Church.",
+        "places": [
+          "Kasauli"
+        ],
+        "dist_time": "65 km - 2 hrs"
+      },
+      {
+        "day": 6,
+        "title": "Sarahan - Bhimakali Temple",
+        "description": "Drive to Sarahan, visit the Bhimakali Temple complex and apple orchards.",
+        "places": [
+          "Sarahan"
+        ],
+        "dist_time": "180 km - 6 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "SHIMLA",
+        "lat": 31.1048,
+        "lng": 77.1734
+      },
+      {
+        "name": "Kufri",
+        "lat": 31.0978,
+        "lng": 77.267
+      },
+      {
+        "name": "Chail",
+        "lat": 30.969,
+        "lng": 77.196
+      },
+      {
+        "name": "Naldehra",
+        "lat": 31.1664,
+        "lng": 77.2343
+      },
+      {
+        "name": "Mashobra",
+        "lat": 31.1345,
+        "lng": 77.2198
+      },
+      {
+        "name": "Kasauli",
+        "lat": 30.9013,
+        "lng": 76.9649
+      },
+      {
+        "name": "Sarahan",
+        "lat": 31.518,
+        "lng": 77.813
+      }
+    ]
+  },
+  "package_content/shimla-shimla-kinnaur-gateway-7d": {
+    "image": "https://drive.google.com/thumbnail?id=1kx5pdbLu_Eb0kh1S1mCkhU8mMMxCS8AU&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Shimla Ridge & Mall Road",
+        "description": "Arrival in Shimla, evening stroll on The Ridge and Mall Road, Christ Church view.",
+        "places": [
+          "Shimla"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Kufri Excursion",
+        "description": "Day trip to Kufri for pony rides, Himalayan Nature Park and valley views.",
+        "places": [
+          "Kufri"
+        ],
+        "dist_time": "16 km - 1 hr"
+      },
+      {
+        "day": 3,
+        "title": "Chail Getaway",
+        "description": "Drive to Chail, visit the Chail Palace grounds and the world's highest cricket ground.",
+        "places": [
+          "Chail"
+        ],
+        "dist_time": "45 km - 1.5 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Naldehra & Mashobra",
+        "description": "Naldehra golf course meadows and Mashobra orchard drive.",
+        "places": [
+          "Naldehra",
+          "Mashobra"
+        ],
+        "dist_time": "25 km - 1 hr"
+      },
+      {
+        "day": 5,
+        "title": "Kasauli Day Trip",
+        "description": "Colonial-era Kasauli town, Sunset Point and Christ Church.",
+        "places": [
+          "Kasauli"
+        ],
+        "dist_time": "65 km - 2 hrs"
+      },
+      {
+        "day": 6,
+        "title": "Sarahan - Bhimakali Temple",
+        "description": "Drive to Sarahan, visit the Bhimakali Temple complex and apple orchards.",
+        "places": [
+          "Sarahan"
+        ],
+        "dist_time": "180 km - 6 hrs"
+      },
+      {
+        "day": 7,
+        "title": "Kalpa Intro",
+        "description": "Onward to Kalpa for first views of the Kinner Kailash range.",
+        "places": [
+          "Kalpa"
+        ],
+        "dist_time": "95 km - 3.5 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "SHIMLA",
+        "lat": 31.1048,
+        "lng": 77.1734
+      },
+      {
+        "name": "Kufri",
+        "lat": 31.0978,
+        "lng": 77.267
+      },
+      {
+        "name": "Chail",
+        "lat": 30.969,
+        "lng": 77.196
+      },
+      {
+        "name": "Naldehra",
+        "lat": 31.1664,
+        "lng": 77.2343
+      },
+      {
+        "name": "Mashobra",
+        "lat": 31.1345,
+        "lng": 77.2198
+      },
+      {
+        "name": "Kasauli",
+        "lat": 30.9013,
+        "lng": 76.9649
+      },
+      {
+        "name": "Sarahan",
+        "lat": 31.518,
+        "lng": 77.813
+      },
+      {
+        "name": "Kalpa",
+        "lat": 31.539,
+        "lng": 78.254
+      }
+    ]
+  },
+  "package_content/shimla-shimla-sangla-adventure-8d": {
+    "image": "https://drive.google.com/thumbnail?id=1kx5pdbLu_Eb0kh1S1mCkhU8mMMxCS8AU&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Shimla Ridge & Mall Road",
+        "description": "Arrival in Shimla, evening stroll on The Ridge and Mall Road, Christ Church view.",
+        "places": [
+          "Shimla"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Kufri Excursion",
+        "description": "Day trip to Kufri for pony rides, Himalayan Nature Park and valley views.",
+        "places": [
+          "Kufri"
+        ],
+        "dist_time": "16 km - 1 hr"
+      },
+      {
+        "day": 3,
+        "title": "Chail Getaway",
+        "description": "Drive to Chail, visit the Chail Palace grounds and the world's highest cricket ground.",
+        "places": [
+          "Chail"
+        ],
+        "dist_time": "45 km - 1.5 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Naldehra & Mashobra",
+        "description": "Naldehra golf course meadows and Mashobra orchard drive.",
+        "places": [
+          "Naldehra",
+          "Mashobra"
+        ],
+        "dist_time": "25 km - 1 hr"
+      },
+      {
+        "day": 5,
+        "title": "Kasauli Day Trip",
+        "description": "Colonial-era Kasauli town, Sunset Point and Christ Church.",
+        "places": [
+          "Kasauli"
+        ],
+        "dist_time": "65 km - 2 hrs"
+      },
+      {
+        "day": 6,
+        "title": "Sarahan - Bhimakali Temple",
+        "description": "Drive to Sarahan, visit the Bhimakali Temple complex and apple orchards.",
+        "places": [
+          "Sarahan"
+        ],
+        "dist_time": "180 km - 6 hrs"
+      },
+      {
+        "day": 7,
+        "title": "Kalpa Intro",
+        "description": "Onward to Kalpa for first views of the Kinner Kailash range.",
+        "places": [
+          "Kalpa"
+        ],
+        "dist_time": "95 km - 3.5 hrs"
+      },
+      {
+        "day": 8,
+        "title": "Sangla Valley",
+        "description": "Drive into the Sangla Valley via the Baspa river gorge.",
+        "places": [
+          "Sangla"
+        ],
+        "dist_time": "60 km - 2.5 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "SHIMLA",
+        "lat": 31.1048,
+        "lng": 77.1734
+      },
+      {
+        "name": "Kufri",
+        "lat": 31.0978,
+        "lng": 77.267
+      },
+      {
+        "name": "Chail",
+        "lat": 30.969,
+        "lng": 77.196
+      },
+      {
+        "name": "Naldehra",
+        "lat": 31.1664,
+        "lng": 77.2343
+      },
+      {
+        "name": "Mashobra",
+        "lat": 31.1345,
+        "lng": 77.2198
+      },
+      {
+        "name": "Kasauli",
+        "lat": 30.9013,
+        "lng": 76.9649
+      },
+      {
+        "name": "Sarahan",
+        "lat": 31.518,
+        "lng": 77.813
+      },
+      {
+        "name": "Kalpa",
+        "lat": 31.539,
+        "lng": 78.254
+      },
+      {
+        "name": "Sangla",
+        "lat": 31.429,
+        "lng": 78.262
+      }
+    ]
+  },
+  "package_content/shimla-shimla-kinnaur-chitkul-9d": {
+    "image": "https://drive.google.com/thumbnail?id=1w-cA1F7Ybr2X-gyPSOjd1__5wQI96kX2&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Shimla Ridge & Mall Road",
+        "description": "Arrival in Shimla, evening stroll on The Ridge and Mall Road, Christ Church view.",
+        "places": [
+          "Shimla"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Kufri Excursion",
+        "description": "Day trip to Kufri for pony rides, Himalayan Nature Park and valley views.",
+        "places": [
+          "Kufri"
+        ],
+        "dist_time": "16 km - 1 hr"
+      },
+      {
+        "day": 3,
+        "title": "Chail Getaway",
+        "description": "Drive to Chail, visit the Chail Palace grounds and the world's highest cricket ground.",
+        "places": [
+          "Chail"
+        ],
+        "dist_time": "45 km - 1.5 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Naldehra & Mashobra",
+        "description": "Naldehra golf course meadows and Mashobra orchard drive.",
+        "places": [
+          "Naldehra",
+          "Mashobra"
+        ],
+        "dist_time": "25 km - 1 hr"
+      },
+      {
+        "day": 5,
+        "title": "Kasauli Day Trip",
+        "description": "Colonial-era Kasauli town, Sunset Point and Christ Church.",
+        "places": [
+          "Kasauli"
+        ],
+        "dist_time": "65 km - 2 hrs"
+      },
+      {
+        "day": 6,
+        "title": "Sarahan - Bhimakali Temple",
+        "description": "Drive to Sarahan, visit the Bhimakali Temple complex and apple orchards.",
+        "places": [
+          "Sarahan"
+        ],
+        "dist_time": "180 km - 6 hrs"
+      },
+      {
+        "day": 7,
+        "title": "Kalpa Intro",
+        "description": "Onward to Kalpa for first views of the Kinner Kailash range.",
+        "places": [
+          "Kalpa"
+        ],
+        "dist_time": "95 km - 3.5 hrs"
+      },
+      {
+        "day": 8,
+        "title": "Sangla Valley",
+        "description": "Drive into the Sangla Valley via the Baspa river gorge.",
+        "places": [
+          "Sangla"
+        ],
+        "dist_time": "60 km - 2.5 hrs"
+      },
+      {
+        "day": 9,
+        "title": "Chitkul - Last Village",
+        "description": "Day trip to Chitkul, the last inhabited village towards the Indo-Tibet border.",
+        "places": [
+          "Chitkul"
+        ],
+        "dist_time": "28 km - 1.5 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "SHIMLA",
+        "lat": 31.1048,
+        "lng": 77.1734
+      },
+      {
+        "name": "Kufri",
+        "lat": 31.0978,
+        "lng": 77.267
+      },
+      {
+        "name": "Chail",
+        "lat": 30.969,
+        "lng": 77.196
+      },
+      {
+        "name": "Naldehra",
+        "lat": 31.1664,
+        "lng": 77.2343
+      },
+      {
+        "name": "Mashobra",
+        "lat": 31.1345,
+        "lng": 77.2198
+      },
+      {
+        "name": "Kasauli",
+        "lat": 30.9013,
+        "lng": 76.9649
+      },
+      {
+        "name": "Sarahan",
+        "lat": 31.518,
+        "lng": 77.813
+      },
+      {
+        "name": "Kalpa",
+        "lat": 31.539,
+        "lng": 78.254
+      },
+      {
+        "name": "Sangla",
+        "lat": 31.429,
+        "lng": 78.262
+      },
+      {
+        "name": "Chitkul",
+        "lat": 31.346,
+        "lng": 78.436
+      }
+    ]
+  },
+  "package_content/shimla-shimla-grand-himalayan-loop-10d": {
+    "image": "https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Shimla Ridge & Mall Road",
+        "description": "Arrival in Shimla, evening stroll on The Ridge and Mall Road, Christ Church view.",
+        "places": [
+          "Shimla"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Kufri Excursion",
+        "description": "Day trip to Kufri for pony rides, Himalayan Nature Park and valley views.",
+        "places": [
+          "Kufri"
+        ],
+        "dist_time": "16 km - 1 hr"
+      },
+      {
+        "day": 3,
+        "title": "Chail Getaway",
+        "description": "Drive to Chail, visit the Chail Palace grounds and the world's highest cricket ground.",
+        "places": [
+          "Chail"
+        ],
+        "dist_time": "45 km - 1.5 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Naldehra & Mashobra",
+        "description": "Naldehra golf course meadows and Mashobra orchard drive.",
+        "places": [
+          "Naldehra",
+          "Mashobra"
+        ],
+        "dist_time": "25 km - 1 hr"
+      },
+      {
+        "day": 5,
+        "title": "Kasauli Day Trip",
+        "description": "Colonial-era Kasauli town, Sunset Point and Christ Church.",
+        "places": [
+          "Kasauli"
+        ],
+        "dist_time": "65 km - 2 hrs"
+      },
+      {
+        "day": 6,
+        "title": "Sarahan - Bhimakali Temple",
+        "description": "Drive to Sarahan, visit the Bhimakali Temple complex and apple orchards.",
+        "places": [
+          "Sarahan"
+        ],
+        "dist_time": "180 km - 6 hrs"
+      },
+      {
+        "day": 7,
+        "title": "Kalpa Intro",
+        "description": "Onward to Kalpa for first views of the Kinner Kailash range.",
+        "places": [
+          "Kalpa"
+        ],
+        "dist_time": "95 km - 3.5 hrs"
+      },
+      {
+        "day": 8,
+        "title": "Sangla Valley",
+        "description": "Drive into the Sangla Valley via the Baspa river gorge.",
+        "places": [
+          "Sangla"
+        ],
+        "dist_time": "60 km - 2.5 hrs"
+      },
+      {
+        "day": 9,
+        "title": "Chitkul - Last Village",
+        "description": "Day trip to Chitkul, the last inhabited village towards the Indo-Tibet border.",
+        "places": [
+          "Chitkul"
+        ],
+        "dist_time": "28 km - 1.5 hrs"
+      },
+      {
+        "day": 10,
+        "title": "Spiti Prelude via Nako",
+        "description": "Cross into the Spiti belt via Nako village, high-altitude lake and monastery.",
+        "places": [
+          "Nako"
+        ],
+        "dist_time": "110 km - 4 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "SHIMLA",
+        "lat": 31.1048,
+        "lng": 77.1734
+      },
+      {
+        "name": "Kufri",
+        "lat": 31.0978,
+        "lng": 77.267
+      },
+      {
+        "name": "Chail",
+        "lat": 30.969,
+        "lng": 77.196
+      },
+      {
+        "name": "Naldehra",
+        "lat": 31.1664,
+        "lng": 77.2343
+      },
+      {
+        "name": "Mashobra",
+        "lat": 31.1345,
+        "lng": 77.2198
+      },
+      {
+        "name": "Kasauli",
+        "lat": 30.9013,
+        "lng": 76.9649
+      },
+      {
+        "name": "Sarahan",
+        "lat": 31.518,
+        "lng": 77.813
+      },
+      {
+        "name": "Kalpa",
+        "lat": 31.539,
+        "lng": 78.254
+      },
+      {
+        "name": "Sangla",
+        "lat": 31.429,
+        "lng": 78.262
+      },
+      {
+        "name": "Chitkul",
+        "lat": 31.346,
+        "lng": 78.436
+      }
+    ]
+  },
+  "package_content/manali-solang-valley-adventure-sprint-1d": {
+    "image": "https://drive.google.com/thumbnail?id=1Wj2vfI0R68ZDlhPr1P06tNxRXKKK67GC&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Solang Valley Adventure",
+        "description": "Solang Valley for paragliding, zorbing and ropeway views.",
+        "places": [
+          "Solang Valley"
+        ],
+        "dist_time": "13 km - 40 min"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MANALI",
+        "lat": 32.2432,
+        "lng": 77.1892
+      },
+      {
+        "name": "Solang Valley",
+        "lat": 32.316,
+        "lng": 77.157
+      }
+    ]
+  },
+  "package_content/manali-manali-discovery-2d": {
+    "image": "https://drive.google.com/thumbnail?id=1Wj2vfI0R68ZDlhPr1P06tNxRXKKK67GC&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Solang Valley Adventure",
+        "description": "Solang Valley for paragliding, zorbing and ropeway views.",
+        "places": [
+          "Solang Valley"
+        ],
+        "dist_time": "13 km - 40 min"
+      },
+      {
+        "day": 2,
+        "title": "Old Manali & Temples",
+        "description": "Old Manali cafes, Hadimba Temple and Vashisht hot springs.",
+        "places": [
+          "Old Manali",
+          "Vashisht"
+        ],
+        "dist_time": "Local"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MANALI",
+        "lat": 32.2432,
+        "lng": 77.1892
+      },
+      {
+        "name": "Solang Valley",
+        "lat": 32.316,
+        "lng": 77.157
+      },
+      {
+        "name": "Old Manali",
+        "lat": 32.251,
+        "lng": 77.188
+      },
+      {
+        "name": "Vashisht",
+        "lat": 32.256,
+        "lng": 77.195
+      }
+    ]
+  },
+  "package_content/manali-rohtang-pass-expedition-3d": {
+    "image": "https://drive.google.com/thumbnail?id=1Wj2vfI0R68ZDlhPr1P06tNxRXKKK67GC&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Solang Valley Adventure",
+        "description": "Solang Valley for paragliding, zorbing and ropeway views.",
+        "places": [
+          "Solang Valley"
+        ],
+        "dist_time": "13 km - 40 min"
+      },
+      {
+        "day": 2,
+        "title": "Old Manali & Temples",
+        "description": "Old Manali cafes, Hadimba Temple and Vashisht hot springs.",
+        "places": [
+          "Old Manali",
+          "Vashisht"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 3,
+        "title": "Rohtang Pass Expedition",
+        "description": "Drive up to Rohtang Pass via Kothi and Marhi (permit required, season-dependent).",
+        "places": [
+          "Rohtang Pass",
+          "Kothi",
+          "Marhi"
+        ],
+        "dist_time": "51 km - 2.5 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MANALI",
+        "lat": 32.2432,
+        "lng": 77.1892
+      },
+      {
+        "name": "Solang Valley",
+        "lat": 32.316,
+        "lng": 77.157
+      },
+      {
+        "name": "Old Manali",
+        "lat": 32.251,
+        "lng": 77.188
+      },
+      {
+        "name": "Vashisht",
+        "lat": 32.256,
+        "lng": 77.195
+      },
+      {
+        "name": "Rohtang Pass",
+        "lat": 32.3716,
+        "lng": 77.2466
+      },
+      {
+        "name": "Kothi",
+        "lat": 32.313,
+        "lng": 77.207
+      },
+      {
+        "name": "Marhi",
+        "lat": 32.335,
+        "lng": 77.243
+      }
+    ]
+  },
+  "package_content/manali-manali-kasol-crossover-4d": {
+    "image": "https://drive.google.com/thumbnail?id=1bHLbIYMa3xO9LkVwT-xdU_SFYGGqIFmZ&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Solang Valley Adventure",
+        "description": "Solang Valley for paragliding, zorbing and ropeway views.",
+        "places": [
+          "Solang Valley"
+        ],
+        "dist_time": "13 km - 40 min"
+      },
+      {
+        "day": 2,
+        "title": "Old Manali & Temples",
+        "description": "Old Manali cafes, Hadimba Temple and Vashisht hot springs.",
+        "places": [
+          "Old Manali",
+          "Vashisht"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 3,
+        "title": "Rohtang Pass Expedition",
+        "description": "Drive up to Rohtang Pass via Kothi and Marhi (permit required, season-dependent).",
+        "places": [
+          "Rohtang Pass",
+          "Kothi",
+          "Marhi"
+        ],
+        "dist_time": "51 km - 2.5 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Kasol Crossover",
+        "description": "Cross into the Parvati Valley for a day in Kasol.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "75 km - 2.5 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MANALI",
+        "lat": 32.2432,
+        "lng": 77.1892
+      },
+      {
+        "name": "Solang Valley",
+        "lat": 32.316,
+        "lng": 77.157
+      },
+      {
+        "name": "Old Manali",
+        "lat": 32.251,
+        "lng": 77.188
+      },
+      {
+        "name": "Vashisht",
+        "lat": 32.256,
+        "lng": 77.195
+      },
+      {
+        "name": "Rohtang Pass",
+        "lat": 32.3716,
+        "lng": 77.2466
+      },
+      {
+        "name": "Kothi",
+        "lat": 32.313,
+        "lng": 77.207
+      },
+      {
+        "name": "Marhi",
+        "lat": 32.335,
+        "lng": 77.243
+      },
+      {
+        "name": "Kasol",
+        "lat": 32.01,
+        "lng": 77.316
+      }
+    ]
+  },
+  "package_content/manali-hampta-pass-trek-easy-5d": {
+    "image": "https://drive.google.com/thumbnail?id=1ss1z4p4J8INkSX-J7kEo6IoWjai7IYiB&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Solang Valley Adventure",
+        "description": "Solang Valley for paragliding, zorbing and ropeway views.",
+        "places": [
+          "Solang Valley"
+        ],
+        "dist_time": "13 km - 40 min"
+      },
+      {
+        "day": 2,
+        "title": "Old Manali & Temples",
+        "description": "Old Manali cafes, Hadimba Temple and Vashisht hot springs.",
+        "places": [
+          "Old Manali",
+          "Vashisht"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 3,
+        "title": "Rohtang Pass Expedition",
+        "description": "Drive up to Rohtang Pass via Kothi and Marhi (permit required, season-dependent).",
+        "places": [
+          "Rohtang Pass",
+          "Kothi",
+          "Marhi"
+        ],
+        "dist_time": "51 km - 2.5 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Kasol Crossover",
+        "description": "Cross into the Parvati Valley for a day in Kasol.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "75 km - 2.5 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Hampta Pass - Easy Trek",
+        "description": "Easy-grade Hampta Pass introduction with a Chandratal Lake extension.",
+        "places": [
+          "Hampta Pass",
+          "Chandratal Lake"
+        ],
+        "dist_time": "Trek"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MANALI",
+        "lat": 32.2432,
+        "lng": 77.1892
+      },
+      {
+        "name": "Solang Valley",
+        "lat": 32.316,
+        "lng": 77.157
+      },
+      {
+        "name": "Old Manali",
+        "lat": 32.251,
+        "lng": 77.188
+      },
+      {
+        "name": "Vashisht",
+        "lat": 32.256,
+        "lng": 77.195
+      },
+      {
+        "name": "Rohtang Pass",
+        "lat": 32.3716,
+        "lng": 77.2466
+      },
+      {
+        "name": "Kothi",
+        "lat": 32.313,
+        "lng": 77.207
+      },
+      {
+        "name": "Marhi",
+        "lat": 32.335,
+        "lng": 77.243
+      },
+      {
+        "name": "Kasol",
+        "lat": 32.01,
+        "lng": 77.316
+      },
+      {
+        "name": "Hampta Pass",
+        "lat": 32.245,
+        "lng": 77.339
+      },
+      {
+        "name": "Chandratal Lake",
+        "lat": 32.482,
+        "lng": 77.615
+      }
+    ]
+  },
+  "package_content/manali-hampta-pass-full-trek-6d": {
+    "image": "https://drive.google.com/thumbnail?id=1ss1z4p4J8INkSX-J7kEo6IoWjai7IYiB&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Solang Valley Adventure",
+        "description": "Solang Valley for paragliding, zorbing and ropeway views.",
+        "places": [
+          "Solang Valley"
+        ],
+        "dist_time": "13 km - 40 min"
+      },
+      {
+        "day": 2,
+        "title": "Old Manali & Temples",
+        "description": "Old Manali cafes, Hadimba Temple and Vashisht hot springs.",
+        "places": [
+          "Old Manali",
+          "Vashisht"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 3,
+        "title": "Rohtang Pass Expedition",
+        "description": "Drive up to Rohtang Pass via Kothi and Marhi (permit required, season-dependent).",
+        "places": [
+          "Rohtang Pass",
+          "Kothi",
+          "Marhi"
+        ],
+        "dist_time": "51 km - 2.5 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Kasol Crossover",
+        "description": "Cross into the Parvati Valley for a day in Kasol.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "75 km - 2.5 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Hampta Pass - Easy Trek",
+        "description": "Easy-grade Hampta Pass introduction with a Chandratal Lake extension.",
+        "places": [
+          "Hampta Pass",
+          "Chandratal Lake"
+        ],
+        "dist_time": "Trek"
+      },
+      {
+        "day": 6,
+        "title": "Hampta Pass Full Trek + Chandratal Camp",
+        "description": "Full Hampta Pass crossing with an overnight camp at Chandratal.",
+        "places": [
+          "Hampta Pass",
+          "Chandratal Lake"
+        ],
+        "dist_time": "Trek + Camp"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MANALI",
+        "lat": 32.2432,
+        "lng": 77.1892
+      },
+      {
+        "name": "Solang Valley",
+        "lat": 32.316,
+        "lng": 77.157
+      },
+      {
+        "name": "Old Manali",
+        "lat": 32.251,
+        "lng": 77.188
+      },
+      {
+        "name": "Vashisht",
+        "lat": 32.256,
+        "lng": 77.195
+      },
+      {
+        "name": "Rohtang Pass",
+        "lat": 32.3716,
+        "lng": 77.2466
+      },
+      {
+        "name": "Kothi",
+        "lat": 32.313,
+        "lng": 77.207
+      },
+      {
+        "name": "Marhi",
+        "lat": 32.335,
+        "lng": 77.243
+      },
+      {
+        "name": "Kasol",
+        "lat": 32.01,
+        "lng": 77.316
+      },
+      {
+        "name": "Hampta Pass",
+        "lat": 32.245,
+        "lng": 77.339
+      },
+      {
+        "name": "Chandratal Lake",
+        "lat": 32.482,
+        "lng": 77.615
+      }
+    ]
+  },
+  "package_content/manali-manali-spiti-gateway-7d": {
+    "image": "https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Solang Valley Adventure",
+        "description": "Solang Valley for paragliding, zorbing and ropeway views.",
+        "places": [
+          "Solang Valley"
+        ],
+        "dist_time": "13 km - 40 min"
+      },
+      {
+        "day": 2,
+        "title": "Old Manali & Temples",
+        "description": "Old Manali cafes, Hadimba Temple and Vashisht hot springs.",
+        "places": [
+          "Old Manali",
+          "Vashisht"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 3,
+        "title": "Rohtang Pass Expedition",
+        "description": "Drive up to Rohtang Pass via Kothi and Marhi (permit required, season-dependent).",
+        "places": [
+          "Rohtang Pass",
+          "Kothi",
+          "Marhi"
+        ],
+        "dist_time": "51 km - 2.5 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Kasol Crossover",
+        "description": "Cross into the Parvati Valley for a day in Kasol.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "75 km - 2.5 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Hampta Pass - Easy Trek",
+        "description": "Easy-grade Hampta Pass introduction with a Chandratal Lake extension.",
+        "places": [
+          "Hampta Pass",
+          "Chandratal Lake"
+        ],
+        "dist_time": "Trek"
+      },
+      {
+        "day": 6,
+        "title": "Hampta Pass Full Trek + Chandratal Camp",
+        "description": "Full Hampta Pass crossing with an overnight camp at Chandratal.",
+        "places": [
+          "Hampta Pass",
+          "Chandratal Lake"
+        ],
+        "dist_time": "Trek + Camp"
+      },
+      {
+        "day": 7,
+        "title": "Manali-Spiti Gateway",
+        "description": "Cross Kunzum Pass into Spiti with an introduction to Kaza town.",
+        "places": [
+          "Kunzum Pass",
+          "Kaza"
+        ],
+        "dist_time": "190 km - 7 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MANALI",
+        "lat": 32.2432,
+        "lng": 77.1892
+      },
+      {
+        "name": "Solang Valley",
+        "lat": 32.316,
+        "lng": 77.157
+      },
+      {
+        "name": "Old Manali",
+        "lat": 32.251,
+        "lng": 77.188
+      },
+      {
+        "name": "Vashisht",
+        "lat": 32.256,
+        "lng": 77.195
+      },
+      {
+        "name": "Rohtang Pass",
+        "lat": 32.3716,
+        "lng": 77.2466
+      },
+      {
+        "name": "Kothi",
+        "lat": 32.313,
+        "lng": 77.207
+      },
+      {
+        "name": "Marhi",
+        "lat": 32.335,
+        "lng": 77.243
+      },
+      {
+        "name": "Kasol",
+        "lat": 32.01,
+        "lng": 77.316
+      },
+      {
+        "name": "Hampta Pass",
+        "lat": 32.245,
+        "lng": 77.339
+      },
+      {
+        "name": "Chandratal Lake",
+        "lat": 32.482,
+        "lng": 77.615
+      },
+      {
+        "name": "Kunzum Pass",
+        "lat": 32.3667,
+        "lng": 77.6333
+      },
+      {
+        "name": "Kaza",
+        "lat": 32.227,
+        "lng": 78.067
+      }
+    ]
+  },
+  "package_content/manali-bhrigu-lake-manali-circuit-8d": {
+    "image": "https://drive.google.com/thumbnail?id=1Wj2vfI0R68ZDlhPr1P06tNxRXKKK67GC&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Solang Valley Adventure",
+        "description": "Solang Valley for paragliding, zorbing and ropeway views.",
+        "places": [
+          "Solang Valley"
+        ],
+        "dist_time": "13 km - 40 min"
+      },
+      {
+        "day": 2,
+        "title": "Old Manali & Temples",
+        "description": "Old Manali cafes, Hadimba Temple and Vashisht hot springs.",
+        "places": [
+          "Old Manali",
+          "Vashisht"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 3,
+        "title": "Rohtang Pass Expedition",
+        "description": "Drive up to Rohtang Pass via Kothi and Marhi (permit required, season-dependent).",
+        "places": [
+          "Rohtang Pass",
+          "Kothi",
+          "Marhi"
+        ],
+        "dist_time": "51 km - 2.5 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Kasol Crossover",
+        "description": "Cross into the Parvati Valley for a day in Kasol.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "75 km - 2.5 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Hampta Pass - Easy Trek",
+        "description": "Easy-grade Hampta Pass introduction with a Chandratal Lake extension.",
+        "places": [
+          "Hampta Pass",
+          "Chandratal Lake"
+        ],
+        "dist_time": "Trek"
+      },
+      {
+        "day": 6,
+        "title": "Hampta Pass Full Trek + Chandratal Camp",
+        "description": "Full Hampta Pass crossing with an overnight camp at Chandratal.",
+        "places": [
+          "Hampta Pass",
+          "Chandratal Lake"
+        ],
+        "dist_time": "Trek + Camp"
+      },
+      {
+        "day": 7,
+        "title": "Manali-Spiti Gateway",
+        "description": "Cross Kunzum Pass into Spiti with an introduction to Kaza town.",
+        "places": [
+          "Kunzum Pass",
+          "Kaza"
+        ],
+        "dist_time": "190 km - 7 hrs"
+      },
+      {
+        "day": 8,
+        "title": "Bhrigu Lake Trek + Valley Circuit",
+        "description": "Bhrigu Lake day trek followed by valley sightseeing.",
+        "places": [
+          "Bhrigu Lake"
+        ],
+        "dist_time": "Trek"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MANALI",
+        "lat": 32.2432,
+        "lng": 77.1892
+      },
+      {
+        "name": "Solang Valley",
+        "lat": 32.316,
+        "lng": 77.157
+      },
+      {
+        "name": "Old Manali",
+        "lat": 32.251,
+        "lng": 77.188
+      },
+      {
+        "name": "Vashisht",
+        "lat": 32.256,
+        "lng": 77.195
+      },
+      {
+        "name": "Rohtang Pass",
+        "lat": 32.3716,
+        "lng": 77.2466
+      },
+      {
+        "name": "Kothi",
+        "lat": 32.313,
+        "lng": 77.207
+      },
+      {
+        "name": "Marhi",
+        "lat": 32.335,
+        "lng": 77.243
+      },
+      {
+        "name": "Kasol",
+        "lat": 32.01,
+        "lng": 77.316
+      },
+      {
+        "name": "Hampta Pass",
+        "lat": 32.245,
+        "lng": 77.339
+      },
+      {
+        "name": "Chandratal Lake",
+        "lat": 32.482,
+        "lng": 77.615
+      },
+      {
+        "name": "Kunzum Pass",
+        "lat": 32.3667,
+        "lng": 77.6333
+      },
+      {
+        "name": "Kaza",
+        "lat": 32.227,
+        "lng": 78.067
+      },
+      {
+        "name": "Bhrigu Lake",
+        "lat": 32.267,
+        "lng": 77.32
+      }
+    ]
+  },
+  "package_content/manali-manali-grand-adventure-9d": {
+    "image": "https://drive.google.com/thumbnail?id=1Wj2vfI0R68ZDlhPr1P06tNxRXKKK67GC&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Solang Valley Adventure",
+        "description": "Solang Valley for paragliding, zorbing and ropeway views.",
+        "places": [
+          "Solang Valley"
+        ],
+        "dist_time": "13 km - 40 min"
+      },
+      {
+        "day": 2,
+        "title": "Old Manali & Temples",
+        "description": "Old Manali cafes, Hadimba Temple and Vashisht hot springs.",
+        "places": [
+          "Old Manali",
+          "Vashisht"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 3,
+        "title": "Rohtang Pass Expedition",
+        "description": "Drive up to Rohtang Pass via Kothi and Marhi (permit required, season-dependent).",
+        "places": [
+          "Rohtang Pass",
+          "Kothi",
+          "Marhi"
+        ],
+        "dist_time": "51 km - 2.5 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Kasol Crossover",
+        "description": "Cross into the Parvati Valley for a day in Kasol.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "75 km - 2.5 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Hampta Pass - Easy Trek",
+        "description": "Easy-grade Hampta Pass introduction with a Chandratal Lake extension.",
+        "places": [
+          "Hampta Pass",
+          "Chandratal Lake"
+        ],
+        "dist_time": "Trek"
+      },
+      {
+        "day": 6,
+        "title": "Hampta Pass Full Trek + Chandratal Camp",
+        "description": "Full Hampta Pass crossing with an overnight camp at Chandratal.",
+        "places": [
+          "Hampta Pass",
+          "Chandratal Lake"
+        ],
+        "dist_time": "Trek + Camp"
+      },
+      {
+        "day": 7,
+        "title": "Manali-Spiti Gateway",
+        "description": "Cross Kunzum Pass into Spiti with an introduction to Kaza town.",
+        "places": [
+          "Kunzum Pass",
+          "Kaza"
+        ],
+        "dist_time": "190 km - 7 hrs"
+      },
+      {
+        "day": 8,
+        "title": "Bhrigu Lake Trek + Valley Circuit",
+        "description": "Bhrigu Lake day trek followed by valley sightseeing.",
+        "places": [
+          "Bhrigu Lake"
+        ],
+        "dist_time": "Trek"
+      },
+      {
+        "day": 9,
+        "title": "Adventure Day - Trek, Rafting & Paragliding",
+        "description": "Combined adventure day: short trek, Beas river rafting and paragliding.",
+        "places": [
+          "Solang Valley"
+        ],
+        "dist_time": "Local + Activities"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MANALI",
+        "lat": 32.2432,
+        "lng": 77.1892
+      },
+      {
+        "name": "Solang Valley",
+        "lat": 32.316,
+        "lng": 77.157
+      },
+      {
+        "name": "Old Manali",
+        "lat": 32.251,
+        "lng": 77.188
+      },
+      {
+        "name": "Vashisht",
+        "lat": 32.256,
+        "lng": 77.195
+      },
+      {
+        "name": "Rohtang Pass",
+        "lat": 32.3716,
+        "lng": 77.2466
+      },
+      {
+        "name": "Kothi",
+        "lat": 32.313,
+        "lng": 77.207
+      },
+      {
+        "name": "Marhi",
+        "lat": 32.335,
+        "lng": 77.243
+      },
+      {
+        "name": "Kasol",
+        "lat": 32.01,
+        "lng": 77.316
+      },
+      {
+        "name": "Hampta Pass",
+        "lat": 32.245,
+        "lng": 77.339
+      },
+      {
+        "name": "Chandratal Lake",
+        "lat": 32.482,
+        "lng": 77.615
+      },
+      {
+        "name": "Kunzum Pass",
+        "lat": 32.3667,
+        "lng": 77.6333
+      },
+      {
+        "name": "Kaza",
+        "lat": 32.227,
+        "lng": 78.067
+      },
+      {
+        "name": "Bhrigu Lake",
+        "lat": 32.267,
+        "lng": 77.32
+      }
+    ]
+  },
+  "package_content/manali-manali-spiti-kinnaur-loop-10d": {
+    "image": "https://drive.google.com/thumbnail?id=1kx5pdbLu_Eb0kh1S1mCkhU8mMMxCS8AU&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Solang Valley Adventure",
+        "description": "Solang Valley for paragliding, zorbing and ropeway views.",
+        "places": [
+          "Solang Valley"
+        ],
+        "dist_time": "13 km - 40 min"
+      },
+      {
+        "day": 2,
+        "title": "Old Manali & Temples",
+        "description": "Old Manali cafes, Hadimba Temple and Vashisht hot springs.",
+        "places": [
+          "Old Manali",
+          "Vashisht"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 3,
+        "title": "Rohtang Pass Expedition",
+        "description": "Drive up to Rohtang Pass via Kothi and Marhi (permit required, season-dependent).",
+        "places": [
+          "Rohtang Pass",
+          "Kothi",
+          "Marhi"
+        ],
+        "dist_time": "51 km - 2.5 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Kasol Crossover",
+        "description": "Cross into the Parvati Valley for a day in Kasol.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "75 km - 2.5 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Hampta Pass - Easy Trek",
+        "description": "Easy-grade Hampta Pass introduction with a Chandratal Lake extension.",
+        "places": [
+          "Hampta Pass",
+          "Chandratal Lake"
+        ],
+        "dist_time": "Trek"
+      },
+      {
+        "day": 6,
+        "title": "Hampta Pass Full Trek + Chandratal Camp",
+        "description": "Full Hampta Pass crossing with an overnight camp at Chandratal.",
+        "places": [
+          "Hampta Pass",
+          "Chandratal Lake"
+        ],
+        "dist_time": "Trek + Camp"
+      },
+      {
+        "day": 7,
+        "title": "Manali-Spiti Gateway",
+        "description": "Cross Kunzum Pass into Spiti with an introduction to Kaza town.",
+        "places": [
+          "Kunzum Pass",
+          "Kaza"
+        ],
+        "dist_time": "190 km - 7 hrs"
+      },
+      {
+        "day": 8,
+        "title": "Bhrigu Lake Trek + Valley Circuit",
+        "description": "Bhrigu Lake day trek followed by valley sightseeing.",
+        "places": [
+          "Bhrigu Lake"
+        ],
+        "dist_time": "Trek"
+      },
+      {
+        "day": 9,
+        "title": "Adventure Day - Trek, Rafting & Paragliding",
+        "description": "Combined adventure day: short trek, Beas river rafting and paragliding.",
+        "places": [
+          "Solang Valley"
+        ],
+        "dist_time": "Local + Activities"
+      },
+      {
+        "day": 10,
+        "title": "Manali-Spiti-Kinnaur Loop",
+        "description": "Extended high-altitude circuit linking Spiti back through Kinnaur.",
+        "places": [
+          "Kaza",
+          "Kalpa"
+        ],
+        "dist_time": "220 km - 8 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MANALI",
+        "lat": 32.2432,
+        "lng": 77.1892
+      },
+      {
+        "name": "Solang Valley",
+        "lat": 32.316,
+        "lng": 77.157
+      },
+      {
+        "name": "Old Manali",
+        "lat": 32.251,
+        "lng": 77.188
+      },
+      {
+        "name": "Vashisht",
+        "lat": 32.256,
+        "lng": 77.195
+      },
+      {
+        "name": "Rohtang Pass",
+        "lat": 32.3716,
+        "lng": 77.2466
+      },
+      {
+        "name": "Kothi",
+        "lat": 32.313,
+        "lng": 77.207
+      },
+      {
+        "name": "Marhi",
+        "lat": 32.335,
+        "lng": 77.243
+      },
+      {
+        "name": "Kasol",
+        "lat": 32.01,
+        "lng": 77.316
+      },
+      {
+        "name": "Hampta Pass",
+        "lat": 32.245,
+        "lng": 77.339
+      },
+      {
+        "name": "Chandratal Lake",
+        "lat": 32.482,
+        "lng": 77.615
+      },
+      {
+        "name": "Kunzum Pass",
+        "lat": 32.3667,
+        "lng": 77.6333
+      },
+      {
+        "name": "Kaza",
+        "lat": 32.227,
+        "lng": 78.067
+      },
+      {
+        "name": "Bhrigu Lake",
+        "lat": 32.267,
+        "lng": 77.32
+      },
+      {
+        "name": "Kalpa",
+        "lat": 31.539,
+        "lng": 78.254
+      }
+    ]
+  },
+  "package_content/kasol-kasol-cafe-trail-1d": {
+    "image": "https://drive.google.com/thumbnail?id=1bHLbIYMa3xO9LkVwT-xdU_SFYGGqIFmZ&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kasol Cafe Trail",
+        "description": "Arrival in Kasol, riverside cafes and the Parvati river walk.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "Local"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "KASOL",
+        "lat": 32.01,
+        "lng": 77.316
+      }
+    ]
+  },
+  "package_content/kasol-kasol-tosh-getaway-2d": {
+    "image": "https://drive.google.com/thumbnail?id=10_KfuO452VEIuDthPCL8kXMQblL0URWq&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kasol Cafe Trail",
+        "description": "Arrival in Kasol, riverside cafes and the Parvati river walk.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Tosh Getaway",
+        "description": "Day trip to the village of Tosh at the edge of the valley.",
+        "places": [
+          "Tosh"
+        ],
+        "dist_time": "12 km - 40 min"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "KASOL",
+        "lat": 32.01,
+        "lng": 77.316
+      },
+      {
+        "name": "Tosh",
+        "lat": 32.025,
+        "lng": 77.45
+      }
+    ]
+  },
+  "package_content/kasol-kheerganga-trek-3d": {
+    "image": "https://drive.google.com/thumbnail?id=10_KfuO452VEIuDthPCL8kXMQblL0URWq&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kasol Cafe Trail",
+        "description": "Arrival in Kasol, riverside cafes and the Parvati river walk.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Tosh Getaway",
+        "description": "Day trip to the village of Tosh at the edge of the valley.",
+        "places": [
+          "Tosh"
+        ],
+        "dist_time": "12 km - 40 min"
+      },
+      {
+        "day": 3,
+        "title": "Kheerganga Trek",
+        "description": "Trek up to the Kheerganga hot springs, overnight in the meadow.",
+        "places": [
+          "Kheerganga"
+        ],
+        "dist_time": "Trek - 4-5 hrs one-way"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "KASOL",
+        "lat": 32.01,
+        "lng": 77.316
+      },
+      {
+        "name": "Tosh",
+        "lat": 32.025,
+        "lng": 77.45
+      },
+      {
+        "name": "Kheerganga",
+        "lat": 32.033,
+        "lng": 77.451
+      }
+    ]
+  },
+  "package_content/kasol-malana-kasol-explorer-4d": {
+    "image": "https://drive.google.com/thumbnail?id=1bHLbIYMa3xO9LkVwT-xdU_SFYGGqIFmZ&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kasol Cafe Trail",
+        "description": "Arrival in Kasol, riverside cafes and the Parvati river walk.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Tosh Getaway",
+        "description": "Day trip to the village of Tosh at the edge of the valley.",
+        "places": [
+          "Tosh"
+        ],
+        "dist_time": "12 km - 40 min"
+      },
+      {
+        "day": 3,
+        "title": "Kheerganga Trek",
+        "description": "Trek up to the Kheerganga hot springs, overnight in the meadow.",
+        "places": [
+          "Kheerganga"
+        ],
+        "dist_time": "Trek - 4-5 hrs one-way"
+      },
+      {
+        "day": 4,
+        "title": "Malana & Jana Waterfall",
+        "description": "Malana village visit and the Jana Waterfall en route.",
+        "places": [
+          "Malana",
+          "Jana Waterfall"
+        ],
+        "dist_time": "35 km - 1.5 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "KASOL",
+        "lat": 32.01,
+        "lng": 77.316
+      },
+      {
+        "name": "Tosh",
+        "lat": 32.025,
+        "lng": 77.45
+      },
+      {
+        "name": "Kheerganga",
+        "lat": 32.033,
+        "lng": 77.451
+      },
+      {
+        "name": "Malana",
+        "lat": 32.062,
+        "lng": 77.265
+      },
+      {
+        "name": "Jana Waterfall",
+        "lat": 32.1001,
+        "lng": 77.195
+      }
+    ]
+  },
+  "package_content/kasol-parvati-valley-immersion-5d": {
+    "image": "https://drive.google.com/thumbnail?id=10_KfuO452VEIuDthPCL8kXMQblL0URWq&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kasol Cafe Trail",
+        "description": "Arrival in Kasol, riverside cafes and the Parvati river walk.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Tosh Getaway",
+        "description": "Day trip to the village of Tosh at the edge of the valley.",
+        "places": [
+          "Tosh"
+        ],
+        "dist_time": "12 km - 40 min"
+      },
+      {
+        "day": 3,
+        "title": "Kheerganga Trek",
+        "description": "Trek up to the Kheerganga hot springs, overnight in the meadow.",
+        "places": [
+          "Kheerganga"
+        ],
+        "dist_time": "Trek - 4-5 hrs one-way"
+      },
+      {
+        "day": 4,
+        "title": "Malana & Jana Waterfall",
+        "description": "Malana village visit and the Jana Waterfall en route.",
+        "places": [
+          "Malana",
+          "Jana Waterfall"
+        ],
+        "dist_time": "35 km - 1.5 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Parvati Valley Immersion",
+        "description": "Combined Tosh village day and the Kheerganga hot springs trek.",
+        "places": [
+          "Tosh",
+          "Kheerganga"
+        ],
+        "dist_time": "Trek + Local"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "KASOL",
+        "lat": 32.01,
+        "lng": 77.316
+      },
+      {
+        "name": "Tosh",
+        "lat": 32.025,
+        "lng": 77.45
+      },
+      {
+        "name": "Kheerganga",
+        "lat": 32.033,
+        "lng": 77.451
+      },
+      {
+        "name": "Malana",
+        "lat": 32.062,
+        "lng": 77.265
+      },
+      {
+        "name": "Jana Waterfall",
+        "lat": 32.1001,
+        "lng": 77.195
+      }
+    ]
+  },
+  "package_content/kasol-manikaran-pilgrimage-parvati-6d": {
+    "image": "https://drive.google.com/thumbnail?id=1bHLbIYMa3xO9LkVwT-xdU_SFYGGqIFmZ&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kasol Cafe Trail",
+        "description": "Arrival in Kasol, riverside cafes and the Parvati river walk.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Tosh Getaway",
+        "description": "Day trip to the village of Tosh at the edge of the valley.",
+        "places": [
+          "Tosh"
+        ],
+        "dist_time": "12 km - 40 min"
+      },
+      {
+        "day": 3,
+        "title": "Kheerganga Trek",
+        "description": "Trek up to the Kheerganga hot springs, overnight in the meadow.",
+        "places": [
+          "Kheerganga"
+        ],
+        "dist_time": "Trek - 4-5 hrs one-way"
+      },
+      {
+        "day": 4,
+        "title": "Malana & Jana Waterfall",
+        "description": "Malana village visit and the Jana Waterfall en route.",
+        "places": [
+          "Malana",
+          "Jana Waterfall"
+        ],
+        "dist_time": "35 km - 1.5 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Parvati Valley Immersion",
+        "description": "Combined Tosh village day and the Kheerganga hot springs trek.",
+        "places": [
+          "Tosh",
+          "Kheerganga"
+        ],
+        "dist_time": "Trek + Local"
+      },
+      {
+        "day": 6,
+        "title": "Manikaran Pilgrimage",
+        "description": "Manikaran Sahib gurdwara and its natural hot springs.",
+        "places": [
+          "Manikaran"
+        ],
+        "dist_time": "4 km - 15 min"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "KASOL",
+        "lat": 32.01,
+        "lng": 77.316
+      },
+      {
+        "name": "Tosh",
+        "lat": 32.025,
+        "lng": 77.45
+      },
+      {
+        "name": "Kheerganga",
+        "lat": 32.033,
+        "lng": 77.451
+      },
+      {
+        "name": "Malana",
+        "lat": 32.062,
+        "lng": 77.265
+      },
+      {
+        "name": "Jana Waterfall",
+        "lat": 32.1001,
+        "lng": 77.195
+      },
+      {
+        "name": "Manikaran",
+        "lat": 32.026,
+        "lng": 77.35
+      }
+    ]
+  },
+  "package_content/kasol-parvati-spiti-connector-7d": {
+    "image": "https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kasol Cafe Trail",
+        "description": "Arrival in Kasol, riverside cafes and the Parvati river walk.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Tosh Getaway",
+        "description": "Day trip to the village of Tosh at the edge of the valley.",
+        "places": [
+          "Tosh"
+        ],
+        "dist_time": "12 km - 40 min"
+      },
+      {
+        "day": 3,
+        "title": "Kheerganga Trek",
+        "description": "Trek up to the Kheerganga hot springs, overnight in the meadow.",
+        "places": [
+          "Kheerganga"
+        ],
+        "dist_time": "Trek - 4-5 hrs one-way"
+      },
+      {
+        "day": 4,
+        "title": "Malana & Jana Waterfall",
+        "description": "Malana village visit and the Jana Waterfall en route.",
+        "places": [
+          "Malana",
+          "Jana Waterfall"
+        ],
+        "dist_time": "35 km - 1.5 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Parvati Valley Immersion",
+        "description": "Combined Tosh village day and the Kheerganga hot springs trek.",
+        "places": [
+          "Tosh",
+          "Kheerganga"
+        ],
+        "dist_time": "Trek + Local"
+      },
+      {
+        "day": 6,
+        "title": "Manikaran Pilgrimage",
+        "description": "Manikaran Sahib gurdwara and its natural hot springs.",
+        "places": [
+          "Manikaran"
+        ],
+        "dist_time": "4 km - 15 min"
+      },
+      {
+        "day": 7,
+        "title": "Parvati-Spiti Connector",
+        "description": "Valley trek followed by the long drive connecting into Spiti.",
+        "places": [
+          "Kheerganga",
+          "Kaza"
+        ],
+        "dist_time": "Trek + 200 km drive"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "KASOL",
+        "lat": 32.01,
+        "lng": 77.316
+      },
+      {
+        "name": "Tosh",
+        "lat": 32.025,
+        "lng": 77.45
+      },
+      {
+        "name": "Kheerganga",
+        "lat": 32.033,
+        "lng": 77.451
+      },
+      {
+        "name": "Malana",
+        "lat": 32.062,
+        "lng": 77.265
+      },
+      {
+        "name": "Jana Waterfall",
+        "lat": 32.1001,
+        "lng": 77.195
+      },
+      {
+        "name": "Manikaran",
+        "lat": 32.026,
+        "lng": 77.35
+      },
+      {
+        "name": "Kaza",
+        "lat": 32.227,
+        "lng": 78.067
+      }
+    ]
+  },
+  "package_content/kasol-parvati-valley-deep-trail-8d": {
+    "image": "https://drive.google.com/thumbnail?id=10_KfuO452VEIuDthPCL8kXMQblL0URWq&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kasol Cafe Trail",
+        "description": "Arrival in Kasol, riverside cafes and the Parvati river walk.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Tosh Getaway",
+        "description": "Day trip to the village of Tosh at the edge of the valley.",
+        "places": [
+          "Tosh"
+        ],
+        "dist_time": "12 km - 40 min"
+      },
+      {
+        "day": 3,
+        "title": "Kheerganga Trek",
+        "description": "Trek up to the Kheerganga hot springs, overnight in the meadow.",
+        "places": [
+          "Kheerganga"
+        ],
+        "dist_time": "Trek - 4-5 hrs one-way"
+      },
+      {
+        "day": 4,
+        "title": "Malana & Jana Waterfall",
+        "description": "Malana village visit and the Jana Waterfall en route.",
+        "places": [
+          "Malana",
+          "Jana Waterfall"
+        ],
+        "dist_time": "35 km - 1.5 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Parvati Valley Immersion",
+        "description": "Combined Tosh village day and the Kheerganga hot springs trek.",
+        "places": [
+          "Tosh",
+          "Kheerganga"
+        ],
+        "dist_time": "Trek + Local"
+      },
+      {
+        "day": 6,
+        "title": "Manikaran Pilgrimage",
+        "description": "Manikaran Sahib gurdwara and its natural hot springs.",
+        "places": [
+          "Manikaran"
+        ],
+        "dist_time": "4 km - 15 min"
+      },
+      {
+        "day": 7,
+        "title": "Parvati-Spiti Connector",
+        "description": "Valley trek followed by the long drive connecting into Spiti.",
+        "places": [
+          "Kheerganga",
+          "Kaza"
+        ],
+        "dist_time": "Trek + 200 km drive"
+      },
+      {
+        "day": 8,
+        "title": "Parvati Deep Trail",
+        "description": "Multiple valley villages - Malana, Tosh and Kalga - across the trail.",
+        "places": [
+          "Malana",
+          "Tosh",
+          "Kalga"
+        ],
+        "dist_time": "Multi-village"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "KASOL",
+        "lat": 32.01,
+        "lng": 77.316
+      },
+      {
+        "name": "Tosh",
+        "lat": 32.025,
+        "lng": 77.45
+      },
+      {
+        "name": "Kheerganga",
+        "lat": 32.033,
+        "lng": 77.451
+      },
+      {
+        "name": "Malana",
+        "lat": 32.062,
+        "lng": 77.265
+      },
+      {
+        "name": "Jana Waterfall",
+        "lat": 32.1001,
+        "lng": 77.195
+      },
+      {
+        "name": "Manikaran",
+        "lat": 32.026,
+        "lng": 77.35
+      },
+      {
+        "name": "Kaza",
+        "lat": 32.227,
+        "lng": 78.067
+      },
+      {
+        "name": "Kalga",
+        "lat": 32.0006,
+        "lng": 77.465
+      }
+    ]
+  },
+  "package_content/kasol-parvati-kinnaur-adventure-9d": {
+    "image": "https://drive.google.com/thumbnail?id=1kx5pdbLu_Eb0kh1S1mCkhU8mMMxCS8AU&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kasol Cafe Trail",
+        "description": "Arrival in Kasol, riverside cafes and the Parvati river walk.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Tosh Getaway",
+        "description": "Day trip to the village of Tosh at the edge of the valley.",
+        "places": [
+          "Tosh"
+        ],
+        "dist_time": "12 km - 40 min"
+      },
+      {
+        "day": 3,
+        "title": "Kheerganga Trek",
+        "description": "Trek up to the Kheerganga hot springs, overnight in the meadow.",
+        "places": [
+          "Kheerganga"
+        ],
+        "dist_time": "Trek - 4-5 hrs one-way"
+      },
+      {
+        "day": 4,
+        "title": "Malana & Jana Waterfall",
+        "description": "Malana village visit and the Jana Waterfall en route.",
+        "places": [
+          "Malana",
+          "Jana Waterfall"
+        ],
+        "dist_time": "35 km - 1.5 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Parvati Valley Immersion",
+        "description": "Combined Tosh village day and the Kheerganga hot springs trek.",
+        "places": [
+          "Tosh",
+          "Kheerganga"
+        ],
+        "dist_time": "Trek + Local"
+      },
+      {
+        "day": 6,
+        "title": "Manikaran Pilgrimage",
+        "description": "Manikaran Sahib gurdwara and its natural hot springs.",
+        "places": [
+          "Manikaran"
+        ],
+        "dist_time": "4 km - 15 min"
+      },
+      {
+        "day": 7,
+        "title": "Parvati-Spiti Connector",
+        "description": "Valley trek followed by the long drive connecting into Spiti.",
+        "places": [
+          "Kheerganga",
+          "Kaza"
+        ],
+        "dist_time": "Trek + 200 km drive"
+      },
+      {
+        "day": 8,
+        "title": "Parvati Deep Trail",
+        "description": "Multiple valley villages - Malana, Tosh and Kalga - across the trail.",
+        "places": [
+          "Malana",
+          "Tosh",
+          "Kalga"
+        ],
+        "dist_time": "Multi-village"
+      },
+      {
+        "day": 9,
+        "title": "Parvati-Kinnaur Adventure",
+        "description": "Cross-valley expedition linking Parvati Valley through to Kinnaur.",
+        "places": [
+          "Kheerganga",
+          "Sangla"
+        ],
+        "dist_time": "Multi-region"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "KASOL",
+        "lat": 32.01,
+        "lng": 77.316
+      },
+      {
+        "name": "Tosh",
+        "lat": 32.025,
+        "lng": 77.45
+      },
+      {
+        "name": "Kheerganga",
+        "lat": 32.033,
+        "lng": 77.451
+      },
+      {
+        "name": "Malana",
+        "lat": 32.062,
+        "lng": 77.265
+      },
+      {
+        "name": "Jana Waterfall",
+        "lat": 32.1001,
+        "lng": 77.195
+      },
+      {
+        "name": "Manikaran",
+        "lat": 32.026,
+        "lng": 77.35
+      },
+      {
+        "name": "Kaza",
+        "lat": 32.227,
+        "lng": 78.067
+      },
+      {
+        "name": "Kalga",
+        "lat": 32.0006,
+        "lng": 77.465
+      },
+      {
+        "name": "Sangla",
+        "lat": 31.429,
+        "lng": 78.262
+      }
+    ]
+  },
+  "package_content/kasol-parvati-grand-circuit-10d": {
+    "image": "https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kasol Cafe Trail",
+        "description": "Arrival in Kasol, riverside cafes and the Parvati river walk.",
+        "places": [
+          "Kasol"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Tosh Getaway",
+        "description": "Day trip to the village of Tosh at the edge of the valley.",
+        "places": [
+          "Tosh"
+        ],
+        "dist_time": "12 km - 40 min"
+      },
+      {
+        "day": 3,
+        "title": "Kheerganga Trek",
+        "description": "Trek up to the Kheerganga hot springs, overnight in the meadow.",
+        "places": [
+          "Kheerganga"
+        ],
+        "dist_time": "Trek - 4-5 hrs one-way"
+      },
+      {
+        "day": 4,
+        "title": "Malana & Jana Waterfall",
+        "description": "Malana village visit and the Jana Waterfall en route.",
+        "places": [
+          "Malana",
+          "Jana Waterfall"
+        ],
+        "dist_time": "35 km - 1.5 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Parvati Valley Immersion",
+        "description": "Combined Tosh village day and the Kheerganga hot springs trek.",
+        "places": [
+          "Tosh",
+          "Kheerganga"
+        ],
+        "dist_time": "Trek + Local"
+      },
+      {
+        "day": 6,
+        "title": "Manikaran Pilgrimage",
+        "description": "Manikaran Sahib gurdwara and its natural hot springs.",
+        "places": [
+          "Manikaran"
+        ],
+        "dist_time": "4 km - 15 min"
+      },
+      {
+        "day": 7,
+        "title": "Parvati-Spiti Connector",
+        "description": "Valley trek followed by the long drive connecting into Spiti.",
+        "places": [
+          "Kheerganga",
+          "Kaza"
+        ],
+        "dist_time": "Trek + 200 km drive"
+      },
+      {
+        "day": 8,
+        "title": "Parvati Deep Trail",
+        "description": "Multiple valley villages - Malana, Tosh and Kalga - across the trail.",
+        "places": [
+          "Malana",
+          "Tosh",
+          "Kalga"
+        ],
+        "dist_time": "Multi-village"
+      },
+      {
+        "day": 9,
+        "title": "Parvati-Kinnaur Adventure",
+        "description": "Cross-valley expedition linking Parvati Valley through to Kinnaur.",
+        "places": [
+          "Kheerganga",
+          "Sangla"
+        ],
+        "dist_time": "Multi-region"
+      },
+      {
+        "day": 10,
+        "title": "Parvati Grand Circuit",
+        "description": "Full circuit covering the valley, Spiti and Kinnaur.",
+        "places": [
+          "Kheerganga",
+          "Kaza",
+          "Sangla"
+        ],
+        "dist_time": "Grand circuit"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "KASOL",
+        "lat": 32.01,
+        "lng": 77.316
+      },
+      {
+        "name": "Tosh",
+        "lat": 32.025,
+        "lng": 77.45
+      },
+      {
+        "name": "Kheerganga",
+        "lat": 32.033,
+        "lng": 77.451
+      },
+      {
+        "name": "Malana",
+        "lat": 32.062,
+        "lng": 77.265
+      },
+      {
+        "name": "Jana Waterfall",
+        "lat": 32.1001,
+        "lng": 77.195
+      },
+      {
+        "name": "Manikaran",
+        "lat": 32.026,
+        "lng": 77.35
+      },
+      {
+        "name": "Kaza",
+        "lat": 32.227,
+        "lng": 78.067
+      },
+      {
+        "name": "Kalga",
+        "lat": 32.0006,
+        "lng": 77.465
+      },
+      {
+        "name": "Sangla",
+        "lat": 31.429,
+        "lng": 78.262
+      }
+    ]
+  },
+  "package_content/dharamshala-mcleod-ganj-heritage-walk-1d": {
+    "image": "https://drive.google.com/thumbnail?id=1ywkB_gHrhtYuwAZFLccRt-53R-25Ihlx&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "McLeod Ganj Heritage Walk",
+        "description": "Dalai Lama Temple complex, local markets and Bhagsu Falls.",
+        "places": [
+          "McLeod Ganj",
+          "Bhagsu Falls"
+        ],
+        "dist_time": "Local"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MCLEOD GANJ",
+        "lat": 32.2426,
+        "lng": 76.3213
+      },
+      {
+        "name": "Bhagsu Falls",
+        "lat": 32.2465,
+        "lng": 76.3315
+      }
+    ]
+  },
+  "package_content/dharamshala-triund-trek-getaway-2d": {
+    "image": "https://drive.google.com/thumbnail?id=1ywkB_gHrhtYuwAZFLccRt-53R-25Ihlx&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "McLeod Ganj Heritage Walk",
+        "description": "Dalai Lama Temple complex, local markets and Bhagsu Falls.",
+        "places": [
+          "McLeod Ganj",
+          "Bhagsu Falls"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Triund Trek Getaway",
+        "description": "Trek up to Triund with an overnight under the Dhauladhar range.",
+        "places": [
+          "Triund"
+        ],
+        "dist_time": "Trek - 4 hrs one-way"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MCLEOD GANJ",
+        "lat": 32.2426,
+        "lng": 76.3213
+      },
+      {
+        "name": "Bhagsu Falls",
+        "lat": 32.2465,
+        "lng": 76.3315
+      },
+      {
+        "name": "Triund",
+        "lat": 32.2618,
+        "lng": 76.3503
+      }
+    ]
+  },
+  "package_content/dharamshala-bir-billing-paragliding-special-3d": {
+    "image": "https://drive.google.com/thumbnail?id=1oXBV5IqiUwaK2HjqD9Po5oMmHBp8ha0K&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "McLeod Ganj Heritage Walk",
+        "description": "Dalai Lama Temple complex, local markets and Bhagsu Falls.",
+        "places": [
+          "McLeod Ganj",
+          "Bhagsu Falls"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Triund Trek Getaway",
+        "description": "Trek up to Triund with an overnight under the Dhauladhar range.",
+        "places": [
+          "Triund"
+        ],
+        "dist_time": "Trek - 4 hrs one-way"
+      },
+      {
+        "day": 3,
+        "title": "Bir Billing Paragliding Special",
+        "description": "Bir Billing for tandem paragliding, one of the world's top sites for it.",
+        "places": [
+          "Bir Billing"
+        ],
+        "dist_time": "70 km - 2 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MCLEOD GANJ",
+        "lat": 32.2426,
+        "lng": 76.3213
+      },
+      {
+        "name": "Bhagsu Falls",
+        "lat": 32.2465,
+        "lng": 76.3315
+      },
+      {
+        "name": "Triund",
+        "lat": 32.2618,
+        "lng": 76.3503
+      },
+      {
+        "name": "Bir Billing",
+        "lat": 32.0461,
+        "lng": 76.7161
+      }
+    ]
+  },
+  "package_content/dharamshala-dharamshala-bir-circuit-4d": {
+    "image": "https://drive.google.com/thumbnail?id=1oXBV5IqiUwaK2HjqD9Po5oMmHBp8ha0K&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "McLeod Ganj Heritage Walk",
+        "description": "Dalai Lama Temple complex, local markets and Bhagsu Falls.",
+        "places": [
+          "McLeod Ganj",
+          "Bhagsu Falls"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Triund Trek Getaway",
+        "description": "Trek up to Triund with an overnight under the Dhauladhar range.",
+        "places": [
+          "Triund"
+        ],
+        "dist_time": "Trek - 4 hrs one-way"
+      },
+      {
+        "day": 3,
+        "title": "Bir Billing Paragliding Special",
+        "description": "Bir Billing for tandem paragliding, one of the world's top sites for it.",
+        "places": [
+          "Bir Billing"
+        ],
+        "dist_time": "70 km - 2 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Dharamshala-Bir Circuit",
+        "description": "Combined Triund views, Bir paragliding and a stop in Palampur.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "Palampur"
+        ],
+        "dist_time": "Multi-stop"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MCLEOD GANJ",
+        "lat": 32.2426,
+        "lng": 76.3213
+      },
+      {
+        "name": "Bhagsu Falls",
+        "lat": 32.2465,
+        "lng": 76.3315
+      },
+      {
+        "name": "Triund",
+        "lat": 32.2618,
+        "lng": 76.3503
+      },
+      {
+        "name": "Bir Billing",
+        "lat": 32.0461,
+        "lng": 76.7161
+      },
+      {
+        "name": "Palampur",
+        "lat": 32.1158,
+        "lng": 76.54
+      }
+    ]
+  },
+  "package_content/dharamshala-dhauladhar-explorer-5d": {
+    "image": "https://drive.google.com/thumbnail?id=1ISC4INjpuSNCn6Cgctn48dQAasPvpraB&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "McLeod Ganj Heritage Walk",
+        "description": "Dalai Lama Temple complex, local markets and Bhagsu Falls.",
+        "places": [
+          "McLeod Ganj",
+          "Bhagsu Falls"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Triund Trek Getaway",
+        "description": "Trek up to Triund with an overnight under the Dhauladhar range.",
+        "places": [
+          "Triund"
+        ],
+        "dist_time": "Trek - 4 hrs one-way"
+      },
+      {
+        "day": 3,
+        "title": "Bir Billing Paragliding Special",
+        "description": "Bir Billing for tandem paragliding, one of the world's top sites for it.",
+        "places": [
+          "Bir Billing"
+        ],
+        "dist_time": "70 km - 2 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Dharamshala-Bir Circuit",
+        "description": "Combined Triund views, Bir paragliding and a stop in Palampur.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "Palampur"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 5,
+        "title": "Dhauladhar Explorer",
+        "description": "Triund and Bir, plus a visit to the historic Kangra Fort.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "Kangra Fort"
+        ],
+        "dist_time": "Multi-stop"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MCLEOD GANJ",
+        "lat": 32.2426,
+        "lng": 76.3213
+      },
+      {
+        "name": "Bhagsu Falls",
+        "lat": 32.2465,
+        "lng": 76.3315
+      },
+      {
+        "name": "Triund",
+        "lat": 32.2618,
+        "lng": 76.3503
+      },
+      {
+        "name": "Bir Billing",
+        "lat": 32.0461,
+        "lng": 76.7161
+      },
+      {
+        "name": "Palampur",
+        "lat": 32.1158,
+        "lng": 76.54
+      },
+      {
+        "name": "Kangra Fort",
+        "lat": 32.0913,
+        "lng": 76.2573
+      }
+    ]
+  },
+  "package_content/dharamshala-kangra-valley-deep-dive-6d": {
+    "image": "https://drive.google.com/thumbnail?id=1oXBV5IqiUwaK2HjqD9Po5oMmHBp8ha0K&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "McLeod Ganj Heritage Walk",
+        "description": "Dalai Lama Temple complex, local markets and Bhagsu Falls.",
+        "places": [
+          "McLeod Ganj",
+          "Bhagsu Falls"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Triund Trek Getaway",
+        "description": "Trek up to Triund with an overnight under the Dhauladhar range.",
+        "places": [
+          "Triund"
+        ],
+        "dist_time": "Trek - 4 hrs one-way"
+      },
+      {
+        "day": 3,
+        "title": "Bir Billing Paragliding Special",
+        "description": "Bir Billing for tandem paragliding, one of the world's top sites for it.",
+        "places": [
+          "Bir Billing"
+        ],
+        "dist_time": "70 km - 2 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Dharamshala-Bir Circuit",
+        "description": "Combined Triund views, Bir paragliding and a stop in Palampur.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "Palampur"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 5,
+        "title": "Dhauladhar Explorer",
+        "description": "Triund and Bir, plus a visit to the historic Kangra Fort.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "Kangra Fort"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 6,
+        "title": "Kangra Valley Deep Dive",
+        "description": "Palampur tea gardens, Bir and Triund across a fuller valley loop.",
+        "places": [
+          "Palampur",
+          "Bir Billing",
+          "Triund"
+        ],
+        "dist_time": "Multi-stop"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MCLEOD GANJ",
+        "lat": 32.2426,
+        "lng": 76.3213
+      },
+      {
+        "name": "Bhagsu Falls",
+        "lat": 32.2465,
+        "lng": 76.3315
+      },
+      {
+        "name": "Triund",
+        "lat": 32.2618,
+        "lng": 76.3503
+      },
+      {
+        "name": "Bir Billing",
+        "lat": 32.0461,
+        "lng": 76.7161
+      },
+      {
+        "name": "Palampur",
+        "lat": 32.1158,
+        "lng": 76.54
+      },
+      {
+        "name": "Kangra Fort",
+        "lat": 32.0913,
+        "lng": 76.2573
+      }
+    ]
+  },
+  "package_content/dharamshala-dharamshala-adventure-week-7d": {
+    "image": "https://drive.google.com/thumbnail?id=1ywkB_gHrhtYuwAZFLccRt-53R-25Ihlx&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "McLeod Ganj Heritage Walk",
+        "description": "Dalai Lama Temple complex, local markets and Bhagsu Falls.",
+        "places": [
+          "McLeod Ganj",
+          "Bhagsu Falls"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Triund Trek Getaway",
+        "description": "Trek up to Triund with an overnight under the Dhauladhar range.",
+        "places": [
+          "Triund"
+        ],
+        "dist_time": "Trek - 4 hrs one-way"
+      },
+      {
+        "day": 3,
+        "title": "Bir Billing Paragliding Special",
+        "description": "Bir Billing for tandem paragliding, one of the world's top sites for it.",
+        "places": [
+          "Bir Billing"
+        ],
+        "dist_time": "70 km - 2 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Dharamshala-Bir Circuit",
+        "description": "Combined Triund views, Bir paragliding and a stop in Palampur.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "Palampur"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 5,
+        "title": "Dhauladhar Explorer",
+        "description": "Triund and Bir, plus a visit to the historic Kangra Fort.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "Kangra Fort"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 6,
+        "title": "Kangra Valley Deep Dive",
+        "description": "Palampur tea gardens, Bir and Triund across a fuller valley loop.",
+        "places": [
+          "Palampur",
+          "Bir Billing",
+          "Triund"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 7,
+        "title": "Dharamshala Adventure Week",
+        "description": "Trekking, paragliding and monastery visits across the week.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "McLeod Ganj"
+        ],
+        "dist_time": "Multi-day"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MCLEOD GANJ",
+        "lat": 32.2426,
+        "lng": 76.3213
+      },
+      {
+        "name": "Bhagsu Falls",
+        "lat": 32.2465,
+        "lng": 76.3315
+      },
+      {
+        "name": "Triund",
+        "lat": 32.2618,
+        "lng": 76.3503
+      },
+      {
+        "name": "Bir Billing",
+        "lat": 32.0461,
+        "lng": 76.7161
+      },
+      {
+        "name": "Palampur",
+        "lat": 32.1158,
+        "lng": 76.54
+      },
+      {
+        "name": "Kangra Fort",
+        "lat": 32.0913,
+        "lng": 76.2573
+      }
+    ]
+  },
+  "package_content/dharamshala-indrahar-pass-trek-8d": {
+    "image": "https://drive.google.com/thumbnail?id=1ywkB_gHrhtYuwAZFLccRt-53R-25Ihlx&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "McLeod Ganj Heritage Walk",
+        "description": "Dalai Lama Temple complex, local markets and Bhagsu Falls.",
+        "places": [
+          "McLeod Ganj",
+          "Bhagsu Falls"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Triund Trek Getaway",
+        "description": "Trek up to Triund with an overnight under the Dhauladhar range.",
+        "places": [
+          "Triund"
+        ],
+        "dist_time": "Trek - 4 hrs one-way"
+      },
+      {
+        "day": 3,
+        "title": "Bir Billing Paragliding Special",
+        "description": "Bir Billing for tandem paragliding, one of the world's top sites for it.",
+        "places": [
+          "Bir Billing"
+        ],
+        "dist_time": "70 km - 2 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Dharamshala-Bir Circuit",
+        "description": "Combined Triund views, Bir paragliding and a stop in Palampur.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "Palampur"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 5,
+        "title": "Dhauladhar Explorer",
+        "description": "Triund and Bir, plus a visit to the historic Kangra Fort.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "Kangra Fort"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 6,
+        "title": "Kangra Valley Deep Dive",
+        "description": "Palampur tea gardens, Bir and Triund across a fuller valley loop.",
+        "places": [
+          "Palampur",
+          "Bir Billing",
+          "Triund"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 7,
+        "title": "Dharamshala Adventure Week",
+        "description": "Trekking, paragliding and monastery visits across the week.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "McLeod Ganj"
+        ],
+        "dist_time": "Multi-day"
+      },
+      {
+        "day": 8,
+        "title": "Indrahar Pass Trek",
+        "description": "High-altitude crossing of the Indrahar Pass in the Dhauladhar range.",
+        "places": [
+          "Indrahar Pass"
+        ],
+        "dist_time": "Trek - high altitude"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MCLEOD GANJ",
+        "lat": 32.2426,
+        "lng": 76.3213
+      },
+      {
+        "name": "Bhagsu Falls",
+        "lat": 32.2465,
+        "lng": 76.3315
+      },
+      {
+        "name": "Triund",
+        "lat": 32.2618,
+        "lng": 76.3503
+      },
+      {
+        "name": "Bir Billing",
+        "lat": 32.0461,
+        "lng": 76.7161
+      },
+      {
+        "name": "Palampur",
+        "lat": 32.1158,
+        "lng": 76.54
+      },
+      {
+        "name": "Kangra Fort",
+        "lat": 32.0913,
+        "lng": 76.2573
+      },
+      {
+        "name": "Indrahar Pass",
+        "lat": 32.353,
+        "lng": 76.316
+      }
+    ]
+  },
+  "package_content/dharamshala-dhauladhar-grand-trail-9d": {
+    "image": "https://drive.google.com/thumbnail?id=1ISC4INjpuSNCn6Cgctn48dQAasPvpraB&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "McLeod Ganj Heritage Walk",
+        "description": "Dalai Lama Temple complex, local markets and Bhagsu Falls.",
+        "places": [
+          "McLeod Ganj",
+          "Bhagsu Falls"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Triund Trek Getaway",
+        "description": "Trek up to Triund with an overnight under the Dhauladhar range.",
+        "places": [
+          "Triund"
+        ],
+        "dist_time": "Trek - 4 hrs one-way"
+      },
+      {
+        "day": 3,
+        "title": "Bir Billing Paragliding Special",
+        "description": "Bir Billing for tandem paragliding, one of the world's top sites for it.",
+        "places": [
+          "Bir Billing"
+        ],
+        "dist_time": "70 km - 2 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Dharamshala-Bir Circuit",
+        "description": "Combined Triund views, Bir paragliding and a stop in Palampur.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "Palampur"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 5,
+        "title": "Dhauladhar Explorer",
+        "description": "Triund and Bir, plus a visit to the historic Kangra Fort.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "Kangra Fort"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 6,
+        "title": "Kangra Valley Deep Dive",
+        "description": "Palampur tea gardens, Bir and Triund across a fuller valley loop.",
+        "places": [
+          "Palampur",
+          "Bir Billing",
+          "Triund"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 7,
+        "title": "Dharamshala Adventure Week",
+        "description": "Trekking, paragliding and monastery visits across the week.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "McLeod Ganj"
+        ],
+        "dist_time": "Multi-day"
+      },
+      {
+        "day": 8,
+        "title": "Indrahar Pass Trek",
+        "description": "High-altitude crossing of the Indrahar Pass in the Dhauladhar range.",
+        "places": [
+          "Indrahar Pass"
+        ],
+        "dist_time": "Trek - high altitude"
+      },
+      {
+        "day": 9,
+        "title": "Dhauladhar Grand Trail",
+        "description": "Extended trekking circuit through the Dhauladhar high country.",
+        "places": [
+          "Triund",
+          "Indrahar Pass"
+        ],
+        "dist_time": "Extended trek"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MCLEOD GANJ",
+        "lat": 32.2426,
+        "lng": 76.3213
+      },
+      {
+        "name": "Bhagsu Falls",
+        "lat": 32.2465,
+        "lng": 76.3315
+      },
+      {
+        "name": "Triund",
+        "lat": 32.2618,
+        "lng": 76.3503
+      },
+      {
+        "name": "Bir Billing",
+        "lat": 32.0461,
+        "lng": 76.7161
+      },
+      {
+        "name": "Palampur",
+        "lat": 32.1158,
+        "lng": 76.54
+      },
+      {
+        "name": "Kangra Fort",
+        "lat": 32.0913,
+        "lng": 76.2573
+      },
+      {
+        "name": "Indrahar Pass",
+        "lat": 32.353,
+        "lng": 76.316
+      }
+    ]
+  },
+  "package_content/dharamshala-kangra-chamba-dalhousie-expedition-10d": {
+    "image": "https://drive.google.com/thumbnail?id=1jU_FbssULoKENHPTmbUgJePBRWUOKlrF&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "McLeod Ganj Heritage Walk",
+        "description": "Dalai Lama Temple complex, local markets and Bhagsu Falls.",
+        "places": [
+          "McLeod Ganj",
+          "Bhagsu Falls"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Triund Trek Getaway",
+        "description": "Trek up to Triund with an overnight under the Dhauladhar range.",
+        "places": [
+          "Triund"
+        ],
+        "dist_time": "Trek - 4 hrs one-way"
+      },
+      {
+        "day": 3,
+        "title": "Bir Billing Paragliding Special",
+        "description": "Bir Billing for tandem paragliding, one of the world's top sites for it.",
+        "places": [
+          "Bir Billing"
+        ],
+        "dist_time": "70 km - 2 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Dharamshala-Bir Circuit",
+        "description": "Combined Triund views, Bir paragliding and a stop in Palampur.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "Palampur"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 5,
+        "title": "Dhauladhar Explorer",
+        "description": "Triund and Bir, plus a visit to the historic Kangra Fort.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "Kangra Fort"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 6,
+        "title": "Kangra Valley Deep Dive",
+        "description": "Palampur tea gardens, Bir and Triund across a fuller valley loop.",
+        "places": [
+          "Palampur",
+          "Bir Billing",
+          "Triund"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 7,
+        "title": "Dharamshala Adventure Week",
+        "description": "Trekking, paragliding and monastery visits across the week.",
+        "places": [
+          "Triund",
+          "Bir Billing",
+          "McLeod Ganj"
+        ],
+        "dist_time": "Multi-day"
+      },
+      {
+        "day": 8,
+        "title": "Indrahar Pass Trek",
+        "description": "High-altitude crossing of the Indrahar Pass in the Dhauladhar range.",
+        "places": [
+          "Indrahar Pass"
+        ],
+        "dist_time": "Trek - high altitude"
+      },
+      {
+        "day": 9,
+        "title": "Dhauladhar Grand Trail",
+        "description": "Extended trekking circuit through the Dhauladhar high country.",
+        "places": [
+          "Triund",
+          "Indrahar Pass"
+        ],
+        "dist_time": "Extended trek"
+      },
+      {
+        "day": 10,
+        "title": "Kangra-Chamba-Dalhousie Expedition",
+        "description": "Full valley loop extending into Chamba, Dalhousie and Khajjiar.",
+        "places": [
+          "Kangra Fort",
+          "Dalhousie",
+          "Khajjiar"
+        ],
+        "dist_time": "Multi-region"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "MCLEOD GANJ",
+        "lat": 32.2426,
+        "lng": 76.3213
+      },
+      {
+        "name": "Bhagsu Falls",
+        "lat": 32.2465,
+        "lng": 76.3315
+      },
+      {
+        "name": "Triund",
+        "lat": 32.2618,
+        "lng": 76.3503
+      },
+      {
+        "name": "Bir Billing",
+        "lat": 32.0461,
+        "lng": 76.7161
+      },
+      {
+        "name": "Palampur",
+        "lat": 32.1158,
+        "lng": 76.54
+      },
+      {
+        "name": "Kangra Fort",
+        "lat": 32.0913,
+        "lng": 76.2573
+      },
+      {
+        "name": "Indrahar Pass",
+        "lat": 32.353,
+        "lng": 76.316
+      },
+      {
+        "name": "Dalhousie",
+        "lat": 32.538,
+        "lng": 75.97
+      },
+      {
+        "name": "Khajjiar",
+        "lat": 32.549,
+        "lng": 76.059
+      }
+    ]
+  },
+  "package_content/spiti-kalpa-viewpoint-day-trip-1d": {
+    "image": "https://drive.google.com/thumbnail?id=1kx5pdbLu_Eb0kh1S1mCkhU8mMMxCS8AU&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kalpa Viewpoint Day",
+        "description": "Kalpa village and views of the Kinner Kailash range.",
+        "places": [
+          "Kalpa"
+        ],
+        "dist_time": "Local"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "RECKONG PEO",
+        "lat": 31.53,
+        "lng": 78.27
+      },
+      {
+        "name": "Kalpa",
+        "lat": 31.539,
+        "lng": 78.254
+      }
+    ]
+  },
+  "package_content/spiti-sangla-chitkul-express-2d": {
+    "image": "https://drive.google.com/thumbnail?id=1w-cA1F7Ybr2X-gyPSOjd1__5wQI96kX2&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kalpa Viewpoint Day",
+        "description": "Kalpa village and views of the Kinner Kailash range.",
+        "places": [
+          "Kalpa"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Sangla-Chitkul Express",
+        "description": "Sangla Valley and onward to Chitkul, the last village on the old Hindustan-Tibet road.",
+        "places": [
+          "Sangla",
+          "Chitkul"
+        ],
+        "dist_time": "90 km - 3.5 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "RECKONG PEO",
+        "lat": 31.53,
+        "lng": 78.27
+      },
+      {
+        "name": "Kalpa",
+        "lat": 31.539,
+        "lng": 78.254
+      },
+      {
+        "name": "Sangla",
+        "lat": 31.429,
+        "lng": 78.262
+      },
+      {
+        "name": "Chitkul",
+        "lat": 31.346,
+        "lng": 78.436
+      }
+    ]
+  },
+  "package_content/spiti-kinnaur-valley-short-trail-3d": {
+    "image": "https://drive.google.com/thumbnail?id=1kx5pdbLu_Eb0kh1S1mCkhU8mMMxCS8AU&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kalpa Viewpoint Day",
+        "description": "Kalpa village and views of the Kinner Kailash range.",
+        "places": [
+          "Kalpa"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Sangla-Chitkul Express",
+        "description": "Sangla Valley and onward to Chitkul, the last village on the old Hindustan-Tibet road.",
+        "places": [
+          "Sangla",
+          "Chitkul"
+        ],
+        "dist_time": "90 km - 3.5 hrs"
+      },
+      {
+        "day": 3,
+        "title": "Kinnaur Valley Short Trail",
+        "description": "Sangla, Kalpa and the district town of Reckong Peo.",
+        "places": [
+          "Sangla",
+          "Kalpa",
+          "Reckong Peo"
+        ],
+        "dist_time": "Multi-stop"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "RECKONG PEO",
+        "lat": 31.53,
+        "lng": 78.27
+      },
+      {
+        "name": "Kalpa",
+        "lat": 31.539,
+        "lng": 78.254
+      },
+      {
+        "name": "Sangla",
+        "lat": 31.429,
+        "lng": 78.262
+      },
+      {
+        "name": "Chitkul",
+        "lat": 31.346,
+        "lng": 78.436
+      }
+    ]
+  },
+  "package_content/spiti-spiti-gateway-4d": {
+    "image": "https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kalpa Viewpoint Day",
+        "description": "Kalpa village and views of the Kinner Kailash range.",
+        "places": [
+          "Kalpa"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Sangla-Chitkul Express",
+        "description": "Sangla Valley and onward to Chitkul, the last village on the old Hindustan-Tibet road.",
+        "places": [
+          "Sangla",
+          "Chitkul"
+        ],
+        "dist_time": "90 km - 3.5 hrs"
+      },
+      {
+        "day": 3,
+        "title": "Kinnaur Valley Short Trail",
+        "description": "Sangla, Kalpa and the district town of Reckong Peo.",
+        "places": [
+          "Sangla",
+          "Kalpa",
+          "Reckong Peo"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 4,
+        "title": "Spiti Gateway",
+        "description": "Cross into Spiti via Kunzum Pass to reach Kaza.",
+        "places": [
+          "Kaza",
+          "Kunzum Pass"
+        ],
+        "dist_time": "150 km - 6 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "RECKONG PEO",
+        "lat": 31.53,
+        "lng": 78.27
+      },
+      {
+        "name": "Kalpa",
+        "lat": 31.539,
+        "lng": 78.254
+      },
+      {
+        "name": "Sangla",
+        "lat": 31.429,
+        "lng": 78.262
+      },
+      {
+        "name": "Chitkul",
+        "lat": 31.346,
+        "lng": 78.436
+      },
+      {
+        "name": "Kaza",
+        "lat": 32.227,
+        "lng": 78.067
+      },
+      {
+        "name": "Kunzum Pass",
+        "lat": 32.3667,
+        "lng": 77.6333
+      }
+    ]
+  },
+  "package_content/spiti-spiti-monastery-circuit-5d": {
+    "image": "https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kalpa Viewpoint Day",
+        "description": "Kalpa village and views of the Kinner Kailash range.",
+        "places": [
+          "Kalpa"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Sangla-Chitkul Express",
+        "description": "Sangla Valley and onward to Chitkul, the last village on the old Hindustan-Tibet road.",
+        "places": [
+          "Sangla",
+          "Chitkul"
+        ],
+        "dist_time": "90 km - 3.5 hrs"
+      },
+      {
+        "day": 3,
+        "title": "Kinnaur Valley Short Trail",
+        "description": "Sangla, Kalpa and the district town of Reckong Peo.",
+        "places": [
+          "Sangla",
+          "Kalpa",
+          "Reckong Peo"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 4,
+        "title": "Spiti Gateway",
+        "description": "Cross into Spiti via Kunzum Pass to reach Kaza.",
+        "places": [
+          "Kaza",
+          "Kunzum Pass"
+        ],
+        "dist_time": "150 km - 6 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Spiti Monastery Circuit",
+        "description": "Key Monastery, Kibber village and the fossil village of Langza.",
+        "places": [
+          "Key Monastery",
+          "Kibber",
+          "Langza"
+        ],
+        "dist_time": "Multi-stop"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "RECKONG PEO",
+        "lat": 31.53,
+        "lng": 78.27
+      },
+      {
+        "name": "Kalpa",
+        "lat": 31.539,
+        "lng": 78.254
+      },
+      {
+        "name": "Sangla",
+        "lat": 31.429,
+        "lng": 78.262
+      },
+      {
+        "name": "Chitkul",
+        "lat": 31.346,
+        "lng": 78.436
+      },
+      {
+        "name": "Kaza",
+        "lat": 32.227,
+        "lng": 78.067
+      },
+      {
+        "name": "Kunzum Pass",
+        "lat": 32.3667,
+        "lng": 77.6333
+      },
+      {
+        "name": "Key Monastery",
+        "lat": 32.299,
+        "lng": 78.012
+      },
+      {
+        "name": "Kibber",
+        "lat": 32.3333,
+        "lng": 78.0167
+      },
+      {
+        "name": "Langza",
+        "lat": 32.27,
+        "lng": 78.07
+      }
+    ]
+  },
+  "package_content/spiti-chandratal-spiti-combo-6d": {
+    "image": "https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kalpa Viewpoint Day",
+        "description": "Kalpa village and views of the Kinner Kailash range.",
+        "places": [
+          "Kalpa"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Sangla-Chitkul Express",
+        "description": "Sangla Valley and onward to Chitkul, the last village on the old Hindustan-Tibet road.",
+        "places": [
+          "Sangla",
+          "Chitkul"
+        ],
+        "dist_time": "90 km - 3.5 hrs"
+      },
+      {
+        "day": 3,
+        "title": "Kinnaur Valley Short Trail",
+        "description": "Sangla, Kalpa and the district town of Reckong Peo.",
+        "places": [
+          "Sangla",
+          "Kalpa",
+          "Reckong Peo"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 4,
+        "title": "Spiti Gateway",
+        "description": "Cross into Spiti via Kunzum Pass to reach Kaza.",
+        "places": [
+          "Kaza",
+          "Kunzum Pass"
+        ],
+        "dist_time": "150 km - 6 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Spiti Monastery Circuit",
+        "description": "Key Monastery, Kibber village and the fossil village of Langza.",
+        "places": [
+          "Key Monastery",
+          "Kibber",
+          "Langza"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 6,
+        "title": "Chandratal-Spiti Combo",
+        "description": "Lake camping at Chandratal combined with the Spiti village circuit.",
+        "places": [
+          "Chandratal Lake",
+          "Kaza"
+        ],
+        "dist_time": "Multi-stop + Camp"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "RECKONG PEO",
+        "lat": 31.53,
+        "lng": 78.27
+      },
+      {
+        "name": "Kalpa",
+        "lat": 31.539,
+        "lng": 78.254
+      },
+      {
+        "name": "Sangla",
+        "lat": 31.429,
+        "lng": 78.262
+      },
+      {
+        "name": "Chitkul",
+        "lat": 31.346,
+        "lng": 78.436
+      },
+      {
+        "name": "Kaza",
+        "lat": 32.227,
+        "lng": 78.067
+      },
+      {
+        "name": "Kunzum Pass",
+        "lat": 32.3667,
+        "lng": 77.6333
+      },
+      {
+        "name": "Key Monastery",
+        "lat": 32.299,
+        "lng": 78.012
+      },
+      {
+        "name": "Kibber",
+        "lat": 32.3333,
+        "lng": 78.0167
+      },
+      {
+        "name": "Langza",
+        "lat": 32.27,
+        "lng": 78.07
+      },
+      {
+        "name": "Chandratal Lake",
+        "lat": 32.482,
+        "lng": 77.615
+      }
+    ]
+  },
+  "package_content/spiti-spiti-kinnaur-loop-7d": {
+    "image": "https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kalpa Viewpoint Day",
+        "description": "Kalpa village and views of the Kinner Kailash range.",
+        "places": [
+          "Kalpa"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Sangla-Chitkul Express",
+        "description": "Sangla Valley and onward to Chitkul, the last village on the old Hindustan-Tibet road.",
+        "places": [
+          "Sangla",
+          "Chitkul"
+        ],
+        "dist_time": "90 km - 3.5 hrs"
+      },
+      {
+        "day": 3,
+        "title": "Kinnaur Valley Short Trail",
+        "description": "Sangla, Kalpa and the district town of Reckong Peo.",
+        "places": [
+          "Sangla",
+          "Kalpa",
+          "Reckong Peo"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 4,
+        "title": "Spiti Gateway",
+        "description": "Cross into Spiti via Kunzum Pass to reach Kaza.",
+        "places": [
+          "Kaza",
+          "Kunzum Pass"
+        ],
+        "dist_time": "150 km - 6 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Spiti Monastery Circuit",
+        "description": "Key Monastery, Kibber village and the fossil village of Langza.",
+        "places": [
+          "Key Monastery",
+          "Kibber",
+          "Langza"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 6,
+        "title": "Chandratal-Spiti Combo",
+        "description": "Lake camping at Chandratal combined with the Spiti village circuit.",
+        "places": [
+          "Chandratal Lake",
+          "Kaza"
+        ],
+        "dist_time": "Multi-stop + Camp"
+      },
+      {
+        "day": 7,
+        "title": "Spiti-Kinnaur Loop",
+        "description": "Full loop covering both the Spiti and Kinnaur valleys.",
+        "places": [
+          "Kaza",
+          "Sangla"
+        ],
+        "dist_time": "Grand loop"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "RECKONG PEO",
+        "lat": 31.53,
+        "lng": 78.27
+      },
+      {
+        "name": "Kalpa",
+        "lat": 31.539,
+        "lng": 78.254
+      },
+      {
+        "name": "Sangla",
+        "lat": 31.429,
+        "lng": 78.262
+      },
+      {
+        "name": "Chitkul",
+        "lat": 31.346,
+        "lng": 78.436
+      },
+      {
+        "name": "Kaza",
+        "lat": 32.227,
+        "lng": 78.067
+      },
+      {
+        "name": "Kunzum Pass",
+        "lat": 32.3667,
+        "lng": 77.6333
+      },
+      {
+        "name": "Key Monastery",
+        "lat": 32.299,
+        "lng": 78.012
+      },
+      {
+        "name": "Kibber",
+        "lat": 32.3333,
+        "lng": 78.0167
+      },
+      {
+        "name": "Langza",
+        "lat": 32.27,
+        "lng": 78.07
+      },
+      {
+        "name": "Chandratal Lake",
+        "lat": 32.482,
+        "lng": 77.615
+      }
+    ]
+  },
+  "package_content/spiti-spiti-high-altitude-villages-8d": {
+    "image": "https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kalpa Viewpoint Day",
+        "description": "Kalpa village and views of the Kinner Kailash range.",
+        "places": [
+          "Kalpa"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Sangla-Chitkul Express",
+        "description": "Sangla Valley and onward to Chitkul, the last village on the old Hindustan-Tibet road.",
+        "places": [
+          "Sangla",
+          "Chitkul"
+        ],
+        "dist_time": "90 km - 3.5 hrs"
+      },
+      {
+        "day": 3,
+        "title": "Kinnaur Valley Short Trail",
+        "description": "Sangla, Kalpa and the district town of Reckong Peo.",
+        "places": [
+          "Sangla",
+          "Kalpa",
+          "Reckong Peo"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 4,
+        "title": "Spiti Gateway",
+        "description": "Cross into Spiti via Kunzum Pass to reach Kaza.",
+        "places": [
+          "Kaza",
+          "Kunzum Pass"
+        ],
+        "dist_time": "150 km - 6 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Spiti Monastery Circuit",
+        "description": "Key Monastery, Kibber village and the fossil village of Langza.",
+        "places": [
+          "Key Monastery",
+          "Kibber",
+          "Langza"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 6,
+        "title": "Chandratal-Spiti Combo",
+        "description": "Lake camping at Chandratal combined with the Spiti village circuit.",
+        "places": [
+          "Chandratal Lake",
+          "Kaza"
+        ],
+        "dist_time": "Multi-stop + Camp"
+      },
+      {
+        "day": 7,
+        "title": "Spiti-Kinnaur Loop",
+        "description": "Full loop covering both the Spiti and Kinnaur valleys.",
+        "places": [
+          "Kaza",
+          "Sangla"
+        ],
+        "dist_time": "Grand loop"
+      },
+      {
+        "day": 8,
+        "title": "Spiti High-Altitude Villages",
+        "description": "Komic, Hikkim, Langza and Kibber - the highest motorable villages in the circuit.",
+        "places": [
+          "Komic",
+          "Hikkim",
+          "Langza",
+          "Kibber"
+        ],
+        "dist_time": "Multi-village"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "RECKONG PEO",
+        "lat": 31.53,
+        "lng": 78.27
+      },
+      {
+        "name": "Kalpa",
+        "lat": 31.539,
+        "lng": 78.254
+      },
+      {
+        "name": "Sangla",
+        "lat": 31.429,
+        "lng": 78.262
+      },
+      {
+        "name": "Chitkul",
+        "lat": 31.346,
+        "lng": 78.436
+      },
+      {
+        "name": "Kaza",
+        "lat": 32.227,
+        "lng": 78.067
+      },
+      {
+        "name": "Kunzum Pass",
+        "lat": 32.3667,
+        "lng": 77.6333
+      },
+      {
+        "name": "Key Monastery",
+        "lat": 32.299,
+        "lng": 78.012
+      },
+      {
+        "name": "Kibber",
+        "lat": 32.3333,
+        "lng": 78.0167
+      },
+      {
+        "name": "Langza",
+        "lat": 32.27,
+        "lng": 78.07
+      },
+      {
+        "name": "Chandratal Lake",
+        "lat": 32.482,
+        "lng": 77.615
+      },
+      {
+        "name": "Komic",
+        "lat": 32.3083,
+        "lng": 78.0167
+      },
+      {
+        "name": "Hikkim",
+        "lat": 32.325,
+        "lng": 78.0
+      }
+    ]
+  },
+  "package_content/spiti-spiti-grand-expedition-9d": {
+    "image": "https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kalpa Viewpoint Day",
+        "description": "Kalpa village and views of the Kinner Kailash range.",
+        "places": [
+          "Kalpa"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Sangla-Chitkul Express",
+        "description": "Sangla Valley and onward to Chitkul, the last village on the old Hindustan-Tibet road.",
+        "places": [
+          "Sangla",
+          "Chitkul"
+        ],
+        "dist_time": "90 km - 3.5 hrs"
+      },
+      {
+        "day": 3,
+        "title": "Kinnaur Valley Short Trail",
+        "description": "Sangla, Kalpa and the district town of Reckong Peo.",
+        "places": [
+          "Sangla",
+          "Kalpa",
+          "Reckong Peo"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 4,
+        "title": "Spiti Gateway",
+        "description": "Cross into Spiti via Kunzum Pass to reach Kaza.",
+        "places": [
+          "Kaza",
+          "Kunzum Pass"
+        ],
+        "dist_time": "150 km - 6 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Spiti Monastery Circuit",
+        "description": "Key Monastery, Kibber village and the fossil village of Langza.",
+        "places": [
+          "Key Monastery",
+          "Kibber",
+          "Langza"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 6,
+        "title": "Chandratal-Spiti Combo",
+        "description": "Lake camping at Chandratal combined with the Spiti village circuit.",
+        "places": [
+          "Chandratal Lake",
+          "Kaza"
+        ],
+        "dist_time": "Multi-stop + Camp"
+      },
+      {
+        "day": 7,
+        "title": "Spiti-Kinnaur Loop",
+        "description": "Full loop covering both the Spiti and Kinnaur valleys.",
+        "places": [
+          "Kaza",
+          "Sangla"
+        ],
+        "dist_time": "Grand loop"
+      },
+      {
+        "day": 8,
+        "title": "Spiti High-Altitude Villages",
+        "description": "Komic, Hikkim, Langza and Kibber - the highest motorable villages in the circuit.",
+        "places": [
+          "Komic",
+          "Hikkim",
+          "Langza",
+          "Kibber"
+        ],
+        "dist_time": "Multi-village"
+      },
+      {
+        "day": 9,
+        "title": "Spiti Grand Expedition",
+        "description": "Extended monastery and village trail including Tabo.",
+        "places": [
+          "Key Monastery",
+          "Tabo",
+          "Kaza"
+        ],
+        "dist_time": "Extended"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "RECKONG PEO",
+        "lat": 31.53,
+        "lng": 78.27
+      },
+      {
+        "name": "Kalpa",
+        "lat": 31.539,
+        "lng": 78.254
+      },
+      {
+        "name": "Sangla",
+        "lat": 31.429,
+        "lng": 78.262
+      },
+      {
+        "name": "Chitkul",
+        "lat": 31.346,
+        "lng": 78.436
+      },
+      {
+        "name": "Kaza",
+        "lat": 32.227,
+        "lng": 78.067
+      },
+      {
+        "name": "Kunzum Pass",
+        "lat": 32.3667,
+        "lng": 77.6333
+      },
+      {
+        "name": "Key Monastery",
+        "lat": 32.299,
+        "lng": 78.012
+      },
+      {
+        "name": "Kibber",
+        "lat": 32.3333,
+        "lng": 78.0167
+      },
+      {
+        "name": "Langza",
+        "lat": 32.27,
+        "lng": 78.07
+      },
+      {
+        "name": "Chandratal Lake",
+        "lat": 32.482,
+        "lng": 77.615
+      },
+      {
+        "name": "Komic",
+        "lat": 32.3083,
+        "lng": 78.0167
+      },
+      {
+        "name": "Hikkim",
+        "lat": 32.325,
+        "lng": 78.0
+      },
+      {
+        "name": "Tabo",
+        "lat": 32.093,
+        "lng": 78.383
+      }
+    ]
+  },
+  "package_content/spiti-spiti-kinnaur-sarahan-circuit-10d": {
+    "image": "https://drive.google.com/thumbnail?id=10_KfuO452VEIuDthPCL8kXMQblL0URWq&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kalpa Viewpoint Day",
+        "description": "Kalpa village and views of the Kinner Kailash range.",
+        "places": [
+          "Kalpa"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Sangla-Chitkul Express",
+        "description": "Sangla Valley and onward to Chitkul, the last village on the old Hindustan-Tibet road.",
+        "places": [
+          "Sangla",
+          "Chitkul"
+        ],
+        "dist_time": "90 km - 3.5 hrs"
+      },
+      {
+        "day": 3,
+        "title": "Kinnaur Valley Short Trail",
+        "description": "Sangla, Kalpa and the district town of Reckong Peo.",
+        "places": [
+          "Sangla",
+          "Kalpa",
+          "Reckong Peo"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 4,
+        "title": "Spiti Gateway",
+        "description": "Cross into Spiti via Kunzum Pass to reach Kaza.",
+        "places": [
+          "Kaza",
+          "Kunzum Pass"
+        ],
+        "dist_time": "150 km - 6 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Spiti Monastery Circuit",
+        "description": "Key Monastery, Kibber village and the fossil village of Langza.",
+        "places": [
+          "Key Monastery",
+          "Kibber",
+          "Langza"
+        ],
+        "dist_time": "Multi-stop"
+      },
+      {
+        "day": 6,
+        "title": "Chandratal-Spiti Combo",
+        "description": "Lake camping at Chandratal combined with the Spiti village circuit.",
+        "places": [
+          "Chandratal Lake",
+          "Kaza"
+        ],
+        "dist_time": "Multi-stop + Camp"
+      },
+      {
+        "day": 7,
+        "title": "Spiti-Kinnaur Loop",
+        "description": "Full loop covering both the Spiti and Kinnaur valleys.",
+        "places": [
+          "Kaza",
+          "Sangla"
+        ],
+        "dist_time": "Grand loop"
+      },
+      {
+        "day": 8,
+        "title": "Spiti High-Altitude Villages",
+        "description": "Komic, Hikkim, Langza and Kibber - the highest motorable villages in the circuit.",
+        "places": [
+          "Komic",
+          "Hikkim",
+          "Langza",
+          "Kibber"
+        ],
+        "dist_time": "Multi-village"
+      },
+      {
+        "day": 9,
+        "title": "Spiti Grand Expedition",
+        "description": "Extended monastery and village trail including Tabo.",
+        "places": [
+          "Key Monastery",
+          "Tabo",
+          "Kaza"
+        ],
+        "dist_time": "Extended"
+      },
+      {
+        "day": 10,
+        "title": "Spiti-Kinnaur-Sarahan Circuit",
+        "description": "Complete Trans-Himalayan loop closing out via Sarahan.",
+        "places": [
+          "Kaza",
+          "Kalpa",
+          "Sarahan"
+        ],
+        "dist_time": "Complete loop"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "RECKONG PEO",
+        "lat": 31.53,
+        "lng": 78.27
+      },
+      {
+        "name": "Kalpa",
+        "lat": 31.539,
+        "lng": 78.254
+      },
+      {
+        "name": "Sangla",
+        "lat": 31.429,
+        "lng": 78.262
+      },
+      {
+        "name": "Chitkul",
+        "lat": 31.346,
+        "lng": 78.436
+      },
+      {
+        "name": "Kaza",
+        "lat": 32.227,
+        "lng": 78.067
+      },
+      {
+        "name": "Kunzum Pass",
+        "lat": 32.3667,
+        "lng": 77.6333
+      },
+      {
+        "name": "Key Monastery",
+        "lat": 32.299,
+        "lng": 78.012
+      },
+      {
+        "name": "Kibber",
+        "lat": 32.3333,
+        "lng": 78.0167
+      },
+      {
+        "name": "Langza",
+        "lat": 32.27,
+        "lng": 78.07
+      },
+      {
+        "name": "Chandratal Lake",
+        "lat": 32.482,
+        "lng": 77.615
+      },
+      {
+        "name": "Komic",
+        "lat": 32.3083,
+        "lng": 78.0167
+      },
+      {
+        "name": "Hikkim",
+        "lat": 32.325,
+        "lng": 78.0
+      },
+      {
+        "name": "Tabo",
+        "lat": 32.093,
+        "lng": 78.383
+      },
+      {
+        "name": "Sarahan",
+        "lat": 31.518,
+        "lng": 77.813
+      }
+    ]
+  },
+  "package_content/dalhousie-dalhousie-colonial-trail-1d": {
+    "image": "https://drive.google.com/thumbnail?id=1jU_FbssULoKENHPTmbUgJePBRWUOKlrF&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Dalhousie Colonial Trail",
+        "description": "Colonial-era Dalhousie town, churches and Mall Road.",
+        "places": [
+          "Dalhousie"
+        ],
+        "dist_time": "Local"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "DALHOUSIE",
+        "lat": 32.538,
+        "lng": 75.97
+      }
+    ]
+  },
+  "package_content/dalhousie-dalhousie-khajjiar-duo-2d": {
+    "image": "https://drive.google.com/thumbnail?id=1jU_FbssULoKENHPTmbUgJePBRWUOKlrF&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Dalhousie Colonial Trail",
+        "description": "Colonial-era Dalhousie town, churches and Mall Road.",
+        "places": [
+          "Dalhousie"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Khajjiar - Mini Switzerland",
+        "description": "Day trip to the Khajjiar meadow and lake.",
+        "places": [
+          "Khajjiar"
+        ],
+        "dist_time": "22 km - 45 min"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "DALHOUSIE",
+        "lat": 32.538,
+        "lng": 75.97
+      },
+      {
+        "name": "Khajjiar",
+        "lat": 32.549,
+        "lng": 76.059
+      }
+    ]
+  },
+  "package_content/dalhousie-chamba-heritage-circuit-3d": {
+    "image": "https://drive.google.com/thumbnail?id=1j44-HG28T5q1Cyeb65MjUkFTNsATfsbk&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Dalhousie Colonial Trail",
+        "description": "Colonial-era Dalhousie town, churches and Mall Road.",
+        "places": [
+          "Dalhousie"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Khajjiar - Mini Switzerland",
+        "description": "Day trip to the Khajjiar meadow and lake.",
+        "places": [
+          "Khajjiar"
+        ],
+        "dist_time": "22 km - 45 min"
+      },
+      {
+        "day": 3,
+        "title": "Chamba Heritage Circuit",
+        "description": "Chamba town temples and the Bhuri Singh Museum.",
+        "places": [
+          "Chamba Town"
+        ],
+        "dist_time": "56 km - 2 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "DALHOUSIE",
+        "lat": 32.538,
+        "lng": 75.97
+      },
+      {
+        "name": "Khajjiar",
+        "lat": 32.549,
+        "lng": 76.059
+      },
+      {
+        "name": "Chamba Town",
+        "lat": 32.556,
+        "lng": 76.126
+      }
+    ]
+  },
+  "package_content/dalhousie-dalhousie-chamba-bharmour-4d": {
+    "image": "https://drive.google.com/thumbnail?id=19upYXK2gJjwrC4Hv5V_3UqeOqwyz1zk6&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Dalhousie Colonial Trail",
+        "description": "Colonial-era Dalhousie town, churches and Mall Road.",
+        "places": [
+          "Dalhousie"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Khajjiar - Mini Switzerland",
+        "description": "Day trip to the Khajjiar meadow and lake.",
+        "places": [
+          "Khajjiar"
+        ],
+        "dist_time": "22 km - 45 min"
+      },
+      {
+        "day": 3,
+        "title": "Chamba Heritage Circuit",
+        "description": "Chamba town temples and the Bhuri Singh Museum.",
+        "places": [
+          "Chamba Town"
+        ],
+        "dist_time": "56 km - 2 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Dalhousie-Chamba-Bharmour",
+        "description": "Extended temple circuit through to Bharmour.",
+        "places": [
+          "Chamba Town",
+          "Bharmour"
+        ],
+        "dist_time": "65 km - 2.5 hrs"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "DALHOUSIE",
+        "lat": 32.538,
+        "lng": 75.97
+      },
+      {
+        "name": "Khajjiar",
+        "lat": 32.549,
+        "lng": 76.059
+      },
+      {
+        "name": "Chamba Town",
+        "lat": 32.556,
+        "lng": 76.126
+      },
+      {
+        "name": "Bharmour",
+        "lat": 32.4439,
+        "lng": 76.5133
+      }
+    ]
+  },
+  "package_content/dalhousie-chamba-valley-explorer-5d": {
+    "image": "https://drive.google.com/thumbnail?id=19upYXK2gJjwrC4Hv5V_3UqeOqwyz1zk6&sz=w600",
+    "inclusions": [
+      "Private cab with experienced driver",
+      "Hotel accommodation (3 Star)",
+      "Driver allowance & night halt charges",
+      "Hill state permits & tolls",
+      "Day-wise itinerary & personal support"
+    ],
+    "exclusions": [
+      "Flights or train tickets",
+      "Meals (unless specified)",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Dalhousie Colonial Trail",
+        "description": "Colonial-era Dalhousie town, churches and Mall Road.",
+        "places": [
+          "Dalhousie"
+        ],
+        "dist_time": "Local"
+      },
+      {
+        "day": 2,
+        "title": "Khajjiar - Mini Switzerland",
+        "description": "Day trip to the Khajjiar meadow and lake.",
+        "places": [
+          "Khajjiar"
+        ],
+        "dist_time": "22 km - 45 min"
+      },
+      {
+        "day": 3,
+        "title": "Chamba Heritage Circuit",
+        "description": "Chamba town temples and the Bhuri Singh Museum.",
+        "places": [
+          "Chamba Town"
+        ],
+        "dist_time": "56 km - 2 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Dalhousie-Chamba-Bharmour",
+        "description": "Extended temple circuit through to Bharmour.",
+        "places": [
+          "Chamba Town",
+          "Bharmour"
+        ],
+        "dist_time": "65 km - 2.5 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Chamba Valley Explorer",
+        "description": "Full valley loop with a base-camp view of Manimahesh.",
+        "places": [
+          "Bharmour",
+          "Manimahesh Lake"
+        ],
+        "dist_time": "Multi-stop"
+      }
+    ],
+    "route_stops": [
+      {
+        "name": "DALHOUSIE",
+        "lat": 32.538,
+        "lng": 75.97
+      },
+      {
+        "name": "Khajjiar",
+        "lat": 32.549,
+        "lng": 76.059
+      },
+      {
+        "name": "Chamba Town",
+        "lat": 32.556,
+        "lng": 76.126
+      },
+      {
+        "name": "Bharmour",
+        "lat": 32.4439,
+        "lng": 76.5133
+      },
+      {
+        "name": "Manimahesh Lake",
+        "lat": 32.3956,
+        "lng": 76.6433
+      }
+    ]
+  }
+}

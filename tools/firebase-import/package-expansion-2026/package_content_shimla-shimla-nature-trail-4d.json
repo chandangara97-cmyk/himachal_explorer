@@ -1,0 +1,82 @@
+{
+  "image": "https://drive.google.com/thumbnail?id=1zyML626vzyNAfQaMMYLr1lsIBCBjUvqQ&sz=w600",
+  "inclusions": [
+    "Private cab with experienced driver",
+    "Hotel accommodation (3 Star)",
+    "Driver allowance & night halt charges",
+    "Hill state permits & tolls",
+    "Day-wise itinerary & personal support"
+  ],
+  "exclusions": [
+    "Flights or train tickets",
+    "Meals (unless specified)",
+    "Personal expenses",
+    "Travel insurance"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Shimla Ridge & Mall Road",
+      "description": "Arrival in Shimla, evening stroll on The Ridge and Mall Road, Christ Church view.",
+      "places": [
+        "Shimla"
+      ],
+      "dist_time": "Local"
+    },
+    {
+      "day": 2,
+      "title": "Kufri Excursion",
+      "description": "Day trip to Kufri for pony rides, Himalayan Nature Park and valley views.",
+      "places": [
+        "Kufri"
+      ],
+      "dist_time": "16 km - 1 hr"
+    },
+    {
+      "day": 3,
+      "title": "Chail Getaway",
+      "description": "Drive to Chail, visit the Chail Palace grounds and the world's highest cricket ground.",
+      "places": [
+        "Chail"
+      ],
+      "dist_time": "45 km - 1.5 hrs"
+    },
+    {
+      "day": 4,
+      "title": "Naldehra & Mashobra",
+      "description": "Naldehra golf course meadows and Mashobra orchard drive.",
+      "places": [
+        "Naldehra",
+        "Mashobra"
+      ],
+      "dist_time": "25 km - 1 hr"
+    }
+  ],
+  "route_stops": [
+    {
+      "name": "SHIMLA",
+      "lat": 31.1048,
+      "lng": 77.1734
+    },
+    {
+      "name": "Kufri",
+      "lat": 31.0978,
+      "lng": 77.267
+    },
+    {
+      "name": "Chail",
+      "lat": 30.969,
+      "lng": 77.196
+    },
+    {
+      "name": "Naldehra",
+      "lat": 31.1664,
+      "lng": 77.2343
+    },
+    {
+      "name": "Mashobra",
+      "lat": 31.1345,
+      "lng": 77.2198
+    }
+  ]
+}

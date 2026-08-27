@@ -1,0 +1,121 @@
+{
+  "image": "https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600",
+  "inclusions": [
+    "Private cab with experienced driver",
+    "Hotel accommodation (3 Star)",
+    "Driver allowance & night halt charges",
+    "Hill state permits & tolls",
+    "Day-wise itinerary & personal support"
+  ],
+  "exclusions": [
+    "Flights or train tickets",
+    "Meals (unless specified)",
+    "Personal expenses",
+    "Travel insurance"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Kasol Cafe Trail",
+      "description": "Arrival in Kasol, riverside cafes and the Parvati river walk.",
+      "places": [
+        "Kasol"
+      ],
+      "dist_time": "Local"
+    },
+    {
+      "day": 2,
+      "title": "Tosh Getaway",
+      "description": "Day trip to the village of Tosh at the edge of the valley.",
+      "places": [
+        "Tosh"
+      ],
+      "dist_time": "12 km - 40 min"
+    },
+    {
+      "day": 3,
+      "title": "Kheerganga Trek",
+      "description": "Trek up to the Kheerganga hot springs, overnight in the meadow.",
+      "places": [
+        "Kheerganga"
+      ],
+      "dist_time": "Trek - 4-5 hrs one-way"
+    },
+    {
+      "day": 4,
+      "title": "Malana & Jana Waterfall",
+      "description": "Malana village visit and the Jana Waterfall en route.",
+      "places": [
+        "Malana",
+        "Jana Waterfall"
+      ],
+      "dist_time": "35 km - 1.5 hrs"
+    },
+    {
+      "day": 5,
+      "title": "Parvati Valley Immersion",
+      "description": "Combined Tosh village day and the Kheerganga hot springs trek.",
+      "places": [
+        "Tosh",
+        "Kheerganga"
+      ],
+      "dist_time": "Trek + Local"
+    },
+    {
+      "day": 6,
+      "title": "Manikaran Pilgrimage",
+      "description": "Manikaran Sahib gurdwara and its natural hot springs.",
+      "places": [
+        "Manikaran"
+      ],
+      "dist_time": "4 km - 15 min"
+    },
+    {
+      "day": 7,
+      "title": "Parvati-Spiti Connector",
+      "description": "Valley trek followed by the long drive connecting into Spiti.",
+      "places": [
+        "Kheerganga",
+        "Kaza"
+      ],
+      "dist_time": "Trek + 200 km drive"
+    }
+  ],
+  "route_stops": [
+    {
+      "name": "KASOL",
+      "lat": 32.01,
+      "lng": 77.316
+    },
+    {
+      "name": "Tosh",
+      "lat": 32.025,
+      "lng": 77.45
+    },
+    {
+      "name": "Kheerganga",
+      "lat": 32.033,
+      "lng": 77.451
+    },
+    {
+      "name": "Malana",
+      "lat": 32.062,
+      "lng": 77.265
+    },
+    {
+      "name": "Jana Waterfall",
+      "lat": 32.1001,
+      "lng": 77.195
+    },
+    {
+      "name": "Manikaran",
+      "lat": 32.026,
+      "lng": 77.35
+    },
+    {
+      "name": "Kaza",
+      "lat": 32.227,
+      "lng": 78.067
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "image": "https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600",
+  "inclusions": [
+    "Private cab with experienced driver",
+    "Hotel accommodation (3 Star)",
+    "Driver allowance & night halt charges",
+    "Hill state permits & tolls",
+    "Day-wise itinerary & personal support"
+  ],
+  "exclusions": [
+    "Flights or train tickets",
+    "Meals (unless specified)",
+    "Personal expenses",
+    "Travel insurance"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Kalpa Viewpoint Day",
+      "description": "Kalpa village and views of the Kinner Kailash range.",
+      "places": [
+        "Kalpa"
+      ],
+      "dist_time": "Local"
+    },
+    {
+      "day": 2,
+      "title": "Sangla-Chitkul Express",
+      "description": "Sangla Valley and onward to Chitkul, the last village on the old Hindustan-Tibet road.",
+      "places": [
+        "Sangla",
+        "Chitkul"
+      ],
+      "dist_time": "90 km - 3.5 hrs"
+    },
+    {
+      "day": 3,
+      "title": "Kinnaur Valley Short Trail",
+      "description": "Sangla, Kalpa and the district town of Reckong Peo.",
+      "places": [
+        "Sangla",
+        "Kalpa",
+        "Reckong Peo"
+      ],
+      "dist_time": "Multi-stop"
+    },
+    {
+      "day": 4,
+      "title": "Spiti Gateway",
+      "description": "Cross into Spiti via Kunzum Pass to reach Kaza.",
+      "places": [
+        "Kaza",
+        "Kunzum Pass"
+      ],
+      "dist_time": "150 km - 6 hrs"
+    }
+  ],
+  "route_stops": [
+    {
+      "name": "RECKONG PEO",
+      "lat": 31.53,
+      "lng": 78.27
+    },
+    {
+      "name": "Kalpa",
+      "lat": 31.539,
+      "lng": 78.254
+    },
+    {
+      "name": "Sangla",
+      "lat": 31.429,
+      "lng": 78.262
+    },
+    {
+      "name": "Chitkul",
+      "lat": 31.346,
+      "lng": 78.436
+    },
+    {
+      "name": "Kaza",
+      "lat": 32.227,
+      "lng": 78.067
+    },
+    {
+      "name": "Kunzum Pass",
+      "lat": 32.3667,
+      "lng": 77.6333
+    }
+  ]
+}

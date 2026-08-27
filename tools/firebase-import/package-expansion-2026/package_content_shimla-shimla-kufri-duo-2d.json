@@ -1,0 +1,48 @@
+{
+  "image": "https://drive.google.com/thumbnail?id=1ut5eL2H-hIjMeELodJDuY4ZrZCauGBoZ&sz=w600",
+  "inclusions": [
+    "Private cab with experienced driver",
+    "Hotel accommodation (3 Star)",
+    "Driver allowance & night halt charges",
+    "Hill state permits & tolls",
+    "Day-wise itinerary & personal support"
+  ],
+  "exclusions": [
+    "Flights or train tickets",
+    "Meals (unless specified)",
+    "Personal expenses",
+    "Travel insurance"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Shimla Ridge & Mall Road",
+      "description": "Arrival in Shimla, evening stroll on The Ridge and Mall Road, Christ Church view.",
+      "places": [
+        "Shimla"
+      ],
+      "dist_time": "Local"
+    },
+    {
+      "day": 2,
+      "title": "Kufri Excursion",
+      "description": "Day trip to Kufri for pony rides, Himalayan Nature Park and valley views.",
+      "places": [
+        "Kufri"
+      ],
+      "dist_time": "16 km - 1 hr"
+    }
+  ],
+  "route_stops": [
+    {
+      "name": "SHIMLA",
+      "lat": 31.1048,
+      "lng": 77.1734
+    },
+    {
+      "name": "Kufri",
+      "lat": 31.0978,
+      "lng": 77.267
+    }
+  ]
+}

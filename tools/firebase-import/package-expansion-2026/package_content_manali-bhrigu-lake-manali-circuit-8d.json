@@ -1,0 +1,163 @@
+{
+  "image": "https://drive.google.com/thumbnail?id=1Wj2vfI0R68ZDlhPr1P06tNxRXKKK67GC&sz=w600",
+  "inclusions": [
+    "Private cab with experienced driver",
+    "Hotel accommodation (3 Star)",
+    "Driver allowance & night halt charges",
+    "Hill state permits & tolls",
+    "Day-wise itinerary & personal support"
+  ],
+  "exclusions": [
+    "Flights or train tickets",
+    "Meals (unless specified)",
+    "Personal expenses",
+    "Travel insurance"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Solang Valley Adventure",
+      "description": "Solang Valley for paragliding, zorbing and ropeway views.",
+      "places": [
+        "Solang Valley"
+      ],
+      "dist_time": "13 km - 40 min"
+    },
+    {
+      "day": 2,
+      "title": "Old Manali & Temples",
+      "description": "Old Manali cafes, Hadimba Temple and Vashisht hot springs.",
+      "places": [
+        "Old Manali",
+        "Vashisht"
+      ],
+      "dist_time": "Local"
+    },
+    {
+      "day": 3,
+      "title": "Rohtang Pass Expedition",
+      "description": "Drive up to Rohtang Pass via Kothi and Marhi (permit required, season-dependent).",
+      "places": [
+        "Rohtang Pass",
+        "Kothi",
+        "Marhi"
+      ],
+      "dist_time": "51 km - 2.5 hrs"
+    },
+    {
+      "day": 4,
+      "title": "Kasol Crossover",
+      "description": "Cross into the Parvati Valley for a day in Kasol.",
+      "places": [
+        "Kasol"
+      ],
+      "dist_time": "75 km - 2.5 hrs"
+    },
+    {
+      "day": 5,
+      "title": "Hampta Pass - Easy Trek",
+      "description": "Easy-grade Hampta Pass introduction with a Chandratal Lake extension.",
+      "places": [
+        "Hampta Pass",
+        "Chandratal Lake"
+      ],
+      "dist_time": "Trek"
+    },
+    {
+      "day": 6,
+      "title": "Hampta Pass Full Trek + Chandratal Camp",
+      "description": "Full Hampta Pass crossing with an overnight camp at Chandratal.",
+      "places": [
+        "Hampta Pass",
+        "Chandratal Lake"
+      ],
+      "dist_time": "Trek + Camp"
+    },
+    {
+      "day": 7,
+      "title": "Manali-Spiti Gateway",
+      "description": "Cross Kunzum Pass into Spiti with an introduction to Kaza town.",
+      "places": [
+        "Kunzum Pass",
+        "Kaza"
+      ],
+      "dist_time": "190 km - 7 hrs"
+    },
+    {
+      "day": 8,
+      "title": "Bhrigu Lake Trek + Valley Circuit",
+      "description": "Bhrigu Lake day trek followed by valley sightseeing.",
+      "places": [
+        "Bhrigu Lake"
+      ],
+      "dist_time": "Trek"
+    }
+  ],
+  "route_stops": [
+    {
+      "name": "MANALI",
+      "lat": 32.2432,
+      "lng": 77.1892
+    },
+    {
+      "name": "Solang Valley",
+      "lat": 32.316,
+      "lng": 77.157
+    },
+    {
+      "name": "Old Manali",
+      "lat": 32.251,
+      "lng": 77.188
+    },
+    {
+      "name": "Vashisht",
+      "lat": 32.256,
+      "lng": 77.195
+    },
+    {
+      "name": "Rohtang Pass",
+      "lat": 32.3716,
+      "lng": 77.2466
+    },
+    {
+      "name": "Kothi",
+      "lat": 32.313,
+      "lng": 77.207
+    },
+    {
+      "name": "Marhi",
+      "lat": 32.335,
+      "lng": 77.243
+    },
+    {
+      "name": "Kasol",
+      "lat": 32.01,
+      "lng": 77.316
+    },
+    {
+      "name": "Hampta Pass",
+      "lat": 32.245,
+      "lng": 77.339
+    },
+    {
+      "name": "Chandratal Lake",
+      "lat": 32.482,
+      "lng": 77.615
+    },
+    {
+      "name": "Kunzum Pass",
+      "lat": 32.3667,
+      "lng": 77.6333
+    },
+    {
+      "name": "Kaza",
+      "lat": 32.227,
+      "lng": 78.067
+    },
+    {
+      "name": "Bhrigu Lake",
+      "lat": 32.267,
+      "lng": 77.32
+    }
+  ]
+}

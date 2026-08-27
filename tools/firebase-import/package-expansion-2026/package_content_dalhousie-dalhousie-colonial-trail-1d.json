@@ -1,0 +1,34 @@
+{
+  "image": "https://drive.google.com/thumbnail?id=1jU_FbssULoKENHPTmbUgJePBRWUOKlrF&sz=w600",
+  "inclusions": [
+    "Private cab with experienced driver",
+    "Hotel accommodation (3 Star)",
+    "Driver allowance & night halt charges",
+    "Hill state permits & tolls",
+    "Day-wise itinerary & personal support"
+  ],
+  "exclusions": [
+    "Flights or train tickets",
+    "Meals (unless specified)",
+    "Personal expenses",
+    "Travel insurance"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Dalhousie Colonial Trail",
+      "description": "Colonial-era Dalhousie town, churches and Mall Road.",
+      "places": [
+        "Dalhousie"
+      ],
+      "dist_time": "Local"
+    }
+  ],
+  "route_stops": [
+    {
+      "name": "DALHOUSIE",
+      "lat": 32.538,
+      "lng": 75.97
+    }
+  ]
+}
