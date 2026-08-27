@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site-chrome.css">
 <style>
 :root{
   /* Palette matched to himachalexplorer.in (index.html / packages.html) */
@@ -696,7 +697,7 @@ function closePkgDetail(){
   document.getElementById('pkgDetailPanel').classList.remove('open');
 }
 
-function drawPackageOnMap(routeStops){
+async function drawPackageOnMap(routeStops){
   if(!map) return;
   markersLayer.clearLayers();
   if(routeLine){ map.removeLayer(routeLine); routeLine = null; }
@@ -704,12 +705,30 @@ function drawPackageOnMap(routeStops){
   if(routeStops.length===0) return;
 
   const latlngs = routeStops.map(s => [s.lat, s.lng]);
-  routeLine = L.polyline(latlngs, {color:'#b07d3a', weight:4, opacity:.85}).addTo(map);
+
   routeStops.forEach((s,i)=>{
     const m = L.marker([s.lat, s.lng], {icon: pinIcon(i+1, i===0)}).addTo(markersLayer);
     m.bindPopup(`<strong>${s.name}</strong>`);
   });
-  map.fitBounds(L.latLngBounds(latlngs), {padding:[50,50]});
+
+  if(routeStops.length < 2){
+    map.setView(latlngs[0], 12);
+    return;
+  }
+
+  try{
+    const coordStr = routeStops.map(s => `${s.lng},${s.lat}`).join(';');
+    const url = `https://router.project-osrm.org/route/v1/driving/${coordStr}?overview=full&geometries=geojson&steps=false`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if(!data.routes || !data.routes.length) throw new Error('no route');
+    const roadLatLngs = data.routes[0].geometry.coordinates.map(c=>[c[1],c[0]]);
+    routeLine = L.polyline(roadLatLngs, {color:'#b07d3a', weight:5, opacity:.9}).addTo(map);
+    map.fitBounds(routeLine.getBounds(), {padding:[50,50]});
+  } catch(err){
+    routeLine = L.polyline(latlngs, {color:'#b07d3a', weight:4, dashArray:'6,6', opacity:.85}).addTo(map);
+    map.fitBounds(L.latLngBounds(latlngs), {padding:[50,50]});
+  }
 }
 
 function sendPkgToWhatsApp(){
@@ -1072,5 +1091,9 @@ async function boot(){
 boot();
 
 </script>
+
+<div style="height:28px;" aria-hidden="true"></div>
+<div id="site-footer"></div>
+<script src="assets/js/site-chrome.js"></script>
 </body>
 </html>
