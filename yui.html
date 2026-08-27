@@ -7,8 +7,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site-chrome.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600;700&family=Jost:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   /* Palette matched to himachalexplorer.in (index.html / packages.html) */
@@ -26,13 +25,18 @@
   --gold2:#c99248;
   --radius:14px;
   --shadow:0 1px 2px rgba(28,20,9,.06), 0 8px 24px -12px rgba(28,20,9,.12);
+  --contour: rgba(107,68,21,.055);
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --trail: #5c6e4f;
 }
 [data-theme="dark"]{
   --ink:#f0ece2; --ink-soft:#c9bda9; --line:#3a2e1c; --card:#241a0e; --bg:#150f08;
   --green-50:#2a1f10; --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  --contour: rgba(255,255,255,.035); --trail:#8fae7a;
 }
 *{box-sizing:border-box;}
-html,body{margin:0;padding:0;}
+html,body{margin:0;padding:0;max-width:100%;overflow-x:hidden;}
+img{max-width:100%;}
 body{
   background:var(--bg); color:var(--ink);
   font-family:'Jost',-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
@@ -40,72 +44,110 @@ body{
 }
 a{color:inherit;}
 .brand-text b, .page-title h1, .page-title>b, h1, h2, h3{font-family:'Cormorant',Georgia,serif;}
+
+@media (prefers-reduced-motion: no-preference){
+  @keyframes riseIn{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+  .topbar{animation:riseIn .5s cubic-bezier(.16,1,.3,1) both;}
+  .controls{animation:riseIn .5s cubic-bezier(.16,1,.3,1) .08s both;}
+  .layout > *{animation:riseIn .55s cubic-bezier(.16,1,.3,1) .16s both;}
+  .layout > *:nth-child(2){animation-delay:.22s;}
+  .layout > *:nth-child(3){animation-delay:.28s;}
+}
+
 .topbar{
   display:flex; align-items:center; gap:24px; justify-content:space-between;
-  padding:14px 22px; background:var(--card); border-bottom:1px solid var(--line);
+  padding:16px 26px; background:var(--card); border-bottom:1px solid var(--line);
   position:sticky; top:0; z-index:50;
+  background-image:
+    repeating-radial-gradient(circle at 12% 120%, transparent 0 34px, var(--contour) 35px 36px, transparent 37px 70px),
+    repeating-radial-gradient(circle at 88% -40%, transparent 0 46px, var(--contour) 47px 48px, transparent 49px 90px);
+  background-repeat:no-repeat;
 }
-.brand{display:flex; align-items:center; gap:10px;}
-.brand svg{flex:none;}
-.brand-text b{display:block; font-size:17px; letter-spacing:.2px;}
-.brand-text span{display:block; font-size:11px; color:var(--ink-soft); letter-spacing:.5px; text-transform:uppercase;}
+.brand{display:flex; align-items:center; gap:11px;}
+.brand svg{flex:none; filter:drop-shadow(0 2px 3px rgba(28,20,9,.12));}
+.brand-text b{display:block; font-size:18px; letter-spacing:.2px; font-weight:600;}
+.brand-text span{display:block; font-size:10px; color:var(--gold); letter-spacing:1.6px; text-transform:uppercase; font-weight:600; margin-top:1px;}
 .page-title{flex:1; min-width:180px;}
-.page-title h1{margin:0; font-size:16px; font-weight:700;}
-.page-title p{margin:1px 0 0; font-size:12px; color:var(--ink-soft);}
+.page-title .eyebrow{display:block; font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:1.8px; text-transform:uppercase; color:var(--trail); margin-bottom:3px;}
+.page-title h1{margin:0; font-size:22px; font-weight:600; line-height:1.1; letter-spacing:.1px;}
+.page-title p{margin:2px 0 0; font-size:12px; color:var(--ink-soft);}
 .top-actions{display:flex; align-items:center; gap:10px;}
 .seg{display:flex; border:1px solid var(--line); border-radius:10px; overflow:hidden;}
-.seg button{border:0; background:var(--card); color:var(--ink-soft); font-size:12.5px; padding:8px 12px; cursor:pointer; display:flex; gap:6px; align-items:center;}
+.seg button{border:0; background:var(--card); color:var(--ink-soft); font-size:12.5px; padding:8px 12px; cursor:pointer; display:flex; gap:6px; align-items:center; transition:background .15s,color .15s;}
 .seg button.active{background:var(--green-50); color:var(--green-700); font-weight:600;}
 .avatar-chip{display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; padding:6px 10px 6px 6px; border:1px solid var(--line); border-radius:20px; cursor:default;}
 .avatar-chip .dot{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--green-600),var(--gold)); display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;}
 
 .controls{
   display:flex; flex-wrap:wrap; gap:14px; align-items:end;
-  background:var(--card); margin:16px 20px 0; padding:16px 18px; border-radius:var(--radius); box-shadow:var(--shadow);
+  background:var(--card); margin:18px 20px 0; padding:18px 20px; border-radius:var(--radius); box-shadow:var(--shadow);
+  border-top:2px solid var(--gold);
 }
-.field{display:flex; flex-direction:column; gap:6px; min-width:160px; flex:1;}
-.field label{font-size:11.5px; font-weight:700; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.4px;}
+.field{display:flex; flex-direction:column; gap:7px; min-width:160px; flex:1; position:relative;}
+.field + .field::before{
+  content:''; position:absolute; left:-8px; top:26px; bottom:2px; width:1px;
+  background:repeating-linear-gradient(to bottom, var(--line) 0 3px, transparent 3px 7px);
+}
+.field label{font-size:10.5px; font-weight:700; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.9px; font-family:var(--mono);}
 .field .ctrl{
-  display:flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:9px; padding:9px 11px; background:var(--bg);
+  display:flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:9px; padding:10px 12px; background:var(--bg);
+  transition:border-color .15s, box-shadow .15s;
 }
-.field .ctrl svg{flex:none; color:var(--ink-soft);}
+.field .ctrl:focus-within{border-color:var(--gold); box-shadow:0 0 0 3px rgba(176,125,58,.14);}
+.field .ctrl svg{flex:none; color:var(--gold);}
 .field input, .field select{
   border:0; background:transparent; outline:none; font-size:13.5px; color:var(--ink); width:100%; font-family:inherit;
 }
 .stepper{display:flex; align-items:center; gap:10px;}
-.stepper button{width:22px;height:22px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font-size:14px;line-height:1;}
+.stepper button{width:24px;height:24px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font-size:14px;line-height:1; transition:background .15s,border-color .15s;}
+.stepper button:hover{border-color:var(--gold); background:var(--green-50);}
 .btn-primary{
   background:linear-gradient(135deg,var(--green-600),var(--green-700)); color:#fff; border:0; border-radius:9px;
-  padding:11px 20px; font-size:13.5px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:8px;
-  box-shadow:0 6px 16px -6px rgba(31,149,83,.55); white-space:nowrap;
+  padding:12px 22px; font-size:13.5px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:8px;
+  box-shadow:0 6px 16px -6px rgba(107,68,21,.5); white-space:nowrap;
+  transition:transform .15s, box-shadow .15s, filter .15s;
 }
-.btn-primary:hover{filter:brightness(1.05);}
-.btn-primary:disabled{opacity:.55; cursor:not-allowed;}
+.btn-primary:hover:not(:disabled){filter:brightness(1.07); transform:translateY(-1px); box-shadow:0 10px 22px -8px rgba(107,68,21,.6);}
+.btn-primary:active:not(:disabled){transform:translateY(0px) scale(.98);}
+.btn-primary:disabled{opacity:.5; cursor:not-allowed;}
 
 .layout{
   display:grid; grid-template-columns:300px 1fr 320px; gap:16px; padding:16px 20px 26px; align-items:start;
 }
 @media (max-width:1180px){ .layout{grid-template-columns:1fr;} }
-@media (max-width:1180px){ .layout > div:nth-child(2){order:-1;} }
 
-@media (max-width:720px){
-  .topbar{flex-wrap:wrap; gap:10px; padding:12px 14px;}
+@media (max-width:760px){
+  .topbar{flex-wrap:wrap; gap:10px; padding:10px 14px;}
+  .brand-text span{display:none;}
+  .brand-text b{font-size:15px;}
   .page-title{order:3; flex-basis:100%; min-width:0;}
   .page-title p{display:none;}
+  .page-title h1{font-size:14px;}
   .top-actions{gap:8px;}
   .avatar-chip span:not(.dot){display:none;}
-  .controls{margin:12px 12px 0; padding:14px;}
-  .field{min-width:0 !important; max-width:none !important; flex:1 1 45%;}
-  .field[style*="min-width:280px"]{flex-basis:100%;}
-  .btn-primary{flex:1 1 100%; justify-content:center;}
-  .layout{padding:12px 12px 20px;}
+  .avatar-chip{padding:6px;}
+  .seg button{padding:8px 10px; font-size:11.5px;}
+
+  .controls{margin:10px 12px 0; padding:12px; gap:10px;}
+  .field{min-width:0 !important; max-width:none !important; width:100%; flex:1 1 100%;}
+  .btn-primary{width:100%; justify-content:center;}
+
+  .layout{padding:10px 12px 18px; gap:12px;}
+  .panel{padding:12px;}
   #map{height:340px;}
-  .stat-bar{gap:8px; padding:12px;}
-  .pkg-cards{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));}
+
+  .gw-pill{padding:9px 12px; font-size:12.5px;}
+  .stepper button{width:32px; height:32px; font-size:16px;}
+  .search-box{padding:9px 10px;}
 }
 
-.panel{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px;}
-.panel h3{margin:0 0 12px; font-size:14.5px; display:flex; align-items:center; justify-content:space-between;}
+@media (max-width:400px){
+  .brand-text b{font-size:14px;}
+  #map{height:300px;}
+}
+
+.panel{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px; transition:box-shadow .2s;}
+.panel h3{margin:0 0 12px; font-size:15.5px; font-weight:600; display:flex; align-items:center; justify-content:space-between;}
 .panel h3 .x{cursor:pointer; color:var(--ink-soft); font-size:15px;}
 
 .search-box{display:flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:9px; padding:8px 10px; background:var(--bg); margin-bottom:10px; position:relative;}
@@ -121,19 +163,20 @@ a{color:inherit;}
 .search-results .sr-item small{color:var(--ink-soft); font-weight:400;}
 .search-results .sr-empty{padding:14px; font-size:12.5px; color:var(--ink-soft); text-align:center;}
 
-.gw-pills{display:flex; flex-wrap:wrap; gap:6px;}
-.gw-pill{display:flex; align-items:center; gap:6px; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:20px; padding:7px 12px; font-size:12.5px; font-weight:600; cursor:pointer; transition:.15s;}
-.gw-pill:hover{border-color:var(--green-500);}
-.gw-pill.active{background:var(--green-600); border-color:var(--green-600); color:#fff;}
+.gw-pills{display:flex; flex-wrap:wrap; gap:7px;}
+.gw-pill{display:flex; align-items:center; gap:6px; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:20px; padding:7px 13px; font-size:12.5px; font-weight:600; cursor:pointer; transition:transform .15s,border-color .15s,background .15s,box-shadow .15s;}
+.gw-pill:hover{border-color:var(--gold2); transform:translateY(-1px); box-shadow:0 4px 10px -4px rgba(28,20,9,.18);}
+.gw-pill.active{background:var(--green-600); border-color:var(--green-600); color:#fff; box-shadow:0 4px 12px -4px rgba(176,125,58,.5);}
 
 .flow-panel{background:var(--card); margin:16px 20px 0; padding:16px 18px; border-radius:var(--radius); box-shadow:var(--shadow);}
 .flow-panel h3{margin:0 0 10px;}
 .flow-panel select{width:100%; padding:9px 10px; border:1px solid var(--line); border-radius:9px; background:var(--bg); color:var(--ink); font-size:13.5px; font-family:inherit;}
 
 .pkg-cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px;}
-.pkg-card{border:1px solid var(--line); border-radius:12px; overflow:hidden; cursor:pointer; background:var(--bg); transition:.15s;}
-.pkg-card:hover{border-color:var(--green-500); transform:translateY(-2px);}
-.pkg-card img{width:100%; height:110px; object-fit:cover; display:block;}
+.pkg-card{border:1px solid var(--line); border-radius:12px; overflow:hidden; cursor:pointer; background:var(--bg); transition:transform .2s, box-shadow .2s, border-color .2s;}
+.pkg-card:hover{border-color:var(--gold2); transform:translateY(-3px); box-shadow:0 12px 24px -12px rgba(28,20,9,.28);}
+.pkg-card img{width:100%; height:110px; object-fit:cover; display:block; transition:transform .35s;}
+.pkg-card:hover img{transform:scale(1.05);}
 .pkg-card .pkg-card-body{padding:10px 12px;}
 .pkg-card .pkg-card-body b{display:block; font-size:13px; margin-bottom:4px;}
 .pkg-card .pkg-card-meta{display:flex; justify-content:space-between; font-size:11.5px; color:var(--ink-soft);}
@@ -148,22 +191,17 @@ a{color:inherit;}
 .pkg-day .pd-title{font-size:13px; font-weight:700; margin-bottom:3px;}
 .pkg-day .pd-desc{font-size:12px; color:var(--ink-soft);}
 .pkg-day .pd-dist{font-size:11px; color:var(--green-700); margin-top:4px; font-weight:600;}
-.pkg-inc-exc{display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0;}
+.pkg-inc-exc{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:12px 0;}
 .pkg-inc-exc ul{margin:4px 0 0; padding-left:18px; font-size:12px; color:var(--ink-soft);}
 .pkg-inc-exc h4{margin:0; font-size:12.5px;}
 .no-pkg-note{font-size:12.5px; color:var(--ink-soft); padding:10px 0;}
 
-/* Package detail lives in the right sidebar (not a modal, not in-flow above
-   the layout) so opening it never shifts the map — only the sidebar itself. */
-#pkgDetailPanel{display:none; margin-bottom:16px;}
-#pkgDetailPanel.open{display:block;}
-#pkgDetailItinerary{max-height:360px; overflow-y:auto; padding-right:2px;}
-
 .stop-list{display:flex; flex-direction:column; gap:8px; max-height:520px; overflow:auto; padding-right:2px;}
 .stop-card{
   display:flex; align-items:center; gap:10px; border:1px solid var(--line); border-radius:10px; padding:8px; background:var(--bg);
-  cursor:grab;
+  cursor:grab; transition:border-color .15s, transform .15s;
 }
+.stop-card:hover{border-color:var(--gold2);}
 .stop-card.dragging{opacity:.4;}
 .stop-thumb{
   width:40px; height:40px; border-radius:9px; flex:none; display:flex; align-items:center; justify-content:center;
@@ -182,44 +220,71 @@ a{color:inherit;}
 .map-wrap{position:relative; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); background:var(--card);}
 #map{height:560px; width:100%; background:#dfe9e2;}
 .map-toggle{position:absolute; top:12px; right:12px; z-index:30; display:flex; border-radius:9px; overflow:hidden; box-shadow:var(--shadow);}
-.map-toggle button{border:0; padding:7px 14px; font-size:12.5px; font-weight:600; cursor:pointer; background:var(--card); color:var(--ink-soft);}
+.map-toggle button{border:0; padding:7px 14px; font-size:12.5px; font-weight:600; cursor:pointer; background:var(--card); color:var(--ink-soft); transition:background .15s,color .15s;}
 .map-toggle button.active{background:var(--green-700); color:#fff;}
-.stat-bar{display:flex; flex-wrap:wrap; gap:10px; padding:14px 16px; border-top:1px solid var(--line);}
-.stat{flex:1; min-width:120px; display:flex; align-items:center; gap:10px;}
+.stat-bar{display:flex; flex-wrap:wrap; padding:0; border-top:1px solid var(--line);}
+.stat{flex:1; min-width:120px; display:flex; align-items:center; gap:11px; padding:14px 16px; border-left:1px solid var(--line);}
+.stat:first-child{border-left:0;}
 .stat .ic{width:34px;height:34px;border-radius:9px;background:var(--green-50);color:var(--green-700);display:flex;align-items:center;justify-content:center; flex:none;}
-.stat b{display:block; font-size:14.5px;}
-.stat span{display:block; font-size:11px; color:var(--ink-soft);}
+.stat b{display:block; font-size:16px; font-family:var(--mono); font-weight:700; letter-spacing:-.2px;}
+.stat span{display:block; font-size:10px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.8px; margin-top:2px;}
 .empty-map-hint{
-  position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px;
-  background:rgba(255,255,255,.0); pointer-events:none; text-align:center; padding:20px;
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px;
+  pointer-events:none; text-align:center; padding:20px;
 }
-[data-theme="dark"] .empty-map-hint{ color:var(--ink); }
-.empty-map-hint b{font-size:14px;}
-.empty-map-hint span{font-size:12.5px; color:var(--ink-soft); max-width:280px;}
+.empty-map-hint > *{
+  background:rgba(255,255,255,.88); backdrop-filter:blur(3px); padding:3px 12px; border-radius:6px; color:#1c1409;
+}
+.empty-map-hint b{font-size:15px; font-family:'Cormorant',serif; font-weight:600;}
+.empty-map-hint span{font-size:12.5px; color:#5a4a36; max-width:280px;}
 
-.itinerary-list{display:flex; flex-direction:column; gap:10px; max-height:430px; overflow:auto; padding-right:2px;}
-.day-card{display:flex; gap:10px; border:1px solid var(--line); border-radius:10px; padding:10px; background:var(--bg);}
+.itinerary-list{display:flex; flex-direction:column; gap:2px; max-height:430px; overflow:auto; padding-right:2px; position:relative;}
+.day-card{display:flex; gap:10px; border:1px solid var(--line); border-radius:10px; padding:10px; background:var(--bg); position:relative; margin-bottom:8px; transition:border-color .15s;}
+.day-card:hover{border-color:var(--gold2);}
+.day-card:not(:last-child)::after{
+  content:''; position:absolute; left:29px; top:38px; bottom:-9px; width:1px;
+  background:repeating-linear-gradient(to bottom, var(--gold2) 0 3px, transparent 3px 6px);
+}
 .day-num{
   width:38px;height:38px;border-radius:9px;background:var(--green-700);color:#fff;display:flex;flex-direction:column;
   align-items:center;justify-content:center;font-size:9px;font-weight:700;text-transform:uppercase; flex:none; line-height:1.1;
+  z-index:1; box-shadow:0 0 0 3px var(--bg);
 }
-.day-num b{font-size:16px; line-height:1;}
+.day-num b{font-size:16px; line-height:1; font-family:var(--mono);}
 .day-body{flex:1; min-width:0;}
 .day-body .route-line{font-size:12.5px; font-weight:600; line-height:1.35;}
-.day-body .meta{font-size:11px; color:var(--ink-soft); margin-top:4px; display:flex; gap:10px;}
+.day-body .meta{font-size:10.5px; color:var(--ink-soft); margin-top:4px; display:flex; gap:10px; font-family:var(--mono);}
 .day-actions{display:flex; flex-direction:column; gap:6px;}
 .day-actions button{border:0; background:transparent; color:var(--ink-soft); cursor:pointer; font-size:13px;}
 .day-actions button:hover{color:var(--green-700);}
 
-.summary-row{display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--line); font-size:13px;}
+.summary-row{display:flex; justify-content:space-between; align-items:baseline; padding:9px 0; border-bottom:1px dashed var(--line); font-size:12.5px;}
 .summary-row:last-of-type{border-bottom:0;}
-.summary-row span:first-child{color:var(--ink-soft);}
-.summary-row b{font-weight:700;}
+.summary-row span:first-child{color:var(--ink-soft); text-transform:uppercase; letter-spacing:.5px; font-size:10.5px; font-family:var(--mono);}
+.summary-row b{font-weight:700; font-family:var(--mono); font-size:14px;}
 .save-btn{
   width:100%; margin-top:12px; background:var(--green-700); color:#fff; border:0; border-radius:9px; padding:12px;
   font-size:13.5px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;
+  transition:transform .15s, filter .15s;
 }
-.save-btn:hover{background:var(--green-600);}
+.save-btn:hover{filter:brightness(1.08); transform:translateY(-1px);}
+.save-btn:active{transform:translateY(0); }
+
+/* ---- Route Summary as a ticket stub ---- */
+.ticket-panel{position:relative; overflow:visible;}
+.ticket-panel .ticket-code{
+  font-family:var(--mono); font-size:10px; letter-spacing:1.5px; color:var(--gold);
+  text-transform:uppercase; margin:-2px 0 12px; display:flex; justify-content:space-between; align-items:center;
+}
+.ticket-panel .ticket-code::after{content:'✂ TEAR TO BOOK'; color:var(--ink-soft); opacity:.55; font-size:9px; letter-spacing:1px;}
+.ticket-perf{
+  position:relative; height:1px; margin:14px -16px 12px; border-top:2px dashed var(--line);
+}
+.ticket-perf::before,.ticket-perf::after{
+  content:''; position:absolute; top:-9px; width:18px; height:18px; border-radius:50%; background:var(--bg);
+}
+.ticket-perf::before{ left:-9px; }
+.ticket-perf::after{ right:-9px; }
 .toast{
   position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--ink); color:#fff;
   padding:11px 18px; border-radius:30px; font-size:13px; box-shadow:var(--shadow); opacity:0; pointer-events:none;
@@ -232,17 +297,29 @@ a{color:inherit;}
   background:linear-gradient(160deg,var(--green-700),var(--green-900));
   position:relative; overflow:hidden;
 }
-.promo b{display:block; font-size:14px; margin-bottom:4px;}
-.promo p{margin:0 0 12px; font-size:12px; opacity:.85;}
-.promo button{background:var(--gold); border:0; color:#2b1e00; font-weight:700; padding:9px 14px; border-radius:8px; font-size:12.5px; cursor:pointer;}
+.promo::before{
+  content:''; position:absolute; inset:0;
+  background-image:repeating-radial-gradient(circle at 100% 0%, transparent 0 22px, rgba(255,255,255,.05) 23px 24px, transparent 25px 46px);
+  pointer-events:none;
+}
+.promo b{display:block; font-size:14.5px; margin-bottom:4px; font-family:'Cormorant',serif; font-weight:600; font-size:18px;}
+.promo p{margin:0 0 12px; font-size:12px; opacity:.85; position:relative;}
+.promo button{background:var(--gold); border:0; color:#2b1e00; font-weight:700; padding:9px 14px; border-radius:8px; font-size:12.5px; cursor:pointer; position:relative; transition:transform .15s,filter .15s;}
+.promo button:hover{filter:brightness(1.08); transform:translateY(-1px);}
 
 .leaflet-div-icon{background:transparent; border:0;}
 .num-pin{
   width:26px;height:26px;border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:var(--green-700); border:2px solid #fff;
   display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,.35);
 }
-.num-pin span{transform:rotate(45deg); color:#fff; font-size:11px; font-weight:700;}
+.num-pin span{transform:rotate(45deg); color:#fff; font-size:11px; font-weight:700; font-family:var(--mono);}
 .num-pin.start{background:var(--gold);}
+
+.section-divider{
+  margin:26px 20px 0; font-size:12px; color:var(--ink-soft); display:flex; align-items:center; gap:10px;
+  font-family:var(--mono); letter-spacing:.5px; text-transform:uppercase;
+}
+.section-divider::after{content:''; flex:1; height:1px; background:repeating-linear-gradient(to right, var(--line) 0 4px, transparent 4px 8px);}
 
 ::-webkit-scrollbar{width:7px;height:7px;}
 ::-webkit-scrollbar-thumb{background:var(--line); border-radius:10px;}
@@ -263,8 +340,9 @@ a{color:inherit;}
     </div>
   </div>
   <div class="page-title">
-    <h1>Build Your Perfect Route</h1>
-    <p>Plan, customize and explore the best travel routes — powered by our live places database</p>
+    <span class="eyebrow">Expedition Planner · Live Pricing</span>
+    <h1>Plot your Himalaya</h1>
+    <p>120 places, real road distances, day-wise cost — built as you click.</p>
   </div>
   <div class="top-actions">
     <div class="seg">
@@ -337,7 +415,33 @@ a{color:inherit;}
   <div class="no-pkg-note" id="noPkgNote" style="display:none;"></div>
 </div>
 
-<h3 style="margin:22px 20px 0;font-size:14px;color:var(--ink-soft);">Or build a fully custom route</h3>
+<div class="flow-panel" id="pkgDetailPanel" style="display:none;">
+  <div class="pkg-detail-header">
+    <img id="pkgDetailImg" src="" alt="">
+    <div>
+      <h3 id="pkgDetailName" style="margin:0 0 4px;"></h3>
+      <div class="pkg-detail-meta" id="pkgDetailMeta"></div>
+    </div>
+    <span class="x" onclick="closePkgDetail()">✕</span>
+  </div>
+  <div class="pkg-inc-exc">
+    <div>
+      <h4>Inclusions</h4>
+      <ul id="pkgDetailInclusions"></ul>
+    </div>
+    <div>
+      <h4>Exclusions</h4>
+      <ul id="pkgDetailExclusions"></ul>
+    </div>
+  </div>
+  <div id="pkgDetailItinerary"></div>
+  <button class="save-btn" style="background:#25D366;margin-top:8px;" onclick="sendPkgToWhatsApp()">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.852L.057 23.998l6.305-1.443A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.89 0-3.663-.52-5.185-1.427l-.372-.22-3.763.863.933-3.66-.242-.38A9.964 9.964 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    Get Quote on WhatsApp
+  </button>
+</div>
+
+<div class="section-divider">Or build a fully custom route</div>
 <div class="layout">
 
   <!-- LEFT: Add destinations -->
@@ -384,44 +488,21 @@ a{color:inherit;}
 
   <!-- RIGHT: Itinerary -->
   <div>
-    <div class="panel" id="pkgDetailPanel">
-      <div class="pkg-detail-header">
-        <img id="pkgDetailImg" src="" alt="">
-        <div>
-          <h3 id="pkgDetailName" style="margin:0 0 4px;"></h3>
-          <div class="pkg-detail-meta" id="pkgDetailMeta"></div>
-        </div>
-        <span class="x" onclick="closePkgDetail()">✕</span>
-      </div>
-      <div class="pkg-inc-exc">
-        <div>
-          <h4>Inclusions</h4>
-          <ul id="pkgDetailInclusions"></ul>
-        </div>
-        <div>
-          <h4>Exclusions</h4>
-          <ul id="pkgDetailExclusions"></ul>
-        </div>
-      </div>
-      <div id="pkgDetailItinerary"></div>
-      <button class="save-btn" style="background:#25D366;margin-top:8px;" onclick="sendPkgToWhatsApp()">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.852L.057 23.998l6.305-1.443A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.89 0-3.663-.52-5.185-1.427l-.372-.22-3.763.863.933-3.66-.242-.38A9.964 9.964 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-        Get Quote on WhatsApp
-      </button>
-    </div>
     <div class="panel">
       <h3>Your Itinerary</h3>
       <div class="itinerary-list" id="itineraryList">
         <div style="font-size:12.5px;color:var(--ink-soft);text-align:center;padding:30px 10px;">Your day-by-day plan will show up here after you generate a route.</div>
       </div>
     </div>
-    <div class="panel" style="margin-top:16px;">
+    <div class="panel ticket-panel" style="margin-top:16px;">
       <h3>Route Summary</h3>
+      <div class="ticket-code">HE · ROUTE-01</div>
       <div class="summary-row"><span>Total Stops</span><b id="sumStops">0</b></div>
       <div class="summary-row"><span>Total Distance</span><b id="sumDistance">—</b></div>
       <div class="summary-row"><span>Total Duration</span><b id="sumDuration">—</b></div>
       <div class="summary-row"><span>Recommended Vehicle</span><b id="sumVehicle">—</b></div>
       <div class="summary-row"><span>Estimated Cost</span><b id="sumCost">—</b></div>
+      <div class="ticket-perf"></div>
       <button class="save-btn" id="waBtn" onclick="sendToWhatsApp()" disabled style="background:#25D366;margin-bottom:8px;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.852L.057 23.998l6.305-1.443A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.89 0-3.663-.52-5.185-1.427l-.372-.22-3.763.863.933-3.66-.242-.38A9.964 9.964 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
         Get Quote on WhatsApp
@@ -688,16 +769,17 @@ function openPkgDetail(pkgId){
       ${d.dist_time?`<div class="pd-dist">🚗 ${d.dist_time}</div>`:''}
     </div>`).join('');
 
-  document.getElementById('pkgDetailPanel').classList.add('open');
+  document.getElementById('pkgDetailPanel').style.display = 'block';
+  document.getElementById('pkgDetailPanel').scrollIntoView({behavior:'smooth', block:'start'});
   drawPackageOnMap(content.route_stops || []);
 }
 
 function closePkgDetail(){
   currentPkg = null;
-  document.getElementById('pkgDetailPanel').classList.remove('open');
+  document.getElementById('pkgDetailPanel').style.display = 'none';
 }
 
-async function drawPackageOnMap(routeStops){
+function drawPackageOnMap(routeStops){
   if(!map) return;
   markersLayer.clearLayers();
   if(routeLine){ map.removeLayer(routeLine); routeLine = null; }
@@ -705,30 +787,12 @@ async function drawPackageOnMap(routeStops){
   if(routeStops.length===0) return;
 
   const latlngs = routeStops.map(s => [s.lat, s.lng]);
-
+  routeLine = L.polyline(latlngs, {color:'#b07d3a', weight:4, opacity:.85}).addTo(map);
   routeStops.forEach((s,i)=>{
     const m = L.marker([s.lat, s.lng], {icon: pinIcon(i+1, i===0)}).addTo(markersLayer);
     m.bindPopup(`<strong>${s.name}</strong>`);
   });
-
-  if(routeStops.length < 2){
-    map.setView(latlngs[0], 12);
-    return;
-  }
-
-  try{
-    const coordStr = routeStops.map(s => `${s.lng},${s.lat}`).join(';');
-    const url = `https://router.project-osrm.org/route/v1/driving/${coordStr}?overview=full&geometries=geojson&steps=false`;
-    const res = await fetch(url);
-    const data = await res.json();
-    if(!data.routes || !data.routes.length) throw new Error('no route');
-    const roadLatLngs = data.routes[0].geometry.coordinates.map(c=>[c[1],c[0]]);
-    routeLine = L.polyline(roadLatLngs, {color:'#b07d3a', weight:5, opacity:.9}).addTo(map);
-    map.fitBounds(routeLine.getBounds(), {padding:[50,50]});
-  } catch(err){
-    routeLine = L.polyline(latlngs, {color:'#b07d3a', weight:4, dashArray:'6,6', opacity:.85}).addTo(map);
-    map.fitBounds(L.latLngBounds(latlngs), {padding:[50,50]});
-  }
+  map.fitBounds(L.latLngBounds(latlngs), {padding:[50,50]});
 }
 
 function sendPkgToWhatsApp(){
@@ -1091,9 +1155,5 @@ async function boot(){
 boot();
 
 </script>
-
-<div style="height:28px;" aria-hidden="true"></div>
-<div id="site-footer"></div>
-<script src="assets/js/site-chrome.js"></script>
 </body>
 </html>
