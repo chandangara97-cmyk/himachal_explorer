@@ -147,36 +147,16 @@ a{color:inherit;}
 .pkg-day .pd-title{font-size:13px; font-weight:700; margin-bottom:3px;}
 .pkg-day .pd-desc{font-size:12px; color:var(--ink-soft);}
 .pkg-day .pd-dist{font-size:11px; color:var(--green-700); margin-top:4px; font-weight:600;}
-.pkg-inc-exc{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:12px 0;}
+.pkg-inc-exc{display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0;}
 .pkg-inc-exc ul{margin:4px 0 0; padding-left:18px; font-size:12px; color:var(--ink-soft);}
 .pkg-inc-exc h4{margin:0; font-size:12.5px;}
 .no-pkg-note{font-size:12.5px; color:var(--ink-soft); padding:10px 0;}
 
-/* Package detail is an overlay, not part of page flow — opening it must
-   never push the map / itinerary further down the page. */
-.modal-backdrop{
-  position:fixed; inset:0; background:rgba(15,10,4,.5); z-index:200;
-  opacity:0; pointer-events:none; transition:opacity .2s ease;
-}
-.modal-backdrop.show{opacity:1; pointer-events:auto;}
-
-#pkgDetailPanel{
-  display:none; position:fixed; z-index:210;
-  left:50%; top:50%; transform:translate(-50%,-50%);
-  width:min(640px,92vw); max-height:85vh; overflow-y:auto; margin:0;
-}
+/* Package detail lives in the right sidebar (not a modal, not in-flow above
+   the layout) so opening it never shifts the map — only the sidebar itself. */
+#pkgDetailPanel{display:none; margin-bottom:16px;}
 #pkgDetailPanel.open{display:block;}
-
-@media (max-width:680px){
-  #pkgDetailPanel{
-    left:0; right:0; bottom:0; top:auto; transform:translateY(100%);
-    width:100%; max-width:none; max-height:88vh; margin:0;
-    border-radius:18px 18px 0 0; transition:transform .25s ease;
-  }
-  #pkgDetailPanel.open{display:block; transform:translateY(0);}
-  .pkg-inc-exc{grid-template-columns:1fr;}
-  .pkg-detail-header{flex-wrap:wrap;}
-}
+#pkgDetailItinerary{max-height:360px; overflow-y:auto; padding-right:2px;}
 
 .stop-list{display:flex; flex-direction:column; gap:8px; max-height:520px; overflow:auto; padding-right:2px;}
 .stop-card{
@@ -356,33 +336,6 @@ a{color:inherit;}
   <div class="no-pkg-note" id="noPkgNote" style="display:none;"></div>
 </div>
 
-<div class="modal-backdrop" id="pkgBackdrop" onclick="closePkgDetail()"></div>
-<div class="flow-panel" id="pkgDetailPanel">
-  <div class="pkg-detail-header">
-    <img id="pkgDetailImg" src="" alt="">
-    <div>
-      <h3 id="pkgDetailName" style="margin:0 0 4px;"></h3>
-      <div class="pkg-detail-meta" id="pkgDetailMeta"></div>
-    </div>
-    <span class="x" onclick="closePkgDetail()">✕</span>
-  </div>
-  <div class="pkg-inc-exc">
-    <div>
-      <h4>Inclusions</h4>
-      <ul id="pkgDetailInclusions"></ul>
-    </div>
-    <div>
-      <h4>Exclusions</h4>
-      <ul id="pkgDetailExclusions"></ul>
-    </div>
-  </div>
-  <div id="pkgDetailItinerary"></div>
-  <button class="save-btn" style="background:#25D366;margin-top:8px;" onclick="sendPkgToWhatsApp()">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.852L.057 23.998l6.305-1.443A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.89 0-3.663-.52-5.185-1.427l-.372-.22-3.763.863.933-3.66-.242-.38A9.964 9.964 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-    Get Quote on WhatsApp
-  </button>
-</div>
-
 <h3 style="margin:22px 20px 0;font-size:14px;color:var(--ink-soft);">Or build a fully custom route</h3>
 <div class="layout">
 
@@ -430,6 +383,31 @@ a{color:inherit;}
 
   <!-- RIGHT: Itinerary -->
   <div>
+    <div class="panel" id="pkgDetailPanel">
+      <div class="pkg-detail-header">
+        <img id="pkgDetailImg" src="" alt="">
+        <div>
+          <h3 id="pkgDetailName" style="margin:0 0 4px;"></h3>
+          <div class="pkg-detail-meta" id="pkgDetailMeta"></div>
+        </div>
+        <span class="x" onclick="closePkgDetail()">✕</span>
+      </div>
+      <div class="pkg-inc-exc">
+        <div>
+          <h4>Inclusions</h4>
+          <ul id="pkgDetailInclusions"></ul>
+        </div>
+        <div>
+          <h4>Exclusions</h4>
+          <ul id="pkgDetailExclusions"></ul>
+        </div>
+      </div>
+      <div id="pkgDetailItinerary"></div>
+      <button class="save-btn" style="background:#25D366;margin-top:8px;" onclick="sendPkgToWhatsApp()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.852L.057 23.998l6.305-1.443A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.89 0-3.663-.52-5.185-1.427l-.372-.22-3.763.863.933-3.66-.242-.38A9.964 9.964 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Get Quote on WhatsApp
+      </button>
+    </div>
     <div class="panel">
       <h3>Your Itinerary</h3>
       <div class="itinerary-list" id="itineraryList">
@@ -710,16 +688,12 @@ function openPkgDetail(pkgId){
     </div>`).join('');
 
   document.getElementById('pkgDetailPanel').classList.add('open');
-  document.getElementById('pkgBackdrop').classList.add('show');
-  document.body.style.overflow = 'hidden';
   drawPackageOnMap(content.route_stops || []);
 }
 
 function closePkgDetail(){
   currentPkg = null;
   document.getElementById('pkgDetailPanel').classList.remove('open');
-  document.getElementById('pkgBackdrop').classList.remove('show');
-  document.body.style.overflow = '';
 }
 
 function drawPackageOnMap(routeStops){
