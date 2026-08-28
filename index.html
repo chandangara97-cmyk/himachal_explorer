@@ -643,6 +643,40 @@ h1.hero-title em{font-style:italic;color:var(--gold2);display:block}
 .htp-foot svg{width:11px;height:11px}
 @media(max-width:1280px){.hero-trend-panel{width:250px}}
 
+/* ─── QUICK GETAWAYS — live auto-scrolling strip of 1–2 day packages,
+   one per location, replacing the old floating trend panel. Sits inside
+   the hero, full width, so it works on every screen size (not desktop-only). ─── */
+.hero-quick-panel{
+  position:relative;z-index:3;width:100%;max-width:1240px;margin:18px auto 0;padding:0 var(--px);
+  animation:fadeUp .9s ease 1.05s both;
+}
+.hqp-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;padding:0 2px}
+.hqp-title{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold2);}
+.hqp-track-wrap{
+  position:relative;overflow:hidden;border-radius:14px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+}
+.hqp-track{display:flex;gap:12px;width:max-content;animation:hqpScroll 32s linear infinite}
+.hqp-track:hover{animation-play-state:paused}
+@keyframes hqpScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hqp-card{
+  flex:0 0 auto;width:190px;text-decoration:none;padding:12px 13px;border-radius:12px;
+  background:var(--fut-panel,rgba(18,24,38,.62));
+  backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);
+  border:1px solid var(--fut-border-gold,rgba(201,146,72,.35));
+  transition:background .25s ease,border-color .25s ease,transform .25s ease;
+}
+.hqp-card:hover{background:rgba(201,146,72,.12);border-color:rgba(201,146,72,.5);transform:translateY(-2px)}
+.hqp-loc{display:inline-block;font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#5fd4a0;background:rgba(95,212,160,.12);border-radius:20px;padding:2px 8px;margin-bottom:6px}
+.hqp-name{font-family:'Cormorant',Georgia,serif;font-size:15px;font-weight:600;color:#fff;line-height:1.25}
+.hqp-meta{font-size:10px;color:rgba(255,255,255,.55);margin-top:2px}
+.hqp-price-row{display:flex;align-items:baseline;gap:5px;margin-top:6px}
+.hqp-from{font-size:9px;color:rgba(255,255,255,.45)}
+.hqp-amt{font-size:13.5px;font-weight:700;color:var(--gold2)}
+.hqp-per{font-size:9px;color:rgba(255,255,255,.45)}
+@media(max-width:520px){.hqp-card{width:160px}}
+
 /* ─── BUTTONS ─── */
 .btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:8px;padding:11px 22px;font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),color .3s var(--ease);cursor:pointer;border:none}
 .btn svg{width:12px;height:12px;flex-shrink:0}
@@ -1478,6 +1512,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="hero-howto-label">Quick Orientation</span>
     <span class="hero-howto-hint">Tap for a 60-second how-to <span class="info-btn" aria-hidden="true">ⓘ</span></span>
   </button>
+
+  <aside class="hero-quick-panel" id="heroQuickPanel" aria-label="Quick 1-2 day getaways, one per destination">
+    <div class="hqp-head">
+      <span class="htp-live-dot" aria-hidden="true"></span>
+      <span class="hqp-title">Quick Getaways · 1–2 Days</span>
+    </div>
+    <div class="hqp-track-wrap">
+      <div class="hqp-track" id="hqpTrack">
+        <div style="padding:14px 4px;font-size:11px;color:rgba(255,255,255,.5)">Loading…</div>
+      </div>
+    </div>
+  </aside>
 
   <div class="hero-bottom">
   <div class="hero-content">
@@ -2737,6 +2783,86 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') ppClose(); })
     .catch(() => {}); // silently keep static prices on any error
 })();
 
+// ── QUICK GETAWAYS STRIP (hero) — 1–2 day packages, one per location,
+// rendered as a live auto-scrolling loop. Data comes from PackageData
+// (templates_index + package_content) + a live pricing-matrix fetch,
+// same Firebase source used everywhere else on the site.
+(function() {
+  const track = document.getElementById('hqpTrack');
+  if (!track || typeof PackageData === 'undefined') return;
+
+  const DB = "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app";
+  const PEAK_MONTHS = [1, 5, 6, 12];
+  const isPeak = PEAK_MONTHS.includes(new Date().getMonth() + 1);
+  const PAX = 4;
+
+  function fmtINR(n) { return "₹" + Math.round(n).toLocaleString("en-IN"); }
+
+  function extractPrice(combo, tier) {
+    if (!combo || !combo.pax) return null;
+    const paxData = Array.isArray(combo.pax) ? combo.pax[PAX] : combo.pax[String(PAX)];
+    if (!paxData) return null;
+    const key = isPeak ? tier + "_peak" : tier;
+    return paxData[key] ?? paxData[tier] ?? null;
+  }
+
+  function escapeHTML(s) {
+    return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  Promise.all([
+    PackageData.load(),
+    fetch(DB + "/package_pricing_matrix.json").then(r => r.ok ? r.json() : {}).catch(() => ({}))
+  ]).then(([data, pricingMatrix]) => {
+    // Only 1–2 day packages.
+    const shortTrips = (data.packages || []).filter(pkg => pkg.days && pkg.days <= 2);
+
+    // One package per destination (end_point, falling back to start_point) —
+    // first match wins so the strip never repeats a location.
+    const byLocation = new Map();
+    shortTrips.forEach(pkg => {
+      const loc = (pkg.end_point || pkg.start_point || '').trim();
+      if (!loc || byLocation.has(loc)) return;
+      byLocation.set(loc, pkg);
+    });
+    const picks = Array.from(byLocation.values());
+
+    if (!picks.length) {
+      track.innerHTML = '<div style="padding:14px 4px;font-size:11px;color:rgba(255,255,255,.5)">No short getaways available right now.</div>';
+      return;
+    }
+
+    function priceFor(pkg) {
+      const combo = pricingMatrix[pkg.id] && pricingMatrix[pkg.id]['DELHI__DELHI'];
+      const p = extractPrice(combo, 'budget');
+      return (p && p > 0) ? p : (pkg.budget_price_pp || null);
+    }
+
+    function cardHTML(pkg) {
+      const loc = (pkg.end_point || pkg.start_point || '').trim();
+      const price = priceFor(pkg);
+      const route = pkg.start_point && pkg.end_point && pkg.end_point !== pkg.start_point
+        ? escapeHTML(pkg.start_point) + ' → ' + escapeHTML(pkg.end_point)
+        : escapeHTML(pkg.start_point || pkg.end_point || '');
+      return '<a href="package-detail.html?id=' + encodeURIComponent(pkg.id) + '" class="hqp-card" data-pkg-id="' + escapeHTML(pkg.id) + '">' +
+        (loc ? '<span class="hqp-loc">' + escapeHTML(loc) + '</span>' : '') +
+        '<div class="hqp-name">' + escapeHTML(pkg.name) + '</div>' +
+        '<div class="hqp-meta">' + pkg.days + 'D · ' + route + '</div>' +
+        (price ? '<div class="hqp-price-row"><span class="hqp-from">From</span><span class="hqp-amt">' + fmtINR(price) + '</span><span class="hqp-per">/person</span></div>' : '') +
+      '</a>';
+    }
+
+    // Render the list twice back-to-back so the CSS keyframe (translateX(-50%))
+    // loops seamlessly — this is what makes the strip a continuous "live scroll".
+    const cardsHTML = picks.map(cardHTML).join('');
+    track.innerHTML = cardsHTML + cardsHTML;
+    track.style.animationDuration = Math.max(18, picks.length * 5) + 's';
+  }).catch(err => {
+    console.error('Quick getaways load failed:', err);
+    track.innerHTML = '<div style="padding:14px 4px;font-size:11px;color:rgba(255,255,255,.5)">Couldn\'t load getaways right now.</div>';
+  });
+})();
+
 // ── PARTNER HOTELS — circular carousel, Firebase-backed ──────────────────────
 (function() {
   const DB = "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app";
@@ -3302,6 +3428,7 @@ document.addEventListener('click', function(e) {
   </div>
 </section>
 
+<script src="assets/js/package-data.js"></script>
 <script src="assets/js/site-chrome.js" defer></script>
 <style>
 /* ── HOVER TOOLTIP SYSTEM ── */
