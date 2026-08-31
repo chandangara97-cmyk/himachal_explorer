@@ -1,0 +1,15 @@
+Himachal Explorer SEO upgrade — 31 Aug 2026
+
+Implemented:
+- Unique crawlable titles and meta descriptions for destination, package, blog and core pages.
+- Canonical URLs and robots directives.
+- Open Graph title/description/URL where missing.
+- JSON-LD structured data for TravelAgency, WebPage, TouristDestination and TouristTrip pages.
+- Package-detail.html marked noindex because it is a dynamic template; individual /pkg/*.html pages remain indexable.
+- Sitemap regenerated from indexable public pages, including package pages.
+- Added assets/js/seo.js for dynamic package/share metadata.
+
+Important:
+- Submit https://himachalexplorer.in/sitemap.xml in Google Search Console.
+- Request indexing for important destination and package URLs.
+- SEO metadata improves relevance but does not guarantee rankings; useful, original page content and internal links remain important.
