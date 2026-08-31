@@ -1485,19 +1485,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="htp-title">Trending Right Now</span>
     </div>
     <div class="htp-list" id="htpList">
-      <a href="package-detail.html?id=delhi-kinnaur-spiti-10d" class="htp-card" data-pkg-id="delhi-kinnaur-spiti-10d" data-pkg-gateway="DELHI" data-pkg-drop="DELHI">
+      <a href="package-detail.html?id=delhi-kinnaur-spiti-10d" class="htp-card" data-pkg-id="delhi-kinnaur-spiti-10d" data-pkg-gateway="DELHI" data-pkg-drop="DELHI" data-pkg-days="10">
         <span class="htp-tag">Dry &amp; clear in Aug</span>
         <div class="htp-name">Spiti Valley Circuit</div>
         <div class="htp-meta">8D · Manali → Shimla</div>
         <div class="htp-price-row"><span class="htp-from">From</span><span class="htp-amt">₹17,500</span><span class="htp-per">/person</span></div>
       </a>
-      <a href="package-detail.html?id=kinnaur-complete-6d" class="htp-card" data-pkg-id="kinnaur-complete-6d" data-pkg-gateway="DELHI" data-pkg-drop="DELHI">
+      <a href="package-detail.html?id=kinnaur-complete-6d" class="htp-card" data-pkg-id="kinnaur-complete-6d" data-pkg-gateway="DELHI" data-pkg-drop="DELHI" data-pkg-days="6">
         <span class="htp-tag">Apple harvest season</span>
         <div class="htp-name">Kinnaur Apple Country</div>
         <div class="htp-meta">6D · Shimla → Shimla</div>
         <div class="htp-price-row"><span class="htp-from">From</span><span class="htp-amt">₹12,000</span><span class="htp-per">/person</span></div>
       </a>
-      <a href="package-detail.html?id=chandigarh-best-value-5d" class="htp-card" data-pkg-id="chandigarh-best-value-5d" data-pkg-gateway="DELHI" data-pkg-drop="DELHI">
+      <a href="package-detail.html?id=chandigarh-best-value-5d" class="htp-card" data-pkg-id="chandigarh-best-value-5d" data-pkg-gateway="DELHI" data-pkg-drop="DELHI" data-pkg-days="5">
         <span class="htp-tag">Monsoon-friendly</span>
         <div class="htp-name">Kasol Parvati Valley Trek</div>
         <div class="htp-meta">5D · Delhi → Kasol</div>
@@ -2548,6 +2548,7 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(link) {
 }
 </style>
 
+<script src="assets/js/pricing-engine.js"></script>
 <script>
 const PP_DATA = {
   'quickstart': {
@@ -2680,49 +2681,27 @@ document.getElementById('ppOverlay').addEventListener('click', function(e){
 // Close on Escape
 document.addEventListener('keydown', e => { if(e.key === 'Escape') ppClose(); });
 
-// ── LIVE PRICE FETCH FOR HOMEPAGE PACKAGE CARDS ──────────────────────────────
-// Fetches /package_pricing_matrix, then updates each .pkg[data-pkg-id] card's
-// .pkg-amt span with the live budget price at pax=4, off-peak / peak as appropriate.
+// ── LIVE PRICE FOR HOMEPAGE PACKAGE CARDS ────────────────────────────────────
+// Computed by PricingEngine.computePrice() (assets/js/pricing-engine.js) — the
+// exact formula behind /group-pricing.html — instead of a separate Firebase
+// pricing matrix, so the homepage "from" price always matches the calculator.
 (function() {
-  const DB = "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app";
-  const PEAK_MONTHS = [1, 5, 6, 12];
-  const isPeak = PEAK_MONTHS.includes(new Date().getMonth() + 1);
   const PAX = 4; // homepage always shows 4-pax "from" price
 
   function fmtINR(n) {
     return "₹" + Math.round(n).toLocaleString("en-IN");
   }
 
-  function extractPrice(combo, tier) {
-    if (!combo || !combo.pax) return null;
-    const paxData = Array.isArray(combo.pax) ? combo.pax[PAX] : combo.pax[String(PAX)];
-    if (!paxData) return null;
-    const key = isPeak ? tier + "_peak" : tier;
-    return paxData[key] ?? paxData[tier] ?? null;
-  }
+  if (!window.PricingEngine) return; // pricing-engine.js failed to load — keep static prices
 
-  fetch(DB + "/package_pricing_matrix.json")
-    .then(r => r.ok ? r.json() : null)
-    .then(matrix => {
-      if (!matrix) return;
-      document.querySelectorAll(".pkg[data-pkg-id], .htp-card[data-pkg-id]").forEach(card => {
-        const pkgId   = card.dataset.pkgId;
-        const gateway = (card.dataset.pkgGateway || "DELHI").toUpperCase();
-        const drop    = (card.dataset.pkgDrop    || "DELHI").toUpperCase();
-        const amtEl   = card.querySelector(".pkg-amt, .htp-amt");
-        if (!amtEl) return;
-        const pkgData = matrix[pkgId];
-        if (!pkgData) return;
-        const combo = pkgData[gateway + "__" + drop];
-        if (!combo) return;
-        const price = extractPrice(combo, "budget");
-        if (price && price > 0) {
-          amtEl.textContent = fmtINR(price);
-          if (isPeak) amtEl.title = "Peak season price (May / Jun / Dec / Jan)";
-        }
-      });
-    })
-    .catch(() => {}); // silently keep static prices on any error
+  document.querySelectorAll(".pkg[data-pkg-id], .htp-card[data-pkg-id]").forEach(card => {
+    const days = parseInt(card.dataset.pkgDays, 10);
+    const amtEl = card.querySelector(".pkg-amt, .htp-amt");
+    if (!amtEl || !days) return;
+    const result = PricingEngine.computePrice({ days, pax: PAX, tier: "budget" });
+    amtEl.textContent = fmtINR(result.totalPP);
+    if (result.breakdown.isPeak) amtEl.title = "Peak season price (May / Jun / Dec / Jan)";
+  });
 })();
 
 // ── PARTNER HOTELS — circular carousel, Firebase-backed ──────────────────────

@@ -405,156 +405,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="assets/js/package-data.js"></script>
+<script src="assets/js/pricing-engine.js"></script>
 <script src="images.js"></script>
 <script>
   window.FIREBASE_STATUS_PATHS = [
     { path: "/templates_index", label: "Package identity" },
     { path: "/package_content", label: "Itineraries/images" },
-    { path: "/package_pricing_matrix", label: "Pricing" },
     { path: "/places", label: "Place lookups" },
   ];
+  // Pricing no longer lives in Firebase — every price on this page comes from
+  // PricingEngine.computePrice() (assets/js/pricing-engine.js), the same
+  // formula used on /group-pricing.html. See the pricing block below.
 </script>
 <script src="assets/js/firebase-status-bar.js"></script>
 <script>
   /**
  * ============================================================
- *  HIMACHAL EXPLORER — Firebase Pricing Fetch
- *  Drop this <script> block into packages.html
- *  Replace the existing renderCards() price logic with this
+ *  HIMACHAL EXPLORER — Package Cost (via PricingEngine)
  * ============================================================
- *
- *  WHAT THIS DOES
- *  - On page load, fetches /package_pricing_matrix from Firebase
- *  - Stores it in PRICING_MATRIX (global, one-time fetch)
- *  - Exposes getPrice(packageId, gateway, drop, pax, tier)
- *  - Wires into existing state.pax, state.tier, state.gateway, state.drop
- *
- *  PREREQUISITES
- *  - You've run the Apps Script to push data to Firebase
- *  - Firebase path /package_pricing_matrix exists
- *  - The existing FIREBASE_URL constant is already in packages.html
+ *  Every price on this page comes from PricingEngine.computePrice()
+ *  (assets/js/pricing-engine.js) — the exact same formula that powers
+ *  the public calculator at /group-pricing.html. There is no separate
+ *  Firebase pricing matrix any more: gateway/drop no longer change the
+ *  price (the formula only depends on trip length, pax, hotel tier and
+ *  travel month), so this page is guaranteed to match the calculator.
  * ============================================================
  */
 
-// ── 1. GLOBAL PRICING MATRIX ─────────────────────────────────
-let PRICING_MATRIX = null;      // populated on first fetch
-let PRICING_MATRIX_LOADING = false;
-let PRICING_MATRIX_CALLBACKS = [];  // queued calls while loading
-
-const FIREBASE_PRICING_URL =
-  "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app/package_pricing_matrix.json";
-
-// ── 2. FETCH MATRIX (called once on page load) ───────────────
-async function loadPricingMatrix() {
-  if (PRICING_MATRIX) return PRICING_MATRIX;       // already loaded
-  if (PRICING_MATRIX_LOADING) {
-    // Queue: return a promise that resolves when loading finishes
-    return new Promise(resolve => PRICING_MATRIX_CALLBACKS.push(resolve));
-  }
-
-  PRICING_MATRIX_LOADING = true;
-  try {
-    const res = await fetch(FIREBASE_PRICING_URL);
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    PRICING_MATRIX = await res.json();
-    console.log("✅ Pricing matrix loaded:", Object.keys(PRICING_MATRIX).length, "packages");
-  } catch (err) {
-    console.warn("⚠️ Pricing matrix load failed, falling back to hardcoded:", err);
-    PRICING_MATRIX = {};   // empty — getPrice() will fall back to PACKAGES array
-  } finally {
-    PRICING_MATRIX_LOADING = false;
-    // Resolve all queued callbacks
-    PRICING_MATRIX_CALLBACKS.forEach(cb => cb(PRICING_MATRIX));
-    PRICING_MATRIX_CALLBACKS = [];
-  }
-  return PRICING_MATRIX;
-}
-
-// ── 3. PEAK MONTH HELPER ─────────────────────────────────────
-// Peak months: May(5), Jun(6), Dec(12), Jan(1) — baked into budget_peak / premium_peak / luxury_peak
 function isPeakMonth() {
-  const m = new Date().getMonth() + 1; // 1-indexed
-  return [1, 5, 6, 12].includes(m);
+  return PricingEngine.isPeakMonth(new Date().getMonth() + 1);
 }
 
-// ── 4. PRICE LOOKUP ──────────────────────────────────────────
-/**
- * getPrice(packageId, gateway, drop, pax, tier)
- * New DB structure: ppm[pkgId][GATEWAY__DROP] = { pax: [...], hotel_budget_gst, ... }
- * pax is an array; index 0-1 = null, index 2-10 = { budget, budget_peak, premium, premium_peak, luxury, luxury_peak, vehicle, transport_pp }
- *
- * Automatically returns peak price in May/Jun/Dec/Jan.
- */
-function getPrice(packageId, gateway, drop, pax, tier) {
-  if (!PRICING_MATRIX) return null;
-  const pkgData = PRICING_MATRIX[packageId];
-  if (!pkgData) return null;
-
-  const gw = (gateway || 'DELHI').toUpperCase();
-  const dr = (drop    || 'DELHI').toUpperCase();
-  const n  = Math.min(Math.max(parseInt(pax, 10) || 4, 2), 10);
-
-  // Try combos in priority order: exact match → same gateway diff drop → any available
-  const exactKey = gw + "__" + dr;
-  const fallbackKeys = [
-    gw + "__" + gw,
-    'DELHI__DELHI', 'CHANDIGARH__CHANDIGARH', 'AMRITSAR__AMRITSAR',
-    Object.keys(pkgData)[0]  // whatever exists first
-  ];
-  const tryKeys = [exactKey, ...fallbackKeys];
-
-  for (const key of tryKeys) {
-    const combo = pkgData[key];
-    if (!combo || !combo.pax) continue;
-    const paxData = Array.isArray(combo.pax) ? combo.pax[n] : combo.pax[String(n)];
-    if (!paxData) continue;
-    const priceKey = isPeakMonth() ? tier + "_peak" : tier;
-    const price = paxData[priceKey] != null ? paxData[priceKey] : paxData[tier];
-    if (price != null && price > 0) return price;
-  }
-  return null;
+function findPkgById(packageId) {
+  return PACKAGES.find(p => p.package_id === packageId);
 }
 
 /**
- * FEATURED_PRICE_OVERRIDE — used only when a package has no entry yet in the
- * live Firebase package_pricing_matrix (e.g. a brand-new flagship package).
- * TODO: remove once chandigarh-grand-himachal-16d is added to Firebase.
- */
-const FEATURED_PRICE_OVERRIDE = {
-  'chandigarh-grand-himachal-16d': { budget: 42999, premium: 47299, luxury: 51599 }
-};
-
-/**
- * getPriceWithFallback — always returns a number.
+ * getPriceWithFallback(packageId, gateway, drop, pax, tier) — kept with the
+ * same signature callers already use; gateway/drop are accepted but no
+ * longer affect the price (see note above). Always returns a number.
  */
 function getPriceWithFallback(packageId, gateway, drop, pax, tier) {
-  const live = getPrice(packageId, gateway, drop, pax, tier);
-  if (live != null) return live;
-  const override = FEATURED_PRICE_OVERRIDE[packageId];
-  if (override) return override[tier] || override.budget;
-  return 0;
+  const pkg = findPkgById(packageId);
+  if (!pkg || !pkg.days) return 0;
+  return PricingEngine.computePrice({ days: pkg.days, pax, tier }).totalPP;
 }
 
 /**
- * getVehicleForPax — reads vehicle assignment from pax entry.
+ * getVehicleForPax — the fleet PricingEngine picked for this pax count.
  */
 function getVehicleForPax(packageId, gateway, drop, pax) {
-  if (!PRICING_MATRIX) return null;
-  const pkgData = PRICING_MATRIX[packageId];
-  if (!pkgData) return null;
-  const combo = pkgData[gateway.toUpperCase() + "__" + drop.toUpperCase()];
-  if (!combo) return null;
-  const n = parseInt(pax, 10);
-  const paxData = Array.isArray(combo.pax) ? combo.pax[n] : combo.pax[String(n)];
-  return paxData ? paxData.vehicle : null;
+  const pkg = findPkgById(packageId);
+  if (!pkg || !pkg.days) return null;
+  return PricingEngine.computePrice({ days: pkg.days, pax, tier: 'budget' }).fleetLabel;
 }
-
-const VEHICLE_LABELS = {
-  sedan:      "Sedan (Dzire / Etios)",
-  suv_ertiga: "Ertiga / Rumion recommended",
-  suv_innova: "Innova Crysta recommended",
-  suv_bolero: "Bolero / Scorpio recommended",
-  tempo_12:   "Tempo Traveller (12-seater)"};
 
 /**
  * getDiscountPercent — returns a stable 10–30% discount per package.
@@ -583,7 +487,8 @@ function getPricingWithDiscount(packageId, gateway, drop, pax, tier) {
   return { ourPrice, pct, regularPrice, savings };
 }
 
-// ── 5. GATEWAY / DROP HANDLERS ───────────────────────────────
+// ── GATEWAY / DROP HANDLERS ───────────────────────────────
+// (still used to pick pickup/drop copy shown to the user — no pricing effect)
 function onGatewayChange(val) {
   state.gateway = val;
   renderCards();
@@ -593,35 +498,19 @@ function onDropChange(val) {
   renderCards();
 }
 
-// ── 6. PRICE BREAKDOWN ───────────────────────────────────────
 /**
- * getPriceBreakdown — returns human-readable breakdown string.
- * Uses hotel_budget_gst / hotel_premium_gst / hotel_luxury_gst (GST-inclusive fields).
- * e.g. "Hotel ₹5,752 + Transport ₹3,520 = ₹9,272 pp (off-peak) · Innova Crysta"
+ * getPriceBreakdown — human-readable breakdown string, sourced from
+ * PricingEngine so it always matches the calculator.
+ * e.g. "Hotel ₹5,752 + Vehicle ₹3,520 = ₹9,272 pp (off-peak) · 1× SUV/Innova"
  */
 function getPriceBreakdown(packageId, gateway, drop, pax, tier) {
-  if (!PRICING_MATRIX) return "";
-  const pkgData = PRICING_MATRIX[packageId];
-  if (!pkgData) return "";
-  const combo = pkgData[gateway.toUpperCase() + "__" + drop.toUpperCase()];
-  if (!combo) return "";
-  const n = parseInt(pax, 10);
-  const paxData = Array.isArray(combo.pax) ? combo.pax[n] : combo.pax[String(n)];
-  if (!paxData) return "";
-
-  // Hotel cost: use GST-inclusive field
-  const hotelField = "hotel_" + tier + "_gst";
-  const hotel = combo[hotelField] || combo["hotel_" + tier] || 0;
-  // Transport: use transport_pp (off-peak) or transport_pp_pk (peak)
-  const transport = isPeakMonth()
-    ? (paxData.transport_pp_pk || paxData.transport_pp || 0)
-    : (paxData.transport_pp || 0);
-  const total = hotel + transport;
-  const vehicle = VEHICLE_LABELS[paxData.vehicle] || paxData.vehicle || "";
-  const season = isPeakMonth() ? "peak season" : "off-peak";
-  const fmt = n => "₹" + n.toLocaleString("en-IN");
-
-  return `Hotel ${fmt(hotel)} + Transport ${fmt(transport)} = ${fmt(total)} pp (${season})${vehicle ? " · " + vehicle : ""}`;
+  const pkg = findPkgById(packageId);
+  if (!pkg || !pkg.days) return "";
+  const result = PricingEngine.computePrice({ days: pkg.days, pax, tier });
+  const b = result.breakdown;
+  const fmtInr = n => "₹" + Math.round(n).toLocaleString("en-IN");
+  const season = b.isPeak ? "peak season" : "off-peak";
+  return `Hotel ${fmtInr(b.hotelPP)} + Vehicle ${fmtInr(b.vehiclePP)} = ${fmtInr(result.totalPP)} pp (${season}) · ${result.fleetLabel}`;
 }
 
 // ─── PLACES DATA ──────────────────────────────────────────────────────────────
@@ -1289,7 +1178,7 @@ function renderCards() {
 
   const vh = document.getElementById('vehicleHint');
   const liveVehicle = getVehicleForPax(state.selectedId || (PACKAGES[0] && PACKAGES[0].package_id) || '', state.gateway||'DELHI', state.drop||'DELHI', state.pax||4);
-  vh.textContent = (liveVehicle && VEHICLE_LABELS[liveVehicle]) || (state.pax<=4 ? 'Sedan recommended' : state.pax<=6 ? 'Ertiga/Innova recommended' : 'Tempo Traveller recommended');
+  vh.textContent = liveVehicle || (state.pax<=4 ? 'Sedan recommended' : state.pax<=6 ? 'Ertiga/Innova recommended' : 'Tempo Traveller recommended');
 
   if (!list.length) {
     grid.innerHTML = `<div class="no-results"><div class="no-results-icon">🏔</div><div class="no-results-title">No packages found</div></div>`;
@@ -1805,8 +1694,7 @@ setInterval(fetchWeather, 15 * 60 * 1000);
       if (pkg.image) PKG_IMG[pkg.id] = pkg.image;
     });
 
-    renderCards(); // render immediately with hardcoded/fallback prices
-    loadPricingMatrix().then(() => renderCards()); // re-render with live prices when ready
+    renderCards(); // prices come from PricingEngine.computePrice() — no async fetch needed
   }).catch(err => {
     console.error('Failed to load package data from Firebase:', err);
     if (grid) grid.innerHTML = '<div style="padding:60px 20px;text-align:center;color:#c33;font-size:14px;grid-column:1/-1;">Couldn\u2019t load tours right now — please refresh.</div>';

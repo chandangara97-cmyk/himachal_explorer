@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Group Pricing Calculator | Himachal Explorer</title>
+<meta name="description" content="Get an instant, transparent per-person price for any Himachal Explorer package — any group size, any hotel tier, any season."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://himachalexplorer.in/group-pricing.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#f8f5ef;--surface:#fff;--lift:#fdfbf7;--muted:#f0ebe0;
+  --border:#e5ddd0;--border2:#d4c9b5;--ink:#1c1409;--body:#5a4a36;
+  --caption:#9b8a74;--gold:#b07d3a;--gold2:#c99248;--gold-bg:#fdf6ec;
+  --dark:#0e0a04;--green:#25d366;--wrap:1140px;--px:32px;
+  --amber:#d97706;--red:#d9534f;
+  --ease:cubic-bezier(.4,0,.2,1);--glass:rgba(176,125,58,.15);--glow:rgba(176,125,58,.2);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--body);line-height:1.65;overflow-x:hidden}
+h1,h2,h3{font-family:'Cormorant',serif;color:var(--ink);font-weight:300;line-height:1.1}
+a{color:var(--gold);text-decoration:none}
+
+.hero{position:relative;padding:64px var(--px) 40px;background:var(--dark);text-align:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;font-size:9px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--gold2)}
+.hero h1{color:#fff;font-size:clamp(30px,5vw,46px);font-weight:300;margin-bottom:12px}
+.hero h1 em{font-style:italic;color:var(--gold2)}
+.hero-desc{color:rgba(255,255,255,.75);font-size:14px;max-width:560px;margin:0 auto;line-height:1.7}
+
+.section{max-width:var(--wrap);margin:0 auto;padding:40px var(--px)}
+.section-eyebrow{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
+.section-title{font-family:'Cormorant',serif;font-size:clamp(24px,3vw,32px);color:var(--ink);font-weight:400;margin-bottom:10px}
+
+.calc-grid{display:grid;grid-template-columns:380px 1fr;gap:28px;align-items:start}
+@media (max-width:860px){.calc-grid{grid-template-columns:1fr}}
+
+.card{background:var(--surface);border:1.5px solid var(--border2);border-radius:6px;padding:24px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--caption);margin-bottom:6px}
+select,input[type=number]{width:100%;padding:11px 12px;border-radius:4px;border:1.5px solid var(--border2);
+  font-family:'Jost',sans-serif;font-size:14px;background:var(--lift);color:var(--ink)}
+select:focus,input:focus{outline:none;border-color:var(--gold)}
+
+.pax-stepper{display:flex;align-items:center;gap:12px}
+.pax-stepper button{width:38px;height:38px;border-radius:4px;border:1.5px solid var(--border2);background:var(--lift);
+  font-size:18px;color:var(--gold);cursor:pointer;transition:all .2s}
+.pax-stepper button:hover{border-color:var(--gold);background:var(--gold-bg)}
+.pax-stepper span{font-family:'Cormorant',serif;font-size:26px;font-weight:600;color:var(--ink);min-width:36px;text-align:center}
+
+.tier-row,.toggle-row{display:flex;gap:8px}
+.pill-btn{flex:1;padding:9px 8px;border-radius:4px;border:1.5px solid var(--border2);background:var(--lift);
+  font-size:11px;font-weight:600;letter-spacing:.03em;color:var(--body);cursor:pointer;transition:all .2s;text-align:center}
+.pill-btn.active{background:var(--gold);border-color:var(--gold);color:#fff}
+
+.peak-check{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--body)}
+
+.result-card{background:var(--lift);border:1.5px solid var(--border2);border-radius:6px;padding:28px}
+.pkg-name{font-family:'Cormorant',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.pkg-meta{font-size:11.5px;color:var(--caption);margin-bottom:20px}
+.pkg-meta .chip{display:inline-block;background:var(--gold-bg);color:var(--gold);border-radius:20px;padding:2px 10px;margin-right:6px;font-weight:600}
+
+.vehicle-note{background:var(--gold-bg);border-left:3px solid var(--gold);border-radius:4px;padding:12px 14px;font-size:12.5px;color:var(--body);margin-bottom:20px}
+.vehicle-note strong{color:var(--ink)}
+
+table.breakdown{width:100%;border-collapse:collapse;margin-bottom:16px}
+table.breakdown td{padding:9px 4px;border-bottom:1px solid var(--border);font-size:13.5px}
+table.breakdown td:last-child{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:500}
+table.breakdown tr.subtotal td{border-top:1.5px solid var(--border2);border-bottom:none;font-weight:600;padding-top:12px}
+
+.grand-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:16px;border-top:2px solid var(--ink)}
+.grand-total .label{font-size:12px;color:var(--caption);text-transform:uppercase;letter-spacing:.05em}
+.grand-total .amt{font-family:'Cormorant',serif;font-size:34px;font-weight:600;color:var(--gold)}
+.grand-total .unit{font-size:11px;color:var(--caption)}
+
+.group-total{margin-top:10px;font-size:12.5px;color:var(--caption);text-align:right}
+.group-total strong{color:var(--ink)}
+
+.foot-note{max-width:var(--wrap);margin:0 auto;padding:0 var(--px) 60px;font-size:11.5px;color:var(--caption);line-height:1.7}
+.foot-note b{color:var(--body)}
+
+.cta-row{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:#fff;padding:12px 22px;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:3px;border:none;cursor:pointer;transition:background .2s}
+.btn-primary:hover{background:var(--dark)}
+.btn-ghost{border:1.5px solid var(--border2);color:var(--body);padding:11px 20px;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:3px;background:transparent;cursor:pointer}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="hero">
+  <div class="hero-eyebrow">Transparent Pricing</div>
+  <h1>Group <em>Pricing</em> Calculator</h1>
+  <p class="hero-desc">One consistent price formula across every package — pick your group size, hotel tier and travel month for an instant per-person quote.</p>
+</section>
+
+<section class="section">
+  <div class="calc-grid">
+
+    <div class="card">
+      <div class="field">
+        <label for="pkgSelect">Package</label>
+        <select id="pkgSelect"></select>
+      </div>
+
+      <div class="field">
+        <label>Group Size</label>
+        <div class="pax-stepper">
+          <button type="button" id="paxMinus">−</button>
+          <span id="paxDisplay">4</span>
+          <button type="button" id="paxPlus">+</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Hotel Tier</label>
+        <div class="tier-row" id="tierRow">
+          <button type="button" class="pill-btn active" data-tier="budget">Budget</button>
+          <button type="button" class="pill-btn" data-tier="premium">Premium</button>
+          <button type="button" class="pill-btn" data-tier="luxury">Luxury</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Travel Month</label>
+        <select id="monthSelect">
+          <option value="1">January</option><option value="2">February</option>
+          <option value="3">March</option><option value="4">April</option>
+          <option value="5">May</option><option value="6">June</option>
+          <option value="7">July</option><option value="8">August</option>
+          <option value="9">September</option><option value="10">October</option>
+          <option value="11">November</option><option value="12" selected>December</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="result-card" id="resultCard"></div>
+
+  </div>
+</section>
+
+<div class="foot-note">
+  <b>How this price is built:</b> Vehicle cost uses the cheapest valid combination of Sedan (4 seats, ₹3,200/day off-peak · ₹5,300 peak), SUV/Innova (7 seats, ₹5,200 · ₹6,600) or Tempo Traveller (14 seats, ₹5,600 · ₹8,800) for your group size, plus ₹50/night driver halt per vehicle and a flat ₹350 toll & parking charge per vehicle. Hotel is priced at ₹1,480 / ₹2,020 / ₹3,360 per person per night for Budget / Premium / Luxury (+15% in peak season: May, June, December, January). A 10% service fee and 25% operating margin are added on top. All prices are per person for the full trip, rounded to the nearest ₹50, and exclude flights/trains, entry tickets, meals unless stated, permits, personal expenses and travel insurance — see each package page for full inclusions.
+  <br><br>
+  This calculator replaces three previously inconsistent pricing sources on this site with one formula. Figures are a starting recommendation for review against actual vendor rates before being used as the live selling price.
+</div>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/site-chrome.js"></script>
+<script src="/assets/js/pricing-engine.js"></script>
+<script>
+const PACKAGES = {"chandigarh-best-value-5d":{"name":"Best Value Himachal Circuit from Chandigarh \u2014 Shimla to Kasol (5D/4N)","days":5,"route":"CHANDIGARH / DELHI / SHIMLA","season":"all_year","ideal_for":"friends,couple,family"},"chandigarh-grand-himachal-16d":{"name":"Grand Himachal Explorer \u2014 Shimla, Kinnaur, Spiti, Manali & Dharamshala (16D/15N)","days":16,"route":"CHANDIGARH / DELHI","season":"summer","ideal_for":"adventure,nature,friends,couple"},"chandigarh-jibhi-seraj-4d":{"name":"Chandigarh to Seraj Valley Escape \u2014 Jibhi, Shoja & Jalori (4D/3N)","days":4,"route":"CHANDIGARH / DELHI / SHIMLA","season":"spring,summer,autumn","ideal_for":"nature,couple,friends"},"chandigarh-kasauli-barog-2d":{"name":"Chandigarh Weekend Getaway \u2014 Kasauli & Barog Heritage Railway (2D/1N)","days":2,"route":"CHANDIGARH / DELHI / SHIMLA","season":"all_year","ideal_for":"couple,family,weekend"},"chandigarh-manali-dharamshala-chamba-10d":{"name":"Manali\u2013Dharamshala\u2013Chamba Triangle (10D/9N)","days":10,"route":"CHANDIGARH / DELHI","season":"spring,summer,autumn","ideal_for":"adventure,nature,friends,couple,family"},"chandigarh-manali-spiti-shimla-14d":{"name":"Manali\u2013Spiti\u2013Shimla Grand Loop (14D/13N)","days":14,"route":"CHANDIGARH / DELHI","season":"summer","ideal_for":"adventure,nature,friends"},"chandigarh-prashar-mandi-3d":{"name":"Chandigarh to Prashar Lake Adventure \u2014 Hidden Jewel of Mandi (3D/2N)","days":3,"route":"CHANDIGARH / DELHI / SHIMLA","season":"summer,autumn","ideal_for":"nature,trek,photography"},"chandigarh-shimla-manali-6d":{"name":"Chandigarh\u2013Shimla\u2013Manali Classic (6D/5N)","days":6,"route":"CHANDIGARH / DELHI / SHIMLA","season":"all_year","ideal_for":"family,couple,friends,honeymoon"},"chandigarh-shimla-manali-dharamshala-8d":{"name":"Chandigarh\u2013Shimla\u2013Manali\u2013Dharamshala Explorer (8D/7N)","days":8,"route":"CHANDIGARH / DELHI / SHIMLA","season":"spring,summer,autumn","ideal_for":"family,couple,friends,heritage"},"chandigarh-shimla-weekend-3d":{"name":"Chandigarh\u2013Shimla Weekend Getaway (3D/2N)","days":3,"route":"CHANDIGARH / DELHI","season":"all_year","ideal_for":"couple,family,weekend"},"delhi-himachal-best-value-7d":{"name":"Best of Himachal \u2014 Shimla, Jibhi & Parvati Valley (7D/6N)","days":7,"route":"CHANDIGARH / DELHI / SHIMLA","season":"all_year","ideal_for":"family,couple,friends"},"delhi-himachal-complete-10d":{"name":"Grand Himachal Circuit \u2014 All Regions Explorer (10D/9N)","days":10,"route":"CHANDIGARH / DELHI / SHIMLA","season":"summer,autumn","ideal_for":"family,couple,friends,slow_travel"},"delhi-kinnaur-spiti-10d":{"name":"Kinnaur & Spiti Grand Expedition (10D/9N)","days":10,"route":"CHANDIGARH / DELHI / SHIMLA","season":"summer","ideal_for":"expedition,photography,adventure"},"delhi-renuka-tattapani-3d":{"name":"Delhi to Renuka Lake & Tattapani Hot Springs (3D/2N)","days":3,"route":"CHANDIGARH / DELHI / SHIMLA","season":"all_year","ideal_for":"family,couple,nature"},"kangra-offbeat-4d":{"name":"Kangra Offbeat Heritage Trail \u2014 Masroor Temples, Andretta & Pong Lake (4D/3N)","days":4,"route":"CHANDIGARH / DELHI / SHIMLA","season":"all_year","ideal_for":"heritage,culture,photography"},"kinnaur-complete-6d":{"name":"Kinnaur Full Circuit \u2014 Sangla, Chitkul & Hidden Villages (6D/5N)","days":6,"route":"CHANDIGARH / DELHI / SHIMLA","season":"summer,autumn","ideal_for":"nature,photography,slow_travel"},"kinnaur-spiti-manali-loop-12d":{"name":"Kinnaur\u2013Spiti\u2013Manali Grand Loop (12D/11N)","days":12,"route":"CHANDIGARH / DELHI / SHIMLA","season":"summer","ideal_for":"expedition,adventure,photography,nature"},"lower-hp-offbeat-3d":{"name":"Lower Himachal Offbeat Circuit \u2014 Chintpurni, Sujanpur & Gobind Sagar (3D/2N)","days":3,"route":"CHANDIGARH / DELHI / SHIMLA","season":"all_year","ideal_for":"spiritual,heritage,family"},"manali-lahaul-5d":{"name":"Manali to Lahaul Valley Expedition via Atal Tunnel \u2014 Sissu, Keylong & Chandratal (5D/4N)","days":5,"route":"CHANDIGARH / DELHI / SHIMLA","season":"summer","ideal_for":"adventure,photography,nature"},"mandi-janjehli-4d":{"name":"Janjehli Karsog Valley Explorer \u2014 Alpine Meadows & Ancient Temples (4D/3N)","days":4,"route":"CHANDIGARH / DELHI / SHIMLA","season":"summer,autumn","ideal_for":"trek,nature,spiritual"},"mandi-offbeat-3d":{"name":"Mandi Offbeat Escape \u2014 Prashar Lake, Barot & Kamrunag (3D/2N)","days":3,"route":"CHANDIGARH / DELHI / SHIMLA","season":"summer,autumn","ideal_for":"nature,trek,photography"},"seraj-offbeat-4d":{"name":"Seraj Valley \u2014 Himachal's Best Kept Secret (4D/3N)","days":4,"route":"CHANDIGARH / DELHI / SHIMLA","season":"summer,autumn","ideal_for":"nature,couple,photography"},"shimla-apple-belt-4d":{"name":"Shimla Apple Country & Hidden Lakes Expedition (4D/3N)","days":4,"route":"CHANDIGARH / DELHI / SHIMLA","season":"summer,autumn","ideal_for":"family,nature,photography"},"shimla-hidden-3d":{"name":"Shimla Offbeat Escape \u2014 Hidden Gems of Mashobra, Naldehra & Craignano (3D/2N)","days":3,"route":"CHANDIGARH / DELHI / SHIMLA","season":"all_year","ideal_for":"couple,nature"},"shimla-manali-keylong-udaipur-6d":{"name":"Shimla\u2013Manali\u2013Keylong\u2013Udaipur Expedition (6D/5N)","days":6,"route":"CHANDIGARH / DELHI / SHIMLA","season":"summer","ideal_for":"adventure,photography,offbeat"},"shimla-rohru-chandan-nahan-6d":{"name":"Shimla\u2013Rohru\u2013Chandan Nahan Trek (6D/5N)","days":6,"route":"CHANDIGARH / DELHI / SHIMLA","season":"spring,summer,autumn","ideal_for":"trekking,adventure,nature,friends"},"shimla-rohru-deep-adventure-7d":{"name":"Rohru Deep Adventure \u2014 Janglik, Chandan Nahan & Beyond (6\u20137D/5\u20136N)","days":7,"route":"SHIMLA / CHANDIGARH / DELHI","season":"summer","ideal_for":"trekking,adventure,nature,friends"},"sirmaur-hidden-4d":{"name":"Sirmaur Hidden Valley Expedition \u2014 Renuka Lake, Churdhar & Habban (4D/3N)","days":4,"route":"CHANDIGARH / DELHI / SHIMLA","season":"spring,summer,autumn","ideal_for":"nature,trek,wildlife"},"tirthan-sainj-5d":{"name":"Tirthan Sainj Valley Adventure \u2014 Great Himalayan National Park (5D/4N)","days":5,"route":"CHANDIGARH / DELHI / SHIMLA","season":"spring,summer,autumn","ideal_for":"nature,wildlife,family"},"shimla-shimla-ridge-and-mall-road-1d":{"name":"Shimla Ridge & Mall Road (1D/0N)","days":1,"route":"CHANDIGARH / DELHI / SHIMLA","season":"Mar-Jun, Sep-Dec","ideal_for":""},"shimla-shimla-kufri-duo-2d":{"name":"Shimla-Kufri Duo (2D/1N)","days":2,"route":"CHANDIGARH / DELHI / SHIMLA","season":"Mar-Jun, Sep-Dec","ideal_for":""},"shimla-shimla-chail-kufri-3d":{"name":"Shimla-Chail-Kufri (3D/2N)","days":3,"route":"CHANDIGARH / DELHI / SHIMLA","season":"Mar-Jun, Sep-Dec","ideal_for":""},"shimla-shimla-nature-trail-4d":{"name":"Shimla Nature Trail (4D/3N)","days":4,"route":"CHANDIGARH / DELHI / SHIMLA","season":"Mar-Jun, Sep-Dec","ideal_for":""},"shimla-shimla-kasauli-explorer-5d":{"name":"Shimla-Kasauli Explorer (5D/4N)","days":5,"route":"CHANDIGARH / DELHI / SHIMLA","season":"Mar-Jun, Sep-Dec","ideal_for":""},"shimla-shimla-sarahan-circuit-6d":{"name":"Shimla-Sarahan Circuit (6D/5N)","days":6,"route":"CHANDIGARH / DELHI / SHIMLA","season":"Mar-Jun, Sep-Dec","ideal_for":""},"shimla-shimla-kinnaur-gateway-7d":{"name":"Shimla-Kinnaur Gateway (7D/6N)","days":7,"route":"CHANDIGARH / DELHI / SHIMLA","season":"Mar-Jun, Sep-Dec","ideal_for":""},"shimla-shimla-sangla-adventure-8d":{"name":"Shimla-Sangla Adventure (8D/7N)","days":8,"route":"CHANDIGARH / DELHI / SHIMLA","season":"Mar-Jun, Sep-Dec","ideal_for":""},"shimla-shimla-kinnaur-chitkul-9d":{"name":"Shimla-Kinnaur-Chitkul (9D/8N)","days":9,"route":"CHANDIGARH / DELHI / SHIMLA","season":"Mar-Jun, Sep-Dec","ideal_for":""},"shimla-shimla-grand-himalayan-loop-10d":{"name":"Shimla Grand Himalayan Loop (10D/9N)","days":10,"route":"CHANDIGARH / DELHI / SHIMLA","season":"Mar-Jun, Sep-Dec","ideal_for":""},"manali-solang-valley-adventure-sprint-1d":{"name":"Solang Valley Adventure Sprint (1D/0N)","days":1,"route":"MANALI","season":"Mar-Jun, Sep-Dec (snow Dec-Feb)","ideal_for":""},"manali-manali-discovery-2d":{"name":"Manali Discovery (2D/1N)","days":2,"route":"MANALI","season":"Mar-Jun, Sep-Dec (snow Dec-Feb)","ideal_for":""},"manali-rohtang-pass-expedition-3d":{"name":"Rohtang Pass Expedition (3D/2N)","days":3,"route":"MANALI","season":"Mar-Jun, Sep-Dec (snow Dec-Feb)","ideal_for":""},"manali-manali-kasol-crossover-4d":{"name":"Manali-Kasol Crossover (4D/3N)","days":4,"route":"MANALI","season":"Mar-Jun, Sep-Dec (snow Dec-Feb)","ideal_for":""},"manali-hampta-pass-trek-easy-5d":{"name":"Hampta Pass Trek (Easy) (5D/4N)","days":5,"route":"MANALI","season":"Mar-Jun, Sep-Dec (snow Dec-Feb)","ideal_for":""},"manali-hampta-pass-full-trek-6d":{"name":"Hampta Pass Full Trek (6D/5N)","days":6,"route":"MANALI","season":"Mar-Jun, Sep-Dec (snow Dec-Feb)","ideal_for":""},"manali-manali-spiti-gateway-7d":{"name":"Manali-Spiti Gateway (7D/6N)","days":7,"route":"MANALI","season":"Mar-Jun, Sep-Dec (snow Dec-Feb)","ideal_for":""},"manali-bhrigu-lake-manali-circuit-8d":{"name":"Bhrigu Lake + Manali Circuit (8D/7N)","days":8,"route":"MANALI","season":"Mar-Jun, Sep-Dec (snow Dec-Feb)","ideal_for":""},"manali-manali-grand-adventure-9d":{"name":"Manali Grand Adventure (9D/8N)","days":9,"route":"MANALI","season":"Mar-Jun, Sep-Dec (snow Dec-Feb)","ideal_for":""},"manali-manali-spiti-kinnaur-loop-10d":{"name":"Manali-Spiti-Kinnaur Loop (10D/9N)","days":10,"route":"MANALI","season":"Mar-Jun, Sep-Dec (snow Dec-Feb)","ideal_for":""},"kasol-kasol-cafe-trail-1d":{"name":"Kasol Cafe Trail (1D/0N)","days":1,"route":"BHUNTAR","season":"Mar-Jun, Sep-Nov","ideal_for":""},"kasol-kasol-tosh-getaway-2d":{"name":"Kasol-Tosh Getaway (2D/1N)","days":2,"route":"BHUNTAR","season":"Mar-Jun, Sep-Nov","ideal_for":""},"kasol-kheerganga-trek-3d":{"name":"Kheerganga Trek (3D/2N)","days":3,"route":"BHUNTAR","season":"Mar-Jun, Sep-Nov","ideal_for":""},"kasol-malana-kasol-explorer-4d":{"name":"Malana-Kasol Explorer (4D/3N)","days":4,"route":"BHUNTAR","season":"Mar-Jun, Sep-Nov","ideal_for":""},"kasol-parvati-valley-immersion-5d":{"name":"Parvati Valley Immersion (5D/4N)","days":5,"route":"BHUNTAR","season":"Mar-Jun, Sep-Nov","ideal_for":""},"kasol-manikaran-pilgrimage-parvati-6d":{"name":"Manikaran Pilgrimage + Parvati (6D/5N)","days":6,"route":"BHUNTAR","season":"Mar-Jun, Sep-Nov","ideal_for":""},"kasol-parvati-spiti-connector-7d":{"name":"Parvati-Spiti Connector (7D/6N)","days":7,"route":"BHUNTAR","season":"Mar-Jun, Sep-Nov","ideal_for":""},"kasol-parvati-valley-deep-trail-8d":{"name":"Parvati Valley Deep Trail (8D/7N)","days":8,"route":"BHUNTAR","season":"Mar-Jun, Sep-Nov","ideal_for":""},"kasol-parvati-kinnaur-adventure-9d":{"name":"Parvati-Kinnaur Adventure (9D/8N)","days":9,"route":"BHUNTAR","season":"Mar-Jun, Sep-Nov","ideal_for":""},"kasol-parvati-grand-circuit-10d":{"name":"Parvati Grand Circuit (10D/9N)","days":10,"route":"BHUNTAR","season":"Mar-Jun, Sep-Nov","ideal_for":""},"dharamshala-mcleod-ganj-heritage-walk-1d":{"name":"McLeod Ganj Heritage Walk (1D/0N)","days":1,"route":"DHARAMSHALA","season":"Mar-Jun, Sep-Nov","ideal_for":""},"dharamshala-triund-trek-getaway-2d":{"name":"Triund Trek Getaway (2D/1N)","days":2,"route":"DHARAMSHALA","season":"Mar-Jun, Sep-Nov","ideal_for":""},"dharamshala-bir-billing-paragliding-special-3d":{"name":"Bir Billing Paragliding Special (3D/2N)","days":3,"route":"DHARAMSHALA","season":"Mar-Jun, Sep-Nov","ideal_for":""},"dharamshala-dharamshala-bir-circuit-4d":{"name":"Dharamshala-Bir Circuit (4D/3N)","days":4,"route":"DHARAMSHALA","season":"Mar-Jun, Sep-Nov","ideal_for":""},"dharamshala-dhauladhar-explorer-5d":{"name":"Dhauladhar Explorer (5D/4N)","days":5,"route":"DHARAMSHALA","season":"Mar-Jun, Sep-Nov","ideal_for":""},"dharamshala-kangra-valley-deep-dive-6d":{"name":"Kangra Valley Deep Dive (6D/5N)","days":6,"route":"DHARAMSHALA","season":"Mar-Jun, Sep-Nov","ideal_for":""},"dharamshala-dharamshala-adventure-week-7d":{"name":"Dharamshala Adventure Week (7D/6N)","days":7,"route":"DHARAMSHALA","season":"Mar-Jun, Sep-Nov","ideal_for":""},"dharamshala-indrahar-pass-trek-8d":{"name":"Indrahar Pass Trek (8D/7N)","days":8,"route":"DHARAMSHALA","season":"Mar-Jun, Sep-Nov","ideal_for":""},"dharamshala-dhauladhar-grand-trail-9d":{"name":"Dhauladhar Grand Trail (9D/8N)","days":9,"route":"DHARAMSHALA","season":"Mar-Jun, Sep-Nov","ideal_for":""},"dharamshala-kangra-chamba-dalhousie-expedition-10d":{"name":"Kangra-Chamba-Dalhousie Expedition (10D/9N)","days":10,"route":"DHARAMSHALA","season":"Mar-Jun, Sep-Nov","ideal_for":""},"spiti-kalpa-viewpoint-day-trip-1d":{"name":"Kalpa Viewpoint Day Trip (1D/0N)","days":1,"route":"SHIMLA","season":"May-Oct (road-dependent)","ideal_for":""},"spiti-sangla-chitkul-express-2d":{"name":"Sangla-Chitkul Express (2D/1N)","days":2,"route":"SHIMLA","season":"May-Oct (road-dependent)","ideal_for":""},"spiti-kinnaur-valley-short-trail-3d":{"name":"Kinnaur Valley Short Trail (3D/2N)","days":3,"route":"SHIMLA","season":"May-Oct (road-dependent)","ideal_for":""},"spiti-spiti-gateway-4d":{"name":"Spiti Gateway (4D/3N)","days":4,"route":"SHIMLA","season":"May-Oct (road-dependent)","ideal_for":""},"spiti-spiti-monastery-circuit-5d":{"name":"Spiti Monastery Circuit (5D/4N)","days":5,"route":"SHIMLA","season":"May-Oct (road-dependent)","ideal_for":""},"spiti-chandratal-spiti-combo-6d":{"name":"Chandratal-Spiti Combo (6D/5N)","days":6,"route":"SHIMLA","season":"May-Oct (road-dependent)","ideal_for":""},"spiti-spiti-kinnaur-loop-7d":{"name":"Spiti-Kinnaur Loop (7D/6N)","days":7,"route":"SHIMLA","season":"May-Oct (road-dependent)","ideal_for":""},"spiti-spiti-high-altitude-villages-8d":{"name":"Spiti High-Altitude Villages (8D/7N)","days":8,"route":"SHIMLA","season":"May-Oct (road-dependent)","ideal_for":""},"spiti-spiti-grand-expedition-9d":{"name":"Spiti Grand Expedition (9D/8N)","days":9,"route":"SHIMLA","season":"May-Oct (road-dependent)","ideal_for":""},"spiti-spiti-kinnaur-sarahan-circuit-10d":{"name":"Spiti-Kinnaur-Sarahan Circuit (10D/9N)","days":10,"route":"SHIMLA","season":"May-Oct (road-dependent)","ideal_for":""},"dalhousie-dalhousie-colonial-trail-1d":{"name":"Dalhousie Colonial Trail (1D/0N)","days":1,"route":"DALHOUSIE","season":"Mar-Jun, Sep-Nov","ideal_for":""},"dalhousie-dalhousie-khajjiar-duo-2d":{"name":"Dalhousie-Khajjiar Duo (2D/1N)","days":2,"route":"DALHOUSIE","season":"Mar-Jun, Sep-Nov","ideal_for":""},"dalhousie-chamba-heritage-circuit-3d":{"name":"Chamba Heritage Circuit (3D/2N)","days":3,"route":"DALHOUSIE","season":"Mar-Jun, Sep-Nov","ideal_for":""},"dalhousie-dalhousie-chamba-bharmour-4d":{"name":"Dalhousie-Chamba-Bharmour (4D/3N)","days":4,"route":"DALHOUSIE","season":"Mar-Jun, Sep-Nov","ideal_for":""},"dalhousie-chamba-valley-explorer-5d":{"name":"Chamba Valley Explorer (5D/4N)","days":5,"route":"DALHOUSIE","season":"Mar-Jun, Sep-Nov","ideal_for":""}};
+
+// Formula lives in assets/js/pricing-engine.js (PricingEngine.computePrice) —
+// this is the ONLY place the vehicle/hotel/fee/margin numbers are defined.
+// Every other page that shows a package cost calls that same function.
+function fmt(n){ return '₹' + Math.round(n).toLocaleString('en-IN'); }
+
+const pkgSelect = document.getElementById('pkgSelect');
+Object.entries(PACKAGES)
+  .sort((a,b) => a[1].name.localeCompare(b[1].name))
+  .forEach(([id, pkg]) => {
+    const opt = document.createElement('option');
+    opt.value = id;
+    opt.textContent = pkg.name;
+    pkgSelect.appendChild(opt);
+  });
+
+let pax = 4;
+let tier = 'budget';
+
+document.getElementById('paxMinus').addEventListener('click', () => { pax = Math.max(1, pax-1); syncPax(); });
+document.getElementById('paxPlus').addEventListener('click', () => { pax = Math.min(50, pax+1); syncPax(); });
+function syncPax(){ document.getElementById('paxDisplay').textContent = pax; render(); }
+
+document.getElementById('tierRow').querySelectorAll('.pill-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById('tierRow').querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    tier = btn.dataset.tier;
+    render();
+  });
+});
+
+pkgSelect.addEventListener('change', render);
+document.getElementById('monthSelect').addEventListener('change', render);
+
+function render(){
+  const pkg = PACKAGES[pkgSelect.value];
+  if (!pkg) return;
+  const month = parseInt(document.getElementById('monthSelect').value);
+
+  const result = PricingEngine.computePrice({ days: pkg.days, pax, tier, month });
+  const b = result.breakdown;
+  const fleet = result.fleet;
+  const isPeak = b.isPeak, nights = b.nights, days = b.days;
+  const totalRounded = result.totalPP, groupTotal = result.groupTotal;
+
+  document.getElementById('resultCard').innerHTML = `
+    <div class="pkg-name">${pkg.name}</div>
+    <div class="pkg-meta">
+      <span class="chip">${days}D/${nights}N</span>
+      <span class="chip">${pax} pax</span>
+      ${isPeak ? '<span class="chip">Peak season</span>' : ''}
+    </div>
+
+    <div class="vehicle-note">
+      <strong>${result.fleetLabel}</strong> (${fleet.cap} seats for ${pax} pax) — ₹${b.dayRate.toLocaleString('en-IN')}/day ${isPeak ? '(peak rate)' : '(off-peak rate)'}
+    </div>
+
+    <table class="breakdown">
+      <tr><td>Vehicle (${fleet.count} vehicle${fleet.count>1?'s':''} × ${days} days)</td><td>${fmt(b.vehicleTotal)}</td></tr>
+      <tr><td>Driver halt (₹50/night × ${nights}n × ${fleet.count} vehicle${fleet.count>1?'s':''})</td><td>${fmt(b.driverHalt)}</td></tr>
+      <tr><td>Toll &amp; parking (₹350 × ${fleet.count})</td><td>${fmt(b.toll)}</td></tr>
+      <tr class="subtotal"><td>Vehicle total ÷ ${pax} pax</td><td>${fmt(b.vehiclePP)}/person</td></tr>
+      <tr><td>Hotel (${tier}, ₹${b.hotelRate.toFixed(0)}/night × ${nights}n)</td><td>${fmt(b.hotelPP)}/person</td></tr>
+      <tr class="subtotal"><td>Subtotal</td><td>${fmt(b.subtotal)}/person</td></tr>
+      <tr><td>Service fee (10%)</td><td>${fmt(b.serviceFee)}</td></tr>
+      <tr><td>Operating margin (25%)</td><td>${fmt(b.marginAmt)}</td></tr>
+    </table>
+
+    <div class="grand-total">
+      <span class="label">Total per person</span>
+      <span><span class="amt">${fmt(totalRounded)}</span> <span class="unit">/ person</span></span>
+    </div>
+    <div class="group-total">Group total (${pax} pax): <strong>${fmt(groupTotal)}</strong></div>
+
+    <div class="cta-row">
+      <button class="btn-primary" onclick="window.open('https://wa.me/917018138847?text=' + encodeURIComponent('Hi, I would like to book: ' + '${pkg.name.replace(/'/g,"\\'")}' + ' for ${pax} pax, ${tier} tier — quoted ₹${totalRounded}/person'), '_blank')">Enquire on WhatsApp</button>
+      <button class="btn-ghost" onclick="window.location.href='/packages.html'">Browse Packages</button>
+    </div>
+  `;
+}
+
+pkgSelect.selectedIndex = 0;
+render();
+</script>
+</body>
+</html>

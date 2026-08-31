@@ -675,7 +675,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
-        <div class="section-label">Vehicle Type</div>
+        <div class="section-label">Vehicle Type <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— preference only; final vehicle is auto-matched to group size</span></div>
         <div class="vehicle-select" id="vehicleSelect">
           <div class="vehicle-option selected" onclick="selectVehicle(this,'Sedan')" data-vehicle="Sedan">
             <div class="vehicle-name">🚗 Sedan</div>
@@ -696,9 +696,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="price-breakdown" id="priceBreakdown">
-          <div class="price-row"><span class="label">Package base price</span><span id="baseAmt">—</span></div>
-          <div class="price-row"><span class="label">Hotel (per room/night)</span><span id="hotelAmt">—</span></div>
-          <div class="price-row"><span class="label">Transport</span><span id="transportAmt">—</span></div>
+          <div class="price-row"><span class="label">Vehicle (private cab)</span><span id="baseAmt">—</span></div>
+          <div class="price-row"><span class="label">Hotel</span><span id="hotelAmt">—</span></div>
+          <div class="price-row"><span class="label">Service &amp; margin</span><span id="transportAmt">—</span></div>
           <div class="price-row"><span class="label">GST (5%)</span><span id="gstAmt">—</span></div>
           <div class="price-row total"><span>Total</span><span class="amt" id="totalAmt">Select a package</span></div>
           <div class="gst-note">* Prices inclusive of GST. Subject to availability.</div>
@@ -914,10 +914,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   window.FIREBASE_STATUS_PATHS = [
     { path: "/templates_index", label: "Package identity" },
     { path: "/package_content", label: "Itinerary/images" },
-    { path: "/vehicle_rate_card", label: "Transport pricing" },
   ];
+  // Cost is computed by PricingEngine.computePrice() (assets/js/pricing-engine.js),
+  // the same formula behind /group-pricing.html — no separate vehicle_rate_card fetch.
 </script>
 <script src="assets/js/firebase-status-bar.js"></script>
+<script src="assets/js/pricing-engine.js"></script>
 <script>
 // ── CONFIG ──────────────────────────────────────────────────────────
 const RAZORPAY_KEY = 'OHPWkChulBwl3GwV9szQZh97'; // ← Replace with your actual Razorpay key
@@ -931,18 +933,11 @@ const BUSINESS_EMAIL = 'chandan_panwar@himachalexplorer.in';
 // be a hardcoded mock list ('pkg001'..'pkg010') that didn't match any real
 // package — don't reintroduce a local copy here.
 let PACKAGES = [];
-let VEHICLE_RATES = {};
 
-const VEHICLE_KEY_MAP = { Sedan:'sedan', Ertiga:'suv_ertiga', Innova:'suv_innova', 'Tempo Traveller':'tempo_12', Bolero:'suv_bolero' };
-
-function buildTransportEstimate(pkg) {
-  const out = {};
-  Object.keys(VEHICLE_KEY_MAP).forEach(label => {
-    const est = PackageData.estimateVehicleCost(pkg, VEHICLE_KEY_MAP[label], VEHICLE_RATES);
-    out[label] = est || Math.round((pkg.days || 1) * 1800); // flat fallback if rate card unavailable
-  });
-  return out;
-}
+// Booking's 4 hotel categories map onto PricingEngine's 3 hotel tiers so the
+// total here always matches /group-pricing.html for the same trip/pax/month.
+const HOTEL_TIER_MAP = { budget:'budget', standard:'budget', deluxe:'premium', luxury:'luxury' };
+const HOTEL_LABELS = { budget:'2★ Budget', standard:'3★ Standard', deluxe:'4★ Deluxe', luxury:'5★ Luxury' };
 
 function fromPackageData(pkg) {
   return {
@@ -951,14 +946,10 @@ function fromPackageData(pkg) {
     nights: pkg.days ? pkg.days - 1 : 0,
     days: pkg.days,
     gateway: pkg.start_point || '—',
-    base: pkg.budget_price_pp ? Math.round(pkg.budget_price_pp / 2) : 3000, // per-adult estimate (matrix price is per person at pax=2)
-    transport: buildTransportEstimate(pkg),
+    // "From" price shown on the package list — PricingEngine at 2 pax, budget tier.
+    base: pkg.days ? PricingEngine.computePrice({ days: pkg.days, pax: 2, tier: 'budget' }).totalPP : 3000,
   };
 }
-
-const HOTEL_RATES = { budget:800, standard:1400, deluxe:2200, luxury:3500 }; // per room/night
-const HOTEL_LABELS = { budget:'2★ Budget', standard:'3★ Standard', deluxe:'4★ Deluxe', luxury:'5★ Luxury' };
-const PEAK_MONTHS = [0,4,5,11]; // Jan, May, Jun, Dec (0-indexed)
 
 // ── STATE ──
 let state = {
@@ -1044,26 +1035,24 @@ function recalcPrice() {
   state.hotel = document.getElementById('hotelCat').value;
 
   const pkg = state.pkg;
-  const pax = state.adults + state.children;
-  const basePerPax = pkg.base;
-  const base = basePerPax * pax;
-  const transport = pkg.transport[state.vehicle] || pkg.transport['Sedan'];
-  const hotelCost = HOTEL_RATES[state.hotel] * state.rooms * pkg.nights;
+  const pax = Math.max(1, state.adults + state.children);
+  const tier = HOTEL_TIER_MAP[state.hotel] || 'budget';
+  const month = state.date ? (new Date(state.date).getMonth() + 1) : undefined;
 
-  // Peak season surcharge
-  let peakSurcharge = 0;
-  if(state.date) {
-    const m = new Date(state.date).getMonth();
-    if(PEAK_MONTHS.includes(m)) peakSurcharge = Math.round((base + hotelCost) * 0.15);
-  }
+  const result = PricingEngine.computePrice({ days: pkg.days, pax, tier, month });
+  const b = result.breakdown;
 
-  const subtotal = base + transport + hotelCost + peakSurcharge;
+  const vehicleTotal = Math.round(b.vehiclePP * pax);
+  const hotelTotal = Math.round(b.hotelPP * pax);
+  const serviceMarginTotal = Math.round((b.serviceFee + b.marginAmt) * pax);
+  const subtotal = result.groupTotal;
   const gst = Math.round(subtotal * 0.05);
   state.totalAmt = subtotal + gst;
+  state.fleetLabel = result.fleetLabel;
 
-  document.getElementById('baseAmt').textContent = `₹${base.toLocaleString('en-IN')}`;
-  document.getElementById('hotelAmt').textContent = `₹${hotelCost.toLocaleString('en-IN')}`;
-  document.getElementById('transportAmt').textContent = `₹${transport.toLocaleString('en-IN')}` + (peakSurcharge ? ` (+₹${peakSurcharge.toLocaleString('en-IN')} peak)` : '');
+  document.getElementById('baseAmt').textContent = `₹${vehicleTotal.toLocaleString('en-IN')}` + (b.isPeak ? ' (peak season)' : '');
+  document.getElementById('hotelAmt').textContent = `₹${hotelTotal.toLocaleString('en-IN')}`;
+  document.getElementById('transportAmt').textContent = `₹${serviceMarginTotal.toLocaleString('en-IN')}`;
   document.getElementById('gstAmt').textContent = `₹${gst.toLocaleString('en-IN')}`;
   document.getElementById('totalAmt').textContent = `₹${state.totalAmt.toLocaleString('en-IN')}`;
 
@@ -1072,7 +1061,7 @@ function recalcPrice() {
   document.getElementById('sum_dur').textContent = `${pkg.nights} Nights / ${pkg.days} Days`;
   document.getElementById('sum_date').textContent = state.date ? new Date(state.date).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : 'Not set';
   document.getElementById('sum_pax').textContent = `${state.adults} Adult${state.adults>1?'s':''}${state.children?', '+state.children+' Child'+( state.children>1?'ren':''):''}`;
-  document.getElementById('sum_vehicle').textContent = state.vehicle;
+  document.getElementById('sum_vehicle').textContent = result.fleetLabel;
   document.getElementById('sum_hotel').textContent = HOTEL_LABELS[state.hotel];
   document.getElementById('sum_total').textContent = `₹ ${state.totalAmt.toLocaleString('en-IN')}`;
 
@@ -1175,7 +1164,7 @@ async function initiatePayment() {
     package: state.pkg?.name, packageId: state.pkg?.id,
     travelDate: state.date, nights: state.pkg?.nights,
     adults:state.adults, children:state.children, rooms:state.rooms,
-    vehicle:state.vehicle, hotel:HOTEL_LABELS[state.hotel],
+    vehiclePreference:state.vehicle, vehicleAssigned:state.fleetLabel, hotel:HOTEL_LABELS[state.hotel],
     totalAmt:state.totalAmt, paidAmt:payAmt, payMode:state.payMode,
     guest:{ name:`${state.fname} ${state.lname}`, email:state.email, phone:state.phone, departure:state.departure },
     special:state.special, source:state.source,
@@ -1187,7 +1176,7 @@ async function initiatePayment() {
     document.getElementById('loadingOverlay').classList.add('show');
     await saveBookingToFirebase({...bookingData, status:'pending_manual_payment'});
     document.getElementById('loadingOverlay').classList.remove('show');
-    const msg = encodeURIComponent(`🏔️ *New Booking Request*\n\nRef: ${ref}\nPackage: ${state.pkg?.name}\nDate: ${state.date}\nGuest: ${state.fname} ${state.lname}\nMobile: ${state.phone}\nPax: ${state.adults}A+${state.children}C\nVehicle: ${state.vehicle}\nHotel: ${HOTEL_LABELS[state.hotel]}\nTotal: ₹${state.totalAmt.toLocaleString('en-IN')}\nPaying: ₹${payAmt.toLocaleString('en-IN')} (${state.payMode})\n\nPlease share payment QR / account details.`);
+    const msg = encodeURIComponent(`🏔️ *New Booking Request*\n\nRef: ${ref}\nPackage: ${state.pkg?.name}\nDate: ${state.date}\nGuest: ${state.fname} ${state.lname}\nMobile: ${state.phone}\nPax: ${state.adults}A+${state.children}C\nVehicle: ${state.fleetLabel || state.vehicle}\nHotel: ${HOTEL_LABELS[state.hotel]}\nTotal: ₹${state.totalAmt.toLocaleString('en-IN')}\nPaying: ₹${payAmt.toLocaleString('en-IN')} (${state.payMode})\n\nPlease share payment QR / account details.`);
     window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
     showSuccess(ref, payAmt);
     return;
