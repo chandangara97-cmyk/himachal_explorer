@@ -368,6 +368,7 @@ body{min-height:100vh;}
 .stop-move button{width:22px;height:18px;border:1px solid var(--line);background:var(--card);border-radius:4px;color:var(--ink-soft);font-size:10px;line-height:1;cursor:pointer;}
 .stop-move button:hover{border-color:var(--gold);color:var(--gold);}
 .package-panel{height:100%;display:flex;overflow:hidden;}
+.package-panel[hidden]{display:none!important;}
 .package-panel>.panel{height:100%;width:100%;overflow:hidden;display:flex;flex-direction:column;}
 .package-scroll{overflow-y:auto;min-height:0;flex:1;padding-right:3px;}
 .package-scroll .pkg-cards{grid-template-columns:1fr;}
@@ -1351,9 +1352,15 @@ function fmtHrs(min){
   return h + 'h' + (m? ' '+m+'m':'');
 }
 
-function suggestedDays(numLegs){
+function suggestedDays(numLegs, totalMin){
   const per = DB.config.auto_days_per_stop_group || 3;
-  return Math.max(1, Math.ceil(numLegs / per));
+  const daysByStops = Math.ceil(numLegs / per);
+  // Hill roads are slow-going — cap comfortable driving to ~5hrs (300min) of actual
+  // road time per day so long single-leg routes (e.g. Shimla → Kaza) don't get
+  // squeezed into 1 day just because they only have 1-2 stops.
+  const maxDriveMinPerDay = 300;
+  const daysByDrive = totalMin ? Math.ceil(totalMin / maxDriveMinPerDay) : 0;
+  return Math.max(1, daysByStops, daysByDrive);
 }
 
 let lastTrip = null; // populated by renderStats(), read by sendToWhatsApp()
@@ -1361,7 +1368,7 @@ let lastTrip = null; // populated by renderStats(), read by sendToWhatsApp()
 function renderStats(pts){
   const durSel = document.getElementById('duration');
   let days = parseInt(durSel.value, 10);
-  if(!days){ days = suggestedDays(routeLegs.length); }
+  if(!days){ days = suggestedDays(routeLegs.length, lastTotalMin); }
 
   document.getElementById('statDistance').textContent = fmtKm(lastTotalKm);
   document.getElementById('statDuration').textContent = fmtHrs(lastTotalMin) + ' drive';
@@ -1389,10 +1396,15 @@ function renderItinerary(pts){
   const durSel = document.getElementById('duration');
   let days = parseInt(durSel.value, 10);
   const numLegs = routeLegs.length;
-  if(!days){ days = suggestedDays(numLegs); }
-  days = Math.min(days, Math.max(numLegs,1));
+  if(!days){ days = suggestedDays(numLegs, lastTotalMin); }
+  // NOTE: days is no longer capped to numLegs. When there are more days than legs
+  // (e.g. a long single drive that needs an extra day, or the user manually picks
+  // more days than stops), the extra days become halt/rest days at the last-reached
+  // stop rather than being silently dropped — previously they vanished from the
+  // itinerary while still being counted in the stats panel, so the two disagreed.
 
-  // distribute legs across days as evenly as possible
+  // distribute legs across days as evenly as possible (some days may get 0 legs
+  // if days > numLegs — those render as rest days below)
   const base = Math.floor(numLegs/days), extra = numLegs % days;
   const legsPerDay = [];
   for(let i=0;i<days;i++) legsPerDay.push(base + (i<extra?1:0));
@@ -1402,10 +1414,9 @@ function renderItinerary(pts){
   let legCursor = 0, stopCursor = 0;
   for(let d=0; d<days; d++){
     const n = legsPerDay[d] || 0;
-    if(n===0 && d>0) continue;
     const daysStopsStart = stopCursor;
     const daysStopsEnd = Math.min(stopCursor + n, pts.length-1);
-    const dayPts = pts.slice(daysStopsStart, daysStopsEnd+1);
+    const dayPts = n>0 ? pts.slice(daysStopsStart, daysStopsEnd+1) : [pts[daysStopsStart]].filter(Boolean);
     let distM=0, durS=0;
     for(let i=0;i<n;i++){ const leg = routeLegs[legCursor+i]; if(leg){ distM+=leg.distance; durS+=leg.duration; } }
     legCursor += n;
@@ -1413,11 +1424,13 @@ function renderItinerary(pts){
 
     const card = document.createElement('div');
     card.className='day-card';
+    const routeLine = n>0 ? dayPts.map(p=>p.name).join(' → ') : (dayPts[0] ? `Halt at ${dayPts[0].name}` : '');
+    const metaLine = n>0 ? `<span>🚗 ${fmtKm(distM/1000)}</span><span>⏱ ${fmtHrs(durS/60)}</span>` : `<span>🏕 Rest / acclimatization day</span>`;
     card.innerHTML = `
       <div class="day-num">DAY<b>${d+1}</b></div>
       <div class="day-body">
-        <div class="route-line">${dayPts.map(p=>p.name).join(' → ')}</div>
-        <div class="meta"><span>🚗 ${fmtKm(distM/1000)}</span><span>⏱ ${fmtHrs(durS/60)}</span></div>
+        <div class="route-line">${routeLine}</div>
+        <div class="meta">${metaLine}</div>
       </div>
       <div class="day-actions">
         <button title="Focus on map" onclick='focusDay(${JSON.stringify(dayPts.map(p=>[p.lat,p.lng]))})'>🔍</button>
