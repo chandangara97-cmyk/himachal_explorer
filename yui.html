@@ -427,6 +427,13 @@ body{min-height:100vh;}
 .dest-modal-close:hover{background:var(--line);}
 .dest-modal-search{padding:14px 24px 0;}
 .dest-modal-search input{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-size:13.5px;font-family:inherit;}
+.dest-picks{display:flex;flex-wrap:wrap;gap:6px;padding:10px 24px 0;max-height:96px;overflow-y:auto;}
+.dest-pick-chip{display:flex;align-items:center;gap:3px;background:rgba(176,125,58,.12);border:1px solid var(--gold2);border-radius:999px;padding:4px 5px 4px 11px;font-size:11.5px;color:var(--ink);white-space:nowrap;}
+.dest-pick-chip .dpc-num{font-weight:700;color:var(--gold);margin-right:1px;}
+.dest-pick-chip button{border:0;background:transparent;cursor:pointer;color:var(--ink-soft);font-size:11px;padding:3px 4px;line-height:1;border-radius:50%;}
+.dest-pick-chip button:hover{color:var(--ink);background:rgba(28,20,9,.08);}
+.dest-pick-chip button:disabled{opacity:.3;cursor:default;}
+.dest-pick-chip button:disabled:hover{background:transparent;}
 .dest-modal-tabs{display:flex;gap:8px;padding:12px 24px 0;flex-wrap:wrap;}
 .dest-modal-tab{border:1px solid var(--line);background:var(--bg);color:var(--ink-soft);border-radius:999px;padding:5px 13px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;}
 .dest-modal-tab.active{background:var(--green-600);border-color:var(--green-600);color:#fff;}
@@ -584,6 +591,7 @@ body{min-height:100vh;}
       <button class="dest-modal-close" onclick="closeDestModal()">✕</button>
     </div>
     <div class="dest-modal-search"><input id="destModalSearch" placeholder="Search all 120 places…" oninput="renderDestModalGrid()"></div>
+    <div class="dest-picks" id="destPicksBox" style="display:none;"></div>
     <div class="dest-modal-tabs" id="destModalTabs">
       <button class="dest-modal-tab active" id="destTabRecommended" onclick="setDestModalTab('recommended')">✦ Recommended for you</button>
       <button class="dest-modal-tab" id="destTabAll" onclick="setDestModalTab('all')">All 120 places</button>
@@ -790,14 +798,38 @@ const CURATED_RECOMMENDATIONS = {
   MANALI:      ['solang-valley','old-manali','rohtang-pass','hadimba-temple','naggar-castle','kasol','manikaran-sahib','kullu','jibhi','bir-billing','atal-tunnel-viewpoint','kaza','vashisht-hot-springs'],
   DHARAMSHALA: ['mcleod-ganj','triund','bir-billing','palampur-tea-gardens','kangra-fort','dalhousie','khajjiar','norbulingka-institute','chamba','kasol','manali']
 };
-function getRecommendedPlaces(gatewayName, limit){
+function getRecommendedPlaces(limit){
   limit = limit || 12;
-  const g = GATEWAYS.find(x=>x.name===gatewayName);
-  if(!g || !DB) return [];
+  if(!DB) return [];
   const addedIds = new Set(stops.map(s=>s.id));
-  const eligible = id => !addedIds.has(id) && placeById[id] && placeById[id].name.toUpperCase() !== gatewayName;
+  const eligible = id => !addedIds.has(id) && !destModalSelection.has(id) &&
+    placeById[id] && placeById[id].name.toUpperCase() !== destModalGatewayName;
 
-  const curatedIds = (CURATED_RECOMMENDATIONS[gatewayName] || []).filter(eligible);
+  // Once at least one destination is picked, that pick becomes the new
+  // "base point" — recommendations chain forward from wherever the traveller
+  // last placed themselves, instead of always pointing back at the gateway.
+  if(destModalOrder.length){
+    const basePlace = placeById[destModalOrder[destModalOrder.length-1]];
+    if(!basePlace) return [];
+    return DB.places
+      .filter(p => eligible(p.id))
+      .map(p=>{
+        const km = distKm(basePlace, p);
+        let score = 0;
+        if(p.category === 'core') score += 60;
+        if(/major tourist attraction/i.test(p.tag||'')) score += 25;
+        score += Math.max(0, 80 - km/8); // tight radius — these should feel like a natural next stop
+        return { p, score };
+      })
+      .sort((a,b)=> b.score - a.score)
+      .slice(0, limit)
+      .map(x=>x.p);
+  }
+
+  // No picks yet — recommend off the gateway itself using the curated list.
+  const g = GATEWAYS.find(x=>x.name===destModalGatewayName);
+  if(!g) return [];
+  const curatedIds = (CURATED_RECOMMENDATIONS[destModalGatewayName] || []).filter(eligible);
   const picked = curatedIds.slice(0, limit).map(id => placeById[id]);
   if(picked.length >= limit) return picked;
 
@@ -807,9 +839,9 @@ function getRecommendedPlaces(gatewayName, limit){
     .map(p=>{
       const km = distKm(g, p);
       let score = 0;
-      if(p.category === 'core') score += 100;               // major hub town
-      if(/major tourist attraction/i.test(p.tag||'')) score += 40; // flagship attraction
-      score += Math.max(0, 60 - km/10);                       // closer to gateway wins
+      if(p.category === 'core') score += 100;
+      if(/major tourist attraction/i.test(p.tag||'')) score += 40;
+      score += Math.max(0, 60 - km/10);
       return { p, score };
     })
     .sort((a,b)=> b.score - a.score)
@@ -822,16 +854,19 @@ function getRecommendedPlaces(gatewayName, limit){
 // ---------- destination picker popup ----------
 let destModalGatewayName = null;
 let destModalTab = 'recommended';
-const destModalSelection = new Set();
+let destModalSelection = new Set();
+let destModalOrder = []; // ordered ids — order drives both display and the "base point" chain
 
 function openDestModal(gatewayName){
   if(!gatewayName || !DB) return;
   destModalGatewayName = gatewayName;
   destModalTab = 'recommended';
-  destModalSelection.clear();
-  stops.forEach(s=>destModalSelection.add(s.id));
+  destModalOrder = stops.map(s=>s.id);
+  destModalSelection = new Set(destModalOrder);
   document.getElementById('destModalGateway').textContent = gatewayName;
   document.getElementById('destModalSearch').value = '';
+  renderDestPicks();
+  updateDestModalFooter();
   setDestModalTab('recommended');
   document.getElementById('destModalOverlay').classList.add('open');
 }
@@ -840,24 +875,69 @@ function closeDestModal(){
 }
 function setDestModalTab(tab){
   destModalTab = tab;
-  document.getElementById('destTabRecommended').classList.toggle('active', tab==='recommended');
   document.getElementById('destTabAll').classList.toggle('active', tab==='all');
   renderDestModalGrid();
+}
+function updateDestModalHeading(){
+  const btn = document.getElementById('destTabRecommended');
+  if(!btn) return;
+  btn.classList.toggle('active', destModalTab==='recommended');
+  if(destModalOrder.length){
+    const last = placeById[destModalOrder[destModalOrder.length-1]];
+    btn.textContent = '✦ Near ' + (last ? last.name : 'your last pick');
+  } else {
+    btn.textContent = '✦ Recommended for you';
+  }
+}
+function updateDestModalFooter(){
+  const n = destModalOrder.length;
+  document.getElementById('destModalCount').textContent = n + (n===1 ? ' place selected' : ' places selected');
+  document.getElementById('destModalContinue').disabled = n === 0;
+}
+function renderDestPicks(){
+  const box = document.getElementById('destPicksBox');
+  if(!box) return;
+  updateDestModalHeading();
+  if(destModalOrder.length === 0){ box.style.display = 'none'; box.innerHTML = ''; return; }
+  box.style.display = 'flex';
+  box.innerHTML = destModalOrder.map((id,i)=>{
+    const p = placeById[id];
+    if(!p) return '';
+    return `<span class="dest-pick-chip">
+      <span class="dpc-num">${i+1}</span>${p.name}
+      <button title="Move up" onclick="moveDestPick('${id}',-1)" ${i===0?'disabled':''}>↑</button>
+      <button title="Move down" onclick="moveDestPick('${id}',1)" ${i===destModalOrder.length-1?'disabled':''}>↓</button>
+      <button title="Remove" onclick="removeDestPick('${id}')">✕</button>
+    </span>`;
+  }).join('');
+}
+function moveDestPick(id, dir){
+  const i = destModalOrder.indexOf(id);
+  const to = i + dir;
+  if(i<0 || to<0 || to>=destModalOrder.length) return;
+  [destModalOrder[i], destModalOrder[to]] = [destModalOrder[to], destModalOrder[i]];
+  renderDestPicks();
+  renderDestModalGrid(); // last pick may have changed — recommendations re-chain from the new base point
+}
+function removeDestPick(id){
+  toggleDestModalPlace(id);
 }
 function renderDestModalGrid(){
   const grid = document.getElementById('destModalGrid');
   const q = document.getElementById('destModalSearch').value.trim().toLowerCase();
   grid.innerHTML = '';
+  updateDestModalHeading();
 
   let list;
   if(q){
     list = DB.places.filter(p =>
-      p.name.toLowerCase().includes(q) || (p.district||'').toLowerCase().includes(q) || (p.region||'').toLowerCase().includes(q)
+      !destModalSelection.has(p.id) && p.name.toUpperCase() !== destModalGatewayName &&
+      (p.name.toLowerCase().includes(q) || (p.district||'').toLowerCase().includes(q) || (p.region||'').toLowerCase().includes(q))
     ).slice(0, 40);
   } else if(destModalTab === 'recommended'){
-    list = getRecommendedPlaces(destModalGatewayName, 12);
+    list = getRecommendedPlaces(12);
   } else {
-    list = DB.places.filter(p => p.name.toUpperCase() !== destModalGatewayName)
+    list = DB.places.filter(p => !destModalSelection.has(p.id) && p.name.toUpperCase() !== destModalGatewayName)
       .sort((a,b)=>a.name.localeCompare(b.name));
   }
 
@@ -867,10 +947,9 @@ function renderDestModalGrid(){
   }
 
   list.forEach(p=>{
-    const selected = destModalSelection.has(p.id);
     const card = document.createElement('button');
     card.type = 'button';
-    card.className = 'dest-card' + (selected ? ' selected' : '');
+    card.className = 'dest-card';
     const isMajor = p.category === 'core' || /major tourist attraction/i.test(p.tag||'') ||
       (CURATED_RECOMMENDATIONS[destModalGatewayName]||[]).includes(p.id);
     card.innerHTML = `
@@ -880,18 +959,23 @@ function renderDestModalGrid(){
       ${isMajor ? '<span class="dc-badge">Must-visit</span>' : ''}`;
     card.onclick = () => toggleDestModalPlace(p.id);
     grid.appendChild(card);
+
   });
 }
 function toggleDestModalPlace(id){
-  if(destModalSelection.has(id)) destModalSelection.delete(id);
-  else destModalSelection.add(id);
+  if(destModalSelection.has(id)){
+    destModalSelection.delete(id);
+    destModalOrder = destModalOrder.filter(x=>x!==id);
+  } else {
+    destModalSelection.add(id);
+    destModalOrder.push(id);
+  }
+  renderDestPicks();
   renderDestModalGrid();
-  const n = destModalSelection.size;
-  document.getElementById('destModalCount').textContent = n + (n===1 ? ' place selected' : ' places selected');
-  document.getElementById('destModalContinue').disabled = n === 0;
+  updateDestModalFooter();
 }
 function confirmDestModal(){
-  destModalSelection.forEach(id=>{
+  destModalOrder.forEach(id=>{
     if(!stops.find(s=>s.id===id)) addStop(id);
   });
   closeDestModal();
