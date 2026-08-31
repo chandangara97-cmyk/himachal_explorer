@@ -229,7 +229,7 @@ a{color:inherit;}
 .stat b{display:block; font-size:16px; font-family:var(--mono); font-weight:700; letter-spacing:-.2px;}
 .stat span{display:block; font-size:10px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.8px; margin-top:2px;}
 .empty-map-hint{
-  position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px;
+  position:absolute; top:0; right:0; bottom:0; left:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px;
   pointer-events:none; text-align:center; padding:20px;
 }
 .empty-map-hint > *{
@@ -298,7 +298,7 @@ a{color:inherit;}
   position:relative; overflow:hidden;
 }
 .promo::before{
-  content:''; position:absolute; inset:0;
+  content:''; position:absolute; top:0; right:0; bottom:0; left:0;
   background-image:repeating-radial-gradient(circle at 100% 0%, transparent 0 22px, rgba(255,255,255,.05) 23px 24px, transparent 25px 46px);
   pointer-events:none;
 }
@@ -330,7 +330,7 @@ body{min-height:100vh;}
 .topbar{position:relative;height:76px;min-height:76px;z-index:100;}
 .planner-main{height:calc(100vh - 76px);min-height:0;overflow:hidden;position:relative;}
 .planner-ui{height:100%;display:flex;flex-direction:column;min-height:0;padding:10px 14px 14px;}
-.mode-chooser{position:absolute;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:28px;background:radial-gradient(circle at 20% 10%,rgba(201,146,72,.13),transparent 35%),radial-gradient(circle at 85% 90%,rgba(107,68,21,.10),transparent 38%),var(--bg);overflow:auto;}
+.mode-chooser{position:absolute;top:0;right:0;bottom:0;left:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:28px;background:radial-gradient(circle at 20% 10%,rgba(201,146,72,.13),transparent 35%),radial-gradient(circle at 85% 90%,rgba(107,68,21,.10),transparent 38%),var(--bg);overflow:auto;}
 .mode-chooser-inner{width:min(980px,100%);text-align:center;}
 .mode-kicker{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px;}
 .mode-chooser h2{font-size:clamp(34px,5vw,54px);font-weight:500;line-height:1;margin:0 0 10px;}
@@ -395,7 +395,7 @@ body{min-height:100vh;}
   html,body{overflow:auto;}
   .topbar{height:auto;min-height:76px;}
   .planner-main{height:auto;min-height:calc(100vh - 76px);overflow:visible;}
-  .mode-chooser{position:fixed;inset:0;}
+  .mode-chooser{position:fixed;top:0;right:0;bottom:0;left:0;}
   .mode-cards{grid-template-columns:1fr;gap:12px;}
   .mode-card{min-height:210px;padding:22px;}
   .mode-card strong{font-size:26px;}
@@ -408,15 +408,16 @@ body{min-height:100vh;}
   .workspace-center{order:0;height:430px;min-height:430px;}
   .left-side{order:1;height:390px;}
   .right-side{display:flex;order:2;height:520px;}
-  .workspace-side>.panel,.package-panel{height:100%;}
+  .workspace-side>.panel,.package-panel{height:100%;overflow-y:auto;overflow-x:hidden;}
   .workspace-center .map-wrap{height:100%;}
   .workspace-side .stop-list{max-height:none;}
   .custom-panel{height:100%;}
+  .itinerary-list{max-height:none;overflow:visible;}
   .map-heading{top:8px;left:8px;}
 }
 
 /* ---------- destination picker popup ---------- */
-.dest-modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(15,12,7,0);display:none;align-items:center;justify-content:center;padding:20px;pointer-events:none;transition:background .3s;}
+.dest-modal-overlay{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1000;background:rgba(15,12,7,0);display:none;align-items:center;justify-content:center;padding:20px;pointer-events:none;transition:background .3s;}
 .dest-modal-overlay.open{display:flex;background:rgba(15,12,7,.62);pointer-events:all;}
 .dest-modal{width:min(760px,100%);max-height:min(680px,88vh);background:var(--card);border-radius:20px;box-shadow:0 30px 70px -20px rgba(28,20,9,.55);display:flex;flex-direction:column;overflow:hidden;transform:translateY(14px);opacity:0;transition:transform .3s cubic-bezier(.16,1,.3,1),opacity .3s;}
 .dest-modal-overlay.open .dest-modal{transform:translateY(0);opacity:1;}
@@ -994,10 +995,26 @@ function onDestinationChange(){
 }
 
 // ---------- suggested packages (matched from live templates_index + package_content) ----------
-function packageMatchesDestination(pkgId, destNameLower){
+function packageMatchesDestination(pkgId, dest){
   const content = DB.packageContent[pkgId];
   const stops = content?.route_stops || [];
-  return stops.some(s => (s.name||'').toLowerCase() === destNameLower || (s.name||'').toLowerCase().includes(destNameLower));
+  const norm = s => (s||'').toLowerCase().replace(/[\s-]+/g,' ').trim();
+  const destNorm = norm(dest.name);
+  // 1) name-based match — handles common spelling/hyphenation variants
+  //    (e.g. package data spelling "Rekong Peo" vs the places DB's "Reckong Peo")
+  const nameMatch = stops.some(s => {
+    const n = norm(s.name);
+    return n && (n === destNorm || n.includes(destNorm) || destNorm.includes(n));
+  });
+  if(nameMatch) return true;
+  // 2) geographic fallback — a route stop within ~20km counts as covering this
+  //    destination, catching packages that pass through the same area under a
+  //    different named halt (e.g. a Kinnaur circuit that stops at Kalpa or Sangla
+  //    rather than listing Reckong Peo itself) instead of only exact-name matches.
+  if(dest.lat!=null && dest.lng!=null){
+    return stops.some(s => s.lat!=null && s.lng!=null && haversine(dest, s) <= 20);
+  }
+  return false;
 }
 
 function renderSuggestedPackages(gatewayName, dest){
@@ -1009,11 +1026,10 @@ function renderSuggestedPackages(gatewayName, dest){
     noteBox.textContent = 'Live package data is unavailable right now — WhatsApp us for a custom quote.';
     return;
   }
-  const destNameLower = dest.name.toLowerCase();
   const matches = Object.values(DB.templates).filter(t =>
     t.status === 'active' &&
     (t.start_point||'').toUpperCase().includes(gatewayName) &&
-    packageMatchesDestination(t.package_id, destNameLower)
+    packageMatchesDestination(t.package_id, dest)
   );
   if(matches.length===0){
     noteBox.style.display='block';
