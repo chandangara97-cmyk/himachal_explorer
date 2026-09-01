@@ -1188,6 +1188,7 @@ function renderCards() {
   }
 
   grid.innerHTML = list.map((pkg, idx) => {
+    try {
     const tags = pkg.tags ? pkg.tags.split(',').slice(0,3) : [];
     const isWished = state.wishlist.has(pkg.package_id);
     const imgUrl = PKG_IMG[pkg.package_id] || getPackageFallbackImg(pkg) || window.FALLBACK_IMG || 'assets/images/manali_1.jpg';
@@ -1257,6 +1258,10 @@ function renderCards() {
         </div>
       </div>
     </div>`;
+    } catch (err) {
+      console.warn('Skipped a package card that failed to render:', pkg && pkg.package_id, err);
+      return '';
+    }
   }).join('');
 }
 
@@ -2065,6 +2070,7 @@ setInterval(fetchWeather, 15 * 60 * 1000);
             <button class="mfs-pill" data-region="dharamshala">☸️ Kangra</button>
             <button class="mfs-pill" data-region="parvati">🌿 Parvati</button>
             <button class="mfs-pill" data-region="chamba">🛕 Chamba</button>
+            <button class="mfs-pill" data-region="mandi">💧 Mandi</button>
           </div>
         </div>
 
