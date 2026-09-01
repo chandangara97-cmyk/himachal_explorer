@@ -168,6 +168,39 @@ a{color:inherit;}
 .gw-pill:hover{border-color:var(--gold2); transform:translateY(-1px); box-shadow:0 4px 10px -4px rgba(28,20,9,.18);}
 .gw-pill.active{background:var(--green-600); border-color:var(--green-600); color:#fff; box-shadow:0 4px 12px -4px rgba(176,125,58,.5);}
 
+/* ---------- gateway bar — the mandatory first step, made hard to miss ---------- */
+.gateway-bar{
+  display:flex; align-items:center; gap:22px; flex-wrap:wrap;
+  background:linear-gradient(135deg,var(--green-50),var(--card));
+  margin:18px 20px 0; padding:20px 22px; border-radius:var(--radius);
+  border:1.5px solid var(--gold2); box-shadow:0 10px 28px -16px rgba(176,125,58,.4);
+  position:relative;
+}
+.gateway-bar.unselected{ animation:gbPulse 2.4s ease-in-out infinite; }
+@keyframes gbPulse{
+  0%,100%{ box-shadow:0 10px 28px -16px rgba(176,125,58,.4), 0 0 0 0 rgba(176,125,58,.32); }
+  50%{ box-shadow:0 10px 28px -16px rgba(176,125,58,.4), 0 0 0 9px rgba(176,125,58,0); }
+}
+.gateway-bar-label{display:flex; align-items:center; gap:12px; min-width:230px;}
+.gb-step{
+  flex-shrink:0; font-family:var(--mono); font-size:10.5px; font-weight:800; letter-spacing:1px;
+  background:var(--green-600); color:#fff; border-radius:999px; padding:6px 12px; box-shadow:0 4px 10px -4px rgba(107,68,21,.5);
+}
+.gateway-bar-label b{display:block; font-size:15.5px; font-family:'Cormorant',serif; font-weight:700; line-height:1.2;}
+.gateway-bar-label span{display:block; font-size:11.5px; color:var(--ink-soft); margin-top:2px;}
+.gateway-bar .gw-pills{flex:1; gap:10px;}
+.gateway-bar .gw-pill{
+  padding:11px 18px 11px 14px; font-size:14px; border-radius:14px; border-width:1.5px;
+  box-shadow:0 2px 6px -3px rgba(28,20,9,.15);
+}
+.gateway-bar .gw-pill span:first-child{font-size:18px;}
+.gateway-bar .gw-pill.active{transform:scale(1.04);}
+@media (max-width:760px){
+  .gateway-bar{flex-direction:column; align-items:stretch; margin:10px 12px 0; padding:14px 16px; gap:12px;}
+  .gateway-bar-label{min-width:0;}
+  .gateway-bar .gw-pill{padding:10px 14px; font-size:13px;}
+}
+
 .flow-panel{background:var(--card); margin:16px 20px 0; padding:16px 18px; border-radius:var(--radius); box-shadow:var(--shadow);}
 .flow-panel h3{margin:0 0 10px;}
 .flow-panel select{width:100%; padding:9px 10px; border:1px solid var(--line); border-radius:9px; background:var(--bg); color:var(--ink); font-size:13.5px; font-family:inherit;}
@@ -229,7 +262,7 @@ a{color:inherit;}
 .stat b{display:block; font-size:16px; font-family:var(--mono); font-weight:700; letter-spacing:-.2px;}
 .stat span{display:block; font-size:10px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.8px; margin-top:2px;}
 .empty-map-hint{
-  position:absolute; top:0; right:0; bottom:0; left:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px;
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px;
   pointer-events:none; text-align:center; padding:20px;
 }
 .empty-map-hint > *{
@@ -298,7 +331,7 @@ a{color:inherit;}
   position:relative; overflow:hidden;
 }
 .promo::before{
-  content:''; position:absolute; top:0; right:0; bottom:0; left:0;
+  content:''; position:absolute; inset:0;
   background-image:repeating-radial-gradient(circle at 100% 0%, transparent 0 22px, rgba(255,255,255,.05) 23px 24px, transparent 25px 46px);
   pointer-events:none;
 }
@@ -330,7 +363,7 @@ body{min-height:100vh;}
 .topbar{position:relative;height:76px;min-height:76px;z-index:100;}
 .planner-main{height:calc(100vh - 76px);min-height:0;overflow:hidden;position:relative;}
 .planner-ui{height:100%;display:flex;flex-direction:column;min-height:0;padding:10px 14px 14px;}
-.mode-chooser{position:absolute;top:0;right:0;bottom:0;left:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:28px;background:radial-gradient(circle at 20% 10%,rgba(201,146,72,.13),transparent 35%),radial-gradient(circle at 85% 90%,rgba(107,68,21,.10),transparent 38%),var(--bg);overflow:auto;}
+.mode-chooser{position:absolute;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:28px;background:radial-gradient(circle at 20% 10%,rgba(201,146,72,.13),transparent 35%),radial-gradient(circle at 85% 90%,rgba(107,68,21,.10),transparent 38%),var(--bg);overflow:auto;}
 .mode-chooser-inner{width:min(980px,100%);text-align:center;}
 .mode-kicker{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px;}
 .mode-chooser h2{font-size:clamp(34px,5vw,54px);font-weight:500;line-height:1;margin:0 0 10px;}
@@ -351,6 +384,11 @@ body{min-height:100vh;}
 .mode-switcher #modeDescription{font-size:11px;color:var(--ink-soft);margin-left:6px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .mode-switcher .change-mode{margin-left:auto;border:1px solid var(--line);}
 #tripControls{flex:none;margin:0 4px 8px;padding:10px 14px;gap:10px;min-height:64px;}
+#gatewayBar{flex:none;margin:0 4px 8px;padding:13px 18px;gap:16px;}
+#gatewayBar .gateway-bar-label{min-width:200px;}
+#gatewayBar .gb-step{padding:5px 10px;}
+#gatewayBar .gateway-bar-label b{font-size:14px;}
+#gatewayBar .gateway-bar-label span{font-size:11px;}
 .workspace{display:grid;grid-template-columns:minmax(260px,300px) minmax(420px,1fr) minmax(290px,330px);gap:12px;flex:1;min-height:0;overflow:hidden;}
 .workspace-side,.workspace-center{min-width:0;min-height:0;overflow:hidden;}
 .workspace-side{display:flex;flex-direction:column;gap:12px;}
@@ -368,7 +406,6 @@ body{min-height:100vh;}
 .stop-move button{width:22px;height:18px;border:1px solid var(--line);background:var(--card);border-radius:4px;color:var(--ink-soft);font-size:10px;line-height:1;cursor:pointer;}
 .stop-move button:hover{border-color:var(--gold);color:var(--gold);}
 .package-panel{height:100%;display:flex;overflow:hidden;}
-.package-panel[hidden]{display:none!important;}
 .package-panel>.panel{height:100%;width:100%;overflow:hidden;display:flex;flex-direction:column;}
 .package-scroll{overflow-y:auto;min-height:0;flex:1;padding-right:3px;}
 .package-scroll .pkg-cards{grid-template-columns:1fr;}
@@ -395,7 +432,7 @@ body{min-height:100vh;}
   html,body{overflow:auto;}
   .topbar{height:auto;min-height:76px;}
   .planner-main{height:auto;min-height:calc(100vh - 76px);overflow:visible;}
-  .mode-chooser{position:fixed;top:0;right:0;bottom:0;left:0;}
+  .mode-chooser{position:fixed;inset:0;}
   .mode-cards{grid-template-columns:1fr;gap:12px;}
   .mode-card{min-height:210px;padding:22px;}
   .mode-card strong{font-size:26px;}
@@ -403,21 +440,21 @@ body{min-height:100vh;}
   .mode-switcher{overflow:auto;white-space:nowrap;}
   .mode-switcher #modeDescription{display:none;}
   #tripControls{margin:0 0 8px;}
+  #gatewayBar{margin:0 0 8px;padding:12px 14px;}
   .workspace{display:flex;flex-direction:column;overflow:visible;}
   .workspace-side,.workspace-center{overflow:visible;min-height:0;}
   .workspace-center{order:0;height:430px;min-height:430px;}
   .left-side{order:1;height:390px;}
   .right-side{display:flex;order:2;height:520px;}
-  .workspace-side>.panel,.package-panel{height:100%;overflow-y:auto;overflow-x:hidden;}
+  .workspace-side>.panel,.package-panel{height:100%;}
   .workspace-center .map-wrap{height:100%;}
   .workspace-side .stop-list{max-height:none;}
   .custom-panel{height:100%;}
-  .itinerary-list{max-height:none;overflow:visible;}
   .map-heading{top:8px;left:8px;}
 }
 
 /* ---------- destination picker popup ---------- */
-.dest-modal-overlay{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1000;background:rgba(15,12,7,0);display:none;align-items:center;justify-content:center;padding:20px;pointer-events:none;transition:background .3s;}
+.dest-modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(15,12,7,0);display:none;align-items:center;justify-content:center;padding:20px;pointer-events:none;transition:background .3s;}
 .dest-modal-overlay.open{display:flex;background:rgba(15,12,7,.62);pointer-events:all;}
 .dest-modal{width:min(760px,100%);max-height:min(680px,88vh);background:var(--card);border-radius:20px;box-shadow:0 30px 70px -20px rgba(28,20,9,.55);display:flex;flex-direction:column;overflow:hidden;transform:translateY(14px);opacity:0;transition:transform .3s cubic-bezier(.16,1,.3,1),opacity .3s;}
 .dest-modal-overlay.open .dest-modal{transform:translateY(0);opacity:1;}
@@ -517,10 +554,18 @@ body{min-height:100vh;}
       <button class="change-mode" onclick="showModeChooser()">Change</button>
     </div>
 
-    <div class="controls" id="tripControls">
-      <div class="field" style="min-width:280px;">
-        <label>Start From</label><div class="gw-pills" id="gwPills"></div>
+    <div class="gateway-bar unselected" id="gatewayBar">
+      <div class="gateway-bar-label">
+        <span class="gb-step">Step 1</span>
+        <div>
+          <b>Where are you starting from?</b>
+          <span>Pick your gateway city — everything below builds from here.</span>
+        </div>
       </div>
+      <div class="gw-pills" id="gwPills"></div>
+    </div>
+
+    <div class="controls" id="tripControls">
       <div class="field custom-only" style="max-width:170px;">
         <label>Trip Type</label><div class="ctrl"><select id="tripType"><option>Road Trip</option><option>Adventure</option><option>Family</option><option>Honeymoon</option><option>Pilgrimage</option><option>Offbeat</option></select></div>
       </div>
@@ -749,6 +794,14 @@ function selectGateway(name){
   selectedGateway = name;
   Array.from(document.getElementById('gwPills').children).forEach(c=>c.classList.remove('active'));
   document.getElementById(`gwPill-${name}`)?.classList.add('active');
+  const bar = document.getElementById('gatewayBar');
+  if(bar){
+    bar.classList.remove('unselected');
+    const label = bar.querySelector('.gateway-bar-label b');
+    const sub = bar.querySelector('.gateway-bar-label span');
+    if(label) label.textContent = 'Starting from ' + name;
+    if(sub) sub.textContent = 'Tap another city below anytime to change it.';
+  }
 
   const g = GATEWAYS.find(x=>x.name===name);
   startPlace = { id:name.toLowerCase(), name:name, lat:g.lat, lng:g.lng, isGateway:true };
@@ -995,26 +1048,10 @@ function onDestinationChange(){
 }
 
 // ---------- suggested packages (matched from live templates_index + package_content) ----------
-function packageMatchesDestination(pkgId, dest){
+function packageMatchesDestination(pkgId, destNameLower){
   const content = DB.packageContent[pkgId];
   const stops = content?.route_stops || [];
-  const norm = s => (s||'').toLowerCase().replace(/[\s-]+/g,' ').trim();
-  const destNorm = norm(dest.name);
-  // 1) name-based match — handles common spelling/hyphenation variants
-  //    (e.g. package data spelling "Rekong Peo" vs the places DB's "Reckong Peo")
-  const nameMatch = stops.some(s => {
-    const n = norm(s.name);
-    return n && (n === destNorm || n.includes(destNorm) || destNorm.includes(n));
-  });
-  if(nameMatch) return true;
-  // 2) geographic fallback — a route stop within ~20km counts as covering this
-  //    destination, catching packages that pass through the same area under a
-  //    different named halt (e.g. a Kinnaur circuit that stops at Kalpa or Sangla
-  //    rather than listing Reckong Peo itself) instead of only exact-name matches.
-  if(dest.lat!=null && dest.lng!=null){
-    return stops.some(s => s.lat!=null && s.lng!=null && haversine(dest, s) <= 20);
-  }
-  return false;
+  return stops.some(s => (s.name||'').toLowerCase() === destNameLower || (s.name||'').toLowerCase().includes(destNameLower));
 }
 
 function renderSuggestedPackages(gatewayName, dest){
@@ -1026,10 +1063,11 @@ function renderSuggestedPackages(gatewayName, dest){
     noteBox.textContent = 'Live package data is unavailable right now — WhatsApp us for a custom quote.';
     return;
   }
+  const destNameLower = dest.name.toLowerCase();
   const matches = Object.values(DB.templates).filter(t =>
     t.status === 'active' &&
     (t.start_point||'').toUpperCase().includes(gatewayName) &&
-    packageMatchesDestination(t.package_id, dest)
+    packageMatchesDestination(t.package_id, destNameLower)
   );
   if(matches.length===0){
     noteBox.style.display='block';
@@ -1368,15 +1406,9 @@ function fmtHrs(min){
   return h + 'h' + (m? ' '+m+'m':'');
 }
 
-function suggestedDays(numLegs, totalMin){
+function suggestedDays(numLegs){
   const per = DB.config.auto_days_per_stop_group || 3;
-  const daysByStops = Math.ceil(numLegs / per);
-  // Hill roads are slow-going — cap comfortable driving to ~5hrs (300min) of actual
-  // road time per day so long single-leg routes (e.g. Shimla → Kaza) don't get
-  // squeezed into 1 day just because they only have 1-2 stops.
-  const maxDriveMinPerDay = 300;
-  const daysByDrive = totalMin ? Math.ceil(totalMin / maxDriveMinPerDay) : 0;
-  return Math.max(1, daysByStops, daysByDrive);
+  return Math.max(1, Math.ceil(numLegs / per));
 }
 
 let lastTrip = null; // populated by renderStats(), read by sendToWhatsApp()
@@ -1384,7 +1416,7 @@ let lastTrip = null; // populated by renderStats(), read by sendToWhatsApp()
 function renderStats(pts){
   const durSel = document.getElementById('duration');
   let days = parseInt(durSel.value, 10);
-  if(!days){ days = suggestedDays(routeLegs.length, lastTotalMin); }
+  if(!days){ days = suggestedDays(routeLegs.length); }
 
   document.getElementById('statDistance').textContent = fmtKm(lastTotalKm);
   document.getElementById('statDuration').textContent = fmtHrs(lastTotalMin) + ' drive';
@@ -1412,15 +1444,10 @@ function renderItinerary(pts){
   const durSel = document.getElementById('duration');
   let days = parseInt(durSel.value, 10);
   const numLegs = routeLegs.length;
-  if(!days){ days = suggestedDays(numLegs, lastTotalMin); }
-  // NOTE: days is no longer capped to numLegs. When there are more days than legs
-  // (e.g. a long single drive that needs an extra day, or the user manually picks
-  // more days than stops), the extra days become halt/rest days at the last-reached
-  // stop rather than being silently dropped — previously they vanished from the
-  // itinerary while still being counted in the stats panel, so the two disagreed.
+  if(!days){ days = suggestedDays(numLegs); }
+  days = Math.min(days, Math.max(numLegs,1));
 
-  // distribute legs across days as evenly as possible (some days may get 0 legs
-  // if days > numLegs — those render as rest days below)
+  // distribute legs across days as evenly as possible
   const base = Math.floor(numLegs/days), extra = numLegs % days;
   const legsPerDay = [];
   for(let i=0;i<days;i++) legsPerDay.push(base + (i<extra?1:0));
@@ -1430,9 +1457,10 @@ function renderItinerary(pts){
   let legCursor = 0, stopCursor = 0;
   for(let d=0; d<days; d++){
     const n = legsPerDay[d] || 0;
+    if(n===0 && d>0) continue;
     const daysStopsStart = stopCursor;
     const daysStopsEnd = Math.min(stopCursor + n, pts.length-1);
-    const dayPts = n>0 ? pts.slice(daysStopsStart, daysStopsEnd+1) : [pts[daysStopsStart]].filter(Boolean);
+    const dayPts = pts.slice(daysStopsStart, daysStopsEnd+1);
     let distM=0, durS=0;
     for(let i=0;i<n;i++){ const leg = routeLegs[legCursor+i]; if(leg){ distM+=leg.distance; durS+=leg.duration; } }
     legCursor += n;
@@ -1440,13 +1468,11 @@ function renderItinerary(pts){
 
     const card = document.createElement('div');
     card.className='day-card';
-    const routeLine = n>0 ? dayPts.map(p=>p.name).join(' → ') : (dayPts[0] ? `Halt at ${dayPts[0].name}` : '');
-    const metaLine = n>0 ? `<span>🚗 ${fmtKm(distM/1000)}</span><span>⏱ ${fmtHrs(durS/60)}</span>` : `<span>🏕 Rest / acclimatization day</span>`;
     card.innerHTML = `
       <div class="day-num">DAY<b>${d+1}</b></div>
       <div class="day-body">
-        <div class="route-line">${routeLine}</div>
-        <div class="meta">${metaLine}</div>
+        <div class="route-line">${dayPts.map(p=>p.name).join(' → ')}</div>
+        <div class="meta"><span>🚗 ${fmtKm(distM/1000)}</span><span>⏱ ${fmtHrs(durS/60)}</span></div>
       </div>
       <div class="day-actions">
         <button title="Focus on map" onclick='focusDay(${JSON.stringify(dayPts.map(p=>[p.lat,p.lng]))})'>🔍</button>
