@@ -1093,7 +1093,7 @@ footer{background:var(--ink);border-top:1px solid rgba(0,0,0,.15);padding:40px;t
   .card-enquire{border-radius:100px;padding:10px 22px}
 
   /* ── FILTER BAR: compact for mobile ── */
-  .filter-bar{border-radius:0}
+  .filter-bar{border-radius:0;display:none !important}
 
   /* ── DETAIL PANEL: app bottom sheet feel ── */
   .panel-detail{

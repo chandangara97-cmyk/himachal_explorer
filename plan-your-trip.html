@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Plan Your Trip | Himachal Explorer</title>
+<meta name="description" content="Two ways to plan your Himachal trip: build a fully custom day-by-day route yourself, or browse our ready-made, priced tour packages."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://himachalexplorer.in/plan-your-trip.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/site-chrome.css">
+<style>
+/* ══════════════════════════════════════════════════════════════
+   MOBILE-FIRST BASE — everything below is the phone layout.
+   Desktop enhancements are layered on top via min-width queries,
+   never the other way round.
+   ══════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#f8f5ef;--surface:#fff;--lift:#fdfbf7;--muted:#f0ebe0;
+  --border:#e5ddd0;--border2:#d4c9b5;--ink:#1c1409;--body:#5a4a36;
+  --caption:#9b8a74;--gold:#b07d3a;--gold2:#c99248;--gold-bg:#fdf6ec;
+  --dark:#0e0a04;--wrap:1080px;--px:20px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--body);line-height:1.6;overflow-x:hidden;width:100%}
+h1,h2,h3{font-family:'Cormorant',serif;color:var(--ink);font-weight:300;line-height:1.15}
+a{color:var(--gold);text-decoration:none}
+img{max-width:100%;display:block}
+
+.hero{
+  padding:36px var(--px) 28px;
+  background:var(--dark);
+  text-align:center;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;
+  font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);
+}
+.hero h1{color:#fff;font-size:clamp(26px,7vw,42px);font-weight:300;margin-bottom:10px}
+.hero h1 em{font-style:italic;color:var(--gold2)}
+.hero-desc{color:rgba(255,255,255,.72);font-size:13.5px;max-width:480px;margin:0 auto;line-height:1.65}
+
+.section{max-width:var(--wrap);margin:0 auto;padding:28px var(--px) 48px}
+
+/* ── Choice cards: single column, full-width, stacked — the mobile default ── */
+.choice-grid{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.choice-card{
+  display:block;
+  background:var(--surface);
+  border:1.5px solid var(--border2);
+  border-radius:10px;
+  padding:22px 20px;
+  text-decoration:none;
+  transition:border-color .2s, box-shadow .2s;
+  -webkit-tap-highlight-color:transparent;
+  position:relative;
+}
+.choice-card:active{transform:scale(.985)}
+.choice-card.primary{background:var(--dark);border-color:var(--dark)}
+.choice-icon{
+  width:52px;height:52px;border-radius:50%;
+  background:var(--gold-bg);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;margin-bottom:14px;flex-shrink:0;
+}
+.choice-card.primary .choice-icon{background:rgba(255,255,255,.1);color:var(--gold2)}
+.choice-title{font-family:'Cormorant',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.choice-card.primary .choice-title{color:#fff}
+.choice-desc{font-size:13px;color:var(--body);line-height:1.6;margin-bottom:16px}
+.choice-card.primary .choice-desc{color:rgba(255,255,255,.68)}
+.choice-points{list-style:none;margin-bottom:18px}
+.choice-points li{
+  font-size:12.5px;color:var(--body);padding-left:20px;position:relative;margin-bottom:7px;
+}
+.choice-card.primary .choice-points li{color:rgba(255,255,255,.75)}
+.choice-points li::before{content:"✓";position:absolute;left:0;color:var(--gold2);font-weight:700}
+.choice-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);
+}
+.choice-card.primary .choice-cta{color:var(--gold2)}
+.choice-cta svg{width:14px;height:14px;transition:transform .2s}
+.choice-card:active .choice-cta svg{transform:translateX(3px)}
+.choice-badge{
+  position:absolute;top:18px;right:18px;
+  font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--gold);color:#fff;padding:3px 9px;border-radius:20px;
+}
+
+.cross-link{
+  text-align:center;margin-top:22px;font-size:12.5px;color:var(--caption);
+}
+.cross-link a{color:var(--gold);font-weight:600}
+
+/* ── Trust strip: stacked on mobile ── */
+.trust-strip{
+  display:flex;flex-direction:column;gap:10px;
+  margin-top:32px;padding-top:24px;border-top:1px solid var(--border);
+}
+.trust-item{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--caption)}
+.trust-item svg{width:16px;height:16px;color:var(--gold);flex-shrink:0}
+
+/* ══════════════════════════════════════════════════════════════
+   DESKTOP / TABLET ENHANCEMENT — layered on top of the mobile base.
+   Nothing here is required for the page to work correctly; it only
+   widens the layout once there's room for it.
+   ══════════════════════════════════════════════════════════════ */
+@media (min-width:640px){
+  :root{--px:32px}
+  .hero{padding:56px var(--px) 40px}
+  .hero-desc{font-size:14.5px}
+  .choice-grid{flex-direction:row;gap:24px}
+  .choice-card{flex:1;padding:32px 28px}
+  .trust-strip{flex-direction:row;justify-content:center;gap:28px}
+}
+@media (min-width:960px){
+  .hero{padding:72px var(--px) 48px}
+  .choice-card{padding:40px 34px}
+  .choice-title{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="hero">
+  <div class="hero-eyebrow">Plan Your Trip</div>
+  <h1>How would you like<br/>to explore <em>Himachal</em>?</h1>
+  <p class="hero-desc">Two ways to get started — build your own route stop by stop, or pick from tours we've already planned and priced.</p>
+</section>
+
+<section class="section">
+  <div class="choice-grid">
+
+    <a href="yui.html" class="choice-card primary">
+      <span class="choice-badge">Custom</span>
+      <div class="choice-icon">🧭</div>
+      <div class="choice-title">Build My Own Route</div>
+      <div class="choice-desc">Pick your own places, set your own pace, and get a live day-by-day plan built around exactly what you want to see.</div>
+      <ul class="choice-points">
+        <li>Choose any combination of places</li>
+        <li>Vehicle &amp; hotel tier auto-suggested</li>
+        <li>Instant live pricing as you build</li>
+      </ul>
+      <span class="choice-cta">Start Building
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a href="packages.html" class="choice-card">
+      <div class="choice-icon">🗺️</div>
+      <div class="choice-title">Browse Our Packages</div>
+      <div class="choice-desc">Explore ready-made, tried-and-tested itineraries for Shimla, Manali, Spiti, Kinnaur and more — already planned, already priced.</div>
+      <ul class="choice-points">
+        <li>84+ curated tour packages</li>
+        <li>Filter by region, duration &amp; budget</li>
+        <li>Transparent per-person pricing</li>
+      </ul>
+      <span class="choice-cta">Browse Packages
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+
+  </div>
+
+  <div class="cross-link">
+    Not sure yet? <a href="packages.html">Browse packages</a> for inspiration, then <a href="yui.html">customise any of them</a> in the route builder.
+  </div>
+
+  <div class="trust-strip">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      No payment needed to enquire
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Callback within 2 hours
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      Local Himachal specialists
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/site-chrome.js"></script>
+</body>
+</html>
