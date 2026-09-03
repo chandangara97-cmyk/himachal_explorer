@@ -157,10 +157,14 @@ a{color:inherit;}
   border-radius:10px; box-shadow:var(--shadow); max-height:280px; overflow:auto; z-index:40; display:none;
 }
 .search-results.show{display:block;}
-.search-results .sr-item{padding:9px 12px; cursor:pointer; font-size:13px; display:flex; justify-content:space-between; gap:8px; border-bottom:1px solid var(--line);}
+.search-results .sr-item{padding:9px 12px; cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:space-between; gap:8px; border-bottom:1px solid var(--line);}
 .search-results .sr-item:last-child{border-bottom:0;}
 .search-results .sr-item:hover{background:var(--green-50);}
 .search-results .sr-item small{color:var(--ink-soft); font-weight:400;}
+.sr-left{display:flex; align-items:center; gap:8px; min-width:0;}
+.sr-thumb{width:28px; height:28px; border-radius:7px; flex:none; overflow:hidden; position:relative; display:flex; align-items:center; justify-content:center; font-size:12px; color:#fff;}
+.sr-thumb img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+.sr-name{white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 .search-results .sr-empty{padding:14px; font-size:12.5px; color:var(--ink-soft); text-align:center;}
 
 .gw-pills{display:flex; flex-wrap:wrap; gap:7px;}
@@ -205,8 +209,10 @@ a{color:inherit;}
 .stop-card.dragging{opacity:.4;}
 .stop-thumb{
   width:40px; height:40px; border-radius:9px; flex:none; display:flex; align-items:center; justify-content:center;
-  font-size:16px; color:#fff; font-weight:700;
+  font-size:16px; color:#fff; font-weight:700; position:relative; overflow:hidden;
 }
+.stop-thumb img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+.stop-thumb .stop-thumb-icon{position:relative; z-index:0;}
 .stop-info{flex:1; min-width:0;}
 .stop-info b{display:block; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 .stop-info span{display:block; font-size:11px; color:var(--ink-soft);}
@@ -241,6 +247,8 @@ a{color:inherit;}
 .itinerary-list{display:flex; flex-direction:column; gap:2px; flex:1 1 auto; min-height:0; overflow:auto; padding-right:2px; position:relative;}
 .day-card{display:flex; gap:10px; border:1px solid var(--line); border-radius:10px; padding:10px; background:var(--bg); position:relative; margin-bottom:8px; transition:border-color .15s;}
 .day-card:hover{border-color:var(--gold2);}
+.day-thumb{width:52px; height:52px; border-radius:9px; flex:none; overflow:hidden; position:relative; display:flex; align-items:center; justify-content:center; font-size:18px; color:#fff;}
+.day-thumb img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
 .day-card:not(:last-child)::after{
   content:''; position:absolute; left:29px; top:38px; bottom:-9px; width:1px;
   background:repeating-linear-gradient(to bottom, var(--gold2) 0 3px, transparent 3px 6px);
@@ -433,8 +441,9 @@ a{color:inherit;}
 .dest-card .dc-tag{font-size:11px;color:var(--ink-soft);margin-top:5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .dest-card .dc-badge{display:inline-block;font-size:9px;letter-spacing:.5px;text-transform:uppercase;font-weight:700;color:var(--green-600);background:rgba(176,125,58,.13);border-radius:5px;padding:2px 6px;margin-top:6px;}
 .dest-empty-note{grid-column:1/-1;text-align:center;color:var(--ink-soft);font-size:12.5px;padding:30px 10px;}
-.dest-major-bar{flex:none;border-top:1px solid var(--line);padding:10px 24px;background:var(--bg);}
-.dest-major-bar .dmb-label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-bottom:8px;}
+.dest-major-bar{flex:none;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 24px;background:var(--bg);}
+.dest-major-bar .dmb-label{display:block;font-size:12px;color:var(--ink-soft);font-weight:600;margin-bottom:8px;}
+.dest-major-bar .dmb-label::before{content:'✦ ';color:var(--gold);}
 .dmb-chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;}
 .dmb-chip{flex:none;display:flex;align-items:center;gap:5px;border:1px solid var(--gold2);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 13px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;transition:background .15s,transform .15s;}
 .dmb-chip:hover{background:var(--green-50);transform:translateY(-1px);}
@@ -768,15 +777,15 @@ body.mode-packages [data-mode="custom"]{display:none !important;}
     </div>
     <div class="dest-modal-search"><input id="destModalSearch" placeholder="Search all 120 places…" oninput="renderDestModalGrid()"></div>
     <div class="dest-picks" id="destPicksBox" style="display:none;"></div>
+    <div class="dest-major-bar" id="destMajorBar">
+      <span class="dmb-label">Not just here — jump to another major destination anytime</span>
+      <div class="dmb-chips" id="dmbChips"></div>
+    </div>
     <div class="dest-modal-tabs" id="destModalTabs">
       <button class="dest-modal-tab active" id="destTabRecommended" onclick="setDestModalTab('recommended')">✦ Recommended for you</button>
       <button class="dest-modal-tab" id="destTabAll" onclick="setDestModalTab('all')">All 120 places</button>
     </div>
     <div class="dest-modal-grid" id="destModalGrid"></div>
-    <div class="dest-major-bar" id="destMajorBar">
-      <span class="dmb-label">★ Other major destinations across Himachal</span>
-      <div class="dmb-chips" id="dmbChips"></div>
-    </div>
     <div class="dest-modal-footer">
       <span id="destModalCount">0 places selected</span>
       <button class="btn-primary" id="destModalContinue" onclick="confirmDestModal()" disabled>Build my route →</button>
@@ -804,6 +813,19 @@ const CAT_COLOR = {
 };
 function catIcon(seg){ return CAT_ICON[seg] || CAT_ICON.default; }
 function catColor(seg){ return CAT_COLOR[seg] || '#b07d3a'; }
+
+// Best-effort image URL for a place. Prefers an explicit `image` field on the
+// place record (same convention package_content already uses); falls back to
+// guessing `<image_base_url><id>.jpg`. Neither is guaranteed to resolve — every
+// caller must pair this with onerror handling that falls back to the colored
+// icon tile, since actual filenames on the live site aren't id-matched yet
+// (see /images/places/<id>.jpg vs the real /assets/images/<slug>_<n>.jpg mix).
+function placeImgUrl(p){
+  if(!p) return '';
+  if(p.image) return p.image;
+  const base = DB && DB.config && DB.config.image_base_url;
+  return base ? base + p.id + '.jpg' : '';
+}
 
 // ---------- state ----------
 let stops = []; // {id,name,lat,lng,district,region,segment,tag}
@@ -946,7 +968,8 @@ function renderSearch(){
     list.forEach(p=>{
       const el = document.createElement('div');
       el.className='sr-item';
-      el.innerHTML = `<span>${catIcon(p.segment)} ${p.name}</span><small>${p.district||''}</small>`;
+      const imgUrl = placeImgUrl(p);
+      el.innerHTML = `<span class="sr-left"><span class="sr-thumb" style="background:${catColor(p.segment)}"><span class="stop-thumb-icon">${catIcon(p.segment)}</span>${imgUrl?`<img src="${imgUrl}" alt="" loading="lazy" onerror="this.remove()">`:''}</span><span class="sr-name">${p.name}</span></span><small>${p.district||''}</small>`;
       el.onclick = ()=>{ addStop(p.id); document.getElementById('searchInput').value=''; box.classList.remove('show'); };
       box.appendChild(el);
     });
@@ -1380,9 +1403,13 @@ function renderStops(){
     card.className='stop-card';
     card.draggable = true;
     card.dataset.idx = i;
+    const imgUrl = placeImgUrl(s);
     card.innerHTML = `
       <div class="stop-badge">${i+1}</div>
-      <div class="stop-thumb" style="background:${catColor(s.segment)}">${catIcon(s.segment)}</div>
+      <div class="stop-thumb" style="background:${catColor(s.segment)}">
+        <span class="stop-thumb-icon">${catIcon(s.segment)}</span>
+        ${imgUrl ? `<img src="${imgUrl}" alt="" loading="lazy" onerror="this.remove()">` : ''}
+      </div>
       <div class="stop-info"><b>${s.name}</b><span>${s.district||''}${s.district?' · ':''}${s.region||''}</span></div>
       <button class="stop-remove" onclick="removeStop('${s.id}')">✕</button>`;
     card.addEventListener('dragstart', ()=>{ card.classList.add('dragging'); dragIdx = i; });
@@ -1583,9 +1610,42 @@ function fmtHrs(min){
   return h + 'h' + (m? ' '+m+'m':'');
 }
 
-function suggestedDays(numLegs){
-  const per = DB.config.auto_days_per_stop_group || 3;
-  return Math.max(1, Math.ceil(numLegs / per));
+// Regions where road/altitude conditions make long single-day drives unsafe or
+// impossible, and where the body needs a night to acclimatize before pushing higher.
+// Kept as a name-match list (not a strict allowlist) with a season-window fallback
+// below, since not every place record will have a clean region string.
+const HIGH_ALTITUDE_REGIONS = [
+  'Spiti Valley', 'Kinnaur Valley', 'Kinnaur', 'Baspa Valley',
+  'Lahaul Valley', 'Lahaul Access', 'Pangi Valley'
+];
+
+function isHighAltitudeStop(p){
+  if(!p) return false;
+  if(p.region && HIGH_ALTITUDE_REGIONS.includes(p.region)) return true;
+  // Places only motorable Jun-Sep (snow-shut the rest of the year) are, almost
+  // without exception, high-altitude/remote in Himachal — use as a fallback signal
+  // when region text doesn't match the list above.
+  if(p.season && /^Jun.{1,2}Sep$/.test(p.season.trim())) return true;
+  return false;
+}
+
+// Suggests a day count driven by three independent constraints, taking the max:
+//  1) Drive-time — hill roads aren't safely driven for more than ~6-7hrs/day
+//  2) Sightseeing — stops still need enough days to actually visit them
+//  3) Acclimatization — high-altitude stops (Spiti/Kinnaur/Lahaul/Pangi) need
+//     built-in rest so the trip isn't pushing straight through at altitude
+function suggestedDays(numLegs, totalMin, pts){
+  const cfg = DB.config;
+  const per = cfg.auto_days_per_stop_group || 3;
+  const maxDriveHrsPerDay = cfg.max_drive_hours_per_day || 6;
+  const haStopsPerAcclimDay = cfg.high_altitude_stops_per_acclim_day || 2;
+
+  const sightseeingDays = Math.ceil(numLegs / per);
+  const driveDays = totalMin ? Math.ceil((totalMin / 60) / maxDriveHrsPerDay) : 0;
+  const haCount = (pts || []).filter(isHighAltitudeStop).length;
+  const acclimDays = haCount ? Math.ceil(haCount / haStopsPerAcclimDay) : 0;
+
+  return Math.max(1, sightseeingDays, driveDays) + acclimDays;
 }
 
 let lastTrip = null; // populated by renderStats(), read by sendToWhatsApp()
@@ -1593,7 +1653,7 @@ let lastTrip = null; // populated by renderStats(), read by sendToWhatsApp()
 function renderStats(pts){
   const durSel = document.getElementById('duration');
   let days = parseInt(durSel.value, 10);
-  if(!days){ days = suggestedDays(routeLegs.length); }
+  if(!days){ days = suggestedDays(routeLegs.length, lastTotalMin, pts); }
 
   document.getElementById('statDistance').textContent = fmtKm(lastTotalKm);
   document.getElementById('statDuration').textContent = fmtHrs(lastTotalMin) + ' drive';
@@ -1621,18 +1681,25 @@ function renderItinerary(pts){
   const durSel = document.getElementById('duration');
   let days = parseInt(durSel.value, 10);
   const numLegs = routeLegs.length;
-  if(!days){ days = suggestedDays(numLegs); }
-  days = Math.min(days, Math.max(numLegs,1));
+  if(!days){ days = suggestedDays(numLegs, lastTotalMin, pts); }
+  // NOTE: previously capped at `days = Math.min(days, numLegs)`, which silently
+  // threw away any rest/acclimatization days suggestedDays() added beyond the
+  // stop count — exactly what let a 2-stop Kaza route get squashed to "2 days"
+  // regardless of the 12-16hr drive. Days beyond the driving legs are now kept
+  // as explicit rest/acclimatization days instead of being discarded.
+  days = Math.max(days, 1);
+  const drivingDays = Math.min(days, Math.max(numLegs, 1));
+  const restDays = days - drivingDays;
 
-  // distribute legs across days as evenly as possible
-  const base = Math.floor(numLegs/days), extra = numLegs % days;
+  // distribute legs across the driving days as evenly as possible
+  const base = Math.floor(numLegs/drivingDays), extra = numLegs % drivingDays;
   const legsPerDay = [];
-  for(let i=0;i<days;i++) legsPerDay.push(base + (i<extra?1:0));
+  for(let i=0;i<drivingDays;i++) legsPerDay.push(base + (i<extra?1:0));
 
   const list = document.getElementById('itineraryList');
   list.innerHTML = '';
-  let legCursor = 0, stopCursor = 0;
-  for(let d=0; d<days; d++){
+  let legCursor = 0, stopCursor = 0, dayNum = 0;
+  for(let d=0; d<drivingDays; d++){
     const n = legsPerDay[d] || 0;
     if(n===0 && d>0) continue;
     const daysStopsStart = stopCursor;
@@ -1642,17 +1709,48 @@ function renderItinerary(pts){
     for(let i=0;i<n;i++){ const leg = routeLegs[legCursor+i]; if(leg){ distM+=leg.distance; durS+=leg.duration; } }
     legCursor += n;
     stopCursor = daysStopsEnd;
+    dayNum++;
 
     const card = document.createElement('div');
     card.className='day-card';
+    const dayImg = placeImgUrl(dayPts[0]);
     card.innerHTML = `
-      <div class="day-num">DAY<b>${d+1}</b></div>
+      <div class="day-num">DAY<b>${dayNum}</b></div>
+      <div class="day-thumb" style="background:${catColor(dayPts[0]&&dayPts[0].segment)}">
+        <span class="stop-thumb-icon">${catIcon(dayPts[0]&&dayPts[0].segment)}</span>
+        ${dayImg ? `<img src="${dayImg}" alt="" loading="lazy" onerror="this.remove()">` : ''}
+      </div>
       <div class="day-body">
         <div class="route-line">${dayPts.map(p=>p.name).join(' → ')}</div>
         <div class="meta"><span>🚗 ${fmtKm(distM/1000)}</span><span>⏱ ${fmtHrs(durS/60)}</span></div>
       </div>
       <div class="day-actions">
         <button title="Focus on map" onclick='focusDay(${JSON.stringify(dayPts.map(p=>[p.lat,p.lng]))})'>🔍</button>
+      </div>`;
+    list.appendChild(card);
+  }
+
+  // Any days suggestedDays() added beyond the driving legs (high-altitude
+  // acclimatization, mainly) get their own explicit rest-day cards, anchored
+  // at the last stop reached, so they're visible instead of vanishing.
+  const lastPt = pts[Math.min(stopCursor, pts.length-1)];
+  for(let r=0; r<restDays; r++){
+    dayNum++;
+    const card = document.createElement('div');
+    card.className='day-card';
+    const restImg = placeImgUrl(lastPt);
+    card.innerHTML = `
+      <div class="day-num">DAY<b>${dayNum}</b></div>
+      <div class="day-thumb" style="background:${catColor(lastPt&&lastPt.segment)}">
+        <span class="stop-thumb-icon">${lastPt?catIcon(lastPt.segment):'🏔'}</span>
+        ${restImg ? `<img src="${restImg}" alt="" loading="lazy" onerror="this.remove()">` : ''}
+      </div>
+      <div class="day-body">
+        <div class="route-line">Rest &amp; Acclimatization${lastPt ? ' — '+lastPt.name : ''}</div>
+        <div class="meta"><span>🧭 No driving — high-altitude buffer day</span></div>
+      </div>
+      <div class="day-actions">
+        ${lastPt ? `<button title="Focus on map" onclick='focusDay(${JSON.stringify([[lastPt.lat,lastPt.lng]])})'>🔍</button>` : ''}
       </div>`;
     list.appendChild(card);
   }
