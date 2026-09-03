@@ -367,6 +367,83 @@ a{color:inherit;}
 .ms-card:hover .ms-cta svg{transform:translateX(4px);}
 @media (max-width:760px){ .ms-card{width:100%; max-width:380px; padding:24px 20px;} }
 
+/* ================= GATEWAY SELECT SCREEN (full-screen step 2) ================= */
+#gatewaySelect{
+  min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:48px 20px; background:var(--bg); position:relative; overflow:hidden;
+}
+#gatewaySelect::before{
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:
+    repeating-radial-gradient(circle at 8% 12%, transparent 0 34px, var(--contour) 35px 36px, transparent 37px 70px),
+    repeating-radial-gradient(circle at 92% 88%, transparent 0 46px, var(--contour) 47px 48px, transparent 49px 90px);
+}
+.gwc-back{position:relative; align-self:center; margin-bottom:6px; border:0; background:transparent; color:var(--ink-soft); font-size:12.5px; font-weight:600; cursor:pointer; padding:6px 0;}
+.gwc-back:hover{color:var(--gold);}
+.gwc-cards{display:grid; grid-template-columns:repeat(5,1fr); gap:16px; max-width:1080px; width:100%; position:relative;}
+.gwc-card{
+  position:relative; min-height:190px; padding:26px 20px; background:var(--card); border:1.5px solid var(--line); border-radius:18px;
+  cursor:pointer; text-align:left; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column; gap:8px;
+  transition:transform .22s cubic-bezier(.16,1,.3,1), box-shadow .22s, border-color .22s; font-family:inherit;
+}
+.gwc-card:hover{transform:translateY(-5px); border-color:var(--gold2); box-shadow:0 20px 40px -18px rgba(28,20,9,.32);}
+.gwc-card.active{border-color:var(--green-600); background:linear-gradient(160deg,var(--card),var(--green-50)); box-shadow:0 10px 28px -16px rgba(176,125,58,.4);}
+.gwc-icon{font-size:32px;}
+.gwc-card strong{font-family:'Cormorant',Georgia,serif; font-size:21px; font-weight:700;}
+.gwc-sub{font-size:11.5px; color:var(--ink-soft); line-height:1.5;}
+@media (max-width:900px){ .gwc-cards{grid-template-columns:1fr 1fr;} }
+@media (max-width:560px){ .gwc-cards{grid-template-columns:1fr;} }
+
+/* compact "current gateway" indicator inside the controls bar */
+.gateway-mini{display:flex; align-items:center; gap:5px; border:1px solid var(--gold2); background:var(--green-50); color:var(--ink); border-radius:9px; padding:10px 14px; font:600 12.5px inherit; cursor:pointer; white-space:nowrap;}
+.gateway-mini b{font-weight:700;}
+.gateway-mini em{font-style:normal; color:var(--gold); font-size:10.5px; text-decoration:underline; margin-left:3px;}
+.gateway-mini:hover{border-color:var(--gold);}
+
+/* ---------- destination picker popup ---------- */
+.dest-modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(15,12,7,0);display:none;align-items:center;justify-content:center;padding:20px;pointer-events:none;transition:background .3s;}
+.dest-modal-overlay.open{display:flex;background:rgba(15,12,7,.62);pointer-events:all;}
+.dest-modal{width:min(760px,100%);max-height:min(680px,88vh);background:var(--card);border-radius:20px;box-shadow:0 30px 70px -20px rgba(28,20,9,.55);display:flex;flex-direction:column;overflow:hidden;transform:translateY(14px);opacity:0;transition:transform .3s cubic-bezier(.16,1,.3,1),opacity .3s;}
+.dest-modal-overlay.open .dest-modal{transform:translateY(0);opacity:1;}
+.dest-modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:22px 24px 14px;border-bottom:1px solid var(--line);}
+.dest-modal-kicker{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;}
+.dest-modal-head h3{margin:0 0 6px;font-size:22px;font-weight:600;}
+.dest-modal-head p{margin:0;font-size:12.5px;color:var(--ink-soft);max-width:480px;}
+.dest-modal-close{border:0;background:var(--bg);width:32px;height:32px;border-radius:50%;font-size:14px;color:var(--ink-soft);cursor:pointer;flex-shrink:0;}
+.dest-modal-close:hover{background:var(--line);}
+.dest-modal-search{padding:14px 24px 0;}
+.dest-modal-search input{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-size:13.5px;font-family:inherit;}
+.dest-picks{display:flex;flex-wrap:wrap;gap:6px;padding:10px 24px 0;max-height:96px;overflow-y:auto;}
+.dest-pick-chip{display:flex;align-items:center;gap:3px;background:rgba(176,125,58,.12);border:1px solid var(--gold2);border-radius:999px;padding:4px 5px 4px 11px;font-size:11.5px;color:var(--ink);white-space:nowrap;}
+.dest-pick-chip .dpc-num{font-weight:700;color:var(--gold);margin-right:1px;}
+.dest-pick-chip button{border:0;background:transparent;cursor:pointer;color:var(--ink-soft);font-size:11px;padding:3px 4px;line-height:1;border-radius:50%;}
+.dest-pick-chip button:hover{color:var(--ink);background:rgba(28,20,9,.08);}
+.dest-pick-chip button:disabled{opacity:.3;cursor:default;}
+.dest-pick-chip button:disabled:hover{background:transparent;}
+.dest-modal-tabs{display:flex;gap:8px;padding:12px 24px 0;flex-wrap:wrap;}
+.dest-modal-tab{border:1px solid var(--line);background:var(--bg);color:var(--ink-soft);border-radius:999px;padding:5px 13px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;}
+.dest-modal-tab.active{background:var(--green-600);border-color:var(--green-600);color:#fff;}
+.dest-modal-grid{flex:1;overflow-y:auto;padding:16px 24px 6px;display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start;}
+@media (max-width:560px){ .dest-modal-grid{grid-template-columns:1fr;} }
+.dest-card{position:relative;border:1.5px solid var(--line);border-radius:13px;padding:11px 13px;cursor:pointer;background:var(--bg);transition:border-color .15s,background .15s;text-align:left;font-family:inherit;}
+.dest-card:hover{border-color:var(--gold2);}
+.dest-card .dc-top{display:flex;align-items:center;justify-content:space-between;gap:6px;}
+.dest-card b{font-size:13.5px;font-weight:600;}
+.dest-card .dc-meta{font-size:10.5px;color:var(--ink-soft);margin-top:2px;}
+.dest-card .dc-tag{font-size:11px;color:var(--ink-soft);margin-top:5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.dest-card .dc-badge{display:inline-block;font-size:9px;letter-spacing:.5px;text-transform:uppercase;font-weight:700;color:var(--green-600);background:rgba(176,125,58,.13);border-radius:5px;padding:2px 6px;margin-top:6px;}
+.dest-empty-note{grid-column:1/-1;text-align:center;color:var(--ink-soft);font-size:12.5px;padding:30px 10px;}
+.dest-major-bar{flex:none;border-top:1px solid var(--line);padding:10px 24px;background:var(--bg);}
+.dest-major-bar .dmb-label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-bottom:8px;}
+.dmb-chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;}
+.dmb-chip{flex:none;display:flex;align-items:center;gap:5px;border:1px solid var(--gold2);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 13px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;transition:background .15s,transform .15s;}
+.dmb-chip:hover{background:var(--green-50);transform:translateY(-1px);}
+.dmb-chip .dmb-plus{color:var(--gold);font-weight:800;}
+.dmb-empty{font-size:11.5px;color:var(--ink-soft);}
+.dest-modal-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 24px;border-top:1px solid var(--line);background:var(--card);}
+.dest-modal-footer span{font-size:12px;color:var(--ink-soft);}
+.dest-modal-footer .btn-primary{padding:10px 22px;}
+
 /* mode switch pill in topbar */
 .mode-switch{display:flex; border:1px solid var(--line); border-radius:20px; overflow:hidden; font-family:var(--mono);}
 .mode-switch button{border:0; background:var(--card); color:var(--ink-soft); font-size:11px; font-weight:600; letter-spacing:.3px; padding:7px 12px; cursor:pointer; transition:background .15s,color .15s;}
@@ -455,6 +532,22 @@ body.mode-packages [data-mode="custom"]{display:none !important;}
   </div>
 </div>
 
+<div id="gatewaySelect" style="display:none;">
+  <button class="gwc-back" onclick="backToModeSelect()">← Change plan style</button>
+  <div class="ms-brand">
+    <svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+      <path d="M2 30L14 12L20 21L25 14L38 30H2Z" fill="#b07d3a"/>
+      <path d="M14 12L20 21L17.5 24.5L11 15.5L14 12Z" fill="#6b4415"/>
+      <path d="M25 14L38 30H29L23 20.5L25 14Z" fill="#6b4415" opacity=".55"/>
+    </svg>
+    <b>Himachal Explorer</b>
+  </div>
+  <span class="ms-eyebrow">Step 2 of 2 · Expedition Planner</span>
+  <h1 class="ms-title">Where are you starting from?</h1>
+  <p class="ms-sub">Pick your gateway city — we'll shape the whole route, recommendations and pricing around it.</p>
+  <div class="gwc-cards" id="gwcCards"></div>
+</div>
+
 <div id="appShell" style="display:none;">
 <div class="topbar">
   <div class="brand">
@@ -487,9 +580,9 @@ body.mode-packages [data-mode="custom"]{display:none !important;}
 </div>
 
 <div class="controls">
-  <div class="field" style="min-width:280px;">
-    <label>Start From (Gateway)</label>
-    <div class="gw-pills" id="gwPills"></div>
+  <div class="field" style="max-width:220px;">
+    <label>Gateway</label>
+    <button class="gateway-mini" id="gatewayMini" onclick="openGatewaySelect()" style="width:100%;">📍 <b id="gatewayMiniName">Set gateway</b><em>Change</em></button>
   </div>
   <div class="field" data-mode="custom" style="max-width:170px;">
     <label>Trip Type</label>
@@ -662,6 +755,34 @@ body.mode-packages [data-mode="custom"]{display:none !important;}
 </div>
 
 <div class="toast" id="toast"></div>
+
+<div class="dest-modal-overlay" id="destModalOverlay" onclick="if(event.target===this) closeDestModal()">
+  <div class="dest-modal" role="dialog" aria-modal="true" aria-labelledby="destModalTitle">
+    <div class="dest-modal-head">
+      <div>
+        <div class="dest-modal-kicker">Build It Yourself · <span id="destModalGateway"></span></div>
+        <h3 id="destModalTitle">Carve out your package</h3>
+        <p>We've picked the must-see places near your gateway — tap to add. Search if you want something specific.</p>
+      </div>
+      <button class="dest-modal-close" onclick="closeDestModal()">✕</button>
+    </div>
+    <div class="dest-modal-search"><input id="destModalSearch" placeholder="Search all 120 places…" oninput="renderDestModalGrid()"></div>
+    <div class="dest-picks" id="destPicksBox" style="display:none;"></div>
+    <div class="dest-modal-tabs" id="destModalTabs">
+      <button class="dest-modal-tab active" id="destTabRecommended" onclick="setDestModalTab('recommended')">✦ Recommended for you</button>
+      <button class="dest-modal-tab" id="destTabAll" onclick="setDestModalTab('all')">All 120 places</button>
+    </div>
+    <div class="dest-modal-grid" id="destModalGrid"></div>
+    <div class="dest-major-bar" id="destMajorBar">
+      <span class="dmb-label">★ Other major destinations across Himachal</span>
+      <div class="dmb-chips" id="dmbChips"></div>
+    </div>
+    <div class="dest-modal-footer">
+      <span id="destModalCount">0 places selected</span>
+      <button class="btn-primary" id="destModalContinue" onclick="confirmDestModal()" disabled>Build my route →</button>
+    </div>
+  </div>
+</div>
 </div><!-- /appShell -->
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -714,6 +835,7 @@ async function loadDB(){
     const fb = DB_FALLBACK;
     fb.templates = templates || {};
     fb.packageContent = packageContent || {};
+    fb.gst = fb.gst || gst || { hotel_gst_pct_budget: 12, hotel_gst_pct_premium: 18, hotel_gst_pct_luxury: 18, transport_gst_pct: 5 };
     return fb;
   }
   const places = Object.keys(placesIdx).map(id => {
@@ -754,12 +876,52 @@ function updateMapHint(mode){
 }
 function chooseMode(mode){
   document.getElementById('modeSelect').style.display = 'none';
-  document.getElementById('appShell').style.display = 'flex';
   document.body.classList.remove('mode-custom','mode-packages');
   document.body.classList.add(mode==='packages' ? 'mode-packages' : 'mode-custom');
   document.getElementById('modeBtnCustom')?.classList.toggle('active', mode!=='packages');
   document.getElementById('modeBtnPackages')?.classList.toggle('active', mode==='packages');
   updateMapHint(mode);
+
+  if(!selectedGateway){
+    // First run: the gateway hasn't been picked yet — that's its own full-screen step.
+    openGatewaySelect();
+  } else {
+    document.getElementById('gatewaySelect').style.display = 'none';
+    document.getElementById('appShell').style.display = 'flex';
+    setTimeout(()=>{ if(map) map.invalidateSize(); }, 60);
+  }
+}
+function isCustomMode(){ return !document.body.classList.contains('mode-packages'); }
+
+// ---------- full-screen gateway step ----------
+function renderGatewayCards(){
+  const box = document.getElementById('gwcCards');
+  box.innerHTML = '';
+  GATEWAYS.forEach(g=>{
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'gwc-card';
+    b.id = `gwcCard-${g.name}`;
+    if(g.name === selectedGateway) b.classList.add('active');
+    b.innerHTML = `<span class="gwc-icon">${g.icon}</span><strong>${g.name}</strong><span class="gwc-sub">${g.blurb || 'Popular starting point'}</span>`;
+    b.onclick = () => confirmGatewayChoice(g.name);
+    box.appendChild(b);
+  });
+}
+function openGatewaySelect(){
+  renderGatewayCards();
+  document.getElementById('modeSelect').style.display = 'none';
+  document.getElementById('appShell').style.display = 'none';
+  document.getElementById('gatewaySelect').style.display = 'flex';
+}
+function backToModeSelect(){
+  document.getElementById('gatewaySelect').style.display = 'none';
+  document.getElementById('modeSelect').style.display = 'flex';
+}
+function confirmGatewayChoice(name){
+  selectGateway(name);
+  document.getElementById('gatewaySelect').style.display = 'none';
+  document.getElementById('appShell').style.display = 'flex';
   setTimeout(()=>{ if(map) map.invalidateSize(); }, 60);
 }
 
@@ -797,33 +959,19 @@ document.addEventListener('click', (e)=>{
 
 // ---------- gateway (fixed start cities) ----------
 const GATEWAYS = [
-  {name:'DELHI',       icon:'✈️', lat:28.6139, lng:77.2090},
-  {name:'CHANDIGARH',  icon:'🚌', lat:30.7333, lng:76.7794},
-  {name:'SHIMLA',      icon:'🏔️', lat:31.1048, lng:77.1734},
-  {name:'MANALI',      icon:'❄️', lat:32.2396, lng:77.1887},
-  {name:'DHARAMSHALA', icon:'☸️', lat:32.2190, lng:76.3234}
+  {name:'DELHI',       icon:'✈️', lat:28.6139, lng:77.2090, blurb:'Fly or drive in — the classic start for most Himachal trips'},
+  {name:'CHANDIGARH',  icon:'🚌', lat:30.7333, lng:76.7794, blurb:'Closest airport to the hills — quickest way into Shimla & beyond'},
+  {name:'SHIMLA',      icon:'🏔️', lat:31.1048, lng:77.1734, blurb:'Already in the hills — perfect base for a Shimla-first itinerary'},
+  {name:'MANALI',      icon:'❄️', lat:32.2396, lng:77.1887, blurb:'Gateway to Kullu Valley, Spiti and the high mountain passes'},
+  {name:'DHARAMSHALA', icon:'☸️', lat:32.2190, lng:76.3234, blurb:'Kangra Valley base — McLeod Ganj, Bir Billing and Dalhousie nearby'}
 ];
 let startPlace = null;
 let selectedGateway = null;
 
-function renderGatewayPills(){
-  const box = document.getElementById('gwPills');
-  box.innerHTML = '';
-  GATEWAYS.forEach(g=>{
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'gw-pill';
-    b.id = `gwPill-${g.name}`;
-    b.innerHTML = `<span>${g.icon}</span> ${g.name}`;
-    b.onclick = () => selectGateway(g.name);
-    box.appendChild(b);
-  });
-}
-
 function selectGateway(name){
   selectedGateway = name;
-  Array.from(document.getElementById('gwPills').children).forEach(c=>c.classList.remove('active'));
-  document.getElementById(`gwPill-${name}`)?.classList.add('active');
+  const mini = document.getElementById('gatewayMiniName');
+  if(mini) mini.textContent = name;
 
   const g = GATEWAYS.find(x=>x.name===name);
   startPlace = { id:name.toLowerCase(), name:name, lat:g.lat, lng:g.lng, isGateway:true };
@@ -835,6 +983,8 @@ function selectGateway(name){
   const leftHint = document.getElementById('pkgLeftEmptyHint');
   if(leftHint) leftHint.style.display = 'none';
   closePkgDetail();
+
+  if(isCustomMode()) openDestModal(name);
 }
 
 // ---------- popular destinations (live "core"-category places from Firebase) ----------
@@ -849,6 +999,234 @@ function renderPopularDestinations(gatewayName){
     o.value = p.id; o.textContent = `${p.name} (${p.district||''})`;
     sel.appendChild(o);
   });
+}
+
+// ---------- destination picker popup (Build It Yourself mode) ----------
+// Hand-picked, in order of real-world popularity for travellers starting from
+// each gateway — these are the routes we actually sell most from each city.
+// Anything not on this list still gets ranked by the fallback heuristic below,
+// so the picker never runs dry even for an unusual gateway/place combo.
+const CURATED_RECOMMENDATIONS = {
+  DELHI:       ['manali','mcleod-ganj','dharamshala','dalhousie','khajjiar','kasol','solang-valley','old-manali','kullu','the-ridge','mall-road','kasauli','chail','kufri'],
+  CHANDIGARH:  ['kasauli','chail','the-ridge','mall-road','kufri','narkanda','manali','dalhousie','khajjiar','kullu','solang-valley','mcleod-ganj'],
+  SHIMLA:      ['kufri','narkanda','chail','mashobra','naldehra','fagu','the-ridge','mall-road','jakhu-temple','sangla','kalpa','manali'],
+  MANALI:      ['solang-valley','old-manali','rohtang-pass','hadimba-temple','naggar-castle','kasol','manikaran-sahib','kullu','jibhi','bir-billing','vashisht-hot-springs'],
+  DHARAMSHALA: ['mcleod-ganj','triund','bir-billing','palampur-tea-gardens','kangra-fort','dalhousie','khajjiar','norbulingka-institute','chamba','kasol','manali']
+};
+
+let destModalGatewayName = null;
+let destModalTab = 'recommended';
+let destModalSelection = new Set();
+let destModalOrder = []; // ordered ids — order drives both display and the "base point" chain
+
+function getRecommendedPlaces(limit){
+  limit = limit || 12;
+  if(!DB) return [];
+  const addedIds = new Set(stops.map(s=>s.id));
+  const eligible = id => !addedIds.has(id) && !destModalSelection.has(id) &&
+    placeById[id] && placeById[id].name.toUpperCase() !== destModalGatewayName;
+
+  // Once at least one destination is picked, that pick becomes the new
+  // "base point" — recommendations chain forward from wherever the traveller
+  // last placed themselves, instead of always pointing back at the gateway.
+  // This is pure proximity: a "must-visit" tag must never outrank actual
+  // distance, or a town 300km away can beat one that's genuinely next door.
+  if(destModalOrder.length){
+    const basePlace = placeById[destModalOrder[destModalOrder.length-1]];
+    if(!basePlace) return [];
+    const byDistance = DB.places
+      .filter(p => eligible(p.id))
+      .map(p => ({ p, km: haversine(basePlace, p) }))
+      .sort((a,b) => a.km - b.km);
+    // Widen the radius only if there genuinely aren't enough close options —
+    // never let a "famous" far-away place displace a nearby one within a tier.
+    const radiiKm = [40, 80, 150, 300, Infinity];
+    for(const r of radiiKm){
+      const within = byDistance.filter(x => x.km <= r);
+      if(within.length >= limit || r === Infinity){
+        return within.slice(0, limit).map(x => x.p);
+      }
+    }
+  }
+
+  // No picks yet — recommend off the gateway itself using the curated list.
+  const g = GATEWAYS.find(x=>x.name===destModalGatewayName);
+  if(!g) return [];
+  const curatedIds = (CURATED_RECOMMENDATIONS[destModalGatewayName] || []).filter(eligible);
+  const picked = curatedIds.slice(0, limit).map(id => placeById[id]);
+  if(picked.length >= limit) return picked;
+
+  const pickedIds = new Set(picked.map(p=>p.id));
+  const rest = DB.places
+    .filter(p => eligible(p.id) && !pickedIds.has(p.id))
+    .map(p=>{
+      const km = haversine(g, p);
+      let score = 0;
+      if(p.category === 'core') score += 100;
+      if(/major tourist attraction/i.test(p.tag||'')) score += 40;
+      score += Math.max(0, 60 - km/10);
+      return { p, score };
+    })
+    .sort((a,b)=> b.score - a.score)
+    .slice(0, limit - picked.length)
+    .map(x=>x.p);
+
+  return picked.concat(rest);
+}
+
+// Fixed statewide priority order for the "other major destinations" bar —
+// the handful of towns/hubs almost every Himachal itinerary touches,
+// independent of the current gateway or chain base point.
+const MAJOR_DESTINATIONS_ORDER = ['manali','mcleod-ganj','dharamshala','the-ridge','mall-road','kasauli','kullu','chamba','reckong-peo','kaza'];
+
+function renderDestMajorBar(){
+  const box = document.getElementById('dmbChips');
+  if(!box) return;
+  const addedIds = new Set(stops.map(s=>s.id));
+  const list = MAJOR_DESTINATIONS_ORDER
+    .map(id => placeById[id])
+    .filter(p => p && !addedIds.has(p.id) && !destModalSelection.has(p.id) && p.name.toUpperCase() !== destModalGatewayName);
+
+  if(list.length === 0){
+    box.innerHTML = '<span class="dmb-empty">You\'ve added them all!</span>';
+    return;
+  }
+  box.innerHTML = '';
+  list.forEach(p=>{
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'dmb-chip';
+    chip.innerHTML = `<span class="dmb-plus">+</span> ${p.name}`;
+    chip.onclick = () => toggleDestModalPlace(p.id);
+    box.appendChild(chip);
+  });
+}
+
+function openDestModal(gatewayName){
+  if(!gatewayName || !DB) return;
+  destModalGatewayName = gatewayName;
+  destModalTab = 'recommended';
+  destModalOrder = stops.map(s=>s.id);
+  destModalSelection = new Set(destModalOrder);
+  document.getElementById('destModalGateway').textContent = gatewayName;
+  document.getElementById('destModalSearch').value = '';
+  renderDestPicks();
+  renderDestMajorBar();
+  updateDestModalFooter();
+  setDestModalTab('recommended');
+  document.getElementById('destModalOverlay').classList.add('open');
+}
+function closeDestModal(){
+  document.getElementById('destModalOverlay').classList.remove('open');
+}
+function setDestModalTab(tab){
+  destModalTab = tab;
+  document.getElementById('destTabAll').classList.toggle('active', tab==='all');
+  renderDestModalGrid();
+}
+function updateDestModalHeading(){
+  const btn = document.getElementById('destTabRecommended');
+  if(!btn) return;
+  btn.classList.toggle('active', destModalTab==='recommended');
+  if(destModalOrder.length){
+    const last = placeById[destModalOrder[destModalOrder.length-1]];
+    btn.textContent = '✦ Near ' + (last ? last.name : 'your last pick');
+  } else {
+    btn.textContent = '✦ Recommended for you';
+  }
+}
+function updateDestModalFooter(){
+  const n = destModalOrder.length;
+  document.getElementById('destModalCount').textContent = n + (n===1 ? ' place selected' : ' places selected');
+  document.getElementById('destModalContinue').disabled = n === 0;
+}
+function renderDestPicks(){
+  const box = document.getElementById('destPicksBox');
+  if(!box) return;
+  updateDestModalHeading();
+  if(destModalOrder.length === 0){ box.style.display = 'none'; box.innerHTML = ''; return; }
+  box.style.display = 'flex';
+  box.innerHTML = destModalOrder.map((id,i)=>{
+    const p = placeById[id];
+    if(!p) return '';
+    return `<span class="dest-pick-chip">
+      <span class="dpc-num">${i+1}</span>${p.name}
+      <button title="Move up" onclick="moveDestPick('${id}',-1)" ${i===0?'disabled':''}>↑</button>
+      <button title="Move down" onclick="moveDestPick('${id}',1)" ${i===destModalOrder.length-1?'disabled':''}>↓</button>
+      <button title="Remove" onclick="removeDestPick('${id}')">✕</button>
+    </span>`;
+  }).join('');
+}
+function moveDestPick(id, dir){
+  const i = destModalOrder.indexOf(id);
+  const to = i + dir;
+  if(i<0 || to<0 || to>=destModalOrder.length) return;
+  [destModalOrder[i], destModalOrder[to]] = [destModalOrder[to], destModalOrder[i]];
+  renderDestPicks();
+  renderDestModalGrid(); // last pick may have changed — recommendations re-chain from the new base point
+}
+function removeDestPick(id){
+  toggleDestModalPlace(id);
+}
+function renderDestModalGrid(){
+  const grid = document.getElementById('destModalGrid');
+  const q = document.getElementById('destModalSearch').value.trim().toLowerCase();
+  grid.innerHTML = '';
+  updateDestModalHeading();
+
+  let list;
+  if(q){
+    list = DB.places.filter(p =>
+      !destModalSelection.has(p.id) && p.name.toUpperCase() !== destModalGatewayName &&
+      (p.name.toLowerCase().includes(q) || (p.district||'').toLowerCase().includes(q) || (p.region||'').toLowerCase().includes(q))
+    ).slice(0, 40);
+  } else if(destModalTab === 'recommended'){
+    list = getRecommendedPlaces(12);
+  } else {
+    list = DB.places.filter(p => !destModalSelection.has(p.id) && p.name.toUpperCase() !== destModalGatewayName)
+      .sort((a,b)=>a.name.localeCompare(b.name));
+  }
+
+  if(list.length === 0){
+    grid.innerHTML = '<div class="dest-empty-note">No matching places found.</div>';
+    return;
+  }
+
+  list.forEach(p=>{
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'dest-card';
+    const isMajor = p.category === 'core' || /major tourist attraction/i.test(p.tag||'') ||
+      (CURATED_RECOMMENDATIONS[destModalGatewayName]||[]).includes(p.id);
+    card.innerHTML = `
+      <div class="dc-top"><b>${p.name}</b></div>
+      <div class="dc-meta">${p.district||''}${p.district?' · ':''}${p.region||''}</div>
+      <div class="dc-tag">${p.tag||''}</div>
+      ${isMajor ? '<span class="dc-badge">Must-visit</span>' : ''}`;
+    card.onclick = () => toggleDestModalPlace(p.id);
+    grid.appendChild(card);
+  });
+}
+function toggleDestModalPlace(id){
+  if(destModalSelection.has(id)){
+    destModalSelection.delete(id);
+    destModalOrder = destModalOrder.filter(x=>x!==id);
+  } else {
+    destModalSelection.add(id);
+    destModalOrder.push(id);
+  }
+  renderDestPicks();
+  renderDestModalGrid();
+  renderDestMajorBar();
+  updateDestModalFooter();
+}
+function confirmDestModal(){
+  destModalOrder.forEach(id=>{
+    if(!stops.find(s=>s.id===id)) addStop(id);
+  });
+  closeDestModal();
+  showToast('Route drafted — refine it below, then Generate Route');
+  if(stops.length >= 1) generateRoute();
 }
 
 function onDestinationChange(){
@@ -1331,15 +1709,10 @@ async function boot(){
   const searchInp = document.getElementById('searchInput');
   if(searchInp){ searchInp.disabled = false; searchInp.placeholder = 'Search places…'; }
 
-  renderGatewayPills();
+  // gateway cards render lazily when the gateway-select step opens
 
   initMap();
   changePax(0);
-  renderStops();
-  // preload a sample Himachal route so the page isn't empty on first load
-  ['solang-valley','rohtang-pass','sissu','chandratal-lake'].forEach(id=>{
-    if(placeById[id]) stops.push({...placeById[id]});
-  });
   renderStops();
 }
 boot();
