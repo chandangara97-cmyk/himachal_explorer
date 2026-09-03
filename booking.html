@@ -785,10 +785,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="amount-choice">
           <div class="amount-choice-label">Payment option</div>
           <div class="amount-options">
-            <div class="amt-opt selected" id="payAdvance" onclick="selectPayAmt('advance')">
-              <div class="amt-opt-name">Advance</div>
-              <div class="amt-opt-val" id="advanceAmt">—</div>
-              <div class="amt-opt-note">25% now, rest later</div>
+            <div class="amt-opt selected" id="payAdv40" onclick="selectPayAmt('adv40')">
+              <div class="amt-opt-name">40% Advance</div>
+              <div class="amt-opt-val" id="adv40Amt">—</div>
+              <div class="amt-opt-note">40% now, rest later</div>
+            </div>
+            <div class="amt-opt" id="payAdv60" onclick="selectPayAmt('adv60')">
+              <div class="amt-opt-name">60% Advance</div>
+              <div class="amt-opt-val" id="adv60Amt">—</div>
+              <div class="amt-opt-note">60% now, rest later</div>
             </div>
             <div class="amt-opt" id="payFull" onclick="selectPayAmt('full')">
               <div class="amt-opt-name">Full Payment</div>
@@ -923,6 +928,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 // ── CONFIG ──────────────────────────────────────────────────────────
 const RAZORPAY_KEY = 'OHPWkChulBwl3GwV9szQZh97'; // ← Replace with your actual Razorpay key
+// Advance payment options offered at checkout: customer picks 40%, 60%, or full.
+const PAY_MODE_PCT = { adv40: 0.40, adv60: 0.60, full: 1.00 };
+const PAY_MODE_LABEL = { adv40: '40% advance', adv60: '60% advance', full: 'full payment' };
 const FIREBASE_URL = 'https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app';
 const WA_NUMBER   = '917018138847';
 const BUSINESS_EMAIL = 'chandan_panwar@himachalexplorer.in';
@@ -954,7 +962,7 @@ function fromPackageData(pkg) {
 // ── STATE ──
 let state = {
   pkg: null, adults:2, children:0, rooms:1, vehicle:'Sedan',
-  hotel:'standard', date:'', totalAmt:0, payMode:'advance', payMethod:'razorpay',
+  hotel:'standard', date:'', totalAmt:0, payMode:'adv40', payMethod:'razorpay',
   fname:'', lname:'', email:'', phone:'', departure:'', special:'', source:''
 };
 
@@ -1066,21 +1074,22 @@ function recalcPrice() {
   document.getElementById('sum_total').textContent = `₹ ${state.totalAmt.toLocaleString('en-IN')}`;
 
   // Payment amounts
-  const advance = Math.round(state.totalAmt * 0.25);
-  document.getElementById('advanceAmt').textContent = `₹${advance.toLocaleString('en-IN')}`;
+  document.getElementById('adv40Amt').textContent = `₹${Math.round(state.totalAmt * PAY_MODE_PCT.adv40).toLocaleString('en-IN')}`;
+  document.getElementById('adv60Amt').textContent = `₹${Math.round(state.totalAmt * PAY_MODE_PCT.adv60).toLocaleString('en-IN')}`;
   document.getElementById('fullAmt').textContent = `₹${state.totalAmt.toLocaleString('en-IN')}`;
   updatePayingNow();
 }
 
 function selectPayAmt(mode) {
   state.payMode = mode;
-  document.getElementById('payAdvance').classList.toggle('selected', mode==='advance');
+  document.getElementById('payAdv40').classList.toggle('selected', mode==='adv40');
+  document.getElementById('payAdv60').classList.toggle('selected', mode==='adv60');
   document.getElementById('payFull').classList.toggle('selected', mode==='full');
   updatePayingNow();
 }
 
 function updatePayingNow() {
-  const amt = state.payMode==='advance' ? Math.round(state.totalAmt*0.25) : state.totalAmt;
+  const amt = Math.round(state.totalAmt * (PAY_MODE_PCT[state.payMode] ?? 1));
   document.getElementById('finalTotal').textContent = state.totalAmt ? `₹${state.totalAmt.toLocaleString('en-IN')}` : '—';
   document.getElementById('payingNow').textContent = state.totalAmt ? `₹${amt.toLocaleString('en-IN')}` : '—';
 }
@@ -1157,7 +1166,7 @@ async function initiatePayment() {
   if(!state.totalAmt) { alert('Price not calculated. Please go back and select a package.'); return; }
 
   const ref = generateRef();
-  const payAmt = state.payMode==='advance' ? Math.round(state.totalAmt*0.25) : state.totalAmt;
+  const payAmt = Math.round(state.totalAmt * (PAY_MODE_PCT[state.payMode] ?? 1));
 
   const bookingData = {
     ref, status:'pending',
@@ -1176,7 +1185,7 @@ async function initiatePayment() {
     document.getElementById('loadingOverlay').classList.add('show');
     await saveBookingToFirebase({...bookingData, status:'pending_manual_payment'});
     document.getElementById('loadingOverlay').classList.remove('show');
-    const msg = encodeURIComponent(`🏔️ *New Booking Request*\n\nRef: ${ref}\nPackage: ${state.pkg?.name}\nDate: ${state.date}\nGuest: ${state.fname} ${state.lname}\nMobile: ${state.phone}\nPax: ${state.adults}A+${state.children}C\nVehicle: ${state.fleetLabel || state.vehicle}\nHotel: ${HOTEL_LABELS[state.hotel]}\nTotal: ₹${state.totalAmt.toLocaleString('en-IN')}\nPaying: ₹${payAmt.toLocaleString('en-IN')} (${state.payMode})\n\nPlease share payment QR / account details.`);
+    const msg = encodeURIComponent(`🏔️ *New Booking Request*\n\nRef: ${ref}\nPackage: ${state.pkg?.name}\nDate: ${state.date}\nGuest: ${state.fname} ${state.lname}\nMobile: ${state.phone}\nPax: ${state.adults}A+${state.children}C\nVehicle: ${state.fleetLabel || state.vehicle}\nHotel: ${HOTEL_LABELS[state.hotel]}\nTotal: ₹${state.totalAmt.toLocaleString('en-IN')}\nPaying: ₹${payAmt.toLocaleString('en-IN')} (${PAY_MODE_LABEL[state.payMode] || state.payMode})\n\nPlease share payment QR / account details.`);
     window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
     showSuccess(ref, payAmt);
     return;
