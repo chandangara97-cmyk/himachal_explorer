@@ -259,12 +259,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      planning (then only the Delhi/Chandigarh/Amritsar/Shimla pickup Master
      Plan tours show). Nothing below renders until this is answered. -->
 <div class="trip-gate" id="tripGate">
-  <div class="trip-gate-card">
-    <h3 class="trip-gate-title">Where are you starting your trip from?</h3>
-    <p class="trip-gate-sub">Answer once — we'll only show packages that actually work for you.</p>
+  <div class="trip-gate-inner">
+    <div class="trip-gate-eyebrow" id="tripGateEyebrow">TRIP PLANNER</div>
+    <h3 class="trip-gate-title" id="tripGateTitleText">Where are you starting your trip from?</h3>
+    <p class="trip-gate-sub" id="tripGateSubText">Answer once — we'll only show packages that actually work for you. You can change this anytime.</p>
+
     <div class="trip-gate-options" id="tripGateStep1">
-      <button class="trip-gate-btn" onclick="selectTravelerMode('here')">🏔️ I'm already in Himachal</button>
-      <button class="trip-gate-btn" onclick="selectTravelerMode('planning')">🧳 Just planning my trip</button>
+      <div class="tg-card" onclick="selectTravelerMode('here')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')selectTravelerMode('here')">
+        <span class="tg-card-eyebrow">OPTION 01</span>
+        <span class="tg-card-icon">📍</span>
+        <h4 class="tg-card-title">I'm Already in Himachal</h4>
+        <p class="tg-card-desc">Tell us which town you're in and we'll only show tours that actually start from where you are.</p>
+        <ul class="tg-card-list">
+          <li>Pick your current town</li>
+          <li>Local tours, no long-haul pickups</li>
+          <li>Instant match, no waiting</li>
+        </ul>
+        <span class="tg-card-cta">Continue <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="tg-card" onclick="selectTravelerMode('planning')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')selectTravelerMode('planning')">
+        <span class="tg-card-eyebrow">OPTION 02</span>
+        <span class="tg-card-icon">🧳</span>
+        <h4 class="tg-card-title">Just Planning My Trip</h4>
+        <p class="tg-card-desc">We'll show Master Plan tours with pickup from Delhi, Chandigarh, Amritsar or Shimla.</p>
+        <ul class="tg-card-list">
+          <li>Curated multi-day circuits</li>
+          <li>Pickup from major cities</li>
+          <li>Fixed departure points</li>
+        </ul>
+        <span class="tg-card-cta">Continue <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
     </div>
     <div class="trip-gate-options" id="tripGateStep2" style="display:none"></div>
   </div>
@@ -1405,6 +1429,9 @@ function selectTravelerMode(mode) {
   }
   // mode === 'here' → drill into "where are you now?"
   document.getElementById('tripGateStep1').style.display = 'none';
+  document.getElementById('tripGateEyebrow').textContent = 'STEP 2 OF 2';
+  document.getElementById('tripGateTitleText').textContent = 'Which town are you in?';
+  document.getElementById('tripGateSubText').textContent = "We'll only show tours that start near you.";
   const step2 = document.getElementById('tripGateStep2');
   const cities = getLocalCityOptions();
   step2.innerHTML = cities.map(c =>
@@ -1415,6 +1442,9 @@ function selectTravelerMode(mode) {
 function backToTripGateStep1() {
   document.getElementById('tripGateStep2').style.display = 'none';
   document.getElementById('tripGateStep1').style.display = 'flex';
+  document.getElementById('tripGateEyebrow').textContent = 'TRIP PLANNER';
+  document.getElementById('tripGateTitleText').textContent = 'Where are you starting your trip from?';
+  document.getElementById('tripGateSubText').textContent = "Answer once — we'll only show packages that actually work for you. You can change this anytime.";
 }
 function selectCurrentCity(cityValue) {
   state.travelerMode = 'here';
@@ -1432,7 +1462,7 @@ function reopenTripGate() {
   document.getElementById('tripGateStep1').style.display = 'flex';
   document.getElementById('tripGateStep2').style.display = 'none';
   document.getElementById('packageSectionsWrap').style.display = 'none';
-  document.body.style.overflow = 'hidden';
+  document.getElementById('tripGate').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function updateTripGateUI() {
   const gate = document.getElementById('tripGate');
@@ -1442,11 +1472,9 @@ function updateTripGateUI() {
     gate.style.display = 'flex';
     summary.style.display = 'none';
     wrap.style.display = 'none';
-    document.body.style.overflow = 'hidden';
     return;
   }
   gate.style.display = 'none';
-  document.body.style.overflow = '';
   summary.style.display = 'flex';
   wrap.style.display = '';
   document.getElementById('tripGateSummaryText').textContent = state.travelerMode === 'planning'
