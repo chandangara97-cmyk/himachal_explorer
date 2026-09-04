@@ -180,7 +180,58 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<section class="hero" id="heroSection">
+<!-- ─── TRIP GATE ───────────────────────────────────────────────────────────
+     The one question that decides which packages get shown at all: are you
+     already in Himachal (then only YOUR town's local tours show), or still
+     planning (then only the Delhi/Chandigarh/Amritsar/Shimla pickup Master
+     Plan tours show). This is the FIRST thing shown on the page — the hero
+     and the featured package card only appear once this is answered. -->
+<div class="trip-gate" id="tripGate">
+  <div class="trip-gate-inner">
+    <div class="trip-gate-brand">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M2 19l6.5-11 4.2 6.3 3-4.8 6.3 9.5H2z" fill="currentColor"/></svg>
+      <span>Himachal Explorer</span>
+    </div>
+    <p class="trip-gate-tagline">Himachal Pradesh · Curated Journeys</p>
+    <div class="trip-gate-eyebrow" id="tripGateEyebrow">TRIP PLANNER</div>
+    <h3 class="trip-gate-title" id="tripGateTitleText">Where are you starting your trip from?</h3>
+    <p class="trip-gate-sub" id="tripGateSubText">Answer once — we'll only show packages that actually work for you. You can change this anytime.</p>
+
+    <div class="trip-gate-options" id="tripGateStep1">
+      <div class="tg-card" onclick="selectTravelerMode('here')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')selectTravelerMode('here')">
+        <span class="tg-card-eyebrow">OPTION 01</span>
+        <span class="tg-card-icon">📍</span>
+        <h4 class="tg-card-title">I'm Already in Himachal</h4>
+        <p class="tg-card-desc">Tell us which town you're in and we'll only show tours that actually start from where you are.</p>
+        <ul class="tg-card-list">
+          <li>Pick your current town</li>
+          <li>Local tours, no long-haul pickups</li>
+          <li>Instant match, no waiting</li>
+        </ul>
+        <span class="tg-card-cta">Continue <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="tg-card" onclick="selectTravelerMode('planning')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')selectTravelerMode('planning')">
+        <span class="tg-card-eyebrow">OPTION 02</span>
+        <span class="tg-card-icon">🧳</span>
+        <h4 class="tg-card-title">Just Planning My Trip</h4>
+        <p class="tg-card-desc">We'll show Master Plan tours with pickup from Delhi, Chandigarh, Amritsar or Shimla.</p>
+        <ul class="tg-card-list">
+          <li>Curated multi-day circuits</li>
+          <li>Pickup from major cities</li>
+          <li>Fixed departure points</li>
+        </ul>
+        <span class="tg-card-cta">Continue <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </div>
+    <div class="trip-gate-options" id="tripGateStep2" style="display:none"></div>
+  </div>
+</div>
+<div class="trip-gate-summary" id="tripGateSummary" style="display:none">
+  <span id="tripGateSummaryText"></span>
+  <button class="trip-gate-change" onclick="reopenTripGate()">Change</button>
+</div>
+
+<section class="hero" id="heroSection" style="display:none">
   <div class="hero-slides" id="heroSlides">
     <!-- Spiti Valley monastery, high-res -->
     <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1920&q=90&fit=crop')"></div>
@@ -219,7 +270,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <button class="hero-scroll-hint" onclick="scrollToPackages()"><span class="hero-scroll-line"></span>Scroll to packages</button>
 </section>
 
-<div class="master-pkg-wrap" id="masterPkgWrap">
+<div class="master-pkg-wrap" id="masterPkgWrap" style="display:none">
   <div class="master-pkg-card" onclick="goToPackagePage('chandigarh-grand-himachal-16d')">
     <div class="mpc-media">
       <span class="mpc-badge">★ Signature Itinerary</span>
@@ -253,50 +304,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<!-- ─── TRIP GATE ───────────────────────────────────────────────────────────
-     The one question that decides which packages get shown at all: are you
-     already in Himachal (then only YOUR town's local tours show), or still
-     planning (then only the Delhi/Chandigarh/Amritsar/Shimla pickup Master
-     Plan tours show). Nothing below renders until this is answered. -->
-<div class="trip-gate" id="tripGate">
-  <div class="trip-gate-inner">
-    <div class="trip-gate-eyebrow" id="tripGateEyebrow">TRIP PLANNER</div>
-    <h3 class="trip-gate-title" id="tripGateTitleText">Where are you starting your trip from?</h3>
-    <p class="trip-gate-sub" id="tripGateSubText">Answer once — we'll only show packages that actually work for you. You can change this anytime.</p>
-
-    <div class="trip-gate-options" id="tripGateStep1">
-      <div class="tg-card" onclick="selectTravelerMode('here')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')selectTravelerMode('here')">
-        <span class="tg-card-eyebrow">OPTION 01</span>
-        <span class="tg-card-icon">📍</span>
-        <h4 class="tg-card-title">I'm Already in Himachal</h4>
-        <p class="tg-card-desc">Tell us which town you're in and we'll only show tours that actually start from where you are.</p>
-        <ul class="tg-card-list">
-          <li>Pick your current town</li>
-          <li>Local tours, no long-haul pickups</li>
-          <li>Instant match, no waiting</li>
-        </ul>
-        <span class="tg-card-cta">Continue <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-      <div class="tg-card" onclick="selectTravelerMode('planning')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')selectTravelerMode('planning')">
-        <span class="tg-card-eyebrow">OPTION 02</span>
-        <span class="tg-card-icon">🧳</span>
-        <h4 class="tg-card-title">Just Planning My Trip</h4>
-        <p class="tg-card-desc">We'll show Master Plan tours with pickup from Delhi, Chandigarh, Amritsar or Shimla.</p>
-        <ul class="tg-card-list">
-          <li>Curated multi-day circuits</li>
-          <li>Pickup from major cities</li>
-          <li>Fixed departure points</li>
-        </ul>
-        <span class="tg-card-cta">Continue <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-    </div>
-    <div class="trip-gate-options" id="tripGateStep2" style="display:none"></div>
-  </div>
-</div>
-<div class="trip-gate-summary" id="tripGateSummary" style="display:none">
-  <span id="tripGateSummaryText"></span>
-  <button class="trip-gate-change" onclick="reopenTripGate()">Change</button>
-</div>
 
 <div class="filter-bar" id="filterBar">
   <div class="filter-bar-headline">
@@ -713,7 +720,10 @@ const LOCAL_CITY_LABELS = {
   DALHOUSIE: 'Dalhousie',
   BHUNTAR: 'Kasol / Parvati Valley',
   MANDI: 'Mandi',
-  KAZA: 'Kaza / Spiti'
+  KAZA: 'Kaza / Spiti',
+  KALPA: 'Kalpa',
+  SANGLA: 'Sangla',
+  'RECKONG PEO': 'Kalpa / Sangla (Kinnaur)'
 };
 function localCityLabel(raw) {
   const key = (raw || '').trim().toUpperCase();
@@ -1462,21 +1472,29 @@ function reopenTripGate() {
   document.getElementById('tripGateStep1').style.display = 'flex';
   document.getElementById('tripGateStep2').style.display = 'none';
   document.getElementById('packageSectionsWrap').style.display = 'none';
-  document.getElementById('tripGate').scrollIntoView({behavior:'smooth',block:'start'});
+  document.getElementById('heroSection').style.display = 'none';
+  document.getElementById('masterPkgWrap').style.display = 'none';
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 function updateTripGateUI() {
   const gate = document.getElementById('tripGate');
   const summary = document.getElementById('tripGateSummary');
   const wrap = document.getElementById('packageSectionsWrap');
+  const hero = document.getElementById('heroSection');
+  const masterWrap = document.getElementById('masterPkgWrap');
   if (!state.travelerMode) {
     gate.style.display = 'flex';
     summary.style.display = 'none';
     wrap.style.display = 'none';
+    hero.style.display = 'none';
+    masterWrap.style.display = 'none';
     return;
   }
   gate.style.display = 'none';
   summary.style.display = 'flex';
   wrap.style.display = '';
+  hero.style.display = '';
+  masterWrap.style.display = '';
   document.getElementById('tripGateSummaryText').textContent = state.travelerMode === 'planning'
     ? '🧳 Planning your trip — showing Master Plan tours (pickup from Delhi / Chandigarh / Amritsar / Shimla)'
     : `📍 Already in Himachal, at ${localCityLabel(state.currentCity)} — showing local tours from here`;

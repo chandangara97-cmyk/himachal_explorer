@@ -672,9 +672,17 @@ body::before{
   min-height:min(88vh,760px);
   display:flex;align-items:center;justify-content:center;
   padding:64px 20px;
+  margin-top:var(--header-h);
   position:relative;z-index:1;
 }
 .trip-gate-inner{width:100%;max-width:960px;text-align:center;margin:0 auto}
+.trip-gate-brand{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--ink);
+  margin-bottom:6px;
+}
+.trip-gate-brand svg{color:var(--gold3)}
+.trip-gate-tagline{font-size:12.5px;letter-spacing:.04em;color:var(--caption);margin-bottom:28px}
 .trip-gate-eyebrow{
   font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:.14em;
   text-transform:uppercase;color:var(--gold3);margin-bottom:14px;
