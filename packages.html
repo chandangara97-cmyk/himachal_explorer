@@ -253,6 +253,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
+<!-- ─── TRIP GATE ───────────────────────────────────────────────────────────
+     The one question that decides which packages get shown at all: are you
+     already in Himachal (then only YOUR town's local tours show), or still
+     planning (then only the Delhi/Chandigarh/Amritsar/Shimla pickup Master
+     Plan tours show). Nothing below renders until this is answered. -->
+<div class="trip-gate" id="tripGate">
+  <div class="trip-gate-card">
+    <h3 class="trip-gate-title">Where are you starting your trip from?</h3>
+    <p class="trip-gate-sub">Answer once — we'll only show packages that actually work for you.</p>
+    <div class="trip-gate-options" id="tripGateStep1">
+      <button class="trip-gate-btn" onclick="selectTravelerMode('here')">🏔️ I'm already in Himachal</button>
+      <button class="trip-gate-btn" onclick="selectTravelerMode('planning')">🧳 Just planning my trip</button>
+    </div>
+    <div class="trip-gate-options" id="tripGateStep2" style="display:none"></div>
+  </div>
+</div>
+<div class="trip-gate-summary" id="tripGateSummary" style="display:none">
+  <span id="tripGateSummaryText"></span>
+  <button class="trip-gate-change" onclick="reopenTripGate()">Change</button>
+</div>
+
 <div class="filter-bar" id="filterBar">
   <div class="filter-bar-headline">
     <div>
@@ -351,10 +372,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ⚡ <span><strong>Peak Season Alert:</strong> May, June, Dec & Jan have higher transport rates. Prices shown are base.</span>
       </div>
 
-      <div id="packageSectionsWrap">
+      <div id="packageSectionsWrap" style="display:none">
         <div class="pkg-section" id="localSection">
           <div class="pkg-section-head">
-            <h3 class="pkg-section-title">📍 Local Himachal Tours<span class="pkg-section-sub">Start within Himachal · 1 day onwards</span></h3>
+            <h3 class="pkg-section-title" id="localSectionTitle">📍 Local Tours<span class="pkg-section-sub" id="localSectionSub">Starting from your current location</span></h3>
             <span class="pkg-section-count" id="localCount">0 packages</span>
           </div>
           <div class="packages-grid" id="packagesGridLocal"></div>
@@ -362,7 +383,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <div class="pkg-section" id="masterSection">
           <div class="pkg-section-head">
-            <h3 class="pkg-section-title">🧭 Master Plan Tours<span class="pkg-section-sub">Pickup from Delhi · Chandigarh · Amritsar</span></h3>
+            <h3 class="pkg-section-title">🧭 Master Plan Tours<span class="pkg-section-sub">Pickup from Delhi · Chandigarh · Amritsar · Shimla</span></h3>
             <span class="pkg-section-count" id="masterCount">0 packages</span>
           </div>
           <div class="packages-grid" id="packagesGridMaster"></div>
@@ -644,16 +665,49 @@ let PACKAGES = [];
 let ITINERARIES = {};
 let PKG_IMG = {};;
 
-// ── Local vs Master Plan classification ─────────────────────────────────────
-// A package's start_point tells us where the traveller boards. If it names
-// an outstation gateway city (Delhi / Chandigarh / Amritsar / Pathankot), the
-// itinerary is a "Master Plan" tour that begins outside Himachal. Anything
-// else (Manali, Shimla, Dharamshala, Bhuntar, Kaza…) is a "Local" tour that
-// starts within Himachal. Keeping this one check as the single source of
-// truth is what keeps the two package sets from mingling anywhere on the page.
-const OUTSTATION_GATEWAY_RE = /DELHI|CHANDIGARH|AMRITSAR|PATHANKOT/i;
-function isOutstationPackage(pkg) {
-  return OUTSTATION_GATEWAY_RE.test(pkg && pkg.start_point || '');
+// ── "Already in Himachal" vs "Planning to visit" classification ────────────
+// This drives the trip-gate question on this page. A package's start_point
+// tells us where the traveller boards:
+//  - Names a pickup HUB (Delhi / Chandigarh / Amritsar / Pathankot / Shimla)
+//    → a "Master Plan" tour aimed at someone still PLANNING their trip and
+//      needing pickup — this includes the big Shimla-hub circuits that run
+//      onward to Spiti/Kaza, since those are booked before arrival too.
+//  - Anything else (Manali, Dharamshala, Dalhousie, Bhuntar/Kasol…) → a
+//    single-town "Local" tour for someone who says they're ALREADY in
+//    Himachal, at that exact town.
+// Keeping this one check as the single source of truth is what keeps the two
+// package sets from mingling anywhere on the page.
+const PLANNING_HUB_RE = /DELHI|CHANDIGARH|AMRITSAR|PATHANKOT|SHIMLA/i;
+function isPlanningPackage(pkg) {
+  return PLANNING_HUB_RE.test(pkg && pkg.start_point || '');
+}
+
+// Friendly labels for the "where are you now?" local-city buttons.
+const LOCAL_CITY_LABELS = {
+  MANALI: 'Manali',
+  DHARAMSHALA: 'Dharamshala / McLeodganj',
+  DALHOUSIE: 'Dalhousie',
+  BHUNTAR: 'Kasol / Parvati Valley',
+  MANDI: 'Mandi',
+  KAZA: 'Kaza / Spiti'
+};
+function localCityLabel(raw) {
+  const key = (raw || '').trim().toUpperCase();
+  if (LOCAL_CITY_LABELS[key]) return LOCAL_CITY_LABELS[key];
+  return key ? key.charAt(0) + key.slice(1).toLowerCase() : '';
+}
+// Builds the list of "where are you now?" options straight from whatever
+// local-start packages are actually loaded, so it never goes stale as
+// Firebase data changes. Falls back to the known set if data isn't in yet.
+function getLocalCityOptions() {
+  const fromData = [...new Set(
+    (PACKAGES || [])
+      .filter(p => !isPlanningPackage(p))
+      .map(p => (p.start_point || '').trim().toUpperCase())
+      .filter(Boolean)
+  )];
+  const cities = fromData.length ? fromData : Object.keys(LOCAL_CITY_LABELS);
+  return cities.map(v => ({ value: v, label: localCityLabel(v) }));
 }
 
 const REGION_MAP = {
@@ -748,7 +802,7 @@ function formatLocationsPreview(pkg, max) {
 function fmt(n) { return '₹' + n.toLocaleString('en-IN'); }
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
-let state = { region:'all', dur:'all', tier:'budget', pax:4, sort:'popular', wishlist:new Set(), selectedId:null, gateway:'DELHI', drop:'DELHI' };
+let state = { region:'all', dur:'all', tier:'budget', pax:4, sort:'popular', wishlist:new Set(), selectedId:null, gateway:'DELHI', drop:'DELHI', travelerMode:null, currentCity:null };
 let activeDay = 1;
 const PEAK_MONTHS = [5,6,12,1];
 const isPeak = PEAK_MONTHS.includes(new Date().getMonth()+1);
@@ -1257,12 +1311,25 @@ function priceAscCmp(a,b){ return getPriceWithFallback(a.package_id,state.gatewa
 function priceDescCmp(a,b){ return -priceAscCmp(a,b); }
 
 // ─── RENDER CARDS ─────────────────────────────────────────────────────────────
-// Local (start-within-Himachal) and Master Plan (outstation-gateway) packages
-// are filtered, sorted and rendered as two fully separate lists/grids, so the
-// two data sets never mix together on screen.
+// Gated by the trip-gate answer (state.travelerMode):
+//  - 'here'     → ONLY that one town's local packages render, in the Local
+//                 section. Master Plan section is hidden outright.
+//  - 'planning' → ONLY the Delhi/Chandigarh/Amritsar/Shimla pickup Master
+//                 Plan packages render. Local section is hidden outright.
+//  - not answered yet → nothing renders (the trip-gate question is showing
+//                 instead of the grids — see updateTripGateUI()).
 function renderCards() {
   const localGrid = document.getElementById('packagesGridLocal');
   const masterGrid = document.getElementById('packagesGridMaster');
+  const localSection = document.getElementById('localSection');
+  const masterSection = document.getElementById('masterSection');
+
+  if (!state.travelerMode) {
+    localSection.style.display = 'none';
+    masterSection.style.display = 'none';
+    return;
+  }
+
   let list = [...PACKAGES];
 
   if (state.region !== 'all') { const fn = REGION_MAP[state.region]; if (fn) list = list.filter(p => fn(p.package_id)); }
@@ -1271,9 +1338,15 @@ function renderCards() {
   else if (state.dur === '6-7') list = list.filter(p => p.days>=6&&p.days<=7);
   else if (state.dur === '8+') list = list.filter(p => p.days>=8);
 
-  // Split into the two non-mingling sets, based purely on start_point.
-  let localList = list.filter(p => !isOutstationPackage(p));
-  let masterList = list.filter(p => isOutstationPackage(p));
+  // Apply the trip-gate answer — this is what keeps the two sets from mingling.
+  let localList = [];
+  let masterList = [];
+  if (state.travelerMode === 'planning') {
+    masterList = list.filter(p => isPlanningPackage(p));
+  } else if (state.travelerMode === 'here') {
+    const city = (state.currentCity || '').trim().toUpperCase();
+    localList = list.filter(p => !isPlanningPackage(p) && (p.start_point || '').trim().toUpperCase() === city);
+  }
 
   if (state.sort==='price-asc') { localList.sort(priceAscCmp); masterList.sort(priceAscCmp); }
   else if (state.sort==='price-desc') { localList.sort(priceDescCmp); masterList.sort(priceDescCmp); }
@@ -1305,25 +1378,86 @@ function renderCards() {
   const liveVehicle = getVehicleForPax(state.selectedId || (PACKAGES[0] && PACKAGES[0].package_id) || '', state.gateway||'DELHI', state.drop||'DELHI', state.pax||4);
   vh.textContent = liveVehicle || (state.pax<=4 ? 'Sedan recommended' : state.pax<=6 ? 'Ertiga/Innova recommended' : 'Tempo Traveller recommended');
 
-  document.getElementById('localSection').style.display = localList.length ? '' : (list.length ? 'none' : '');
-  document.getElementById('masterSection').style.display = masterList.length ? '' : (list.length ? 'none' : '');
+  // Only ONE section is ever visible at a time, matching the trip-gate answer.
+  localSection.style.display = state.travelerMode === 'here' ? '' : 'none';
+  masterSection.style.display = state.travelerMode === 'planning' ? '' : 'none';
 
-  if (!total) {
-    localGrid.innerHTML = '';
-    masterGrid.innerHTML = `<div class="no-results"><div class="no-results-icon">🏔</div><div class="no-results-title">No packages found</div></div>`;
-    document.getElementById('localSection').style.display = 'none';
-    document.getElementById('masterSection').style.display = '';
+  if (state.travelerMode === 'here') {
+    document.getElementById('localSectionTitle').innerHTML =
+      `📍 Local Tours in ${localCityLabel(state.currentCity)}<span class="pkg-section-sub" id="localSectionSub">Starting right where you are</span>`;
+    localGrid.innerHTML = localList.length
+      ? localList.map((pkg, idx) => renderCardHTML(pkg, idx)).join('')
+      : `<div class="pkg-section-empty">No local tours starting from ${localCityLabel(state.currentCity)} match these filters yet.</div>`;
+  } else {
+    masterGrid.innerHTML = masterList.length
+      ? masterList.map((pkg, idx) => renderCardHTML(pkg, idx)).join('')
+      : '<div class="pkg-section-empty">No master plan tours match these filters.</div>';
+  }
+}
+
+// ─── TRIP GATE — "are you already in Himachal, or still planning?" ───────────
+function selectTravelerMode(mode) {
+  if (mode === 'planning') {
+    state.travelerMode = 'planning';
+    state.currentCity = null;
+    finishTripGate();
     return;
   }
-
-  localGrid.innerHTML = localList.length
-    ? localList.map((pkg, idx) => renderCardHTML(pkg, idx)).join('')
-    : '<div class="pkg-section-empty">No local Himachal tours match these filters.</div>';
-
-  masterGrid.innerHTML = masterList.length
-    ? masterList.map((pkg, idx) => renderCardHTML(pkg, idx)).join('')
-    : '<div class="pkg-section-empty">No master plan tours match these filters.</div>';
+  // mode === 'here' → drill into "where are you now?"
+  document.getElementById('tripGateStep1').style.display = 'none';
+  const step2 = document.getElementById('tripGateStep2');
+  const cities = getLocalCityOptions();
+  step2.innerHTML = cities.map(c =>
+    `<button class="trip-gate-btn" onclick="selectCurrentCity('${c.value}')">📍 ${c.label}</button>`
+  ).join('') + `<button class="trip-gate-back" onclick="backToTripGateStep1()">← Back</button>`;
+  step2.style.display = 'flex';
 }
+function backToTripGateStep1() {
+  document.getElementById('tripGateStep2').style.display = 'none';
+  document.getElementById('tripGateStep1').style.display = 'flex';
+}
+function selectCurrentCity(cityValue) {
+  state.travelerMode = 'here';
+  state.currentCity = cityValue;
+  finishTripGate();
+}
+function finishTripGate() {
+  try { localStorage.setItem('heTripGate', JSON.stringify({ mode: state.travelerMode, city: state.currentCity })); } catch (e) {}
+  updateTripGateUI();
+  renderCards();
+}
+function reopenTripGate() {
+  document.getElementById('tripGate').style.display = 'block';
+  document.getElementById('tripGateSummary').style.display = 'none';
+  document.getElementById('tripGateStep1').style.display = 'flex';
+  document.getElementById('tripGateStep2').style.display = 'none';
+  document.getElementById('packageSectionsWrap').style.display = 'none';
+}
+function updateTripGateUI() {
+  const gate = document.getElementById('tripGate');
+  const summary = document.getElementById('tripGateSummary');
+  const wrap = document.getElementById('packageSectionsWrap');
+  if (!state.travelerMode) {
+    gate.style.display = 'block';
+    summary.style.display = 'none';
+    wrap.style.display = 'none';
+    return;
+  }
+  gate.style.display = 'none';
+  summary.style.display = 'flex';
+  wrap.style.display = '';
+  document.getElementById('tripGateSummaryText').textContent = state.travelerMode === 'planning'
+    ? '🧳 Planning your trip — showing Master Plan tours (pickup from Delhi / Chandigarh / Amritsar / Shimla)'
+    : `📍 Already in Himachal, at ${localCityLabel(state.currentCity)} — showing local tours from here`;
+}
+// Restore a previously answered trip-gate choice (if any) before the first render.
+(function loadTripGateFromStorage() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('heTripGate') || 'null');
+    if (saved && saved.mode) { state.travelerMode = saved.mode; state.currentCity = saved.city || null; }
+  } catch (e) {}
+  updateTripGateUI();
+})();
 
 // ─── CARD CLICK → dedicated package page ──────────────────────────────────────
 // Clicking a package card jumps straight to its own detail page (with full
