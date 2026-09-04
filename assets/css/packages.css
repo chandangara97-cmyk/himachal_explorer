@@ -672,7 +672,6 @@ body::before{
   min-height:min(88vh,760px);
   display:flex;align-items:center;justify-content:center;
   padding:64px 20px;
-  margin-top:var(--header-h);
   position:relative;z-index:1;
 }
 .trip-gate-inner{width:100%;max-width:960px;text-align:center;margin:0 auto}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Plan Your Trip | Himachal Explorer</title>
+<meta name="description" content="Tell us where you're starting from and we'll show Himachal tour packages that actually work for you."/>
+<meta name="robots" content="noindex,follow"/>
+<meta name="theme-color" content="#b07d3a"/>
+<link rel="canonical" href="https://himachalexplorer.in/trip-gate.html"/>
+<link rel="icon" type="image/png" sizes="32x32" href="https://himachalexplorer.in/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="https://himachalexplorer.in/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="https://himachalexplorer.in/logo-512.png"/>
+<link rel="manifest" href="https://himachalexplorer.in/site.webmanifest"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,500&family=Jost:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/packages.css">
+<style>
+  /* Page-specific overrides — this is a standalone bridge page, no fixed
+     nav/weather bar above it, so the trip-gate section owns the full viewport. */
+  body{overflow-x:hidden}
+  .trip-gate{min-height:100vh}
+  .tg-home-link{
+    position:fixed;top:18px;left:18px;z-index:5;
+    display:flex;align-items:center;gap:6px;
+    font-family:'Jost',sans-serif;font-size:12.5px;font-weight:600;color:var(--muted);
+    text-decoration:none;
+  }
+  .tg-home-link:hover{color:var(--gold3)}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="tg-home-link">← Home</a>
+
+<div class="trip-gate" id="tripGate">
+  <div class="trip-gate-inner">
+    <div class="trip-gate-brand">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M2 19l6.5-11 4.2 6.3 3-4.8 6.3 9.5H2z" fill="currentColor"/></svg>
+      <span>Himachal Explorer</span>
+    </div>
+    <p class="trip-gate-tagline">Himachal Pradesh · Curated Journeys</p>
+    <div class="trip-gate-eyebrow" id="tripGateEyebrow">TRIP PLANNER</div>
+    <h3 class="trip-gate-title" id="tripGateTitleText">Where are you starting your trip from?</h3>
+    <p class="trip-gate-sub" id="tripGateSubText">Answer once — we'll only show packages that actually work for you. You can change this anytime.</p>
+
+    <div class="trip-gate-options" id="tripGateStep1">
+      <div class="tg-card" onclick="selectTravelerMode('here')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')selectTravelerMode('here')">
+        <span class="tg-card-eyebrow">OPTION 01</span>
+        <span class="tg-card-icon">📍</span>
+        <h4 class="tg-card-title">I'm Already in Himachal</h4>
+        <p class="tg-card-desc">Tell us which town you're in and we'll only show tours that actually start from where you are.</p>
+        <ul class="tg-card-list">
+          <li>Pick your current town</li>
+          <li>Local tours, no long-haul pickups</li>
+          <li>Instant match, no waiting</li>
+        </ul>
+        <span class="tg-card-cta">Continue <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="tg-card" onclick="selectTravelerMode('planning')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')selectTravelerMode('planning')">
+        <span class="tg-card-eyebrow">OPTION 02</span>
+        <span class="tg-card-icon">🧳</span>
+        <h4 class="tg-card-title">Just Planning My Trip</h4>
+        <p class="tg-card-desc">We'll show Master Plan tours with pickup from Delhi, Chandigarh, Amritsar or Shimla.</p>
+        <ul class="tg-card-list">
+          <li>Curated multi-day circuits</li>
+          <li>Pickup from major cities</li>
+          <li>Fixed departure points</li>
+        </ul>
+        <span class="tg-card-cta">Continue <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </div>
+    <div class="trip-gate-options" id="tripGateStep2" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+// Known local starting towns. Kept in sync manually with LOCAL_CITY_LABELS
+// in packages.html — this bridge page doesn't load Firebase package data,
+// it just needs the list of valid "I'm already here" towns.
+const LOCAL_CITIES = [
+  { value: 'MANALI',      label: 'Manali' },
+  { value: 'DHARAMSHALA', label: 'Dharamshala / McLeodganj' },
+  { value: 'DALHOUSIE',   label: 'Dalhousie' },
+  { value: 'BHUNTAR',     label: 'Kasol / Parvati Valley' },
+  { value: 'MANDI',       label: 'Mandi' },
+  { value: 'KAZA',        label: 'Kaza / Spiti' },
+  { value: 'RECKONG PEO', label: 'Kalpa / Sangla (Kinnaur)' }
+];
+
+function selectTravelerMode(mode) {
+  if (mode === 'planning') {
+    saveAndGo('planning', null);
+    return;
+  }
+  document.getElementById('tripGateStep1').style.display = 'none';
+  document.getElementById('tripGateEyebrow').textContent = 'STEP 2 OF 2';
+  document.getElementById('tripGateTitleText').textContent = 'Which town are you in?';
+  document.getElementById('tripGateSubText').textContent = "We'll only show tours that start near you.";
+  const step2 = document.getElementById('tripGateStep2');
+  step2.innerHTML = LOCAL_CITIES.map(c =>
+    `<button class="trip-gate-btn" onclick="saveAndGo('here','${c.value}')">📍 ${c.label}</button>`
+  ).join('') + `<button class="trip-gate-back" onclick="backToStep1()">← Back</button>`;
+  step2.style.display = 'flex';
+}
+function backToStep1() {
+  document.getElementById('tripGateStep2').style.display = 'none';
+  document.getElementById('tripGateStep1').style.display = 'flex';
+  document.getElementById('tripGateEyebrow').textContent = 'TRIP PLANNER';
+  document.getElementById('tripGateTitleText').textContent = 'Where are you starting your trip from?';
+  document.getElementById('tripGateSubText').textContent = "Answer once — we'll only show packages that actually work for you. You can change this anytime.";
+}
+function saveAndGo(mode, city) {
+  try { localStorage.setItem('heTripGate', JSON.stringify({ mode, city })); } catch (e) {}
+  window.location.href = 'packages.html';
+}
+</script>
+</body>
+</html>
