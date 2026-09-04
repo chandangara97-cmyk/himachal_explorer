@@ -664,13 +664,23 @@ body::before{
 .peak-banner strong{color:var(--gold3)}
 
 /* TRIP GATE — the "already here / still planning" question that decides
-   which package set is even shown */
+   which package set is even shown. Renders as a full-screen modal takeover
+   (like the "Build My Tour" flow on the homepage) rather than an inline card. */
 .trip-gate{
-  max-width:760px;margin:0 auto 28px;
-  background:var(--surface);border:1px solid rgba(212,190,158,.35);
-  border-radius:16px;padding:28px 24px;text-align:center;
-  box-shadow:0 8px 28px rgba(28,20,9,.06);
+  position:fixed;inset:0;z-index:2000;
+  background:rgba(20,14,8,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
 }
+.trip-gate-card{
+  width:100%;max-width:480px;
+  background:var(--surface);border:1px solid rgba(212,190,158,.35);
+  border-radius:16px;padding:32px 28px;text-align:center;
+  box-shadow:0 20px 60px rgba(28,20,9,.35);
+  animation:tripGateIn .25s ease;
+  max-height:86vh;overflow-y:auto;
+}
+@keyframes tripGateIn{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
 .trip-gate-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--ink);margin-bottom:6px}
 .trip-gate-sub{font-size:13px;color:var(--caption);margin-bottom:20px}
 .trip-gate-options{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
@@ -696,7 +706,8 @@ body::before{
 }
 .trip-gate-change:hover{background:var(--gold);color:#fff}
 @media (max-width:768px){
-  .trip-gate{padding:22px 16px;margin-bottom:20px}
+  .trip-gate{padding:16px}
+  .trip-gate-card{padding:24px 20px}
   .trip-gate-title{font-size:19px}
   .trip-gate-options{flex-direction:column}
   .trip-gate-btn{width:100%}

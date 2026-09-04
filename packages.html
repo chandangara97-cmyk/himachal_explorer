@@ -1427,23 +1427,26 @@ function finishTripGate() {
   renderCards();
 }
 function reopenTripGate() {
-  document.getElementById('tripGate').style.display = 'block';
+  document.getElementById('tripGate').style.display = 'flex';
   document.getElementById('tripGateSummary').style.display = 'none';
   document.getElementById('tripGateStep1').style.display = 'flex';
   document.getElementById('tripGateStep2').style.display = 'none';
   document.getElementById('packageSectionsWrap').style.display = 'none';
+  document.body.style.overflow = 'hidden';
 }
 function updateTripGateUI() {
   const gate = document.getElementById('tripGate');
   const summary = document.getElementById('tripGateSummary');
   const wrap = document.getElementById('packageSectionsWrap');
   if (!state.travelerMode) {
-    gate.style.display = 'block';
+    gate.style.display = 'flex';
     summary.style.display = 'none';
     wrap.style.display = 'none';
+    document.body.style.overflow = 'hidden';
     return;
   }
   gate.style.display = 'none';
+  document.body.style.overflow = '';
   summary.style.display = 'flex';
   wrap.style.display = '';
   document.getElementById('tripGateSummaryText').textContent = state.travelerMode === 'planning'
