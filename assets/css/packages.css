@@ -671,6 +671,21 @@ body::before{
   transition:all .3s;
 }
 
+/* PACKAGE TYPE SECTIONS — keeps local-start and outstation/master-plan
+   packages visually and structurally separate so the two data sets never mingle */
+.pkg-section{margin-bottom:44px}
+.pkg-section + .pkg-section{padding-top:32px;border-top:1px solid rgba(212,190,158,.28)}
+.pkg-section-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.pkg-section-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--ink);display:flex;flex-direction:column;gap:4px}
+.pkg-section-sub{font-family:inherit;font-size:11.5px;font-weight:500;font-style:normal;letter-spacing:.04em;color:var(--caption)}
+.pkg-section-count{font-size:11px;color:var(--gold2);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.pkg-section-empty{padding:32px 20px;text-align:center;color:var(--caption);font-size:13px;background:var(--surface2);border-radius:12px;grid-column:1/-1}
+@media (max-width:768px){
+  .pkg-section{margin-bottom:28px}
+  .pkg-section + .pkg-section{padding-top:22px}
+  .pkg-section-title{font-size:18px}
+}
+
 /* PACKAGE CARD */
 .pkg-card{
   position:relative;border-radius:16px;overflow:hidden;

@@ -350,7 +350,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="peak-banner" id="peakBanner">
         ⚡ <span><strong>Peak Season Alert:</strong> May, June, Dec & Jan have higher transport rates. Prices shown are base.</span>
       </div>
-      <div class="packages-grid" id="packagesGrid"></div>
+
+      <div id="packageSectionsWrap">
+        <div class="pkg-section" id="localSection">
+          <div class="pkg-section-head">
+            <h3 class="pkg-section-title">📍 Local Himachal Tours<span class="pkg-section-sub">Start within Himachal · 1 day onwards</span></h3>
+            <span class="pkg-section-count" id="localCount">0 packages</span>
+          </div>
+          <div class="packages-grid" id="packagesGridLocal"></div>
+        </div>
+
+        <div class="pkg-section" id="masterSection">
+          <div class="pkg-section-head">
+            <h3 class="pkg-section-title">🧭 Master Plan Tours<span class="pkg-section-sub">Pickup from Delhi · Chandigarh · Amritsar</span></h3>
+            <span class="pkg-section-count" id="masterCount">0 packages</span>
+          </div>
+          <div class="packages-grid" id="packagesGridMaster"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -626,6 +643,18 @@ const CAT_COLORS = {
 let PACKAGES = [];
 let ITINERARIES = {};
 let PKG_IMG = {};;
+
+// ── Local vs Master Plan classification ─────────────────────────────────────
+// A package's start_point tells us where the traveller boards. If it names
+// an outstation gateway city (Delhi / Chandigarh / Amritsar / Pathankot), the
+// itinerary is a "Master Plan" tour that begins outside Himachal. Anything
+// else (Manali, Shimla, Dharamshala, Bhuntar, Kaza…) is a "Local" tour that
+// starts within Himachal. Keeping this one check as the single source of
+// truth is what keeps the two package sets from mingling anywhere on the page.
+const OUTSTATION_GATEWAY_RE = /DELHI|CHANDIGARH|AMRITSAR|PATHANKOT/i;
+function isOutstationPackage(pkg) {
+  return OUTSTATION_GATEWAY_RE.test(pkg && pkg.start_point || '');
+}
 
 const REGION_MAP = {
   shimla: id => /shimla|kasauli|barog|sirmaur/.test(id),
@@ -1145,50 +1174,9 @@ function getCompAmt(site, days, tier, pax) {
   return t[clampedPax] || t[4] || 0;
 }
 
-// ─── RENDER CARDS ─────────────────────────────────────────────────────────────
-function renderCards() {
-  const grid = document.getElementById('packagesGrid');
-  let list = [...PACKAGES];
-
-  if (state.region !== 'all') { const fn = REGION_MAP[state.region]; if (fn) list = list.filter(p => fn(p.package_id)); }
-  if (state.dur === '2-3') list = list.filter(p => p.days<=3);
-  else if (state.dur === '4-5') list = list.filter(p => p.days>=4&&p.days<=5);
-  else if (state.dur === '6-7') list = list.filter(p => p.days>=6&&p.days<=7);
-  else if (state.dur === '8+') list = list.filter(p => p.days>=8);
-
-  if (state.sort==='price-asc') list.sort((a,b)=>getPriceWithFallback(a.package_id,state.gateway||'DELHI',state.drop||'DELHI',state.pax||4,state.tier||'budget')-getPriceWithFallback(b.package_id,state.gateway||'DELHI',state.drop||'DELHI',state.pax||4,state.tier||'budget'));
-  else if (state.sort==='price-desc') list.sort((a,b)=>getPriceWithFallback(b.package_id,state.gateway||'DELHI',state.drop||'DELHI',state.pax||4,state.tier||'budget')-getPriceWithFallback(a.package_id,state.gateway||'DELHI',state.drop||'DELHI',state.pax||4,state.tier||'budget'));
-  else if (state.sort==='days-asc') list.sort((a,b)=>a.days-b.days);
-  else if (state.sort==='days-desc') list.sort((a,b)=>b.days-a.days);
-
-  // ── Priority: Spiti first, then Manali, then rest ──
-  if (state.region === 'all') {
-    const priority = id => {
-      if (/chandigarh-grand-himachal-16d/.test(id)) return -1;
-      if (/spiti|kinnaur/.test(id)) return 0;
-      if (/manali|lahaul/.test(id)) return 1;
-      return 2;
-    };
-    list.sort((a, b) => priority(a.package_id) - priority(b.package_id));
-  }
-
-  document.getElementById('peakBanner').classList.toggle('show', isPeak&&state.region==='all');
-  document.getElementById('headingCount').textContent = list.length;
-  const tierLabel = {budget:'Budget',premium:'Premium',luxury:'Luxury'}[state.tier];
-  const regionLabels = {all:'All Regions',shimla:'Shimla',manali:'Manali',spiti:'Spiti',kinnaur:'Kinnaur',dharamshala:'Kangra',parvati:'Parvati',chamba:'Chamba',mandi:'Mandi'};
-  document.getElementById('resultsMeta').textContent = `${regionLabels[state.region]} · ${tierLabel} · ${state.pax} traveller${state.pax>1?'s':''}`;
-
-  const vh = document.getElementById('vehicleHint');
-  const liveVehicle = getVehicleForPax(state.selectedId || (PACKAGES[0] && PACKAGES[0].package_id) || '', state.gateway||'DELHI', state.drop||'DELHI', state.pax||4);
-  vh.textContent = liveVehicle || (state.pax<=4 ? 'Sedan recommended' : state.pax<=6 ? 'Ertiga/Innova recommended' : 'Tempo Traveller recommended');
-
-  if (!list.length) {
-    grid.innerHTML = `<div class="no-results"><div class="no-results-icon">🏔</div><div class="no-results-title">No packages found</div></div>`;
-    return;
-  }
-
-  grid.innerHTML = list.map((pkg, idx) => {
-    try {
+// ─── CARD TEMPLATE (shared by both the Local and Master Plan grids) ──────────
+function renderCardHTML(pkg, idx) {
+  try {
     const tags = pkg.tags ? pkg.tags.split(',').slice(0,3) : [];
     const isWished = state.wishlist.has(pkg.package_id);
     const imgUrl = PKG_IMG[pkg.package_id] || getPackageFallbackImg(pkg) || window.FALLBACK_IMG || 'assets/images/manali_1.jpg';
@@ -1198,6 +1186,7 @@ function renderCards() {
 
     const tier = state.tier || 'budget';
     const pax  = state.pax  || 4;
+    const tierLabel = {budget:'Budget',premium:'Premium',luxury:'Luxury'}[tier];
     const { ourPrice, pct, regularPrice, savings } = getPricingWithDiscount(pkg.package_id, state.gateway||'DELHI', state.drop||'DELHI', pax, tier);
     const fmtInr = n => '₹' + n.toLocaleString('en-IN');
 
@@ -1258,11 +1247,82 @@ function renderCards() {
         </div>
       </div>
     </div>`;
-    } catch (err) {
-      console.warn('Skipped a package card that failed to render:', pkg && pkg.package_id, err);
-      return '';
-    }
-  }).join('');
+  } catch (err) {
+    console.warn('Skipped a package card that failed to render:', pkg && pkg.package_id, err);
+    return '';
+  }
+}
+
+function priceAscCmp(a,b){ return getPriceWithFallback(a.package_id,state.gateway||'DELHI',state.drop||'DELHI',state.pax||4,state.tier||'budget')-getPriceWithFallback(b.package_id,state.gateway||'DELHI',state.drop||'DELHI',state.pax||4,state.tier||'budget'); }
+function priceDescCmp(a,b){ return -priceAscCmp(a,b); }
+
+// ─── RENDER CARDS ─────────────────────────────────────────────────────────────
+// Local (start-within-Himachal) and Master Plan (outstation-gateway) packages
+// are filtered, sorted and rendered as two fully separate lists/grids, so the
+// two data sets never mix together on screen.
+function renderCards() {
+  const localGrid = document.getElementById('packagesGridLocal');
+  const masterGrid = document.getElementById('packagesGridMaster');
+  let list = [...PACKAGES];
+
+  if (state.region !== 'all') { const fn = REGION_MAP[state.region]; if (fn) list = list.filter(p => fn(p.package_id)); }
+  if (state.dur === '2-3') list = list.filter(p => p.days<=3);
+  else if (state.dur === '4-5') list = list.filter(p => p.days>=4&&p.days<=5);
+  else if (state.dur === '6-7') list = list.filter(p => p.days>=6&&p.days<=7);
+  else if (state.dur === '8+') list = list.filter(p => p.days>=8);
+
+  // Split into the two non-mingling sets, based purely on start_point.
+  let localList = list.filter(p => !isOutstationPackage(p));
+  let masterList = list.filter(p => isOutstationPackage(p));
+
+  if (state.sort==='price-asc') { localList.sort(priceAscCmp); masterList.sort(priceAscCmp); }
+  else if (state.sort==='price-desc') { localList.sort(priceDescCmp); masterList.sort(priceDescCmp); }
+  else if (state.sort==='days-asc') { localList.sort((a,b)=>a.days-b.days); masterList.sort((a,b)=>a.days-b.days); }
+  else if (state.sort==='days-desc') { localList.sort((a,b)=>b.days-a.days); masterList.sort((a,b)=>b.days-a.days); }
+  else {
+    // 'popular' — Local tours lead with the shortest (1-2 day) trips first;
+    // Master Plan tours keep the existing Spiti/Kinnaur/Manali priority order.
+    localList.sort((a,b) => a.days - b.days);
+    const priority = id => {
+      if (/chandigarh-grand-himachal-16d/.test(id)) return -1;
+      if (/spiti|kinnaur/.test(id)) return 0;
+      if (/manali|lahaul/.test(id)) return 1;
+      return 2;
+    };
+    masterList.sort((a, b) => priority(a.package_id) - priority(b.package_id));
+  }
+
+  const total = localList.length + masterList.length;
+  document.getElementById('peakBanner').classList.toggle('show', isPeak&&state.region==='all');
+  document.getElementById('headingCount').textContent = total;
+  const tierLabel = {budget:'Budget',premium:'Premium',luxury:'Luxury'}[state.tier];
+  const regionLabels = {all:'All Regions',shimla:'Shimla',manali:'Manali',spiti:'Spiti',kinnaur:'Kinnaur',dharamshala:'Kangra',parvati:'Parvati',chamba:'Chamba',mandi:'Mandi'};
+  document.getElementById('resultsMeta').textContent = `${regionLabels[state.region]} · ${tierLabel} · ${state.pax} traveller${state.pax>1?'s':''}`;
+  document.getElementById('localCount').textContent = `${localList.length} package${localList.length===1?'':'s'}`;
+  document.getElementById('masterCount').textContent = `${masterList.length} package${masterList.length===1?'':'s'}`;
+
+  const vh = document.getElementById('vehicleHint');
+  const liveVehicle = getVehicleForPax(state.selectedId || (PACKAGES[0] && PACKAGES[0].package_id) || '', state.gateway||'DELHI', state.drop||'DELHI', state.pax||4);
+  vh.textContent = liveVehicle || (state.pax<=4 ? 'Sedan recommended' : state.pax<=6 ? 'Ertiga/Innova recommended' : 'Tempo Traveller recommended');
+
+  document.getElementById('localSection').style.display = localList.length ? '' : (list.length ? 'none' : '');
+  document.getElementById('masterSection').style.display = masterList.length ? '' : (list.length ? 'none' : '');
+
+  if (!total) {
+    localGrid.innerHTML = '';
+    masterGrid.innerHTML = `<div class="no-results"><div class="no-results-icon">🏔</div><div class="no-results-title">No packages found</div></div>`;
+    document.getElementById('localSection').style.display = 'none';
+    document.getElementById('masterSection').style.display = '';
+    return;
+  }
+
+  localGrid.innerHTML = localList.length
+    ? localList.map((pkg, idx) => renderCardHTML(pkg, idx)).join('')
+    : '<div class="pkg-section-empty">No local Himachal tours match these filters.</div>';
+
+  masterGrid.innerHTML = masterList.length
+    ? masterList.map((pkg, idx) => renderCardHTML(pkg, idx)).join('')
+    : '<div class="pkg-section-empty">No master plan tours match these filters.</div>';
 }
 
 // ─── CARD CLICK → dedicated package page ──────────────────────────────────────
@@ -1666,8 +1726,11 @@ setInterval(fetchWeather, 15 * 60 * 1000);
 // PACKAGES / ITINERARIES / PKG_IMG all come from Firebase (single source of
 // truth — see assets/js/package-data.js). No local copies live in this file.
 (function () {
-  const grid = document.getElementById('packagesGrid');
-  if (grid) grid.innerHTML = '<div style="padding:60px 20px;text-align:center;color:#888;font-size:14px;grid-column:1/-1;">Loading tours…</div>';
+  const loadingHTML = '<div style="padding:60px 20px;text-align:center;color:#888;font-size:14px;grid-column:1/-1;">Loading tours…</div>';
+  const localGridEl = document.getElementById('packagesGridLocal');
+  const masterGridEl = document.getElementById('packagesGridMaster');
+  if (localGridEl) localGridEl.innerHTML = loadingHTML;
+  if (masterGridEl) masterGridEl.innerHTML = loadingHTML;
 
   PackageData.load().then(data => {
     PACKAGES = data.packages.map(pkg => ({
@@ -1704,7 +1767,9 @@ setInterval(fetchWeather, 15 * 60 * 1000);
     renderCards(); // prices come from PricingEngine.computePrice() — no async fetch needed
   }).catch(err => {
     console.error('Failed to load package data from Firebase:', err);
-    if (grid) grid.innerHTML = '<div style="padding:60px 20px;text-align:center;color:#c33;font-size:14px;grid-column:1/-1;">Couldn\u2019t load tours right now — please refresh.</div>';
+    const errHTML = '<div style="padding:60px 20px;text-align:center;color:#c33;font-size:14px;grid-column:1/-1;">Couldn\u2019t load tours right now — please refresh.</div>';
+    if (localGridEl) localGridEl.innerHTML = errHTML;
+    if (masterGridEl) masterGridEl.innerHTML = '';
   });
 })();
 
@@ -2007,11 +2072,11 @@ setInterval(fetchWeather, 15 * 60 * 1000);
       });
     }
 
-    // Run now and watch for dynamic card injection
+    // Run now and watch for dynamic card injection in either grid
     addLocationStrips();
     const observer = new MutationObserver(addLocationStrips);
-    const grid = document.getElementById('packagesGrid');
-    if (grid) observer.observe(grid, { childList: true, subtree: false });
+    const gridsWrap = document.getElementById('packageSectionsWrap');
+    if (gridsWrap) observer.observe(gridsWrap, { childList: true, subtree: true });
 
     // ── 3. Active filter chips above feed ──
     const pageLayout = document.querySelector('.page-layout');
