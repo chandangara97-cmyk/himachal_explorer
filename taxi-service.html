@@ -207,6 +207,24 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
   .stat-lbl{font-size:7px}
   .hero{padding:0 var(--px) 32px;min-height:360px}
 }
+/* ──── TAXI ARRIVAL GATE (modal) ──── */
+.taxi-gate-overlay{position:fixed;inset:0;z-index:1000;background:rgba(15,12,7,0);display:none;align-items:center;justify-content:center;padding:20px;pointer-events:none;transition:background .3s}
+.taxi-gate-overlay.open{display:flex;background:rgba(15,12,7,.62);pointer-events:all}
+.taxi-gate-modal{width:min(620px,100%);max-height:88vh;overflow-y:auto;background:var(--surface);border-radius:18px;box-shadow:0 30px 70px -20px rgba(28,20,9,.55);padding:32px 28px;transform:translateY(14px);opacity:0;transition:transform .3s cubic-bezier(.16,1,.3,1),opacity .3s}
+.taxi-gate-overlay.open .taxi-gate-modal{transform:translateY(0);opacity:1}
+.taxi-gate-kicker{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
+.taxi-gate-modal h3{font-size:24px;margin:0 0 6px}
+.taxi-gate-modal p.sub{font-size:12.5px;color:var(--caption);margin:0 0 22px}
+.taxi-gate-close{position:absolute;top:18px;right:22px;border:0;background:var(--muted);width:30px;height:30px;border-radius:50%;font-size:13px;color:var(--body);cursor:pointer}
+.taxi-gate-close:hover{background:var(--border)}
+.taxi-gate-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:540px){.taxi-gate-options{grid-template-columns:1fr}}
+.taxi-gate-opt{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;font-family:'Jost',sans-serif;font-size:13px;font-weight:600;color:var(--ink);background:var(--lift);border:1.5px solid var(--border);border-radius:12px;padding:20px 14px;cursor:pointer;transition:all .2s}
+.taxi-gate-opt:hover{border-color:var(--gold);background:var(--gold-bg);transform:translateY(-2px)}
+.taxi-gate-opt .ic{font-size:28px}
+.taxi-gate-back{margin-top:16px;background:none;border:none;font-size:11.5px;color:var(--caption);text-decoration:underline;cursor:pointer}
+.taxi-mode-banner{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--gold-bg);border:1px solid var(--glass);border-radius:6px;padding:10px 14px;font-size:11.5px;color:var(--gold2);font-weight:600;margin-bottom:20px}
+.taxi-mode-banner button{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--gold);border:none;border-radius:4px;padding:6px 10px;cursor:pointer;white-space:nowrap}
 </style>
 <link rel="stylesheet" href="assets/css/site-chrome.css">
 </head>
@@ -234,7 +252,7 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
       <button class="btn-primary" onclick="document.querySelector('.arrivals-hero').scrollIntoView({behavior:'smooth'})">
         📲 Live Arrivals
       </button>
-      <button class="btn-ghost" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">
+      <button class="btn-ghost" onclick="openTaxiGate()">
         ↓ Book Taxi
       </button>
     </div>
@@ -394,6 +412,11 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
       <div class="form-card-title">
         <span class="icon">✏️</span> Your Details
       </div>
+
+      <div class="taxi-mode-banner" id="taxiModeBanner" style="display:none">
+        <span id="taxiModeBannerText"></span>
+        <button onclick="openTaxiGate()">Change</button>
+      </div>
       
       <div class="form-row">
         <label>Full Name *</label>
@@ -412,6 +435,7 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
           <option value="IXC Airport">IXC Airport</option>
           <option value="Chandigarh Jn.">Chandigarh Railway Station</option>
           <option value="Kalka Station">Kalka Railway Station</option>
+          <option value="Bus Stand">Bus Stand</option>
           <option value="Shimla">Shimla</option>
           <option value="Manali">Manali</option>
           <option value="Dharamshala">Dharamshala</option>
@@ -425,8 +449,9 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
       </div>
       
       <div class="form-row">
-        <label>Travel Date *</label>
+        <label id="f-date-label">Travel Date *</label>
         <input type="date" id="f-date">
+        <span class="hint" id="f-date-hint" style="display:none">No exact date yet? Pick your best guess — we'll confirm closer to your trip.</span>
       </div>
       
       <div class="form-row">
@@ -435,8 +460,8 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
         <span class="hint" id="f-time-hint">Set your preferred pickup time</span>
       </div>
       
-      <div class="form-row">
-        <label>Flight/Train Ref. (Optional)</label>
+      <div class="form-row" id="f-ref-row">
+        <label id="f-ref-label">Flight/Train Ref. (Optional)</label>
         <input type="text" id="f-flightno" placeholder="e.g., 6E-456 or 12005">
       </div>
       
@@ -509,12 +534,147 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
 </section>
 
 <!-- ════════════════════════════════════════════ -->
+<!-- TAXI ARRIVAL GATE — asks how the traveller is arriving before they   -->
+<!-- reach the booking form, then pre-fills the form to match.            -->
+<!-- ════════════════════════════════════════════ -->
+<div class="taxi-gate-overlay" id="taxiGateOverlay" onclick="if(event.target===this) closeTaxiGate()">
+  <div class="taxi-gate-modal" style="position:relative">
+    <button class="taxi-gate-close" onclick="closeTaxiGate()">✕</button>
+
+    <div id="taxiGateStep1">
+      <div class="taxi-gate-kicker">Quick Question</div>
+      <h3>How are you getting to Himachal?</h3>
+      <p class="sub">This just tailors the booking form below — pick whichever fits.</p>
+      <div class="taxi-gate-options">
+        <button class="taxi-gate-opt" onclick="selectTaxiMode('flight')">
+          <span class="ic">✈️</span> Arriving by Flight
+        </button>
+        <button class="taxi-gate-opt" onclick="selectTaxiMode('train')">
+          <span class="ic">🚆</span> Arriving by Train
+        </button>
+        <button class="taxi-gate-opt" onclick="selectTaxiMode('bus')">
+          <span class="ic">🚌</span> At the Bus Stand
+        </button>
+        <button class="taxi-gate-opt" onclick="selectTaxiMode('future')">
+          <span class="ic">🗓️</span> Just Planning Ahead
+        </button>
+      </div>
+    </div>
+
+    <div id="taxiGateStep2" style="display:none">
+      <div class="taxi-gate-kicker">One More Thing</div>
+      <h3>Which station are you arriving at?</h3>
+      <p class="sub">We'll set your pickup point to match.</p>
+      <div class="taxi-gate-options">
+        <button class="taxi-gate-opt" onclick="selectTaxiStation('CDG')">
+          <span class="ic">🚂</span> Chandigarh Jn. (CDG)
+        </button>
+        <button class="taxi-gate-opt" onclick="selectTaxiStation('KLK')">
+          <span class="ic">🚂</span> Kalka Station (KLK)
+        </button>
+      </div>
+      <button class="taxi-gate-back" onclick="backToTaxiGateStep1()">← Back</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
 <!-- TOAST NOTIFICATION                          -->
 <!-- ════════════════════════════════════════════ -->
 <div class="toast" id="toast">
   <span class="toast-title" id="toast-title"></span>
   <span class="toast-msg" id="toast-msg"></span>
 </div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// TAXI ARRIVAL GATE — asks how the traveller is arriving, then
+// pre-fills the booking form to match. The date/time fields are
+// always plain manual inputs — this never depends on the live
+// flight/train sync feature, so Bus Stand and "just planning" users
+// get a fully working form without needing any live data.
+// ═══════════════════════════════════════════════════════════════
+let taxiMode = null;   // 'flight' | 'train' | 'bus' | 'future'
+let taxiStation = null; // 'CDG' | 'KLK' (train only)
+
+function openTaxiGate() {
+  document.getElementById('taxiGateStep2').style.display = 'none';
+  document.getElementById('taxiGateStep1').style.display = 'block';
+  document.getElementById('taxiGateOverlay').classList.add('open');
+}
+function closeTaxiGate() {
+  document.getElementById('taxiGateOverlay').classList.remove('open');
+}
+function backToTaxiGateStep1() {
+  document.getElementById('taxiGateStep2').style.display = 'none';
+  document.getElementById('taxiGateStep1').style.display = 'block';
+}
+
+function selectTaxiMode(mode) {
+  if (mode === 'train') {
+    taxiMode = 'train';
+    document.getElementById('taxiGateStep1').style.display = 'none';
+    document.getElementById('taxiGateStep2').style.display = 'block';
+    return; // wait for station choice
+  }
+  taxiMode = mode;
+  taxiStation = null;
+  if (mode === 'flight') applyTaxiMode('flight', 'IXC Airport');
+  else if (mode === 'bus') applyTaxiMode('bus', 'Bus Stand');
+  else applyTaxiMode('future', '');
+  finishTaxiGate();
+}
+function selectTaxiStation(code) {
+  taxiStation = code;
+  applyTaxiMode('train', code === 'CDG' ? 'Chandigarh Jn.' : 'Kalka Station');
+  finishTaxiGate();
+}
+function finishTaxiGate() {
+  document.getElementById('taxiGateOverlay').classList.remove('open');
+  document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Reshapes the booking form for the chosen mode. Pickup pre-fills, the
+// Flight/Train Ref. field relabels or hides, and the date field gets a
+// friendlier hint for the "just planning" case — everything else in the
+// form (including date & time) stays plain manual entry either way.
+function applyTaxiMode(mode, pickupValue) {
+  const pickupSel = document.getElementById('f-pickup');
+  const refRow = document.getElementById('f-ref-row');
+  const refLabel = document.getElementById('f-ref-label');
+  const refInput = document.getElementById('f-flightno');
+  const dateHint = document.getElementById('f-date-hint');
+  const banner = document.getElementById('taxiModeBanner');
+  const bannerText = document.getElementById('taxiModeBannerText');
+
+  if (pickupValue) pickupSel.value = pickupValue;
+
+  if (mode === 'flight') {
+    refRow.style.display = '';
+    refLabel.textContent = 'Flight Number *';
+    refInput.placeholder = 'e.g., 6E-456';
+    dateHint.style.display = 'none';
+    bannerText.textContent = '✈️ Arriving by flight at IXC Airport';
+  } else if (mode === 'train') {
+    refRow.style.display = '';
+    refLabel.textContent = 'Train Number *';
+    refInput.placeholder = 'e.g., 12005 or 14553';
+    dateHint.style.display = 'none';
+    bannerText.textContent = `🚆 Arriving by train at ${pickupValue}`;
+  } else if (mode === 'bus') {
+    refRow.style.display = 'none';
+    refInput.value = '';
+    dateHint.style.display = 'none';
+    bannerText.textContent = '🚌 Pickup from the Bus Stand';
+  } else { // future
+    refRow.style.display = 'none';
+    refInput.value = '';
+    dateHint.style.display = 'block';
+    bannerText.textContent = "🗓️ Just planning ahead — no exact date needed yet";
+  }
+  banner.style.display = 'flex';
+}
+</script>
 
 <script>
 // ═══════════════════════════════════════════════════════════════
