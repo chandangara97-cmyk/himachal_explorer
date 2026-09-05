@@ -618,7 +618,10 @@ function buildCard(d, i) {
       <span class="m-arrow">Explore District →</span>
     </div>`;
 
-  a.addEventListener('click', () => openDrawer(d));
+  a.addEventListener('click', () => {
+    if (d.page_url) { window.location.href = d.page_url; }
+    else { openDrawer(d); }
+  });
   return a;
 }
 
