@@ -130,22 +130,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,500&family=Jost:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<link rel="stylesheet" href="assets/css/packages.css">
+<link rel="stylesheet" href="assets/css/packages.css?v=2">
+<style>
+/* ── TRIP GATE — inlined as a safety net so this always renders correctly
+   even if a CDN/browser is still serving a cached copy of packages.css ── */
+.trip-gate{max-width:760px;margin:0 auto 28px;background:var(--surface,#fff);border:1px solid rgba(212,190,158,.35);border-radius:16px;padding:28px 24px;text-align:center;box-shadow:0 8px 28px rgba(28,20,9,.08);animation:tgFadeIn .35s ease}
+@keyframes tgFadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.trip-gate-step-label{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2,#c99248);margin-bottom:10px}
+.trip-gate-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--ink,#1c1409);margin:0 0 6px}
+.trip-gate-sub{font-size:13px;color:var(--caption,#9b8a74);margin:0 0 22px}
+.trip-gate-options{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;animation:tgFadeIn .3s ease}
+.trip-gate-btn{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-family:inherit;font-size:14px;font-weight:600;color:var(--ink,#1c1409);
+  background:var(--surface2,#fdfbf7);border:1.5px solid rgba(212,190,158,.55);
+  border-radius:14px;padding:20px 26px;min-width:170px;cursor:pointer;transition:all .2s;
+}
+.trip-gate-btn-icon{font-size:30px;line-height:1}
+.trip-gate-btn-label{font-size:13.5px}
+.trip-gate-btn:hover{border-color:var(--gold,#b07d3a);background:var(--gold-dim,rgba(176,125,58,.1));transform:translateY(-2px);box-shadow:0 6px 16px rgba(176,125,58,.18)}
+.trip-gate-btn:active{transform:translateY(0) scale(.98)}
+.trip-gate-back{font-family:inherit;font-size:12.5px;color:var(--caption,#9b8a74);background:none;border:none;text-decoration:underline;cursor:pointer;padding:8px;width:100%}
+.trip-gate-summary{max-width:760px;margin:0 auto 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--gold-dim,rgba(176,125,58,.1));border:1px solid rgba(212,168,67,.3);border-radius:10px;padding:10px 16px;font-size:12.5px;color:var(--gold3,#a06428);font-weight:600;animation:tgFadeIn .3s ease}
+.trip-gate-change{font-family:inherit;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gold3,#a06428);background:#fff;border:1px solid var(--gold,#b07d3a);border-radius:6px;padding:6px 12px;cursor:pointer;white-space:nowrap}
+.trip-gate-change:hover{background:var(--gold,#b07d3a);color:#fff}
+@media (max-width:768px){
+  .trip-gate{padding:22px 16px;margin-bottom:20px}
+  .trip-gate-title{font-size:19px}
+  .trip-gate-options{flex-direction:column;align-items:stretch}
+  .trip-gate-btn{flex-direction:row;justify-content:center;width:100%}
+}
+</style>
 <meta name="description" content="Compare Himachal Pradesh tour packages for Shimla, Manali, Spiti, Kinnaur, Dharamshala and more. Choose Delhi or Chandigarh routes, day-wise itineraries and budget-to-premium trip options.">
 <meta name="keywords" content="Himachal Pradesh tour packages, Manali tour package from Delhi, Shimla Manali tour package, Chandigarh to Manali package, Delhi to Shimla package, Spiti Valley package, Kinnaur tour package, Himachal family tour">
 </head>
 <body>
-<script>
-// Bounce straight to the trip-gate bridge page if this visitor hasn't
-// answered "already here / still planning" yet — runs before anything
-// else paints, so there's no flash of package content first.
-(function(){
-  try{
-    var saved = JSON.parse(localStorage.getItem('heTripGate') || 'null');
-    if (!saved || !saved.mode) { window.location.replace('trip-gate.html'); }
-  }catch(e){ window.location.replace('trip-gate.html'); }
-})();
-</script>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -189,15 +208,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="weather-refresh">
     <button class="weather-refresh-btn" onclick="fetchWeather()" title="Refresh weather">↺</button>
   </div>
-</div>
-
-<!-- ─── TRIP GATE SUMMARY ──────────────────────────────────────────────────
-     The actual "already here / still planning" question now lives on the
-     bridge page (trip-gate.html), which redirects here once answered.
-     This bar just shows what was picked, with a way to change it. -->
-<div class="trip-gate-summary" id="tripGateSummary" style="display:none">
-  <span id="tripGateSummaryText"></span>
-  <button class="trip-gate-change" onclick="reopenTripGate()">Change</button>
 </div>
 
 <section class="hero" id="heroSection">
@@ -271,6 +281,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
   </div>
+</div>
+
+<!-- ─── TRIP GATE ───────────────────────────────────────────────────────────
+     The one question that decides which packages get shown at all: are you
+     already in Himachal (then only YOUR town's local tours show), or still
+     planning (then only the Delhi/Chandigarh/Amritsar/Shimla pickup Master
+     Plan tours show). Nothing below renders until this is answered. -->
+<div class="trip-gate" id="tripGate">
+  <div class="trip-gate-card">
+    <div class="trip-gate-step-label" id="tripGateStepLabel">Step 1 of 2</div>
+    <h3 class="trip-gate-title" id="tripGateTitle">Where are you starting your trip from?</h3>
+    <p class="trip-gate-sub" id="tripGateSub">Answer once — we'll only show packages that actually work for you.</p>
+    <div class="trip-gate-options" id="tripGateStep1">
+      <button class="trip-gate-btn" onclick="selectTravelerMode('here')">
+        <span class="trip-gate-btn-icon">🏔️</span>
+        <span class="trip-gate-btn-label">I'm already in Himachal</span>
+      </button>
+      <button class="trip-gate-btn" onclick="selectTravelerMode('planning')">
+        <span class="trip-gate-btn-icon">🧳</span>
+        <span class="trip-gate-btn-label">Just planning my trip</span>
+      </button>
+    </div>
+    <div class="trip-gate-options" id="tripGateStep2" style="display:none"></div>
+  </div>
+</div>
+<div class="trip-gate-summary" id="tripGateSummary" style="display:none">
+  <span id="tripGateSummaryText"></span>
+  <button class="trip-gate-change" onclick="reopenTripGate()">Change</button>
 </div>
 
 
@@ -689,10 +727,7 @@ const LOCAL_CITY_LABELS = {
   DALHOUSIE: 'Dalhousie',
   BHUNTAR: 'Kasol / Parvati Valley',
   MANDI: 'Mandi',
-  KAZA: 'Kaza / Spiti',
-  KALPA: 'Kalpa',
-  SANGLA: 'Sangla',
-  'RECKONG PEO': 'Kalpa / Sangla (Kinnaur)'
+  KAZA: 'Kaza / Spiti'
 };
 function localCityLabel(raw) {
   const key = (raw || '').trim().toUpperCase();
@@ -1398,27 +1433,83 @@ function renderCards() {
   }
 }
 
-// ─── TRIP GATE SUMMARY — the answer is now decided on trip-gate.html before
-// arriving here; this page just reads it and shows the small "Change" bar. ─
+// ─── TRIP GATE — "are you already in Himachal, or still planning?" ───────────
+function selectTravelerMode(mode) {
+  if (mode === 'planning') {
+    state.travelerMode = 'planning';
+    state.currentCity = null;
+    finishTripGate();
+    return;
+  }
+  // mode === 'here' → drill into "where are you now?"
+  document.getElementById('tripGateStep1').style.display = 'none';
+  document.getElementById('tripGateStepLabel').textContent = 'Step 2 of 2';
+  document.getElementById('tripGateTitle').textContent = 'Great — which town are you in?';
+  document.getElementById('tripGateSub').textContent = "We'll show only the local tours that start right where you are.";
+  const step2 = document.getElementById('tripGateStep2');
+  const cities = getLocalCityOptions();
+  const cityIcons = { MANALI:'🏔️', DHARAMSHALA:'🛕', DALHOUSIE:'🌲', BHUNTAR:'🎶', MANDI:'🏞️', KAZA:'🗻' };
+  step2.innerHTML = cities.map(c => `
+    <button class="trip-gate-btn" onclick="selectCurrentCity('${c.value}')">
+      <span class="trip-gate-btn-icon">${cityIcons[c.value] || '📍'}</span>
+      <span class="trip-gate-btn-label">${c.label}</span>
+    </button>`
+  ).join('') + `<button class="trip-gate-back" onclick="backToTripGateStep1()">← Back</button>`;
+  step2.style.display = 'flex';
+}
+function backToTripGateStep1() {
+  document.getElementById('tripGateStep2').style.display = 'none';
+  document.getElementById('tripGateStepLabel').textContent = 'Step 1 of 2';
+  document.getElementById('tripGateTitle').textContent = 'Where are you starting your trip from?';
+  document.getElementById('tripGateSub').textContent = "Answer once — we'll only show packages that actually work for you.";
+  document.getElementById('tripGateStep1').style.display = 'flex';
+}
+function selectCurrentCity(cityValue) {
+  state.travelerMode = 'here';
+  state.currentCity = cityValue;
+  finishTripGate();
+}
+function finishTripGate() {
+  try { localStorage.setItem('heTripGate', JSON.stringify({ mode: state.travelerMode, city: state.currentCity })); } catch (e) {}
+  updateTripGateUI();
+  renderCards();
+  const wrap = document.getElementById('packageSectionsWrap');
+  if (wrap) wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 function reopenTripGate() {
-  window.location.href = 'trip-gate.html';
+  document.getElementById('tripGate').style.display = 'block';
+  document.getElementById('tripGateSummary').style.display = 'none';
+  document.getElementById('tripGateStepLabel').textContent = 'Step 1 of 2';
+  document.getElementById('tripGateTitle').textContent = 'Where are you starting your trip from?';
+  document.getElementById('tripGateSub').textContent = "Answer once — we'll only show packages that actually work for you.";
+  document.getElementById('tripGateStep1').style.display = 'flex';
+  document.getElementById('tripGateStep2').style.display = 'none';
+  document.getElementById('packageSectionsWrap').style.display = 'none';
+  document.getElementById('tripGate').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 function updateTripGateUI() {
+  const gate = document.getElementById('tripGate');
   const summary = document.getElementById('tripGateSummary');
+  const wrap = document.getElementById('packageSectionsWrap');
+  if (!state.travelerMode) {
+    gate.style.display = 'block';
+    summary.style.display = 'none';
+    wrap.style.display = 'none';
+    return;
+  }
+  gate.style.display = 'none';
   summary.style.display = 'flex';
-  document.getElementById('packageSectionsWrap').style.display = '';
+  wrap.style.display = '';
   document.getElementById('tripGateSummaryText').textContent = state.travelerMode === 'planning'
     ? '🧳 Planning your trip — showing Master Plan tours (pickup from Delhi / Chandigarh / Amritsar / Shimla)'
     : `📍 Already in Himachal, at ${localCityLabel(state.currentCity)} — showing local tours from here`;
 }
-// Load the answer chosen on trip-gate.html. If none exists, bounce back
-// there — this page never renders package content for an unanswered visitor.
+// Restore a previously answered trip-gate choice (if any) before the first render.
 (function loadTripGateFromStorage() {
   try {
     const saved = JSON.parse(localStorage.getItem('heTripGate') || 'null');
     if (saved && saved.mode) { state.travelerMode = saved.mode; state.currentCity = saved.city || null; }
   } catch (e) {}
-  if (!state.travelerMode) { window.location.replace('trip-gate.html'); return; }
   updateTripGateUI();
 })();
 

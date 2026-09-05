@@ -664,65 +664,16 @@ body::before{
 .peak-banner strong{color:var(--gold3)}
 
 /* TRIP GATE — the "already here / still planning" question that decides
-   which package set is even shown. A full-width, prominent planner section
-   (styled to match the yui.html "Expedition Planner" option cards) that sits
-   before the main package sections. */
+   which package set is even shown */
 .trip-gate{
-  width:100%;
-  min-height:min(88vh,760px);
-  display:flex;align-items:center;justify-content:center;
-  padding:64px 20px;
-  position:relative;z-index:1;
+  max-width:760px;margin:0 auto 28px;
+  background:var(--surface);border:1px solid rgba(212,190,158,.35);
+  border-radius:16px;padding:28px 24px;text-align:center;
+  box-shadow:0 8px 28px rgba(28,20,9,.06);
 }
-.trip-gate-inner{width:100%;max-width:960px;text-align:center;margin:0 auto}
-.trip-gate-brand{
-  display:flex;align-items:center;justify-content:center;gap:9px;
-  font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--ink);
-  margin-bottom:6px;
-}
-.trip-gate-brand svg{color:var(--gold3)}
-.trip-gate-tagline{font-size:12.5px;letter-spacing:.04em;color:var(--caption);margin-bottom:28px}
-.trip-gate-eyebrow{
-  font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--gold3);margin-bottom:14px;
-}
-.trip-gate-title{font-family:'Playfair Display',serif;font-size:clamp(24px,3.4vw,34px);color:var(--ink);margin-bottom:10px;line-height:1.2}
-.trip-gate-sub{font-size:14px;color:var(--muted);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto}
-.trip-gate-options{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;align-items:stretch}
-
-/* Rich option cards */
-.tg-card{
-  flex:1 1 320px;max-width:400px;text-align:left;cursor:pointer;
-  background:var(--surface);border:1px solid rgba(212,190,158,.4);
-  border-radius:16px;padding:28px 26px;
-  box-shadow:0 8px 24px rgba(28,20,9,.06);
-  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
-}
-.tg-card:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(28,20,9,.12);border-color:var(--gold)}
-.tg-card-eyebrow{
-  display:block;font-family:'Jost',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--gold3);margin-bottom:14px;
-}
-.tg-card-icon{
-  display:flex;align-items:center;justify-content:center;
-  width:44px;height:44px;border-radius:11px;font-size:20px;
-  background:linear-gradient(135deg,var(--gold2),var(--gold3));margin-bottom:16px;
-}
-.tg-card-title{font-family:'Playfair Display',serif;font-size:19px;color:var(--ink);margin-bottom:8px}
-.tg-card-desc{font-size:13.5px;color:var(--muted);line-height:1.5;margin-bottom:14px}
-.tg-card-list{list-style:none;margin-bottom:20px}
-.tg-card-list li{
-  position:relative;padding-left:18px;font-size:13px;color:var(--muted);
-  margin-bottom:7px;line-height:1.4;
-}
-.tg-card-list li::before{content:'✦';position:absolute;left:0;top:0;color:var(--gold);font-size:11px}
-.tg-card-cta{
-  display:inline-flex;align-items:center;gap:6px;font-family:'Jost',sans-serif;
-  font-size:13.5px;font-weight:700;color:var(--gold3);
-}
-.tg-card-cta svg{transition:transform .2s ease}
-.tg-card:hover .tg-card-cta svg{transform:translateX(3px)}
-
+.trip-gate-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--ink);margin-bottom:6px}
+.trip-gate-sub{font-size:13px;color:var(--caption);margin-bottom:20px}
+.trip-gate-options{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 .trip-gate-btn{
   font-family:inherit;font-size:14px;font-weight:600;color:var(--ink);
   background:var(--surface2);border:1.5px solid rgba(212,190,158,.5);
@@ -745,10 +696,9 @@ body::before{
 }
 .trip-gate-change:hover{background:var(--gold);color:#fff}
 @media (max-width:768px){
-  .trip-gate{padding:44px 16px;min-height:auto}
-  .trip-gate-title{font-size:22px}
-  .trip-gate-options{flex-direction:column;align-items:stretch}
-  .tg-card{max-width:none}
+  .trip-gate{padding:22px 16px;margin-bottom:20px}
+  .trip-gate-title{font-size:19px}
+  .trip-gate-options{flex-direction:column}
   .trip-gate-btn{width:100%}
 }
 
