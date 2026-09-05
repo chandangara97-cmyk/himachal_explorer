@@ -52,21 +52,19 @@ nav.solid{background:rgba(15,12,7,.97);backdrop-filter:blur(20px);padding:16px 6
 .nav-links a{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s;}
 .nav-links a:hover{color:var(--gold);}
 
-/* ─── HERO ─── */
-.hero{height:100vh;min-height:700px;position:relative;overflow:hidden;display:grid;place-items:center;background:var(--ink);}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 100% 70% at 50% 100%,rgba(28,61,28,.6) 0%,transparent 65%),radial-gradient(ellipse 60% 50% at 10% 10%,rgba(200,146,42,.08) 0%,transparent 60%);}
-.mtn{position:absolute;bottom:0;left:0;right:0;}
-.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;animation:heroIn 1.2s cubic-bezier(.22,1,.36,1) both;}
-.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.65rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;}
-.eyebrow::before,.eyebrow::after{content:'';flex:1;height:1px;width:40px;background:var(--gold);opacity:.5;}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,12vw,9rem);font-weight:300;line-height:.88;color:#fff;letter-spacing:-2px;}
-.hero h1 em{font-style:italic;color:var(--gold-l);}
-.hero-sub{font-size:clamp(.9rem,1.5vw,1.1rem);color:rgba(255,255,255,.5);max-width:520px;margin:28px auto 0;line-height:1.8;}
-.hero-stats{display:flex;justify-content:center;gap:48px;margin-top:52px;padding-top:40px;border-top:1px solid rgba(255,255,255,.1);}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:var(--gold-l);line-height:1;}
-.stat-label{font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px;}
-.scroll-cue{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,.3);font-size:.6rem;letter-spacing:3px;text-transform:uppercase;}
-.scroll-line{width:1px;height:50px;background:linear-gradient(var(--gold),transparent);animation:scrollPulse 2s ease infinite;}
+/* ─── HERO EDITORIAL ─── */
+.hero-editorial{height:85vh;min-height:600px;position:relative;display:grid;place-items:center;background:var(--ink) url('assets/images/kinnaur-kailash.webp') center/cover no-repeat;text-align:center;padding:0 24px;}
+.hero-bg-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(15,12,7,.6),rgba(15,12,7,.85));}
+.hero-editorial-content{position:relative;z-index:2;max-width:760px;animation:heroIn 1.2s cubic-bezier(.22,1,.36,1) both;}
+.editorial-eyebrow{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold-l);display:block;margin-bottom:20px;}
+.hero-editorial h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,5.5rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:20px;}
+.hero-editorial h1 em{font-style:italic;color:var(--gold-l);}
+.editorial-sub{font-size:1.05rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:36px;}
+.hero-action-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.hero-jump-select{padding:14px 20px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:'Outfit',sans-serif;font-size:.85rem;border-radius:3px;outline:none;cursor:pointer;backdrop-filter:blur(10px);}
+.hero-jump-select option{background:var(--ink);color:#fff;}
+.hero-explore-btn{padding:14px 28px;background:var(--gold);color:var(--ink);text-decoration:none;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;font-weight:500;border-radius:3px;display:inline-flex;align-items:center;transition:background .2s;}
+.hero-explore-btn:hover{background:var(--gold-l);}
 
 /* ─── MARQUEE ─── */
 .marquee-strip{background:var(--gold);padding:18px 0;overflow:hidden;}
@@ -83,90 +81,32 @@ nav.solid{background:rgba(15,12,7,.97);backdrop-filter:blur(20px);padding:16px 6
 .fbtn{padding:8px 20px;border:1px solid rgba(0,0,0,.15);border-radius:30px;font-size:.72rem;letter-spacing:1px;background:transparent;color:var(--mist);cursor:pointer;transition:all .25s;font-family:'Outfit',sans-serif;}
 .fbtn.active,.fbtn:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
 
-/* ─── MASONRY GRID ─── */
-.masonry{columns:3;column-gap:3px;padding:0 3px 3px;max-width:1600px;margin:0 auto;}
-.m-card{break-inside:avoid;display:block;position:relative;overflow:hidden;margin-bottom:3px;text-decoration:none;background:var(--ink);cursor:pointer;}
-.m-card.dcard-highlight{outline:3px solid #c99248;outline-offset:-3px;animation:dcardPulse 1.3s ease-in-out 2}
+/* ─── DISTRICT CARD GRID ─── */
+.dist-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px;max-width:1300px;margin:0 auto;padding:0 24px 10px;}
+.d-card{display:flex;flex-direction:column;background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:4px;overflow:hidden;text-decoration:none;color:inherit;cursor:pointer;transition:transform .3s,box-shadow .3s;}
+.d-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(15,12,7,.12);}
+.d-card.dcard-highlight{outline:3px solid var(--gold);outline-offset:-3px;animation:dcardPulse 1.3s ease-in-out 2}
 @keyframes dcardPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,146,72,.6)}50%{box-shadow:0 0 0 14px rgba(201,146,72,0)}}
-.m-card:nth-child(3n+1){height:520px;}
-.m-card:nth-child(3n+2){height:420px;}
-.m-card:nth-child(3n+3){height:480px;}
-.m-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .8s cubic-bezier(.25,.46,.45,.94),filter .4s;filter:brightness(.55);}
-.m-card:hover .m-img{transform:scale(1.08);filter:brightness(.35);}
-.m-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,12,7,.95) 0%,rgba(15,12,7,.2) 50%,transparent 100%);}
-.m-body{position:absolute;bottom:0;left:0;right:0;padding:28px 26px;}
-.m-no{font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
-.m-card h3{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:#fff;line-height:1;margin-bottom:8px;}
-.m-desc{font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.5;margin-bottom:14px;max-height:0;overflow:hidden;transition:max-height .4s,opacity .3s;opacity:0;}
-.m-card:hover .m-desc{max-height:80px;opacity:1;}
-.m-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;}
-.m-tag{padding:2px 8px;border:1px solid rgba(255,255,255,.2);border-radius:12px;font-size:.62rem;color:rgba(255,255,255,.6);}
-.m-arrow{display:inline-flex;align-items:center;gap:6px;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);opacity:0;transform:translateY(6px);transition:all .3s .1s;}
-.m-card:hover .m-arrow{opacity:1;transform:translateY(0);}
+.d-img-wrap{position:relative;height:220px;overflow:hidden;background:var(--ink);}
+.d-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.25,.46,.45,.94);}
+.d-card:hover .d-img-wrap img{transform:scale(1.06);}
+.d-img-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,12,7,.75) 0%,transparent 55%);}
+.d-card-no{position:absolute;top:14px;left:16px;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold-l);}
+.d-card-name{position:absolute;bottom:14px;left:18px;right:18px;font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:600;color:#fff;line-height:1.05;}
+.d-card-body{padding:18px 20px 22px;display:flex;flex-direction:column;flex:1;}
+.d-card-tagline{font-size:.82rem;font-style:italic;color:var(--mist);line-height:1.5;margin-bottom:14px;}
+.d-fact-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.d-fact{font-size:.68rem;background:var(--warm);color:#7a5f1e;padding:3px 10px;border-radius:20px;border:1px solid rgba(200,146,42,.25);white-space:nowrap;}
+.d-card-places{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:16px;}
+.d-place-chip{font-size:.68rem;color:#4a4030;border:1px solid rgba(0,0,0,.1);padding:2px 9px;border-radius:12px;}
+.d-card-cta{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.d-card-cta svg{width:12px;height:12px;transition:transform .2s;}
+.d-card:hover .d-card-cta svg{transform:translateX(4px);}
 
 /* ─── LOADING STATE ─── */
-.loading-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:1600px;margin:0 auto;padding:0 3px 3px;}
-.skel{background:var(--ink);position:relative;overflow:hidden;}
-.skel::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);animation:shimmer 1.6s infinite;}
-.skel:nth-child(3n+1){height:520px;}
-.skel:nth-child(3n+2){height:420px;}
-.skel:nth-child(3n+3){height:480px;}
-
-/* ─── DISTRICT DRAWER ─── */
-.drawer-overlay{position:fixed;inset:0;z-index:800;background:rgba(15,12,7,0);pointer-events:none;transition:background .4s;}
-.drawer-overlay.open{background:rgba(15,12,7,.6);pointer-events:all;}
-.drawer{position:fixed;top:0;right:-100%;width:min(780px,100vw);height:100vh;z-index:900;background:var(--cream);overflow-y:auto;transition:right .5s cubic-bezier(.22,1,.36,1);box-shadow:-20px 0 60px rgba(0,0,0,.3);}
-.drawer.open{right:0;}
-.drawer-close{position:sticky;top:0;z-index:10;display:flex;justify-content:flex-end;padding:20px 24px;background:var(--cream);border-bottom:1px solid rgba(0,0,0,.06);}
-.close-btn{width:40px;height:40px;border:1px solid rgba(0,0,0,.15);border-radius:50%;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--mist);transition:all .2s;}
-.close-btn:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
-
-/* Drawer hero */
-.d-hero{height:300px;position:relative;overflow:hidden;background:var(--ink);}
-.d-hero-img{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.5);}
-.d-hero-body{position:absolute;bottom:0;left:0;right:0;padding:32px;}
-.d-no{font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
-.d-name{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:#fff;line-height:.9;}
-.d-tagline{font-size:.85rem;color:rgba(255,255,255,.55);margin-top:10px;font-style:italic;}
-
-/* Drawer body */
-.d-body{padding:36px 32px;}
-.d-section{margin-bottom:36px;}
-.d-section-title{font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(200,146,42,.2);}
-.d-desc{font-size:.95rem;line-height:1.85;color:#3a3020;}
-
-/* Info pills */
-.d-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.d-info-item{background:#fff;border:1px solid rgba(0,0,0,.07);padding:14px 16px;border-radius:2px;}
-.d-info-label{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--mist);margin-bottom:4px;}
-.d-info-val{font-size:.9rem;font-weight:500;color:var(--ink);}
-
-/* Tags */
-.d-tags-row{display:flex;flex-wrap:wrap;gap:6px;}
-.d-tag{padding:4px 12px;background:var(--warm);border:1px solid rgba(200,146,42,.3);border-radius:20px;font-size:.72rem;color:var(--ink);}
-
-/* Places list */
-.places-list{display:flex;flex-direction:column;gap:2px;}
-.place-item{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:start;padding:14px 0;border-bottom:1px solid rgba(0,0,0,.06);}
-.place-item:last-child{border-bottom:none;}
-.place-num{width:36px;height:36px;background:var(--ink);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;flex-shrink:0;border-radius:2px;}
-.place-info h4{font-size:.95rem;font-weight:500;color:var(--ink);margin-bottom:3px;}
-.place-type{font-size:.7rem;letter-spacing:1px;color:var(--mist);margin-bottom:5px;}
-.place-desc{font-size:.8rem;color:#5a5040;line-height:1.5;}
-.place-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
-.ptag{padding:1px 7px;border:1px solid rgba(0,0,0,.12);border-radius:10px;font-size:.6rem;color:var(--mist);}
-.place-meta{text-align:right;flex-shrink:0;}
-.place-season{font-size:.68rem;color:var(--gold);white-space:nowrap;}
-.place-vol{font-size:.65rem;color:var(--mist);margin-top:3px;}
-.place-coords{font-size:.6rem;color:rgba(0,0,0,.3);margin-top:4px;font-family:monospace;}
-.place-map-btn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 12px;background:var(--ink);color:#fff;border:none;border-radius:2px;font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background .2s;font-family:'Outfit',sans-serif;}
-.place-map-btn:hover{background:var(--gold);}
-.place-map-btn svg{width:11px;height:11px;flex-shrink:0;}
-.place-dist-badge{display:inline-flex;align-items:center;gap:4px;margin-top:5px;margin-left:2px;font-size:.68rem;color:var(--gold);font-weight:500;}
-.place-dist-badge svg{width:11px;height:11px;}
-
-/* Food & Famous */
-.d-food,.d-famous{font-size:.88rem;color:#4a3a28;line-height:1.7;}
+.loading-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px;max-width:1300px;margin:0 auto;padding:0 24px 10px;}
+.skel{background:var(--warm);position:relative;overflow:hidden;height:360px;border-radius:4px;}
+.skel::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);animation:shimmer 1.6s infinite;}
 
 /* ─── WHY SECTION ─── */
 .why-section{padding:100px 60px;display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto;align-items:center;}
@@ -218,35 +158,26 @@ footer p{font-size:.78rem;color:rgba(255,255,255,.35);line-height:1.7;}
 /* ─── ANIMATIONS ─── */
 @keyframes heroIn{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:none;}}
 @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-@keyframes scrollPulse{0%,100%{opacity:1;transform:scaleY(1);}50%{opacity:.3;transform:scaleY(.6);}}
 @keyframes shimmer{from{transform:translateX(-100%);}to{transform:translateX(100%);}}
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:1100px){
-  .masonry{columns:2;}
   .why-section{grid-template-columns:1fr;gap:40px;}
   .season-grid{grid-template-columns:1fr 1fr;}
   footer{grid-template-columns:1fr 1fr;}
   nav,nav.solid{padding:16px 24px;}
-  .loading-grid{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:640px){
-  .masonry{columns:1;}
-  .hero-stats{gap:24px;}
   .why-grid{grid-template-columns:1fr;}
   footer{grid-template-columns:1fr;padding:40px 24px;}
   .footer-bottom{padding:16px 24px;flex-direction:column;gap:4px;}
   .season-grid{grid-template-columns:1fr;}
-  .drawer{width:100vw;}
-  .d-info-grid{grid-template-columns:1fr;}
-  .loading-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
 
 <!-- NAV -->
 <nav id="mainNav">
@@ -262,26 +193,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <svg class="mtn" viewBox="0 0 1440 320" preserveAspectRatio="none" style="height:45%;opacity:.08" fill="white">
-    <path d="M0,320 L80,180 L160,240 L260,100 L360,200 L440,80 L540,160 L620,60 L720,140 L820,40 L920,120 L1020,60 L1120,140 L1200,80 L1300,160 L1380,100 L1440,140 L1440,320Z"/>
-  </svg>
-  <svg class="mtn" viewBox="0 0 1440 320" preserveAspectRatio="none" style="height:30%;opacity:.15" fill="white">
-    <path d="M0,320 L120,260 L240,290 L360,220 L480,270 L600,200 L720,250 L840,190 L960,240 L1080,200 L1200,240 L1320,210 L1440,230 L1440,320Z"/>
-  </svg>
-  <div class="hero-content">
-    <div class="eyebrow">12 Districts · Live Firebase Data · 2026</div>
-    <h1>Himachal<br><em>Explorer</em></h1>
-    <p class="hero-sub">The definitive guide to India's mountain state — every district, every place, loaded live from Firebase.</p>
-    <div class="hero-stats">
-      <div><div class="stat-num">12</div><div class="stat-label">Districts</div></div>
-      <div><div class="stat-num" id="statPlaces">—</div><div class="stat-label">Places</div></div>
-      <div><div class="stat-num">4</div><div class="stat-label">Seasons</div></div>
-      <div><div class="stat-num">2026</div><div class="stat-label">Updated</div></div>
+<section class="hero-editorial">
+  <div class="hero-bg-overlay"></div>
+  <div class="hero-editorial-content">
+    <span class="editorial-eyebrow">The Complete Travel Anthology</span>
+    <h1>Discover the <em>Twelve Realms</em> of Himachal</h1>
+    <p class="editorial-sub">From the subtropical tea gardens of Kangra to the high-altitude monastic deserts of Spiti, explore every corner of India’s crown.</p>
+    <div class="hero-action-row">
+      <select class="hero-jump-select" onchange="if(this.value)location.href=this.value;">
+        <option value="">Jump directly to a district...</option>
+        <option value="kullu.html">Kullu District</option>
+        <option value="shimla.html">Shimla District</option>
+        <option value="spiti.html">Lahaul &amp; Spiti</option>
+        <option value="kinnaur.html">Kinnaur District</option>
+        <option value="kangra.html">Kangra District</option>
+        <option value="chamba.html">Chamba District</option>
+        <option value="mandi.html">Mandi District</option>
+        <option value="sirmour.html">Sirmour District</option>
+        <option value="solan.html">Solan District</option>
+        <option value="hamirpur.html">Hamirpur District</option>
+        <option value="una.html">Una District</option>
+        <option value="bilaspur.html">Bilaspur District</option>
+      </select>
+      <a href="#districts" class="hero-explore-btn">Browse All Grid</a>
     </div>
   </div>
-  <div class="scroll-cue"><div class="scroll-line"></div>Explore</div>
 </section>
 
 <!-- MARQUEE -->
@@ -311,10 +247,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div id="loadingGrid" class="loading-grid">
     <div class="skel"></div><div class="skel"></div><div class="skel"></div>
     <div class="skel"></div><div class="skel"></div><div class="skel"></div>
-    <div class="skel"></div><div class="skel"></div><div class="skel"></div>
   </div>
   <!-- Live grid -->
-  <div class="masonry" id="districtGrid" style="display:none"></div>
+  <div class="dist-grid" id="districtGrid" style="display:none"></div>
   <!-- Error -->
   <div id="errorState" class="error-state" style="display:none">
     <h3>Could not load districts</h3>
@@ -401,29 +336,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <span>Himachal Explorer</span>
 </div>
 
-<!-- DRAWER OVERLAY -->
-<div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
-
-<!-- DISTRICT DRAWER -->
-<div class="drawer" id="drawer">
-  <div class="drawer-close">
-    <button class="close-btn" onclick="closeDrawer()">✕</button>
-  </div>
-  <div id="drawerContent"></div>
-</div>
-
 <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
 <script type="module">
 // ─────────────────────────────────────────────────────────
-// ██████  FIREBASE CONFIG — UPDATE THESE VALUES
+// FIREBASE CONFIG
 // ─────────────────────────────────────────────────────────
 const FB_CONFIG = {
   databaseURL: "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app"
 };
 
-// ─────────────────────────────────────────────────────────
-// FALLBACK DATA (used if Firebase unavailable / no data yet)
-// ─────────────────────────────────────────────────────────
 const FALLBACK_DISTRICTS = [
   {id:"kullu",no:"01",name:"Kullu",tagline:"Valley of Gods — Beas River & Himalayan Passes",tags:"adventure,nature",hq:"Kullu",area_km2:5503,altitude_m:"1220–4300",best_season:"Mar–Jun, Sep–Nov",temp_summer:"10–30°C",temp_winter:"-5–15°C",nearest_airport:"Bhuntar (Kullu-Manali Airport)",from_delhi_km:510,description:"Kullu district is the adventure capital of Himachal Pradesh. The Kullu Valley, carved by the Beas river, stretches from Larji gorge to Rohtang Pass. Manali is the gateway to Leh-Ladakh and Spiti. Famous for Kullu Dussehra festival, world-class trekking, skiing, river rafting and paragliding.",local_food:"Sidu, Trout fish curry, Aktori, Chha Gosht",famous_for:"Dussehra Festival, Rohtang Pass, River Rafting, Apple Orchards",hero_image:"assets/images/manali_1.jpg",page_url:"kullu.html",
     places:{manali:{name:"Manali",type:"Town / Base",lat:32.2432,lng:77.1892,categories:"adventure,nature",description:"Gateway to Rohtang & Leh. Bustling bazaar, river walks, apple orchards.",best_time:"Year-round",tourist_volume:"High",order:1},rohtang_pass:{name:"Rohtang Pass",type:"Mountain Pass",lat:32.3714,lng:77.2378,categories:"adventure",description:"4,111 m pass. Snow even in June. Entry via permit only.",best_time:"May–Oct",tourist_volume:"Very High",order:2},solang_valley:{name:"Solang Valley",type:"Ski Resort",lat:32.3192,lng:77.1529,categories:"adventure,nature",description:"Skiing in winter, paragliding in summer. Cable car rides.",best_time:"Year-round",tourist_volume:"High",order:3},jibhi:{name:"Jibhi",type:"Village",lat:31.7893,lng:77.4232,categories:"offbeat,nature",description:"Hidden gem in Banjar valley. Waterfalls, cedar forest, Jalori Pass nearby.",best_time:"Mar–Nov",tourist_volume:"Medium",order:4},kasol:{name:"Kasol",type:"Village",lat:32.0094,lng:77.3143,categories:"offbeat,nature",description:"Parvati Valley backpacker hub. Gateway to Kheerganga trek.",best_time:"Mar–Nov",tourist_volume:"High",order:5}}},
@@ -451,47 +372,9 @@ const FALLBACK_DISTRICTS = [
     places:{gobind_sagar:{name:"Gobind Sagar Lake",type:"Reservoir / Water Sports",lat:31.4,lng:76.7333,categories:"nature,adventure",description:"540 km² reservoir. Boat rides, water sports, angling. Stunning sunset point.",best_time:"Year-round",tourist_volume:"Very High",order:1},naina_devi:{name:"Naina Devi Temple",type:"Shakti Peetha",lat:31.4667,lng:76.65,categories:"spiritual",description:"Hilltop Shakti Peetha at 1219 m. Ropeway. Panoramic lake views.",best_time:"Year-round",tourist_volume:"Very High",order:2},bhakra_dam:{name:"Bhakra Dam",type:"Engineering / Heritage",lat:31.4167,lng:76.4333,categories:"heritage,offbeat",description:"One of India's highest gravity dams (226 m). Nehru called it 'New Temple of India'.",best_time:"Year-round",tourist_volume:"High",order:3},markand:{name:"Markand Temple",type:"Temple",lat:31.4,lng:76.8,categories:"spiritual,heritage",description:"Ancient Shiva temple complex on Gobind Sagar bank. Carved stone sculptures.",best_time:"Year-round",tourist_volume:"Medium",order:4},swarghat:{name:"Swarghat",type:"Nature / River",lat:31.55,lng:76.75,categories:"nature,offbeat",description:"Confluence point of Satluj into Gobind Sagar. Scenic river beach.",best_time:"Oct–Mar",tourist_volume:"Low",order:5}}}
 ];
 
-// ─────────────────────────────────────────────────────────
-// STATE
-// ─────────────────────────────────────────────────────────
 let allDistricts = [];
 let activeFilter = 'all';
-let currentDistrict = null;
-let userLocation = null; // {lat, lng}
 
-// ─────────────────────────────────────────────────────────
-// GEOLOCATION — ask once, cache result
-// ─────────────────────────────────────────────────────────
-function getLocation() {
-  return new Promise((resolve) => {
-    if (!navigator.geolocation) return resolve(null);
-    navigator.geolocation.getCurrentPosition(
-      pos => { userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude }; resolve(userLocation); },
-      () => resolve(null),
-      { timeout: 6000 }
-    );
-  });
-}
-
-// Haversine distance in km
-function distKm(lat1, lng1, lat2, lng2) {
-  const R = 6371;
-  const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLng = (lng2 - lng1) * Math.PI / 180;
-  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
-  return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
-}
-
-// Silently grab location if already granted
-if (navigator.geolocation) {
-  navigator.permissions?.query({name:'geolocation'}).then(p => {
-    if (p.state === 'granted') getLocation();
-  }).catch(() => {});
-}
-
-// ─────────────────────────────────────────────────────────
-// FIREBASE FETCH
-// ─────────────────────────────────────────────────────────
 async function fetchDistricts() {
   document.getElementById('loadingGrid').style.display = 'grid';
   document.getElementById('districtGrid').style.display = 'none';
@@ -505,28 +388,20 @@ async function fetchDistricts() {
       const data = await res.json();
       if (data && typeof data === 'object' && Object.keys(data).length > 0) {
         allDistricts = Object.values(data).sort((a,b)=> (a.no||'').localeCompare(b.no||''));
-        console.log(`✅ Firebase: loaded ${allDistricts.length} districts`);
       } else {
-        throw new Error('Empty or null Firebase response — using fallback');
+        throw new Error('Empty response');
       }
     } else {
       throw new Error(`Firebase HTTP ${res.status}`);
     }
   } catch (err) {
-    console.warn('⚠️ Firebase unavailable, using built-in data:', err.message);
     allDistricts = FALLBACK_DISTRICTS;
   }
 
   renderGrid();
-  updateStats();
   handleDistrictParam();
 }
 
-// ─────────────────────────────────────────────────────────
-// DEEP LINK — jump straight to the district clicked from the
-// homepage peak picker (dist_master.html?d=shimla). Handles the
-// couple of slug spellings that differ from our internal ids.
-// ─────────────────────────────────────────────────────────
 const DISTRICT_ALIAS = { 'lahaul-spiti':'spiti', 'lahaul':'spiti', 'lahaul&spiti':'spiti', 'sirmaur':'sirmour' };
 function handleDistrictParam() {
   const params = new URLSearchParams(location.search);
@@ -538,23 +413,10 @@ function handleDistrictParam() {
     (d.id || '').toLowerCase() === want ||
     (d.name || '').toLowerCase().replace(/[^a-z]/g,'') === want.replace(/[^a-z]/g,'')
   );
-  if (!match) return;
-
-  document.getElementById('districts')?.scrollIntoView({ behavior:'smooth', block:'start' });
-  setTimeout(() => {
-    const card = document.querySelector(`.m-card[data-did="${match.id}"]`);
-    if (card) {
-      card.classList.add('dcard-highlight');
-      card.scrollIntoView({ behavior:'smooth', block:'center' });
-      setTimeout(() => card.classList.remove('dcard-highlight'), 2600);
-    }
-    openDrawer(match);
-  }, 550);
+  if (!match || !match.page_url) return;
+  window.location.href = match.page_url;
 }
 
-// ─────────────────────────────────────────────────────────
-// RENDER GRID
-// ─────────────────────────────────────────────────────────
 function renderGrid() {
   const grid = document.getElementById('districtGrid');
   grid.innerHTML = '';
@@ -572,9 +434,6 @@ function renderGrid() {
   grid.style.display = 'block';
 }
 
-// ─────────────────────────────────────────────────────────
-// LOCAL IMAGE MAP — always prefer local files over remote URLs
-// ─────────────────────────────────────────────────────────
 const LOCAL_IMGS = {
   kullu:    'assets/images/manali_1.jpg',
   shimla:   'assets/images/sissu_1.jpg',
@@ -595,176 +454,43 @@ function resolveImg(d) {
 
 function buildCard(d, i) {
   const a = document.createElement('div');
-  a.className = 'm-card';
+  a.className = 'd-card';
   a.dataset.tags = d.tags || '';
   a.dataset.did = (d.id || '').toLowerCase();
 
   const img = resolveImg(d);
-  const tagArr = (d.tags||'').split(',').map(t=>t.trim()).filter(Boolean);
-  const tagsHTML = tagArr.map(t=>`<span class="m-tag">${cap(t)}</span>`).join('');
+  const facts = [
+    d.altitude_m ? `${d.altitude_m} m` : null,
+    d.best_season || null,
+    d.from_delhi_km ? `${d.from_delhi_km} km from Delhi` : null,
+  ].filter(Boolean);
+  const factsHTML = facts.map(f => `<span class="d-fact">${f}</span>`).join('');
 
-  // Top 3 place names as quick tags
   const places = d.places ? Object.values(d.places).sort((a,b)=>(a.order||0)-(b.order||0)) : [];
-  const placeNames = places.slice(0,3).map(p=>`<span class="m-tag">📍 ${p.name}</span>`).join('');
+  const placeChips = places.slice(0,3).map(p=>`<span class="d-place-chip">${p.name}</span>`).join('');
 
   a.innerHTML = `
-    <div class="m-img" style="background-image:url('${img}')"></div>
-    <div class="m-grad"></div>
-    <div class="m-body">
-      <div class="m-no">District ${d.no}</div>
-      <h3>${d.name}</h3>
-      <p class="m-desc">${d.tagline || ''}</p>
-      <div class="m-tags">${tagsHTML}${placeNames}</div>
-      <span class="m-arrow">Explore District →</span>
+    <div class="d-img-wrap">
+      <img src="${img}" alt="${d.name}" loading="lazy">
+      <div class="d-img-grad"></div>
+      <div class="d-card-no">District ${d.no}</div>
+      <h3 class="d-card-name">${d.name}</h3>
+    </div>
+    <div class="d-card-body">
+      <p class="d-card-tagline">${d.tagline || ''}</p>
+      <div class="d-fact-row">${factsHTML}</div>
+      <div class="d-card-places">${placeChips}</div>
+      <span class="d-card-cta">Explore District
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
     </div>`;
 
   a.addEventListener('click', () => {
     if (d.page_url) { window.location.href = d.page_url; }
-    else { openDrawer(d); }
   });
   return a;
 }
 
-// ─────────────────────────────────────────────────────────
-// PLACES HTML BUILDER (reused on location grant)
-// ─────────────────────────────────────────────────────────
-function buildPlacesHTML(places) {
-  return places.map((p,i)=>{
-    const mapsUrl = p.lat && p.lng
-      ? `https://www.google.com/maps?q=${p.lat},${p.lng}&z=14`
-      : null;
-    const distBadge = (userLocation && p.lat && p.lng)
-      ? `<div class="place-dist-badge">
-           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-           ${distKm(userLocation.lat, userLocation.lng, p.lat, p.lng)} km from you
-         </div>`
-      : '';
-    const mapBtn = mapsUrl
-      ? `<a class="place-map-btn" href="${mapsUrl}" target="_blank" rel="noopener">
-           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-           Open in Maps
-         </a>`
-      : '';
-    return `
-    <div class="place-item">
-      <div class="place-num">${i+1}</div>
-      <div class="place-info">
-        <h4>${p.name}</h4>
-        <div class="place-type">${p.type||''}</div>
-        <div class="place-desc">${p.description||''}</div>
-        <div class="place-tags">
-          ${(p.categories||'').split(',').map(c=>`<span class="ptag">${c.trim()}</span>`).join('')}
-        </div>
-        <div class="place-coords">${p.lat ? `${p.lat}° N, ${p.lng}° E` : ''}</div>
-        ${mapBtn}
-        ${distBadge}
-      </div>
-      <div class="place-meta">
-        <div class="place-season">${p.best_time||''}</div>
-        <div class="place-vol">${p.tourist_volume||''}</div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// ─────────────────────────────────────────────────────────
-// DRAWER
-// ─────────────────────────────────────────────────────────
-window.openDrawer = function(d) {
-  currentDistrict = d;
-  const places = d.places ? Object.values(d.places).sort((a,b)=>(a.order||0)-(b.order||0)) : [];
-  const img = resolveImg(d);
-
-  const tagsHTML = (d.tags||'').split(',').map(t=>t.trim()).filter(Boolean)
-    .map(t=>`<span class="d-tag">${cap(t)}</span>`).join('');
-
-  const infoItems = [
-    ['Headquarters', d.hq],
-    ['Area', `${d.area_km2 || '—'} km²`],
-    ['Altitude Range', d.altitude_m || '—'],
-    ['Best Season', d.best_season || '—'],
-    ['Summer Temp', d.temp_summer || '—'],
-    ['Winter Temp', d.temp_winter || '—'],
-    ['Nearest Airport', d.nearest_airport || '—'],
-    ['Distance from Delhi', `${d.from_delhi_km || '—'} km`],
-  ].map(([l,v])=>`
-    <div class="d-info-item">
-      <div class="d-info-label">${l}</div>
-      <div class="d-info-val">${v}</div>
-    </div>`).join('');
-
-  const placesHTML = buildPlacesHTML(places);
-
-  document.getElementById('drawerContent').innerHTML = `
-    <div class="d-hero">
-      <div class="d-hero-img" style="background-image:url('${img}')"></div>
-      <div class="d-hero-body">
-        <div class="d-no">District ${d.no}</div>
-        <div class="d-name">${d.name}</div>
-        <div class="d-tagline">${d.tagline||''}</div>
-      </div>
-    </div>
-    <div class="d-body">
-      <div class="d-section">
-        <div class="d-section-title">About the District</div>
-        <div class="d-desc">${d.description||''}</div>
-      </div>
-      <div class="d-section">
-        <div class="d-section-title">Categories</div>
-        <div class="d-tags-row">${tagsHTML}</div>
-      </div>
-      <div class="d-section">
-        <div class="d-section-title">At a Glance</div>
-        <div class="d-info-grid">${infoItems}</div>
-      </div>
-      <div class="d-section">
-        <div class="d-section-title">Places to Visit (${places.length})</div>
-        <div class="places-list">${placesHTML||'<p style="color:var(--mist)">No places data yet.</p>'}</div>
-      </div>
-      <div class="d-section">
-        <div class="d-section-title">Local Food</div>
-        <div class="d-food">${d.local_food||'—'}</div>
-      </div>
-      <div class="d-section">
-        <div class="d-section-title">Famous For</div>
-        <div class="d-famous">${d.famous_for||'—'}</div>
-      </div>
-      <div class="d-section" style="margin-top:8px">
-        <a href="${d.page_url||'#'}" style="display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:var(--ink);color:#fff;text-decoration:none;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;transition:background .2s;" onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='var(--ink)'">
-          View Full ${d.name} Guide →
-        </a>
-      </div>
-    </div>`;
-
-  document.getElementById('drawer').classList.add('open');
-  document.getElementById('overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('drawer').scrollTop = 0;
-
-  // If location not yet obtained, ask now and refresh distance badges
-  if (!userLocation) {
-    getLocation().then(loc => {
-      if (loc && currentDistrict === d) {
-        // Re-render just the places list with distances
-        const pList = document.querySelector('#drawerContent .places-list');
-        if (pList) pList.innerHTML = buildPlacesHTML(places);
-      }
-    });
-  }
-};
-
-window.closeDrawer = function() {
-  document.getElementById('drawer').classList.remove('open');
-  document.getElementById('overlay').classList.remove('open');
-  document.body.style.overflow = '';
-};
-
-// ESC to close
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeDrawer(); });
-
-// ─────────────────────────────────────────────────────────
-// FILTER
-// ─────────────────────────────────────────────────────────
 document.querySelectorAll('.fbtn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
@@ -774,43 +500,18 @@ document.querySelectorAll('.fbtn').forEach(btn => {
   });
 });
 
-// ─────────────────────────────────────────────────────────
-// STATS
-// ─────────────────────────────────────────────────────────
-function updateStats() {
-  let total = 0;
-  allDistricts.forEach(d => {
-    if(d.places) total += Object.keys(d.places).length;
-  });
-  const el = document.getElementById('statPlaces');
-  if(el) el.textContent = total + '+';
-}
-
-// ─────────────────────────────────────────────────────────
-// NAV SCROLL
-// ─────────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
   document.getElementById('mainNav').classList.toggle('solid', scrollY > 80);
 });
 
-// ─────────────────────────────────────────────────────────
-// REVEAL OBSERVER
-// ─────────────────────────────────────────────────────────
 const obs = new IntersectionObserver(els => {
   els.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ─────────────────────────────────────────────────────────
-// UTILS
-// ─────────────────────────────────────────────────────────
-function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
-
-// ─────────────────────────────────────────────────────────
-// INIT
-// ─────────────────────────────────────────────────────────
 fetchDistricts();
 </script>
 
 </body>
 </html>
+
