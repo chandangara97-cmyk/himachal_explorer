@@ -1535,13 +1535,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <div class="hero-marquee-wrap">
     <div class="hero-marquee-cap">Jump Right In — Two Ways To Start</div>
-    <div style="display:flex;gap:12px;padding:0 18px 18px;flex-wrap:wrap">
-      <button type="button" onclick="openBookStayPopup()" class="he-choice-card" style="all:unset;cursor:pointer;position:relative;overflow:hidden;width:150px;aspect-ratio:4/5;flex:0 0 auto;border-radius:9px;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;background:linear-gradient(180deg,rgba(28,20,9,.1),rgba(28,20,9,.86)),url('assets/images/solang-valley_2.jpg') center/cover;box-shadow:0 0 0 1px rgba(201,146,72,.18)">
+    <div style="display:flex;gap:12px;padding:0 18px 18px;flex-wrap:nowrap;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none">
+      <button type="button" onclick="location.href='options.html'" class="he-choice-card" style="all:unset;cursor:pointer;position:relative;overflow:hidden;width:150px;aspect-ratio:4/5;flex:0 0 auto;border-radius:9px;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;background:linear-gradient(180deg,rgba(28,20,9,.1),rgba(28,20,9,.86)),url('assets/images/solang-valley_2.jpg') center/cover;box-shadow:0 0 0 1px rgba(201,146,72,.18)">
         <div style="font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold2);font-weight:700;margin-bottom:4px">Plan A Trip</div>
         <div style="font-family:'Cormorant',serif;font-size:15px;font-weight:600;color:#fff;line-height:1.15">Book Your <em style="color:var(--gold2);font-style:italic">हिमाचल</em> Stay</div>
         <div style="font-size:9px;color:#e9ddc7;font-weight:300;margin-top:4px">Packages, hotels, taxis &amp; bikes.</div>
       </button>
-      <button type="button" onclick="openEncyclopediaPopup()" class="he-choice-card" style="all:unset;cursor:pointer;position:relative;overflow:hidden;width:150px;aspect-ratio:4/5;flex:0 0 auto;border-radius:9px;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;background:linear-gradient(180deg,rgba(28,20,9,.1),rgba(28,20,9,.86)),url('assets/images/key-monastery-spiti.jpg') center/cover;box-shadow:0 0 0 1px rgba(201,146,72,.18)">
+      <button type="button" onclick="location.href='encyclopedia.html'" class="he-choice-card" style="all:unset;cursor:pointer;position:relative;overflow:hidden;width:150px;aspect-ratio:4/5;flex:0 0 auto;border-radius:9px;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;background:linear-gradient(180deg,rgba(28,20,9,.1),rgba(28,20,9,.86)),url('assets/images/key-monastery-spiti.jpg') center/cover;box-shadow:0 0 0 1px rgba(201,146,72,.18)">
         <div style="font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold2);font-weight:700;margin-bottom:4px">Learn First</div>
         <div style="font-family:'Cormorant',serif;font-size:15px;font-weight:600;color:#fff;line-height:1.15"><em style="color:var(--gold2);font-style:italic">हिमाचल</em> Encyclopedia</div>
         <div style="font-size:9px;color:#e9ddc7;font-weight:300;margin-top:4px">177 glaciers, lakes, passes &amp; treks.</div>
@@ -1552,113 +1552,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       @media(max-width:520px){.he-choice-card{width:120px!important}}
       .he-choice-card:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,0,0,.4)}
       .he-choice-card{transition:transform .2s ease, box-shadow .2s ease}
+      .hero-marquee-wrap div[style*="overflow-x:auto"]::-webkit-scrollbar{display:none}
     </style>
   </div>
   </div>
 </section>
-
-<!-- ══════════ BOOK YOUR STAY — popup ══════════ -->
-<div id="bookStayOverlay" style="display:none;position:fixed;inset:0;z-index:9200;background:rgba(28,20,9,.65);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px">
-  <div style="background:var(--surface);max-width:520px;width:100%;border:1px solid var(--border2);position:relative;animation:ppSlide .22s ease;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35)">
-    <div style="height:3px;background:linear-gradient(135deg,var(--gold2),var(--gold))"></div>
-    <button onclick="closeBookStayPopup()" aria-label="Close" style="position:absolute;top:12px;right:14px;background:none;border:none;cursor:pointer;font-size:18px;color:var(--caption);line-height:1">✕</button>
-    <div style="padding:26px 26px 22px">
-      <div style="font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px">Book Your हिमाचल Stay</div>
-      <div style="font-family:'Cormorant',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:16px">How would you like to start?</div>
-      <div class="he-pop-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
-        <a href="yui.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/201-himalaya.jpg')"><span>🧭 Build My Trip</span></a>
-        <a href="packages.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/solang-valley_2.jpg')"><span>📦 Tour Packages</span></a>
-        <a href="hotels.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=60&w=300&auto=format&fit=crop')"><span>🏨 Partner Hotels</span></a>
-        <a href="taxi-service.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('https://images.unsplash.com/photo-1736951649095-7855f0e0f86b?q=60&w=300&auto=format&fit=crop')"><span>🚕 Taxi Booking</span></a>
-        <a href="bike-rental.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('https://images.unsplash.com/photo-1716741011671-db4d7c6a8293?q=60&w=300&auto=format&fit=crop')"><span>🏍️ Bike Rental</span></a>
-      </div>
-      <a href="https://wa.me/917018138847?text=Hi%2C%20I%20want%20to%20book%20a%20Himachal%20stay." target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 14px;background:var(--gold);border-radius:10px;text-decoration:none;color:#fff;font-family:'Jost',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.04em">💬 WhatsApp Us Directly</a>
-    </div>
-  </div>
-</div>
-
-<style>
-.he-pop-tile{position:relative;overflow:hidden;border-radius:14px;aspect-ratio:4/5;display:flex;align-items:flex-end;padding:12px 11px;text-decoration:none;background-size:cover;background-position:center;box-shadow:0 2px 6px rgba(28,20,9,.14),0 0 0 1px rgba(201,146,72,.22);transition:transform .35s cubic-bezier(.22,.8,.25,1),box-shadow .35s ease,background-size .6s ease}
-.he-pop-tile::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,20,9,.02) 35%,rgba(28,20,9,.88) 100%);pointer-events:none}
-.he-pop-tile span{position:relative;z-index:1;font-family:'Jost',sans-serif;font-size:11.5px;font-weight:600;line-height:1.35;color:#fff;letter-spacing:.01em;text-shadow:0 1px 4px rgba(0,0,0,.45)}
-.he-pop-tile:hover{transform:translateY(-5px) scale(1.025);box-shadow:0 16px 32px rgba(28,20,9,.38),0 0 0 1.5px var(--gold2);background-size:114%}
-@media(max-width:640px){
-  /* Always exactly 2 rows on mobile — extra options scroll sideways instead of
-     stacking into a long, confusing vertical list. */
-  .he-pop-grid{
-    grid-template-columns:none!important;
-    grid-template-rows:repeat(2,1fr)!important;
-    grid-auto-flow:column;
-    grid-auto-columns:108px;
-    overflow-x:auto;
-    overscroll-behavior-x:contain;
-    scroll-snap-type:x proximity;
-    -ms-overflow-style:none;
-    scrollbar-width:none;
-    padding-bottom:2px;
-  }
-  .he-pop-grid::-webkit-scrollbar{display:none}
-  .he-pop-grid .he-pop-tile{scroll-snap-align:start;aspect-ratio:auto;height:100%}
-}
-</style>
-
-<!-- ══════════ हिमाचल ENCYCLOPEDIA — popup ══════════ -->
-<div id="encyclopediaOverlay" style="display:none;position:fixed;inset:0;z-index:9200;background:rgba(28,20,9,.7);backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto">
-  <div style="background:var(--surface);max-width:760px;width:100%;border:1px solid var(--border2);position:relative;animation:ppSlide .22s ease;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);margin:24px 0">
-    <div style="height:3px;background:linear-gradient(135deg,var(--gold2),var(--gold))"></div>
-    <button onclick="closeEncyclopediaPopup()" aria-label="Close" style="position:absolute;top:12px;right:14px;background:none;border:none;cursor:pointer;font-size:18px;color:var(--caption);line-height:1;z-index:2">✕</button>
-    <div style="padding:24px 24px 8px">
-      <div style="font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px">177 Entries · Lakes, Glaciers, Passes &amp; Treks</div>
-      <div style="font-family:'Cormorant',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:14px"><em style="font-style:italic;color:var(--gold)">हिमाचल</em> Encyclopedia</div>
-
-      <div style="font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--caption);font-weight:700;margin-bottom:8px">Or Explore More</div>
-      <div class="he-pop-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px">
-        <a href="explore.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('https://images.unsplash.com/photo-1544084944-15269ec7b5a0?q=60&w=300&auto=format&fit=crop')"><span>🧭 Explore Map</span></a>
-        <a href="hotels.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=60&w=300&auto=format&fit=crop')"><span>🏨 Partner Hotels</span></a>
-        <a href="himachal-treks.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/bir-billing_3.jpg')"><span>🥾 Treks</span></a>
-      </div>
-
-      <div class="he-pop-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px">
-        <a href="encyclopedia-lakes.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/gobind-sagar-lake_1.jpg')"><span>💧 Lakes &amp; Reservoirs (16)</span></a>
-        <a href="encyclopedia-rivers.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/barot-valley_1.jpg')"><span>🌊 Rivers &amp; Tributaries (17)</span></a>
-        <a href="encyclopedia-hot-springs.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/nako-village-walk_01.webp')"><span>♨️ Hot Springs &amp; Falls (15)</span></a>
-        <a href="encyclopedia-glaciers.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/key-monastery-spiti.jpg')"><span>🧊 Glaciers (25)</span></a>
-        <a href="encyclopedia-valleys.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/solang-valley_1.jpg')"><span>🏞️ Valleys (11)</span></a>
-        <a href="encyclopedia-passes.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/201-himalaya.jpg')"><span>⛰️ Mountain Passes (57)</span></a>
-        <a href="encyclopedia-trek-routes.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/bir-billing_3.jpg')"><span>🥾 Trekking Routes (28)</span></a>
-        <a href="encyclopedia-conservation.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/barot-valley_2.jpg')"><span>🌲 Conservation (4)</span></a>
-        <a href="encyclopedia-history.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/nako-village-walk_02.webp')"><span>📜 History &amp; Heritage (4)</span></a>
-      </div>
-    </div>
-    <div style="padding:12px 24px;border-top:1px solid var(--border);background:var(--lift);font-size:10.5px;color:var(--caption);font-family:'Jost',sans-serif">
-      Sourced from a scanned reference document; some facts are OCR-derived and marked for verification. Each section links out to its own page with full detail and district links.
-    </div>
-  </div>
-</div>
-
-<script>
-(function(){
-  window.openBookStayPopup = function(){
-    document.getElementById('bookStayOverlay').style.display = 'flex';
-  };
-  window.closeBookStayPopup = function(){
-    document.getElementById('bookStayOverlay').style.display = 'none';
-  };
-
-  window.openEncyclopediaPopup = function(){
-    document.getElementById('encyclopediaOverlay').style.display = 'flex';
-  };
-  window.closeEncyclopediaPopup = function(){
-    document.getElementById('encyclopediaOverlay').style.display = 'none';
-  };
-
-  // Close on backdrop click, matching the rest of the site's overlays
-  ['bookStayOverlay','encyclopediaOverlay'].forEach(id=>{
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('click', function(e){ if(e.target === this) el.style.display='none'; });
-  });
-})();
-</script>
 
 <div class="qa-bg reveal">
   <div class="wrap" style="padding:0">
