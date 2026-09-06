@@ -227,6 +227,10 @@ footer{background:#150f06;padding:22px var(--px);display:flex;align-items:center
 }
 </style>
 <link rel="stylesheet" href="assets/css/site-chrome.css">
+<link rel="stylesheet" href="/assets/css/performance-ui.css">
+<script src="/assets/js/performance-ui.js" defer></script>
+<link rel="stylesheet" href="/assets/css/page-start.css">
+<script src="/assets/js/page-start.js" defer></script>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
@@ -306,7 +310,7 @@ let rawId     = (params.get("d") || "").toLowerCase().trim();
 const distId  = ID_ALIAS[rawId] || rawId;
 
 if (!distId) {
-  showError("No district specified", "Use <code>?d=kullu</code> in the URL.");
+  showDistrictIndex();
 } else {
   showSkeleton();
   loadDistrict(distId);
@@ -583,6 +587,34 @@ function showSkeleton() {
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
           ${Array(6).fill(`<div class="skel" style="height:220px"></div>`).join("")}
         </div>
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════
+// DISTRICT INDEX (no ?d= param — show all 12)
+// ═══════════════════════════════════════════════
+function showDistrictIndex() {
+  document.title = "District Guide — Himachal Explorer";
+  document.getElementById("main").innerHTML = `
+    <div style="background:var(--ink);padding:104px 0 40px;margin-top:52px">
+      <div class="wrap">
+        <div class="hero-badge">District Guide</div>
+        <h1 class="hero-title" style="font-size:clamp(36px,6vw,64px)">All <em>12</em> Districts</h1>
+        <p class="hero-tagline">Places to visit, best season, local food and travel tips for every district of Himachal Pradesh — pick one to start.</p>
+      </div>
+    </div>
+    <div class="dist-nav-bg">
+      <div class="wrap" style="padding-top:36px;padding-bottom:52px">
+        <div class="dist-nav-title">Browse By District</div>
+        <div class="dist-nav-grid">${ALL_DISTRICTS.map(d => `
+          <a href="dist_index.html?d=${d.id}" class="dn-card">
+            <img loading="lazy" src="${d.img}" alt="${escH(d.name)}" width="300" height="225"/>
+            <div class="dn-body">
+              <div class="dn-name">${escH(d.name)}</div>
+              <div class="dn-line"></div>
+            </div>
+          </a>`).join("")}</div>
       </div>
     </div>`;
 }
