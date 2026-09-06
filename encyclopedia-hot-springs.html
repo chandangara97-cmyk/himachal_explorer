@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hot Springs & Waterfalls Of Himachal Pradesh | हिमाचल Encyclopedia | Himachal Explorer</title>
+<meta name="description" content="15 Hot Springs, Waterfalls & Kunds — part of the Himachal Explorer हिमाचल Encyclopedia. District-wise facts, altitude and location details."/>
+<link rel="canonical" href="https://himachalexplorer.in/encyclopedia-hot-springs.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8f5ef;--surface:#fff;--lift:#fdfbf7;--muted:#f0ebe0;
+  --border:#e5ddd0;--border2:#d4c9b5;--ink:#1c1409;--body:#5a4a36;
+  --caption:#9b8a74;--gold:#b07d3a;--gold2:#c99248;--gold-bg:#fdf6ec;
+  --dark:#0e0a04;--wrap:1140px;--px:32px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--px)}
+.enc-hero{position:relative;height:38vh;min-height:260px;display:flex;align-items:flex-end;overflow:hidden}
+.enc-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.92) brightness(.75)}
+.enc-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,7,3,.92) 0%,rgba(10,7,3,.35) 60%,rgba(10,7,3,.1) 100%)}
+.enc-hero-inner{position:relative;z-index:2;padding:0 var(--px) 30px;max-width:var(--wrap);margin:0 auto;width:100%}
+.enc-eyebrow{font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold2);margin-bottom:8px;display:block}
+.enc-title{font-family:'Cormorant',serif;font-size:clamp(30px,4.6vw,50px);font-weight:300;color:#fff;line-height:1.1}
+.enc-title em{font-style:italic;color:var(--gold2)}
+.enc-back{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:11px;color:rgba(255,255,255,.8);text-decoration:none;letter-spacing:.06em;text-transform:uppercase}
+.enc-back:hover{color:#fff}
+.enc-body{padding:36px 0 60px}
+.enc-toolbar{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.enc-search{flex:1;min-width:220px;padding:12px 14px;border:1.5px solid var(--border2);border-radius:8px;font-family:'Jost',sans-serif;font-size:13px;color:var(--ink);background:var(--surface)}
+.enc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.enc-card{border:1px solid var(--border);border-radius:12px;padding:18px 20px;background:var(--surface);box-shadow:0 1px 0 rgba(0,0,0,.02)}
+.enc-card-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:4px}
+.enc-card-name{font-family:'Cormorant',serif;font-size:19px;font-weight:600;color:var(--ink)}
+.enc-card-dist{font-size:10.5px;color:var(--gold);font-weight:600;white-space:nowrap}
+.enc-card-meta{font-size:10.5px;color:var(--caption);text-transform:capitalize;margin-bottom:8px}
+.enc-card ul{margin:0 0 10px 16px;font-size:12.5px;color:var(--body);line-height:1.65}
+.enc-card-flags{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap}
+.enc-unverified{font-size:9.5px;color:var(--caption);font-style:italic}
+.enc-dist-link{font-size:10.5px;font-weight:600;color:#fff;background:var(--gold);padding:6px 12px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.enc-dist-link:hover{background:var(--dark)}
+.enc-empty{padding:40px 0;text-align:center;color:var(--caption);font-size:13px}
+.enc-footnote{margin-top:26px;font-size:11px;color:var(--caption);font-family:'Jost',sans-serif;border-top:1px solid var(--border);padding-top:16px}
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="enc-hero">
+  <img src="assets/images/nako-village-walk_01.webp" alt="Hot Springs & Waterfalls" loading="eager"/>
+  <div class="enc-hero-inner">
+    <span class="enc-eyebrow">15 Hot Springs, Waterfalls & Kunds</span>
+    <h1 class="enc-title">Hot Springs &amp; Waterfalls</h1>
+    <a href="index.html" class="enc-back">← Back To हिमाचल Encyclopedia</a>
+  </div>
+</section>
+
+<div class="wrap enc-body">
+  <div class="enc-toolbar">
+    <input id="encSearch" class="enc-search" type="text" placeholder="Search by name or district…" oninput="encRender()"/>
+  </div>
+  <div id="encGrid" class="enc-grid"><div class="enc-empty">Loading…</div></div>
+  <div class="enc-footnote">Sourced from a scanned reference document; entries marked "unverified" are OCR-derived and pending confirmation against the original source.</div>
+</div>
+
+<div id="site-footer"></div>
+<script src="assets/js/site-chrome.js" defer></script>
+
+<script>
+(function(){
+  const DB = "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app";
+  const CAT_KEY = "hot_springs_waterfalls_kunds";
+  const DISTRICT_MAP = {
+  "Bilaspur":"bilaspur.html","Chamba":"chamba.html","Hamirpur":"hamirpur.html",
+  "Kangra":"kangra.html","Kinnaur":"kinnaur.html","Kullu":"kullu.html",
+  "Mandi":"mandi.html","Shimla":"shimla.html","Sirmaur":"sirmour.html",
+  "Solan":"solan.html","Una":"una.html","Lahaul-Spiti":"spiti.html","Lahaul":"spiti.html","Spiti":"spiti.html"
+};
+  let items = [];
+
+  function districtLink(d){
+    if(!d) return null;
+    const first = d.split('/')[0].trim();
+    if (DISTRICT_MAP[first]) return DISTRICT_MAP[first];
+    for (const k in DISTRICT_MAP){
+      if (first.toLowerCase().indexOf(k.toLowerCase()) !== -1) return DISTRICT_MAP[k];
+    }
+    return null;
+  }
+
+  async function load(){
+    const grid = document.getElementById('encGrid');
+    try{
+      const res = await fetch(`${DB}/encyclopedia/${CAT_KEY}.json`);
+      const data = await res.json();
+      if (!data){ grid.innerHTML = '<div class="enc-empty">Not available yet — check back soon.</div>'; return; }
+      items = Object.keys(data).map(id => data[id]);
+      items.sort((a,b) => (a.name||'').localeCompare(b.name||''));
+      encRender();
+    } catch(err){
+      grid.innerHTML = '<div class="enc-empty">Could not load right now.</div>';
+    }
+  }
+
+  window.encRender = function(){
+    const grid = document.getElementById('encGrid');
+    const q = (document.getElementById('encSearch').value||'').trim().toLowerCase();
+    let list = items;
+    if (q){
+      list = items.filter(it => (it.name||'').toLowerCase().includes(q) || (it.district||'').toLowerCase().includes(q));
+    }
+    if (!list.length){ grid.innerHTML = '<div class="enc-empty">No matches.</div>'; return; }
+    grid.innerHTML = list.map(it => {
+      const dLink = districtLink(it.district);
+      const facts = (it.facts||[]).slice(0,4).map(f => `<li>${f}</li>`).join('');
+      return `
+        <div class="enc-card">
+          <div class="enc-card-top">
+            <div class="enc-card-name">${it.name||''}</div>
+            ${it.district?`<div class="enc-card-dist">${it.district}</div>`:''}
+          </div>
+          <div class="enc-card-meta">${it.type||''}${it.altitude_m?` · ~${it.altitude_m} m`:''}</div>
+          ${facts?`<ul>${facts}</ul>`:''}
+          <div class="enc-card-flags">
+            ${it.verification_required?'<span class="enc-unverified">Unverified — OCR sourced.</span>':'<span></span>'}
+            ${dLink?`<a class="enc-dist-link" href="${dLink}">View ${it.district.split('/')[0].trim()} District →</a>`:''}
+          </div>
+        </div>`;
+    }).join('');
+  };
+
+  load();
+})();
+</script>
+
+</body>
+</html>

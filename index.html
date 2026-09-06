@@ -1595,25 +1595,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="himachal-treks.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/bir-billing_3.jpg')"><span>🥾 Treks</span></a>
       </div>
 
-      <div style="display:flex;gap:8px;margin-bottom:12px">
-        <input id="encSearch" type="text" placeholder="Search by name or district…" style="flex:1;padding:10px 12px;border:1.5px solid var(--border2);border-radius:8px;font-family:'Jost',sans-serif;font-size:12.5px;color:var(--ink);background:var(--lift)" oninput="encRender()"/>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px">
+        <a href="encyclopedia-lakes.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/gobind-sagar-lake_1.jpg')"><span>💧 Lakes &amp; Reservoirs (16)</span></a>
+        <a href="encyclopedia-rivers.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/barot-valley_1.jpg')"><span>🌊 Rivers &amp; Tributaries (17)</span></a>
+        <a href="encyclopedia-hot-springs.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/nako-village-walk_01.webp')"><span>♨️ Hot Springs &amp; Falls (15)</span></a>
+        <a href="encyclopedia-glaciers.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/key-monastery-spiti.jpg')"><span>🧊 Glaciers (25)</span></a>
+        <a href="encyclopedia-valleys.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/solang-valley_1.jpg')"><span>🏞️ Valleys (11)</span></a>
+        <a href="encyclopedia-passes.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/201-himalaya.jpg')"><span>⛰️ Mountain Passes (57)</span></a>
+        <a href="encyclopedia-trek-routes.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/bir-billing_3.jpg')"><span>🥾 Trekking Routes (28)</span></a>
+        <a href="encyclopedia-conservation.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/barot-valley_2.jpg')"><span>🌲 Conservation (4)</span></a>
+        <a href="encyclopedia-history.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/nako-village-walk_02.webp')"><span>📜 History &amp; Heritage (4)</span></a>
       </div>
-      <div id="encTabs" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px"></div>
     </div>
-    <div id="encList" style="padding:0 24px 24px;max-height:52vh;overflow-y:auto;display:flex;flex-direction:column;gap:10px"></div>
     <div style="padding:12px 24px;border-top:1px solid var(--border);background:var(--lift);font-size:10.5px;color:var(--caption);font-family:'Jost',sans-serif">
-      Sourced from a scanned reference document; some facts are OCR-derived and marked for verification.
+      Sourced from a scanned reference document; some facts are OCR-derived and marked for verification. Each section links out to its own page with full detail and district links.
     </div>
   </div>
 </div>
 
 <script>
 (function(){
-  const ENC_DB = "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app";
-  let encData = null;      // full {_meta, category: {id: entity}}
-  let encCats = [];        // [{key,label,icon,count}]
-  let encActiveCat = "all";
-
   window.openBookStayPopup = function(){
     document.getElementById('bookStayOverlay').style.display = 'flex';
   };
@@ -1623,79 +1624,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   window.openEncyclopediaPopup = function(){
     document.getElementById('encyclopediaOverlay').style.display = 'flex';
-    if (!encData) encLoad();
   };
   window.closeEncyclopediaPopup = function(){
     document.getElementById('encyclopediaOverlay').style.display = 'none';
   };
-
-  async function encLoad(){
-    const listEl = document.getElementById('encList');
-    listEl.innerHTML = '<div style="padding:20px 0;text-align:center;color:var(--caption);font-size:12px;font-family:\'Jost\',sans-serif">Loading…</div>';
-    try{
-      const res = await fetch(`${ENC_DB}/encyclopedia.json`);
-      const data = await res.json();
-      if (!data){ listEl.innerHTML = '<div style="padding:20px 0;text-align:center;color:var(--caption);font-size:12px">Not available yet — check back soon.</div>'; return; }
-      encData = data;
-      encCats = Object.keys(data).filter(k => k !== '_meta').map(k => ({
-        key: k,
-        label: (data[k]._label) || k.replace(/_/g,' '),
-        count: Object.keys(data[k]).length
-      }));
-      // pull nicer labels from _meta.categories if present
-      if (data._meta && data._meta.categories){
-        encCats.forEach(c => { if (data._meta.categories[c.key]) c.label = data._meta.categories[c.key]; });
-      }
-      encRenderTabs();
-      encRender();
-    } catch(err){
-      listEl.innerHTML = '<div style="padding:20px 0;text-align:center;color:var(--caption);font-size:12px">Could not load right now.</div>';
-    }
-  }
-
-  function encRenderTabs(){
-    const tabsEl = document.getElementById('encTabs');
-    const all = [{key:'all', label:'All', count: encCats.reduce((a,c)=>a+c.count,0)}].concat(encCats);
-    tabsEl.innerHTML = all.map(c => `
-      <button type="button" data-cat="${c.key}" class="enc-tab" style="padding:7px 12px;border-radius:999px;border:1.5px solid ${c.key===encActiveCat?'var(--gold)':'var(--border2)'};background:${c.key===encActiveCat?'var(--gold)':'var(--lift)'};color:${c.key===encActiveCat?'#fff':'var(--body)'};font-family:'Jost',sans-serif;font-size:10.5px;font-weight:600;cursor:pointer;white-space:nowrap">${c.label} (${c.count})</button>
-    `).join('');
-    tabsEl.querySelectorAll('.enc-tab').forEach(btn => {
-      btn.addEventListener('click', () => { encActiveCat = btn.dataset.cat; encRenderTabs(); encRender(); });
-    });
-  }
-
-  function encRender(){
-    const listEl = document.getElementById('encList');
-    if (!encData){ return; }
-    const q = (document.getElementById('encSearch').value || '').trim().toLowerCase();
-    let items = [];
-    const catKeys = encActiveCat === 'all' ? encCats.map(c=>c.key) : [encActiveCat];
-    catKeys.forEach(catKey => {
-      const bucket = encData[catKey] || {};
-      Object.keys(bucket).forEach(id => items.push(bucket[id]));
-    });
-    if (q){
-      items = items.filter(it =>
-        (it.name||'').toLowerCase().includes(q) ||
-        (it.district||'').toLowerCase().includes(q)
-      );
-    }
-    if (!items.length){
-      listEl.innerHTML = '<div style="padding:20px 0;text-align:center;color:var(--caption);font-size:12px">No matches.</div>';
-      return;
-    }
-    listEl.innerHTML = items.slice(0, 120).map(it => `
-      <div style="border:1px solid var(--border);border-radius:10px;padding:13px 15px;background:var(--lift)">
-        <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">
-          <div style="font-family:'Cormorant',serif;font-size:16.5px;font-weight:600;color:var(--ink)">${it.name||''}</div>
-          ${it.district?`<div style="font-size:10px;color:var(--gold);font-weight:600;white-space:nowrap">${it.district}</div>`:''}
-        </div>
-        <div style="font-size:10.5px;color:var(--caption);text-transform:capitalize;margin:2px 0 6px">${(it.category_label||it.type||'').toString()}${it.altitude_m?` · ~${it.altitude_m} m`:''}</div>
-        ${(it.facts&&it.facts.length)?`<ul style="margin:0;padding-left:16px;font-size:11.5px;color:var(--body);line-height:1.6">${it.facts.slice(0,3).map(f=>`<li>${f}</li>`).join('')}</ul>`:''}
-        ${it.verification_required?`<div style="margin-top:6px;font-size:9.5px;color:var(--caption);font-style:italic">Unverified — sourced from OCR, to be confirmed.</div>`:''}
-      </div>
-    `).join('');
-  }
 
   // Close on backdrop click, matching the rest of the site's overlays
   ['bookStayOverlay','encyclopediaOverlay'].forEach(id=>{
