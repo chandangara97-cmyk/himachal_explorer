@@ -371,9 +371,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="fc" style="min-width:150px">
       <div class="fc-label">Sort By</div>
       <select class="sort-sel" id="sortSel">
-        <option value="popular">Popular</option>
-        <option value="price-asc">Price: Low → High</option>
+        <option value="price-asc" selected>Price: Low → High</option>
         <option value="price-desc">Price: High → Low</option>
+        <option value="popular">Popular</option>
         <option value="days-asc">Shortest First</option>
         <option value="days-desc">Longest First</option>
       </select>
@@ -840,7 +840,7 @@ function formatLocationsPreview(pkg, max) {
 function fmt(n) { return '₹' + n.toLocaleString('en-IN'); }
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
-let state = { region:'all', dur:'all', tier:'budget', pax:4, sort:'popular', wishlist:new Set(), selectedId:null, gateway:'DELHI', drop:'DELHI', travelerMode:null, currentCity:null };
+let state = { region:'all', dur:'all', tier:'budget', pax:4, sort:'price-asc', wishlist:new Set(), selectedId:null, gateway:'DELHI', drop:'DELHI', travelerMode:null, currentCity:null };
 let activeDay = 1;
 const PEAK_MONTHS = [5,6,12,1];
 const isPeak = PEAK_MONTHS.includes(new Date().getMonth()+1);
@@ -2291,9 +2291,9 @@ setInterval(fetchWeather, 15 * 60 * 1000);
         <div class="mfs-section">
           <div class="mfs-label">Sort By</div>
           <select class="mfs-select" id="mfsSortSel">
-            <option value="popular">Most Popular</option>
-            <option value="price-asc">Price: Low → High</option>
+            <option value="price-asc" selected>Price: Low → High</option>
             <option value="price-desc">Price: High → Low</option>
+            <option value="popular">Most Popular</option>
             <option value="days-asc">Shortest First</option>
             <option value="days-desc">Longest First</option>
           </select>
