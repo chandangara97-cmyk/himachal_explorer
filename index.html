@@ -1,8 +1,9 @@
-<link rel="stylesheet" href="/assets/css/performance-ui.css">
-<script src="/assets/js/performance-ui.js" defer></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>if('scrollRestoration' in history){history.scrollRestoration='manual';}</script>
+<link rel="stylesheet" href="/assets/css/performance-ui.css">
+<script src="/assets/js/performance-ui.js" defer></script>
 <meta charset="UTF-8"/>
 <meta name="google-site-verification" content="i2lM033sZ9pqrYa5t8IU8DOqkSGVz-tNEQMXfHc5ll8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -403,19 +404,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
    Hero photo is left untouched per request — everything else
    below it is re-skinned. Pure CSS, no markup changes needed.
 ═══════════════════════════════════════════════════════════════════*/
-:root{
+[data-theme="dark"]{
   --fut-bg:#070a12;--fut-bg2:#0c1019;--fut-panel:rgba(18,24,38,.6);
   --fut-panel-strong:rgba(22,29,46,.85);--fut-border:rgba(120,200,255,.18);
   --fut-border-gold:rgba(201,146,72,.35);--fut-cyan:#5fd4ff;--fut-cyan-soft:rgba(95,212,255,.35);
   --fut-text:#e8edf6;--fut-text-dim:#8a94aa;
 }
-body{
+[data-theme="dark"] body{
   background:
     radial-gradient(ellipse 80% 50% at 50% -10%, rgba(95,212,255,.08), transparent),
     radial-gradient(ellipse 60% 40% at 90% 20%, rgba(201,146,72,.06), transparent),
     var(--fut-bg);
 }
-body::before{
+[data-theme="dark"] body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:
     linear-gradient(rgba(120,200,255,.05) 1px,transparent 1px),
@@ -424,111 +425,104 @@ body::before{
   mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 75%);
 }
 
-nav[aria-label="Main navigation"]{
+[data-theme="dark"] nav[aria-label="Main navigation"]{
   background:rgba(7,10,18,.72)!important;backdrop-filter:blur(16px) saturate(140%);
   border-bottom:1px solid var(--fut-border)!important;box-shadow:0 1px 24px rgba(95,212,255,.06)!important;
 }
-.logo-text{color:var(--fut-text)!important}
-.nav-links a{color:var(--fut-text-dim)!important}
-.nav-links a:hover{color:var(--fut-cyan)!important;background:rgba(95,212,255,.08)!important}
-.nav-links a.active{background:linear-gradient(135deg,var(--fut-cyan),var(--gold2))!important;box-shadow:0 0 18px var(--fut-cyan-soft)!important;color:#06121c!important}
-.nav-phone{color:var(--fut-text-dim)!important}
-.nav-pill{background:linear-gradient(135deg,var(--fut-cyan),#3aa6e0)!important;color:#06121c!important;box-shadow:0 0 16px var(--fut-cyan-soft)!important}
+[data-theme="dark"] .logo-text{color:var(--fut-text)!important}
+[data-theme="dark"] .nav-links a{color:var(--fut-text-dim)!important}
+[data-theme="dark"] .nav-links a:hover{color:var(--fut-cyan)!important;background:rgba(95,212,255,.08)!important}
+[data-theme="dark"] .nav-links a.active{background:linear-gradient(135deg,var(--fut-cyan),var(--gold2))!important;box-shadow:0 0 18px var(--fut-cyan-soft)!important;color:#06121c!important}
+[data-theme="dark"] .nav-phone{color:var(--fut-text-dim)!important}
+[data-theme="dark"] .nav-pill{background:linear-gradient(135deg,var(--fut-cyan),#3aa6e0)!important;color:#06121c!important;box-shadow:0 0 16px var(--fut-cyan-soft)!important}
 
-.hero-content .hero-badge{
+[data-theme="dark"] .hero-content .hero-badge{
   background:rgba(95,212,255,.1)!important;border:1px solid var(--fut-cyan-soft)!important;
   color:var(--fut-cyan)!important;backdrop-filter:blur(8px);
 }
-.btn-primary{background:linear-gradient(135deg,var(--fut-cyan),#2f8fc4)!important;box-shadow:0 0 22px var(--fut-cyan-soft),0 6px 20px rgba(0,0,0,.4)!important;color:#06121c!important;border:none!important}
-.btn-ghost{background:rgba(18,24,38,.5)!important;border:1px solid var(--fut-border)!important;color:#fff!important;backdrop-filter:blur(8px)}
-.btn-ghost:hover{border-color:var(--fut-cyan)!important;box-shadow:0 0 14px var(--fut-cyan-soft)!important}
+[data-theme="dark"] .btn-primary{background:linear-gradient(135deg,var(--fut-cyan),#2f8fc4)!important;box-shadow:0 0 22px var(--fut-cyan-soft),0 6px 20px rgba(0,0,0,.4)!important;color:#06121c!important;border:none!important}
+[data-theme="dark"] .btn-ghost{background:rgba(18,24,38,.5)!important;border:1px solid var(--fut-border)!important;color:#fff!important;backdrop-filter:blur(8px)}
+[data-theme="dark"] .btn-ghost:hover{border-color:var(--fut-cyan)!important;box-shadow:0 0 14px var(--fut-cyan-soft)!important}
 
-.marquee{background:var(--fut-bg2)!important;border-top:1px solid var(--fut-border);border-bottom:1px solid var(--fut-border)}
-.marquee-item{color:var(--fut-text-dim)!important}
-.marquee-item::after{color:var(--fut-cyan)!important}
+[data-theme="dark"] .marquee{background:var(--fut-bg2)!important;border-top:1px solid var(--fut-border);border-bottom:1px solid var(--fut-border)}
+[data-theme="dark"] .marquee-item{color:var(--fut-text-dim)!important}
+[data-theme="dark"] .marquee-item::after{color:var(--fut-cyan)!important}
 
-.features-bg{background:transparent!important;position:relative;z-index:1}
-.section-label{color:var(--fut-cyan)!important;letter-spacing:.18em!important}
-.section-title{color:var(--fut-text)!important}
-.section-title em{color:var(--gold2)!important;font-style:normal!important}
+[data-theme="dark"] .features-bg{background:transparent!important;position:relative;z-index:1}
+[data-theme="dark"] .section-label{color:var(--fut-cyan)!important;letter-spacing:.18em!important}
+[data-theme="dark"] .section-title{color:var(--fut-text)!important}
+[data-theme="dark"] .section-title em{color:var(--gold2)!important;font-style:normal!important}
 
-.feat{
+[data-theme="dark"] .feat{
   background:var(--fut-panel)!important;border:1px solid var(--fut-border)!important;
   backdrop-filter:blur(14px);border-radius:16px!important;
   transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease)!important;
 }
-.feat:hover{
+[data-theme="dark"] .feat:hover{
   transform:translateY(-6px)!important;border-color:var(--fut-cyan-soft)!important;
   box-shadow:0 0 0 1px var(--fut-cyan-soft),0 20px 40px rgba(0,0,0,.45),0 0 30px rgba(95,212,255,.12)!important;
 }
-.feat-num{color:rgba(95,212,255,.35)!important;font-family:'Courier New',monospace!important}
-.feat-icon{color:var(--fut-cyan)!important;filter:drop-shadow(0 0 6px rgba(95,212,255,.4))}
-.feat-name{color:var(--fut-text)!important}
-.feat-desc{color:var(--fut-text-dim)!important}
+[data-theme="dark"] .feat-num{color:rgba(95,212,255,.35)!important;font-family:'Courier New',monospace!important}
+[data-theme="dark"] .feat-icon{color:var(--fut-cyan)!important;filter:drop-shadow(0 0 6px rgba(95,212,255,.4))}
+[data-theme="dark"] .feat-name{color:var(--fut-text)!important}
+[data-theme="dark"] .feat-desc{color:var(--fut-text-dim)!important}
 
-.districts-bg,.contact-bg,.faq-bg,.cta-bg{background:var(--fut-bg2)!important}
-.dist-header,.contact-heading,.faq-grid{position:relative;z-index:1}
-.contact-heading,.cta-text,.faq-ans{color:var(--fut-text)!important}
+[data-theme="dark"] .contact-bg, [data-theme="dark"] .faq-bg, [data-theme="dark"] .cta-bg{background:var(--fut-bg2)!important}
+[data-theme="dark"] .contact-heading, [data-theme="dark"] .faq-grid{position:relative;z-index:1}
+[data-theme="dark"] .contact-heading, [data-theme="dark"] .cta-text, [data-theme="dark"] .faq-ans{color:var(--fut-text)!important}
 
 /* ═══ FAQ DARK THEME FIX ═══ */
-details{border-top:1px solid rgba(120,200,255,.15)!important;background:rgba(18,24,38,.5)!important;border-radius:8px!important;margin-bottom:12px!important;padding:0!important;overflow:hidden}
-details:last-child{border-bottom:none!important}
-details summary{padding:14px 16px!important;color:var(--fut-text)!important;font-family:'Cormorant',serif;font-size:16px;font-weight:400;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;line-height:1.3;transition:background .2s,color .2s}
-details summary:hover{background:rgba(95,212,255,.08)!important;color:#5fd4ff!important}
-details summary::-webkit-details-marker{display:none}
-details summary::after{content:'+';font-size:18px;color:#5fd4ff;flex-shrink:0;transition:transform .22s;line-height:1;font-weight:300}
-details[open] summary{background:rgba(95,212,255,.12)!important}
-details[open] summary::after{transform:rotate(45deg);color:#5fd4ff}
-details[open] .faq-ans{color:rgba(232,237,246,.85)!important}
+[data-theme="dark"] details{border-top:1px solid rgba(120,200,255,.15)!important;background:rgba(18,24,38,.5)!important;border-radius:8px!important;margin-bottom:12px!important;padding:0!important;overflow:hidden}
+[data-theme="dark"] details:last-child{border-bottom:none!important}
+[data-theme="dark"] details summary{padding:14px 16px!important;color:var(--fut-text)!important;font-family:'Cormorant',serif;font-size:16px;font-weight:400;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;line-height:1.3;transition:background .2s,color .2s}
+[data-theme="dark"] details summary:hover{background:rgba(95,212,255,.08)!important;color:#5fd4ff!important}
+[data-theme="dark"] details summary::-webkit-details-marker{display:none}
+[data-theme="dark"] details summary::after{content:'+';font-size:18px;color:#5fd4ff;flex-shrink:0;transition:transform .22s;line-height:1;font-weight:300}
+[data-theme="dark"] details[open] summary{background:rgba(95,212,255,.12)!important}
+[data-theme="dark"] details[open] summary::after{transform:rotate(45deg);color:#5fd4ff}
+[data-theme="dark"] details[open] .faq-ans{color:rgba(232,237,246,.85)!important}
 
 /* HOTEL SECTION — futuristic override removed; uses the heritage gold theme defined below */
 
-.contact-sub,.dist-tagline{color:var(--fut-text-dim)!important}
+[data-theme="dark"] .contact-sub{color:var(--fut-text-dim)!important}
 
-.c-card{
+[data-theme="dark"] .c-card{
   background:var(--fut-panel)!important;border:1px solid var(--fut-border)!important;
   backdrop-filter:blur(14px);border-radius:14px!important;
 }
-.c-card:hover{border-color:var(--fut-cyan-soft)!important;box-shadow:0 0 24px rgba(95,212,255,.12)!important}
-.c-icon{color:var(--fut-cyan)!important}
-.c-val{color:var(--fut-text)!important}
-.c-lbl{color:var(--fut-text-dim)!important}
+[data-theme="dark"] .c-card:hover{border-color:var(--fut-cyan-soft)!important;box-shadow:0 0 24px rgba(95,212,255,.12)!important}
+[data-theme="dark"] .c-icon{color:var(--fut-cyan)!important}
+[data-theme="dark"] .c-val{color:var(--fut-text)!important}
+[data-theme="dark"] .c-lbl{color:var(--fut-text-dim)!important}
 
-.dpeak{background:var(--fut-panel)!important;border:1px solid var(--fut-border)!important;backdrop-filter:blur(12px)}
-.dpeak:hover{border-color:var(--fut-border-gold)!important;box-shadow:0 0 24px rgba(201,146,72,.15)!important}
-.dpeak-name{color:var(--fut-text)!important}
-.dpeak-label{color:var(--fut-cyan)!important}
 
-footer,.foot-brand,.foot-links a,.foot-copy{color:var(--fut-text-dim)!important;background:var(--fut-bg)!important}
-.foot-links a:hover{color:var(--fut-cyan)!important}
+[data-theme="dark"] footer, [data-theme="dark"] .foot-brand, [data-theme="dark"] .foot-links a, [data-theme="dark"] .foot-copy{color:var(--fut-text-dim)!important;background:var(--fut-bg)!important}
+[data-theme="dark"] .foot-links a:hover{color:var(--fut-cyan)!important}
 
 /* slightly larger type across the re-skinned sections */
-.hero-title{font-size:clamp(38px,5vw,62px)!important}
-.hero-desc{font-size:15.5px!important;line-height:1.6!important}
-.hero-badge{font-size:11px!important}
-.section-title{font-size:clamp(24px,2.6vw,32px)!important}
-.section-label{font-size:11px!important}
-.feat-name{font-size:17px!important}
-.feat-desc{font-size:13.5px!important;line-height:1.6!important}
-.feat-num{font-size:13px!important}
-.c-val{font-size:19px!important}
-.c-lbl{font-size:12px!important}
-.dpeak-name{font-size:16px!important}
-.btn{font-size:13px!important}
-.nav-links a{font-size:12px!important}
+[data-theme="dark"] .hero-title{font-size:clamp(38px,5vw,62px)!important}
+[data-theme="dark"] .hero-desc{font-size:15.5px!important;line-height:1.6!important}
+[data-theme="dark"] .hero-badge{font-size:11px!important}
+[data-theme="dark"] .section-title{font-size:clamp(24px,2.6vw,32px)!important}
+[data-theme="dark"] .section-label{font-size:11px!important}
+[data-theme="dark"] .feat-name{font-size:17px!important}
+[data-theme="dark"] .feat-desc{font-size:13.5px!important;line-height:1.6!important}
+[data-theme="dark"] .feat-num{font-size:13px!important}
+[data-theme="dark"] .c-val{font-size:19px!important}
+[data-theme="dark"] .c-lbl{font-size:12px!important}
+[data-theme="dark"] .btn{font-size:13px!important}
+[data-theme="dark"] .nav-links a{font-size:12px!important}
 
 /* ─── clarity pass: enlarge clickable text site-wide so visitors can spot what to tap ─── */
-.nav-phone{font-size:12px!important}
-.nav-pill{font-size:12px!important}
-.btn-outline{font-size:12px!important}
-.dist-cta-btn{font-size:12px!important}
-.dist-cta-label{font-size:11px!important}
-.foot-links a{font-size:11px!important}
-.hero-howto-label{font-size:11px!important}
-.qa-card-label{font-size:11px!important}
-.pkg-tag{font-size:10px!important}
-.pkg-from,.pkg-per{font-size:9px!important}
-.mob-tab{font-size:10px!important}
+[data-theme="dark"] .nav-phone{font-size:12px!important}
+[data-theme="dark"] .nav-pill{font-size:12px!important}
+[data-theme="dark"] .btn-outline{font-size:12px!important}
+[data-theme="dark"] .foot-links a{font-size:11px!important}
+[data-theme="dark"] .hero-howto-label{font-size:11px!important}
+[data-theme="dark"] .qa-card-label{font-size:11px!important}
+[data-theme="dark"] .pkg-tag{font-size:10px!important}
+[data-theme="dark"] .pkg-from, [data-theme="dark"] .pkg-per{font-size:9px!important}
+[data-theme="dark"] .mob-tab{font-size:10px!important}
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
@@ -601,15 +595,7 @@ h1.hero-title em{font-style:italic;color:var(--gold2);display:block}
 .hero-marquee-wrap{margin-top:64px;padding:18px 0 16px;background:linear-gradient(150deg,rgba(28,20,9,.4) 0%,rgba(10,7,3,.3) 100%);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);border:1px solid rgba(201,146,72,.22);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.06);animation:fadeUp .9s ease .9s both;max-width:100%}
 .hero-marquee-cap{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold2);font-weight:700;padding:0 18px 12px;display:flex;align-items:center;gap:9px}
 .hero-marquee-cap::before{content:'';width:18px;height:1.5px;background:linear-gradient(90deg,var(--gold2),transparent);box-shadow:0 0 6px var(--glow-soft)}
-.nx-fixed-grid{display:flex;gap:12px;padding:0 18px;flex-wrap:wrap}
-.nx-fixed-grid .nx-card{width:150px;flex:0 0 auto;border-radius:9px;box-shadow:0 0 0 1px rgba(201,146,72,.18)}
-.nx-fixed-grid.nx-one-row{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding-bottom:4px}
-.nx-fixed-grid.nx-one-row .nx-card{scroll-snap-align:start}
-.nx-fixed-grid.nx-one-row::-webkit-scrollbar{height:5px}
-.nx-fixed-grid.nx-one-row::-webkit-scrollbar-thumb{background:rgba(201,146,72,.4);border-radius:10px}
-.nx-fixed-grid.nx-one-row::-webkit-scrollbar-track{background:transparent}
-@media(max-width:680px){.nx-fixed-grid .nx-card{width:132px}}
-@media(max-width:520px){.hero-marquee-wrap{border-radius:16px;margin-top:42px}.hero-marquee-cap{font-size:8px;padding:0 14px 10px}.nx-fixed-grid .nx-card{width:120px}.nx-fixed-grid{gap:9px;padding:0 14px 4px}}
+@media(max-width:520px){.hero-marquee-wrap{border-radius:16px;margin-top:42px}.hero-marquee-cap{font-size:8px;padding:0 14px 10px}}
 
 /* ─── HERO TRENDING DASHBOARD (right side, floats over the video) ───
    Desktop/tablet only — hidden below 1080px so the hero video, badge
@@ -805,112 +791,6 @@ section{padding:56px 0}
 .feat-name{font-family:'Cormorant',serif;font-size:18px;font-weight:400;color:var(--ink);margin-bottom:6px;line-height:1.2}
 .feat-desc{font-size:12px;line-height:1.6;font-weight:300;color:var(--body)}
 
-/* ─── DISTRICTS MOUNTAIN GATEWAY ─── */
-.districts-bg{position:relative;overflow:hidden;background:#0a0704;border-top:1px solid #2a1f10;border-bottom:1px solid #2a1f10}
-.dist-sky{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,#1a0e05 0%,#0a0704 60%)}
-.dist-stars{position:absolute;inset:0;background-image:radial-gradient(1px 1px at 12% 15%,rgba(255,220,140,.6) 0%,transparent 100%),radial-gradient(1px 1px at 28% 8%,rgba(255,220,140,.4) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 44% 20%,rgba(255,220,140,.7) 0%,transparent 100%),radial-gradient(1px 1px at 60% 6%,rgba(255,220,140,.5) 0%,transparent 100%),radial-gradient(1px 1px at 75% 18%,rgba(255,220,140,.3) 0%,transparent 100%),radial-gradient(1px 1px at 88% 10%,rgba(255,220,140,.6) 0%,transparent 100%),radial-gradient(1px 1px at 20% 30%,rgba(255,220,140,.3) 0%,transparent 100%),radial-gradient(1px 1px at 55% 28%,rgba(255,220,140,.4) 0%,transparent 100%),radial-gradient(1px 1px at 92% 25%,rgba(255,220,140,.5) 0%,transparent 100%),radial-gradient(1px 1px at 7% 35%,rgba(255,220,140,.25) 0%,transparent 100%)}
-.dist-header{position:relative;z-index:5;text-align:center;padding:52px var(--px) 0}
-.dist-header .section-label{justify-content:center;color:#c99248;margin-bottom:10px}
-.dist-header .section-label::before{display:none}
-.dist-header .section-title{color:#f0e4ce;text-align:center;font-size:clamp(28px,4vw,46px)}
-.dist-header .section-title em{color:#c99248}
-.dist-tagline{font-size:13px;font-weight:300;color:rgba(240,228,206,.55);text-align:center;margin:10px auto 0;max-width:400px;line-height:1.65;letter-spacing:.03em}
-
-/* valley floor */
-.dist-valley{position:absolute;bottom:0;left:0;right:0;height:90px;background:linear-gradient(to top,#060402 40%,transparent 100%);z-index:3;pointer-events:none}
-.dist-valley-line{position:absolute;bottom:80px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(176,125,58,.18) 20%,rgba(176,125,58,.38) 50%,rgba(176,125,58,.18) 80%,transparent);z-index:4}
-
-/* peaks panorama */
-.dist-peaks-wrap{position:relative;z-index:4;padding:32px var(--px) 110px;overflow:hidden}
-.dist-peaks{display:flex;align-items:flex-end;justify-content:center;gap:0;min-height:320px;padding:0 0 0 0}
-
-/* each peak card */
-.dpeak{position:relative;flex:1;min-width:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;transition:flex .55s cubic-bezier(.22,1,.36,1)}
-.dpeak:hover{flex:1.55}
-.dpeak-link{position:absolute;inset:0;z-index:10;text-decoration:none}
-
-/* SVG mountain shape */
-.dpeak-svg-wrap{position:absolute;bottom:0;left:0;right:0;top:0;overflow:hidden}
-.dpeak-photo{position:absolute;inset:0;z-index:1;overflow:hidden}
-.dpeak-photo img{width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.04);transition:transform .6s cubic-bezier(.22,1,.36,1),filter .5s ease;filter:saturate(.85) brightness(.8)}
-.dpeak:hover .dpeak-photo img{transform:scale(1.12);filter:saturate(1) brightness(.88)}
-.dpeak-scrim{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(6,4,2,.92) 0%,rgba(6,4,2,.35) 55%,rgba(6,4,2,.15) 100%);transition:background .4s}
-.dpeak:hover .dpeak-scrim{background:linear-gradient(to top,rgba(6,4,2,.85) 0%,rgba(6,4,2,.2) 55%,rgba(6,4,2,.05) 100%)}
-.dpeak svg.peak-shape{position:absolute;bottom:0;left:0;width:100%;height:100%;overflow:visible;transition:filter .5s ease;filter:drop-shadow(0 -2px 10px rgba(201,146,72,.16))}
-.dpeak:hover svg.peak-shape{filter:drop-shadow(0 -6px 28px rgba(201,146,72,.55))}
-
-/* snow cap */
-.peak-snow{fill:rgba(240,232,218,.92);transition:fill .4s}
-.dpeak:hover .peak-snow{fill:#fff}
-
-/* main mountain body */
-.peak-body{transition:fill .4s;stroke:rgba(201,146,72,.4);stroke-width:1.4;stroke-linejoin:round}
-.dpeak:hover .peak-body{stroke:rgba(201,146,72,.75)}
-
-/* glow lines on mountain face */
-.peak-glow-line{stroke:rgba(201,146,72,.16);stroke-width:.8;fill:none;transition:stroke .4s .1s}
-.dpeak:hover .peak-glow-line{stroke:rgba(201,146,72,.4)}
-
-/* label area at bottom of peak */
-.dpeak-label{position:absolute;bottom:0;left:0;right:0;z-index:6;padding:10px 6px 14px;background:linear-gradient(to top,rgba(6,4,2,.95) 60%,transparent 100%);display:flex;flex-direction:column;align-items:center;gap:2px;pointer-events:none;transition:padding .4s}
-.dpeak:hover .dpeak-label{padding-bottom:18px}
-.dpeak-name{font-family:'Cormorant',serif;font-size:clamp(11px,1.2vw,14px);font-weight:400;color:#d4b87a;line-height:1.1;text-align:center;letter-spacing:.04em;transition:color .3s,font-size .3s}
-.dpeak:hover .dpeak-name{color:#f0c86a;font-size:clamp(12px,1.35vw,16px)}
-.dpeak-alt{font-size:clamp(7.5px,.7vw,9px);letter-spacing:.18em;text-transform:uppercase;color:#6b4e28;font-weight:600;transition:color .3s;text-align:center}
-.dpeak:hover .dpeak-alt{color:#c99248}
-.dpeak-arrow{width:14px;height:14px;margin-top:4px;opacity:0;transform:translateY(4px);transition:opacity .3s,transform .3s;color:#c99248}
-.dpeak:hover .dpeak-arrow{opacity:1;transform:none}
-
-/* golden horizontal scan on hover */
-.dpeak::before{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,146,72,.0) 40%,rgba(201,146,72,.55) 50%,rgba(201,146,72,.0) 60%,transparent);opacity:0;transition:opacity .4s,top .6s;z-index:7;pointer-events:none}
-.dpeak:hover::before{opacity:1;top:30%}
-
-/* district number badge */
-.dpeak-num{position:absolute;top:18px;left:50%;transform:translateX(-50%);font-family:'Cormorant',serif;font-size:clamp(8px,.9vw,11px);color:rgba(201,146,72,.25);font-weight:300;letter-spacing:.18em;transition:color .3s;z-index:7;pointer-events:none;white-space:nowrap}
-.dpeak:hover .dpeak-num{color:rgba(201,146,72,.7)}
-
-/* moon */
-.dist-moon{position:absolute;top:32px;right:clamp(20px,6vw,80px);z-index:3;width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 38% 38%,#f5e8c4,#c9994a);box-shadow:0 0 28px 8px rgba(201,146,72,.18),0 0 60px 18px rgba(201,146,72,.06);animation:moonGlow 5s ease-in-out infinite alternate;pointer-events:none}
-@keyframes moonGlow{from{box-shadow:0 0 22px 6px rgba(201,146,72,.14),0 0 50px 14px rgba(201,146,72,.04)}to{box-shadow:0 0 36px 12px rgba(201,146,72,.28),0 0 80px 24px rgba(201,146,72,.10)}}
-
-/* mist layers */
-.dist-mist{position:absolute;bottom:80px;left:0;right:0;height:80px;background:linear-gradient(to top,rgba(10,7,4,.9),transparent);z-index:3;pointer-events:none}
-.dist-mist2{position:absolute;bottom:70px;left:-10%;width:120%;height:40px;background:linear-gradient(90deg,transparent,rgba(176,125,58,.04) 30%,rgba(176,125,58,.08) 50%,rgba(176,125,58,.04) 70%,transparent);z-index:3;pointer-events:none;animation:mistDrift 20s ease-in-out infinite alternate}
-@keyframes mistDrift{from{transform:translateX(0)}to{transform:translateX(4%)}}
-
-/* bottom CTA band */
-.dist-cta-band{position:relative;z-index:5;background:linear-gradient(to right,rgba(10,7,4,0),rgba(176,125,58,.06),rgba(10,7,4,0));border-top:1px solid rgba(176,125,58,.14);border-bottom:1px solid rgba(176,125,58,.08);padding:18px var(--px);display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap}
-.dist-cta-label{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(201,146,72,.6);font-weight:600}
-.dist-cta-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:var(--gold);color:#fff;font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:background .22s,transform .22s}
-.dist-cta-btn:hover{background:#956830;transform:translateY(-2px)}
-.dist-cta-btn svg{width:11px;height:11px;flex-shrink:0}
-
-/* responsive */
-@media(max-width:960px){
-  .dist-peaks{gap:0;min-height:240px}
-  .dist-peaks-wrap{padding-bottom:90px}
-  .dpeak-name{font-size:10px}
-  .dist-moon{width:30px;height:30px;top:24px}
-}
-@media(max-width:640px){
-  .dist-peaks{min-height:180px}
-  .dist-peaks-wrap{padding:16px var(--px) 80px}
-  .dpeak-name{font-size:8.5px}
-  .dpeak-alt{display:none}
-  .dist-header{padding-top:36px}
-}
-@media(max-width:440px){
-  .dist-peaks{min-height:150px}
-  .dpeak-num{display:none}
-}
-@keyframes peakReveal{from{opacity:.55;transform:translateY(14px)}to{opacity:1;transform:none}}
-.dpeak{opacity:.55;animation:peakReveal .8s ease forwards}
-.dpeak:nth-child(1){animation-delay:.05s}.dpeak:nth-child(2){animation-delay:.1s}.dpeak:nth-child(3){animation-delay:.15s}.dpeak:nth-child(4){animation-delay:.2s}.dpeak:nth-child(5){animation-delay:.25s}.dpeak:nth-child(6){animation-delay:.3s}.dpeak:nth-child(7){animation-delay:.35s}.dpeak:nth-child(8){animation-delay:.4s}.dpeak:nth-child(9){animation-delay:.45s}.dpeak:nth-child(10){animation-delay:.5s}.dpeak:nth-child(11){animation-delay:.55s}.dpeak:nth-child(12){animation-delay:.6s}
-.districts-bg:not(.peaks-visible) .dpeak{animation-play-state:paused}
-.districts-bg.peaks-visible .dpeak{animation-play-state:running}
-.districts-bg:not(.peaks-visible) .dist-moon,.districts-bg:not(.peaks-visible) .dist-mist2{animation-play-state:paused}
-.districts-bg.peaks-visible .dist-moon,.districts-bg.peaks-visible .dist-mist2{animation-play-state:running}
-
 /* ─── PACKAGES ─── */
 .packages-bg{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -960,7 +840,6 @@ section{padding:56px 0}
 .nx-icon svg{width:16px;height:16px;stroke:var(--gold2)}
 .nx-tag{position:absolute;top:14px;right:12px;font-size:7px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#0c0803;background:var(--gold2);padding:3px 8px;border-radius:20px}
 .nx-card-primary{box-shadow:0 0 0 2px var(--gold),0 8px 24px rgba(176,125,58,.35) !important}
-.nx-fixed-grid .nx-card-primary{box-shadow:0 0 0 2px var(--gold),0 8px 20px rgba(176,125,58,.3) !important}
 .nx-bd{position:absolute;bottom:0;left:0;right:0;padding:14px 14px 16px}
 .nx-sub{font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);font-weight:700;margin-bottom:4px}
 .nx-title{font-family:'Cormorant',serif;font-size:19px;font-weight:600;color:#fff;line-height:1.14;text-shadow:0 1px 8px rgba(0,0,0,.4)}
@@ -1240,32 +1119,6 @@ footer{background:#150f06;padding:22px var(--px);display:flex;align-items:center
 }
 
 @media(max-width:960px){
-  .dist-peaks{
-    display:flex!important;flex-direction:row;
-    overflow-x:auto;scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;scrollbar-width:none;
-    gap:12px;padding:0 var(--px) 20px;align-items:flex-end;
-  }
-  .dist-peaks::-webkit-scrollbar{display:none}
-  .dpeak{min-width:108px;flex-shrink:0;scroll-snap-align:start}
-  .dpeak-label{
-    background:rgba(21,15,6,.88);backdrop-filter:blur(10px);
-    border-radius:12px;padding:10px 11px;margin-top:8px;
-  }
-  .dpeak-name{font-size:12px}
-  .dpeak-alt{font-size:10px}
-  .dpeak:active{transform:scale(.96)}
-  .dpeak{transition:transform .15s;-webkit-tap-highlight-color:transparent}
-
-  /* ── DISTRICTS: scroll hint indicator ── */
-  .dist-peaks-wrap::after{
-    content:'';
-    position:absolute;right:0;top:0;bottom:20px;
-    width:48px;
-    background:linear-gradient(to right,transparent,rgba(6,4,2,.85));
-    pointer-events:none;z-index:6;border-radius:0 0 0 0;
-  }
-
   /* ── EXPERIENCE CARDS: stacked full-width ── */
   .oc-grid{display:flex;flex-direction:column;gap:14px}
   .oc-card{border-radius:18px;box-shadow:0 6px 20px rgba(0,0,0,.12)}
@@ -1698,245 +1551,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </div>
-
-<div class="districts-bg" id="districts-gateway" aria-label="Explore Himachal Districts">
-  <div class="dist-sky" aria-hidden="true"></div>
-  <div class="dist-stars" aria-hidden="true"></div>
-  <div class="dist-moon" aria-hidden="true"></div>
-
-  <div class="dist-header reveal">
-    <div class="section-label">Explore Himachal Pradesh</div>
-    <h2 class="section-title">The Twelve <em>Districts</em></h2>
-    <p class="dist-tagline">Twelve kingdoms of altitude, each a world of its own — click any peak to explore</p>
-  </div>
-
-  <div class="dist-peaks-wrap">
-    <div class="dist-peaks" id="distPeaks">
-
-      <div class="dpeak" data-district="Shimla">
-        <a href="shimla.html" class="dpeak-link" aria-label="Explore Shimla district"></a>
-        <div class="dpeak-num">01</div>
-        <div class="dpeak-photo"><img loading="lazy" src="assets/images/temple.jpg" alt="Bhimakali Temple, Sarahan — Shimla district" decoding="async"/></div>
-        <div class="dpeak-scrim" aria-hidden="true"></div>
-        <div class="dpeak-label">
-          <div class="dpeak-name">Shimla</div>
-          <div class="dpeak-alt">2,200 m</div>
-          <svg class="dpeak-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-      <div class="dpeak" data-district="Kullu">
-        <a href="kullu.html" class="dpeak-link" aria-label="Explore Kullu district"></a>
-        <div class="dpeak-num">02</div>
-        <div class="dpeak-photo"><img loading="lazy" src="assets/images/manali_1.jpg" alt="Manali — Kullu district" decoding="async"/></div>
-        <div class="dpeak-scrim" aria-hidden="true"></div>
-        <div class="dpeak-label">
-          <div class="dpeak-name">Kullu</div>
-          <div class="dpeak-alt">1,220 m</div>
-          <svg class="dpeak-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-      <div class="dpeak" data-district="Lahaul &amp; Spiti">
-        <a href="spiti.html" class="dpeak-link" aria-label="Explore Lahaul & Spiti district"></a>
-        <div class="dpeak-num">03</div>
-        <div class="dpeak-photo"><img loading="lazy" src="assets/images/key-monastery-spiti.jpg" alt="Key Monastery — Lahaul &amp; Spiti district" decoding="async"/></div>
-        <div class="dpeak-scrim" aria-hidden="true"></div>
-        <div class="dpeak-label">
-          <div class="dpeak-name">Lahaul–Spiti</div>
-          <div class="dpeak-alt">4,270 m</div>
-          <svg class="dpeak-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-      <div class="dpeak" data-district="Kinnaur">
-        <a href="kinnaur.html" class="dpeak-link" aria-label="Explore Kinnaur district"></a>
-        <div class="dpeak-num">04</div>
-        <div class="dpeak-photo"><img loading="lazy" src="assets/images/kinnaur-kailash-viewpoint_01.jpg" alt="Kinnaur Kailash viewpoint — Kinnaur district" decoding="async"/></div>
-        <div class="dpeak-scrim" aria-hidden="true"></div>
-        <div class="dpeak-label">
-          <div class="dpeak-name">Kinnaur</div>
-          <div class="dpeak-alt">3,600 m</div>
-          <svg class="dpeak-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-      <div class="dpeak" data-district="Mandi">
-        <a href="mandi.html" class="dpeak-link" aria-label="Explore Mandi district"></a>
-        <div class="dpeak-num">05</div>
-        <div class="dpeak-photo"><img loading="lazy" src="assets/images/barot-valley_1.jpg" alt="Barot Valley — Mandi district" decoding="async"/></div>
-        <div class="dpeak-scrim" aria-hidden="true"></div>
-        <div class="dpeak-label">
-          <div class="dpeak-name">Mandi</div>
-          <div class="dpeak-alt">800 m</div>
-          <svg class="dpeak-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-      <div class="dpeak" data-district="Kangra">
-        <a href="kangra.html" class="dpeak-link" aria-label="Explore Kangra district"></a>
-        <div class="dpeak-num">06</div>
-        <div class="dpeak-photo"><img loading="lazy" src="assets/images/kangra-fort_1.jpg" alt="Kangra Fort — Kangra district" decoding="async"/></div>
-        <div class="dpeak-scrim" aria-hidden="true"></div>
-        <div class="dpeak-label">
-          <div class="dpeak-name">Kangra</div>
-          <div class="dpeak-alt">1,450 m</div>
-          <svg class="dpeak-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-      <div class="dpeak" data-district="Chamba">
-        <a href="chamba.html" class="dpeak-link" aria-label="Explore Chamba district"></a>
-        <div class="dpeak-num">07</div>
-        <div class="dpeak-photo"><img loading="lazy" src="assets/images/khajjiar_1.jpg" alt="Khajjiar — Chamba district" decoding="async"/></div>
-        <div class="dpeak-scrim" aria-hidden="true"></div>
-        <div class="dpeak-label">
-          <div class="dpeak-name">Chamba</div>
-          <div class="dpeak-alt">996 m</div>
-          <svg class="dpeak-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-      <div class="dpeak" data-district="Hamirpur">
-        <a href="hamirpur.html" class="dpeak-link" aria-label="Explore Hamirpur district"></a>
-        <div class="dpeak-num">08</div>
-        <div class="dpeak-svg-wrap">
-          <svg class="peak-shape" viewBox="0 0 100 240" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="pg8" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#623c1e"/>
-                <stop offset="100%" stop-color="#2b1508"/>
-              </linearGradient>
-            </defs>
-            <polygon class="peak-body" points="50,22 8,240 92,240" fill="url(#pg8)"/>
-            <polygon class="peak-snow" points="50,22 38,60 62,60"/>
-            <line class="peak-glow-line" x1="50" y1="60" x2="22" y2="175"/>
-            <line class="peak-glow-line" x1="50" y1="60" x2="76" y2="188"/>
-          </svg>
-        </div>
-        <div class="dpeak-label">
-          <div class="dpeak-name">Hamirpur</div>
-          <div class="dpeak-alt">786 m</div>
-          <svg class="dpeak-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-      <div class="dpeak" data-district="Una">
-        <a href="una.html" class="dpeak-link" aria-label="Explore Una district"></a>
-        <div class="dpeak-num">09</div>
-        <div class="dpeak-svg-wrap">
-          <svg class="peak-shape" viewBox="0 0 100 230" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="pg9" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#5a3719"/>
-                <stop offset="100%" stop-color="#261108"/>
-              </linearGradient>
-            </defs>
-            <polygon class="peak-body" points="50,28 10,230 90,230" fill="url(#pg9)"/>
-            <polygon class="peak-snow" points="50,28 38,62 62,62"/>
-            <line class="peak-glow-line" x1="50" y1="62" x2="24" y2="170"/>
-            <line class="peak-glow-line" x1="50" y1="62" x2="74" y2="180"/>
-          </svg>
-        </div>
-        <div class="dpeak-label">
-          <div class="dpeak-name">Una</div>
-          <div class="dpeak-alt">370 m</div>
-          <svg class="dpeak-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-      <div class="dpeak" data-district="Bilaspur">
-        <a href="bilaspur.html" class="dpeak-link" aria-label="Explore Bilaspur district"></a>
-        <div class="dpeak-num">10</div>
-        <div class="dpeak-photo"><img loading="lazy" src="assets/images/gobind-sagar-lake_1.jpg" alt="Gobind Sagar Lake — Bilaspur district" decoding="async"/></div>
-        <div class="dpeak-scrim" aria-hidden="true"></div>
-        <div class="dpeak-label">
-          <div class="dpeak-name">Bilaspur</div>
-          <div class="dpeak-alt">673 m</div>
-          <svg class="dpeak-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-      <div class="dpeak" data-district="Solan">
-        <a href="solan.html" class="dpeak-link" aria-label="Explore Solan district"></a>
-        <div class="dpeak-num">11</div>
-        <div class="dpeak-svg-wrap">
-          <svg class="peak-shape" viewBox="0 0 100 265" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="pg11" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#7c4b22"/>
-                <stop offset="100%" stop-color="#351e0c"/>
-              </linearGradient>
-            </defs>
-            <polygon class="peak-body" points="48,12 4,265 96,265" fill="url(#pg11)"/>
-            <polygon class="peak-snow" points="48,12 32,56 64,56"/>
-            <line class="peak-glow-line" x1="48" y1="56" x2="16" y2="188"/>
-            <line class="peak-glow-line" x1="48" y1="56" x2="78" y2="202"/>
-          </svg>
-        </div>
-        <div class="dpeak-label">
-          <div class="dpeak-name">Solan</div>
-          <div class="dpeak-alt">1,467 m</div>
-          <svg class="dpeak-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-      <div class="dpeak" data-district="Sirmaur">
-        <a href="sirmour.html" class="dpeak-link" aria-label="Explore Sirmaur district"></a>
-        <div class="dpeak-num">12</div>
-        <div class="dpeak-svg-wrap">
-          <svg class="peak-shape" viewBox="0 0 100 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="pg12" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#90562b"/>
-                <stop offset="100%" stop-color="#3c2211"/>
-              </linearGradient>
-            </defs>
-            <polygon class="peak-body" points="54,4 6,280 100,280" fill="url(#pg12)"/>
-            <polygon class="peak-snow" points="54,4 36,54 72,54"/>
-            <line class="peak-glow-line" x1="54" y1="54" x2="18" y2="200"/>
-            <line class="peak-glow-line" x1="54" y1="54" x2="86" y2="218"/>
-          </svg>
-        </div>
-        <div class="dpeak-label">
-          <div class="dpeak-name">Sirmaur</div>
-          <div class="dpeak-alt">918 m</div>
-          <svg class="dpeak-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-    </div></div><div class="dist-mist" aria-hidden="true"></div>
-  <div class="dist-mist2" aria-hidden="true"></div>
-  <div class="dist-valley" aria-hidden="true"></div>
-  <div class="dist-valley-line" aria-hidden="true"></div>
-
-  <div class="dist-cta-band">
-    <span class="dist-cta-label">Hover any peak · Click to explore</span>
-    <a href="dist_master.html" class="dist-cta-btn">
-      Explore All 12 Districts
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-  </div>
-</div>
-
-<script>
-/* Animate peaks when they enter the viewport */
-(function(){
-  var gateway = document.getElementById('districts-gateway');
-  if(!gateway) return;
-  var io2 = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ gateway.classList.add('peaks-visible'); io2.disconnect(); }
-    });
-  },{threshold:0.08});
-  io2.observe(gateway);
-  // Safety net: peaks stay visible (opacity:.55 baseline) even without
-  // this class, but force it on after a short delay in case the observer
-  // never fires (e.g. page loads already scrolled past it).
-  setTimeout(function(){ gateway.classList.add('peaks-visible'); }, 1500);
-})();
-</script>
-
 
 <div class="occasions-bg">
   <div class="wrap" style="padding-top:44px;padding-bottom:44px">
@@ -3381,5 +2995,6 @@ document.addEventListener('click', function(e) {
   ];
 </script>
 <script src="assets/js/firebase-status-bar.js" defer></script>
+<script>window.addEventListener('pageshow',function(){if(!location.hash){window.scrollTo(0,0);}});</script>
 </body>
 </html>
