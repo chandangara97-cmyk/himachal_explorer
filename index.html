@@ -557,6 +557,10 @@ nav[aria-label="Main navigation"]{position:fixed;top:20px;z-index:100;width:100%
 @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
   .hero-bg{background-attachment:fixed}
 }
+@media(max-width:640px){
+  .hero{height:78svh;min-height:480px;max-height:640px;padding:0 var(--px) 40px}
+  .hero-bg-video{object-position:center 38%}
+}
 .hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,20,9,.82) 0%,rgba(28,20,9,.12) 62%,rgba(28,20,9,.02) 100%)}
 .hero-bottom{position:relative;z-index:2;width:100%}
@@ -1469,7 +1473,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </style>
 <section class="hero" aria-label="Hero">
   <div class="hero-bg" aria-hidden="true">
-    <video class="hero-bg-video" id="heroBgVideo" muted loop playsinline preload="none" poster="assets/images/key-monastery-spiti.jpg">
+    <video class="hero-bg-video" id="heroBgVideo" muted loop autoplay playsinline preload="none" poster="assets/images/key-monastery-spiti.jpg">
       <source data-src="assets/videos/hero-video.mp4" type="video/mp4"/>
     </video>
     <div class="hero-overlay"></div>
@@ -1561,7 +1565,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div style="padding:26px 26px 22px">
       <div style="font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px">Book Your हिमाचल Stay</div>
       <div style="font-family:'Cormorant',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:16px">How would you like to start?</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
+      <div class="he-pop-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
         <a href="yui.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/201-himalaya.jpg')"><span>🧭 Build My Trip</span></a>
         <a href="packages.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/solang-valley_2.jpg')"><span>📦 Tour Packages</span></a>
         <a href="hotels.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=60&w=300&auto=format&fit=crop')"><span>🏨 Partner Hotels</span></a>
@@ -1574,9 +1578,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <style>
-.he-pop-tile{position:relative;overflow:hidden;border-radius:10px;aspect-ratio:4/5;display:flex;align-items:flex-end;padding:10px;text-decoration:none;background-size:cover;background-position:center;box-shadow:0 0 0 1px rgba(201,146,72,.18);transition:transform .2s ease, box-shadow .2s ease}
-.he-pop-tile span{position:relative;font-family:'Jost',sans-serif;font-size:11px;font-weight:600;line-height:1.3;color:#fff}
-.he-pop-tile:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,0,0,.28)}
+.he-pop-tile{position:relative;overflow:hidden;border-radius:14px;aspect-ratio:4/5;display:flex;align-items:flex-end;padding:12px 11px;text-decoration:none;background-size:cover;background-position:center;box-shadow:0 2px 6px rgba(28,20,9,.14),0 0 0 1px rgba(201,146,72,.22);transition:transform .35s cubic-bezier(.22,.8,.25,1),box-shadow .35s ease,background-size .6s ease}
+.he-pop-tile::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,20,9,.02) 35%,rgba(28,20,9,.88) 100%);pointer-events:none}
+.he-pop-tile span{position:relative;z-index:1;font-family:'Jost',sans-serif;font-size:11.5px;font-weight:600;line-height:1.35;color:#fff;letter-spacing:.01em;text-shadow:0 1px 4px rgba(0,0,0,.45)}
+.he-pop-tile:hover{transform:translateY(-5px) scale(1.025);box-shadow:0 16px 32px rgba(28,20,9,.38),0 0 0 1.5px var(--gold2);background-size:114%}
+@media(max-width:640px){
+  /* Always exactly 2 rows on mobile — extra options scroll sideways instead of
+     stacking into a long, confusing vertical list. */
+  .he-pop-grid{
+    grid-template-columns:none!important;
+    grid-template-rows:repeat(2,1fr)!important;
+    grid-auto-flow:column;
+    grid-auto-columns:108px;
+    overflow-x:auto;
+    overscroll-behavior-x:contain;
+    scroll-snap-type:x proximity;
+    -ms-overflow-style:none;
+    scrollbar-width:none;
+    padding-bottom:2px;
+  }
+  .he-pop-grid::-webkit-scrollbar{display:none}
+  .he-pop-grid .he-pop-tile{scroll-snap-align:start;aspect-ratio:auto;height:100%}
+}
 </style>
 
 <!-- ══════════ हिमाचल ENCYCLOPEDIA — popup ══════════ -->
@@ -1589,13 +1612,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div style="font-family:'Cormorant',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:14px"><em style="font-style:italic;color:var(--gold)">हिमाचल</em> Encyclopedia</div>
 
       <div style="font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--caption);font-weight:700;margin-bottom:8px">Or Explore More</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px">
+      <div class="he-pop-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px">
         <a href="explore.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('https://images.unsplash.com/photo-1544084944-15269ec7b5a0?q=60&w=300&auto=format&fit=crop')"><span>🧭 Explore Map</span></a>
         <a href="hotels.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=60&w=300&auto=format&fit=crop')"><span>🏨 Partner Hotels</span></a>
         <a href="himachal-treks.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/bir-billing_3.jpg')"><span>🥾 Treks</span></a>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px">
+      <div class="he-pop-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px">
         <a href="encyclopedia-lakes.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/gobind-sagar-lake_1.jpg')"><span>💧 Lakes &amp; Reservoirs (16)</span></a>
         <a href="encyclopedia-rivers.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/barot-valley_1.jpg')"><span>🌊 Rivers &amp; Tributaries (17)</span></a>
         <a href="encyclopedia-hot-springs.html" class="he-pop-tile" style="background-image:linear-gradient(180deg,rgba(28,20,9,.08),rgba(28,20,9,.82)),url('assets/images/nako-village-walk_01.webp')"><span>♨️ Hot Springs &amp; Falls (15)</span></a>
@@ -3272,9 +3295,9 @@ document.addEventListener('click', function(e) {
     vid.play().catch(function(){});
   }
   if('requestIdleCallback' in window){
-    requestIdleCallback(loadHeroVideo, { timeout: 2500 });
+    requestIdleCallback(loadHeroVideo, { timeout: 1000 });
   } else {
-    setTimeout(loadHeroVideo, 1200);
+    setTimeout(loadHeroVideo, 400);
   }
 })();
 </script>
