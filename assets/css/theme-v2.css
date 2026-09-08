@@ -1,0 +1,148 @@
+/* ============================================================
+   THEME V2 — shared visual language for the redesign.
+   Loaded site-wide via site-chrome.js alongside site-chrome.css.
+   Navy header/footer + gold/blue CTAs + photographic heroes.
+   ============================================================ */
+
+body{ font-family:'Jost',Arial,sans-serif; color:var(--nv-text,#152233); }
+
+/* ---------- Buttons ---------- */
+.nv-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 28px;border-radius:10px;font-weight:700;font-size:15px;
+  text-decoration:none;border:none;cursor:pointer;transition:filter .18s ease,transform .18s ease,box-shadow .18s ease;
+  white-space:nowrap;
+}
+.nv-btn:hover{ transform:translateY(-1px); }
+.nv-btn-gold{ background:linear-gradient(135deg,#ffc266,var(--nv-gold,#f5a623)); color:#1c1409; box-shadow:0 8px 20px rgba(245,166,35,.35); }
+.nv-btn-gold:hover{ filter:brightness(1.04); box-shadow:0 10px 26px rgba(245,166,35,.45); }
+.nv-btn-blue{ background:var(--nv-blue,#2f6fed); color:#fff; box-shadow:0 8px 20px rgba(47,111,237,.35); }
+.nv-btn-blue:hover{ filter:brightness(1.06); box-shadow:0 10px 26px rgba(47,111,237,.45); }
+.nv-btn-outline{ background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,.6); }
+.nv-btn-outline:hover{ background:rgba(255,255,255,.12); }
+.nv-btn-sm{ padding:9px 16px; font-size:13px; border-radius:8px; }
+.nv-btn small{font-weight:400}
+
+/* ---------- Hero (photo background, dark overlay, centered/left content) ---------- */
+.nv-hero{
+  position:relative; color:#fff; overflow:hidden;
+  padding:120px 24px 90px; display:flex; align-items:center;
+  background-size:cover; background-position:center;
+  min-height:460px;
+}
+.nv-hero::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,26,44,.55) 0%,rgba(8,26,44,.75) 55%,rgba(8,26,44,.92) 100%);
+  z-index:0;
+}
+.nv-hero-inner{ position:relative; z-index:1; max-width:1240px; margin:0 auto; width:100%; }
+.nv-hero-eyebrow{ font-family:var(--he-mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--nv-gold,#f5a623); margin:0 0 10px; font-weight:700; }
+.nv-hero h1{ font-family:'Cormorant',Georgia,serif; font-size:clamp(34px,6vw,58px); line-height:1.08; margin:0 0 16px; font-weight:700; }
+.nv-hero h1 em{ font-style:normal; color:var(--nv-gold,#f5a623); }
+.nv-hero p.nv-hero-sub{ font-size:16px; line-height:1.6; max-width:640px; color:#dce6f0; margin:0 0 30px; }
+.nv-hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
+.nv-hero-small{ padding:80px 24px 56px; min-height:260px; }
+.nv-hero-small h1{ font-size:clamp(28px,5vw,42px); }
+
+/* ---------- Search bar ---------- */
+.nv-search{
+  background:#fff; border-radius:14px; padding:8px; display:flex; gap:8px;
+  box-shadow:0 12px 30px rgba(6,17,29,.25); max-width:560px;
+}
+.nv-search input{
+  flex:1; border:none; outline:none; padding:12px 16px; font-size:14px; border-radius:10px; color:var(--nv-text);
+  font-family:inherit;
+}
+.nv-search button{
+  background:var(--nv-navy,#0e2a47); color:#fff; border:none; border-radius:10px; padding:0 22px;
+  font-weight:700; font-size:13px; cursor:pointer;
+}
+
+/* ---------- Section shell ---------- */
+.nv-section{ max-width:1240px; margin:0 auto; padding:64px 24px; }
+.nv-section-tight{ padding:40px 24px; }
+.nv-section-head{ margin-bottom:32px; }
+.nv-section-head h2{ font-family:'Cormorant',Georgia,serif; font-size:clamp(26px,4vw,36px); margin:0 0 8px; color:var(--nv-text); }
+.nv-section-head p{ color:var(--nv-text-soft); font-size:15px; margin:0; }
+.nv-section-alt{ background:var(--nv-bg-alt,#f4f7fa); }
+
+/* ---------- Stat / icon pill row ---------- */
+.nv-stats{ display:flex; flex-wrap:wrap; gap:28px; margin-top:36px; }
+.nv-stat{ display:flex; align-items:center; gap:10px; color:#fff; }
+.nv-stat-icon{ width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,.14); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+.nv-stat b{ display:block; font-size:15px; }
+.nv-stat span{ display:block; font-size:12px; color:#b7c8db; }
+
+/* ---------- Category pills ---------- */
+.nv-pills{ display:flex; flex-wrap:wrap; gap:10px; margin:20px 0 8px; }
+.nv-pill{
+  padding:9px 18px; border-radius:100px; border:1px solid var(--nv-border); background:#fff;
+  font-size:13px; font-weight:600; color:var(--nv-text-soft); cursor:pointer; white-space:nowrap;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.nv-pill:hover{ border-color:var(--nv-blue); color:var(--nv-blue); }
+.nv-pill.nv-pill-active{ background:var(--nv-navy); border-color:var(--nv-navy); color:#fff; }
+
+/* ---------- Cards ---------- */
+.nv-grid{ display:grid; gap:22px; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
+.nv-grid-3{ grid-template-columns:repeat(3,1fr); }
+.nv-grid-4{ grid-template-columns:repeat(4,1fr); }
+.nv-grid-6{ grid-template-columns:repeat(6,1fr); }
+.nv-card{
+  background:#fff; border-radius:var(--nv-radius); overflow:hidden; border:1px solid var(--nv-border);
+  box-shadow:0 4px 14px rgba(6,17,29,.06); transition:transform .18s ease,box-shadow .18s ease; text-decoration:none; color:inherit; display:block;
+}
+.nv-card:hover{ transform:translateY(-4px); box-shadow:0 14px 30px rgba(6,17,29,.14); }
+.nv-card-img{ width:100%; aspect-ratio:4/3; object-fit:cover; display:block; background:var(--nv-bg-alt); }
+.nv-card-body{ padding:16px 18px; }
+.nv-card-title{ font-weight:700; font-size:15px; margin:0 0 4px; color:var(--nv-text); }
+.nv-card-sub{ font-size:12.5px; color:var(--nv-text-soft); margin:0; }
+.nv-card-price{ font-weight:700; color:var(--nv-blue); font-size:14px; margin-top:8px; }
+.nv-card-link{ font-size:12px; font-weight:700; color:var(--nv-blue); text-decoration:none; margin-top:10px; display:inline-block; }
+
+/* round district/category tiles */
+.nv-tile{ text-align:center; text-decoration:none; color:inherit; display:block; }
+.nv-tile-img{ width:100%; aspect-ratio:1/1; border-radius:16px; object-fit:cover; box-shadow:0 6px 16px rgba(6,17,29,.12); transition:transform .18s ease; }
+.nv-tile:hover .nv-tile-img{ transform:scale(1.04); }
+.nv-tile-label{ margin-top:10px; font-weight:700; font-size:14px; color:var(--nv-text); }
+
+/* icon feature card (encyclopedia-style) */
+.nv-icard{ background:#fff; border:1px solid var(--nv-border); border-radius:var(--nv-radius); padding:22px; text-align:left; text-decoration:none; color:inherit; display:block; transition:box-shadow .18s ease,transform .18s ease; }
+.nv-icard:hover{ box-shadow:0 12px 26px rgba(6,17,29,.1); transform:translateY(-3px); }
+.nv-icard-icon{ width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:14px; background:rgba(47,111,237,.1); color:var(--nv-blue); }
+.nv-icard h3{ margin:0 0 6px; font-size:15px; }
+.nv-icard p{ margin:0; font-size:12.5px; color:var(--nv-text-soft); }
+
+/* ---------- Tabs (booking / district pages) ---------- */
+.nv-tabs{ display:flex; gap:6px; background:#fff; border-radius:12px; padding:6px; box-shadow:0 6px 18px rgba(6,17,29,.15); flex-wrap:wrap; }
+.nv-tab{ flex:1; min-width:110px; text-align:center; padding:11px 14px; border-radius:8px; font-weight:700; font-size:13px; color:var(--nv-text-soft); cursor:pointer; border:none; background:transparent; }
+.nv-tab.nv-tab-active{ background:var(--nv-navy); color:#fff; }
+
+/* ---------- Booking form panel ---------- */
+.nv-panel{ background:#fff; border-radius:16px; padding:26px; box-shadow:0 10px 30px rgba(6,17,29,.1); }
+.nv-form-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-bottom:16px; }
+.nv-field label{ display:block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--nv-text-soft); margin-bottom:6px; }
+.nv-field input,.nv-field select{ width:100%; padding:11px 12px; border:1px solid var(--nv-border); border-radius:8px; font-size:14px; font-family:inherit; }
+
+/* ---------- CTA banner ---------- */
+.nv-cta-banner{
+  background:linear-gradient(120deg,var(--nv-navy),var(--nv-navy-light));
+  color:#fff; border-radius:20px; padding:48px 36px; text-align:center; margin:56px 24px;
+}
+.nv-cta-banner h2{ font-family:'Cormorant',Georgia,serif; font-size:clamp(24px,4vw,34px); margin:0 0 10px; }
+.nv-cta-banner p{ color:#c7d5e3; margin:0 0 24px; }
+.nv-cta-banner .nv-hero-actions{ justify-content:center; }
+
+/* ---------- Quote / mission blocks ---------- */
+.nv-quote{ text-align:center; font-family:'Cormorant',Georgia,serif; font-style:italic; font-size:clamp(20px,3vw,28px); color:var(--nv-text); max-width:720px; margin:0 auto; }
+
+@media (max-width:900px){
+  .nv-grid-3,.nv-grid-4,.nv-grid-6{ grid-template-columns:repeat(2,1fr); }
+  .nv-hero{ padding:100px 18px 60px; }
+  .nv-cta-banner{ margin:32px 14px; padding:36px 20px; }
+}
+@media (max-width:520px){
+  .nv-grid-3,.nv-grid-4,.nv-grid-6{ grid-template-columns:1fr 1fr; }
+  .nv-search{ flex-direction:column; }
+  .nv-search button{ padding:12px; }
+}

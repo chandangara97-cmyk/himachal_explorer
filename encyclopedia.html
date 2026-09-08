@@ -11,10 +11,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f8f5ef;--surface:#fff;--lift:#fdfbf7;--muted:#f0ebe0;
-  --border:#e5ddd0;--border2:#d4c9b5;--ink:#1c1409;--body:#5a4a36;
-  --caption:#9b8a74;--gold:#b07d3a;--gold2:#c99248;--gold-bg:#fdf6ec;
-  --dark:#0e0a04;--wrap:1180px;--px:32px;
+  --bg:#ffffff;--surface:#fff;--lift:#f4f7fa;--muted:#eef2f6;
+  --border:#e3e8ee;--border2:#c9d4de;--ink:#10233a;--body:#48586a;
+  --caption:#7c8ea1;--gold:#f5a623;--gold2:#ffb84d;--gold-bg:#fff6e6;
+  --dark:#081a2c;--wrap:1180px;--px:32px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -22,7 +22,7 @@ body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);line-he
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--px)}
 
 /* ─── hero ─── */
-.eh-hero{position:relative;padding:64px var(--px) 40px;overflow:hidden;background:linear-gradient(160deg,#1c1409,#0e0a04)}
+.eh-hero{position:relative;padding:64px var(--px) 40px;overflow:hidden;background:linear-gradient(160deg,#0e2a47,#081a2c)}
 .eh-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 20%,rgba(201,146,72,.16),transparent 55%)}
 .eh-hero-inner{position:relative;z-index:1;max-width:var(--wrap);margin:0 auto}
 .eh-eyebrow{font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:12px;display:block}
@@ -52,6 +52,8 @@ body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);line-he
 .eh-footnote{font-size:11px;color:var(--caption);border-top:1px solid var(--border);padding-top:18px;margin-bottom:20px}
 </style>
 <link rel="stylesheet" href="assets/css/site-chrome.css">
+<link rel="stylesheet" href="/assets/css/he-unified.css">
+<script src="/assets/js/he-mobile-nav.js" defer></script>
 </head>
 <body>
 
@@ -228,6 +230,16 @@ body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);line-he
       </div>
     </a>
 
+  </div>
+
+  <div class="eh-section-label">Select a District</div>
+  <div class="nv-grid nv-grid-6" style="margin-bottom:36px">
+    <a class="nv-tile" href="shimla.html"><img class="nv-tile-img" src="https://drive.google.com/thumbnail?id=1ut5eL2H-hIjMeELodJDuY4ZrZCauGBoZ&sz=w400" alt="Shimla" loading="lazy"><div class="nv-tile-label">Shimla</div></a>
+    <a class="nv-tile" href="kullu.html"><img class="nv-tile-img" src="https://drive.google.com/thumbnail?id=1WBW_ab8B5ffHSjXbUT5mJxIK57xL3iF6&sz=w400" alt="Kullu" loading="lazy"><div class="nv-tile-label">Kullu</div></a>
+    <a class="nv-tile" href="dist_index.html?d=8"><img class="nv-tile-img" src="https://drive.google.com/thumbnail?id=1Wj2vfI0R68ZDlhPr1P06tNxRXKKK67GC&sz=w400" alt="Manali" loading="lazy"><div class="nv-tile-label">Manali</div></a>
+    <a class="nv-tile" href="kangra.html"><img class="nv-tile-img" src="assets/images/kangra-fort_1.jpg" alt="Kangra" loading="lazy"><div class="nv-tile-label">Kangra</div></a>
+    <a class="nv-tile" href="mandi.html"><img class="nv-tile-img" src="assets/images/barot-valley_1.jpg" alt="Mandi" loading="lazy"><div class="nv-tile-label">Mandi</div></a>
+    <a class="nv-tile" href="hamirpur.html"><img class="nv-tile-img" src="https://drive.google.com/thumbnail?id=19UtwsJQcmKYeIPipX2o-kTEudQi-_gfx&sz=w400" alt="Hamirpur" loading="lazy"><div class="nv-tile-label">Hamirpur</div></a>
   </div>
 
   <div class="eh-footnote">Sourced from a scanned reference document; some facts are OCR-derived and marked for verification within each category page.</div>

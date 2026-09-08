@@ -11,36 +11,56 @@
    page that opts in via var(--he-*) respond automatically.
    ============================================================ */
 :root{
-  --he-bg:#f8f5ef;
-  --he-bg-alt:#efe8d8;
-  --he-border:#e5ddd0;
-  --he-text:#1c1409;
-  --he-text-soft:#5a4a36;
-  --he-gold:#b07d3a;
-  --he-gold-light:#c99248;
-  --he-green-900:#6b4415;
-  --he-shadow:rgba(28,20,9,.12);
-  --he-contour:rgba(107,68,21,.055);
+  --he-bg:#0e2a47;
+  --he-bg-alt:#123252;
+  --he-border:#1f4267;
+  --he-text:#ffffff;
+  --he-text-soft:#b7c8db;
+  --he-gold:#f5a623;
+  --he-gold-light:#ffb84d;
+  --he-green-900:#0e2a47;
+  --he-shadow:rgba(6,17,29,.35);
+  --he-contour:rgba(255,255,255,.04);
   --he-mono:'JetBrains Mono',ui-monospace,monospace;
-  --he-footer-bg:#1c1409;
-  --he-footer-text:#9b8a74;
-  --he-footer-text-soft:#6b5c48;
+  --he-footer-bg:#081a2c;
+  --he-footer-text:#9fb3c8;
+  --he-footer-text-soft:#5f7891;
+  --nv-navy:#0e2a47;
+  --nv-navy-deep:#081a2c;
+  --nv-navy-light:#163a5e;
+  --nv-blue:#2f6fed;
+  --nv-teal:#0f9d8e;
+  --nv-gold:#f5a623;
+  --nv-text:#152233;
+  --nv-text-soft:#5b6b7a;
+  --nv-bg:#ffffff;
+  --nv-bg-alt:#f4f7fa;
+  --nv-border:#e3e8ee;
+  --nv-radius:14px;
   color-scheme:light;
 }
 :root[data-theme="dark"]{
-  --he-bg:#150f08;
-  --he-bg-alt:#241a0e;
-  --he-border:#3a2e1c;
-  --he-text:#f0ece2;
-  --he-text-soft:#c9bda9;
-  --he-gold:#c99248;
-  --he-gold-light:#e0ac63;
-  --he-green-900:#c99248;
-  --he-shadow:rgba(0,0,0,.4);
-  --he-contour:rgba(255,255,255,.035);
-  --he-footer-bg:#0c0805;
-  --he-footer-text:#a8977e;
-  --he-footer-text-soft:#6b5c48;
+  --he-bg:#081a2c;
+  --he-bg-alt:#0e2a47;
+  --he-border:#1f4267;
+  --he-text:#ffffff;
+  --he-text-soft:#b7c8db;
+  --he-gold:#f5a623;
+  --he-gold-light:#ffb84d;
+  --he-green-900:#f5a623;
+  --he-shadow:rgba(0,0,0,.5);
+  --he-contour:rgba(255,255,255,.03);
+  --he-footer-bg:#050f1a;
+  --he-footer-text:#8ea3ba;
+  --he-footer-text-soft:#5f7891;
+  --nv-navy:#081a2c;
+  --nv-navy-deep:#04101c;
+  --nv-navy-light:#0e2a47;
+  --nv-bg:#0c2038;
+  --nv-bg-alt:#0e2a47;
+  --nv-border:#1f4267;
+  --nv-text:#f0f4f8;
+  --nv-text-soft:#b7c8db;
   color-scheme:dark;
 }
 

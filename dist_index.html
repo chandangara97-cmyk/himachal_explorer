@@ -24,9 +24,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <style>
 /* ─── TOKENS (identical to index-24) ─── */
 :root{
-  --bg:#f8f5ef;--surface:#fff;--lift:#fdfbf7;--muted:#f0ebe0;
-  --border:#e5ddd0;--border2:#d4c9b5;--ink:#1c1409;--body:#5a4a36;
-  --caption:#9b8a74;--gold:#b07d3a;--gold2:#c99248;--gold-bg:#fdf6ec;
+  --bg:#ffffff;--surface:#fff;--lift:#f4f7fa;--muted:#eef2f6;
+  --border:#e3e8ee;--border2:#c9d4de;--ink:#10233a;--body:#48586a;
+  --caption:#7c8ea1;--gold:#f5a623;--gold2:#ffb84d;--gold-bg:#fff6e6;
   --wrap:1240px;--px:32px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -231,6 +231,8 @@ footer{background:#150f06;padding:22px var(--px);display:flex;align-items:center
 <script src="/assets/js/performance-ui.js" defer></script>
 <link rel="stylesheet" href="/assets/css/page-start.css">
 <script src="/assets/js/page-start.js" defer></script>
+<link rel="stylesheet" href="/assets/css/he-unified.css">
+<script src="/assets/js/he-mobile-nav.js" defer></script>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6LR93V8"
@@ -599,15 +601,28 @@ function showDistrictIndex() {
   document.getElementById("main").innerHTML = `
     <div style="background:var(--ink);padding:104px 0 40px;margin-top:52px">
       <div class="wrap">
-        <div class="hero-badge">District Guide</div>
-        <h1 class="hero-title" style="font-size:clamp(36px,6vw,64px)">All <em>12</em> Districts</h1>
-        <p class="hero-tagline">Places to visit, best season, local food and travel tips for every district of Himachal Pradesh — pick one to start.</p>
+        <div class="hero-badge">Destinations</div>
+        <h1 class="hero-title" style="font-size:clamp(36px,6vw,64px)">Destinations</h1>
+        <p class="hero-tagline">Discover the most beautiful places in Himachal Pradesh. Find your next adventure.</p>
+        <div class="nv-search" style="margin-top:26px">
+          <input type="text" id="destSearchInput" placeholder="Search destinations..." oninput="filterDestCards(this.value)">
+          <button type="button" onclick="filterDestCards(document.getElementById('destSearchInput').value)">Search</button>
+        </div>
       </div>
     </div>
     <div class="dist-nav-bg">
       <div class="wrap" style="padding-top:36px;padding-bottom:52px">
-        <div class="dist-nav-title">Browse By District</div>
-        <div class="dist-nav-grid">${ALL_DISTRICTS.map(d => `
+        <div class="nv-pills">
+          <button type="button" class="nv-pill nv-pill-active">All</button>
+          <button type="button" class="nv-pill">Hill Stations</button>
+          <button type="button" class="nv-pill">Valleys</button>
+          <button type="button" class="nv-pill">Lakes</button>
+          <button type="button" class="nv-pill">Temples</button>
+          <button type="button" class="nv-pill">Adventure</button>
+          <button type="button" class="nv-pill">Nature</button>
+        </div>
+        <div class="dist-nav-title">Featured Destinations</div>
+        <div class="dist-nav-grid" id="destNavGrid">${ALL_DISTRICTS.map(d => `
           <a href="dist_index.html?d=${d.id}" class="dn-card">
             <img loading="lazy" src="${d.img}" alt="${escH(d.name)}" width="300" height="225"/>
             <div class="dn-body">
@@ -648,6 +663,22 @@ function updateCanon(id) {
   document.getElementById("pageCanon").href =
     `https://himachalexplorer.in/dist_index.html?d=${id}`;
 }
+
+function filterDestCards(q) {
+  q = (q || "").trim().toLowerCase();
+  document.querySelectorAll("#destNavGrid .dn-card").forEach(function(card){
+    var name = (card.querySelector(".dn-name") || {}).textContent || "";
+    card.style.display = name.toLowerCase().indexOf(q) === -1 ? "none" : "";
+  });
+}
+document.addEventListener("click", function(e){
+  var pill = e.target.closest && e.target.closest(".nv-pill");
+  if(!pill) return;
+  var group = pill.parentElement;
+  if(!group) return;
+  group.querySelectorAll(".nv-pill").forEach(function(p){ p.classList.remove("nv-pill-active"); });
+  pill.classList.add("nv-pill-active");
+});
 
 function initReveal() {
   const obs = new IntersectionObserver(els => {
