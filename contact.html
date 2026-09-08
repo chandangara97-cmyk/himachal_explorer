@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact Us — HimachalExplorer.in</title>
+<meta name="description" content="Have a question? Need help with your trip? Get in touch with HimachalExplorer.in by phone, WhatsApp or email.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="canonical" href="https://himachalexplorer.in/contact.html">
+<link rel="stylesheet" href="/assets/css/site-chrome.css">
+<link rel="stylesheet" href="/assets/css/he-unified.css">
+<link rel="stylesheet" href="/assets/css/theme-v2.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="/assets/js/he-mobile-nav.js" defer></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'Jost',sans-serif;background:#fff;color:var(--nv-text)}
+.contact-wrap{max-width:1100px;margin:0 auto;padding:56px 24px;display:grid;grid-template-columns:.85fr 1.15fr;gap:40px}
+@media (max-width:840px){.contact-wrap{grid-template-columns:1fr}}
+.c-info-card{background:var(--nv-navy);color:#fff;border-radius:18px;padding:32px}
+.c-info-card h3{font-family:'Cormorant',serif;font-size:22px;margin:0 0 20px}
+.c-row{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px}
+.c-row .ic{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px}
+.c-row a,.c-row div{color:#dce6f0;text-decoration:none;font-size:13.5px;line-height:1.5}
+.c-row b{display:block;color:#fff;font-size:13px;margin-bottom:2px}
+.c-social{display:flex;gap:10px;margin-top:22px}
+.c-social a{width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;font-size:15px}
+.c-form{background:#fff;border:1px solid var(--nv-border);border-radius:18px;padding:32px;box-shadow:0 8px 24px rgba(6,17,29,.06)}
+.c-form h3{font-family:'Cormorant',serif;font-size:22px;margin:0 0 18px}
+.c-form label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--nv-text-soft);margin:0 0 6px}
+.c-form input,.c-form textarea{width:100%;padding:12px 14px;border:1px solid var(--nv-border);border-radius:9px;font-size:14px;font-family:inherit;margin-bottom:16px}
+.c-form textarea{min-height:110px;resize:vertical}
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<div class="nv-hero nv-hero-small" style="background-image:url('https://drive.google.com/thumbnail?id=1WBW_ab8B5ffHSjXbUT5mJxIK57xL3iF6&sz=w1600')">
+  <div class="nv-hero-inner">
+    <div class="nv-hero-eyebrow">We'd Love To Hear From You</div>
+    <h1>Get in <em>Touch</em></h1>
+    <p class="nv-hero-sub">Have a question? Need help with your trip? We're here to help!</p>
+  </div>
+</div>
+
+<div class="contact-wrap">
+  <div>
+    <div class="c-info-card">
+      <h3>Our Story</h3>
+      <div class="c-row">
+        <div class="ic">📍</div>
+        <div><b>Our Address</b><div>Shimla, Himachal Pradesh, India</div></div>
+      </div>
+      <div class="c-row">
+        <div class="ic">✉️</div>
+        <div><b>Email Us</b><a href="mailto:chandan_panwar@himachalexplorer.in">chandan_panwar@himachalexplorer.in</a></div>
+      </div>
+      <div class="c-row">
+        <div class="ic">📞</div>
+        <div><b>Call Us</b><a href="tel:+917018138847">+91 70181 38847</a></div>
+      </div>
+      <div class="c-social">
+        <a href="https://www.instagram.com/himachalexplorer" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        <a href="https://wa.me/917018138847" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-form">
+    <h3>Send Us a Message</h3>
+    <form id="contactForm" onsubmit="return sendContactWhatsApp(event)">
+      <label for="cName">Your Name</label>
+      <input type="text" id="cName" required>
+      <label for="cEmail">Email Address</label>
+      <input type="email" id="cEmail" required>
+      <label for="cSubject">Subject</label>
+      <input type="text" id="cSubject">
+      <label for="cMsg">Message</label>
+      <textarea id="cMsg" required></textarea>
+      <button type="submit" class="nv-btn nv-btn-blue" style="width:100%">Send Message</button>
+    </form>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="/assets/js/site-chrome.js" defer></script>
+<script>
+function sendContactWhatsApp(e){
+  e.preventDefault();
+  var name = document.getElementById('cName').value;
+  var subject = document.getElementById('cSubject').value;
+  var msg = document.getElementById('cMsg').value;
+  var text = encodeURIComponent('Hi, my name is ' + name + '.' + (subject ? ' Subject: ' + subject + '.' : '') + ' ' + msg);
+  window.open('https://wa.me/917018138847?text=' + text, '_blank');
+  return false;
+}
+</script>
+</body>
+</html>
