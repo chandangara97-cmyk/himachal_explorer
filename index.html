@@ -64,23 +64,28 @@ img{max-width:100%;display:block}
 .home-hero{
   position:relative;color:#fff;overflow:hidden;
   min-height:560px;display:flex;align-items:center;
-  background:linear-gradient(160deg,#0e2a47,#081a2c) url('/assets/images/1hero.jpg') center/cover no-repeat;
+  background:linear-gradient(160deg,#0e2a47,#081a2c);
   padding:120px 24px 64px;
 }
+.home-hero-video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
+}
 .home-hero::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(8,26,44,.55) 0%,rgba(8,26,44,.72) 55%,rgba(8,26,44,.92) 100%);
+  content:'';position:absolute;inset:0;z-index:0;
+  background:linear-gradient(180deg,rgba(8,26,44,.62) 0%,rgba(8,26,44,.66) 45%,rgba(8,26,44,.92) 100%);
 }
 .home-hero-inner{position:relative;z-index:1;max-width:760px;margin:0 auto;text-align:center}
 .home-badge{
   display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:100px;
   background:rgba(245,166,35,.14);border:1px solid rgba(245,166,35,.4);color:var(--nv-gold,#f5a623);
   font-family:var(--he-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:20px;
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
 }
-.home-hero h1{font-family:'Cormorant',Georgia,serif;font-size:clamp(34px,6vw,58px);line-height:1.1;margin:0 0 16px;font-weight:700}
+.home-hero h1{font-family:'Cormorant',Georgia,serif;font-size:clamp(34px,6vw,58px);line-height:1.1;margin:0 0 16px;font-weight:700;text-shadow:0 2px 18px rgba(0,0,0,.35)}
 .home-hero h1 em{font-style:normal;color:var(--nv-gold,#f5a623)}
-.home-hero p{font-size:16px;color:#dce6f0;max-width:560px;margin:0 auto 30px}
+.home-hero p{font-size:16px;color:#dce6f0;max-width:560px;margin:0 auto 30px;text-shadow:0 1px 10px rgba(0,0,0,.3)}
 .home-hero-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+@media (prefers-reduced-motion:reduce){.home-hero-video{display:none}.home-hero{background:linear-gradient(160deg,#0e2a47,#081a2c) url('/assets/images/1hero.jpg') center/cover no-repeat}}
 
 /* ---- Jump right in ---- */
 .jri-eyebrow{font-family:var(--he-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--nv-gold,#f5a623);font-weight:700;margin:0 0 6px}
@@ -109,10 +114,13 @@ img{max-width:100%;display:block}
 
 <!-- HERO -->
 <section class="home-hero">
+  <video class="home-hero-video" autoplay muted loop playsinline poster="/assets/images/1hero.jpg" aria-hidden="true">
+    <source src="/assets/videos/hero-video.mp4" type="video/mp4">
+  </video>
   <div class="home-hero-inner">
     <div class="home-badge">Welcome to HimachalExplorer.in</div>
-    <h1>Your Complete Guide<br><em>to Himachal Pradesh</em></h1>
-    <p>Explore stunning destinations, plan your trip, book stays and get authentic information about every district — all in one place.</p>
+    <h1>Himachal, Live<br><em>Before You Arrive</em></h1>
+    <p>Watch the mountains move — then explore stunning destinations, plan your trip, book stays and get authentic information about every district, all in one place.</p>
     <div class="home-hero-actions">
       <a href="/packages.html" class="nv-btn nv-btn-gold">Plan Your Trip</a>
       <a href="/encyclopedia.html" class="nv-btn nv-btn-blue">Explore Encyclopedia</a>
@@ -162,7 +170,7 @@ img{max-width:100%;display:block}
         <span class="nv-btn nv-btn-sm nv-btn-outline">Browse Districts →</span>
       </div>
     </a>
-    <a class="jri-card" href="/packages.html" style="background-image:url('/assets/images/solang-valley_1.jpg')">
+    <a class="jri-card" href="/group-pricing.html" style="background-image:url('/assets/images/solang-valley_1.jpg')">
       <div class="jri-card-body">
         <div class="jri-tag">Travelling Together</div>
         <div class="jri-title">Group Pricing</div>
