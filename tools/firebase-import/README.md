@@ -1,4 +1,4 @@
-# Firebase import files — Himachal Explorer
+# Firebase import files — Pine & Pass
 
 I don't have network access or credentials to your live Firebase project from
 this sandbox, so I can't push these myself. These files are ready to import —

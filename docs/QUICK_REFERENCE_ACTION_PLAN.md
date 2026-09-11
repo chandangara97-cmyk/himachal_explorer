@@ -1,6 +1,6 @@
 # ⚡ QUICK REFERENCE: Duplicate Brand Name Fix
 
-> **TL;DR**: You have conflicting brands (Himachal Explorer vs Chandan's) confusing search engines. This costs you 25-40% organic traffic. Fix takes ~60 minutes.
+> **TL;DR**: You have conflicting brands (Pine & Pass vs Chandan's) confusing search engines. This costs you 25-40% organic traffic. Fix takes ~60 minutes.
 
 ---
 
@@ -9,18 +9,18 @@
 | Issue | Impact | Priority |
 |-------|--------|----------|
 | "Chandan's" = personal brand | Traffic split between brands | 🔴 CRITICAL |
-| Schema has "Himachal Explorer — Chandan's" | Google sees 2 entities | 🔴 CRITICAL |
+| Schema has "Pine & Pass — Chandan's" | Google sees 2 entities | 🔴 CRITICAL |
 | "Run by Chandan Panwar" in footers | Confused brand authority | 🔴 CRITICAL |
 | WhatsApp CTA says "Hi Chandan" | Personal, not professional | 🟠 HIGH |
 | Old "Garg Enterprise" still exists | Legacy confusion | 🟠 MEDIUM |
 
-**Result**: Your domain authority is SPLIT. You're not ranking for "Himachal Explorer" as strongly as you could.
+**Result**: Your domain authority is SPLIT. You're not ranking for "Pine & Pass" as strongly as you could.
 
 ---
 
 ## ✅ The Solution: 4 Key Actions
 
-### Action 1️⃣: Standardize ALL Brand Names to "Himachal Explorer"
+### Action 1️⃣: Standardize ALL Brand Names to "Pine & Pass"
 - Remove "Chandan's" from everywhere
 - Keep "Chandan Panwar" ONLY as founder (optional)
 - Delete "Garg Enterprise" references
@@ -28,19 +28,19 @@
 ### Action 2️⃣: Fix Schema.org (Critical for SEO)
 ```json
 // BEFORE ❌
-"name": "Himachal Explorer — Chandan's"
+"name": "Pine & Pass — Chandan's"
 
 // AFTER ✅
-"name": "Himachal Explorer"
+"name": "Pine & Pass"
 ```
 
 ### Action 3️⃣: Standardize Footer (Every Page)
 ```html
 // BEFORE ❌
-© 2026 Himachal Explorer. Run by Chandan Panwar.
+© 2026 Pine & Pass. Run by Chandan Panwar.
 
 // AFTER ✅
-© 2026 Himachal Explorer. All rights reserved.
+© 2026 Pine & Pass. All rights reserved.
 ```
 
 ### Action 4️⃣: Update CTAs (WhatsApp, Contact)
@@ -50,7 +50,7 @@ Plan your journey with Chandan Panwar
 Hi Chandan, I want to book...
 
 // AFTER ✅
-Plan your journey with Himachal Explorer
+Plan your journey with Pine & Pass
 Hi, I want to book a Himachal tour...
 ```
 
@@ -91,29 +91,29 @@ Hi, I want to book a Himachal tour...
 
 #### Replace 1:
 ```
-Find: "name":\s*"Himachal Explorer — Chandan.*s"
-Replace: "name": "Himachal Explorer"
+Find: "name":\s*"Pine & Pass — Chandan.*s"
+Replace: "name": "Pine & Pass"
 Action: Replace All
 ```
 
 #### Replace 2:
 ```
-Find: <meta name="author" content="Chandan.*s — Himachal Explorer"
-Replace: <meta name="author" content="Himachal Explorer"
+Find: <meta name="author" content="Chandan.*s — Pine & Pass"
+Replace: <meta name="author" content="Pine & Pass"
 Action: Replace All
 ```
 
 #### Replace 3:
 ```
-Find: © 2026 Himachal Explorer\. Run by Chandan Panwar\.
-Replace: © 2026 Himachal Explorer. All rights reserved.
+Find: © 2026 Pine & Pass\. Run by Chandan Panwar\.
+Replace: © 2026 Pine & Pass. All rights reserved.
 Action: Replace All
 ```
 
 #### Replace 4:
 ```
 Find: Plan your journey with<br/><em>Chandan Panwar</em>
-Replace: Plan your journey with<br/><em>Himachal Explorer</em>
+Replace: Plan your journey with<br/><em>Pine & Pass</em>
 Action: Replace All
 ```
 
@@ -127,7 +127,7 @@ Action: Replace All
 #### Replace 6:
 ```
 Find: Chandan Panwar · \+91
-Replace: +91 | Himachal Explorer
+Replace: +91 | Pine & Pass
 Action: Replace All
 ```
 
@@ -142,10 +142,10 @@ Action: Replace All
 cd /path/to/himachal_explorer-main
 
 find . -name "*.html" -type f | while read f; do
-  sed -i '' 's/"name": "Himachal Explorer — Chandan'"'"'s"/"name": "Himachal Explorer"/g' "$f"
-  sed -i '' 's/<meta name="author" content="Chandan'"'"'s — Himachal Explorer"\/>/<meta name="author" content="Himachal Explorer"\/>/g' "$f"
-  sed -i '' 's/© 2026 Himachal Explorer\. Run by Chandan Panwar\./© 2026 Himachal Explorer. All rights reserved./g' "$f"
-  sed -i '' 's/Plan your journey with<br\/><em>Chandan Panwar<\/em>/Plan your journey with<br\/><em>Himachal Explorer<\/em>/g' "$f"
+  sed -i '' 's/"name": "Pine & Pass — Chandan'"'"'s"/"name": "Pine & Pass"/g' "$f"
+  sed -i '' 's/<meta name="author" content="Chandan'"'"'s — Pine & Pass"\/>/<meta name="author" content="Pine & Pass"\/>/g' "$f"
+  sed -i '' 's/© 2026 Pine & Pass\. Run by Chandan Panwar\./© 2026 Pine & Pass. All rights reserved./g' "$f"
+  sed -i '' 's/Plan your journey with<br\/><em>Chandan Panwar<\/em>/Plan your journey with<br\/><em>Pine & Pass<\/em>/g' "$f"
   sed -i '' 's/Hi%20Chandan%2C%20I%20want/Hi%2C%20I%20want/g' "$f"
 done
 
@@ -160,12 +160,12 @@ echo "✅ All fixes applied!"
 
 | File | Find | Replace | Files |
 |------|------|---------|-------|
-| **index.html** | `<meta name="author" content="Chandan's — Himachal Explorer"/>` | `<meta name="author" content="Himachal Explorer"/>` | 1 |
-| | `"name": "Himachal Explorer — Chandan's"` | `"name": "Himachal Explorer"` | 2 instances |
-| | `© 2026...Run by Chandan Panwar.` | `© 2026 Himachal Explorer. All rights reserved.` | 1 |
-| **dist_index.html** | `Plan your journey with<br/><em>Chandan Panwar</em>` | `Plan your journey with<br/><em>Himachal Explorer</em>` | 1 |
+| **index.html** | `<meta name="author" content="Chandan's — Pine & Pass"/>` | `<meta name="author" content="Pine & Pass"/>` | 1 |
+| | `"name": "Pine & Pass — Chandan's"` | `"name": "Pine & Pass"` | 2 instances |
+| | `© 2026...Run by Chandan Panwar.` | `© 2026 Pine & Pass. All rights reserved.` | 1 |
+| **dist_index.html** | `Plan your journey with<br/><em>Chandan Panwar</em>` | `Plan your journey with<br/><em>Pine & Pass</em>` | 1 |
 | **bike-rental.html** | `Hi%20Chandan%2C%20I%20want` | `Hi%2C%20I%20want` | 5+ instances |
-| **All .html** | `Chandan's` (if visible) | `Himachal Explorer` | Find & replace |
+| **All .html** | `Chandan's` (if visible) | `Pine & Pass` | Find & replace |
 
 **Time: 30-45 minutes (most thorough)**
 
@@ -185,7 +185,7 @@ grep -r "Garg Enterprise" . --include="*.html"
 # Expected: 0 results
 
 # Check 3: Schema is consistent
-grep '"name": "Himachal Explorer' . --include="*.html" | wc -l
+grep '"name": "Pine & Pass' . --include="*.html" | wc -l
 # Expected: MANY (10+)
 ```
 
@@ -216,17 +216,17 @@ grep '"name": "Himachal Explorer' . --include="*.html" | wc -l
 
 ### Before Fix:
 - Organic traffic: 100 (baseline)
-- Brand searches split between "Himachal Explorer" & "Chandan's"
+- Brand searches split between "Pine & Pass" & "Chandan's"
 - Domain authority diluted
 
 ### After Fix:
 - Organic traffic: ~120-130 (expected)
-- All authority consolidated to "Himachal Explorer"
+- All authority consolidated to "Pine & Pass"
 - Cleaner brand in SERPs
 
 ### Measurement:
 1. Google Search Console > Performance
-2. Compare "Himachal Explorer" query impressions (before vs after)
+2. Compare "Pine & Pass" query impressions (before vs after)
 3. Check total organic traffic
 
 ---
@@ -257,7 +257,7 @@ grep '"name": "Himachal Explorer' . --include="*.html" | wc -l
 
 - [ ] Created backup of original files
 - [ ] All "Chandan's" instances removed (except legitimate comments)
-- [ ] Schema.org "name" field standardized to "Himachal Explorer"
+- [ ] Schema.org "name" field standardized to "Pine & Pass"
 - [ ] Footer updated across ALL pages
 - [ ] Contact section heading updated
 - [ ] WhatsApp CTAs fixed
@@ -282,11 +282,11 @@ grep '"name": "Himachal Explorer' . --include="*.html" | wc -l
 
 After 30 days, you should see:
 
-✅ "Himachal Explorer" appears as primary brand in Google SERPs
+✅ "Pine & Pass" appears as primary brand in Google SERPs
 ✅ Organic traffic recovered +20-40%
 ✅ Reduced bounce rate (brand consistency improves UX)
 ✅ Higher CTR in search results (clearer brand)
-✅ Improved "Himachal Explorer" keyword rankings
+✅ Improved "Pine & Pass" keyword rankings
 
 ---
 

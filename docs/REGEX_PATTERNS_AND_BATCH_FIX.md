@@ -12,22 +12,22 @@
 # Run replacements
 find . -name "*.html" -type f | while read file; do
   # Fix 1: Organization schema
-  sed -i '' 's/"name": "Himachal Explorer — Chandan.*s"/"name": "Himachal Explorer"/g' "$file"
+  sed -i '' 's/"name": "Pine & Pass — Chandan.*s"/"name": "Pine & Pass"/g' "$file"
   
   # Fix 2: Meta author
-  sed -i '' 's/<meta name="author" content="Chandan.*s — Himachal Explorer"\/>/<meta name="author" content="Himachal Explorer"\/>/g' "$file"
+  sed -i '' 's/<meta name="author" content="Chandan.*s — Pine & Pass"\/>/<meta name="author" content="Pine & Pass"\/>/g' "$file"
   
   # Fix 3: Footer copyright
-  sed -i '' 's/© 2026 Himachal Explorer\. Run by Chandan Panwar\./© 2026 Himachal Explorer. All rights reserved./g' "$file"
+  sed -i '' 's/© 2026 Pine & Pass\. Run by Chandan Panwar\./© 2026 Pine & Pass. All rights reserved./g' "$file"
   
   # Fix 4: Contact heading
-  sed -i '' 's/Plan your journey with<br\/><em>Chandan Panwar<\/em>/Plan your journey with<br\/><em>Himachal Explorer<\/em>/g' "$file"
+  sed -i '' 's/Plan your journey with<br\/><em>Chandan Panwar<\/em>/Plan your journey with<br\/><em>Pine & Pass<\/em>/g' "$file"
   
   # Fix 5: WhatsApp "Hi Chandan"
   sed -i '' 's/Hi%20Chandan%2C%20I%20want/Hi%2C%20I%20want/g' "$file"
   
   # Fix 6: Chandan Panwar attribution in footer
-  sed -i '' 's/Chandan Panwar · +91-7018138847/+91-7018138847 | Himachal Explorer/g' "$file"
+  sed -i '' 's/Chandan Panwar · +91-7018138847/+91-7018138847 | Pine & Pass/g' "$file"
 done
 
 echo "✅ All fixes applied! Check git diff to verify."
@@ -42,12 +42,12 @@ echo "✅ All fixes applied! Check git diff to verify."
 #### Pattern 1: Organization Schema
 **Find** (regex enabled):
 ```regex
-"name":\s*"Himachal Explorer\s*—\s*Chandan[''']s"
+"name":\s*"Pine & Pass\s*—\s*Chandan[''']s"
 ```
 
 **Replace**:
 ```
-"name": "Himachal Explorer"
+"name": "Pine & Pass"
 ```
 
 ---
@@ -55,12 +55,12 @@ echo "✅ All fixes applied! Check git diff to verify."
 #### Pattern 2: Meta Author Tags
 **Find**:
 ```regex
-<meta\s+name="author"\s+content="Chandan[''']s\s*—\s*Himachal Explorer"\s*\/>
+<meta\s+name="author"\s+content="Chandan[''']s\s*—\s*Pine & Pass"\s*\/>
 ```
 
 **Replace**:
 ```html
-<meta name="author" content="Himachal Explorer"/>
+<meta name="author" content="Pine & Pass"/>
 ```
 
 ---
@@ -68,12 +68,12 @@ echo "✅ All fixes applied! Check git diff to verify."
 #### Pattern 3: Footer Copyright
 **Find**:
 ```regex
-©\s*2026\s+Himachal Explorer\.\s+Run by Chandan Panwar\.
+©\s*2026\s+Pine & Pass\.\s+Run by Chandan Panwar\.
 ```
 
 **Replace**:
 ```
-© 2026 Himachal Explorer. All rights reserved.
+© 2026 Pine & Pass. All rights reserved.
 ```
 
 ---
@@ -86,7 +86,7 @@ Plan your journey with<br\s*\/><em>Chandan Panwar<\/em>
 
 **Replace**:
 ```html
-Plan your journey with<br/><em>Himachal Explorer</em>
+Plan your journey with<br/><em>Pine & Pass</em>
 ```
 
 ---
@@ -118,7 +118,7 @@ Same patterns as above work in Notepad++
 
 ```bash
 # Single command to fix all files
-perl -pi -e 's/"name":\s*"Himachal Explorer\s*—\s*Chandan.*s"/"name": "Himachal Explorer"/g; s/<meta name="author" content="Chandan.*s — Himachal Explorer"\/>/<meta name="author" content="Himachal Explorer"\/>/g; s/© 2026 Himachal Explorer\. Run by Chandan Panwar\./© 2026 Himachal Explorer. All rights reserved./g' *.html
+perl -pi -e 's/"name":\s*"Pine & Pass\s*—\s*Chandan.*s"/"name": "Pine & Pass"/g; s/<meta name="author" content="Chandan.*s — Pine & Pass"\/>/<meta name="author" content="Pine & Pass"\/>/g; s/© 2026 Pine & Pass\. Run by Chandan Panwar\./© 2026 Pine & Pass. All rights reserved./g' *.html
 
 # Or across subdirectories
 perl -pi -e 's/PATTERN/REPLACEMENT/g' $(find . -name "*.html" -type f)
@@ -140,16 +140,16 @@ Get-ChildItem -Recurse -Filter "*.html" | ForEach-Object {
     $content = Get-Content $_.FullName -Raw
     
     # Fix 1: Schema
-    $content = $content -replace '"name":\s*"Himachal Explorer\s*—\s*Chandan[''']s"', '"name": "Himachal Explorer"'
+    $content = $content -replace '"name":\s*"Pine & Pass\s*—\s*Chandan[''']s"', '"name": "Pine & Pass"'
     
     # Fix 2: Meta author
-    $content = $content -replace '<meta name="author" content="Chandan[''']s — Himachal Explorer"\s*\/>', '<meta name="author" content="Himachal Explorer"/>'
+    $content = $content -replace '<meta name="author" content="Chandan[''']s — Pine & Pass"\s*\/>', '<meta name="author" content="Pine & Pass"/>'
     
     # Fix 3: Footer
-    $content = $content -replace '© 2026 Himachal Explorer\. Run by Chandan Panwar\.', '© 2026 Himachal Explorer. All rights reserved.'
+    $content = $content -replace '© 2026 Pine & Pass\. Run by Chandan Panwar\.', '© 2026 Pine & Pass. All rights reserved.'
     
     # Fix 4: Heading
-    $content = $content -replace 'Plan your journey with<br\/><em>Chandan Panwar<\/em>', 'Plan your journey with<br/><em>Himachal Explorer</em>'
+    $content = $content -replace 'Plan your journey with<br\/><em>Chandan Panwar<\/em>', 'Plan your journey with<br/><em>Pine & Pass</em>'
     
     # Fix 5: WhatsApp
     $content = $content -replace 'Hi%20Chandan%2C%20I%20want', 'Hi%2C%20I%20want'
@@ -168,7 +168,7 @@ Get-ChildItem -Recurse -Filter "*.html" | ForEach-Object {
 
 **Pattern** (Most common):
 ```json
-"name": "Himachal Explorer — Chandan's"
+"name": "Pine & Pass — Chandan's"
 ```
 
 **Regex to find all variations**:
@@ -178,7 +178,7 @@ Get-ChildItem -Recurse -Filter "*.html" | ForEach-Object {
 
 **Replace all with**:
 ```json
-"name": "Himachal Explorer"
+"name": "Pine & Pass"
 ```
 
 ---
@@ -196,7 +196,7 @@ Get-ChildItem -Recurse -Filter "*.html" | ForEach-Object {
 
 **Replace all with**:
 ```html
-<meta name="author" content="Himachal Explorer"/>
+<meta name="author" content="Pine & Pass"/>
 ```
 
 ---
@@ -231,7 +231,7 @@ text=Hi%2C
 
 **Replace with**:
 ```
-© 2026 Himachal Explorer. All rights reserved.
+© 2026 Pine & Pass. All rights reserved.
 ```
 
 ---
@@ -254,7 +254,7 @@ grep -r "Garg Enterprise" . --include="*.html"
 
 ### Check 3: Verify schema is consistent
 ```bash
-grep -r '"name": "Himachal Explorer' . --include="*.html" | wc -l
+grep -r '"name": "Pine & Pass' . --include="*.html" | wc -l
 # Should return: HIGH NUMBER (all your schemas)
 
 grep -r '"name".*Chandan' . --include="*.html" | wc -l
@@ -302,9 +302,9 @@ git diff
 
 # 4. Stage & commit
 git add .
-git commit -m "fix: consolidate brand identity to Himachal Explorer
+git commit -m "fix: consolidate brand identity to Pine & Pass
 
-- Standardize meta author to 'Himachal Explorer' across all pages
+- Standardize meta author to 'Pine & Pass' across all pages
 - Fix schema.org organization names (remove 'Chandan's' variant)
 - Consolidate footer branding
 - Update WhatsApp CTAs to remove personal name
@@ -353,7 +353,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-echo -e "${YELLOW}Starting Himachal Explorer brand consolidation...${NC}\n"
+echo -e "${YELLOW}Starting Pine & Pass brand consolidation...${NC}\n"
 
 # Step 1: Backup
 echo -e "${YELLOW}Step 1: Creating backup...${NC}"
@@ -364,9 +364,9 @@ echo -e "${GREEN}✅ Backup created: $BACKUP_DIR${NC}\n"
 # Step 2: Run replacements
 echo -e "${YELLOW}Step 2: Running find & replace...${NC}"
 find . -name "*.html" -type f | while read file; do
-  perl -pi -e 's/"name":\s*"Himachal Explorer\s*—\s*Chandan.*s"/"name": "Himachal Explorer"/g' "$file"
-  perl -pi -e 's/<meta name="author" content="Chandan.*s — Himachal Explorer"\/>/<meta name="author" content="Himachal Explorer"\/>/g' "$file"
-  perl -pi -e 's/© 2026 Himachal Explorer\. Run by Chandan Panwar\./© 2026 Himachal Explorer. All rights reserved./g' "$file"
+  perl -pi -e 's/"name":\s*"Pine & Pass\s*—\s*Chandan.*s"/"name": "Pine & Pass"/g' "$file"
+  perl -pi -e 's/<meta name="author" content="Chandan.*s — Pine & Pass"\/>/<meta name="author" content="Pine & Pass"\/>/g' "$file"
+  perl -pi -e 's/© 2026 Pine & Pass\. Run by Chandan Panwar\./© 2026 Pine & Pass. All rights reserved./g' "$file"
   echo "  ✓ $file"
 done
 echo -e "${GREEN}✅ All replacements complete${NC}\n"

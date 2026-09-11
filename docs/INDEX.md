@@ -1,7 +1,7 @@
-# Himachal Explorer — Repository Index
+# Pine & Pass — Repository Index
 
 Reorganized for GitHub Pages. All live page URLs, GitHub Pages root files,
-absolute `https://himachalexplorer.in/...` references, and Search Console
+absolute `https://pineandpass.in/...` references, and Search Console
 verification paths were left untouched at root — only loose images/css/js
 were moved into `assets/`. Zero broken links (full report below).
 
@@ -24,7 +24,7 @@ were moved into `assets/`. Zero broken links (full report below).
 **GitHub Pages / Search Console requirements (must stay exactly here)**
 - `CNAME`, `sitemap.xml`, `README.md`
 - `google324f79d7efe6ddac.html`, `google46145a5e8d86a4ed.html`
-- `logo-512.png` — kept at root because it's referenced via absolute URL (`https://himachalexplorer.in/logo-512.png`) in OG/Twitter meta tags, apple-touch-icon, and JSON-LD across 4 pages
+- `logo-512.png` — kept at root because it's referenced via absolute URL (`https://pineandpass.in/logo-512.png`) in OG/Twitter meta tags, apple-touch-icon, and JSON-LD across 4 pages
 
 ## /assets/images/  (96 files)
 All loose `.jpg` / `.jpeg` / `.webp` / `.png` photos (place photos, hero images, logo-goibibo/makemytrip/yatra comparison logos, the AI-generated hero PNG). Roughly 37 are actively referenced by `index.html`, `packages.html`, `dist_master.html`, `himachal-image-tool.html`; the rest are spare/extra variants not currently wired into any page — kept rather than deleted in case they're needed for future updates.
@@ -48,7 +48,7 @@ All loose `.jpg` / `.jpeg` / `.webp` / `.png` photos (place photos, hero images,
 
 ## Bug fixes made during reorg
 1. **`dist_master.html`**: Chamba's `hero_image` was `"khajiar_1.jpg"` (typo, file never existed) → fixed to `"assets/images/khajjiar_02.jpg"` (the actual file). This image was broken on the live site before this fix.
-2. **`booking.html`**: Razorpay `image` field pointed to `https://himachalexplorer.in/assets/logo.png` (never existed) → fixed to the real `https://himachalexplorer.in/logo-512.png`.
+2. **`booking.html`**: Razorpay `image` field pointed to `https://pineandpass.in/assets/logo.png` (never existed) → fixed to the real `https://pineandpass.in/logo-512.png`.
 
 ## Verification
 Every quoted local `.jpg/.jpeg/.webp/.png/.css/.js` reference across all 32 root HTML files + 24 pkg pages was resolved against the new file tree after the move. 62 real references checked, 0 broken (the only non-resolving matches were pre-existing issues in `Exp.html`, plus false positives from placeholder text/JS string literals that aren't actual file references — see audit detail in conversation).

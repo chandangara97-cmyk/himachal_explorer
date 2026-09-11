@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * HIMACHAL EXPLORER — HOTEL BULK UPLOAD
+ * PINE & PASS — HOTEL BULK UPLOAD
  * Reads hotel-bulk-template.csv and pushes all records to Firebase in parallel
  * 
  * USAGE:

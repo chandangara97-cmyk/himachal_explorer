@@ -1,5 +1,5 @@
 /**
- * pkg-engine.js — Himachal Explorer package rendering engine
+ * pkg-engine.js — Pine & Pass package rendering engine
  * ─────────────────────────────────────────────────────────────────────────
  * Depends on (must be loaded first): packages-data.js, images.js
  *

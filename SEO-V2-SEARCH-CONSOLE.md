@@ -1,4 +1,4 @@
-# Himachal Explorer SEO V2
+# Pine & Pass SEO V2
 
 This release is optimized around the 31 Aug 2026 Search Console export.
 

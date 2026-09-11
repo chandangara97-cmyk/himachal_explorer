@@ -1,4 +1,4 @@
-/* Himachal Explorer — SEO runtime helper
+/* Pine & Pass — SEO runtime helper
    Static package pages carry crawlable SEO metadata. This helper improves
    share previews for dynamically rendered package/detail views. */
 (function(){
@@ -19,8 +19,8 @@
     data=data||{};
     var name=clean(data.name);
     if(!name)return;
-    var title=clean(data.title)||name+' | Himachal Tour Package | Himachal Explorer';
-    var desc=clean(data.description)||('Explore '+name+' with a day-wise itinerary, destinations, route and travel details from Himachal Explorer.');
+    var title=clean(data.title)||name+' | Himachal Tour Package | Pine & Pass';
+    var desc=clean(data.description)||('Explore '+name+' with a day-wise itinerary, destinations, route and travel details from Pine & Pass.');
     document.title=title;
     setMeta('description',desc);
     setOG('og:title',title); setOG('og:description',desc); setOG('og:url',location.href);

@@ -1,6 +1,6 @@
-# 🏨 Himachal Explorer — Hotel Bulk Upload System
+# 🏨 Pine & Pass — Hotel Bulk Upload System
 
-Populate the Himachal Explorer hotel contacts database with real hotel data using **seasonal pricing tiers** and **bulk upload scripts**.
+Populate the Pine & Pass hotel contacts database with real hotel data using **seasonal pricing tiers** and **bulk upload scripts**.
 
 ---
 
@@ -259,4 +259,4 @@ Hotels appear on:
 
 ---
 
-**Built for Himachal Explorer | Est. 2024**
+**Built for Pine & Pass | Est. 2024**

@@ -1,5 +1,5 @@
 /*!
- * Himachal Explorer — Place Thumbnails
+ * Pine & Pass — Place Thumbnails
  * ------------------------------------------------------------------
  * Site-wide "every place name shown → a real photo of that place"
  * enhancement. Scans the page for two known patterns:

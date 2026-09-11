@@ -1,4 +1,4 @@
-Himachal Explorer SEO upgrade — 31 Aug 2026
+Pine & Pass SEO upgrade — 31 Aug 2026
 
 Implemented:
 - Unique crawlable titles and meta descriptions for destination, package, blog and core pages.
@@ -10,6 +10,6 @@ Implemented:
 - Added assets/js/seo.js for dynamic package/share metadata.
 
 Important:
-- Submit https://himachalexplorer.in/sitemap.xml in Google Search Console.
+- Submit https://pineandpass.in/sitemap.xml in Google Search Console.
 - Request indexing for important destination and package URLs.
 - SEO metadata improves relevance but does not guarantee rankings; useful, original page content and internal links remain important.

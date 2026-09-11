@@ -9,12 +9,12 @@
 #### Replace 1: Organization Schema Cleanup
 **Find**:
 ```
-"name": "Himachal Explorer — Chandan's",
+"name": "Pine & Pass — Chandan's",
 ```
 
 **Replace With**:
 ```
-"name": "Himachal Explorer",
+"name": "Pine & Pass",
 ```
 
 **Action**: Replace All
@@ -24,12 +24,12 @@
 #### Replace 2: Meta Author Tags
 **Find**:
 ```
-<meta name="author" content="Chandan's — Himachal Explorer"/>
+<meta name="author" content="Chandan's — Pine & Pass"/>
 ```
 
 **Replace With**:
 ```
-<meta name="author" content="Himachal Explorer"/>
+<meta name="author" content="Pine & Pass"/>
 ```
 
 **Action**: Replace All
@@ -39,12 +39,12 @@
 #### Replace 3: Footer Copyright Line
 **Find**:
 ```
-© 2026 Himachal Explorer. Run by Chandan Panwar.
+© 2026 Pine & Pass. Run by Chandan Panwar.
 ```
 
 **Replace With**:
 ```
-© 2026 Himachal Explorer. All rights reserved.
+© 2026 Pine & Pass. All rights reserved.
 ```
 
 **Action**: Replace All
@@ -59,7 +59,7 @@ Plan your journey with<br/><em>Chandan Panwar</em>
 
 **Replace With**:
 ```
-Plan your journey with<br/><em>Himachal Explorer</em>
+Plan your journey with<br/><em>Pine & Pass</em>
 ```
 
 **Action**: Replace All (or just find — only 1-2 instances)
@@ -89,7 +89,7 @@ Chandan Panwar · +91-7018138847
 
 **Replace With**:
 ```
-+91-7018138847 | Himachal Explorer
++91-7018138847 | Pine & Pass
 ```
 
 **Action**: Replace All
@@ -103,12 +103,12 @@ Chandan Panwar · +91-7018138847
 #### Fix 1.1 – Line 20 (Meta Author)
 **BEFORE**:
 ```html
-<meta name="author" content="Chandan's — Himachal Explorer"/>
+<meta name="author" content="Chandan's — Pine & Pass"/>
 ```
 
 **AFTER**:
 ```html
-<meta name="author" content="Himachal Explorer"/>
+<meta name="author" content="Pine & Pass"/>
 ```
 
 ---
@@ -116,13 +116,13 @@ Chandan Panwar · +91-7018138847
 #### Fix 1.2 – Line 58 (Main Organization Schema)
 **BEFORE** (search for this block):
 ```json
-"name": "Himachal Explorer — Chandan's",
+"name": "Pine & Pass — Chandan's",
 "description": "Curated Himachal Pradesh tour packages...
 ```
 
 **AFTER**:
 ```json
-"name": "Himachal Explorer",
+"name": "Pine & Pass",
 "description": "Curated Himachal Pradesh tour packages...
 ```
 
@@ -144,12 +144,12 @@ Chandan Panwar · +91-7018138847
 #### Fix 1.4 – Line 360 (Breadcrumb Schema)
 **BEFORE**:
 ```json
-"name": "Himachal Explorer — Chandan's",
+"name": "Pine & Pass — Chandan's",
 ```
 
 **AFTER**:
 ```json
-"name": "Himachal Explorer",
+"name": "Pine & Pass",
 ```
 
 ---
@@ -158,14 +158,14 @@ Chandan Panwar · +91-7018138847
 **BEFORE**:
 ```html
 <div style="margin-top:16px;font-size:11px;color:#4a3820;">
-  © 2026 Himachal Explorer. Run by Chandan Panwar.
+  © 2026 Pine & Pass. Run by Chandan Panwar.
 </div>
 ```
 
 **AFTER**:
 ```html
 <div style="margin-top:16px;font-size:11px;color:#4a3820;">
-  © 2026 Himachal Explorer. All rights reserved.
+  © 2026 Pine & Pass. All rights reserved.
 </div>
 ```
 
@@ -184,7 +184,7 @@ Chandan Panwar · +91-7018138847
 **CHANGE TO**:
 ```html
 <h2 class="contact-heading reveal" style="transition-delay:.1s">
-  Plan your journey with<br/><em>Himachal Explorer</em>
+  Plan your journey with<br/><em>Pine & Pass</em>
 </h2>
 ```
 
@@ -226,10 +226,10 @@ Replace as per Fix 1.5
 #### Fix 4.1 – Meta Author
 ```html
 <!-- BEFORE -->
-<meta name="author" content="Chandan's — Himachal Explorer" />
+<meta name="author" content="Chandan's — Pine & Pass" />
 
 <!-- AFTER -->
-<meta name="author" content="Himachal Explorer" />
+<meta name="author" content="Pine & Pass" />
 ```
 
 ---
@@ -243,7 +243,7 @@ Replace as per Fix 1.5
 
 **Search for**: "Chandan's at +91-7018138847"
 
-**Replace with**: "Himachal Explorer at +91-7018138847" (or just "+91-7018138847")
+**Replace with**: "Pine & Pass at +91-7018138847" (or just "+91-7018138847")
 
 ---
 
@@ -252,10 +252,10 @@ Replace as per Fix 1.5
 ### For ALL .html files:
 
 **Find**: `Chandan's` (apostrophe-s variant)
-**Replace**: Remove entirely or replace with "Himachal Explorer"
+**Replace**: Remove entirely or replace with "Pine & Pass"
 
-**Find**: `© 2026 Himachal Explorer. Run by Chandan Panwar.`
-**Replace**: `© 2026 Himachal Explorer. All rights reserved.`
+**Find**: `© 2026 Pine & Pass. Run by Chandan Panwar.`
+**Replace**: `© 2026 Pine & Pass. All rights reserved.`
 
 ---
 
@@ -289,23 +289,23 @@ After making changes, verify:
 
 // Check 1: Organization name
 document.querySelector('script[type="application/ld+json"]')?.textContent
-// Should contain: "name": "Himachal Explorer" (NOT "Chandan's")
+// Should contain: "name": "Pine & Pass" (NOT "Chandan's")
 
 // Check 2: Meta author
 document.querySelector('meta[name="author"]')?.content
-// Should return: "Himachal Explorer"
+// Should return: "Pine & Pass"
 
 // Check 3: Footer
-document.body.innerText.match(/©.*Himachal Explorer/)[0]
+document.body.innerText.match(/©.*Pine & Pass/)[0]
 // Should NOT contain "Chandan" or "Run by"
 ```
 
 ### Manual SEO Checks:
 
-1. **Title Tags**: Himachal Explorer (primary), not Chandan's
-2. **Meta Descriptions**: Should reference "Himachal Explorer" brand
-3. **H1 Tags**: "Himachal Explorer" not "Chandan's"
-4. **Schema.org**: Single organization with name "Himachal Explorer"
+1. **Title Tags**: Pine & Pass (primary), not Chandan's
+2. **Meta Descriptions**: Should reference "Pine & Pass" brand
+3. **H1 Tags**: "Pine & Pass" not "Chandan's"
+4. **Schema.org**: Single organization with name "Pine & Pass"
 
 ---
 
@@ -313,7 +313,7 @@ document.body.innerText.match(/©.*Himachal Explorer/)[0]
 
 ### Pre-deployment Testing:
 
-1. **Search for 'site:himachalexplorer.in "Chandan'"** (in Google)
+1. **Search for 'site:pineandpass.in "Chandan'"** (in Google)
    - Should return 0 results after fix
    - If it returns results, you missed some instances
 
@@ -336,17 +336,17 @@ document.body.innerText.match(/©.*Himachal Explorer/)[0]
 ### Day 1-3: Monitor
 - Check Google Search Console for crawl errors
 - Verify pages are re-indexed (GSC > Coverage)
-- Check Search Results for brand name (site:himachalexplorer.in)
+- Check Search Results for brand name (site:pineandpass.in)
 
 ### Day 4-7: Analyze
-- GSC > Performance: Check impressions for "Himachal Explorer" query
+- GSC > Performance: Check impressions for "Pine & Pass" query
 - Check bounce rate trends
 - Monitor "brand" + "non-brand" keyword splits
 
 ### Week 2-4: Full Recovery
 - Expect 25-40% traffic increase
 - Brand rankings should improve
-- "Himachal Explorer" should rank higher than competitor "Chandan" mentions
+- "Pine & Pass" should rank higher than competitor "Chandan" mentions
 
 ---
 
@@ -361,7 +361,7 @@ document.body.innerText.match(/©.*Himachal Explorer/)[0]
 ### Issue 2: Lost Rankings for Old Brand
 **Solution**:
 - This is intentional (consolidating to primary brand)
-- Monitor "Himachal Explorer" keyword recovery
+- Monitor "Pine & Pass" keyword recovery
 - Should recover within 30 days
 
 ### Issue 3: WhatsApp Links Broken
@@ -387,7 +387,7 @@ document.body.innerText.match(/©.*Himachal Explorer/)[0]
 ## Final Pre-Push Checklist
 
 - [ ] All Find & Replace operations complete
-- [ ] No instances of "Chandan's — Himachal Explorer" remain
+- [ ] No instances of "Chandan's — Pine & Pass" remain
 - [ ] No instances of "Run by Chandan Panwar" in footers
 - [ ] Schema.org validation passes
 - [ ] No broken links or 404s

@@ -88,7 +88,7 @@ bash hotel-bulk-upload.sh hotel-bulk-template.csv
 ## 🗂️ File Structure
 
 ```
-himachalexplorer.in/
+pineandpass.in/
 ├─ hotel-contacts.html           ← Admin page (new)
 ├─ packages.html                 ← Shows hotels with rates
 ├─ package-detail.html           ← Detail page

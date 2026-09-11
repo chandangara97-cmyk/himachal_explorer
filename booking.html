@@ -9,10 +9,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book Your Tour – Himachal Explorer</title>
+<title>Book Your Tour – Pine & Pass</title>
 <meta name="description" content="Book your Himachal Pradesh tour package online in 3 steps — choose your package and travel dates, enter guest details, and complete payment securely."/>
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"/>
-<link rel="canonical" href="https://himachalexplorer.in/booking.html"/>
+<link rel="canonical" href="https://pineandpass.in/booking.html"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <!-- Razorpay Script -->
@@ -28,11 +28,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --gold-light: #ffb84d;
     --gold-pale: #fff1da;
     --ink: #10233a;
-    --ink-soft: #2f6fed;
+    --ink-soft: #3f7a5a;
     --muted: #7c8ea1;
     --border: #e3e8ee;
     --white: #ffffff;
-    --success: #0f9d8e;
+    --success: #2f8f6f;
     --error: #b84040;
     --shadow: 0 4px 24px rgba(26,22,18,0.10);
   }
@@ -915,7 +915,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="trust-row" style="margin-top:14px;padding:0 4px">
-      <div class="trust-badge"><span class="icon">✅</span><span>MSME registered Himachal Explorer</span></div>
+      <div class="trust-badge"><span class="icon">✅</span><span>MSME registered Pine & Pass</span></div>
       <div class="trust-badge"><span class="icon">🏔️</span><span>Local HP experts since 2018</span></div>
       <div class="trust-badge"><span class="icon">🔄</span><span>Free cancellation 30 days prior</span></div>
       <div class="trust-badge"><span class="icon">📞</span><span>24/7 on-trip support</span></div>
@@ -942,7 +942,7 @@ const PAY_MODE_PCT = { adv40: 0.40, adv60: 0.60, full: 1.00 };
 const PAY_MODE_LABEL = { adv40: '40% advance', adv60: '60% advance', full: 'full payment' };
 const FIREBASE_URL = 'https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app';
 const WA_NUMBER   = '917018138847';
-const BUSINESS_EMAIL = 'chandan_panwar@himachalexplorer.in';
+const BUSINESS_EMAIL = 'chandan_panwar@pineandpass.in';
 
 // ── PACKAGES DATA ──────────────────────────────────────────────────────
 // SINGLE SOURCE OF TRUTH: loaded from Firebase via assets/js/package-data.js
@@ -1205,9 +1205,9 @@ async function initiatePayment() {
     key: RAZORPAY_KEY,
     amount: payAmt * 100, // paise
     currency: 'INR',
-    name: 'Himachal Explorer',
+    name: 'Pine & Pass',
     description: state.pkg?.name + ' · ' + state.pkg?.nights + 'N/' + state.pkg?.days + 'D',
-    image: 'https://himachalexplorer.in/logo-512.png',
+    image: 'https://pineandpass.in/logo-512.png',
     prefill: {
       name: `${state.fname} ${state.lname}`,
       email: state.email,

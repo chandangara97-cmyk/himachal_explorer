@@ -11,25 +11,25 @@
    page that opts in via var(--he-*) respond automatically.
    ============================================================ */
 :root{
-  --he-bg:#0e2a47;
-  --he-bg-alt:#123252;
-  --he-border:#1f4267;
+  --he-bg:#14301f;
+  --he-bg-alt:#123a2b;
+  --he-border:#25493a;
   --he-text:#ffffff;
-  --he-text-soft:#b7c8db;
+  --he-text-soft:#c3d4c8;
   --he-gold:#f5a623;
   --he-gold-light:#ffb84d;
-  --he-green-900:#0e2a47;
+  --he-green-900:#14301f;
   --he-shadow:rgba(6,17,29,.35);
   --he-contour:rgba(255,255,255,.04);
   --he-mono:'JetBrains Mono',ui-monospace,monospace;
-  --he-footer-bg:#081a2c;
-  --he-footer-text:#9fb3c8;
-  --he-footer-text-soft:#5f7891;
-  --nv-navy:#0e2a47;
-  --nv-navy-deep:#081a2c;
-  --nv-navy-light:#163a5e;
-  --nv-blue:#2f6fed;
-  --nv-teal:#0f9d8e;
+  --he-footer-bg:#0a1811;
+  --he-footer-text:#a8c2af;
+  --he-footer-text-soft:#5f8a72;
+  --nv-navy:#14301f;
+  --nv-navy-deep:#0a1811;
+  --nv-navy-light:#1f4a30;
+  --nv-blue:#3f7a5a;
+  --nv-teal:#2f8f6f;
   --nv-gold:#f5a623;
   --nv-text:#152233;
   --nv-text-soft:#5b6b7a;
@@ -40,27 +40,27 @@
   color-scheme:light;
 }
 :root[data-theme="dark"]{
-  --he-bg:#081a2c;
-  --he-bg-alt:#0e2a47;
-  --he-border:#1f4267;
+  --he-bg:#0a1811;
+  --he-bg-alt:#14301f;
+  --he-border:#25493a;
   --he-text:#ffffff;
-  --he-text-soft:#b7c8db;
+  --he-text-soft:#c3d4c8;
   --he-gold:#f5a623;
   --he-gold-light:#ffb84d;
   --he-green-900:#f5a623;
   --he-shadow:rgba(0,0,0,.5);
   --he-contour:rgba(255,255,255,.03);
   --he-footer-bg:#050f1a;
-  --he-footer-text:#8ea3ba;
-  --he-footer-text-soft:#5f7891;
-  --nv-navy:#081a2c;
-  --nv-navy-deep:#04101c;
-  --nv-navy-light:#0e2a47;
-  --nv-bg:#0c2038;
-  --nv-bg-alt:#0e2a47;
-  --nv-border:#1f4267;
-  --nv-text:#f0f4f8;
-  --nv-text-soft:#b7c8db;
+  --he-footer-text:#9bbaa3;
+  --he-footer-text-soft:#5f8a72;
+  --nv-navy:#0a1811;
+  --nv-navy-deep:#071410;
+  --nv-navy-light:#14301f;
+  --nv-bg:#0c2418;
+  --nv-bg-alt:#14301f;
+  --nv-border:#25493a;
+  --nv-text:#eef4f0;
+  --nv-text-soft:#c3d4c8;
   color-scheme:dark;
 }
 

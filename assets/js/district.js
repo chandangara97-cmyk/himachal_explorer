@@ -113,7 +113,7 @@ function renderDistrict(id){
     return;
   }
 
-  document.title = `${d.name} | Himachal Explorer District Guide`;
+  document.title = `${d.name} | Pine & Pass District Guide`;
 
   $("dName").textContent = d.name;
   $("dSub").textContent = `District Guide • Facts • Places • Routes`;

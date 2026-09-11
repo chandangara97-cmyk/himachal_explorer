@@ -1,5 +1,5 @@
 /**
- * distance-matrix.js — Himachal Explorer real road-distance data
+ * distance-matrix.js — Pine & Pass real road-distance data
  * ─────────────────────────────────────────────────────────────────────────
  * SINGLE SOURCE OF TRUTH for "how far is place A from place B, in actual
  * road km" across the whole site (route builder, package costing, taxi

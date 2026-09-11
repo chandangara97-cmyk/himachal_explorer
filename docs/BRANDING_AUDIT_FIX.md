@@ -1,9 +1,9 @@
-# 🔴 CRITICAL: Duplicate Brand Name SEO Issue — Himachal Explorer
+# 🔴 CRITICAL: Duplicate Brand Name SEO Issue — Pine & Pass
 
 ## Executive Summary
 Your website currently has **dual competing brand identities** that are confusing search engines and splitting your traffic:
 
-- **Official Brand**: Himachal Explorer (himachalexplorer.in)
+- **Official Brand**: Pine & Pass (pineandpass.in)
 - **Competing Brand**: Chandan's / Chandan Panwar (personal name)
 
 **Impact**: Google is diluting your domain authority because it sees two distinct brands, treating them as separate entities. This causes:
@@ -20,7 +20,7 @@ Your website currently has **dual competing brand identities** that are confusin
 ### Finding 1: Meta Author Inconsistency
 **Location**: `index.html` line 20
 ```html
-<meta name="author" content="Chandan's — Himachal Explorer"/>
+<meta name="author" content="Chandan's — Pine & Pass"/>
 ```
 
 **Problem**: Mixes personal name with business name. Should be ONLY business name.
@@ -32,10 +32,10 @@ Your website currently has **dual competing brand identities** that are confusin
 
 **Current**: 
 ```json
-"name": "Himachal Explorer — Chandan's",
+"name": "Pine & Pass — Chandan's",
 ```
 
-**Problem**: Organization schema swaps brand order inconsistently. Sometimes "Himachal Explorer — Chandan's", sometimes just "Himachal Explorer".
+**Problem**: Organization schema swaps brand order inconsistently. Sometimes "Pine & Pass — Chandan's", sometimes just "Pine & Pass".
 
 ---
 
@@ -50,7 +50,7 @@ Your website currently has **dual competing brand identities** that are confusin
 **Examples**:
 ```html
 <!-- Footer -->
-© 2026 Himachal Explorer. Run by Chandan Panwar.
+© 2026 Pine & Pass. Run by Chandan Panwar.
 
 <!-- Contact heading (dist_index.html) -->
 <h2>Plan your journey with<br/><em>Chandan Panwar</em></h2>
@@ -74,10 +74,10 @@ Your website currently has **dual competing brand identities** that are confusin
 
 ## 🎯 The Solution: Unified Brand Identity
 
-### ✅ STEP 1: Standardize on "Himachal Explorer"
+### ✅ STEP 1: Standardize on "Pine & Pass"
 
 **Decision**: 
-- **Primary Brand**: Himachal Explorer
+- **Primary Brand**: Pine & Pass
 - **Operator**: Chandan Panwar (person, not primary brand)
 - **Tone**: Professional business, not personal brand
 
@@ -88,28 +88,28 @@ Your website currently has **dual competing brand identities** that are confusin
 **CHANGE 1 – Line 20 (Meta Author)**
 ```html
 <!-- BEFORE -->
-<meta name="author" content="Chandan's — Himachal Explorer"/>
+<meta name="author" content="Chandan's — Pine & Pass"/>
 
 <!-- AFTER -->
-<meta name="author" content="Himachal Explorer"/>
+<meta name="author" content="Pine & Pass"/>
 ```
 
 **CHANGE 2 – Line 58 (Organization Schema)**
 ```json
 // BEFORE
-"name": "Himachal Explorer — Chandan's",
+"name": "Pine & Pass — Chandan's",
 
 // AFTER
-"name": "Himachal Explorer",
+"name": "Pine & Pass",
 ```
 
 **CHANGE 3 – Line 360 (Breadcrumb Schema)**
 ```json
 // BEFORE
-"name": "Himachal Explorer — Chandan's",
+"name": "Pine & Pass — Chandan's",
 
 // AFTER
-"name": "Himachal Explorer",
+"name": "Pine & Pass",
 ```
 
 ---
@@ -145,17 +145,17 @@ Your website currently has **dual competing brand identities** that are confusin
 
 **Current pattern**:
 ```html
-© 2026 Himachal Explorer. Run by Chandan Panwar.
+© 2026 Pine & Pass. Run by Chandan Panwar.
 ```
 
 **CHANGE TO**:
 ```html
-© 2026 Himachal Explorer. All rights reserved.
+© 2026 Pine & Pass. All rights reserved.
 ```
 
 **Alternative (if attribution needed)**:
 ```html
-© 2026 Himachal Explorer · Founded by Chandan Panwar · +91-7018138847
+© 2026 Pine & Pass · Founded by Chandan Panwar · +91-7018138847
 ```
 
 **Rationale**: Demote personal name from primary position to founder attribution (if kept).
@@ -176,7 +176,7 @@ Your website currently has **dual competing brand identities** that are confusin
 **CHANGE TO**:
 ```html
 <h2 class="contact-heading reveal" style="transition-delay:.1s">
-  Plan your journey with<br/><em>Himachal Explorer</em>
+  Plan your journey with<br/><em>Pine & Pass</em>
 </h2>
 ```
 
@@ -213,13 +213,13 @@ Your website currently has **dual competing brand identities** that are confusin
 {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
-  "name": "Himachal Explorer",
+  "name": "Pine & Pass",
   "description": "Curated Himachal Pradesh tour packages from Delhi, Chandigarh & Amritsar",
-  "url": "https://himachalexplorer.in",
+  "url": "https://pineandpass.in",
   "telephone": "+91-7018138847",
   "sameAs": [
-    "https://www.instagram.com/himachalexplorer",
-    "https://www.facebook.com/himachalexplorer"
+    "https://www.instagram.com/pineandpass",
+    "https://www.facebook.com/pineandpass"
   ],
   "address": {
     "@type": "PostalAddress",
@@ -248,7 +248,7 @@ Your website currently has **dual competing brand identities** that are confusin
 grep -r "Garg" *.html
 ```
 
-**Action**: Delete or standardize to "Himachal Explorer" only.
+**Action**: Delete or standardize to "Pine & Pass" only.
 
 ---
 
@@ -289,12 +289,12 @@ grep -r "Garg" *.html
 ```
 # Replace in ALL .html files:
 
-1. "Chandan's — Himachal Explorer" → "Himachal Explorer"
+1. "Chandan's — Pine & Pass" → "Pine & Pass"
 2. "Chandan Panwar" → remove/demote (context-dependent)
 3. "Hi Chandan" (WhatsApp prefix) → "Hi, I want to book..."
-4. "Plan your journey with Chandan Panwar" → "Plan your journey with Himachal Explorer"
-5. "© 2026 Himachal Explorer. Run by Chandan Panwar." → "© 2026 Himachal Explorer"
-6. "Garg Enterprise" → "Himachal Explorer"
+4. "Plan your journey with Chandan Panwar" → "Plan your journey with Pine & Pass"
+5. "© 2026 Pine & Pass. Run by Chandan Panwar." → "© 2026 Pine & Pass"
+6. "Garg Enterprise" → "Pine & Pass"
 ```
 
 ### Batch Command for Linux/Mac
@@ -302,9 +302,9 @@ grep -r "Garg" *.html
 ```bash
 # Replace in all HTML files
 find . -name "*.html" -type f -exec sed -i.bak \
-  -e 's/Chandan'"'"'s — Himachal Explorer/Himachal Explorer/g' \
-  -e 's/Himachal Explorer — Chandan'"'"'s/Himachal Explorer/g' \
-  -e 's/Plan your journey with<br\/><em>Chandan Panwar<\/em>/Plan your journey with<br\/><em>Himachal Explorer<\/em>/g' \
+  -e 's/Chandan'"'"'s — Pine & Pass/Pine & Pass/g' \
+  -e 's/Pine & Pass — Chandan'"'"'s/Pine & Pass/g' \
+  -e 's/Plan your journey with<br\/><em>Chandan Panwar<\/em>/Plan your journey with<br\/><em>Pine & Pass<\/em>/g' \
   {} \;
 ```
 
@@ -325,8 +325,8 @@ find . -name "*.html" -type f -exec sed -i.bak \
 ### Metrics to Track (Post-Implementation)
 1. **Google Search Console**: Brand search volume recovery
 2. **Organic traffic**: Overall uplift (expect +15-30% in 30 days)
-3. **SERP visibility**: Track "Himachal Explorer" vs "Himachal Pradesh tour packages"
-4. **Branded searches**: "Himachal Explorer" vs "Chandan's"
+3. **SERP visibility**: Track "Pine & Pass" vs "Himachal Pradesh tour packages"
+4. **Branded searches**: "Pine & Pass" vs "Chandan's"
 
 ---
 
@@ -342,8 +342,8 @@ find . -name "*.html" -type f -exec sed -i.bak \
 
 ## ✅ Post-Fix Checklist
 
-- [ ] Update all meta author tags → "Himachal Explorer"
-- [ ] Update organization schema → single "Himachal Explorer" name
+- [ ] Update all meta author tags → "Pine & Pass"
+- [ ] Update organization schema → single "Pine & Pass" name
 - [ ] Standardize footer across ALL pages
 - [ ] Fix WhatsApp CTAs → generic booking text
 - [ ] Remove "Garg Enterprise" references
@@ -367,10 +367,10 @@ find . -name "*.html" -type f -exec sed -i.bak \
 ## 🎯 Long-term Brand Strategy
 
 After fixes:
-1. **Brand positioning**: "Himachal Explorer — Your Trusted Himachal Guide"
+1. **Brand positioning**: "Pine & Pass — Your Trusted Himachal Guide"
 2. **Author/founder**: Can be mentioned in About page, not SEO meta
 3. **Trust signals**: Focus on business legitimacy, not personal brand
-4. **Link building**: All backlinks should reference "Himachal Explorer"
+4. **Link building**: All backlinks should reference "Pine & Pass"
 
 ---
 

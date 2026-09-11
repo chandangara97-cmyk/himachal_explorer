@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "name": "Himachal Explorer Master Search Index",
+  "name": "Pine & Pass Master Search Index",
   "purpose": "Broad search vocabulary for Himachal tourism queries",
   "source_basis": [
     "Existing search_terms.json vocabulary",

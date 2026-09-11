@@ -1,5 +1,5 @@
 /**
- * pricing-engine.js — Himachal Explorer SINGLE SOURCE OF TRUTH for package cost.
+ * pricing-engine.js — Pine & Pass SINGLE SOURCE OF TRUTH for package cost.
  * ─────────────────────────────────────────────────────────────────────────
  * This is the exact formula used on /group-pricing.html. Every other page
  * that shows a per-person or group price (packages.html, package-detail.html,

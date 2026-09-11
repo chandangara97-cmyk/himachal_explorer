@@ -2,7 +2,7 @@
 
 ## What Visitors See
 
-When users browse hotels on Himachal Explorer, they see **seasonal pricing cards** like this:
+When users browse hotels on Pine & Pass, they see **seasonal pricing cards** like this:
 
 ```
 ┌────────────────────────────────────────────┐
@@ -245,4 +245,4 @@ A: Right now, it's informational only. Actual booking prices are quoted via `cha
 
 ---
 
-**Built for Himachal Explorer | Seasonal Pricing v1.0**
+**Built for Pine & Pass | Seasonal Pricing v1.0**

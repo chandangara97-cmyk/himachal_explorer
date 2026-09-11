@@ -1,0 +1,102 @@
+/* ============================================================
+   HE-UNIFIED — shared polish layer loaded on every page via
+   site-chrome.js. Adds the mobile bottom nav bar (rendered by
+   site-chrome.js but previously unstyled), small global
+   micro-interactions, and light animation for card grids.
+   Deliberately scoped to .he-* / generic selectors so it never
+   fights a page's own :root color variables.
+   ============================================================ */
+
+/* ---------- Global polish ---------- */
+::selection{ background:rgba(176,125,58,.28); color:inherit; }
+:focus-visible{ outline:2px solid var(--he-gold,#b07d3a); outline-offset:2px; border-radius:4px; }
+html.he-ui-ready{ scrollbar-color:#b07d3a transparent; }
+html.he-ui-ready::-webkit-scrollbar{ width:10px; height:10px; }
+html.he-ui-ready::-webkit-scrollbar-thumb{ background:#b07d3a; border-radius:8px; }
+html.he-ui-ready::-webkit-scrollbar-track{ background:transparent; }
+
+img{ transition:opacity .35s ease; }
+img[loading="lazy"]{ background:linear-gradient(90deg,#eee,#f6f6f6,#eee); }
+
+/* ---------- Mobile bottom nav (rendered by site-chrome.js, unstyled until now) ---------- */
+.he-mobile-bottom{
+  display:none;
+  position:fixed; left:0; right:0; bottom:0; z-index:1040;
+  background:var(--he-bg,#14301f);
+  border-top:1px solid var(--he-border,#25493a);
+  box-shadow:0 -4px 18px rgba(0,0,0,.18);
+  padding-bottom:env(safe-area-inset-bottom,0);
+}
+.he-mobile-bottom-inner{
+  display:flex; align-items:stretch; justify-content:space-around;
+}
+.he-mobile-bottom a{
+  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:3px; padding:9px 4px 8px; text-decoration:none;
+  color:var(--he-text-soft,#c3d4c8); font-family:'Jost',Arial,sans-serif;
+  font-size:10px; font-weight:600; letter-spacing:.02em;
+  transition:color .15s ease, transform .15s ease;
+}
+.he-mobile-bottom a .he-mob-icon{ font-size:18px; line-height:1; transition:transform .15s ease; }
+.he-mobile-bottom a:active{ transform:scale(.94); }
+.he-mobile-bottom a.he-mob-active{ color:var(--he-gold,#f5a623); }
+.he-mobile-bottom a.he-mob-active .he-mob-icon{ transform:translateY(-2px); }
+
+@media (max-width:760px){
+  .he-mobile-bottom{ display:block; }
+  body.he-unified-page{ padding-bottom:62px; }
+}
+
+/* Auto-hide header on scroll-down / reveal on scroll-up (mobile only, driven by he-mobile-nav.js) */
+@media (max-width:760px){
+  .he-header{ transition:transform .28s ease; }
+  .he-header.he-hide{ transform:translateY(-100%); }
+}
+
+/* ---------- Back-to-top button (injected by he-mobile-nav.js) ---------- */
+.he-top-btn{
+  position:fixed; right:16px; bottom:78px; z-index:1030;
+  width:42px; height:42px; border-radius:50%; border:none;
+  background:linear-gradient(135deg,var(--he-gold-light,#ffb84d),var(--he-gold,#b07d3a));
+  color:#1c1409; font-size:16px; cursor:pointer;
+  box-shadow:0 6px 16px rgba(176,125,58,.4);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; transform:translateY(12px); pointer-events:none;
+  transition:opacity .25s ease, transform .25s ease;
+}
+.he-top-btn.he-show{ opacity:1; transform:translateY(0); pointer-events:auto; }
+@media (min-width:761px){ .he-top-btn{ bottom:24px; } }
+
+/* ---------- Card-grid entrance animation (encyclopedia, packages, district tiles) ---------- */
+@keyframes heFadeUp{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:translateY(0); } }
+.eh-grid .eh-card,
+.enc-grid .enc-card,
+.nv-grid .nv-tile{
+  animation:heFadeUp .5s cubic-bezier(.22,.8,.25,1) both;
+}
+.eh-grid .eh-card:nth-child(1),.enc-grid .enc-card:nth-child(1),.nv-grid .nv-tile:nth-child(1){ animation-delay:.02s; }
+.eh-grid .eh-card:nth-child(2),.enc-grid .enc-card:nth-child(2),.nv-grid .nv-tile:nth-child(2){ animation-delay:.06s; }
+.eh-grid .eh-card:nth-child(3),.enc-grid .enc-card:nth-child(3),.nv-grid .nv-tile:nth-child(3){ animation-delay:.10s; }
+.eh-grid .eh-card:nth-child(4),.enc-grid .enc-card:nth-child(4),.nv-grid .nv-tile:nth-child(4){ animation-delay:.14s; }
+.eh-grid .eh-card:nth-child(5),.enc-grid .enc-card:nth-child(5),.nv-grid .nv-tile:nth-child(5){ animation-delay:.18s; }
+.eh-grid .eh-card:nth-child(n+6),.enc-grid .enc-card:nth-child(n+6),.nv-grid .nv-tile:nth-child(n+6){ animation-delay:.22s; }
+@media (prefers-reduced-motion:reduce){
+  .eh-grid .eh-card,.enc-grid .enc-card,.nv-grid .nv-tile,img{ animation:none!important; transition:none!important; }
+}
+
+/* Encyclopedia category cards: thin gold-to-pine accent bar on top for a bit more depth */
+.eh-card{ border-top:3px solid transparent; background-image:linear-gradient(var(--surface,#fff),var(--surface,#fff)); }
+.eh-card:hover{ border-top-color:#b07d3a; }
+.enc-card{ position:relative; overflow:hidden; }
+.enc-card::before{
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:linear-gradient(180deg,#b07d3a,#14301f); opacity:.55;
+  transition:opacity .2s ease, width .2s ease;
+}
+.enc-card:hover::before{ opacity:1; width:5px; }
+
+/* ---------- Print ---------- */
+@media print{
+  .he-header,.he-footer,.he-mobile-bottom,.he-top-btn,#site-header,#site-footer{ display:none!important; }
+  body.he-unified-page{ padding-bottom:0!important; }
+}

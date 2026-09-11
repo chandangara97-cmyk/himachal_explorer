@@ -1,5 +1,5 @@
 /**
- * images.js — Himachal Explorer Image Library
+ * images.js — Pine & Pass Image Library
  * ─────────────────────────────────────────────────────────────────────────────
  * Single source of truth for all images used across the packages page.
  * All images served from Google Drive (publicly shared).

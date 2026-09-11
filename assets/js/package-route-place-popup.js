@@ -1,5 +1,5 @@
 /*!
- * Himachal Explorer — Package Route → Firebase Place Popup
+ * Pine & Pass — Package Route → Firebase Place Popup
  * ---------------------------------------------------------
  * Drop this file into:
  *   assets/js/package-route-place-popup.js
