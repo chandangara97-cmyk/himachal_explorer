@@ -1,11 +1,11 @@
 --- a/packages.html
 +++ b/packages.html
-@@ -762,7 +762,64 @@
-   dharamshala: id => /kangra|dharamshala/.test(id),
-   parvati: id => /parvati|kasol/.test(id),
-   chamba: id => /chamba|amritsar-chamba/.test(id),
--  mandi: id => /mandi|janjehli|prashar/.test(id)};
-+  mandi: id => /mandi|janjehli|prashar/.test(id)
+@@ -688,7 +688,64 @@
+   triund:{name:"Triund",lat:32.2618,lng:76.3503,category:"trek",tagline:"9km trek to 2,875m ridge — Dhauladhar panorama."},
+   vashisht:{name:"Vashisht Hot Springs",lat:32.256,lng:77.195,category:"nature",tagline:"Ancient sage's village — hot sulphur springs & temples."},
+   chintpurni:{name:"Chintpurni Temple",lat:31.7167,lng:76.1333,category:"temple",tagline:"One of the 51 Shakti Peethas."},
+-  "habban-valley":{name:"Habban Valley",lat:30.8,lng:77.35,category:"valley",tagline:"Apple orchards and terraced paddy fields in Sirmaur."}};
++  "habban-valley":{name:"Habban Valley",lat:30.8,lng:77.35,category:"valley",tagline:"Apple orchards and terraced paddy fields in Sirmaur."},
 +  // --- New places added (Drive photo audit) ---
 +  "sunset-point-kasauli":{name:"Sunset Point Kasauli",lat:30.895,lng:76.952,category:"scenic",tagline:"Kasauli's evening viewpoint over the Solan valley and lower Shivaliks."},
 +  "cholling-monastery":{name:"Cholling Monastery",lat:32.556,lng:76.976,category:"spiritual",tagline:"Guru Ghantal-era Buddhist monastery above the Chandrabhaga confluence, Lahaul."},
@@ -62,6 +62,16 @@
 +  bhuntar:{name:"Bhuntar",lat:31.883,lng:77.153,category:"core",tagline:"Kullu valley's airport town, at the Beas-Parvati confluence."},
 +  "bhrigu-lake-trek":{name:"Bhrigu Lake Trek",lat:32.36,lng:77.35,category:"trek",tagline:"Popular high-altitude lake trek above Gulaba, near Manali."},
 +  "bhagsunag-waterfall-mcleodganj":{name:"Bhagsunag Waterfall",lat:32.2495,lng:76.335,category:"nature",tagline:"Short walk above Bhagsu village, McLeod Ganj — temple and falls together."},
++};
+ 
+ const CAT_COLORS = {
+   "core":"#f97316","scenic":"#10b981","heritage":"#8b5cf6","lake":"#3b82f6",
+@@ -762,7 +819,8 @@
+   dharamshala: id => /kangra|dharamshala/.test(id),
+   parvati: id => /parvati|kasol/.test(id),
+   chamba: id => /chamba|amritsar-chamba/.test(id),
+-  mandi: id => /mandi|janjehli|prashar/.test(id)};
++  mandi: id => /mandi|janjehli|prashar/.test(id)
 +};
  
  // Every package card needs its OWN photo. Firebase's per-package `image`
