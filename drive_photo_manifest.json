@@ -1,0 +1,644 @@
+[
+  {
+    "place_name": "Amritsar",
+    "drive_file_id": "1StHhmmWogw5wbXWMz3ooykCwvuO-A4fI",
+    "drive_url": "https://drive.google.com/thumbnail?id=1StHhmmWogw5wbXWMz3ooykCwvuO-A4fI&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Bhagsunag Waterfall",
+    "drive_file_id": "10bF_tyup4NjF3GRB1KaOqaMEa7eyWcl4",
+    "drive_url": "https://drive.google.com/thumbnail?id=10bF_tyup4NjF3GRB1KaOqaMEa7eyWcl4&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Bharmour",
+    "drive_file_id": "19upYXK2gJjwrC4Hv5V_3UqeOqwyz1zk6",
+    "drive_url": "https://drive.google.com/thumbnail?id=19upYXK2gJjwrC4Hv5V_3UqeOqwyz1zk6&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Bhrigu Lake Trek",
+    "drive_file_id": "1TRR61v2H8xfjqeNqUpMq4Ih5CSHrafLn",
+    "drive_url": "https://drive.google.com/thumbnail?id=1TRR61v2H8xfjqeNqUpMq4Ih5CSHrafLn&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Bhuntar",
+    "drive_file_id": "19PxfaDl_AKPetHpJfwIBsFPvuK2ZTWO8",
+    "drive_url": "https://drive.google.com/thumbnail?id=19PxfaDl_AKPetHpJfwIBsFPvuK2ZTWO8&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Bhuri Singh Museum",
+    "drive_file_id": "1XcMQpLDnghpcoBisNshfFEAYBEp9Rczp",
+    "drive_url": "https://drive.google.com/thumbnail?id=1XcMQpLDnghpcoBisNshfFEAYBEp9Rczp&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Bon Monastery, Solan",
+    "drive_file_id": "1miTFePv3lnddFMNSf6mvvPeOdk9_zWe7",
+    "drive_url": "https://drive.google.com/thumbnail?id=1miTFePv3lnddFMNSf6mvvPeOdk9_zWe7&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Chamba",
+    "drive_file_id": "1j44-HG28T5q1Cyeb65MjUkFTNsATfsbk",
+    "drive_url": "https://drive.google.com/thumbnail?id=1j44-HG28T5q1Cyeb65MjUkFTNsATfsbk&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Chandigarh",
+    "drive_file_id": "1eh7t10GnbMCF-5f4cKTKuhQbvV_r-Isc",
+    "drive_url": "https://drive.google.com/thumbnail?id=1eh7t10GnbMCF-5f4cKTKuhQbvV_r-Isc&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Chicham Bridge",
+    "drive_file_id": "1rRdhO4gLpQWwWO4uQe7wKSHIhzS7KNOG",
+    "drive_url": "https://drive.google.com/thumbnail?id=1rRdhO4gLpQWwWO4uQe7wKSHIhzS7KNOG&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Chindi Mata Temple",
+    "drive_file_id": "1oGjcwrZ5p3tvps-HIABClNVOQmCJzDfb",
+    "drive_url": "https://drive.google.com/thumbnail?id=1oGjcwrZ5p3tvps-HIABClNVOQmCJzDfb&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Chitkul",
+    "drive_file_id": "1w-cA1F7Ybr2X-gyPSOjd1__5wQI96kX2",
+    "drive_url": "https://drive.google.com/thumbnail?id=1w-cA1F7Ybr2X-gyPSOjd1__5wQI96kX2&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Cholling Monastery",
+    "drive_file_id": "1VwSrosvzPdwFshgZ1ygBkluZUu12eF4c",
+    "drive_url": "https://drive.google.com/thumbnail?id=1VwSrosvzPdwFshgZ1ygBkluZUu12eF4c&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Christ Church",
+    "drive_file_id": "1sqrRW_NIP1Mr0-yELm6j2xsh3nQaCfDq",
+    "drive_url": "https://drive.google.com/thumbnail?id=1sqrRW_NIP1Mr0-yELm6j2xsh3nQaCfDq&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Dainkund Peak",
+    "drive_file_id": "1M6IkuSm1LeCcNbpNq3zCXNhWCjDW_T0V",
+    "drive_url": "https://drive.google.com/thumbnail?id=1M6IkuSm1LeCcNbpNq3zCXNhWCjDW_T0V&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Dal Lake Dharamshala",
+    "drive_file_id": "1O52tbT-BJdh1DGeF0uC8gCWe5V9Gv7uY",
+    "drive_url": "https://drive.google.com/thumbnail?id=1O52tbT-BJdh1DGeF0uC8gCWe5V9Gv7uY&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Dalhousie",
+    "drive_file_id": "1jU_FbssULoKENHPTmbUgJePBRWUOKlrF",
+    "drive_url": "https://drive.google.com/thumbnail?id=1jU_FbssULoKENHPTmbUgJePBRWUOKlrF&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Darcha",
+    "drive_file_id": "1cOoqr4k98jjJ_RqPArC36MpvJkP9aG8i",
+    "drive_url": "https://drive.google.com/thumbnail?id=1cOoqr4k98jjJ_RqPArC36MpvJkP9aG8i&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Dehnasar Lake Trek",
+    "drive_file_id": "1ioDKPGvIXat_JbEQPoNUGUdtTamZdArg",
+    "drive_url": "https://drive.google.com/thumbnail?id=1ioDKPGvIXat_JbEQPoNUGUdtTamZdArg&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Dehradun",
+    "drive_file_id": "1RdXsYMhrnvba3Glc8MJyjtmr_0XEkc2T",
+    "drive_url": "https://drive.google.com/thumbnail?id=1RdXsYMhrnvba3Glc8MJyjtmr_0XEkc2T&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Delhi",
+    "drive_file_id": "14r4lVxdOVej8SS5grZj50P_kmEqlwoUN",
+    "drive_url": "https://drive.google.com/thumbnail?id=14r4lVxdOVej8SS5grZj50P_kmEqlwoUN&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Dharamshala",
+    "drive_file_id": "1ISC4INjpuSNCn6Cgctn48dQAasPvpraB",
+    "drive_url": "https://drive.google.com/thumbnail?id=1ISC4INjpuSNCn6Cgctn48dQAasPvpraB&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Ganji Pahari",
+    "drive_file_id": "1vvpNTmvqzQN_2t5fJBgIv9eyhtzUrfAq",
+    "drive_url": "https://drive.google.com/thumbnail?id=1vvpNTmvqzQN_2t5fJBgIv9eyhtzUrfAq&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Gondhla Fort",
+    "drive_file_id": "1fn0_2stn6cEAST7dUxxQoU-byXfkWhDP",
+    "drive_url": "https://drive.google.com/thumbnail?id=1fn0_2stn6cEAST7dUxxQoU-byXfkWhDP&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Green Valley Manali",
+    "drive_file_id": "1G1fyL-y4qygleLzNCyztHmRA3M99Mgx0",
+    "drive_url": "https://drive.google.com/thumbnail?id=1G1fyL-y4qygleLzNCyztHmRA3M99Mgx0&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Hampta Pass (trailhead)",
+    "drive_file_id": "18apY3jcBVtGcrMHX7BQJGFJJNOjHs4Pj",
+    "drive_url": "https://drive.google.com/thumbnail?id=18apY3jcBVtGcrMHX7BQJGFJJNOjHs4Pj&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Haripurdhar Temple",
+    "drive_file_id": "1GDqE-Eott6viSFYNiU12xr4h_SUkiY_P",
+    "drive_url": "https://drive.google.com/thumbnail?id=1GDqE-Eott6viSFYNiU12xr4h_SUkiY_P&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Hatu Peak",
+    "drive_file_id": "17835CCZr4oj5XNjHxv5gzIkY3aKOoNBK",
+    "drive_url": "https://drive.google.com/thumbnail?id=17835CCZr4oj5XNjHxv5gzIkY3aKOoNBK&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Jagatsukh",
+    "drive_file_id": "1KUsZ-zN5B2Wo6Iu1ftQpGD64I4lZDBXT",
+    "drive_url": "https://drive.google.com/thumbnail?id=1KUsZ-zN5B2Wo6Iu1ftQpGD64I4lZDBXT&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Jaipur",
+    "drive_file_id": "1CHfnDdwFNnCq21Wpreak0aGIeHIWZ4vo",
+    "drive_url": "https://drive.google.com/thumbnail?id=1CHfnDdwFNnCq21Wpreak0aGIeHIWZ4vo&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Jaitak Fort",
+    "drive_file_id": "1NzWAk3lXR_-4h6tBtxWXCzMR918Df0W1",
+    "drive_url": "https://drive.google.com/thumbnail?id=1NzWAk3lXR_-4h6tBtxWXCzMR918Df0W1&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Jakhu Ropeway",
+    "drive_file_id": "1lr3659146iZaBL7XAawb2YGmENSDYjBd",
+    "drive_url": "https://drive.google.com/thumbnail?id=1lr3659146iZaBL7XAawb2YGmENSDYjBd&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Jakhu Temple",
+    "drive_file_id": "1Ipwl5Th_AufIWSNr5qGjiXoG_ddYdQpi",
+    "drive_url": "https://drive.google.com/thumbnail?id=1Ipwl5Th_AufIWSNr5qGjiXoG_ddYdQpi&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Jalori",
+    "drive_file_id": "1T8km-0gQXp26V9HsncBQG-Zzf4q-SbNE",
+    "drive_url": "https://drive.google.com/thumbnail?id=1T8km-0gQXp26V9HsncBQG-Zzf4q-SbNE&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Jangi Village",
+    "drive_file_id": "1Wp-66Z_Hv3vVa5xhQuYaVriX98E9PITy",
+    "drive_url": "https://drive.google.com/thumbnail?id=1Wp-66Z_Hv3vVa5xhQuYaVriX98E9PITy&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Janjehli Valley",
+    "drive_file_id": "1Kg_ErJJHIalEIBLAYGBSORIdJfeQbVO5",
+    "drive_url": "https://drive.google.com/thumbnail?id=1Kg_ErJJHIalEIBLAYGBSORIdJfeQbVO5&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Jatoli Shiv Temple",
+    "drive_file_id": "1IiTMdi6E_Sr8ah_wOtY4K30pyXohd7YE",
+    "drive_url": "https://drive.google.com/thumbnail?id=1IiTMdi6E_Sr8ah_wOtY4K30pyXohd7YE&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Jibhi",
+    "drive_file_id": "1cfn4vB0pjIKK5iZz5rmMng6GS0hvjvzW",
+    "drive_url": "https://drive.google.com/thumbnail?id=1cfn4vB0pjIKK5iZz5rmMng6GS0hvjvzW&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Joginder Nagar",
+    "drive_file_id": "1wND6Ogj3s-W6-S9NBiKGyyT7xSbz4x3d",
+    "drive_url": "https://drive.google.com/thumbnail?id=1wND6Ogj3s-W6-S9NBiKGyyT7xSbz4x3d&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Jogini Waterfall",
+    "drive_file_id": "1FUNinxrdYb7iYhFG0GlDUlxBZ4eWjKLF",
+    "drive_url": "https://drive.google.com/thumbnail?id=1FUNinxrdYb7iYhFG0GlDUlxBZ4eWjKLF&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Kali Bari Temple",
+    "drive_file_id": "1d6tbCIrSx0j9wSIhdhhfpB8W9LKqXO77",
+    "drive_url": "https://drive.google.com/thumbnail?id=1d6tbCIrSx0j9wSIhdhhfpB8W9LKqXO77&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Kalpa",
+    "drive_file_id": "1kx5pdbLu_Eb0kh1S1mCkhU8mMMxCS8AU",
+    "drive_url": "https://drive.google.com/thumbnail?id=1kx5pdbLu_Eb0kh1S1mCkhU8mMMxCS8AU&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Kamlah Fort",
+    "drive_file_id": "1dnb8e0Zh3YO0nLzL6MrzbdVm-OGmIOIs",
+    "drive_url": "https://drive.google.com/thumbnail?id=1dnb8e0Zh3YO0nLzL6MrzbdVm-OGmIOIs&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Kamru Fort",
+    "drive_file_id": "1gV2lT6cqXTPMR_G7VIEZVmGjL9FUj3Sl",
+    "drive_url": "https://drive.google.com/thumbnail?id=1gV2lT6cqXTPMR_G7VIEZVmGjL9FUj3Sl&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Kamrunag Lake",
+    "drive_file_id": "1sgumyeYGfoIP1UbYhplBhgKXCUEcDKnt",
+    "drive_url": "https://drive.google.com/thumbnail?id=1sgumyeYGfoIP1UbYhplBhgKXCUEcDKnt&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Kangra Fort",
+    "drive_file_id": "1FOfwJgfzZ09u8aDqnNfkOfVy13USAsaQ",
+    "drive_url": "https://drive.google.com/thumbnail?id=1FOfwJgfzZ09u8aDqnNfkOfVy13USAsaQ&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Kareri Lake Trek",
+    "drive_file_id": "1wd5un96nu3bUfGxgHnV4KOiHC_oa7G1Z",
+    "drive_url": "https://drive.google.com/thumbnail?id=1wd5un96nu3bUfGxgHnV4KOiHC_oa7G1Z&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Kasol",
+    "drive_file_id": "1bHLbIYMa3xO9LkVwT-xdU_SFYGGqIFmZ",
+    "drive_url": "https://drive.google.com/thumbnail?id=1bHLbIYMa3xO9LkVwT-xdU_SFYGGqIFmZ&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Kasol",
+    "drive_file_id": "1-1dpmqnPYXXSND6VlYEWkmxENM01WE0Y",
+    "drive_url": "https://drive.google.com/thumbnail?id=1-1dpmqnPYXXSND6VlYEWkmxENM01WE0Y&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Kaza",
+    "drive_file_id": "1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz",
+    "drive_url": "https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Kaza",
+    "drive_file_id": "1PNeTdpLKxYnGfphL61kJH1frYmOivf5f",
+    "drive_url": "https://drive.google.com/thumbnail?id=1PNeTdpLKxYnGfphL61kJH1frYmOivf5f&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Keylong",
+    "drive_file_id": "1mdfMzWq2EJXOdPl1d-7-oHLRbgRLPu7Z",
+    "drive_url": "https://drive.google.com/thumbnail?id=1mdfMzWq2EJXOdPl1d-7-oHLRbgRLPu7Z&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Khajjiar",
+    "drive_file_id": "1mEdZBs_o6bK_B-yJrFd_P8JdSTTh5YHZ",
+    "drive_url": "https://drive.google.com/thumbnail?id=1mEdZBs_o6bK_B-yJrFd_P8JdSTTh5YHZ&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Kiarighat",
+    "drive_file_id": "1wtjodBjPLDShRC3EZfJF9E-gdkY2qIi5",
+    "drive_url": "https://drive.google.com/thumbnail?id=1wtjodBjPLDShRC3EZfJF9E-gdkY2qIi5&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Kibber Village",
+    "drive_file_id": "197EfvHj3r9TxNoHtdVBmyn_Mgy4ULEj6",
+    "drive_url": "https://drive.google.com/thumbnail?id=197EfvHj3r9TxNoHtdVBmyn_Mgy4ULEj6&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Kinnaur",
+    "drive_file_id": "19UtwsJQcmKYeIPipX2o-kTEudQi-_gfx",
+    "drive_url": "https://drive.google.com/thumbnail?id=19UtwsJQcmKYeIPipX2o-kTEudQi-_gfx&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Koldam Dam",
+    "drive_file_id": "1vXrMsb-E_meNAPXgCCNIGqAXzmryMxfX",
+    "drive_url": "https://drive.google.com/thumbnail?id=1vXrMsb-E_meNAPXgCCNIGqAXzmryMxfX&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Komic",
+    "drive_file_id": "1ggEt9j6UzwSm0i5JjHqn7wf3CF0AVDEr",
+    "drive_url": "https://drive.google.com/thumbnail?id=1ggEt9j6UzwSm0i5JjHqn7wf3CF0AVDEr&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Kufri",
+    "drive_file_id": "1w24nJuzPjXjJ_mOysEZlcJUrbYjuoBqZ",
+    "drive_url": "https://drive.google.com/thumbnail?id=1w24nJuzPjXjJ_mOysEZlcJUrbYjuoBqZ&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Kufri Fun World",
+    "drive_file_id": "1isK1Iuww4-Dyyz6hR8T8kwNHIyBQiTUX",
+    "drive_url": "https://drive.google.com/thumbnail?id=1isK1Iuww4-Dyyz6hR8T8kwNHIyBQiTUX&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Kullu",
+    "drive_file_id": "1jlvXX_4HsXPjvn1Gu7_2LZPCROAz-B-P",
+    "drive_url": "https://drive.google.com/thumbnail?id=1jlvXX_4HsXPjvn1Gu7_2LZPCROAz-B-P&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Kunzum",
+    "drive_file_id": "1FmipRlngRoFu_irRawmv0fcbbuLRi8T4",
+    "drive_url": "https://drive.google.com/thumbnail?id=1FmipRlngRoFu_irRawmv0fcbbuLRi8T4&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Kutlehar Fort Ruins",
+    "drive_file_id": "1g1Y_sjMe-UDoJBfNJhFNl7GTXmCn1uRB",
+    "drive_url": "https://drive.google.com/thumbnail?id=1g1Y_sjMe-UDoJBfNJhFNl7GTXmCn1uRB&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Lakshmi Narayan Temple",
+    "drive_file_id": "1akHHHxVi0uhUDreZr8RzrAl6GX_2Mhd8",
+    "drive_url": "https://drive.google.com/thumbnail?id=1akHHHxVi0uhUDreZr8RzrAl6GX_2Mhd8&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Lalung Monastery",
+    "drive_file_id": "1SYlxsW3qkNB7WYx1fo0LlMBtJHjSMA6e",
+    "drive_url": "https://drive.google.com/thumbnail?id=1SYlxsW3qkNB7WYx1fo0LlMBtJHjSMA6e&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Langza",
+    "drive_file_id": "1Ww9hcsDDNkLZ2K4qM7n7dFNj4oniKnqG",
+    "drive_url": "https://drive.google.com/thumbnail?id=1Ww9hcsDDNkLZ2K4qM7n7dFNj4oniKnqG&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Lucknow",
+    "drive_file_id": "1rqOHaklRBjeBv1KCWX29kPDyXRmN5PwZ",
+    "drive_url": "https://drive.google.com/thumbnail?id=1rqOHaklRBjeBv1KCWX29kPDyXRmN5PwZ&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Malana",
+    "drive_file_id": "1cknpkSubpzx6-lex6tze0wfd11rIE-e-",
+    "drive_url": "https://drive.google.com/thumbnail?id=1cknpkSubpzx6-lex6tze0wfd11rIE-e-&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Manali",
+    "drive_file_id": "1Wj2vfI0R68ZDlhPr1P06tNxRXKKK67GC",
+    "drive_url": "https://drive.google.com/thumbnail?id=1Wj2vfI0R68ZDlhPr1P06tNxRXKKK67GC&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Manikaran Sahib",
+    "drive_file_id": "1OUvn4g55Qou8mBxYiDqntsf6VbAICIhs",
+    "drive_url": "https://drive.google.com/thumbnail?id=1OUvn4g55Qou8mBxYiDqntsf6VbAICIhs&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Manimahesh Lake",
+    "drive_file_id": "1iVcDEdhNF2kA0KuhCT9tRRUtqPKBL78Q",
+    "drive_url": "https://drive.google.com/thumbnail?id=1iVcDEdhNF2kA0KuhCT9tRRUtqPKBL78Q&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Masroor Rock Cut Temples",
+    "drive_file_id": "1nJZBzpoyCfglOdd_MmXBHZOrOD_iC591",
+    "drive_url": "https://drive.google.com/thumbnail?id=1nJZBzpoyCfglOdd_MmXBHZOrOD_iC591&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "McLeod Ganj",
+    "drive_file_id": "1ywkB_gHrhtYuwAZFLccRt-53R-25Ihlx",
+    "drive_url": "https://drive.google.com/thumbnail?id=1ywkB_gHrhtYuwAZFLccRt-53R-25Ihlx&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Moorang",
+    "drive_file_id": "1f657QC-GQRnY86hFeVVO0vHZ5G8w7_lY",
+    "drive_url": "https://drive.google.com/thumbnail?id=1f657QC-GQRnY86hFeVVO0vHZ5G8w7_lY&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Mud Village",
+    "drive_file_id": "135QkUmJf3klUB24_JZLCOD5wtIJK-ZQk",
+    "drive_url": "https://drive.google.com/thumbnail?id=135QkUmJf3klUB24_JZLCOD5wtIJK-ZQk&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Nako Monastery",
+    "drive_file_id": "1_842Z18jnAiT0gie7bo1T36bzX1kJXFT",
+    "drive_url": "https://drive.google.com/thumbnail?id=1_842Z18jnAiT0gie7bo1T36bzX1kJXFT&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Narkanda",
+    "drive_file_id": "1zyML626vzyNAfQaMMYLr1lsIBCBjUvqQ",
+    "drive_url": "https://drive.google.com/thumbnail?id=1zyML626vzyNAfQaMMYLr1lsIBCBjUvqQ&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Nicholas Roerich Art Gallery",
+    "drive_file_id": "1LyvtOanuxHxHrEWJZteMHp4OUTtMZ2sO",
+    "drive_url": "https://drive.google.com/thumbnail?id=1LyvtOanuxHxHrEWJZteMHp4OUTtMZ2sO&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Norbulingka Institute",
+    "drive_file_id": "1BK0Oj6HjXImZhjHNM8QZIHKB7iPohhHz",
+    "drive_url": "https://drive.google.com/thumbnail?id=1BK0Oj6HjXImZhjHNM8QZIHKB7iPohhHz&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Palampur",
+    "drive_file_id": "1oXBV5IqiUwaK2HjqD9Po5oMmHBp8ha0K",
+    "drive_url": "https://drive.google.com/thumbnail?id=1oXBV5IqiUwaK2HjqD9Po5oMmHBp8ha0K&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Pin Valley",
+    "drive_file_id": "1HObOda1AMR4C_cRREaVgc6HNmJKmBMjA",
+    "drive_url": "https://drive.google.com/thumbnail?id=1HObOda1AMR4C_cRREaVgc6HNmJKmBMjA&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Pin Valley National Park",
+    "drive_file_id": "1kBzkD6sXm0akOmsHo-z4nbFWEXof45oe",
+    "drive_url": "https://drive.google.com/thumbnail?id=1kBzkD6sXm0akOmsHo-z4nbFWEXof45oe&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Pong Dam Lake Una Access",
+    "drive_file_id": "1dNklcbH64NWxji8dUJmWYnAXKSA0esH3",
+    "drive_url": "https://drive.google.com/thumbnail?id=1dNklcbH64NWxji8dUJmWYnAXKSA0esH3&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Prashar Lake",
+    "drive_file_id": "13IhN4SpsETxVvaFC5eJgLlywAC9D5_XD",
+    "drive_url": "https://drive.google.com/thumbnail?id=13IhN4SpsETxVvaFC5eJgLlywAC9D5_XD&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Reckong Peo",
+    "drive_file_id": "1WTKnwNtUR8TTRZ1sdiKFlGh7xaeiGlSU",
+    "drive_url": "https://drive.google.com/thumbnail?id=1WTKnwNtUR8TTRZ1sdiKFlGh7xaeiGlSU&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Renuka Temple",
+    "drive_file_id": "1FlgMhpIfuFglMPoOwmAbqJhrojuTggKB",
+    "drive_url": "https://drive.google.com/thumbnail?id=1FlgMhpIfuFglMPoOwmAbqJhrojuTggKB&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Rewalsar Lake",
+    "drive_file_id": "1dMXqaF__bs8ndXhqFP45q1-_6vdhvyXD",
+    "drive_url": "https://drive.google.com/thumbnail?id=1dMXqaF__bs8ndXhqFP45q1-_6vdhvyXD&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Roghi Village",
+    "drive_file_id": "109SpFO6zjNCDasRYqNWj0JpYEkb9LL9d",
+    "drive_url": "https://drive.google.com/thumbnail?id=109SpFO6zjNCDasRYqNWj0JpYEkb9LL9d&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Sangla",
+    "drive_file_id": "15n0m7H4yv_-09IEIokZVkix6-_JLhZPn",
+    "drive_url": "https://drive.google.com/thumbnail?id=15n0m7H4yv_-09IEIokZVkix6-_JLhZPn&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Sarahan",
+    "drive_file_id": "1lJbRMTasmTMQsiKWWXovV2s9wI3J_KbU",
+    "drive_url": "https://drive.google.com/thumbnail?id=1lJbRMTasmTMQsiKWWXovV2s9wI3J_KbU&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Serolsar Lake",
+    "drive_file_id": "1oEgKd5E04w7UBJbS78HRxf_FY6_6ZkLx",
+    "drive_url": "https://drive.google.com/thumbnail?id=1oEgKd5E04w7UBJbS78HRxf_FY6_6ZkLx&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Shikari Devi Temple",
+    "drive_file_id": "1cLRdmVu6mU0Ds0f8KhQuYuVIQPBfSJbe",
+    "drive_url": "https://drive.google.com/thumbnail?id=1cLRdmVu6mU0Ds0f8KhQuYuVIQPBfSJbe&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Shimla",
+    "drive_file_id": "1ut5eL2H-hIjMeELodJDuY4ZrZCauGBoZ",
+    "drive_url": "https://drive.google.com/thumbnail?id=1ut5eL2H-hIjMeELodJDuY4ZrZCauGBoZ&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "St. Francis Church",
+    "drive_file_id": "141r1JXaUSD6LoX52t49ng70vCEw_1Z0-",
+    "drive_url": "https://drive.google.com/thumbnail?id=141r1JXaUSD6LoX52t49ng70vCEw_1Z0-&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "St. John's Church",
+    "drive_file_id": "1qqOLifSM2lbajqCx8KugTowcZdXjYWyR",
+    "drive_url": "https://drive.google.com/thumbnail?id=1qqOLifSM2lbajqCx8KugTowcZdXjYWyR&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Sujanpur Tira Fort",
+    "drive_file_id": "1Zrfbu5PYjXHy6asiwj-QwzQ8D-9OWq6A",
+    "drive_url": "https://drive.google.com/thumbnail?id=1Zrfbu5PYjXHy6asiwj-QwzQ8D-9OWq6A&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Sundernagar Lake",
+    "drive_file_id": "1-sp6Cw6BF4aS5aYdesXZmUKLnX2E-qV4",
+    "drive_url": "https://drive.google.com/thumbnail?id=1-sp6Cw6BF4aS5aYdesXZmUKLnX2E-qV4&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Sunset Point Kasauli",
+    "drive_file_id": "1c3mqiXspZk0DLJiX4Apu-ksWzaD5H8bs",
+    "drive_url": "https://drive.google.com/thumbnail?id=1c3mqiXspZk0DLJiX4Apu-ksWzaD5H8bs&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Sunset Point Kasauli",
+    "drive_file_id": "1jF18tnj_vXu2xyakq7w19T37-qUCC2ap",
+    "drive_url": "https://drive.google.com/thumbnail?id=1jF18tnj_vXu2xyakq7w19T37-qUCC2ap&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Tabo Monastery",
+    "drive_file_id": "1Bz7bhPpzISOH9rrTTtnLt5Ab8G7TFjS6",
+    "drive_url": "https://drive.google.com/thumbnail?id=1Bz7bhPpzISOH9rrTTtnLt5Ab8G7TFjS6&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Tara Devi Temple",
+    "drive_file_id": "1Q_BsGwueyYIB6gFWQaS2pO6zUg9ETNyp",
+    "drive_url": "https://drive.google.com/thumbnail?id=1Q_BsGwueyYIB6gFWQaS2pO6zUg9ETNyp&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Tarna Devi Temple",
+    "drive_file_id": "1sEaHna3aQlrIxwhfEKN09F0qX20W8Uz5",
+    "drive_url": "https://drive.google.com/thumbnail?id=1sEaHna3aQlrIxwhfEKN09F0qX20W8Uz5&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Tauni Devi Temple",
+    "drive_file_id": "1UlZPn7nrX3vql1e_GUVALxheZG_1Pq0K",
+    "drive_url": "https://drive.google.com/thumbnail?id=1UlZPn7nrX3vql1e_GUVALxheZG_1Pq0K&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Tosh",
+    "drive_file_id": "10_KfuO452VEIuDthPCL8kXMQblL0URWq",
+    "drive_url": "https://drive.google.com/thumbnail?id=10_KfuO452VEIuDthPCL8kXMQblL0URWq&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Tosh",
+    "drive_file_id": "1uVj-DrOTbTD_j9uTP2p5KWgvcPAEndTU",
+    "drive_url": "https://drive.google.com/thumbnail?id=1uVj-DrOTbTD_j9uTP2p5KWgvcPAEndTU&sz=w800",
+    "source": "Drive folder crawl"
+  },
+  {
+    "place_name": "Trilokinath Temple",
+    "drive_file_id": "1ZOrPc23Sw6CmjVB8QBxtfXsZTRPOz8Z3",
+    "drive_url": "https://drive.google.com/thumbnail?id=1ZOrPc23Sw6CmjVB8QBxtfXsZTRPOz8Z3&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  },
+  {
+    "place_name": "Vyas Cave",
+    "drive_file_id": "1bNhdDBVsd3D8tiVu72THh3eyMFDP0i4I",
+    "drive_url": "https://drive.google.com/thumbnail?id=1bNhdDBVsd3D8tiVu72THh3eyMFDP0i4I&sz=w600",
+    "source": "site (images.js / encyclopedia / packages)"
+  }
+]
