@@ -46,7 +46,7 @@
 
   var NAV_LINKS = [
     {href:'/index.html',          label:'Home'},
-    {href:'/dist_index.html',     label:'Destinations'},
+    {href:'/dist_master.html',     label:'Destinations'},
     {href:'/booking.html',        label:'Booking'},
     {href:'/encyclopedia.html',   label:'Encyclopedia'},
     {href:'/blog/index.html',     label:'Blog'},
@@ -56,7 +56,7 @@
 
   var FOOT_LINKS = [
     {href:'/index.html',       label:'Home'},
-    {href:'/dist_index.html',  label:'Destinations'},
+    {href:'/dist_master.html',  label:'Destinations'},
     {href:'/booking.html',     label:'Booking'},
     {href:'/encyclopedia.html',label:'Encyclopedia'},
     {href:'/blog/index.html',  label:'Blog'},
@@ -176,7 +176,7 @@
     var here=currentFile();
     var items=[
       {href:'/index.html',icon:'⌂',label:'Home',match:'index.html'},
-      {href:'/dist_index.html',icon:'⌖',label:'Explore',match:'dist_index.html'},
+      {href:'/dist_master.html',icon:'⌖',label:'Explore',match:'dist_master.html'},
       {href:'/booking.html',icon:'▣',label:'Booking',match:'booking.html'},
       {href:'/encyclopedia.html',icon:'▤',label:'Encyclopedia',match:'encyclopedia.html'},
       {href:'/packages.html',icon:'⋯',label:'More',match:'packages.html'}

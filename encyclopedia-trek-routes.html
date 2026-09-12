@@ -33,6 +33,8 @@ body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);line-he
 .enc-toolbar{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap}
 .enc-search{flex:1;min-width:220px;padding:12px 14px;border:1.5px solid var(--border2);border-radius:8px;font-family:'Jost',sans-serif;font-size:13px;color:var(--ink);background:var(--surface)}
 .enc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.enc-card-img{width:100%;height:150px;object-fit:cover;border-radius:8px;margin-bottom:10px;display:block;background:#eee}
+.enc-card-img--placeholder{background:linear-gradient(135deg,#e8e4da,#d8d2c2)}
 .enc-card{border:1px solid var(--border);border-radius:12px;padding:18px 20px;background:var(--surface);box-shadow:0 1px 0 rgba(0,0,0,.02)}
 .enc-card-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:4px}
 .enc-card-name{font-family:'Cormorant',serif;font-size:19px;font-weight:600;color:var(--ink)}
@@ -121,8 +123,12 @@ body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);line-he
     grid.innerHTML = list.map(it => {
       const dLink = districtLink(it.district);
       const facts = (it.facts||[]).slice(0,4).map(f => `<li>${f}</li>`).join('');
+      const photo = it.photo_1
+        ? `<img class="enc-card-img" src="${it.photo_1}" alt="${it.name||''}" loading="lazy">`
+        : `<div class="enc-card-img enc-card-img--placeholder"></div>`;
       return `
         <div class="enc-card">
+          ${photo}
           <div class="enc-card-top">
             <div class="enc-card-name">${it.name||''}</div>
             ${it.district?`<div class="enc-card-dist">${it.district}</div>`:''}
