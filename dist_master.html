@@ -420,22 +420,8 @@ function renderGrid() {
   grid.style.display = 'block';
 }
 
-const LOCAL_IMGS = {
-  kullu:    'assets/images/manali_1.jpg',
-  shimla:   'assets/images/sissu_1.jpg',
-  spiti:    'assets/images/chango_1.jpg',
-  kinnaur:  'assets/images/kinnaur-kailash.webp',
-  kangra:   'assets/images/bir-billing_1.jpg',
-  chamba:   'assets/images/khajjiar_02.jpg',
-  mandi:    'assets/images/barot-valley_1.jpg',
-  sirmour:  'assets/images/solang-valley_1.jpg',
-  solan:    'assets/images/old-manali_1.jpg',
-  hamirpur: 'assets/images/awah-devi-temple_1.jpg',
-  una:      'assets/images/bhagsu-waterfall_1.jpg',
-  bilaspur: 'assets/images/gobind-sagar-lake_1.jpg',
-};
 function resolveImg(d) {
-  return LOCAL_IMGS[d.id] || d.hero_image || 'assets/images/manali_1.jpg';
+  return d.hero_image || 'assets/images/manali_1.jpg';
 }
 
 function buildCard(d, i) {
