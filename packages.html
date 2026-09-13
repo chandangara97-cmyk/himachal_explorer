@@ -412,6 +412,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 class="content-title"><em id="headingCount">30</em> Himachal Packages</h2>
         <span class="results-meta" id="resultsMeta">All destinations · Budget tier</span>
       </div>
+      <div class="price-range-viz" id="priceRangeViz" style="display:none">
+        <div class="prv-label">Price range for these packages <span id="prvCount"></span></div>
+        <div class="prv-track">
+          <div class="prv-fill" id="prvFill"></div>
+          <div class="prv-avg" id="prvAvg" title="Average price"></div>
+        </div>
+        <div class="prv-scale"><span id="prvMin">₹0</span><span id="prvAvgLabel">avg ₹0</span><span id="prvMax">₹0</span></div>
+      </div>
       <div class="peak-banner" id="peakBanner">
         ⚡ <span><strong>Peak Season Alert:</strong> May, June, Dec & Jan have higher transport rates. Prices shown are base.</span>
       </div>
@@ -1409,6 +1417,24 @@ function renderCardHTML(pkg, idx) {
   }
 }
 
+function renderPriceRangeViz(list) {
+  const viz = document.getElementById('priceRangeViz');
+  if (!list.length) { viz.style.display = 'none'; return; }
+  const prices = list.map(p => getPriceWithFallback(p.package_id, state.gateway||'DELHI', state.drop||'DELHI', state.pax||4, state.tier||'budget')).filter(n => n > 0);
+  if (!prices.length) { viz.style.display = 'none'; return; }
+  const min = Math.min(...prices), max = Math.max(...prices);
+  const avg = Math.round(prices.reduce((a,b)=>a+b,0) / prices.length);
+  const fmtInr = n => '₹' + Math.round(n).toLocaleString('en-IN');
+  viz.style.display = '';
+  document.getElementById('prvCount').textContent = `(${prices.length} priced)`;
+  document.getElementById('prvMin').textContent = fmtInr(min);
+  document.getElementById('prvMax').textContent = fmtInr(max);
+  document.getElementById('prvAvgLabel').textContent = `avg ${fmtInr(avg)}`;
+  const range = Math.max(1, max - min);
+  const avgPct = Math.min(100, Math.max(0, ((avg - min) / range) * 100));
+  document.getElementById('prvFill').style.width = '100%';
+  document.getElementById('prvAvg').style.left = `calc(${avgPct}% - 1px)`;
+}
 function priceAscCmp(a,b){ return getPriceWithFallback(a.package_id,state.gateway||'DELHI',state.drop||'DELHI',state.pax||4,state.tier||'budget')-getPriceWithFallback(b.package_id,state.gateway||'DELHI',state.drop||'DELHI',state.pax||4,state.tier||'budget'); }
 function priceDescCmp(a,b){ return -priceAscCmp(a,b); }
 
@@ -1475,6 +1501,7 @@ function renderCards() {
   document.getElementById('resultsMeta').textContent = `${regionLabels[state.region]} · ${tierLabel} · ${state.pax} traveller${state.pax>1?'s':''}`;
   document.getElementById('localCount').textContent = `${localList.length} package${localList.length===1?'':'s'}`;
   document.getElementById('masterCount').textContent = `${masterList.length} package${masterList.length===1?'':'s'}`;
+  renderPriceRangeViz([...localList, ...masterList]);
 
   const vh = document.getElementById('vehicleHint');
   const liveVehicle = getVehicleForPax(state.selectedId || (PACKAGES[0] && PACKAGES[0].package_id) || '', state.gateway||'DELHI', state.drop||'DELHI', state.pax||4);

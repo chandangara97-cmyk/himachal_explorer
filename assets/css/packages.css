@@ -175,9 +175,9 @@ body::before{
 /* HERO */
 .hero{
   margin-top:var(--header-h);
-  height:55vh;
-  min-height:400px;
-  max-height:560px;
+  height:40vh;
+  min-height:320px;
+  max-height:420px;
   position:relative;overflow:hidden;
   background:#e8e0d4;
 }
@@ -660,6 +660,15 @@ body::before{
 .split-root.detail-open .card-media-info{padding:10px 12px 12px}
 
 /* Peak banner */
+.price-range-viz{margin:-8px 0 20px;padding:14px 18px;background:var(--card-bg,#fff);border:1px solid var(--border2,#e8e0d4);border-radius:12px}
+.prv-label{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--caption);margin-bottom:10px}
+.prv-label span{color:var(--gold2);text-transform:none;letter-spacing:0}
+.prv-track{position:relative;height:8px;border-radius:999px;background:linear-gradient(90deg,rgba(46,90,61,.12),rgba(176,125,58,.28));overflow:visible}
+.prv-fill{position:absolute;inset:0;border-radius:999px;background:linear-gradient(90deg,var(--pine,#2d5a3d),var(--gold,#b07d3a));opacity:.9}
+.prv-avg{position:absolute;top:-4px;width:2px;height:16px;background:#1c1409;border-radius:1px}
+.prv-scale{display:flex;justify-content:space-between;margin-top:8px;font-size:10.5px;color:var(--caption)}
+.prv-scale span:nth-child(2){color:var(--gold2);font-weight:700}
+@media(max-width:600px){.price-range-viz{padding:12px 14px}}
 .peak-banner{display:none;align-items:center;gap:12px;background:rgba(212,168,67,.07);border:1px solid rgba(212,168,67,.2);border-left:3px solid var(--gold);border-radius:8px;padding:12px 18px;font-size:13px;color:var(--gold2);margin-bottom:24px}
 .peak-banner.show{display:flex}
 .peak-banner strong{color:var(--gold3)}
@@ -1206,7 +1215,7 @@ footer{background:var(--ink);border-top:1px solid rgba(0,0,0,.15);padding:40px;t
   .weather-chip-cond,.weather-chip-wind{display:none}
 
   /* Hero */
-  .hero{height:46vh;min-height:300px}
+  .hero{height:34vh;min-height:250px}
   .hero-inner{padding:0 18px;max-width:100%}
   .hero-h1{font-size:clamp(26px,8vw,46px)}
   .hero-sub{font-size:13px;max-width:100%;margin-top:10px}

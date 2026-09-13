@@ -576,6 +576,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .step-label { display: none; }
     .step::after { display: none; }
   }
+  @media (max-width: 420px) {
+    .field-row.triple { grid-template-columns: 1fr; }
+    .traveller-grid { grid-template-columns: 1fr; }
+    .payment-methods { grid-template-columns: 1fr; }
+    .amount-options { flex-wrap: wrap; }
+  }
 </style>
 <link rel="stylesheet" href="/assets/css/he-unified.css">
 <script src="/assets/js/he-mobile-nav.js" defer></script>
