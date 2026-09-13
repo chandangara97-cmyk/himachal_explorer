@@ -7,17 +7,11 @@
 <meta name="description" content="Explore stunning destinations, plan your trip, discover routes and get authentic information about every district of Himachal Pradesh.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="canonical" href="https://pineandpass.in/index.html">
-
-<!-- OpenGraph & Twitter Social Cards -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://pineandpass.in/index.html">
 <meta property="og:title" content="Pine & Pass — Your Complete Guide to Himachal Pradesh">
 <meta property="og:description" content="Explore stunning destinations, plan your trip, discover routes and get authentic information about every district of Himachal Pradesh.">
 <meta property="og:image" content="https://pineandpass.in/assets/images/1hero.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Pine & Pass — Your Complete Guide to Himachal Pradesh">
-<meta name="twitter:description" content="Explore stunning destinations, plan your trip, and discover routes across Himachal Pradesh.">
-<meta name="twitter:image" content="https://pineandpass.in/assets/images/1hero.jpg">
 <meta name="theme-color" content="#10261a">
 
 <link rel="stylesheet" href="/assets/css/site-chrome.css">
@@ -25,8 +19,6 @@
 <link rel="stylesheet" href="/assets/css/theme-v2.css">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script src="/assets/js/he-mobile-nav.js" defer></script>
 
 <script type="application/ld+json">
@@ -48,42 +40,234 @@ body{margin:0;font-family:'Jost',Arial,sans-serif;background:#fff;color:var(--nv
 a{color:inherit}
 img{max-width:100%;display:block}
 
-/* HERO SECTION */
+/* =========================================================
+   LIVE HERO
+   ========================================================= */
 .pp-hero{
   --gold:#f5b33b;
+  --gold-soft:rgba(245,179,59,.18);
+  --glass:rgba(7,20,14,.70);
+  --glass-border:rgba(255,255,255,.14);
   position:relative;
+  min-height:clamp(650px,92vh,880px);
   color:#fff;
   overflow:hidden;
   background:#0b1811;
-  padding:88px 20px 46px;
-  text-align:center;
+  isolation:isolate;
 }
 .pp-hero-video{
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;object-position:center;
-  z-index:0;opacity:.42;
+  z-index:-5;
 }
-.pp-hero::before{
-  content:"";position:absolute;inset:0;z-index:0;
-  background:linear-gradient(180deg,rgba(6,17,11,.55),rgba(6,17,11,.92));
+.pp-hero-bg{
+  position:absolute;inset:0;z-index:-4;
+  background:
+    linear-gradient(180deg,rgba(6,17,11,.46),rgba(6,17,11,.76)),
+    url('/assets/images/1hero.jpg') center/cover no-repeat;
 }
-.pp-hero-inner{position:relative;z-index:1;max-width:720px;margin:0 auto}
+.pp-hero::after{
+  content:"";position:absolute;inset:0;z-index:-3;pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 45%,rgba(24,72,48,.05),transparent 44%),
+    linear-gradient(90deg,rgba(5,15,10,.28),transparent 35%,transparent 65%,rgba(5,15,10,.30));
+}
+
+/* Top hero label */
+.pp-hero-top{
+  position:absolute;top:calc(var(--site-header-height,72px) + 18px);left:50%;
+  transform:translateX(-50%);z-index:8;text-align:center;pointer-events:none;
+}
 .pp-hero-brand{
   display:inline-flex;align-items:center;gap:9px;
   padding:7px 15px;border:1px solid rgba(245,179,59,.38);
-  background:rgba(7,20,14,.45);border-radius:999px;color:var(--gold);
-  font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-  margin-bottom:18px;
+  background:rgba(7,20,14,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-radius:999px;color:var(--gold);font-size:10px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;
 }
-.pp-hero h1{
-  font-family:'Cormorant',Georgia,serif;
-  font-size:clamp(38px,6vw,64px);line-height:1;margin:0 0 14px;font-weight:700;
-}
-.pp-hero h1 em{font-style:normal;color:var(--gold)}
-.pp-hero p{margin:0 auto 26px;color:#e1ebe5;font-size:15px;max-width:480px}
-.pp-hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
-/* AT A GLANCE STRIP */
+/* Centre */
+.pp-map-stage{
+  position:absolute;
+  left:50%;top:54%;
+  width:min(1060px,86vw);
+  height:min(650px,70vh);
+  transform:translate(-50%,-50%);
+  z-index:2;
+  pointer-events:none;
+}
+.pp-map-glow{
+  position:absolute;inset:8% 8%;
+  border-radius:50%;
+  background:radial-gradient(ellipse,rgba(66,143,99,.19),transparent 67%);
+  filter:blur(20px);
+}
+.pp-map{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  overflow:hidden;
+  filter:drop-shadow(0 18px 40px rgba(0,0,0,.28));
+}
+.pp-map svg{width:100%;height:100%;overflow:visible}
+.pp-map-grid line{stroke:rgba(255,255,255,.08);stroke-width:.7}
+.pp-range{stroke:none}
+.pp-range.back{fill:rgba(150,180,163,.09)}
+.pp-range.mid{fill:rgba(110,150,128,.14)}
+.pp-cloud{fill:rgba(255,255,255,.05)}
+.pp-cloud.c1{animation:ppCloudDrift 70s ease-in-out infinite}
+.pp-cloud.c2{animation:ppCloudDrift 95s ease-in-out infinite reverse}
+@keyframes ppCloudDrift{0%,100%{transform:translateX(-16px)}50%{transform:translateX(16px)}}
+.pp-hp-shape{
+  fill:url(#ppElevation);
+  stroke:rgba(245,179,59,.72);
+  stroke-width:2.3;
+  filter:drop-shadow(0 0 9px rgba(245,179,59,.12));
+}
+.pp-contour{fill:none;stroke:rgba(255,255,255,.09);stroke-width:1}
+.pp-contour.snow{stroke:rgba(255,255,255,.20)}
+.pp-snowcap{fill:rgba(255,255,255,.5);filter:blur(.4px)}
+.pp-river{fill:none;stroke:rgba(125,198,224,.25);stroke-width:2}
+.pp-route{
+  fill:none;stroke:var(--gold);stroke-width:4;
+  stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:10 9;
+  opacity:0;
+  filter:drop-shadow(0 0 5px rgba(245,179,59,.55));
+  transition:opacity .35s ease;
+}
+.pp-route.active{opacity:1;animation:routeDash 12s linear infinite}
+@keyframes routeDash{to{stroke-dashoffset:-380}}
+.pp-route.alt{stroke:#9bd6b3;stroke-width:3;stroke-dasharray:5 9}
+.pp-route.alt.active{opacity:.65}
+
+.pp-map-label{
+  fill:rgba(255,255,255,.62);font-size:10px;font-family:Jost,Arial,sans-serif;
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.pp-map-label.big{font-size:15px;fill:rgba(255,255,255,.18);font-weight:700;letter-spacing:.16em}
+.pp-map-dot{
+  cursor:pointer;pointer-events:auto;
+}
+.pp-map-dot circle.outer{fill:rgba(245,179,59,.12);stroke:rgba(245,179,59,.34);stroke-width:1}
+.pp-map-dot circle.core{fill:var(--gold);stroke:#fff;stroke-width:2}
+.pp-map-dot:hover circle.outer,.pp-map-dot.selected circle.outer{r:14;fill:rgba(245,179,59,.22);stroke:rgba(245,179,59,.8)}
+.pp-map-dot:hover circle.core,.pp-map-dot.selected circle.core{r:6}
+.pp-map-dot text{fill:#fff;font:600 10px Jost,Arial,sans-serif;paint-order:stroke;stroke:#08140d;stroke-width:4px;stroke-linejoin:round}
+.pp-map-dot.selected text{fill:var(--gold)}
+
+/* Floating centre content */
+.pp-hero-copy{
+  position:absolute;left:50%;top:53%;transform:translate(-50%,-50%);
+  width:min(570px,70vw);z-index:5;text-align:center;pointer-events:none;
+  text-shadow:0 2px 18px rgba(0,0,0,.5);
+}
+.pp-hero-copy .eyebrow{
+  color:var(--gold);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px;
+}
+.pp-hero-copy h1{
+  font-family:'Cormorant',Georgia,serif;
+  font-size:clamp(42px,6vw,70px);line-height:.94;margin:0 0 13px;font-weight:700;
+}
+.pp-hero-copy h1 em{font-style:normal;color:var(--gold)}
+.pp-hero-copy p{margin:0 auto;color:#e1ebe5;font-size:14px;max-width:510px}
+
+/* Map info card */
+.pp-location-card{
+  position:absolute;left:50%;bottom:8%;transform:translateX(-50%);
+  z-index:7;width:min(360px,calc(100vw - 42px));
+  padding:13px 16px;border-radius:16px;
+  background:rgba(6,18,12,.78);border:1px solid rgba(255,255,255,.13);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  box-shadow:0 16px 45px rgba(0,0,0,.28);
+  display:flex;align-items:center;gap:12px;opacity:0;pointer-events:none;
+  transition:opacity .25s ease,transform .25s ease;
+}
+.pp-location-card.show{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(-4px)}
+.pp-location-pin{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--gold-soft);border:1px solid rgba(245,179,59,.3);font-size:17px;flex:none}
+.pp-location-card strong{display:block;font-size:14px}
+.pp-location-card span{display:block;font-size:11px;color:#b8c9bf}
+.pp-location-card a{margin-left:auto;font-size:11px;color:var(--gold);font-weight:700;text-decoration:none;white-space:nowrap}
+
+/* Sidebars */
+.pp-sidebar{
+  position:absolute;top:0;bottom:0;width:min(330px,30vw);z-index:10;
+  display:flex;align-items:center;pointer-events:none;
+}
+.pp-sidebar.left{left:0;justify-content:flex-start}
+.pp-sidebar.right{right:0;justify-content:flex-end}
+.pp-panel{
+  width:100%;max-width:300px;min-height:430px;padding:24px 20px;
+  background:linear-gradient(145deg,rgba(5,19,12,.78),rgba(12,34,22,.68));
+  border:1px solid var(--glass-border);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 18px 60px rgba(0,0,0,.30);
+  transition:transform .42s cubic-bezier(.2,.8,.2,1),opacity .3s ease;
+  pointer-events:auto;
+}
+.pp-sidebar.left .pp-panel{border-left:0;border-radius:0 24px 24px 0;transform:translateX(-88%);opacity:.25}
+.pp-sidebar.right .pp-panel{border-right:0;border-radius:24px 0 0 24px;transform:translateX(88%);opacity:.25}
+.pp-sidebar:hover .pp-panel,.pp-sidebar.open .pp-panel{transform:translateX(0);opacity:1}
+.pp-side-trigger{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:40px;height:126px;border:1px solid rgba(255,255,255,.14);
+  background:rgba(6,19,12,.72);color:#fff;display:grid;place-items:center;
+  writing-mode:vertical-rl;letter-spacing:.16em;text-transform:uppercase;font-size:10px;font-weight:700;
+  cursor:pointer;pointer-events:auto;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.pp-sidebar.left .pp-side-trigger{right:-40px;border-radius:0 14px 14px 0}
+.pp-sidebar.right .pp-side-trigger{left:-40px;border-radius:14px 0 0 14px}
+.pp-side-trigger .chev{font-size:14px;color:var(--gold);margin-bottom:7px}
+.pp-panel-head{display:flex;align-items:center;gap:11px;margin-bottom:20px}
+.pp-panel-icon{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:var(--gold-soft);border:1px solid rgba(245,179,59,.28);font-size:18px}
+.pp-panel-head strong{font-family:'Cormorant',serif;font-size:25px;line-height:1}
+.pp-panel-head small{display:block;color:#91aa9a;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.pp-side-list{display:grid;gap:8px}
+.pp-side-btn{
+  display:flex;align-items:center;gap:11px;width:100%;padding:11px 12px;
+  border-radius:12px;border:1px solid transparent;background:rgba(255,255,255,.045);
+  color:#fff;text-decoration:none;cursor:pointer;text-align:left;font:500 12px Jost,Arial,sans-serif;
+  transition:.2s ease;
+}
+.pp-side-btn:hover,.pp-side-btn.active{background:rgba(245,179,59,.12);border-color:rgba(245,179,59,.26);transform:translateX(2px)}
+.pp-side-btn .ico{width:27px;height:27px;border-radius:8px;display:grid;place-items:center;background:rgba(255,255,255,.08);font-size:13px;flex:none}
+.pp-side-btn span{display:block}
+.pp-side-btn small{display:block;color:#89a294;font-size:9px;margin-top:1px}
+.pp-panel-foot{margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.09);color:#8ea698;font-size:10px}
+.pp-panel-foot b{color:var(--gold)}
+
+/* Quick route controls */
+.pp-route-box{display:grid;gap:8px;margin-bottom:12px}
+.pp-select{
+  width:100%;border:1px solid rgba(255,255,255,.12);border-radius:10px;
+  padding:10px 11px;background:rgba(255,255,255,.06);color:#fff;
+  font:500 11px Jost,Arial,sans-serif;outline:none;
+}
+.pp-select option{color:#102016;background:#fff}
+.pp-swap{position:absolute;right:28px;margin-top:-31px;width:24px;height:24px;border-radius:50%;border:1px solid rgba(245,179,59,.35);background:#173322;color:var(--gold);cursor:pointer}
+.pp-route-go{
+  width:100%;padding:11px;border:0;border-radius:11px;background:var(--gold);color:#172317;
+  font:700 11px Jost,Arial,sans-serif;letter-spacing:.04em;cursor:pointer;
+}
+.pp-route-note{font-size:10px;color:#82998b;line-height:1.45;margin:10px 0 0}
+
+/* Bottom navigation / hint */
+.pp-mobile-actions{display:none}
+.pp-map-legend{
+  position:absolute;right:24px;bottom:22px;z-index:6;display:flex;gap:12px;align-items:center;
+  padding:7px 11px;border:1px solid rgba(255,255,255,.1);background:rgba(5,17,11,.52);
+  border-radius:999px;backdrop-filter:blur(10px);font-size:9px;color:#a9b9af;
+}
+.pp-map-legend i{width:7px;height:7px;border-radius:50%;background:var(--gold);display:inline-block;margin-right:5px}
+.pp-map-legend i.route{width:17px;height:2px;border-radius:0;background:var(--gold);vertical-align:middle}
+.pp-scroll-hint{
+  position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
+  z-index:6;color:rgba(255,255,255,.6);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+}
+.pp-scroll-hint span{display:block;width:1px;height:20px;background:rgba(255,255,255,.4);margin:5px auto 0}
+
+/* =========================================================
+   EXISTING / LOWER PAGE STYLES
+   ========================================================= */
 .glance-grid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:14px!important;max-width:1240px;margin:0 auto;padding:0 24px}
 .glance-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:22px 12px;text-align:center;transition:transform .18s ease,background .18s ease,border-color .18s ease;text-decoration:none;display:block;cursor:pointer}
 .glance-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.09);border-color:rgba(245,166,35,.35)}
@@ -91,8 +275,6 @@ img{max-width:100%;display:block}
 .glance-card b{display:block;font-size:14px;color:#fff;font-weight:700;margin-bottom:4px}
 .glance-card span{display:block;font-size:11.5px;color:#9fb3c8}
 @media (min-width:700px){.glance-grid{grid-template-columns:repeat(6,1fr)!important}.glance-card{padding:26px 14px}}
-
-/* JUMP RIGHT IN / FOUR WAYS TO START */
 .jri-eyebrow{font-family:var(--he-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--nv-gold,#f5a623);font-weight:700;margin:0 0 6px}
 .jri-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
 .jri-card{position:relative;border-radius:16px;overflow:hidden;min-height:230px;display:flex;align-items:flex-end;text-decoration:none;color:#fff;background-size:cover;background-position:center}
@@ -101,96 +283,6 @@ img{max-width:100%;display:block}
 .jri-tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--nv-gold,#f5a623);font-weight:700;margin-bottom:6px}
 .jri-title{font-family:'Cormorant',serif;font-size:22px;font-weight:700;margin-bottom:6px}
 .jri-desc{font-size:12.5px;color:#dce6f0;margin-bottom:14px;max-width:320px}
-
-/* MAP SECTION & CARD */
-.pp-map-section{background:#0e2117;padding:48px 20px 56px}
-.pp-map-header{max-width:1180px;margin:0 auto 20px;text-align:left}
-.pp-map-header h2{font-family:'Cormorant',serif;font-size:clamp(28px,4vw,38px);color:#fff;margin:0 0 4px}
-.pp-map-header p{color:#8fa496;font-size:14px;margin:0}
-.pp-map-card{
-  max-width:1180px;margin:0 auto;border-radius:22px;overflow:hidden;
-  border:1px solid rgba(255,255,255,.1);
-  box-shadow:0 20px 60px rgba(0,0,0,.35);
-  background:#12261a;
-}
-#ppLeafletMap{width:100%;height:min(58vh,480px);min-height:320px;background:#12261a}
-.leaflet-container{background:#12261a;font-family:Jost,Arial,sans-serif}
-.leaflet-control-attribution{font-size:9px;background:rgba(5,17,11,.55)!important;color:#a9b9af!important}
-.leaflet-control-attribution a{color:#d8c48a!important}
-.leaflet-control-zoom{border:none!important;margin:14px!important}
-.leaflet-control-zoom a{background:rgba(6,18,12,.78)!important;color:#fff!important;border:1px solid rgba(255,255,255,.14)!important}
-.leaflet-control-zoom a:hover{background:rgba(245,179,59,.22)!important}
-.pp-leaflet-marker{
-  width:22px;height:22px;border-radius:50%;
-  background:rgba(245,179,59,.16);border:1.5px solid rgba(245,179,59,.55);
-  display:grid;place-items:center;cursor:pointer;transition:transform .15s ease;
-}
-.pp-leaflet-marker::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold,#f5b33b);border:2px solid #fff}
-.pp-leaflet-marker:hover,.pp-leaflet-marker.selected{transform:scale(1.35)}
-.pp-leaflet-marker.selected::after{background:#fff;box-shadow:0 0 0 3px rgba(245,179,59,.5)}
-.pp-leaflet-label{
-  font:600 11px Jost,Arial,sans-serif;color:#fff;white-space:nowrap;
-  text-shadow:0 1px 3px rgba(0,0,0,.8),0 0 8px rgba(0,0,0,.6);
-  pointer-events:none;margin-top:3px;text-align:center;
-}
-.pp-route-anim{stroke-dasharray:10 9;animation:routeDash 12s linear infinite}
-@keyframes routeDash{to{stroke-dashoffset:-380}}
-
-.pp-map-footer{
-  display:flex;flex-wrap:wrap;align-items:center;gap:14px;
-  padding:16px 20px;background:rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.08);
-}
-.pp-location-thumb{
-  width:52px;height:42px;border-radius:8px;object-fit:cover;
-  border:1px solid rgba(245,179,59,.4);flex:none;background:#0b1811;
-}
-.pp-map-footer strong{display:block;font-size:14px;color:#fff}
-.pp-map-footer span{display:block;font-size:11.5px;color:#b8c9bf}
-.pp-map-footer a{margin-left:auto;font-size:11.5px;color:var(--gold,#f5b33b);font-weight:700;text-decoration:none;white-space:nowrap}
-.pp-route-status{font-size:10.5px;color:#82998b;padding:0 20px 6px;background:rgba(255,255,255,.04)}
-
-/* PLAN / EXPLORE PANEL */
-.pp-plan-panel{padding:20px 20px 22px;background:rgba(255,255,255,.03)}
-.pp-plan-tabs{display:flex;gap:8px;margin-bottom:16px}
-.pp-tab-btn{
-  flex:1;padding:10px;border-radius:11px;border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.05);color:#cfe0d6;font:600 11px Jost,Arial,sans-serif;
-  letter-spacing:.06em;text-transform:uppercase;cursor:pointer;
-}
-.pp-tab-btn.active{background:rgba(245,179,59,.16);border-color:rgba(245,179,59,.4);color:#fff}
-.pp-tab-panel{display:none}
-.pp-tab-panel.active{display:block}
-.pp-route-box{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.pp-field label{display:block;font-size:9px;color:#8fa496;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
-.pp-select{
-  width:100%;border:1px solid rgba(255,255,255,.14);border-radius:10px;
-  padding:10px 11px;background:rgba(255,255,255,.06);color:#fff;
-  font:500 12px Jost,Arial,sans-serif;outline:none;
-}
-.pp-select option{color:#102016;background:#fff}
-.pp-route-go{
-  width:100%;padding:12px;border:0;border-radius:11px;background:var(--gold,#f5b33b);color:#172317;
-  font:700 12px Jost,Arial,sans-serif;letter-spacing:.04em;cursor:pointer;
-}
-.pp-explore-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.pp-side-btn{
-  display:flex;align-items:center;gap:9px;padding:11px 10px;border-radius:11px;
-  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.045);
-  color:#fff;text-decoration:none;font:500 11.5px Jost,Arial,sans-serif;transition:.2s ease;
-}
-.pp-side-btn:hover{background:rgba(245,179,59,.12);border-color:rgba(245,179,59,.26)}
-.pp-side-btn .ico{font-size:15px;flex:none}
-
-/* DESTINATIONS GRID */
-.pp-dest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.pp-dest-card{position:relative;border-radius:16px;overflow:hidden;min-height:280px;text-decoration:none;color:#fff;background-size:cover;background-position:center;display:flex;align-items:flex-end}
-.pp-dest-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,24,17,0) 45%,rgba(6,16,11,.92) 100%)}
-.pp-dest-body{position:relative;z-index:1;padding:18px}
-.pp-dest-tag{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--nv-gold,#f5a623);font-weight:700;margin-bottom:4px}
-.pp-dest-title{font-family:'Cormorant',serif;font-size:23px;font-weight:700;line-height:1}
-.pp-dest-sub{font-size:12px;color:#dce6f0;margin-top:4px}
-
-/* TALK STRIP */
 .talk-strip{background:var(--nv-navy,#14301f);color:#fff;padding:56px 24px}
 .talk-strip-inner{max-width:1240px;margin:0 auto}
 .talk-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
@@ -198,37 +290,71 @@ img{max-width:100%;display:block}
 .talk-item .ic{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .talk-item small{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--nv-gold,#f5a623);font-weight:700;margin-bottom:2px}
 
-/* DISTRICT GRID */
-.dist-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
-.dist-tile{position:relative;border-radius:12px;overflow:hidden;text-decoration:none;color:#fff;aspect-ratio:1/1;background-size:cover;background-position:center;display:flex;align-items:flex-end}
-.dist-tile::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,24,17,0) 50%,rgba(6,16,11,.88) 100%)}
-.dist-tile span{position:relative;z-index:1;padding:10px;font-size:12px;font-weight:600}
-.dist-tile.view-all{background:var(--nv-navy,#14301f);align-items:center;justify-content:center;text-align:center}
-.dist-tile.view-all span{position:static;font-family:'Cormorant',serif;font-size:16px;font-weight:700;color:var(--nv-gold,#f5a623)}
-
-/* RESPONSIVE BREAKPOINTS */
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 @media(max-width:900px){
-  .pp-dest-grid{grid-template-columns:repeat(2,1fr)}
-  .dist-grid{grid-template-columns:repeat(4,1fr)}
+  .pp-sidebar{width:min(300px,42vw)}
+  .pp-panel{max-width:285px}
+  .pp-map-stage{width:95vw;height:65vh}
+  .pp-hero-copy{width:min(500px,65vw)}
 }
 @media(max-width:700px){
-  .pp-hero{padding:70px 16px 32px}
-  .pp-hero-video{opacity:.32}
-  .pp-explore-grid{grid-template-columns:repeat(2,1fr)}
-  .pp-route-box{grid-template-columns:1fr}
+  .pp-hero{min-height:760px}
+  .pp-hero-video{opacity:.62}
+  .pp-hero-top{top:calc(var(--site-header-height,64px) + 12px)}
+  .pp-map-stage{top:48%;width:112vw;height:500px}
+  .pp-hero-copy{top:42%;width:82vw}
+  .pp-hero-copy h1{font-size:clamp(40px,13vw,58px)}
+  .pp-hero-copy p{font-size:12px;line-height:1.5}
+  .pp-location-card{bottom:105px}
+  .pp-map-legend{display:none}
+  .pp-scroll-hint{display:none}
+
+  .pp-sidebar{display:none}
+  .pp-mobile-actions{
+    position:absolute;left:14px;right:14px;bottom:18px;z-index:12;
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  }
+  .pp-mobile-action{
+    border:1px solid rgba(255,255,255,.15);border-radius:14px;
+    background:rgba(5,18,11,.76);color:#fff;padding:12px 10px;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    font:700 10px Jost,Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+  }
+  .pp-mobile-action b{color:var(--gold);font-size:15px;margin-right:5px}
+
+  .pp-mobile-drawer{
+    position:absolute;left:10px;right:10px;bottom:76px;z-index:20;
+    max-height:58vh;overflow:auto;padding:17px;
+    border:1px solid rgba(255,255,255,.14);border-radius:20px;
+    background:rgba(5,18,11,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    box-shadow:0 20px 70px rgba(0,0,0,.5);display:none;
+  }
+  .pp-mobile-drawer.open{display:block;animation:drawerIn .25s ease}
+  @keyframes drawerIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .pp-mobile-drawer h3{font-family:'Cormorant',serif;font-size:24px;margin:0 0 12px}
+  .pp-mobile-drawer .pp-side-list{grid-template-columns:1fr 1fr}
+  .pp-mobile-drawer .pp-side-btn{padding:10px}
+  .pp-mobile-close{position:absolute;right:13px;top:13px;border:0;background:rgba(255,255,255,.08);color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer}
+  .pp-route-mobile{display:none}
   .jri-grid{grid-template-columns:1fr}
   .talk-row{grid-template-columns:1fr}
-  .pp-dest-grid{grid-template-columns:1fr 1fr}
-  .dist-grid{grid-template-columns:repeat(3,1fr)}
-  #ppLeafletMap{height:340px}
 }
 @media(max-width:430px){
-  .pp-dest-grid{grid-template-columns:1fr}
-  .dist-grid{grid-template-columns:repeat(2,1fr)}
+  .pp-hero{min-height:730px}
+  .pp-map-stage{height:450px;top:48%}
+  .pp-hero-copy{top:39%}
+  .pp-hero-copy h1{font-size:42px}
+  .pp-location-card{bottom:100px}
+  .pp-mobile-drawer .pp-side-list{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .pp-hero-video{display:none}
+  .pp-route.active{animation:none}
+  .pp-cloud{animation:none}
+  .pp-panel,.pp-location-card{transition:none}
 }
 </style>
 </head>
@@ -236,146 +362,289 @@ img{max-width:100%;display:block}
 <body>
 <div id="site-header"></div>
 
-<!-- 1. HERO SECTION -->
-<section class="pp-hero" aria-label="Pine & Pass — Himachal Pradesh travel guide">
+<!-- =======================================================
+     LIVE HIMACHAL HERO
+     ======================================================= -->
+<section class="pp-hero" id="liveHero" aria-label="Explore Himachal Pradesh interactively">
+
   <video class="pp-hero-video" autoplay muted loop playsinline poster="/assets/images/1hero.jpg" aria-hidden="true">
     <source src="/assets/videos/hero-video.mp4" type="video/mp4">
   </video>
-  <div class="pp-hero-inner">
-    <div class="pp-hero-brand">● Pine &amp; Pass · Himachal Guide</div>
-    <h1>Himachal, <em>Before</em> You Arrive</h1>
-    <p>Explore places, trace journeys and start planning your Himachal adventure — all in one place.</p>
-    <div class="pp-hero-cta">
-      <a href="/packages.html" class="nv-btn nv-btn-gold">Plan Trip</a>
-      <a href="/encyclopedia.html" class="nv-btn nv-btn-outline" style="border-color:rgba(255,255,255,.35);color:#fff">Explore Himachal</a>
+  <div class="pp-hero-bg" aria-hidden="true"></div>
+
+  <div class="pp-hero-top">
+    <div class="pp-hero-brand">● Pine &amp; Pass · Live Himachal</div>
+  </div>
+
+  <!-- LEFT: EXPLORE SIDEBAR -->
+  <aside class="pp-sidebar left" id="exploreSidebar" aria-label="Explore Himachal">
+    <button class="pp-side-trigger" type="button" data-toggle-sidebar="exploreSidebar" aria-expanded="false">
+      <span class="chev">›</span> Explore
+    </button>
+    <div class="pp-panel">
+      <div class="pp-panel-head">
+        <div class="pp-panel-icon">⌖</div>
+        <div><strong>Explore</strong><small>Discover on the map</small></div>
+      </div>
+      <nav class="pp-side-list">
+        <a class="pp-side-btn" href="/dist_master.html" data-filter="districts"><span class="ico">🗺️</span><span>Districts<small>Explore all 12 districts</small></span></a>
+        <a class="pp-side-btn" href="/encyclopedia.html" data-filter="places"><span class="ico">📍</span><span>Destinations<small>Places, valleys &amp; towns</small></span></a>
+        <a class="pp-side-btn" href="/encyclopedia.html" data-filter="lakes"><span class="ico">💧</span><span>Lakes &amp; Waterfalls<small>Alpine water escapes</small></span></a>
+        <a class="pp-side-btn" href="/encyclopedia.html" data-filter="culture"><span class="ico">🏔️</span><span>Culture &amp; Heritage<small>Temples, food &amp; traditions</small></span></a>
+        <a class="pp-side-btn" href="/encyclopedia.html" data-filter="adventure"><span class="ico">🧗</span><span>Adventure<small>Trek, ski, fly &amp; raft</small></span></a>
+        <a class="pp-side-btn" href="/blog/index.html"><span class="ico">✦</span><span>Travel Stories<small>Tips &amp; local knowledge</small></span></a>
+      </nav>
+      <div class="pp-panel-foot"><b>Tip:</b> Tap a map marker to preview a destination.</div>
     </div>
+  </aside>
+
+  <!-- RIGHT: PLAN SIDEBAR -->
+  <aside class="pp-sidebar right" id="planSidebar" aria-label="Plan your trip">
+    <button class="pp-side-trigger" type="button" data-toggle-sidebar="planSidebar" aria-expanded="false">
+      <span class="chev">‹</span> Plan
+    </button>
+    <div class="pp-panel">
+      <div class="pp-panel-head">
+        <div class="pp-panel-icon">⌁</div>
+        <div><strong>Plan</strong><small>Build your journey</small></div>
+      </div>
+
+      <div class="pp-route-box">
+        <label for="routeFrom" style="font-size:9px;color:#8fa496;text-transform:uppercase;letter-spacing:.1em">Start</label>
+        <select id="routeFrom" class="pp-select">
+          <option value="Shimla">Shimla</option>
+          <option value="Manali">Manali</option>
+          <option value="Dharamshala">Dharamshala</option>
+          <option value="Chandigarh">Chandigarh</option>
+          <option value="Delhi">Delhi</option>
+        </select>
+
+        <label for="routeTo" style="font-size:9px;color:#8fa496;text-transform:uppercase;letter-spacing:.1em;margin-top:3px">Destination</label>
+        <select id="routeTo" class="pp-select">
+          <option value="Manali">Manali</option>
+          <option value="Shimla">Shimla</option>
+          <option value="Dharamshala">Dharamshala</option>
+          <option value="Spiti">Spiti Valley</option>
+          <option value="Dalhousie">Dalhousie</option>
+          <option value="Kinnaur">Kinnaur</option>
+        </select>
+      </div>
+
+      <button class="pp-route-go" id="showRoute" type="button">SHOW JOURNEY ON MAP →</button>
+
+      <nav class="pp-side-list" style="margin-top:12px">
+        <a class="pp-side-btn" href="/yui.html"><span class="ico">🧭</span><span>Route Builder<small>Create your own journey</small></span></a>
+        <a class="pp-side-btn" href="/packages.html"><span class="ico">🧳</span><span>Tour Packages<small>Ready-made itineraries</small></span></a>
+        <a class="pp-side-btn" href="/booking.html"><span class="ico">🏨</span><span>Stays &amp; Booking<small>Hotels &amp; travel services</small></span></a>
+        <a class="pp-side-btn" href="/group-pricing.html"><span class="ico">₹</span><span>Group Pricing<small>Calculate per-person cost</small></span></a>
+      </nav>
+
+      <p class="pp-route-note">Choose a start and destination to visualize a sample journey. Use Route Builder for a detailed itinerary.</p>
+    </div>
+  </aside>
+
+  <!-- MAP VISUALIZATION -->
+  <div class="pp-map-stage" aria-label="Interactive Himachal map">
+    <div class="pp-map-glow"></div>
+    <div class="pp-map">
+      <svg viewBox="0 0 900 650" role="img" aria-label="Stylized interactive map of Himachal Pradesh">
+        <defs>
+          <linearGradient id="ppElevation" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(220,233,224,.32)"/>
+            <stop offset="38%" stop-color="rgba(120,168,132,.26)"/>
+            <stop offset="100%" stop-color="rgba(28,72,49,.32)"/>
+          </linearGradient>
+          <radialGradient id="ppVignette" cx="50%" cy="38%" r="65%">
+            <stop offset="0%" stop-color="rgba(255,255,255,.10)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+          </radialGradient>
+          <clipPath id="ppHpClip">
+            <path d="M248 116 L315 78 L393 91 L451 69 L523 96 L592 86 L661 126 L708 183 L681 232 L730 286 L705 338 L731 395 L687 449 L631 472 L603 526 L529 541 L480 582 L418 550 L357 566 L320 522 L254 513 L228 466 L179 431 L194 379 L155 329 L191 280 L172 227 L216 188 Z"/>
+          </clipPath>
+        </defs>
+
+        <!-- Distant sky / atmosphere -->
+        <g class="pp-sky-layer" opacity=".7" aria-hidden="true">
+          <path class="pp-cloud c1" d="M50,88 q42,-24 82,-4 q30,-15 58,2 q27,-11 52,7 l0,24 -192,0 Z"/>
+          <path class="pp-cloud c2" d="M555,58 q48,-26 92,-4 q34,-17 66,3 q29,-11 55,9 l0,22 -213,0 Z"/>
+        </g>
+
+        <!-- Layered distant mountain ranges (depth) -->
+        <path class="pp-range back" d="M0,150 L80,95 140,140 210,80 290,135 360,90 430,145 520,85 600,138 680,92 760,148 850,100 900,150 900,650 0,650 Z" aria-hidden="true"/>
+        <path class="pp-range mid" d="M0,220 L70,170 150,215 230,160 310,210 400,165 480,215 570,168 650,218 730,172 820,222 900,175 900,650 0,650 Z" aria-hidden="true"/>
+
+        <g class="pp-map-grid" opacity=".55">
+          <line x1="50" y1="130" x2="850" y2="130"/><line x1="50" y1="250" x2="850" y2="250"/>
+          <line x1="50" y1="370" x2="850" y2="370"/><line x1="50" y1="490" x2="850" y2="490"/>
+          <line x1="170" y1="55" x2="170" y2="590"/><line x1="310" y1="55" x2="310" y2="590"/>
+          <line x1="450" y1="55" x2="450" y2="590"/><line x1="590" y1="55" x2="590" y2="590"/>
+          <line x1="730" y1="55" x2="730" y2="590"/>
+        </g>
+
+        <!-- Stylized Himachal boundary, elevation-shaded -->
+        <path class="pp-hp-shape" d="M248 116 L315 78 L393 91 L451 69 L523 96 L592 86 L661 126 L708 183 L681 232 L730 286 L705 338 L731 395 L687 449 L631 472 L603 526 L529 541 L480 582 L418 550 L357 566 L320 522 L254 513 L228 466 L179 431 L194 379 L155 329 L191 280 L172 227 L216 188 Z"/>
+
+        <!-- Topographic contour layers + snowcaps, clipped to the boundary -->
+        <g clip-path="url(#ppHpClip)" aria-hidden="true">
+          <ellipse cx="450" cy="260" rx="420" ry="300" fill="url(#ppVignette)"/>
+          <path class="pp-contour snow" d="M300 140 Q450 108 600 150"/>
+          <path class="pp-contour" d="M258 222 Q450 178 662 232"/>
+          <path class="pp-contour" d="M238 302 Q450 258 692 312"/>
+          <path class="pp-contour" d="M250 382 Q450 340 680 392"/>
+          <path class="pp-contour" d="M270 462 Q450 420 650 472"/>
+          <path class="pp-contour" d="M300 532 Q450 500 600 542"/>
+          <ellipse class="pp-snowcap" cx="328" cy="94" rx="24" ry="11"/>
+          <ellipse class="pp-snowcap" cx="528" cy="86" rx="28" ry="12"/>
+          <ellipse class="pp-snowcap" cx="652" cy="148" rx="20" ry="10"/>
+        </g>
+
+        <!-- Decorative river-like lines -->
+        <path class="pp-river" d="M268 136 C350 180 340 252 403 292 S495 383 564 455 S625 512 677 532"/>
+        <path class="pp-river" d="M540 102 C500 168 527 230 494 286 S454 389 420 481"/>
+        <path class="pp-river" d="M220 258 C278 283 320 316 342 382 S386 465 356 530"/>
+
+        <!-- Sample routes -->
+        <path id="routeShimlaManali" class="pp-route" d="M365 349 C403 325 444 306 491 286 C529 269 554 251 575 228"/>
+        <path id="routeShimlaDharamshala" class="pp-route alt" d="M365 349 C402 372 451 380 503 367 C545 356 584 339 625 321"/>
+        <path id="routeManaliSpiti" class="pp-route alt" d="M575 228 C602 211 629 195 649 174"/>
+
+        <text class="pp-map-label big" x="330" y="550">HIMACHAL PRADESH</text>
+
+        <!-- Destinations -->
+        <g class="pp-map-dot" data-place="Shimla" data-url="/shimla.html" transform="translate(365,349)">
+          <circle class="outer" r="11"/><circle class="core" r="4"/><text x="10" y="4">Shimla</text>
+        </g>
+        <g class="pp-map-dot" data-place="Manali" data-url="/kullu.html" transform="translate(575,228)">
+          <circle class="outer" r="11"/><circle class="core" r="4"/><text x="10" y="4">Manali</text>
+        </g>
+        <g class="pp-map-dot" data-place="Dharamshala" data-url="/kangra.html" transform="translate(625,321)">
+          <circle class="outer" r="11"/><circle class="core" r="4"/><text x="10" y="4">Dharamshala</text>
+        </g>
+        <g class="pp-map-dot" data-place="Spiti" data-url="/spiti.html" transform="translate(649,174)">
+          <circle class="outer" r="11"/><circle class="core" r="4"/><text x="10" y="4">Spiti</text>
+        </g>
+        <g class="pp-map-dot" data-place="Dalhousie" data-url="/chamba.html" transform="translate(273,260)">
+          <circle class="outer" r="11"/><circle class="core" r="4"/><text x="-58" y="4">Dalhousie</text>
+        </g>
+        <g class="pp-map-dot" data-place="Kinnaur" data-url="/kinnaur.html" transform="translate(530,138)">
+          <circle class="outer" r="11"/><circle class="core" r="4"/><text x="10" y="4">Kinnaur</text>
+        </g>
+        <g class="pp-map-dot" data-place="Mandi" data-url="/mandi.html" transform="translate(482,305)">
+          <circle class="outer" r="11"/><circle class="core" r="4"/><text x="10" y="4">Mandi</text>
+        </g>
+        <g class="pp-map-dot" data-place="Kullu" data-url="/kullu.html" transform="translate(530,265)">
+          <circle class="outer" r="11"/><circle class="core" r="4"/><text x="-38" y="-9">Kullu</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- CENTRAL HERO COPY -->
+  <div class="pp-hero-copy">
+    <div class="eyebrow">A living map of Himachal</div>
+    <h1>Himachal, <em>Before</em><br>You Arrive</h1>
+    <p>Explore places, trace journeys and start planning your Himachal adventure directly from the map.</p>
+  </div>
+
+  <!-- DESTINATION PREVIEW -->
+  <div class="pp-location-card" id="locationCard">
+    <div class="pp-location-pin">📍</div>
+    <div>
+      <strong id="locationName">Shimla</strong>
+      <span id="locationText">The Queen of Hills · Explore destination</span>
+    </div>
+    <a id="locationLink" href="/shimla.html">Open →</a>
+  </div>
+
+  <div class="pp-map-legend"><span><i></i>Destination</span><span><i class="route"></i>Journey</span></div>
+  <div class="pp-scroll-hint">Scroll to explore<span></span></div>
+
+  <!-- MOBILE DRAWERS -->
+  <div class="pp-mobile-drawer" id="mobileExploreDrawer">
+    <button class="pp-mobile-close" type="button" data-close-drawer>×</button>
+    <h3>Explore Himachal</h3>
+    <nav class="pp-side-list">
+      <a class="pp-side-btn" href="/dist_master.html"><span class="ico">🗺️</span><span>Districts<small>All 12 districts</small></span></a>
+      <a class="pp-side-btn" href="/encyclopedia.html"><span class="ico">📍</span><span>Destinations<small>Places &amp; valleys</small></span></a>
+      <a class="pp-side-btn" href="/encyclopedia.html"><span class="ico">💧</span><span>Lakes &amp; Waterfalls<small>Alpine escapes</small></span></a>
+      <a class="pp-side-btn" href="/encyclopedia.html"><span class="ico">🏔️</span><span>Culture &amp; Heritage<small>Local stories</small></span></a>
+      <a class="pp-side-btn" href="/encyclopedia.html"><span class="ico">🧗</span><span>Adventure<small>Outdoor experiences</small></span></a>
+      <a class="pp-side-btn" href="/blog/index.html"><span class="ico">✦</span><span>Travel Stories<small>Tips &amp; guides</small></span></a>
+    </nav>
+  </div>
+
+  <div class="pp-mobile-drawer" id="mobilePlanDrawer">
+    <button class="pp-mobile-close" type="button" data-close-drawer>×</button>
+    <h3>Plan Your Journey</h3>
+    <div class="pp-route-box">
+      <label for="routeFromMobile" style="font-size:9px;color:#8fa496;text-transform:uppercase">Start</label>
+      <select id="routeFromMobile" class="pp-select">
+        <option value="Shimla">Shimla</option><option value="Manali">Manali</option><option value="Dharamshala">Dharamshala</option><option value="Chandigarh">Chandigarh</option><option value="Delhi">Delhi</option>
+      </select>
+      <label for="routeToMobile" style="font-size:9px;color:#8fa496;text-transform:uppercase">Destination</label>
+      <select id="routeToMobile" class="pp-select">
+        <option value="Manali">Manali</option><option value="Shimla">Shimla</option><option value="Dharamshala">Dharamshala</option><option value="Spiti">Spiti Valley</option><option value="Dalhousie">Dalhousie</option><option value="Kinnaur">Kinnaur</option>
+      </select>
+    </div>
+    <button class="pp-route-go" id="showRouteMobile" type="button">SHOW JOURNEY ON MAP →</button>
+    <nav class="pp-side-list" style="margin-top:12px">
+      <a class="pp-side-btn" href="/yui.html"><span class="ico">🧭</span><span>Route Builder<small>Create your journey</small></span></a>
+      <a class="pp-side-btn" href="/packages.html"><span class="ico">🧳</span><span>Tour Packages<small>Ready itineraries</small></span></a>
+      <a class="pp-side-btn" href="/booking.html"><span class="ico">🏨</span><span>Stays &amp; Booking<small>Hotels &amp; services</small></span></a>
+      <a class="pp-side-btn" href="/group-pricing.html"><span class="ico">₹</span><span>Group Pricing<small>Calculate trip cost</small></span></a>
+    </nav>
+  </div>
+
+  <div class="pp-mobile-actions">
+    <button class="pp-mobile-action" type="button" data-open-drawer="mobileExploreDrawer"><b>⌖</b> Explore</button>
+    <button class="pp-mobile-action" type="button" data-open-drawer="mobilePlanDrawer"><b>⌁</b> Plan Journey</button>
   </div>
 </section>
 
-<!-- 2. AT A GLANCE STRIP -->
+<!-- AT A GLANCE -->
 <section class="nv-section" aria-label="At a glance" style="background:var(--nv-navy,#14301f);color:#fff;padding-top:44px;padding-bottom:52px">
   <div class="glance-grid">
     <a class="glance-card" href="/dist_master.html"><div class="glance-icon">🗺️</div><b>12 Districts</b><span>Complete Guide</span></a>
-    <a class="glance-card" href="/encyclopedia.html"><div class="glance-icon">📍</div><b>100+ Destinations</b><span>Photos &amp; Details</span></a>
-    <a class="glance-card" href="/encyclopedia.html"><div class="glance-icon">💧</div><b>Lakes &amp; Waterfalls</b><span>Alpine Escapes</span></a>
-    <a class="glance-card" href="/encyclopedia.html"><div class="glance-icon">🧗</div><b>Treks &amp; Adventures</b><span>Trails &amp; Passes</span></a>
-    <a class="glance-card" href="/yui.html"><div class="glance-icon">🧭</div><b>Travel Routes</b><span>Plan Your Journey</span></a>
-    <a class="glance-card" href="/booking.html"><div class="glance-icon">🏨</div><b>Hotels &amp; Packages</b><span>Best Deals</span></a>
+    <a class="glance-card" href="/dist_master.html"><div class="glance-icon">📍</div><b>100+ Destinations</b><span>Photos &amp; Details</span></a>
+    <a class="glance-card" href="/booking.html"><div class="glance-icon">🏨</div><b>Hotels &amp; Stays</b><span>Best Deals</span></a>
+    <a class="glance-card" href="/packages.html"><div class="glance-icon">🧭</div><b>Travel Itineraries</b><span>1 Day to 15 Days</span></a>
+    <a class="glance-card" href="/blog/index.html"><div class="glance-icon">💡</div><b>Travel Tips</b><span>Local Advice</span></a>
+    <a class="glance-card" href="/encyclopedia.html"><div class="glance-icon">🎭</div><b>Local Culture</b><span>Food, Festival &amp; More</span></a>
   </div>
 </section>
 
-<!-- 3. FOUR WAYS TO START -->
+<!-- JUMP RIGHT IN -->
 <section class="nv-section" aria-label="Four ways to start">
   <div class="jri-eyebrow">— Jump Right In —</div>
   <div class="nv-section-head" style="margin-bottom:0"><h2>Four Ways To Start</h2></div>
   <div class="jri-grid">
     <a class="jri-card" href="/packages.html" style="background-image:url('/assets/images/bir-billing_1.jpg')">
-      <div class="jri-card-body"><div class="jri-tag">Plan a Trip</div><div class="jri-title">Build Your Trip</div><div class="jri-desc">Packages, hotels, taxis &amp; bikes — start planning in one place.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Start Booking →</span></div>
+      <div class="jri-card-body"><div class="jri-tag">Plan a Trip</div><div class="jri-title">Book Your Himachal Stay</div><div class="jri-desc">Packages, hotels, taxis &amp; bikes — start planning in one place.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Start Booking →</span></div>
     </a>
     <a class="jri-card" href="/encyclopedia.html" style="background-image:url('/assets/images/kinnaur-kailash.webp')">
-      <div class="jri-card-body"><div class="jri-tag">Learn First</div><div class="jri-title">Explore the Encyclopedia</div><div class="jri-desc">Districts, lakes, passes, glaciers, treks, culture &amp; places.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Explore Encyclopedia →</span></div>
+      <div class="jri-card-body"><div class="jri-tag">Learn First</div><div class="jri-title">Himachal Encyclopedia</div><div class="jri-desc">Explore districts, lakes, passes, glaciers, treks, culture &amp; places.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Explore Encyclopedia →</span></div>
     </a>
     <a class="jri-card" href="/dist_master.html" style="background-image:url('https://drive.google.com/thumbnail?id=1mEdZBs_o6bK_B-yJrFd_P8JdSTTh5YHZ&sz=w800')">
-      <div class="jri-card-body"><div class="jri-tag">By Region</div><div class="jri-title">Explore by District</div><div class="jri-desc">Places, food, season &amp; travel tips for all 12 Himachal districts.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Browse Districts →</span></div>
+      <div class="jri-card-body"><div class="jri-tag">By Region</div><div class="jri-title">District Guide</div><div class="jri-desc">Places, food, season &amp; travel tips for all 12 Himachal districts.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Browse Districts →</span></div>
     </a>
     <a class="jri-card" href="/group-pricing.html" style="background-image:url('/assets/images/solang-valley_1.jpg')">
-      <div class="jri-card-body"><div class="jri-tag">Travelling Together</div><div class="jri-title">Calculate Group Price</div><div class="jri-desc">Headcount, trip length &amp; month in — live per-person cost out.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Calculate Price →</span></div>
+      <div class="jri-card-body"><div class="jri-tag">Travelling Together</div><div class="jri-title">Group Pricing</div><div class="jri-desc">Headcount, trip length &amp; month in — live per-person cost out.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Calculate Price →</span></div>
     </a>
   </div>
 </section>
 
-<!-- 4. INTERACTIVE MAP SECTION -->
-<section class="pp-map-section" aria-label="Interactive map of Himachal Pradesh">
-  <div class="pp-map-header">
-    <div class="jri-eyebrow">— Interactive Route &amp; Territory Map —</div>
-    <h2>Trace Your Himachal Trail</h2>
-    <p>Select key destinations across Himachal or generate a driving route on the live map.</p>
-  </div>
-  <div class="pp-map-card">
-    <div id="ppLeafletMap" role="img" aria-label="Live map of Himachal Pradesh with real roads and terrain"></div>
-
-    <div class="pp-map-footer">
-      <img id="locationImg" class="pp-location-thumb" src="/assets/images/1hero.jpg" alt="Shimla destination view">
-      <div>
-        <strong id="locationName">Shimla</strong>
-        <span id="locationText">The Queen of Hills · Explore destination</span>
-      </div>
-      <a id="locationLink" href="/shimla.html">Open →</a>
-    </div>
-    <p class="pp-route-status" id="routeLoading" style="display:none">Finding route…</p>
-
-    <div class="pp-plan-panel">
-      <div class="pp-plan-tabs">
-        <button class="pp-tab-btn active" type="button" data-tab="plan">⌁ Plan a Journey</button>
-        <button class="pp-tab-btn" type="button" data-tab="explore">⌖ Explore Himachal</button>
-      </div>
-
-      <div class="pp-tab-panel active" id="tab-plan">
-        <div class="pp-route-box">
-          <div class="pp-field">
-            <label for="routeFrom">Start</label>
-            <select id="routeFrom" class="pp-select">
-              <option value="Shimla">Shimla</option>
-              <option value="Manali">Manali</option>
-              <option value="Dharamshala">Dharamshala</option>
-              <option value="BirBilling">Bir Billing</option>
-              <option value="Kasol">Kasol</option>
-              <option value="Chandigarh">Chandigarh</option>
-              <option value="Delhi">Delhi</option>
-            </select>
-          </div>
-          <div class="pp-field">
-            <label for="routeTo">Destination</label>
-            <select id="routeTo" class="pp-select">
-              <option value="Manali">Manali</option>
-              <option value="Shimla">Shimla</option>
-              <option value="Kasol">Kasol</option>
-              <option value="Jibhi">Jibhi</option>
-              <option value="BirBilling">Bir Billing</option>
-              <option value="Khajjiar">Khajjiar</option>
-              <option value="Chitkul">Chitkul</option>
-              <option value="Kaza">Kaza (Spiti)</option>
-            </select>
-          </div>
-        </div>
-        <button class="pp-route-go" id="showRoute" type="button">SHOW JOURNEY ON MAP →</button>
-        <p style="font-size:10px;color:#82998b;margin:10px 0 0">Choose a start and destination to visualize a sample journey. Use Route Builder for a detailed itinerary.</p>
-      </div>
-
-      <div class="pp-tab-panel" id="tab-explore">
-        <div class="pp-explore-grid">
-          <a class="pp-side-btn" href="/dist_master.html"><span class="ico">🗺️</span>Districts</a>
-          <a class="pp-side-btn" href="/encyclopedia.html"><span class="ico">📍</span>Destinations</a>
-          <a class="pp-side-btn" href="/encyclopedia.html"><span class="ico">💧</span>Lakes &amp; Waterfalls</a>
-          <a class="pp-side-btn" href="/encyclopedia.html"><span class="ico">🏔️</span>Culture &amp; Heritage</a>
-          <a class="pp-side-btn" href="/encyclopedia.html"><span class="ico">🧗</span>Adventure</a>
-          <a class="pp-side-btn" href="/blog/index.html"><span class="ico">✦</span>Travel Stories</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 5. POPULAR DESTINATIONS -->
+<!-- POPULAR DESTINATIONS -->
 <section class="nv-section" aria-label="Popular destinations" style="background:var(--nv-navy,#14301f);color:#fff">
   <div class="nv-section-head"><h2 style="color:#fff">Popular Destinations</h2><p style="color:#b7c8db">Handpicked places our travellers love most.</p></div>
-  <div class="pp-dest-grid">
-    <a class="pp-dest-card" href="/shimla.html" style="background-image:url('https://drive.google.com/thumbnail?id=1Ipwl5Th_AufIWSNr5qGjiXoG_ddYdQpi&sz=w600')">
-      <div class="pp-dest-body"><div class="pp-dest-tag">Shimla District</div><div class="pp-dest-title">Shimla</div><div class="pp-dest-sub">The Queen of Hills</div></div>
-    </a>
-    <a class="pp-dest-card" href="/kullu.html" style="background-image:url('https://drive.google.com/thumbnail?id=1Wj2vfI0R68ZDlhPr1P06tNxRXKKK67GC&sz=w600')">
-      <div class="pp-dest-body"><div class="pp-dest-tag">Kullu District</div><div class="pp-dest-title">Manali</div><div class="pp-dest-sub">Adventure &amp; Nature</div></div>
-    </a>
-    <a class="pp-dest-card" href="/kangra.html" style="background-image:url('https://drive.google.com/thumbnail?id=1FOfwJgfzZ09u8aDqnNfkOfVy13USAsaQ&sz=w600')">
-      <div class="pp-dest-body"><div class="pp-dest-tag">Kangra District</div><div class="pp-dest-title">Dharamshala</div><div class="pp-dest-sub">Peace &amp; Beauty</div></div>
-    </a>
-    <a class="pp-dest-card" href="/spiti.html" style="background-image:url('https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600')">
-      <div class="pp-dest-body"><div class="pp-dest-tag">Lahaul &amp; Spiti District</div><div class="pp-dest-title">Spiti Valley</div><div class="pp-dest-sub">Land of High Passes</div></div>
-    </a>
+  <div class="nv-grid nv-grid-4">
+    <a class="nv-card" href="/shimla.html"><img class="nv-card-img" src="https://drive.google.com/thumbnail?id=1Ipwl5Th_AufIWSNr5qGjiXoG_ddYdQpi&sz=w600" alt="Shimla" loading="lazy"><div class="nv-card-body"><p class="nv-card-title">Shimla</p><p class="nv-card-sub">The Queen of Hills</p></div></a>
+    <a class="nv-card" href="/kullu.html"><img class="nv-card-img" src="https://drive.google.com/thumbnail?id=1Wj2vfI0R68ZDlhPr1P06tNxRXKKK67GC&sz=w600" alt="Manali" loading="lazy"><div class="nv-card-body"><p class="nv-card-title">Manali</p><p class="nv-card-sub">Adventure &amp; Nature</p></div></a>
+    <a class="nv-card" href="/kangra.html"><img class="nv-card-img" src="https://drive.google.com/thumbnail?id=1FOfwJgfzZ09u8aDqnNfkOfVy13USAsaQ&sz=w600" alt="Dharamshala" loading="lazy"><div class="nv-card-body"><p class="nv-card-title">Dharamshala</p><p class="nv-card-sub">Peace &amp; Beauty</p></div></a>
+    <a class="nv-card" href="/spiti.html"><img class="nv-card-img" src="https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600" alt="Spiti Valley" loading="lazy"><div class="nv-card-body"><p class="nv-card-title">Spiti Valley</p><p class="nv-card-sub">Land of High Passes</p></div></a>
   </div>
 </section>
 
-<!-- 6. TAILORED EXPERIENCES -->
+<!-- JOURNEY TYPES -->
 <section class="nv-section nv-section-alt" aria-label="Journey types">
   <div class="nv-section-head"><h2>Tailored Experiences</h2><p>Pick the kind of journey you're after.</p></div>
   <div class="nv-grid nv-grid-4">
@@ -386,26 +655,20 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<!-- 7. EXPLORE ALL 12 DISTRICTS -->
+<!-- EXPLORE BY DISTRICT -->
 <section class="nv-section nv-section-tight" aria-label="Explore Himachal by district">
-  <div class="nv-section-head" style="margin-bottom:20px"><h2 style="font-size:clamp(20px,3vw,26px)">Explore All 12 Districts</h2><p style="font-size:13px">Pick a district to see its top places, hotels, food and travel tips.</p></div>
-  <div class="dist-grid">
-    <a class="dist-tile" href="/shimla.html" style="background-image:url('https://drive.google.com/thumbnail?id=1Ipwl5Th_AufIWSNr5qGjiXoG_ddYdQpi&sz=w600')"><span>Shimla</span></a>
-    <a class="dist-tile" href="/kullu.html" style="background-image:url('/assets/images/manali_1.jpg')"><span>Kullu</span></a>
-    <a class="dist-tile" href="/kangra.html" style="background-image:url('https://drive.google.com/thumbnail?id=1FOfwJgfzZ09u8aDqnNfkOfVy13USAsaQ&sz=w600')"><span>Kangra</span></a>
-    <a class="dist-tile" href="/chamba.html" style="background-image:url('https://drive.google.com/thumbnail?id=1mEdZBs_o6bK_B-yJrFd_P8JdSTTh5YHZ&sz=w600')"><span>Chamba</span></a>
-    <a class="dist-tile" href="/kinnaur.html" style="background-image:url('/assets/images/kinnaur-kailash.webp')"><span>Kinnaur</span></a>
-    <a class="dist-tile" href="/spiti.html" style="background-image:url('https://drive.google.com/thumbnail?id=1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz&sz=w600')"><span>Lahaul &amp; Spiti</span></a>
-    <a class="dist-tile" href="/mandi.html" style="background-image:url('/assets/images/barot-valley_1.jpg')"><span>Mandi</span></a>
-    <a class="dist-tile" href="/sirmaur.html" style="background-image:url('/assets/images/1hero.jpg')"><span>Sirmaur</span></a>
-    <a class="dist-tile" href="/solan.html" style="background-image:url('/assets/images/1hero.jpg')"><span>Solan</span></a>
-    <a class="dist-tile" href="/bilaspur.html" style="background-image:url('/assets/images/1hero.jpg')"><span>Bilaspur</span></a>
-    <a class="dist-tile" href="/hamirpur.html" style="background-image:url('/assets/images/1hero.jpg')"><span>Hamirpur</span></a>
-    <a class="dist-tile view-all" href="/dist_master.html"><span>View All 12 Districts →</span></a>
+  <div class="nv-section-head" style="margin-bottom:20px"><h2 style="font-size:clamp(20px,3vw,26px)">Explore Himachal by District</h2><p style="font-size:13px">Pick a district to see its top places, hotels, food and travel tips.</p></div>
+  <div class="nv-grid nv-grid-6" style="gap:14px">
+    <a class="nv-tile" href="/shimla.html"><img class="nv-tile-img" style="border-radius:10px" src="https://drive.google.com/thumbnail?id=1Ipwl5Th_AufIWSNr5qGjiXoG_ddYdQpi&sz=w600" alt="Shimla" loading="lazy"><div class="nv-tile-label" style="font-size:12px;margin-top:6px">Shimla</div></a>
+    <a class="nv-tile" href="/kullu.html"><img class="nv-tile-img" style="border-radius:10px" src="/assets/images/manali_1.jpg" alt="Kullu" loading="lazy"><div class="nv-tile-label" style="font-size:12px;margin-top:6px">Kullu</div></a>
+    <a class="nv-tile" href="/kullu.html"><img class="nv-tile-img" style="border-radius:10px" src="/assets/images/manali_2.jpg" alt="Manali" loading="lazy"><div class="nv-tile-label" style="font-size:12px;margin-top:6px">Manali</div></a>
+    <a class="nv-tile" href="/chamba.html"><img class="nv-tile-img" style="border-radius:10px" src="https://drive.google.com/thumbnail?id=1mEdZBs_o6bK_B-yJrFd_P8JdSTTh5YHZ&sz=w600" alt="Dalhousie" loading="lazy"><div class="nv-tile-label" style="font-size:12px;margin-top:6px">Dalhousie</div></a>
+    <a class="nv-tile" href="/kangra.html"><img class="nv-tile-img" style="border-radius:10px" src="https://drive.google.com/thumbnail?id=1FOfwJgfzZ09u8aDqnNfkOfVy13USAsaQ&sz=w600" alt="Kangra" loading="lazy"><div class="nv-tile-label" style="font-size:12px;margin-top:6px">Kangra</div></a>
+    <a class="nv-tile" href="/dist_master.html"><img class="nv-tile-img" style="border-radius:10px" src="/assets/images/barot-valley_1.jpg" alt="View all districts" loading="lazy"><div class="nv-tile-label" style="font-size:12px;margin-top:6px">View All →</div></a>
   </div>
 </section>
 
-<!-- 8. TALK TO US -->
+<!-- TALK TO US -->
 <div class="talk-strip">
   <div class="talk-strip-inner">
     <div class="jri-eyebrow">— Need Something Specific? —</div>
@@ -419,7 +682,7 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<!-- 9. CLOSING CTA BANNER -->
+<!-- CLOSING CTA -->
 <div class="nv-cta-banner">
   <h2>Plan Your Himachal Journey Today!</h2>
   <p>Discover, Book, Explore.</p>
@@ -437,159 +700,125 @@ img{max-width:100%;display:block}
 (function(){
   "use strict";
 
-  const mapCard = document.querySelector(".pp-map-card");
+  const hero = document.getElementById("liveHero");
+  const locationCard = document.getElementById("locationCard");
   const locationName = document.getElementById("locationName");
   const locationText = document.getElementById("locationText");
   const locationLink = document.getElementById("locationLink");
-  const locationImg = document.getElementById("locationImg");
-  const routeLoading = document.getElementById("routeLoading");
 
-  const PLACES = {
-    Shimla:      { coords:[31.1048,77.1734], url:"/shimla.html", image:"/assets/images/1hero.jpg", desc:"The Queen of Hills · Explore destination" },
-    Manali:      { coords:[32.2432,77.1892], url:"/kullu.html", image:"/assets/images/manali_1.jpg", desc:"Adventure, valleys & mountain escapes" },
-    BirBilling:  { coords:[32.0357,76.7214], url:"/kangra.html", image:"/assets/images/bir-billing_1.jpg", desc:"Paragliding capital & Tibetan monasteries" },
-    Kasol:       { coords:[32.0100,77.3150], url:"/kullu.html", image:"/assets/images/kasol.jpg", desc:"Parvati Valley hub & riverside camps" },
-    Jibhi:       { coords:[31.6373,77.4727], url:"/kullu.html", image:"/assets/images/jibhi.jpg", desc:"Tirthan Valley streams & pine retreats" },
-    Khajjiar:    { coords:[32.5558,76.0656], url:"/chamba.html", image:"/assets/images/khajjiar.jpg", desc:"Mini Switzerland of India & alpine meadows" },
-    Chitkul:     { coords:[31.3533,78.4357], url:"/kinnaur.html", image:"/assets/images/kinnaur-kailash.webp", desc:"Last village of India in Sangla Valley" },
-    Kaza:        { coords:[32.2276,78.0708], url:"/spiti.html", image:"/assets/images/spiti_1.jpg", desc:"Monasteries & high-altitude desert trails" },
-    Dharamshala: { coords:[32.2190,76.3234], url:"/kangra.html", image:"/assets/images/dharamshala.jpg", desc:"Kangra landscapes, culture & calm" },
-    Spiti:       { coords:[32.2246,78.0725], url:"/spiti.html", image:"/assets/images/spiti_1.jpg", desc:"High-altitude desert & ancient monasteries" },
-    Dalhousie:   { coords:[32.5387,75.9700], url:"/chamba.html", image:"/assets/images/dalhousie.jpg", desc:"Colonial charm & mountain views" },
-    Kinnaur:     { coords:[31.5480,78.2461], url:"/kinnaur.html", image:"/assets/images/kinnaur-kailash.webp", desc:"High valleys, orchards & dramatic peaks" },
-    Chandigarh:  { coords:[30.7333,76.7794], url:"/kullu.html", image:"/assets/images/1hero.jpg", desc:"Gateway city to Himachal Pradesh" },
-    Delhi:       { coords:[28.6139,77.2090], url:"/kullu.html", image:"/assets/images/1hero.jpg", desc:"National capital · trip starting point" }
+  const descriptions = {
+    Shimla:"The Queen of Hills · Explore destination",
+    Manali:"Adventure, valleys & mountain escapes",
+    Dharamshala:"Kangra landscapes, culture & calm",
+    Spiti:"High-altitude desert & ancient monasteries",
+    Dalhousie:"Colonial charm, forests & mountain views",
+    Kinnaur:"High valleys, orchards & dramatic peaks",
+    Mandi:"Temple town, valleys & river landscapes",
+    Kullu:"River valley, culture & adventure"
   };
 
-  let map, routeLayer, selectedMarker = null;
-  const markers = {};
-
-  function initMap(){
-    map = L.map('ppLeafletMap', {
-      zoomControl:true,
-      scrollWheelZoom:false,
-      attributionControl:true
-    }).setView([31.85,77.35], 8);
-
-    L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-      maxZoom:17,
-      attribution:'Map data: © OpenStreetMap contributors, SRTM | Tiles: © OpenTopoMap (CC-BY-SA)'
-    }).addTo(map);
-
-    map.zoomControl.setPosition('bottomright');
-
-    Object.keys(PLACES).forEach(name=>{
-      const p = PLACES[name];
-      const icon = L.divIcon({
-        className:'',
-        html:'<div class="pp-leaflet-marker"></div><div class="pp-leaflet-label">'+name+'</div>',
-        iconSize:[22,22],
-        iconAnchor:[11,11]
-      });
-      const marker = L.marker(p.coords, { icon, keyboard:true, title:name }).addTo(map);
-      marker.on('click', ()=> showPlace(name));
-      markers[name] = marker;
-    });
-
-    map.on('focus', ()=> map.scrollWheelZoom.enable());
-    map.on('blur', ()=> map.scrollWheelZoom.disable());
-
-    showPlace("Shimla", { silent:true });
-  }
-
-  function showPlace(name, opts){
-    opts = opts || {};
-    const p = PLACES[name];
-    if (!p) return;
-
-    if (selectedMarker) {
-      const prevEl = selectedMarker.getElement();
-      if (prevEl) prevEl.querySelector('.pp-leaflet-marker')?.classList.remove('selected');
-    }
-    const marker = markers[name];
-    if (marker) {
-      const el = marker.getElement();
-      if (el) el.querySelector('.pp-leaflet-marker')?.classList.add('selected');
-      selectedMarker = marker;
-    }
-
+  function showPlace(group){
+    document.querySelectorAll(".pp-map-dot").forEach(x=>x.classList.remove("selected"));
+    group.classList.add("selected");
+    const name = group.dataset.place;
     locationName.textContent = name;
-    locationText.textContent = p.desc;
-    locationLink.href = p.url;
-    if (locationImg && p.image) {
-      locationImg.src = p.image;
-      locationImg.alt = name + " image preview";
-    }
-
-    if (!opts.silent && map) {
-      map.panTo(p.coords, { animate:true, duration:.6 });
-    }
+    locationText.textContent = descriptions[name] || "Discover this part of Himachal Pradesh";
+    locationLink.href = group.dataset.url || "/encyclopedia.html";
+    locationCard.classList.add("show");
   }
 
-  async function drawRoute(from, to){
-    const a = PLACES[from], b = PLACES[to];
-    if (!a || !b || !map) return;
+  document.querySelectorAll(".pp-map-dot").forEach(group=>{
+    group.addEventListener("click",()=>{
+      showPlace(group);
+    });
+  });
 
-    if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
-    routeLoading.style.display = "block";
+  function drawRoute(from,to){
+    document.querySelectorAll(".pp-route").forEach(r=>r.classList.remove("active"));
 
-    let latlngs = null;
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 8000);
+    const key = from + "-" + to;
+    const reverse = to + "-" + from;
+    let id = null;
 
-    try {
-      const url = 'https://router.project-osrm.org/route/v1/driving/' +
-        a.coords[1] + ',' + a.coords[0] + ';' + b.coords[1] + ',' + b.coords[0] +
-        '?overview=full&geometries=geojson';
-      const res = await fetch(url, { signal: controller.signal });
-      clearTimeout(timeoutId);
-      if (!res.ok) throw new Error('routing service error');
-      const data = await res.json();
-      if (data.code === 'Ok' && data.routes && data.routes[0]) {
-        latlngs = data.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
-      }
-    } catch (err) {
-      latlngs = [a.coords, b.coords];
+    if((key==="Shimla-Manali")||(reverse==="Shimla-Manali")) id="routeShimlaManali";
+    else if((key==="Shimla-Dharamshala")||(reverse==="Shimla-Dharamshala")) id="routeShimlaDharamshala";
+    else if((key==="Manali-Spiti")||(reverse==="Manali-Spiti")) id="routeManaliSpiti";
+    else if(from==="Shimla" && to==="Spiti") id="routeShimlaManali";
+    else if(from==="Manali" && to==="Dharamshala") id="routeShimlaDharamshala";
+
+    if(id){
+      document.getElementById(id).classList.add("active");
+    }else{
+      document.getElementById("routeShimlaManali").classList.add("active");
     }
 
-    routeLoading.style.display = "none";
-    if (!latlngs) return;
-
-    routeLayer = L.polyline(latlngs, {
-      color:'#f5b33b', weight:4, opacity:.95,
-      lineCap:'round', lineJoin:'round',
-      className:'pp-route-anim'
-    }).addTo(map);
-
-    map.fitBounds(routeLayer.getBounds(), { padding:[60,60], maxZoom:11 });
-    showPlace(to);
-    mapCard.scrollIntoView({ behavior:'smooth', block:'center' });
+    const target = [...document.querySelectorAll(".pp-map-dot")].find(x=>x.dataset.place===to);
+    if(target) showPlace(target);
   }
 
-  const routeButton = document.getElementById("showRoute");
+  function setupRoute(fromId,toId,drawerId){
+    const from=document.getElementById(fromId);
+    const to=document.getElementById(toId);
+    if(!from || !to) return;
+    drawRoute(from.value,to.value);
+    const drawer=document.getElementById(drawerId);
+    if(drawer) drawer.classList.remove("open");
+  }
+
+  const routeButton=document.getElementById("showRoute");
   if(routeButton){
     routeButton.addEventListener("click",()=>{
-      const from = document.getElementById("routeFrom");
-      const to = document.getElementById("routeTo");
-      drawRoute(from.value, to.value);
+      setupRoute("routeFrom","routeTo","mobilePlanDrawer");
+    });
+  }
+  const routeMobile=document.getElementById("showRouteMobile");
+  if(routeMobile){
+    routeMobile.addEventListener("click",()=>{
+      const from=document.getElementById("routeFromMobile");
+      const to=document.getElementById("routeToMobile");
+      document.getElementById("routeFrom").value=from.value;
+      document.getElementById("routeTo").value=to.value;
+      drawRoute(from.value,to.value);
+      document.getElementById("mobilePlanDrawer").classList.remove("open");
     });
   }
 
-  document.querySelectorAll(".pp-tab-btn").forEach(btn=>{
+  /* Desktop sidebars */
+  document.querySelectorAll("[data-toggle-sidebar]").forEach(btn=>{
     btn.addEventListener("click",()=>{
-      document.querySelectorAll(".pp-tab-btn").forEach(b=>b.classList.remove("active"));
-      document.querySelectorAll(".pp-tab-panel").forEach(p=>p.classList.remove("active"));
-      btn.classList.add("active");
-      document.getElementById("tab-"+btn.dataset.tab).classList.add("active");
+      const id=btn.dataset.toggleSidebar;
+      const side=document.getElementById(id);
+      if(!side) return;
+      const isOpen=side.classList.toggle("open");
+      btn.setAttribute("aria-expanded",String(isOpen));
     });
   });
 
-  window.addEventListener('load', () => {
-    if (typeof L !== 'undefined') {
-      initMap();
-      drawRoute("Shimla", "Manali");
-    }
+  /* Mobile drawers */
+  document.querySelectorAll("[data-open-drawer]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.querySelectorAll(".pp-mobile-drawer").forEach(d=>d.classList.remove("open"));
+      const d=document.getElementById(btn.dataset.openDrawer);
+      if(d) d.classList.add("open");
+    });
   });
+  document.querySelectorAll("[data-close-drawer]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const d=btn.closest(".pp-mobile-drawer");
+      if(d) d.classList.remove("open");
+    });
+  });
+
+  /* Close sidebars/drawers when clicking elsewhere */
+  document.addEventListener("click",(e)=>{
+    if(!hero.contains(e.target)) return;
+    if(e.target.closest(".pp-sidebar") || e.target.closest(".pp-mobile-drawer") || e.target.closest(".pp-mobile-actions")) return;
+    document.querySelectorAll(".pp-sidebar.open").forEach(s=>s.classList.remove("open"));
+    document.querySelectorAll(".pp-mobile-drawer.open").forEach(d=>d.classList.remove("open"));
+  });
+
+  /* Initial visual route */
+  drawRoute("Shimla","Manali");
 })();
 </script>
 </body>
