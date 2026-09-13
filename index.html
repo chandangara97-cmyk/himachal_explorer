@@ -7,11 +7,17 @@
 <meta name="description" content="Explore stunning destinations, plan your trip, discover routes and get authentic information about every district of Himachal Pradesh.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="canonical" href="https://pineandpass.in/index.html">
+
+<!-- OpenGraph & Twitter Social Cards -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://pineandpass.in/index.html">
 <meta property="og:title" content="Pine & Pass — Your Complete Guide to Himachal Pradesh">
 <meta property="og:description" content="Explore stunning destinations, plan your trip, discover routes and get authentic information about every district of Himachal Pradesh.">
 <meta property="og:image" content="https://pineandpass.in/assets/images/1hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pine & Pass — Your Complete Guide to Himachal Pradesh">
+<meta name="twitter:description" content="Explore stunning destinations, plan your trip, and discover routes across Himachal Pradesh.">
+<meta name="twitter:image" content="https://pineandpass.in/assets/images/1hero.jpg">
 <meta name="theme-color" content="#10261a">
 
 <link rel="stylesheet" href="/assets/css/site-chrome.css">
@@ -42,9 +48,7 @@ body{margin:0;font-family:'Jost',Arial,sans-serif;background:#fff;color:var(--nv
 a{color:inherit}
 img{max-width:100%;display:block}
 
-/* =========================================================
-   HERO — normal document flow, nothing overlapping
-   ========================================================= */
+/* HERO SECTION */
 .pp-hero{
   --gold:#f5b33b;
   position:relative;
@@ -79,10 +83,30 @@ img{max-width:100%;display:block}
 .pp-hero p{margin:0 auto 26px;color:#e1ebe5;font-size:15px;max-width:480px}
 .pp-hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
-/* =========================================================
-   MAP CARD — contained, below the hero, never overlapped
-   ========================================================= */
-.pp-map-section{background:#0e2117;padding:0 20px 56px}
+/* AT A GLANCE STRIP */
+.glance-grid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:14px!important;max-width:1240px;margin:0 auto;padding:0 24px}
+.glance-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:22px 12px;text-align:center;transition:transform .18s ease,background .18s ease,border-color .18s ease;text-decoration:none;display:block;cursor:pointer}
+.glance-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.09);border-color:rgba(245,166,35,.35)}
+.glance-icon{width:44px;height:44px;border-radius:12px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(245,166,35,.14);border:1px solid rgba(245,166,35,.3)}
+.glance-card b{display:block;font-size:14px;color:#fff;font-weight:700;margin-bottom:4px}
+.glance-card span{display:block;font-size:11.5px;color:#9fb3c8}
+@media (min-width:700px){.glance-grid{grid-template-columns:repeat(6,1fr)!important}.glance-card{padding:26px 14px}}
+
+/* JUMP RIGHT IN / FOUR WAYS TO START */
+.jri-eyebrow{font-family:var(--he-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--nv-gold,#f5a623);font-weight:700;margin:0 0 6px}
+.jri-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.jri-card{position:relative;border-radius:16px;overflow:hidden;min-height:230px;display:flex;align-items:flex-end;text-decoration:none;color:#fff;background-size:cover;background-position:center}
+.jri-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,24,17,0) 40%,rgba(10,24,17,.9) 100%)}
+.jri-card-body{position:relative;z-index:1;padding:20px}
+.jri-tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--nv-gold,#f5a623);font-weight:700;margin-bottom:6px}
+.jri-title{font-family:'Cormorant',serif;font-size:22px;font-weight:700;margin-bottom:6px}
+.jri-desc{font-size:12.5px;color:#dce6f0;margin-bottom:14px;max-width:320px}
+
+/* MAP SECTION & CARD */
+.pp-map-section{background:#0e2117;padding:48px 20px 56px}
+.pp-map-header{max-width:1180px;margin:0 auto 20px;text-align:left}
+.pp-map-header h2{font-family:'Cormorant',serif;font-size:clamp(28px,4vw,38px);color:#fff;margin:0 0 4px}
+.pp-map-header p{color:#8fa496;font-size:14px;margin:0}
 .pp-map-card{
   max-width:1180px;margin:0 auto;border-radius:22px;overflow:hidden;
   border:1px solid rgba(255,255,255,.1);
@@ -116,13 +140,16 @@ img{max-width:100%;display:block}
   display:flex;flex-wrap:wrap;align-items:center;gap:14px;
   padding:16px 20px;background:rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.08);
 }
-.pp-location-pin{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:rgba(245,179,59,.16);border:1px solid rgba(245,179,59,.3);font-size:16px;flex:none}
+.pp-location-thumb{
+  width:52px;height:42px;border-radius:8px;object-fit:cover;
+  border:1px solid rgba(245,179,59,.4);flex:none;background:#0b1811;
+}
 .pp-map-footer strong{display:block;font-size:14px;color:#fff}
-.pp-map-footer span{display:block;font-size:11px;color:#b8c9bf}
+.pp-map-footer span{display:block;font-size:11.5px;color:#b8c9bf}
 .pp-map-footer a{margin-left:auto;font-size:11.5px;color:var(--gold,#f5b33b);font-weight:700;text-decoration:none;white-space:nowrap}
 .pp-route-status{font-size:10.5px;color:#82998b;padding:0 20px 6px;background:rgba(255,255,255,.04)}
 
-/* Plan / Explore panel — a normal, non-floating panel under the map */
+/* PLAN / EXPLORE PANEL */
 .pp-plan-panel{padding:20px 20px 22px;background:rgba(255,255,255,.03)}
 .pp-plan-tabs{display:flex;gap:8px;margin-bottom:16px}
 .pp-tab-btn{
@@ -154,27 +181,7 @@ img{max-width:100%;display:block}
 .pp-side-btn:hover{background:rgba(245,179,59,.12);border-color:rgba(245,179,59,.26)}
 .pp-side-btn .ico{font-size:15px;flex:none}
 
-/* =========================================================
-   AT A GLANCE / JUMP RIGHT IN / GENERAL CARDS
-   ========================================================= */
-.glance-grid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:14px!important;max-width:1240px;margin:0 auto;padding:0 24px}
-.glance-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:22px 12px;text-align:center;transition:transform .18s ease,background .18s ease,border-color .18s ease;text-decoration:none;display:block;cursor:pointer}
-.glance-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.09);border-color:rgba(245,166,35,.35)}
-.glance-icon{width:44px;height:44px;border-radius:12px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(245,166,35,.14);border:1px solid rgba(245,166,35,.3)}
-.glance-card b{display:block;font-size:14px;color:#fff;font-weight:700;margin-bottom:4px}
-.glance-card span{display:block;font-size:11.5px;color:#9fb3c8}
-@media (min-width:700px){.glance-grid{grid-template-columns:repeat(6,1fr)!important}.glance-card{padding:26px 14px}}
-
-.jri-eyebrow{font-family:var(--he-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--nv-gold,#f5a623);font-weight:700;margin:0 0 6px}
-.jri-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
-.jri-card{position:relative;border-radius:16px;overflow:hidden;min-height:230px;display:flex;align-items:flex-end;text-decoration:none;color:#fff;background-size:cover;background-position:center}
-.jri-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,24,17,0) 40%,rgba(10,24,17,.9) 100%)}
-.jri-card-body{position:relative;z-index:1;padding:20px}
-.jri-tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--nv-gold,#f5a623);font-weight:700;margin-bottom:6px}
-.jri-title{font-family:'Cormorant',serif;font-size:22px;font-weight:700;margin-bottom:6px}
-.jri-desc{font-size:12.5px;color:#dce6f0;margin-bottom:14px;max-width:320px}
-
-/* Destination cards — bigger image, title/desc overlaid */
+/* DESTINATIONS GRID */
 .pp-dest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .pp-dest-card{position:relative;border-radius:16px;overflow:hidden;min-height:280px;text-decoration:none;color:#fff;background-size:cover;background-position:center;display:flex;align-items:flex-end}
 .pp-dest-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,24,17,0) 45%,rgba(6,16,11,.92) 100%)}
@@ -183,6 +190,7 @@ img{max-width:100%;display:block}
 .pp-dest-title{font-family:'Cormorant',serif;font-size:23px;font-weight:700;line-height:1}
 .pp-dest-sub{font-size:12px;color:#dce6f0;margin-top:4px}
 
+/* TALK STRIP */
 .talk-strip{background:var(--nv-navy,#14301f);color:#fff;padding:56px 24px}
 .talk-strip-inner{max-width:1240px;margin:0 auto}
 .talk-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
@@ -190,7 +198,7 @@ img{max-width:100%;display:block}
 .talk-item .ic{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .talk-item small{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--nv-gold,#f5a623);font-weight:700;margin-bottom:2px}
 
-/* District grid — real districts only, no destinations mixed in */
+/* DISTRICT GRID */
 .dist-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
 .dist-tile{position:relative;border-radius:12px;overflow:hidden;text-decoration:none;color:#fff;aspect-ratio:1/1;background-size:cover;background-position:center;display:flex;align-items:flex-end}
 .dist-tile::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,24,17,0) 50%,rgba(6,16,11,.88) 100%)}
@@ -198,9 +206,7 @@ img{max-width:100%;display:block}
 .dist-tile.view-all{background:var(--nv-navy,#14301f);align-items:center;justify-content:center;text-align:center}
 .dist-tile.view-all span{position:static;font-family:'Cormorant',serif;font-size:16px;font-weight:700;color:var(--nv-gold,#f5a623)}
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
+/* RESPONSIVE BREAKPOINTS */
 @media(max-width:900px){
   .pp-dest-grid{grid-template-columns:repeat(2,1fr)}
   .dist-grid{grid-template-columns:repeat(4,1fr)}
@@ -230,10 +236,7 @@ img{max-width:100%;display:block}
 <body>
 <div id="site-header"></div>
 
-<!-- =======================================================
-     HERO — headline only, video behind it at low opacity,
-     nothing floats over it, nothing overlaps on mobile
-     ======================================================= -->
+<!-- 1. HERO SECTION -->
 <section class="pp-hero" aria-label="Pine & Pass — Himachal Pradesh travel guide">
   <video class="pp-hero-video" autoplay muted loop playsinline poster="/assets/images/1hero.jpg" aria-hidden="true">
     <source src="/assets/videos/hero-video.mp4" type="video/mp4">
@@ -249,15 +252,50 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<!-- =======================================================
-     MAP — a self-contained card, no overlapping panels
-     ======================================================= -->
+<!-- 2. AT A GLANCE STRIP -->
+<section class="nv-section" aria-label="At a glance" style="background:var(--nv-navy,#14301f);color:#fff;padding-top:44px;padding-bottom:52px">
+  <div class="glance-grid">
+    <a class="glance-card" href="/dist_master.html"><div class="glance-icon">🗺️</div><b>12 Districts</b><span>Complete Guide</span></a>
+    <a class="glance-card" href="/encyclopedia.html"><div class="glance-icon">📍</div><b>100+ Destinations</b><span>Photos &amp; Details</span></a>
+    <a class="glance-card" href="/encyclopedia.html"><div class="glance-icon">💧</div><b>Lakes &amp; Waterfalls</b><span>Alpine Escapes</span></a>
+    <a class="glance-card" href="/encyclopedia.html"><div class="glance-icon">🧗</div><b>Treks &amp; Adventures</b><span>Trails &amp; Passes</span></a>
+    <a class="glance-card" href="/yui.html"><div class="glance-icon">🧭</div><b>Travel Routes</b><span>Plan Your Journey</span></a>
+    <a class="glance-card" href="/booking.html"><div class="glance-icon">🏨</div><b>Hotels &amp; Packages</b><span>Best Deals</span></a>
+  </div>
+</section>
+
+<!-- 3. FOUR WAYS TO START -->
+<section class="nv-section" aria-label="Four ways to start">
+  <div class="jri-eyebrow">— Jump Right In —</div>
+  <div class="nv-section-head" style="margin-bottom:0"><h2>Four Ways To Start</h2></div>
+  <div class="jri-grid">
+    <a class="jri-card" href="/packages.html" style="background-image:url('/assets/images/bir-billing_1.jpg')">
+      <div class="jri-card-body"><div class="jri-tag">Plan a Trip</div><div class="jri-title">Build Your Trip</div><div class="jri-desc">Packages, hotels, taxis &amp; bikes — start planning in one place.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Start Booking →</span></div>
+    </a>
+    <a class="jri-card" href="/encyclopedia.html" style="background-image:url('/assets/images/kinnaur-kailash.webp')">
+      <div class="jri-card-body"><div class="jri-tag">Learn First</div><div class="jri-title">Explore the Encyclopedia</div><div class="jri-desc">Districts, lakes, passes, glaciers, treks, culture &amp; places.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Explore Encyclopedia →</span></div>
+    </a>
+    <a class="jri-card" href="/dist_master.html" style="background-image:url('https://drive.google.com/thumbnail?id=1mEdZBs_o6bK_B-yJrFd_P8JdSTTh5YHZ&sz=w800')">
+      <div class="jri-card-body"><div class="jri-tag">By Region</div><div class="jri-title">Explore by District</div><div class="jri-desc">Places, food, season &amp; travel tips for all 12 Himachal districts.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Browse Districts →</span></div>
+    </a>
+    <a class="jri-card" href="/group-pricing.html" style="background-image:url('/assets/images/solang-valley_1.jpg')">
+      <div class="jri-card-body"><div class="jri-tag">Travelling Together</div><div class="jri-title">Calculate Group Price</div><div class="jri-desc">Headcount, trip length &amp; month in — live per-person cost out.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Calculate Price →</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- 4. INTERACTIVE MAP SECTION -->
 <section class="pp-map-section" aria-label="Interactive map of Himachal Pradesh">
+  <div class="pp-map-header">
+    <div class="jri-eyebrow">— Interactive Route &amp; Territory Map —</div>
+    <h2>Trace Your Himachal Trail</h2>
+    <p>Select key destinations across Himachal or generate a driving route on the live map.</p>
+  </div>
   <div class="pp-map-card">
     <div id="ppLeafletMap" role="img" aria-label="Live map of Himachal Pradesh with real roads and terrain"></div>
 
     <div class="pp-map-footer">
-      <div class="pp-location-pin">📍</div>
+      <img id="locationImg" class="pp-location-thumb" src="/assets/images/1hero.jpg" alt="Shimla destination view">
       <div>
         <strong id="locationName">Shimla</strong>
         <span id="locationText">The Queen of Hills · Explore destination</span>
@@ -280,6 +318,8 @@ img{max-width:100%;display:block}
               <option value="Shimla">Shimla</option>
               <option value="Manali">Manali</option>
               <option value="Dharamshala">Dharamshala</option>
+              <option value="BirBilling">Bir Billing</option>
+              <option value="Kasol">Kasol</option>
               <option value="Chandigarh">Chandigarh</option>
               <option value="Delhi">Delhi</option>
             </select>
@@ -289,10 +329,12 @@ img{max-width:100%;display:block}
             <select id="routeTo" class="pp-select">
               <option value="Manali">Manali</option>
               <option value="Shimla">Shimla</option>
-              <option value="Dharamshala">Dharamshala</option>
-              <option value="Spiti">Spiti Valley</option>
-              <option value="Dalhousie">Dalhousie</option>
-              <option value="Kinnaur">Kinnaur</option>
+              <option value="Kasol">Kasol</option>
+              <option value="Jibhi">Jibhi</option>
+              <option value="BirBilling">Bir Billing</option>
+              <option value="Khajjiar">Khajjiar</option>
+              <option value="Chitkul">Chitkul</option>
+              <option value="Kaza">Kaza (Spiti)</option>
             </select>
           </div>
         </div>
@@ -314,39 +356,7 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<!-- AT A GLANCE -->
-<section class="nv-section" aria-label="At a glance" style="background:var(--nv-navy,#14301f);color:#fff;padding-top:44px;padding-bottom:52px">
-  <div class="glance-grid">
-    <a class="glance-card" href="/dist_master.html"><div class="glance-icon">🗺️</div><b>12 Districts</b><span>Complete Guide</span></a>
-    <a class="glance-card" href="/dist_master.html"><div class="glance-icon">📍</div><b>100+ Destinations</b><span>Photos &amp; Details</span></a>
-    <a class="glance-card" href="/encyclopedia.html"><div class="glance-icon">💧</div><b>Lakes &amp; Waterfalls</b><span>Alpine Escapes</span></a>
-    <a class="glance-card" href="/encyclopedia.html"><div class="glance-icon">🧗</div><b>Treks &amp; Adventures</b><span>Trails &amp; Passes</span></a>
-    <a class="glance-card" href="/yui.html"><div class="glance-icon">🧭</div><b>Travel Routes</b><span>Plan Your Journey</span></a>
-    <a class="glance-card" href="/booking.html"><div class="glance-icon">🏨</div><b>Hotels &amp; Packages</b><span>Best Deals</span></a>
-  </div>
-</section>
-
-<!-- JUMP RIGHT IN -->
-<section class="nv-section" aria-label="Four ways to start">
-  <div class="jri-eyebrow">— Jump Right In —</div>
-  <div class="nv-section-head" style="margin-bottom:0"><h2>Four Ways To Start</h2></div>
-  <div class="jri-grid">
-    <a class="jri-card" href="/packages.html" style="background-image:url('/assets/images/bir-billing_1.jpg')">
-      <div class="jri-card-body"><div class="jri-tag">Plan a Trip</div><div class="jri-title">Build Your Trip</div><div class="jri-desc">Packages, hotels, taxis &amp; bikes — start planning in one place.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Start Booking →</span></div>
-    </a>
-    <a class="jri-card" href="/encyclopedia.html" style="background-image:url('/assets/images/kinnaur-kailash.webp')">
-      <div class="jri-card-body"><div class="jri-tag">Learn First</div><div class="jri-title">Explore the Encyclopedia</div><div class="jri-desc">Districts, lakes, passes, glaciers, treks, culture &amp; places.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Explore Encyclopedia →</span></div>
-    </a>
-    <a class="jri-card" href="/dist_master.html" style="background-image:url('https://drive.google.com/thumbnail?id=1mEdZBs_o6bK_B-yJrFd_P8JdSTTh5YHZ&sz=w800')">
-      <div class="jri-card-body"><div class="jri-tag">By Region</div><div class="jri-title">Explore by District</div><div class="jri-desc">Places, food, season &amp; travel tips for all 12 Himachal districts.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Browse Districts →</span></div>
-    </a>
-    <a class="jri-card" href="/group-pricing.html" style="background-image:url('/assets/images/solang-valley_1.jpg')">
-      <div class="jri-card-body"><div class="jri-tag">Travelling Together</div><div class="jri-title">Calculate Group Price</div><div class="jri-desc">Headcount, trip length &amp; month in — live per-person cost out.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Calculate Price →</span></div>
-    </a>
-  </div>
-</section>
-
-<!-- POPULAR DESTINATIONS -->
+<!-- 5. POPULAR DESTINATIONS -->
 <section class="nv-section" aria-label="Popular destinations" style="background:var(--nv-navy,#14301f);color:#fff">
   <div class="nv-section-head"><h2 style="color:#fff">Popular Destinations</h2><p style="color:#b7c8db">Handpicked places our travellers love most.</p></div>
   <div class="pp-dest-grid">
@@ -365,7 +375,7 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<!-- JOURNEY TYPES -->
+<!-- 6. TAILORED EXPERIENCES -->
 <section class="nv-section nv-section-alt" aria-label="Journey types">
   <div class="nv-section-head"><h2>Tailored Experiences</h2><p>Pick the kind of journey you're after.</p></div>
   <div class="nv-grid nv-grid-4">
@@ -376,7 +386,7 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<!-- EXPLORE ALL 12 DISTRICTS (real districts only — no destinations mixed in) -->
+<!-- 7. EXPLORE ALL 12 DISTRICTS -->
 <section class="nv-section nv-section-tight" aria-label="Explore Himachal by district">
   <div class="nv-section-head" style="margin-bottom:20px"><h2 style="font-size:clamp(20px,3vw,26px)">Explore All 12 Districts</h2><p style="font-size:13px">Pick a district to see its top places, hotels, food and travel tips.</p></div>
   <div class="dist-grid">
@@ -395,7 +405,7 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<!-- TALK TO US -->
+<!-- 8. TALK TO US -->
 <div class="talk-strip">
   <div class="talk-strip-inner">
     <div class="jri-eyebrow">— Need Something Specific? —</div>
@@ -409,7 +419,7 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<!-- CLOSING CTA -->
+<!-- 9. CLOSING CTA BANNER -->
 <div class="nv-cta-banner">
   <h2>Plan Your Himachal Journey Today!</h2>
   <p>Discover, Book, Explore.</p>
@@ -431,19 +441,24 @@ img{max-width:100%;display:block}
   const locationName = document.getElementById("locationName");
   const locationText = document.getElementById("locationText");
   const locationLink = document.getElementById("locationLink");
+  const locationImg = document.getElementById("locationImg");
   const routeLoading = document.getElementById("routeLoading");
 
   const PLACES = {
-    Shimla:      { coords:[31.1048,77.1734], url:"/shimla.html",   desc:"The Queen of Hills · Explore destination" },
-    Manali:      { coords:[32.2432,77.1892], url:"/kullu.html",    desc:"Adventure, valleys & mountain escapes" },
-    Dharamshala: { coords:[32.2190,76.3234], url:"/kangra.html",   desc:"Kangra landscapes, culture & calm" },
-    Spiti:       { coords:[32.2246,78.0725], url:"/spiti.html",    desc:"High-altitude desert & ancient monasteries" },
-    Dalhousie:   { coords:[32.5387,75.9700], url:"/chamba.html",   desc:"Colonial charm, forests & mountain views" },
-    Kinnaur:     { coords:[31.5480,78.2461], url:"/kinnaur.html",  desc:"High valleys, orchards & dramatic peaks" },
-    Mandi:       { coords:[31.7080,76.9318], url:"/mandi.html",    desc:"Temple town, valleys & river landscapes" },
-    Kullu:       { coords:[31.9576,77.1095], url:"/kullu.html",    desc:"River valley, culture & adventure" },
-    Chandigarh:  { coords:[30.7333,76.7794], url:"/kullu.html",    desc:"Gateway city to Himachal Pradesh" },
-    Delhi:       { coords:[28.6139,77.2090], url:"/kullu.html",    desc:"National capital · trip starting point" }
+    Shimla:      { coords:[31.1048,77.1734], url:"/shimla.html", image:"/assets/images/1hero.jpg", desc:"The Queen of Hills · Explore destination" },
+    Manali:      { coords:[32.2432,77.1892], url:"/kullu.html", image:"/assets/images/manali_1.jpg", desc:"Adventure, valleys & mountain escapes" },
+    BirBilling:  { coords:[32.0357,76.7214], url:"/kangra.html", image:"/assets/images/bir-billing_1.jpg", desc:"Paragliding capital & Tibetan monasteries" },
+    Kasol:       { coords:[32.0100,77.3150], url:"/kullu.html", image:"/assets/images/kasol.jpg", desc:"Parvati Valley hub & riverside camps" },
+    Jibhi:       { coords:[31.6373,77.4727], url:"/kullu.html", image:"/assets/images/jibhi.jpg", desc:"Tirthan Valley streams & pine retreats" },
+    Khajjiar:    { coords:[32.5558,76.0656], url:"/chamba.html", image:"/assets/images/khajjiar.jpg", desc:"Mini Switzerland of India & alpine meadows" },
+    Chitkul:     { coords:[31.3533,78.4357], url:"/kinnaur.html", image:"/assets/images/kinnaur-kailash.webp", desc:"Last village of India in Sangla Valley" },
+    Kaza:        { coords:[32.2276,78.0708], url:"/spiti.html", image:"/assets/images/spiti_1.jpg", desc:"Monasteries & high-altitude desert trails" },
+    Dharamshala: { coords:[32.2190,76.3234], url:"/kangra.html", image:"/assets/images/dharamshala.jpg", desc:"Kangra landscapes, culture & calm" },
+    Spiti:       { coords:[32.2246,78.0725], url:"/spiti.html", image:"/assets/images/spiti_1.jpg", desc:"High-altitude desert & ancient monasteries" },
+    Dalhousie:   { coords:[32.5387,75.9700], url:"/chamba.html", image:"/assets/images/dalhousie.jpg", desc:"Colonial charm & mountain views" },
+    Kinnaur:     { coords:[31.5480,78.2461], url:"/kinnaur.html", image:"/assets/images/kinnaur-kailash.webp", desc:"High valleys, orchards & dramatic peaks" },
+    Chandigarh:  { coords:[30.7333,76.7794], url:"/kullu.html", image:"/assets/images/1hero.jpg", desc:"Gateway city to Himachal Pradesh" },
+    Delhi:       { coords:[28.6139,77.2090], url:"/kullu.html", image:"/assets/images/1hero.jpg", desc:"National capital · trip starting point" }
   };
 
   let map, routeLayer, selectedMarker = null;
@@ -465,7 +480,6 @@ img{max-width:100%;display:block}
 
     Object.keys(PLACES).forEach(name=>{
       const p = PLACES[name];
-      if (p.hidden) return;
       const icon = L.divIcon({
         className:'',
         html:'<div class="pp-leaflet-marker"></div><div class="pp-leaflet-label">'+name+'</div>',
@@ -502,6 +516,10 @@ img{max-width:100%;display:block}
     locationName.textContent = name;
     locationText.textContent = p.desc;
     locationLink.href = p.url;
+    if (locationImg && p.image) {
+      locationImg.src = p.image;
+      locationImg.alt = name + " image preview";
+    }
 
     if (!opts.silent && map) {
       map.panTo(p.coords, { animate:true, duration:.6 });
@@ -516,11 +534,15 @@ img{max-width:100%;display:block}
     routeLoading.style.display = "block";
 
     let latlngs = null;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000);
+
     try {
       const url = 'https://router.project-osrm.org/route/v1/driving/' +
         a.coords[1] + ',' + a.coords[0] + ';' + b.coords[1] + ',' + b.coords[0] +
         '?overview=full&geometries=geojson';
-      const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
       if (!res.ok) throw new Error('routing service error');
       const data = await res.json();
       if (data.code === 'Ok' && data.routes && data.routes[0]) {
@@ -544,12 +566,12 @@ img{max-width:100%;display:block}
     mapCard.scrollIntoView({ behavior:'smooth', block:'center' });
   }
 
-  const routeButton=document.getElementById("showRoute");
+  const routeButton = document.getElementById("showRoute");
   if(routeButton){
     routeButton.addEventListener("click",()=>{
-      const from=document.getElementById("routeFrom");
-      const to=document.getElementById("routeTo");
-      drawRoute(from.value,to.value);
+      const from = document.getElementById("routeFrom");
+      const to = document.getElementById("routeTo");
+      drawRoute(from.value, to.value);
     });
   }
 
@@ -562,12 +584,12 @@ img{max-width:100%;display:block}
     });
   });
 
-  function boot(){
-    if (typeof L === "undefined") { setTimeout(boot, 60); return; }
-    initMap();
-    drawRoute("Shimla","Manali");
-  }
-  boot();
+  window.addEventListener('load', () => {
+    if (typeof L !== 'undefined') {
+      initMap();
+      drawRoute("Shimla", "Manali");
+    }
+  });
 })();
 </script>
 </body>
