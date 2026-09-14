@@ -1,119 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Plan Your Trip | Pine & Pass</title>
-<meta name="description" content="Tell us where you're starting from and we'll show Himachal tour packages that actually work for you."/>
-<meta name="robots" content="noindex,follow"/>
-<meta name="theme-color" content="#b07d3a"/>
-<link rel="canonical" href="https://pineandpass.in/trip-gate.html"/>
-<link rel="icon" type="image/png" sizes="32x32" href="https://pineandpass.in/favicon-32.png"/>
-<link rel="icon" type="image/png" sizes="16x16" href="https://pineandpass.in/favicon-16.png"/>
-<link rel="apple-touch-icon" sizes="180x180" href="https://pineandpass.in/logo-512.png"/>
-<link rel="manifest" href="https://pineandpass.in/site.webmanifest"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,500&family=Jost:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="assets/css/packages.css">
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Plan Your Himachal Trip | Pine & Pass</title>
+<meta name="description" content="Tell us your starting point, destination, dates, duration and group size. Get matched Himachal packages with calculated pricing."/>
+<link rel="stylesheet" href="assets/css/packages.css?v=2">
+<script src="assets/js/pricing-engine.js"></script>
+<script src="assets/js/package-data.js"></script>
 <style>
-  /* Page-specific overrides — this is a standalone bridge page, no fixed
-     nav/weather bar above it, so the trip-gate section owns the full viewport. */
-  body{overflow-x:hidden}
-  .trip-gate{min-height:100vh}
-  .tg-home-link{
-    position:fixed;top:18px;left:18px;z-index:5;
-    display:flex;align-items:center;gap:6px;
-    font-family:'Jost',sans-serif;font-size:12.5px;font-weight:600;color:var(--muted);
-    text-decoration:none;
-  }
-  .tg-home-link:hover{color:var(--gold3)}
+:root{--tg-bg:#f8f5ef;--tg-ink:#1c1409;--tg-muted:#756b5e;--tg-gold:#b07d3a;--tg-line:#e6ddcf;--tg-card:#fffdf9}
+*{box-sizing:border-box}body{margin:0;background:var(--tg-bg);color:var(--tg-ink);font-family:Jost,Arial,sans-serif;overflow-x:hidden}.trip-planner{min-height:100vh;display:flex;flex-direction:column}.tg-top{height:74px;padding:0 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--tg-line);background:rgba(248,245,239,.92);position:sticky;top:0;z-index:20;backdrop-filter:blur(12px)}.brand{font-family:Georgia,serif;font-size:21px}.home{font-size:13px;color:var(--tg-muted);text-decoration:none}.tg-progress{height:3px;background:#eee7dc}.tg-progress i{display:block;height:100%;background:var(--tg-gold);width:16.66%;transition:width .35s ease}.tg-main{flex:1;display:flex;align-items:center;justify-content:center;padding:42px 22px 60px}.tg-shell{width:min(1120px,100%)}.step{display:none;animation:rise .35s ease}.step.active{display:block}@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}.eyebrow{text-align:center;letter-spacing:.22em;font-size:11px;color:var(--tg-gold);font-weight:700;margin-bottom:14px}.question{text-align:center;font-family:Georgia,serif;font-size:clamp(34px,5vw,62px);line-height:1.05;font-weight:400;margin:0 auto 12px;max-width:850px}.sub{text-align:center;color:var(--tg-muted);font-size:15px;max-width:680px;margin:0 auto 34px;line-height:1.7}.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;max-width:900px;margin:auto}.choice{border:1px solid var(--tg-line);background:var(--tg-card);padding:22px;border-radius:12px;cursor:pointer;text-align:left;transition:.2s;min-height:110px}.choice:hover{border-color:var(--tg-gold);transform:translateY(-2px);box-shadow:0 10px 30px #4d33100d}.choice strong{display:block;font-family:Georgia,serif;font-size:22px;font-weight:500;margin-bottom:7px}.choice span{font-size:12px;color:var(--tg-muted);line-height:1.5}.choice.selected{border:2px solid var(--tg-gold);padding:21px}.tg-actions{display:flex;justify-content:center;gap:10px;margin-top:28px}.btn{border:0;border-radius:999px;padding:13px 24px;font:600 13px Jost;cursor:pointer}.btn-primary{background:var(--tg-ink);color:#fff}.btn-secondary{background:transparent;border:1px solid var(--tg-line);color:var(--tg-muted)}.input-wrap{max-width:600px;margin:auto}.text-input,.date-input{width:100%;border:1px solid var(--tg-line);background:#fffdf9;border-radius:12px;padding:18px 20px;font:400 18px Jost;color:var(--tg-ink);outline:none}.text-input:focus,.date-input:focus{border-color:var(--tg-gold);box-shadow:0 0 0 3px #b07d3a18}.counter{display:flex;justify-content:center;align-items:center;gap:28px}.counter button{width:58px;height:58px;border-radius:50%;border:1px solid var(--tg-line);background:#fffdf9;font-size:28px;cursor:pointer}.counter-value{font-family:Georgia,serif;font-size:58px;min-width:100px;text-align:center}.summary{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:22px auto 34px}.pill{padding:7px 11px;border:1px solid var(--tg-line);border-radius:999px;background:#fffdf9;font-size:11px;color:var(--tg-muted)}.results{margin-top:10px}.result-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:18px}.result-head h2{font:400 34px Georgia,serif;margin:0}.result-head p{margin:4px 0 0;color:var(--tg-muted);font-size:13px}.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.pkg{background:var(--tg-card);border:1px solid var(--tg-line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}.pkg-top{height:130px;background:linear-gradient(135deg,#d9c5a6,#8e765b);position:relative}.pkg-top:after{content:'PINE & PASS';position:absolute;left:16px;bottom:12px;color:#fff;font-size:10px;letter-spacing:.18em}.pkg-body{padding:18px}.pkg h3{font:500 22px Georgia,serif;margin:0 0 8px;line-height:1.2}.pkg-route{font-size:12px;color:var(--tg-muted);min-height:34px;line-height:1.5}.pkg-meta{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}.pkg-meta span{font-size:10px;padding:5px 8px;border-radius:999px;background:#f1ece4;color:#655a4c}.price-row{border-top:1px solid var(--tg-line);padding-top:14px;display:flex;justify-content:space-between;align-items:end}.price small{display:block;font-size:10px;color:var(--tg-muted);margin-bottom:2px}.price b{font:600 25px Georgia,serif}.total{font-size:11px;color:var(--tg-muted);text-align:right}.pkg-actions{display:flex;gap:8px;margin-top:14px}.pkg-actions a{flex:1;text-align:center;text-decoration:none;border-radius:999px;padding:10px;font-size:11px;font-weight:600}.view{background:var(--tg-ink);color:#fff}.recalc{background:#f1ece4;color:var(--tg-ink)}.empty{text-align:center;padding:50px;border:1px dashed var(--tg-line);border-radius:14px;color:var(--tg-muted)}.loading{text-align:center;padding:40px;color:var(--tg-muted)}.error{max-width:650px;margin:20px auto;padding:15px;border:1px solid #e4cfc0;background:#fff9f5;border-radius:10px;font-size:13px;color:#745b4d}.small-note{text-align:center;color:#9b8e7e;font-size:11px;margin-top:20px}.back{position:fixed;left:20px;bottom:18px;border:1px solid var(--tg-line);background:#fffdf9;color:var(--tg-muted);border-radius:999px;padding:9px 14px;font:600 11px Jost;cursor:pointer;z-index:10}.hide{display:none!important}@media(max-width:800px){.tg-top{height:62px;padding:0 16px}.tg-main{padding:30px 15px 70px}.results-grid{grid-template-columns:1fr}.question{font-size:38px}.choices{grid-template-columns:1fr 1fr}.choice{min-height:95px;padding:17px}.result-head{display:block}.result-head h2{font-size:29px}}@media(max-width:500px){.choices{grid-template-columns:1fr}.counter-value{font-size:48px}}
 </style>
 </head>
 <body>
-
-<a href="index.html" class="tg-home-link">← Home</a>
-
-<div class="trip-gate" id="tripGate">
-  <div class="trip-gate-inner">
-    <div class="trip-gate-brand">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M2 19l6.5-11 4.2 6.3 3-4.8 6.3 9.5H2z" fill="currentColor"/></svg>
-      <span>Pine & Pass</span>
-    </div>
-    <p class="trip-gate-tagline">Himachal Pradesh · Curated Journeys</p>
-    <div class="trip-gate-eyebrow" id="tripGateEyebrow">TRIP PLANNER</div>
-    <h3 class="trip-gate-title" id="tripGateTitleText">Where are you starting your trip from?</h3>
-    <p class="trip-gate-sub" id="tripGateSubText">Answer once — we'll only show packages that actually work for you. You can change this anytime.</p>
-
-    <div class="trip-gate-options" id="tripGateStep1">
-      <div class="tg-card" onclick="selectTravelerMode('here')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')selectTravelerMode('here')">
-        <span class="tg-card-eyebrow">OPTION 01</span>
-        <span class="tg-card-icon">📍</span>
-        <h4 class="tg-card-title">I'm Already in Himachal</h4>
-        <p class="tg-card-desc">Tell us which town you're in and we'll only show tours that actually start from where you are.</p>
-        <ul class="tg-card-list">
-          <li>Pick your current town</li>
-          <li>Local tours, no long-haul pickups</li>
-          <li>Instant match, no waiting</li>
-        </ul>
-        <span class="tg-card-cta">Continue <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-      <div class="tg-card" onclick="selectTravelerMode('planning')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')selectTravelerMode('planning')">
-        <span class="tg-card-eyebrow">OPTION 02</span>
-        <span class="tg-card-icon">🧳</span>
-        <h4 class="tg-card-title">Just Planning My Trip</h4>
-        <p class="tg-card-desc">We'll show Master Plan tours with pickup from Delhi, Chandigarh, Amritsar or Shimla.</p>
-        <ul class="tg-card-list">
-          <li>Curated multi-day circuits</li>
-          <li>Pickup from major cities</li>
-          <li>Fixed departure points</li>
-        </ul>
-        <span class="tg-card-cta">Continue <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-    </div>
-    <div class="trip-gate-options" id="tripGateStep2" style="display:none"></div>
-  </div>
+<div class="trip-planner" id="planner">
+  <header class="tg-top"><div class="brand">Pine & Pass</div><a class="home" href="index.html">← Home</a></header>
+  <div class="tg-progress"><i id="progress"></i></div>
+  <main class="tg-main"><div class="tg-shell">
+    <section class="step active" data-step="1"><div class="eyebrow">STEP 1 OF 6</div><h1 class="question">Where are you starting your trip?</h1><p class="sub">Choose the place you'll actually begin from. We'll use it to match practical routes and pickup points.</p><div class="choices" id="startChoices"></div></section>
+    <section class="step" data-step="2"><div class="eyebrow">STEP 2 OF 6</div><h1 class="question">Where are you planning to go?</h1><p class="sub">Pick a destination. Related valleys and nearby circuits are included automatically.</p><div class="choices" id="destChoices"></div></section>
+    <section class="step" data-step="3"><div class="eyebrow">STEP 3 OF 6</div><h1 class="question">When is the approximate plan?</h1><p class="sub">A date is enough. It lets us apply the correct peak/off-peak pricing.</p><div class="input-wrap"><input class="date-input" id="dateInput" type="date"></div><div class="tg-actions"><button class="btn btn-primary" onclick="nextFromDate()">Continue →</button></div></section>
+    <section class="step" data-step="4"><div class="eyebrow">STEP 4 OF 6</div><h1 class="question">How many days?</h1><p class="sub">Tell us the approximate trip length. We'll prioritize packages closest to it.</p><div class="counter"><button onclick="changeCount('days',-1)">−</button><div class="counter-value" id="daysVal">5</div><button onclick="changeCount('days',1)">+</button></div><div class="tg-actions"><button class="btn btn-primary" onclick="nextStep()">Continue →</button></div></section>
+    <section class="step" data-step="5"><div class="eyebrow">STEP 5 OF 6</div><h1 class="question">How many people are travelling?</h1><p class="sub">Pricing includes the most economical vehicle combination that fits your group.</p><div class="counter"><button onclick="changeCount('pax',-1)">−</button><div class="counter-value" id="paxVal">2</div><button onclick="changeCount('pax',1)">+</button></div><div class="tg-actions"><button class="btn btn-primary" onclick="nextStep()">Continue →</button></div></section>
+    <section class="step" data-step="6"><div class="eyebrow">STEP 6 OF 6</div><h1 class="question">What hotel level suits you?</h1><p class="sub">We'll calculate package rates using the same pricing engine used across the site.</p><div class="choices"><button class="choice" onclick="finish('budget',this)"><strong>Budget</strong><span>Comfortable stays · value focused</span></button><button class="choice" onclick="finish('premium',this)"><strong>Premium</strong><span>Better rooms · upgraded comfort</span></button><button class="choice" onclick="finish('luxury',this)"><strong>Luxury</strong><span>Higher-end stays · premium experience</span></button></div></section>
+    <section class="step" data-step="7"><div class="summary" id="summary"></div><div class="result-head"><div><div class="eyebrow" style="text-align:left;margin-bottom:6px">YOUR MATCHES</div><h2>Packages that fit your plan</h2><p id="matchText"></p></div><button class="btn btn-secondary" onclick="restart()">Change plan</button></div><div id="results" class="results-grid"><div class="loading">Finding the best routes and calculating prices…</div></div><div class="small-note">Prices are calculated from your trip inputs. Final availability and exact itinerary are confirmed when you book.</div></section>
+  </div></main>
+  <button class="back hide" id="backBtn" onclick="prevStep()">← Back</button>
 </div>
-
 <script>
-// Known local starting towns. Kept in sync manually with LOCAL_CITY_LABELS
-// in packages.html — this bridge page doesn't load Firebase package data,
-// it just needs the list of valid "I'm already here" towns.
-const LOCAL_CITIES = [
-  { value: 'MANALI',      label: 'Manali' },
-  { value: 'DHARAMSHALA', label: 'Dharamshala / McLeodganj' },
-  { value: 'DALHOUSIE',   label: 'Dalhousie' },
-  { value: 'BHUNTAR',     label: 'Kasol / Parvati Valley' },
-  { value: 'MANDI',       label: 'Mandi' },
-  { value: 'KAZA',        label: 'Kaza / Spiti' },
-  { value: 'RECKONG PEO', label: 'Kalpa / Sangla (Kinnaur)' }
-];
-
-function selectTravelerMode(mode) {
-  if (mode === 'planning') {
-    saveAndGo('planning', null);
-    return;
-  }
-  document.getElementById('tripGateStep1').style.display = 'none';
-  document.getElementById('tripGateEyebrow').textContent = 'STEP 2 OF 2';
-  document.getElementById('tripGateTitleText').textContent = 'Which town are you in?';
-  document.getElementById('tripGateSubText').textContent = "We'll only show tours that start near you.";
-  const step2 = document.getElementById('tripGateStep2');
-  step2.innerHTML = LOCAL_CITIES.map(c =>
-    `<button class="trip-gate-btn" onclick="saveAndGo('here','${c.value}')">📍 ${c.label}</button>`
-  ).join('') + `<button class="trip-gate-back" onclick="backToStep1()">← Back</button>`;
-  step2.style.display = 'flex';
-}
-function backToStep1() {
-  document.getElementById('tripGateStep2').style.display = 'none';
-  document.getElementById('tripGateStep1').style.display = 'flex';
-  document.getElementById('tripGateEyebrow').textContent = 'TRIP PLANNER';
-  document.getElementById('tripGateTitleText').textContent = 'Where are you starting your trip from?';
-  document.getElementById('tripGateSubText').textContent = "Answer once — we'll only show packages that actually work for you. You can change this anytime.";
-}
-function saveAndGo(mode, city) {
-  try { localStorage.setItem('heTripGate', JSON.stringify({ mode, city })); } catch (e) {}
-  window.location.href = 'packages.html';
-}
+const ALIASES={
+  manali:['manali','solang','rohtang','old manali','kullu valley','kullu'],
+  kullu:['kullu','bhuntar','kasol','parvati valley','manali','jibhi','seraj'],
+  kasol:['kasol','parvati valley','bhuntar','manikaran','tosh'],
+  spiti:['spiti','kaza','chandratal','key monastery','tabo'],
+  kaza:['kaza','spiti','chandratal','key'],
+  shimla:['shimla','kufri','fagu','mashobra','naldehra','chail','rohru'],
+  kinnaur:['kinnaur','reckong peo','kalpa','sangla','chitkul','sarahan'],
+  dharamshala:['dharamshala','mcleodganj','kangra','palampur','bir','billing'],
+  dalhousie:['dalhousie','khajjiar','chamba','dharamshala'],
+  chamba:['chamba','dalhousie','pangi','sach pass'],
+  mandi:['mandi','prashar','jibhi','seraj'],
+  kasauli:['kasauli','solan','barog','chandigarh'],
+  sirmaur:['sirmaur','nahan','renuka','churdhar']
+};
+const STARTS=[['Delhi','Delhi / NCR'],['Chandigarh','Chandigarh / Tricity'],['Amritsar','Amritsar'],['Shimla','Shimla'],['Manali','Manali'],['Kullu','Kullu / Bhuntar'],['Dharamshala','Dharamshala / McLeodganj'],['Mandi','Mandi'],['Kaza','Kaza / Spiti']];
+const DESTS=[['Manali','Manali & Solang'],['Spiti','Spiti Valley / Kaza'],['Shimla','Shimla & Kufri'],['Kinnaur','Kinnaur'],['Dharamshala','Dharamshala & Kangra'],['Dalhousie','Dalhousie & Chamba'],['Kasol','Kasol / Parvati Valley'],['Mandi','Mandi & Seraj'],['Sirmaur','Sirmaur / Nahan'],['Kasauli','Kasauli / Barog']];
+const state={step:1,start:'',dest:'',date:'',days:5,pax:2,tier:'premium',packages:[]};
+function norm(s){return String(s||'').toLowerCase().replace(/[–—]/g,'-').replace(/[^a-z0-9]+/g,' ').trim()}
+function tokens(s){return norm(s).split(/\s+/).filter(Boolean)}
+function renderChoices(id,items,key){document.getElementById(id).innerHTML=items.map(x=>`<button class="choice" onclick="pick('${key}','${x[0].replace(/'/g,"\\'")}',this)"><strong>${x[0]}</strong><span>${x[1]}</span></button>`).join('')}
+renderChoices('startChoices',STARTS,'start');renderChoices('destChoices',DESTS,'dest');
+function pick(key,val,el){state[key]=val;document.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');setTimeout(nextStep,180)}
+function showStep(n){state.step=n;document.querySelectorAll('.step').forEach(s=>s.classList.toggle('active',Number(s.dataset.step)===n));document.getElementById('progress').style.width=Math.min(100,n===7?100:(n/6*100))+'%';document.getElementById('backBtn').classList.toggle('hide',n<=1||n===7);window.scrollTo({top:0,behavior:'smooth'})}
+function nextStep(){if(state.step<6)showStep(state.step+1)}
+function prevStep(){if(state.step>1&&state.step<7)showStep(state.step-1)}
+function nextFromDate(){const d=document.getElementById('dateInput').value;if(!d){alert('Please choose an approximate date.');return}state.date=d;showStep(4)}
+function changeCount(key,delta){const min=key==='days'?2:1,max=key==='days'?30:50;state[key]=Math.max(min,Math.min(max,state[key]+delta));document.getElementById(key+'Val').textContent=state[key]}
+function finish(tier){state.tier=tier;showStep(7);findMatches()}
+function aliasesFor(v){const k=norm(v);return ALIASES[k]||[k]}
+function scorePackage(p){const hay=norm([p.name,p.start_point,p.end_point,p.tags,p.best_season,(p.route_stops||[]).join(' '),JSON.stringify(p.itinerary||[])].join(' '));const ds=aliasesFor(state.dest).map(norm);const ss=aliasesFor(state.start).map(norm);let score=0;ds.forEach(a=>{if(hay.includes(a))score+=a.length>5?7:4});ss.forEach(a=>{if(norm(p.start_point).includes(a))score+=12;else if(hay.includes(a))score+=3});const days=Number(p.days)||0;score+=Math.max(0,10-Math.abs(days-state.days)*3);if(days===state.days)score+=12;return score}
+function fallbackCatalog(){const files=[...document.querySelectorAll('meta')].length;return []}
+async function findMatches(){const out=document.getElementById('results');out.innerHTML='<div class="loading">Finding the best routes and calculating prices…</div>';let list=[];try{const data=await PackageData.load();list=data.packages||[]}catch(e){list=[]}if(!list.length){out.innerHTML='<div class="empty">Package data could not be loaded right now. Please refresh or use the Packages page.</div>';return}list=list.map(p=>({...p,_score:scorePackage(p)})).filter(p=>p._score>0).sort((a,b)=>b._score-a._score).slice(0,9);if(!list.length){out.innerHTML='<div class="empty">No close package match found for this combination. Try another destination or a nearby duration.</div>';return}document.getElementById('matchText').textContent=`${list.length} options matched to ${state.start} → ${state.dest}, ${state.days} days, ${state.pax} travellers.`;document.getElementById('summary').innerHTML=[state.start+' → '+state.dest,state.days+' days',state.pax+' travellers',state.tier[0].toUpperCase()+state.tier.slice(1),new Date(state.date).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})].map(x=>`<span class="pill">${x}</span>`).join('');out.innerHTML=list.map(renderPackage).join('')}
+function renderPackage(p){const month=state.date?new Date(state.date+'T12:00:00').getMonth()+1:new Date().getMonth()+1;const r=PricingEngine.computePrice({days:p.days||state.days,pax:state.pax,tier:state.tier,month});const url='package-detail.html?id='+encodeURIComponent(p.id);const route=p.start_point&&p.end_point?`${p.start_point} → ${p.end_point}`:(p.route_stops||[]).slice(0,5).join(' → ')||'Curated Himachal circuit';return `<article class="pkg"><div class="pkg-top"></div><div class="pkg-body"><h3>${esc(p.name||p.package_name||p.id)}</h3><div class="pkg-route">${esc(route)}</div><div class="pkg-meta"><span>${p.days||state.days}D</span><span>${state.pax} pax</span><span>${esc(r.fleetLabel)}</span><span>${r.breakdown.isPeak?'Peak':'Off-peak'}</span></div><div class="price-row"><div class="price"><small>Calculated price / person</small><b>₹${r.totalPP.toLocaleString('en-IN')}</b></div><div class="total">Group total<br><strong>₹${r.groupTotal.toLocaleString('en-IN')}</strong></div></div><div class="pkg-actions"><a class="view" href="${url}">View package</a><a class="recalc" href="packages.html">All packages</a></div></div></article>`}
+function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function restart(){state.step=1;state.start='';state.dest='';showStep(1)}
 </script>
-</body>
-</html>
+</body></html>
