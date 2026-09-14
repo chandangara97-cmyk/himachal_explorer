@@ -374,6 +374,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="pax-hint" id="vehicleHint">Sedan recommended</div>
     </div>
+    <div class="fc" style="min-width:160px">
+      <div class="fc-label">Travel Month</div>
+      <select class="sort-sel" id="monthSel">
+        <option value="1">January</option><option value="2">February</option>
+        <option value="3">March</option><option value="4">April</option>
+        <option value="5">May</option><option value="6">June</option>
+        <option value="7">July</option><option value="8">August</option>
+        <option value="9">September</option><option value="10">October</option>
+        <option value="11">November</option><option value="12">December</option>
+      </select>
+    </div>
     <div class="fc" style="min-width:150px">
       <div class="fc-label">Sort By</div>
       <select class="sort-sel" id="sortSel">
@@ -525,7 +536,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  */
 
 function isPeakMonth() {
-  return PricingEngine.isPeakMonth(new Date().getMonth() + 1);
+  return PricingEngine.isPeakMonth(state.month);
 }
 
 function findPkgById(packageId) {
@@ -540,7 +551,7 @@ function findPkgById(packageId) {
 function getPriceWithFallback(packageId, gateway, drop, pax, tier) {
   const pkg = findPkgById(packageId);
   if (!pkg || !pkg.days) return 0;
-  return PricingEngine.computePrice({ days: pkg.days, pax, tier }).totalPP;
+  return PricingEngine.computePrice({ days: pkg.days, pax, tier, month: state.month }).totalPP;
 }
 
 /**
@@ -549,7 +560,7 @@ function getPriceWithFallback(packageId, gateway, drop, pax, tier) {
 function getVehicleForPax(packageId, gateway, drop, pax) {
   const pkg = findPkgById(packageId);
   if (!pkg || !pkg.days) return null;
-  return PricingEngine.computePrice({ days: pkg.days, pax, tier: 'budget' }).fleetLabel;
+  return PricingEngine.computePrice({ days: pkg.days, pax, tier: 'budget', month: state.month }).fleetLabel;
 }
 
 /**
@@ -598,7 +609,7 @@ function onDropChange(val) {
 function getPriceBreakdown(packageId, gateway, drop, pax, tier) {
   const pkg = findPkgById(packageId);
   if (!pkg || !pkg.days) return "";
-  const result = PricingEngine.computePrice({ days: pkg.days, pax, tier });
+  const result = PricingEngine.computePrice({ days: pkg.days, pax, tier, month: state.month });
   const b = result.breakdown;
   const fmtInr = n => "₹" + Math.round(n).toLocaleString("en-IN");
   const season = b.isPeak ? "peak season" : "off-peak";
@@ -912,7 +923,7 @@ function formatLocationsPreview(pkg, max) {
 function fmt(n) { return '₹' + n.toLocaleString('en-IN'); }
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
-let state = { region:'all', dur:'all', tier:'budget', pax:4, sort:'price-asc', wishlist:new Set(), selectedId:null, gateway:'DELHI', drop:'DELHI', travelerMode:null, currentCity:null };
+let state = { region:'all', dur:'all', tier:'budget', pax:4, month:new Date().getMonth()+1, sort:'price-asc', wishlist:new Set(), selectedId:null, gateway:'DELHI', drop:'DELHI', travelerMode:null, currentCity:null };
 let activeDay = 1;
 const PEAK_MONTHS = [5,6,12,1];
 const isPeak = PEAK_MONTHS.includes(new Date().getMonth()+1);
@@ -1225,6 +1236,22 @@ function goSlide(n) {
   dots[slideIdx].classList.add('active');
 }
 setInterval(() => goSlide((slideIdx+1)%slides.length), 5000);
+
+// ─── HERO FOLD ON SCROLL ────────────────────────────────────────────────────
+// Scrolling down folds the hero up out of view (max-height→0); scrolling
+// back up near the top brings it back.
+(function () {
+  const hero = document.getElementById('heroSection');
+  if (!hero) return;
+  let lastY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > lastY && y > 60) hero.classList.add('hero-collapsed');
+    else if (y < lastY || y <= 60) hero.classList.remove('hero-collapsed');
+    lastY = y;
+  }, { passive: true });
+})();
+
 function scrollToPackages() { document.getElementById('filterBar').scrollIntoView({behavior:'smooth'}); }
 function viewMasterPackage() {
   scrollToPackages();
@@ -1892,6 +1919,8 @@ let pax = 2;
 document.getElementById('paxDec').onclick = () => { if(pax>1){pax--;document.getElementById('paxNum').textContent=pax;state.pax=pax;renderCards()} };
 document.getElementById('paxInc').onclick = () => { if(pax<12){pax++;document.getElementById('paxNum').textContent=pax;state.pax=pax;renderCards()} };
 document.getElementById('sortSel').onchange = e => { state.sort=e.target.value; renderCards(); };
+document.getElementById('monthSel').value = state.month;
+document.getElementById('monthSel').onchange = e => { state.month = parseInt(e.target.value, 10); renderCards(); };
 
 // ─── MODAL ────────────────────────────────────────────────────────────────────
 let modalPkg = null;
