@@ -995,7 +995,6 @@ window.onload = () => {
   if (pkgListEl) pkgListEl.innerHTML = '<div style="padding:24px;text-align:center;color:#888;font-size:0.8rem;">Loading packages…</div>';
 
   PackageData.load().then(data => {
-    VEHICLE_RATES = data.vehicleRates || {};
     PACKAGES = data.packages.map(fromPackageData);
     renderPackages(PACKAGES);
 

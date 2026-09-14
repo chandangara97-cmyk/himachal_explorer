@@ -842,6 +842,7 @@ body.mode-packages [data-mode="custom"]{display:none !important;}
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="assets/js/distance-matrix.js"></script>
+<script src="assets/js/pricing-engine.js"></script>
 <!-- Razorpay Script -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
@@ -880,6 +881,15 @@ let stops = []; // {id,name,lat,lng,district,region,segment,tag}
 let routeLegs = []; // OSRM legs aligned to stops[1..n]
 let lastTotalKm = 0, lastTotalMin = 0;
 let pax = 2;
+// Live price for a route-builder package — same formula/source as
+// group-pricing.html, packages.html, package-detail.html and the admin
+// calculator (assets/js/pricing-engine.js). Route builder has no tier or
+// travel-month picker, so this uses budget tier + the current month, same
+// as the old budget_price_pp field it replaces.
+function pkgPricePP(template){
+  if(!template || !template.days) return 0;
+  return PricingEngine.computePrice({ days: template.days, pax, tier: 'budget' }).totalPP;
+}
 let map, tileLayer, routeLine, markersLayer;
 let currentTiles = 'map';
 
@@ -1362,7 +1372,7 @@ function renderSuggestedPackages(gatewayName, dest){
       <img src="${content.image||''}" alt="${t.package_name}" onerror="this.style.display='none'">
       <div class="pkg-card-body">
         <b>${t.package_name}</b>
-        <div class="pkg-card-meta"><span>${t.days} Days</span><span class="price">${t.budget_price_pp?fmtINR(t.budget_price_pp)+'/pax':''}</span></div>
+        <div class="pkg-card-meta"><span>${t.days} Days</span><span class="price">${t.days?fmtINR(pkgPricePP(t))+'/pax':''}</span></div>
       </div>`;
     card.onclick = () => openPkgDetail(t.package_id);
     cardsBox.appendChild(card);
@@ -1381,7 +1391,7 @@ function openPkgDetail(pkgId){
   document.getElementById('pkgDetailName').textContent = t.package_name;
   document.getElementById('pkgDetailMeta').innerHTML =
     `<span><b>${t.days}</b> Days</span><span><b>${t.hotel_star||'—'}</b> Hotel</span>` +
-    `<span><b>${t.budget_price_pp?fmtINR(t.budget_price_pp):'—'}</b> /pax</span>` +
+    `<span><b>${t.days?fmtINR(pkgPricePP(t)):'—'}</b> /pax</span>` +
     `<span><b>${t.best_season||'Year-round'}</b></span>`;
 
   const incBox = document.getElementById('pkgDetailInclusions');
@@ -1422,7 +1432,7 @@ function closePkgDetail(){
 // ---------- Pay & Book (Razorpay, inline on this page) ----------
 function pkgTotalAmount(){
   if(!currentPkg) return 0;
-  const perPax = currentPkg.template.budget_price_pp || 0;
+  const perPax = pkgPricePP(currentPkg.template);
   return Math.round(perPax * pax);
 }
 

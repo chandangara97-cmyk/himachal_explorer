@@ -10,7 +10,13 @@
  *                                          end_point, total_km_est, featured)
  *                  →  /package_content   (itinerary, inclusions, exclusions,
  *                                          image, route_stops, highlight)
- *                  →  /package_pricing_matrix  (gateway × pax × tier pricing)
+ *
+ * Pricing is NOT fetched here any more — every page calls
+ * PricingEngine.computePrice() (assets/js/pricing-engine.js) instead. This
+ * file used to also pull /package_pricing_matrix and /vehicle_rate_card and
+ * attach a static budget_price_pp to each package; that was the old,
+ * pre-PricingEngine pricing path and it's been removed so nothing on the
+ * site can accidentally render a stale Firebase price again.
  *
  * If either the itinerary content or the identity metadata for a package is
  * ever wrong, fix it in Firebase — not in a page's JS. Do not reintroduce a
@@ -54,7 +60,6 @@
       hotel_star: idx.hotel_star || "",
       total_km_est: idx.total_km_est ?? null,
       featured: !!idx.featured,
-      budget_price_pp: idx.budget_price_pp ?? null,
 
       image: content.image || null,
       highlight: content.highlight || "",
@@ -66,10 +71,9 @@
   }
 
   /**
-   * Fetch + merge everything, once. Returns a Promise<{ packages, byId, pricing }>
+   * Fetch + merge everything, once. Returns a Promise<{ packages, byId }>
    *   packages — array of normalized package objects (see _normalize)
    *   byId     — same data keyed by package_id for O(1) lookup
-   *   pricing  — raw /package_pricing_matrix, keyed by package_id
    */
   function load() {
     if (_cachePromise) return _cachePromise;
@@ -77,13 +81,9 @@
     _cachePromise = Promise.all([
       _fetchJSON("/templates_index"),
       _fetchJSON("/package_content"),
-      _fetchJSON("/package_pricing_matrix"),
-      _fetchJSON("/vehicle_rate_card"),
-    ]).then(([templatesIndex, packageContent, pricingMatrix, vehicleRates]) => {
+    ]).then(([templatesIndex, packageContent]) => {
       templatesIndex = templatesIndex || {};
       packageContent = packageContent || {};
-      pricingMatrix = pricingMatrix || {};
-      vehicleRates = vehicleRates || {};
 
       // Union of ids across both tables — a package missing from one side
       // (e.g. content not yet written) still shows up with whatever it has.
@@ -103,7 +103,7 @@
 
       packages.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
 
-      return { packages: packages, byId: byId, pricing: pricingMatrix, vehicleRates: vehicleRates };
+      return { packages: packages, byId: byId };
     });
 
     return _cachePromise;
@@ -119,28 +119,5 @@
     return load().then((data) => data.byId[id] || null);
   }
 
-  /**
-   * Estimate a package's total transport cost for one vehicle type, from
-   * /vehicle_rate_card — same formula documented in Firebase under
-   * per_package_vehicle_costs._formula. Used where a page needs a
-   * per-vehicle price (e.g. booking.html) rather than the pre-blended
-   * budget/premium/luxury figures in /package_pricing_matrix.
-   * Falls back to an 90km/day estimate if the package has no total_km_est.
-   */
-  function estimateVehicleCost(pkg, vehicleKey, vehicleRates) {
-    const v = vehicleRates && vehicleRates[vehicleKey];
-    if (!v || !pkg) return null;
-    const days = pkg.days || 1;
-    const km = pkg.total_km_est || days * 90;
-    const rate = v.rate_per_km_outstation || v.rate_per_km || 0;
-    return Math.round(
-      km * rate +
-        Math.max(days - 1, 0) * (v.driver_night_halt || 0) +
-        days * (v.toll_per_day_est || v.toll_per_day || 0) +
-        days * (v.parking_per_day_est || v.parking_per_day || 0) +
-        (v.hill_permit_per_trip || 0)
-    );
-  }
-
-  global.PackageData = { load, getById, invalidate, estimateVehicleCost, DB_BASE };
+  global.PackageData = { load, getById, invalidate, DB_BASE };
 })(window);
