@@ -1,0 +1,1346 @@
+{
+  "agai-jot": {
+    "place_name": "Agai Jot",
+    "path": "fresh_images/agai-jot.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "agti-pass": {
+    "place_name": "Agti Pass",
+    "path": "fresh_images/agti-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "amb-temples": {
+    "place_name": "Amb Temples",
+    "path": "fresh_images/amb-temples.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "amilaga-pass": {
+    "place_name": "Amilaga Pass",
+    "path": "fresh_images/amilaga-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "andhra": {
+    "place_name": "Andhra",
+    "path": "fresh_images/andhra.jpg",
+    "photographer": "Kunal Gautam",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/"
+  },
+  "asha-gali": {
+    "place_name": "Asha Gali",
+    "path": "fresh_images/asha-gali.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "asni": {
+    "place_name": "Asni",
+    "path": "fresh_images/asni.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "awah-devi": {
+    "place_name": "Awah Devi",
+    "path": "fresh_images/awah-devi.jpg",
+    "photographer": "Kuldeep Singh",
+    "pexels_page": "https://www.pexels.com/photo/crowd-on-procession-9429206/"
+  },
+  "baijnath-area-spring": {
+    "place_name": "Baijnath-area Spring",
+    "path": "fresh_images/baijnath-area-spring.jpg",
+    "photographer": "Jyoti  Pur",
+    "pexels_page": "https://www.pexels.com/photo/bougainvillea-blossoms-with-himalayan-backdrop-37062366/"
+  },
+  "baira": {
+    "place_name": "Baira",
+    "path": "fresh_images/baira.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "baleni-jot": {
+    "place_name": "Baleni Jot",
+    "path": "fresh_images/baleni-jot.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "balh-valley": {
+    "place_name": "Balh Valley",
+    "path": "fresh_images/balh-valley.jpg",
+    "photographer": "Julia Volk",
+    "pexels_page": "https://www.pexels.com/photo/amazing-mountain-valley-with-green-fir-trees-and-small-village-5205541/"
+  },
+  "bangana": {
+    "place_name": "Bangana",
+    "path": "fresh_images/bangana.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "bangana-craft-village": {
+    "place_name": "Bangana Craft Village",
+    "path": "fresh_images/bangana-craft-village.jpg",
+    "photographer": "Dev Anand",
+    "pexels_page": "https://www.pexels.com/photo/elderly-man-and-woman-in-village-in-mountains-16172055/"
+  },
+  "bara-banghal-valley": {
+    "place_name": "Bara Banghal Valley",
+    "path": "fresh_images/bara-banghal-valley.jpg",
+    "photographer": "Kunal Gautam",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/"
+  },
+  "bara-lacha-la": {
+    "place_name": "Bara Lacha La",
+    "path": "fresh_images/bara-lacha-la.jpg",
+    "photographer": "Bhavuk Garg",
+    "pexels_page": "https://www.pexels.com/photo/a-white-car-near-the-mountain-13067429/"
+  },
+  "bara-pass": {
+    "place_name": "Bara Pass",
+    "path": "fresh_images/bara-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "bara-shigri-glacier": {
+    "place_name": "Bara Shigri Glacier",
+    "path": "fresh_images/bara-shigri-glacier.jpg",
+    "photographer": "Harsh  Kukadiya",
+    "pexels_page": "https://www.pexels.com/photo/stunning-himalayan-mountain-landscape-with-glacier-37454935/"
+  },
+  "baralacha-la": {
+    "place_name": "Baralacha La",
+    "path": "fresh_images/baralacha-la.jpg",
+    "photographer": "Bhavuk Garg",
+    "pexels_page": "https://www.pexels.com/photo/a-white-car-near-the-mountain-13067429/"
+  },
+  "basodan": {
+    "place_name": "Basodan",
+    "path": "fresh_images/basodan.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "bata": {
+    "place_name": "Bata",
+    "path": "fresh_images/bata.jpg",
+    "photographer": "Utkarsh Verma",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-kalpa-village-in-himachal-pradesh-38549327/"
+  },
+  "beas": {
+    "place_name": "Beas",
+    "path": "fresh_images/beas.jpg",
+    "photographer": "Rasikka  Patil",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-beas-river-in-manali-india-36721869/"
+  },
+  "bhadal": {
+    "place_name": "Bhadal",
+    "path": "fresh_images/bhadal.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "bhadal-glacier": {
+    "place_name": "Bhadal Glacier",
+    "path": "fresh_images/bhadal-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "bhagsunag-lake": {
+    "place_name": "Bhagsunag Lake",
+    "path": "fresh_images/bhagsunag-lake.jpg",
+    "photographer": "Raghav Modi",
+    "pexels_page": "https://www.pexels.com/photo/tranquil-lake-reflection-in-green-mountain-landscape-32859208/"
+  },
+  "bhakra-dam": {
+    "place_name": "Bhakra Dam",
+    "path": "fresh_images/bhakra-dam.jpg",
+    "photographer": "JASPREET SINGH",
+    "pexels_page": "https://www.pexels.com/photo/birds-eye-view-of-fields-forest-and-lake-21352768/"
+  },
+  "bharmaur": {
+    "place_name": "Bharmaur",
+    "path": "fresh_images/bharmaur.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "bherianga-pass": {
+    "place_name": "Bherianga Pass",
+    "path": "fresh_images/bherianga-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "bhim-ghasutri-jot": {
+    "place_name": "Bhim Ghasutri Jot",
+    "path": "fresh_images/bhim-ghasutri-jot.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "bhota": {
+    "place_name": "Bhota",
+    "path": "fresh_images/bhota.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "bhubu": {
+    "place_name": "Bhubu",
+    "path": "fresh_images/bhubu.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "bijhari": {
+    "place_name": "Bijhari",
+    "path": "fresh_images/bijhari.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "bilaspur": {
+    "place_name": "Bilaspur",
+    "path": "fresh_images/bilaspur.jpg",
+    "photographer": "JASPREET SINGH",
+    "pexels_page": "https://www.pexels.com/photo/birds-eye-view-of-fields-forest-and-lake-21352768/"
+  },
+  "bilaspur-town": {
+    "place_name": "Bilaspur Town",
+    "path": "fresh_images/bilaspur-town.jpg",
+    "photographer": "apertur 2.8",
+    "pexels_page": "https://www.pexels.com/photo/narrow-alleyway-in-urban-area-with-sitting-man-37789755/"
+  },
+  "borsa-pass": {
+    "place_name": "Borsa Pass",
+    "path": "fresh_images/borsa-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "brajeshwari-temple": {
+    "place_name": "Brajeshwari Temple",
+    "path": "fresh_images/brajeshwari-temple.jpg",
+    "photographer": "Daljeet Singh",
+    "pexels_page": "https://www.pexels.com/photo/radhe-krishna-temple-in-baroh-19622759/"
+  },
+  "burua-pass-buran-ghati": {
+    "place_name": "Burua Pass / Buran Ghati",
+    "path": "fresh_images/burua-pass-buran-ghati.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "chamba-valley": {
+    "place_name": "Chamba Valley",
+    "path": "fresh_images/chamba-valley.jpg",
+    "photographer": "Harin Daris",
+    "pexels_page": "https://www.pexels.com/photo/serene-forest-scene-with-horse-in-chamba-india-35055847/"
+  },
+  "chamba-dalhousie": {
+    "place_name": "Chamba–Dalhousie",
+    "path": "fresh_images/chamba-dalhousie.jpg",
+    "photographer": "Harin Daris",
+    "pexels_page": "https://www.pexels.com/photo/serene-forest-scene-with-horse-in-chamba-india-35055847/"
+  },
+  "chamba-manimahesh-chhari-yatra": {
+    "place_name": "Chamba–Manimahesh (Chhari Yatra)",
+    "path": "fresh_images/chamba-manimahesh-chhari-yatra.jpg",
+    "photographer": "nithin ajayan",
+    "pexels_page": "https://www.pexels.com/photo/solitude-on-mountain-overlook-at-sunrise-38318819/"
+  },
+  "chamunda-devi": {
+    "place_name": "Chamunda Devi",
+    "path": "fresh_images/chamunda-devi.jpg",
+    "photographer": "Mustafa  Fatemi",
+    "pexels_page": "https://www.pexels.com/photo/intricate-traditional-indian-temple-exterior-32437436/"
+  },
+  "chanderkup-lake": {
+    "place_name": "Chanderkup Lake",
+    "path": "fresh_images/chanderkup-lake.jpg",
+    "photographer": "Beladiya Nikunj",
+    "pexels_page": "https://www.pexels.com/photo/serene-landscape-in-himachal-pradesh-forest-37916100/"
+  },
+  "chandi-ka-glacier": {
+    "place_name": "Chandi-ka Glacier",
+    "path": "fresh_images/chandi-ka-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "chandra-glacier": {
+    "place_name": "Chandra Glacier",
+    "path": "fresh_images/chandra-glacier.jpg",
+    "photographer": "Daewi Hla Myint",
+    "pexels_page": "https://www.pexels.com/photo/stunning-mountain-reflection-in-himachal-pradesh-29443897/"
+  },
+  "chandra-nahan-glacier": {
+    "place_name": "Chandra Nahan Glacier",
+    "path": "fresh_images/chandra-nahan-glacier.jpg",
+    "photographer": "Daewi Hla Myint",
+    "pexels_page": "https://www.pexels.com/photo/stunning-mountain-reflection-in-himachal-pradesh-29443897/"
+  },
+  "chandra-tal": {
+    "place_name": "Chandra Tal",
+    "path": "fresh_images/chandra-tal.jpg",
+    "photographer": "Daewi Hla Myint",
+    "pexels_page": "https://www.pexels.com/photo/stunning-mountain-reflection-in-himachal-pradesh-29443897/"
+  },
+  "chandrakhani-galu": {
+    "place_name": "Chandrakhani Galu",
+    "path": "fresh_images/chandrakhani-galu.jpg",
+    "photographer": "gaurav sharma",
+    "pexels_page": "https://www.pexels.com/photo/snow-capped-mountains-under-gloomy-sky-6549482/"
+  },
+  "chandrakhani-pass": {
+    "place_name": "Chandrakhani Pass",
+    "path": "fresh_images/chandrakhani-pass.jpg",
+    "photographer": "Shovan Datta",
+    "pexels_page": "https://www.pexels.com/photo/landscape-with-mountains-6149893/"
+  },
+  "charang-pass": {
+    "place_name": "Charang Pass",
+    "path": "fresh_images/charang-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "chauri": {
+    "place_name": "Chauri",
+    "path": "fresh_images/chauri.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "chen-pass": {
+    "place_name": "Chen Pass",
+    "path": "fresh_images/chen-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "chenab": {
+    "place_name": "Chenab",
+    "path": "fresh_images/chenab.jpg",
+    "photographer": "Kunal Gautam",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/"
+  },
+  "chhitkul-meadows": {
+    "place_name": "Chhitkul Meadows",
+    "path": "fresh_images/chhitkul-meadows.jpg",
+    "photographer": "Balaji Srinivasan",
+    "pexels_page": "https://www.pexels.com/photo/green-grass-field-near-brown-mountain-4781122/"
+  },
+  "chobu-pass": {
+    "place_name": "Chobu Pass",
+    "path": "fresh_images/chobu-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "dadahu": {
+    "place_name": "Dadahu",
+    "path": "fresh_images/dadahu.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "dal-lake": {
+    "place_name": "Dal Lake",
+    "path": "fresh_images/dal-lake.jpg",
+    "photographer": "Raghav Modi",
+    "pexels_page": "https://www.pexels.com/photo/tranquil-lake-reflection-in-green-mountain-landscape-32859208/"
+  },
+  "dalhousie-jammu-through-bhandal-valley": {
+    "place_name": "Dalhousie–Jammu through Bhandal Valley",
+    "path": "fresh_images/dalhousie-jammu-through-bhandal-valley.jpg",
+    "photographer": "Charandeep  Singh",
+    "pexels_page": "https://www.pexels.com/photo/landscape-photography-of-trees-on-mountains-5837682/"
+  },
+  "dalhousie-manali-over-sach-pass": {
+    "place_name": "Dalhousie–Manali over Sach Pass",
+    "path": "fresh_images/dalhousie-manali-over-sach-pass.jpg",
+    "photographer": "Chandi Saha",
+    "pexels_page": "https://www.pexels.com/photo/mountains-slopes-around-valley-18731332/"
+  },
+  "dehar-hydro": {
+    "place_name": "Dehar Hydro",
+    "path": "fresh_images/dehar-hydro.jpg",
+    "photographer": "Kunal Gautam",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/"
+  },
+  "deotsidh-temple": {
+    "place_name": "Deotsidh Temple",
+    "path": "fresh_images/deotsidh-temple.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "dera-baba-rudra-nand": {
+    "place_name": "Dera Baba Rudra Nand",
+    "path": "fresh_images/dera-baba-rudra-nand.jpg",
+    "photographer": "Julia Volk",
+    "pexels_page": "https://www.pexels.com/photo/traditional-domed-meditation-cave-against-misty-sky-in-mountainous-valley-5205763/"
+  },
+  "dhanchho-waterfall": {
+    "place_name": "Dhanchho Waterfall",
+    "path": "fresh_images/dhanchho-waterfall.jpg",
+    "photographer": "Kunal Singh",
+    "pexels_page": "https://www.pexels.com/photo/snowy-mountains-28379601/"
+  },
+  "dharamkot": {
+    "place_name": "Dharamkot",
+    "path": "fresh_images/dharamkot.jpg",
+    "photographer": "Jyoti  Pur",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-dharamshala-with-snow-capped-mountains-37062365/"
+  },
+  "dharamshala-mcleod-ganj": {
+    "place_name": "Dharamshala / McLeod Ganj",
+    "path": "fresh_images/dharamshala-mcleod-ganj.jpg",
+    "photographer": "Mehmet Turgut  Kirkgoz",
+    "pexels_page": "https://www.pexels.com/photo/man-with-cane-sitting-on-steps-11853895/"
+  },
+  "dudhon-glacier": {
+    "place_name": "Dudhon Glacier",
+    "path": "fresh_images/dudhon-glacier.jpg",
+    "photographer": "Harsh  Kukadiya",
+    "pexels_page": "https://www.pexels.com/photo/stunning-himalayan-mountain-landscape-with-glacier-37454935/"
+  },
+  "dulchi": {
+    "place_name": "Dulchi",
+    "path": "fresh_images/dulchi.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "dun-and-sproon-valleys": {
+    "place_name": "Dun and Sproon Valleys",
+    "path": "fresh_images/dun-and-sproon-valleys.jpg",
+    "photographer": "Kunal Gautam",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/"
+  },
+  "faintu-ka-jot": {
+    "place_name": "Faintu Ka Jot",
+    "path": "fresh_images/faintu-ka-jot.jpg",
+    "photographer": "Dev Anand",
+    "pexels_page": "https://www.pexels.com/photo/elderly-man-and-woman-in-village-in-mountains-16172055/"
+  },
+  "four-passes-and-two-valleys-from-manali": {
+    "place_name": "Four Passes and Two Valleys from Manali",
+    "path": "fresh_images/four-passes-and-two-valleys-from-manali.jpg",
+    "photographer": "Chandi Saha",
+    "pexels_page": "https://www.pexels.com/photo/mountains-slopes-around-valley-18731332/"
+  },
+  "gharhu-jot": {
+    "place_name": "Gharhu Jot",
+    "path": "fresh_images/gharhu-jot.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "giri": {
+    "place_name": "Giri",
+    "path": "fresh_images/giri.jpg",
+    "photographer": "Utkarsh Verma",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-kalpa-village-in-himachal-pradesh-38549327/"
+  },
+  "govind-sagar": {
+    "place_name": "Govind Sagar",
+    "path": "fresh_images/govind-sagar.jpg",
+    "photographer": "JASPREET SINGH",
+    "pexels_page": "https://www.pexels.com/photo/birds-eye-view-of-fields-forest-and-lake-21352768/"
+  },
+  "hamirpur": {
+    "place_name": "Hamirpur",
+    "path": "fresh_images/hamirpur.jpg",
+    "photographer": "Jyoti  Pur",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-dharamshala-with-snow-capped-mountains-37062365/"
+  },
+  "hamirpur-town": {
+    "place_name": "Hamirpur Town",
+    "path": "fresh_images/hamirpur-town.jpg",
+    "photographer": "Utkarsh Verma",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-kalpa-village-in-himachal-pradesh-38549327/"
+  },
+  "hamtah-jot-pass": {
+    "place_name": "Hamtah Jot Pass",
+    "path": "fresh_images/hamtah-jot-pass.jpg",
+    "photographer": "Chandi Saha",
+    "pexels_page": "https://www.pexels.com/photo/mountains-slopes-around-valley-18731332/"
+  },
+  "hangrang-valley": {
+    "place_name": "Hangrang Valley",
+    "path": "fresh_images/hangrang-valley.jpg",
+    "photographer": "Simranpreet  Singh",
+    "pexels_page": "https://www.pexels.com/photo/stunning-spiti-valley-mountain-landscape-32031273/"
+  },
+  "hanuman-tibba-circuit": {
+    "place_name": "Hanuman Tibba Circuit",
+    "path": "fresh_images/hanuman-tibba-circuit.jpg",
+    "photographer": "Melbin Jacob",
+    "pexels_page": "https://www.pexels.com/photo/black-mountains-under-dark-blue-sky-19811583/"
+  },
+  "jalal": {
+    "place_name": "Jalal",
+    "path": "fresh_images/jalal.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "jalsu-ka-jot": {
+    "place_name": "Jalsu Ka Jot",
+    "path": "fresh_images/jalsu-ka-jot.jpg",
+    "photographer": "Beladiya Nikunj",
+    "pexels_page": "https://www.pexels.com/photo/serene-landscape-in-himachal-pradesh-forest-37916100/"
+  },
+  "jawalamukhi-spring": {
+    "place_name": "Jawalamukhi Spring",
+    "path": "fresh_images/jawalamukhi-spring.jpg",
+    "photographer": "Nitesh Rana",
+    "pexels_page": "https://www.pexels.com/photo/majestic-glacier-in-mountains-6496159/"
+  },
+  "jeori-hot-springs": {
+    "place_name": "Jeori Hot Springs",
+    "path": "fresh_images/jeori-hot-springs.jpg",
+    "photographer": "b s",
+    "pexels_page": "https://www.pexels.com/photo/wooden-buildings-with-architectural-details-in-a-village-26202865/"
+  },
+  "jogindernagar": {
+    "place_name": "Jogindernagar",
+    "path": "fresh_images/jogindernagar.jpg",
+    "photographer": "Dev Anand",
+    "pexels_page": "https://www.pexels.com/photo/elderly-man-and-woman-in-village-in-mountains-16172055/"
+  },
+  "kalicho": {
+    "place_name": "Kalicho",
+    "path": "fresh_images/kalicho.jpg",
+    "photographer": "Abhinav Goswami",
+    "pexels_page": "https://www.pexels.com/photo/aerial-photography-of-a-village-in-the-countryside-13727745/"
+  },
+  "kalika-kund": {
+    "place_name": "Kalika Kund",
+    "path": "fresh_images/kalika-kund.jpg",
+    "photographer": "Melbin Jacob",
+    "pexels_page": "https://www.pexels.com/photo/black-mountains-under-dark-blue-sky-19811583/"
+  },
+  "kalpa-karchham-kinner-kailash-parikrama-circuit": {
+    "place_name": "Kalpa–Karchham: Kinner Kailash Parikrama Circuit",
+    "path": "fresh_images/kalpa-karchham-kinner-kailash-parikrama-circuit.jpg",
+    "photographer": "urtimud.89",
+    "pexels_page": "https://www.pexels.com/photo/kinnaur-kailash-temple-with-snow-capped-himalayas-32261679/"
+  },
+  "kandaghat": {
+    "place_name": "Kandaghat",
+    "path": "fresh_images/kandaghat.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "kangra": {
+    "place_name": "Kangra",
+    "path": "fresh_images/kangra.jpg",
+    "photographer": "Anshuman Sharma",
+    "pexels_page": "https://www.pexels.com/photo/majestic-mountains-in-summer-15139109/"
+  },
+  "kangra-valley": {
+    "place_name": "Kangra Valley",
+    "path": "fresh_images/kangra-valley.jpg",
+    "photographer": "Anshuman Sharma",
+    "pexels_page": "https://www.pexels.com/photo/majestic-mountains-in-summer-15139109/"
+  },
+  "karpat-glacier": {
+    "place_name": "Karpat Glacier",
+    "path": "fresh_images/karpat-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "karsog": {
+    "place_name": "Karsog",
+    "path": "fresh_images/karsog.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "kasauli-brewery": {
+    "place_name": "Kasauli Brewery",
+    "path": "fresh_images/kasauli-brewery.jpg",
+    "photographer": "Mukesh Kumar",
+    "pexels_page": "https://www.pexels.com/photo/clouds-over-town-and-forest-11090653/"
+  },
+  "kasol-hot-water-spot": {
+    "place_name": "Kasol Hot Water Spot",
+    "path": "fresh_images/kasol-hot-water-spot.jpg",
+    "photographer": "Shreyas Kc",
+    "pexels_page": "https://www.pexels.com/photo/time-lapse-photography-of-body-of-water-surrounded-by-trees-944395/"
+  },
+  "khajjiar-lake": {
+    "place_name": "Khajjiar Lake",
+    "path": "fresh_images/khajjiar-lake.jpg",
+    "photographer": "Ravinder Banyal",
+    "pexels_page": "https://www.pexels.com/photo/herd-of-sheep-eating-grass-during-day-2573549/"
+  },
+  "kiarda-dun-valley": {
+    "place_name": "Kiarda-dun Valley",
+    "path": "fresh_images/kiarda-dun-valley.jpg",
+    "photographer": "Kunal Gautam",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/"
+  },
+  "kopra-spring": {
+    "place_name": "Kopra Spring",
+    "path": "fresh_images/kopra-spring.jpg",
+    "photographer": "Nitesh Rana",
+    "pexels_page": "https://www.pexels.com/photo/majestic-glacier-in-mountains-6496159/"
+  },
+  "kullu-valley": {
+    "place_name": "Kullu Valley",
+    "path": "fresh_images/kullu-valley.jpg",
+    "photographer": "Prashant  Mevada",
+    "pexels_page": "https://www.pexels.com/photo/sunrise-over-mountain-village-in-the-himalayas-38087043/"
+  },
+  "kullu-manali": {
+    "place_name": "Kullu–Manali",
+    "path": "fresh_images/kullu-manali.jpg",
+    "photographer": "Nitesh Rana",
+    "pexels_page": "https://www.pexels.com/photo/majestic-glacier-in-mountains-6496159/"
+  },
+  "kumarhatti": {
+    "place_name": "Kumarhatti",
+    "path": "fresh_images/kumarhatti.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "kumarwah-lake": {
+    "place_name": "Kumarwah Lake",
+    "path": "fresh_images/kumarwah-lake.jpg",
+    "photographer": "JASPREET SINGH",
+    "pexels_page": "https://www.pexels.com/photo/birds-eye-view-of-fields-forest-and-lake-21352768/"
+  },
+  "kunzum-la": {
+    "place_name": "Kunzum La",
+    "path": "fresh_images/kunzum-la.jpg",
+    "photographer": "Priyanshu Bisht",
+    "pexels_page": "https://www.pexels.com/photo/dry-mountain-landscape-under-the-blue-sky-9390367/"
+  },
+  "kutlehar-fort": {
+    "place_name": "Kutlehar Fort",
+    "path": "fresh_images/kutlehar-fort.jpg",
+    "photographer": "Abhinav Goswami",
+    "pexels_page": "https://www.pexels.com/photo/aerial-photography-of-a-village-in-the-countryside-13727745/"
+  },
+  "lady-of-keylong-glacier": {
+    "place_name": "Lady of Keylong Glacier",
+    "path": "fresh_images/lady-of-keylong-glacier.jpg",
+    "photographer": "Nitesh Kaundal",
+    "pexels_page": "https://www.pexels.com/photo/an-aerial-photography-of-a-snow-covered-mountain-under-the-blue-sky-and-white-clouds-12370834/"
+  },
+  "lahaul-spiti": {
+    "place_name": "Lahaul & Spiti",
+    "path": "fresh_images/lahaul-spiti.jpg",
+    "photographer": "Animesh Paul",
+    "pexels_page": "https://www.pexels.com/photo/aerial-view-of-spiti-valley-s-majestic-mountains-38168221/"
+  },
+  "lahaul-valley": {
+    "place_name": "Lahaul Valley",
+    "path": "fresh_images/lahaul-valley.jpg",
+    "photographer": "Animesh Paul",
+    "pexels_page": "https://www.pexels.com/photo/aerial-view-of-spiti-valley-s-majestic-mountains-38168221/"
+  },
+  "laluni-jot": {
+    "place_name": "Laluni Jot",
+    "path": "fresh_images/laluni-jot.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "lama-dal-lake": {
+    "place_name": "Lama Dal Lake",
+    "path": "fresh_images/lama-dal-lake.jpg",
+    "photographer": "Beladiya Nikunj",
+    "pexels_page": "https://www.pexels.com/photo/serene-landscape-in-himachal-pradesh-forest-37916100/"
+  },
+  "lamkhaga-pass": {
+    "place_name": "Lamkhaga Pass",
+    "path": "fresh_images/lamkhaga-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "lippa-asrang-sanctuary": {
+    "place_name": "Lippa-Asrang Sanctuary",
+    "path": "fresh_images/lippa-asrang-sanctuary.jpg",
+    "photographer": "Prateek Lall",
+    "pexels_page": "https://www.pexels.com/photo/colorful-buddhist-monastery-among-himalayan-hills-38520705/"
+  },
+  "lunani-spring": {
+    "place_name": "Lunani Spring",
+    "path": "fresh_images/lunani-spring.jpg",
+    "photographer": "sagar sintan",
+    "pexels_page": "https://www.pexels.com/photo/rustic-hut-near-tranquil-forest-waterfall-35918317/"
+  },
+  "mahakali-lake": {
+    "place_name": "Mahakali Lake",
+    "path": "fresh_images/mahakali-lake.jpg",
+    "photographer": "Winson Mathew",
+    "pexels_page": "https://www.pexels.com/photo/man-standing-near-the-river-1205230/"
+  },
+  "makori-jot": {
+    "place_name": "Makori Jot",
+    "path": "fresh_images/makori-jot.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "manali-pass": {
+    "place_name": "Manali Pass",
+    "path": "fresh_images/manali-pass.jpg",
+    "photographer": "Chandi Saha",
+    "pexels_page": "https://www.pexels.com/photo/mountains-slopes-around-valley-18731332/"
+  },
+  "manali-bhanara": {
+    "place_name": "Manali–Bhanara",
+    "path": "fresh_images/manali-bhanara.jpg",
+    "photographer": "Kunal Gautam",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/"
+  },
+  "manali-bhrigu-lake": {
+    "place_name": "Manali–Bhrigu Lake",
+    "path": "fresh_images/manali-bhrigu-lake.jpg",
+    "photographer": "Ian Samuel J",
+    "pexels_page": "https://www.pexels.com/photo/camp-of-hikers-in-valley-12366139/"
+  },
+  "manali-kalath-via-thanpari-tibba": {
+    "place_name": "Manali–Kalath via Thanpari Tibba",
+    "path": "fresh_images/manali-kalath-via-thanpari-tibba.jpg",
+    "photographer": "Kunal Gautam",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/"
+  },
+  "manali-leh-via-shingola-and-padam": {
+    "place_name": "Manali–Leh via Shingola and Padam",
+    "path": "fresh_images/manali-leh-via-shingola-and-padam.jpg",
+    "photographer": "Kunal Gautam",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/"
+  },
+  "manali-manikaran": {
+    "place_name": "Manali–Manikaran",
+    "path": "fresh_images/manali-manikaran.jpg",
+    "photographer": "Kunal Gautam",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/"
+  },
+  "manali-shimla-via-trekking-spiti-valley": {
+    "place_name": "Manali–Shimla via trekking Spiti Valley",
+    "path": "fresh_images/manali-shimla-via-trekking-spiti-valley.jpg",
+    "photographer": "Matthew Solomon",
+    "pexels_page": "https://www.pexels.com/photo/breathtaking-winter-view-of-kibber-village-india-31346694/"
+  },
+  "manali-three-sacred-lakes": {
+    "place_name": "Manali–Three Sacred Lakes",
+    "path": "fresh_images/manali-three-sacred-lakes.jpg",
+    "photographer": "Ankit Kumar",
+    "pexels_page": "https://www.pexels.com/photo/green-mountain-photo-546256/"
+  },
+  "manali-udaipur-via-gompa-trail": {
+    "place_name": "Manali–Udaipur via Gompa Trail",
+    "path": "fresh_images/manali-udaipur-via-gompa-trail.jpg",
+    "photographer": "Hitesh Paldiya",
+    "pexels_page": "https://www.pexels.com/photo/man-walking-with-a-mule-carrying-luggage-16585798/"
+  },
+  "mandi": {
+    "place_name": "Mandi",
+    "path": "fresh_images/mandi.jpg",
+    "photographer": "Harsh  Kukadiya",
+    "pexels_page": "https://www.pexels.com/photo/aerial-view-of-a-mountain-village-in-himachal-pradesh-37764822/"
+  },
+  "mandi-town": {
+    "place_name": "Mandi Town",
+    "path": "fresh_images/mandi-town.jpg",
+    "photographer": "Harsh  Kukadiya",
+    "pexels_page": "https://www.pexels.com/photo/aerial-view-of-a-mountain-village-in-himachal-pradesh-37764822/"
+  },
+  "manikaran-hot-springs": {
+    "place_name": "Manikaran Hot Springs",
+    "path": "fresh_images/manikaran-hot-springs.jpg",
+    "photographer": "Ex Route Adventures",
+    "pexels_page": "https://www.pexels.com/photo/scenic-river-view-in-kasol-himachal-pradesh-29494585/"
+  },
+  "manthora-glacier": {
+    "place_name": "Manthora Glacier",
+    "path": "fresh_images/manthora-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "markand-temple": {
+    "place_name": "Markand Temple",
+    "path": "fresh_images/markand-temple.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "markanda": {
+    "place_name": "Markanda",
+    "path": "fresh_images/markanda.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "masrur-rock-cut-temple": {
+    "place_name": "Masrur Rock Cut Temple",
+    "path": "fresh_images/masrur-rock-cut-temple.jpg",
+    "photographer": "Chandi Saha",
+    "pexels_page": "https://www.pexels.com/photo/stone-carvings-at-mahabalipuram-tamil-nadu-37271213/"
+  },
+  "mulari-jot": {
+    "place_name": "Mulari Jot",
+    "path": "fresh_images/mulari-jot.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "nadaun": {
+    "place_name": "Nadaun",
+    "path": "fresh_images/nadaun.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "naggar": {
+    "place_name": "Naggar",
+    "path": "fresh_images/naggar.jpg",
+    "photographer": "Subhankar Roy",
+    "pexels_page": "https://www.pexels.com/photo/naggar-castle-kullu-himachal-pradesh-india-18406578/"
+  },
+  "nahan-mussoorie": {
+    "place_name": "Nahan–Mussoorie",
+    "path": "fresh_images/nahan-mussoorie.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "nahan-naura-through-wildlife-sanctuary": {
+    "place_name": "Nahan–Naura through wildlife sanctuary",
+    "path": "fresh_images/nahan-naura-through-wildlife-sanctuary.jpg",
+    "photographer": "Darshil Bhuva",
+    "pexels_page": "https://www.pexels.com/photo/a-green-trees-in-the-forest-14387325/"
+  },
+  "nahan-shimla-via-chail": {
+    "place_name": "Nahan–Shimla via Chail",
+    "path": "fresh_images/nahan-shimla-via-chail.jpg",
+    "photographer": "Ibrahim Bennett",
+    "pexels_page": "https://www.pexels.com/photo/scenic-shimla-mountains-at-sunrise-30550228/"
+  },
+  "nahan-shimla-via-churdhar-and-neripul": {
+    "place_name": "Nahan–Shimla via Churdhar and Neripul",
+    "path": "fresh_images/nahan-shimla-via-churdhar-and-neripul.jpg",
+    "photographer": "Jaynarayan Parida",
+    "pexels_page": "https://www.pexels.com/photo/tranquil-garden-scene-with-red-roof-pavilion-38297839/"
+  },
+  "naina-devi-temple": {
+    "place_name": "Naina Devi Temple",
+    "path": "fresh_images/naina-devi-temple.jpg",
+    "photographer": "Rajesh S  Balouria",
+    "pexels_page": "https://www.pexels.com/photo/intricate-wooden-temple-facade-in-shimla-38703962/"
+  },
+  "nako": {
+    "place_name": "Nako",
+    "path": "fresh_images/nako.jpg",
+    "photographer": "Pramod  Tiwari",
+    "pexels_page": "https://www.pexels.com/photo/man-standing-on-rocks-over-nako-lake-and-village-near-13302524/"
+  },
+  "nalgaon-pass": {
+    "place_name": "Nalgaon Pass",
+    "path": "fresh_images/nalgaon-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "nalwari-fair-ground": {
+    "place_name": "Nalwari Fair Ground",
+    "path": "fresh_images/nalwari-fair-ground.jpg",
+    "photographer": "Aalekh Deval",
+    "pexels_page": "https://www.pexels.com/photo/people-in-het-himachal-pradesh-cricket-association-stadium-in-india-9153468/"
+  },
+  "nangal-dam": {
+    "place_name": "Nangal Dam",
+    "path": "fresh_images/nangal-dam.jpg",
+    "photographer": "JASPREET SINGH",
+    "pexels_page": "https://www.pexels.com/photo/birds-eye-view-of-fields-forest-and-lake-21352768/"
+  },
+  "nikhora-pass": {
+    "place_name": "Nikhora Pass",
+    "path": "fresh_images/nikhora-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "north-glacier": {
+    "place_name": "North Glacier",
+    "path": "fresh_images/north-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "pabbar": {
+    "place_name": "Pabbar",
+    "path": "fresh_images/pabbar.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "padri": {
+    "place_name": "Padri",
+    "path": "fresh_images/padri.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "pandoh-lake": {
+    "place_name": "Pandoh Lake",
+    "path": "fresh_images/pandoh-lake.jpg",
+    "photographer": "JASPREET SINGH",
+    "pexels_page": "https://www.pexels.com/photo/birds-eye-view-of-fields-forest-and-lake-21352768/"
+  },
+  "paonta-sahib": {
+    "place_name": "Paonta Sahib",
+    "path": "fresh_images/paonta-sahib.jpg",
+    "photographer": "KAILASH KUMAR ARYA",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-gurdwara-in-mountain-valley-36562054/"
+  },
+  "parbati-glacier": {
+    "place_name": "Parbati Glacier",
+    "path": "fresh_images/parbati-glacier.jpg",
+    "photographer": "Harsh  Kukadiya",
+    "pexels_page": "https://www.pexels.com/photo/stunning-himalayan-mountain-landscape-with-glacier-37454935/"
+  },
+  "pin-parbati-glacier": {
+    "place_name": "Pin Parbati Glacier",
+    "path": "fresh_images/pin-parbati-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "pin-parbati-pass": {
+    "place_name": "Pin Parbati Pass",
+    "path": "fresh_images/pin-parbati-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "pong-dam-wildlife-sanctuary": {
+    "place_name": "Pong Dam Wildlife Sanctuary",
+    "path": "fresh_images/pong-dam-wildlife-sanctuary.jpg",
+    "photographer": "Sanjeev Kumar Maurya",
+    "pexels_page": "https://www.pexels.com/photo/birds-in-flight-over-tranquil-wetland-at-sunrise-32952278/"
+  },
+  "pong-lake-pong-dam-reservoir": {
+    "place_name": "Pong Lake / Pong Dam Reservoir",
+    "path": "fresh_images/pong-lake-pong-dam-reservoir.jpg",
+    "photographer": "JASPREET SINGH",
+    "pexels_page": "https://www.pexels.com/photo/birds-eye-view-of-fields-forest-and-lake-21352768/"
+  },
+  "rahla-waterfall": {
+    "place_name": "Rahla Waterfall",
+    "path": "fresh_images/rahla-waterfall.jpg",
+    "photographer": "Kunal Singh",
+    "pexels_page": "https://www.pexels.com/photo/snowy-mountains-28379601/"
+  },
+  "rai-ghar-glacier": {
+    "place_name": "Rai Ghar Glacier",
+    "path": "fresh_images/rai-ghar-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "rajgarh": {
+    "place_name": "Rajgarh",
+    "path": "fresh_images/rajgarh.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "ranjcha-pass": {
+    "place_name": "Ranjcha Pass",
+    "path": "fresh_images/ranjcha-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "ranser-lake": {
+    "place_name": "Ranser Lake",
+    "path": "fresh_images/ranser-lake.jpg",
+    "photographer": "Winson Mathew",
+    "pexels_page": "https://www.pexels.com/photo/man-standing-near-the-river-1205230/"
+  },
+  "rashol-jot": {
+    "place_name": "Rashol Jot",
+    "path": "fresh_images/rashol-jot.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "ravi": {
+    "place_name": "Ravi",
+    "path": "fresh_images/ravi.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "rohru": {
+    "place_name": "Rohru",
+    "path": "fresh_images/rohru.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "rupin-ghati": {
+    "place_name": "Rupin Ghati",
+    "path": "fresh_images/rupin-ghati.jpg",
+    "photographer": "Priti Jani",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-landscape-view-38930219/"
+  },
+  "sammuder-tapa-glacier": {
+    "place_name": "Sammuder Tapa Glacier",
+    "path": "fresh_images/sammuder-tapa-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "sangla-valley": {
+    "place_name": "Sangla Valley",
+    "path": "fresh_images/sangla-valley.jpg",
+    "photographer": "Ravi Mittal",
+    "pexels_page": "https://www.pexels.com/photo/view-of-houses-in-a-mountain-valley-17115666/"
+  },
+  "sara-umga-glacier": {
+    "place_name": "Sara Umga Glacier",
+    "path": "fresh_images/sara-umga-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "sarahan-sirmour": {
+    "place_name": "Sarahan (Sirmour)",
+    "path": "fresh_images/sarahan-sirmour.jpg",
+    "photographer": "Kunal Gautam",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/"
+  },
+  "sari-galu": {
+    "place_name": "Sari Galu",
+    "path": "fresh_images/sari-galu.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "satdhara-water-spring": {
+    "place_name": "Satdhara Water Spring",
+    "path": "fresh_images/satdhara-water-spring.jpg",
+    "photographer": "sagar sintan",
+    "pexels_page": "https://www.pexels.com/photo/rustic-hut-near-tranquil-forest-waterfall-35918317/"
+  },
+  "sathali-devi-temple": {
+    "place_name": "Sathali Devi Temple",
+    "path": "fresh_images/sathali-devi-temple.jpg",
+    "photographer": "Rajesh S  Balouria",
+    "pexels_page": "https://www.pexels.com/photo/intricate-wooden-temple-facade-in-shimla-38703962/"
+  },
+  "satluj": {
+    "place_name": "Satluj",
+    "path": "fresh_images/satluj.jpg",
+    "photographer": "Jyoti  Pur",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-dharamshala-with-snow-capped-mountains-37062365/"
+  },
+  "satluj-valley": {
+    "place_name": "Satluj Valley",
+    "path": "fresh_images/satluj-valley.jpg",
+    "photographer": "Kartikey Das",
+    "pexels_page": "https://www.pexels.com/photo/river-between-mountains-with-fogs-1128554/"
+  },
+  "shakari": {
+    "place_name": "Shakari",
+    "path": "fresh_images/shakari.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "shan-glacier": {
+    "place_name": "Shan Glacier",
+    "path": "fresh_images/shan-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "shibaling-pass": {
+    "place_name": "Shibaling Pass",
+    "path": "fresh_images/shibaling-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "shikari-devi": {
+    "place_name": "Shikari Devi",
+    "path": "fresh_images/shikari-devi.jpg",
+    "photographer": "Chirayu Vyas",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-person-walking-on-a-grass-field-in-mountains-26184218/"
+  },
+  "shillai": {
+    "place_name": "Shillai",
+    "path": "fresh_images/shillai.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "shimla-churdhar-via-fagu-neripul-and-pul-bahal": {
+    "place_name": "Shimla–Churdhar via Fagu, Neripul and Pul Bahal",
+    "path": "fresh_images/shimla-churdhar-via-fagu-neripul-and-pul-bahal.jpg",
+    "photographer": "The Visionary Vows",
+    "pexels_page": "https://www.pexels.com/photo/scenic-aerial-view-of-city-in-hillside-landscape-32862097/"
+  },
+  "shimla-churdhar-via-rohru-ranahat-and-haripurdhar": {
+    "place_name": "Shimla–Churdhar via Rohru, Ranahat and Haripurdhar",
+    "path": "fresh_images/shimla-churdhar-via-rohru-ranahat-and-haripurdhar.jpg",
+    "photographer": "The Visionary Vows",
+    "pexels_page": "https://www.pexels.com/photo/scenic-aerial-view-of-city-in-hillside-landscape-32862097/"
+  },
+  "shimla-manali-via-bashleo-pass": {
+    "place_name": "Shimla–Manali via Bashleo Pass",
+    "path": "fresh_images/shimla-manali-via-bashleo-pass.jpg",
+    "photographer": "Chandi Saha",
+    "pexels_page": "https://www.pexels.com/photo/mountains-slopes-around-valley-18731332/"
+  },
+  "shimla-manali-via-jalori-pass": {
+    "place_name": "Shimla–Manali via Jalori Pass",
+    "path": "fresh_images/shimla-manali-via-jalori-pass.jpg",
+    "photographer": "Jyoti  Pur",
+    "pexels_page": "https://www.pexels.com/photo/scenic-mountain-road-in-manali-with-snowy-peaks-37078220/"
+  },
+  "shimla-mandi-via-tattapani": {
+    "place_name": "Shimla–Mandi via Tattapani",
+    "path": "fresh_images/shimla-mandi-via-tattapani.jpg",
+    "photographer": "Harsh  Kukadiya",
+    "pexels_page": "https://www.pexels.com/photo/aerial-view-of-a-mountain-village-in-himachal-pradesh-37764822/"
+  },
+  "shimla-rohru-via-hatkoti": {
+    "place_name": "Shimla–Rohru via Hatkoti",
+    "path": "fresh_images/shimla-rohru-via-hatkoti.jpg",
+    "photographer": "Sujata Sankhyan",
+    "pexels_page": "https://www.pexels.com/photo/snow-covered-shimla-cityscape-in-winter-31771332/"
+  },
+  "shimla-shali-peak": {
+    "place_name": "Shimla–Shali Peak",
+    "path": "fresh_images/shimla-shali-peak.jpg",
+    "photographer": "Avinash Patel",
+    "pexels_page": "https://www.pexels.com/photo/photography-of-man-in-black-hooded-jacket-and-red-backpack-facing-snow-covered-mountain-842155/"
+  },
+  "shimla-tattapani-via-tara-devi-and-chail": {
+    "place_name": "Shimla–Tattapani via Tara Devi and Chail",
+    "path": "fresh_images/shimla-tattapani-via-tara-devi-and-chail.jpg",
+    "photographer": "Sujata Sankhyan",
+    "pexels_page": "https://www.pexels.com/photo/snow-covered-shimla-cityscape-in-winter-31771332/"
+  },
+  "shinghor-pass": {
+    "place_name": "Shinghor Pass",
+    "path": "fresh_images/shinghor-pass.jpg",
+    "photographer": "Chandi Saha",
+    "pexels_page": "https://www.pexels.com/photo/mountains-slopes-around-valley-18731332/"
+  },
+  "shinka-pass": {
+    "place_name": "Shinka Pass",
+    "path": "fresh_images/shinka-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "shipki-la": {
+    "place_name": "Shipki La",
+    "path": "fresh_images/shipki-la.jpg",
+    "photographer": "Bhavuk Garg",
+    "pexels_page": "https://www.pexels.com/photo/a-white-car-near-the-mountain-13067429/"
+  },
+  "shipting": {
+    "place_name": "Shipting",
+    "path": "fresh_images/shipting.jpg",
+    "photographer": "Mohit Hambiria",
+    "pexels_page": "https://www.pexels.com/photo/hills-behind-road-in-village-19992231/"
+  },
+  "shipting-glacier": {
+    "place_name": "Shipting Glacier",
+    "path": "fresh_images/shipting-glacier.jpg",
+    "photographer": "Harsh  Kukadiya",
+    "pexels_page": "https://www.pexels.com/photo/stunning-himalayan-mountain-landscape-with-glacier-37454935/"
+  },
+  "shoolini-temple": {
+    "place_name": "Shoolini Temple",
+    "path": "fresh_images/shoolini-temple.jpg",
+    "photographer": "Rajesh S  Balouria",
+    "pexels_page": "https://www.pexels.com/photo/intricate-wooden-temple-facade-in-shimla-38703962/"
+  },
+  "sili-laluni-glacier": {
+    "place_name": "Sili Laluni Glacier",
+    "path": "fresh_images/sili-laluni-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "singoor-pass": {
+    "place_name": "Singoor Pass",
+    "path": "fresh_images/singoor-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "sirmour": {
+    "place_name": "Sirmour",
+    "path": "fresh_images/sirmour.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "siul": {
+    "place_name": "Siul",
+    "path": "fresh_images/siul.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "solan-town": {
+    "place_name": "Solan Town",
+    "path": "fresh_images/solan-town.jpg",
+    "photographer": "Kirandeep Singh Walia",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-mountain-with-trees-12958053/"
+  },
+  "sora-umga-pass": {
+    "place_name": "Sora Umga Pass",
+    "path": "fresh_images/sora-umga-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "south-dakka-glacier": {
+    "place_name": "South Dakka Glacier",
+    "path": "fresh_images/south-dakka-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "spiti-valley": {
+    "place_name": "Spiti Valley",
+    "path": "fresh_images/spiti-valley.jpg",
+    "photographer": "Yogendra  Singh",
+    "pexels_page": "https://www.pexels.com/photo/captivating-winter-view-of-key-monastery-in-spiti-valley-31307365/"
+  },
+  "subathu": {
+    "place_name": "Subathu",
+    "path": "fresh_images/subathu.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "sujanpur-tira": {
+    "place_name": "Sujanpur Tira",
+    "path": "fresh_images/sujanpur-tira.jpg",
+    "photographer": "Mohit Hambiria",
+    "pexels_page": "https://www.pexels.com/photo/hills-behind-road-in-village-19992231/"
+  },
+  "suketi-fossil-park": {
+    "place_name": "Suketi Fossil Park",
+    "path": "fresh_images/suketi-fossil-park.jpg",
+    "photographer": "Ravindra Nadkarni",
+    "pexels_page": "https://www.pexels.com/photo/scenic-mountain-road-in-rugged-canyon-landscape-39003875/"
+  },
+  "sundernagar": {
+    "place_name": "Sundernagar",
+    "path": "fresh_images/sundernagar.jpg",
+    "photographer": "apertur 2.8",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-mountains-surrounding-urban-valley-38043207/"
+  },
+  "suraj-tal": {
+    "place_name": "Suraj Tal",
+    "path": "fresh_images/suraj-tal.jpg",
+    "photographer": "Daewi Hla Myint",
+    "pexels_page": "https://www.pexels.com/photo/stunning-mountain-reflection-in-himachal-pradesh-29443897/"
+  },
+  "swan-river": {
+    "place_name": "Swan River",
+    "path": "fresh_images/swan-river.jpg",
+    "photographer": "Kartikey Das",
+    "pexels_page": "https://www.pexels.com/photo/river-between-mountains-with-fogs-1128554/"
+  },
+  "swan-river-eco-park": {
+    "place_name": "Swan River Eco Park",
+    "path": "fresh_images/swan-river-eco-park.jpg",
+    "photographer": "Mustafa  Fatemi",
+    "pexels_page": "https://www.pexels.com/photo/scenic-mountain-river-at-dawn-29793799/"
+  },
+  "swarghat": {
+    "place_name": "Swarghat",
+    "path": "fresh_images/swarghat.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "tal-glacier": {
+    "place_name": "Tal Glacier",
+    "path": "fresh_images/tal-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "talang-pass": {
+    "place_name": "Talang Pass",
+    "path": "fresh_images/talang-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "tamsar-pass": {
+    "place_name": "Tamsar Pass",
+    "path": "fresh_images/tamsar-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "tant-gari": {
+    "place_name": "Tant Gari",
+    "path": "fresh_images/tant-gari.jpg",
+    "photographer": "Kuldeep Singh",
+    "pexels_page": "https://www.pexels.com/photo/crowd-on-procession-9429206/"
+  },
+  "tapni-lahuni-glacier": {
+    "place_name": "Tapni Lahuni Glacier",
+    "path": "fresh_images/tapni-lahuni-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "taragiri-glacier": {
+    "place_name": "Taragiri Glacier",
+    "path": "fresh_images/taragiri-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "tarapur-fort": {
+    "place_name": "Tarapur Fort",
+    "path": "fresh_images/tarapur-fort.jpg",
+    "photographer": "Nikhil Kumar Pal",
+    "pexels_page": "https://www.pexels.com/photo/facade-of-the-raja-mahal-in-orchha-india-20000876/"
+  },
+  "temp-la": {
+    "place_name": "Temp La",
+    "path": "fresh_images/temp-la.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "tempola-pass": {
+    "place_name": "Tempola Pass",
+    "path": "fresh_images/tempola-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "tharong-glacier": {
+    "place_name": "Tharong Glacier",
+    "path": "fresh_images/tharong-glacier.jpg",
+    "photographer": "Harsh  Kukadiya",
+    "pexels_page": "https://www.pexels.com/photo/stunning-himalayan-mountain-landscape-with-glacier-37454935/"
+  },
+  "the-ridge-mall-road": {
+    "place_name": "The Ridge & Mall Road",
+    "path": "fresh_images/the-ridge-mall-road.jpg",
+    "photographer": "Muhammed zeya",
+    "pexels_page": "https://www.pexels.com/photo/gaiety-heritage-cultural-complex-shimla-in-india-at-dusk-16777016/"
+  },
+  "tichu-glacier": {
+    "place_name": "Tichu Glacier",
+    "path": "fresh_images/tichu-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "tori-jot": {
+    "place_name": "Tori Jot",
+    "path": "fresh_images/tori-jot.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "triund-trek": {
+    "place_name": "Triund Trek",
+    "path": "fresh_images/triund-trek.jpg",
+    "photographer": "Mohamed Regaieg",
+    "pexels_page": "https://www.pexels.com/photo/triund-peak-27462660/"
+  },
+  "ulthampu-glacier": {
+    "place_name": "Ulthampu Glacier",
+    "path": "fresh_images/ulthampu-glacier.jpg",
+    "photographer": "Pankaj Bhardwaj",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-a-mountain-peak-17398066/"
+  },
+  "una": {
+    "place_name": "Una",
+    "path": "fresh_images/una.jpg",
+    "photographer": "JASPREET SINGH",
+    "pexels_page": "https://www.pexels.com/photo/birds-eye-view-of-fields-forest-and-lake-21352768/"
+  },
+  "una-town": {
+    "place_name": "Una Town",
+    "path": "fresh_images/una-town.jpg",
+    "photographer": "Utkarsh Verma",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-kalpa-village-in-himachal-pradesh-38549327/"
+  },
+  "viceregal-lodge": {
+    "place_name": "Viceregal Lodge",
+    "path": "fresh_images/viceregal-lodge.jpg",
+    "photographer": "INDU BIKASH SARKER",
+    "pexels_page": "https://www.pexels.com/photo/view-of-the-padam-palace-rampur-india-19330418/"
+  },
+  "vyas-gufa": {
+    "place_name": "Vyas Gufa",
+    "path": "fresh_images/vyas-gufa.jpg",
+    "photographer": "Julia Volk",
+    "pexels_page": "https://www.pexels.com/photo/traditional-domed-meditation-cave-against-misty-sky-in-mountainous-valley-5205763/"
+  },
+  "waru-pass": {
+    "place_name": "Waru Pass",
+    "path": "fresh_images/waru-pass.jpg",
+    "photographer": "UTkarsh",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-mountain-with-bird-in-flight-29943762/"
+  },
+  "yamuna": {
+    "place_name": "Yamuna",
+    "path": "fresh_images/yamuna.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  }
+}
