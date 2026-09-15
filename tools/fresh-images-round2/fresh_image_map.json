@@ -1,0 +1,224 @@
+{
+  "andretta": {
+    "place_name": "Andretta",
+    "path": "fresh_images/andretta.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "annandale": {
+    "place_name": "Annandale",
+    "path": "fresh_images/annandale.jpg",
+    "photographer": "Kunal Gautam",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/"
+  },
+  "awah-devi-temple": {
+    "place_name": "Awah Devi Temple",
+    "path": "fresh_images/awah-devi-temple.jpg",
+    "photographer": "Rajesh S  Balouria",
+    "pexels_page": "https://www.pexels.com/photo/intricate-wooden-temple-facade-in-shimla-38703962/"
+  },
+  "bada-dev-kamrunag": {
+    "place_name": "Bada Dev Kamrunag",
+    "path": "fresh_images/bada-dev-kamrunag.jpg",
+    "photographer": "Rajesh S  Balouria",
+    "pexels_page": "https://www.pexels.com/photo/intricate-wooden-temple-facade-in-shimla-38703962/"
+  },
+  "bahu-village": {
+    "place_name": "Bahu Village",
+    "path": "fresh_images/bahu-village.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "charang-valley": {
+    "place_name": "Charang Valley",
+    "path": "fresh_images/charang-valley.jpg",
+    "photographer": "Simranpreet  Singh",
+    "pexels_page": "https://www.pexels.com/photo/stunning-spiti-valley-mountain-landscape-32031273/"
+  },
+  "churdhar-peak": {
+    "place_name": "Churdhar Peak",
+    "path": "fresh_images/churdhar-peak.jpg",
+    "photographer": "ASHISH SHARMA",
+    "pexels_page": "https://www.pexels.com/photo/photo-of-mountains-surrounded-by-pine-trees-1098395/"
+  },
+  "dagshai": {
+    "place_name": "Dagshai",
+    "path": "fresh_images/dagshai.jpg",
+    "photographer": "Dev Anand",
+    "pexels_page": "https://www.pexels.com/photo/elderly-man-and-woman-in-village-in-mountains-16172055/"
+  },
+  "dera-baba-rudru": {
+    "place_name": "Dera Baba Rudru",
+    "path": "fresh_images/dera-baba-rudru.jpg",
+    "photographer": "Julia Volk",
+    "pexels_page": "https://www.pexels.com/photo/traditional-domed-meditation-cave-against-misty-sky-in-mountainous-valley-5205763/"
+  },
+  "dhankar-lake": {
+    "place_name": "Dhankar Lake",
+    "path": "fresh_images/dhankar-lake.jpg",
+    "photographer": "Sakshi Patwa",
+    "pexels_page": "https://www.pexels.com/photo/houses-on-the-rocky-mountain-side-5239005/"
+  },
+  "fagu": {
+    "place_name": "Fagu",
+    "path": "fresh_images/fagu.jpg",
+    "photographer": "Abhinav Goswami",
+    "pexels_page": "https://www.pexels.com/photo/aerial-photography-of-a-village-in-the-countryside-13727745/"
+  },
+  "gilbert-trail": {
+    "place_name": "Gilbert Trail",
+    "path": "fresh_images/gilbert-trail.jpg",
+    "photographer": "Danish pt",
+    "pexels_page": "https://www.pexels.com/photo/aerial-shot-of-unpaved-roads-in-the-mountain-12531373/"
+  },
+  "great-himalayan-national-park": {
+    "place_name": "Great Himalayan National Park",
+    "path": "fresh_images/great-himalayan-national-park.jpg",
+    "photographer": "Harsh  Kukadiya",
+    "pexels_page": "https://www.pexels.com/photo/stunning-mountain-landscape-in-himachal-pradesh-37454900/"
+  },
+  "habban-valley": {
+    "place_name": "Habban Valley",
+    "path": "fresh_images/habban-valley.jpg",
+    "photographer": "Kunal Gautam",
+    "pexels_page": "https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/"
+  },
+  "haripurdhar": {
+    "place_name": "Haripurdhar",
+    "path": "fresh_images/haripurdhar.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "jamu-peak": {
+    "place_name": "Jamu Peak",
+    "path": "fresh_images/jamu-peak.jpg",
+    "photographer": "Melbin Jacob",
+    "pexels_page": "https://www.pexels.com/photo/black-mountains-under-dark-blue-sky-19811583/"
+  },
+  "janjehli": {
+    "place_name": "Janjehli",
+    "path": "fresh_images/janjehli.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "kalatop-wildlife-sanctuary": {
+    "place_name": "Kalatop Wildlife Sanctuary",
+    "path": "fresh_images/kalatop-wildlife-sanctuary.jpg",
+    "photographer": "Darshil Bhuva",
+    "pexels_page": "https://www.pexels.com/photo/a-green-trees-in-the-forest-14387325/"
+  },
+  "kareri-village": {
+    "place_name": "Kareri Village",
+    "path": "fresh_images/kareri-village.jpg",
+    "photographer": "Dev Anand",
+    "pexels_page": "https://www.pexels.com/photo/elderly-man-and-woman-in-village-in-mountains-16172055/"
+  },
+  "karol-tibba": {
+    "place_name": "Karol Tibba",
+    "path": "fresh_images/karol-tibba.jpg",
+    "photographer": "Soubhagya Maharana",
+    "pexels_page": "https://www.pexels.com/photo/forest-mountain-hidden-in-mist-18359798/"
+  },
+  "karsog-valley": {
+    "place_name": "Karsog Valley",
+    "path": "fresh_images/karsog-valley.jpg",
+    "photographer": "Julia Volk",
+    "pexels_page": "https://www.pexels.com/photo/amazing-mountain-valley-with-green-fir-trees-and-small-village-5205541/"
+  },
+  "kinnaur-kailash-view-point": {
+    "place_name": "Kinnaur Kailash View Point",
+    "path": "fresh_images/kinnaur-kailash-view-point.jpg",
+    "photographer": "Balaji Srinivasan",
+    "pexels_page": "https://www.pexels.com/photo/photo-of-snow-capped-mountain-3534160/"
+  },
+  "mall-road": {
+    "place_name": "Mall Road",
+    "path": "fresh_images/mall-road.jpg",
+    "photographer": "Dhanraj Priyadarshi",
+    "pexels_page": "https://www.pexels.com/photo/quiet-mountain-village-street-scene-with-cars-30729231/"
+  },
+  "masroor-rock-cut-temples": {
+    "place_name": "Masroor Rock Cut Temples",
+    "path": "fresh_images/masroor-rock-cut-temples.jpg",
+    "photographer": "Chandi Saha",
+    "pexels_page": "https://www.pexels.com/photo/stone-carvings-at-mahabalipuram-tamil-nadu-37271213/"
+  },
+  "mohan-shakti-heritage-park": {
+    "place_name": "Mohan Shakti Heritage Park",
+    "path": "fresh_images/mohan-shakti-heritage-park.jpg",
+    "photographer": "Jaynarayan Parida",
+    "pexels_page": "https://www.pexels.com/photo/tranquil-garden-scene-with-red-roof-pavilion-38297839/"
+  },
+  "narvadeshwar-temple": {
+    "place_name": "Narvadeshwar Temple",
+    "path": "fresh_images/narvadeshwar-temple.jpg",
+    "photographer": "Raj Manohar",
+    "pexels_page": "https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/"
+  },
+  "palampur-tea-gardens": {
+    "place_name": "Palampur Tea Gardens",
+    "path": "fresh_images/palampur-tea-gardens.jpg",
+    "photographer": "Jyoti  Pur",
+    "pexels_page": "https://www.pexels.com/photo/bougainvillea-blossoms-with-himalayan-backdrop-37062366/"
+  },
+  "pandoh-dam": {
+    "place_name": "Pandoh Dam",
+    "path": "fresh_images/pandoh-dam.jpg",
+    "photographer": "JASPREET SINGH",
+    "pexels_page": "https://www.pexels.com/photo/birds-eye-view-of-fields-forest-and-lake-21352768/"
+  },
+  "pong-dam-lake": {
+    "place_name": "Pong Dam Lake",
+    "path": "fresh_images/pong-dam-lake.jpg",
+    "photographer": "JASPREET SINGH",
+    "pexels_page": "https://www.pexels.com/photo/birds-eye-view-of-fields-forest-and-lake-21352768/"
+  },
+  "prashar-lake": {
+    "place_name": "Prashar Lake",
+    "path": "fresh_images/prashar-lake.jpg",
+    "photographer": "Amaan Ali",
+    "pexels_page": "https://www.pexels.com/photo/unrecognizable-hiker-recreating-near-alpine-lake-during-sunset-4032759/"
+  },
+  "raison": {
+    "place_name": "Raison",
+    "path": "fresh_images/raison.jpg",
+    "photographer": "Harsh  Kukadiya",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himalayan-valley-with-winding-road-37835723/"
+  },
+  "renuka-lake": {
+    "place_name": "Renuka Lake",
+    "path": "fresh_images/renuka-lake.jpg",
+    "photographer": "Beladiya Nikunj",
+    "pexels_page": "https://www.pexels.com/photo/serene-landscape-in-himachal-pradesh-forest-37916100/"
+  },
+  "sainj-valley": {
+    "place_name": "Sainj Valley",
+    "path": "fresh_images/sainj-valley.jpg",
+    "photographer": "Julia Volk",
+    "pexels_page": "https://www.pexels.com/photo/amazing-mountain-valley-with-green-fir-trees-and-small-village-5205541/"
+  },
+  "saurabh-van-vihar": {
+    "place_name": "Saurabh Van Vihar",
+    "path": "fresh_images/saurabh-van-vihar.jpg",
+    "photographer": "Julia Volk",
+    "pexels_page": "https://www.pexels.com/photo/old-stone-buddhist-meditation-caves-in-tropical-forest-5205708/"
+  },
+  "seraj-valley": {
+    "place_name": "Seraj Valley",
+    "path": "fresh_images/seraj-valley.jpg",
+    "photographer": "K S ARAVINDA Kashyap",
+    "pexels_page": "https://www.pexels.com/photo/scenic-himachal-pradesh-temple-with-mountain-views-28933384/"
+  },
+  "shimla-state-museum": {
+    "place_name": "Shimla State Museum",
+    "path": "fresh_images/shimla-state-museum.jpg",
+    "photographer": "Jaynarayan Parida",
+    "pexels_page": "https://www.pexels.com/photo/tranquil-garden-scene-with-red-roof-pavilion-38297839/"
+  },
+  "the-ridge": {
+    "place_name": "The Ridge",
+    "path": "fresh_images/the-ridge.jpg",
+    "photographer": "Julia Volk",
+    "pexels_page": "https://www.pexels.com/photo/amazing-mountain-valley-with-green-fir-trees-and-small-village-5205541/"
+  }
+}
