@@ -1,0 +1,2517 @@
+{
+  "_meta": {
+    "categories": {
+      "environment_and_conservation": "Environment & Conservation",
+      "glaciers": "Glaciers",
+      "historical_social_reference_content": "History & Heritage",
+      "hot_springs_waterfalls_kunds": "Hot Springs & Waterfalls",
+      "lakes_reservoirs": "Lakes & Reservoirs",
+      "mountain_passes_and_jots": "Mountain Passes",
+      "rivers_and_tributaries": "Rivers & Tributaries",
+      "trekking_routes": "Trekking Routes",
+      "valleys": "Valleys"
+    },
+    "dataset_name": "Himachal Explorer — 36-page scanned document content dataset",
+    "generated_from": "DocScanner 5 Sep 2026 7-53 pm.pdf",
+    "note": "OCR-derived. Entries flagged verification_required:true should be checked before being surfaced as fully confirmed fact.",
+    "total_entities": 177
+  },
+  "environment_and_conservation": {
+    "himalayan-deforestation-and-road-related-landslides": {
+      "category": "environment_and_conservation",
+      "category_label": "Environment & Conservation",
+      "confidence": "high",
+      "facts": [
+        "Source identifies deforestation, firewood demand, livestock pressure and road construction as environmental challenges.",
+        "It connects disturbed slopes with soil erosion and landslides."
+      ],
+      "source_pdf_pages": [
+        34
+      ],
+      "verification_required": false
+    },
+    "hot-spring-types": {
+      "category": "environment_and_conservation",
+      "category_label": "Environment & Conservation",
+      "confidence": "high",
+      "facts": [
+        "Source distinguishes ordinary, mineral and thermal water springs.",
+        "It describes hot springs as naturally fluctuating water sources and notes their mineral content and cultural/medicinal significance."
+      ],
+      "source_pdf_pages": [
+        20,
+        22
+      ],
+      "verification_required": false
+    },
+    "sutlej-catchment-and-landslides": {
+      "category": "environment_and_conservation",
+      "category_label": "Environment & Conservation",
+      "confidence": "medium",
+      "facts": [
+        "Source discusses geologically fragile terrain in the Sutlej basin.",
+        "A catchment treatment plan is described, including stabilization of identified landslide points and bioengineering measures.",
+        "Soil erosion and sediment entering reservoirs are presented as key issues."
+      ],
+      "source_pdf_pages": [
+        26,
+        27
+      ],
+      "verification_required": true
+    },
+    "swan-river-ecological-degradation": {
+      "category": "environment_and_conservation",
+      "category_label": "Environment & Conservation",
+      "confidence": "high",
+      "facts": [
+        "Source links degradation to river-bank cultivation, vegetation removal, erosion, flood-water spill and pressure on land resources.",
+        "Channelisation and watershed treatment are discussed."
+      ],
+      "source_pdf_pages": [
+        19,
+        20
+      ],
+      "verification_required": false
+    }
+  },
+  "glaciers": {
+    "bara-shigri-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "medium",
+      "district": "Lahaul-Spiti",
+      "facts": [
+        "Source describes Bara Shigri as the largest glacier in Himachal Pradesh.",
+        "Located in the Chandra valley and feeding the Chenab system.",
+        "Source gives approximately 25 km length and discusses its large ice cover."
+      ],
+      "name": "Bara Shigri Glacier",
+      "source_pdf_pages": [
+        24,
+        25,
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "bhadal-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "high",
+      "district": "Chamba",
+      "facts": [
+        "Located on the southwestern slopes of the Pir Panjal in the Ravi region.",
+        "Surface is described as carrying boulders and glacial deposits."
+      ],
+      "name": "Bhadal Glacier",
+      "source_pdf_pages": [
+        24
+      ],
+      "type": "glacier",
+      "verification_required": false
+    },
+    "chandi-ka-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "low",
+      "facts": [
+        "Listed among other Himachal glaciers."
+      ],
+      "name": "Chandi-ka Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "chandra-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "medium",
+      "district": "Lahaul-Spiti",
+      "facts": [
+        "Located in the Chandra valley area.",
+        "The source lists associated glaciers and high surrounding peaks."
+      ],
+      "name": "Chandra Glacier",
+      "source_pdf_pages": [
+        24,
+        25
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "chandra-nahan-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "high",
+      "district": "Shimla",
+      "facts": [
+        "Located on the south-facing slopes in the upper Pabbar region.",
+        "Feeds the Pabbar and is associated with Chandra Nahan Lake."
+      ],
+      "name": "Chandra Nahan Glacier",
+      "source_pdf_pages": [
+        25
+      ],
+      "type": "glacier",
+      "verification_required": false
+    },
+    "dudhon-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "medium",
+      "district": "Kullu",
+      "facts": [
+        "Source places Dudhon with Parbati glaciers and gives a length of about 15 km for the group."
+      ],
+      "name": "Dudhon Glacier",
+      "source_pdf_pages": [
+        25
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "karpat-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "medium",
+      "district": "Lahaul-Spiti",
+      "facts": [
+        "Included among four Mayar valley glaciers studied in the source."
+      ],
+      "name": "Karpat Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "lady-of-keylong-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "medium",
+      "district": "Lahaul-Spiti",
+      "facts": [
+        "Visible from Keylong according to the source.",
+        "Remains snow-covered for much of the year and has a distinctive bare patch described as resembling a woman."
+      ],
+      "name": "Lady of Keylong Glacier",
+      "source_pdf_pages": [
+        25
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "manthora-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "medium",
+      "district": "Lahaul-Spiti",
+      "facts": [
+        "Included among Mayar valley glaciers studied by geomorphologists.",
+        "Source reports stabilization and possible increase in size during the cited study."
+      ],
+      "name": "Manthora Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "north-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "low",
+      "facts": [
+        "Listed among other Himachal glaciers."
+      ],
+      "name": "North Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "parbati-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "high",
+      "district": "Kullu",
+      "facts": [
+        "Source says the Parbati glacier system feeds the Parbati river."
+      ],
+      "name": "Parbati Glacier",
+      "source_pdf_pages": [
+        25
+      ],
+      "type": "glacier",
+      "verification_required": false
+    },
+    "pin-parbati-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "medium",
+      "district": "Kullu",
+      "facts": [
+        "Source describes it as a glacier in the Beas valley and reports relative stability in the cited period."
+      ],
+      "name": "Pin Parbati Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "rai-ghar-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "low",
+      "facts": [
+        "Listed among other Himachal glaciers."
+      ],
+      "name": "Rai Ghar Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "sammuder-tapa-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "low",
+      "facts": [
+        "Listed among other Himachal glaciers."
+      ],
+      "name": "Sammuder Tapa Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "sara-umga-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "medium",
+      "facts": [
+        "Listed among other Himachal glaciers."
+      ],
+      "name": "Sara Umga Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "shan-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "low",
+      "facts": [
+        "Listed among other Himachal glaciers."
+      ],
+      "name": "Shan Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "shipting-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "low",
+      "facts": [
+        "Listed among other Himachal glaciers."
+      ],
+      "name": "Shipting Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "sili-laluni-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "low",
+      "facts": [
+        "Listed among other Himachal glaciers."
+      ],
+      "name": "Sili Laluni Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "south-dakka-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "medium",
+      "facts": [
+        "Listed among other Himachal glaciers."
+      ],
+      "name": "South Dakka Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "tal-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "low",
+      "facts": [
+        "Listed among other Himachal glaciers."
+      ],
+      "name": "Tal Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "tapni-lahuni-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "low",
+      "facts": [
+        "Listed among other Himachal glaciers."
+      ],
+      "name": "Tapni Lahuni Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "taragiri-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "low",
+      "facts": [
+        "Listed among other Himachal glaciers."
+      ],
+      "name": "Taragiri Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "tharong-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "medium",
+      "district": "Lahaul-Spiti",
+      "facts": [
+        "Included among Mayar valley glaciers studied in the source; the text reports reduction."
+      ],
+      "name": "Tharong Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "tichu-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "medium",
+      "facts": [
+        "Listed among other small and medium glaciers in Himachal."
+      ],
+      "name": "Tichu Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    },
+    "ulthampu-glacier": {
+      "category": "glaciers",
+      "category_label": "Glaciers",
+      "confidence": "medium",
+      "district": "Lahaul-Spiti",
+      "facts": [
+        "Included among Mayar valley glaciers; source reports reduction in size in the cited study."
+      ],
+      "name": "Ulthampu Glacier",
+      "source_pdf_pages": [
+        26
+      ],
+      "type": "glacier",
+      "verification_required": true
+    }
+  },
+  "historical_social_reference_content": {
+    "difficult-inaccessible-areas-notification": {
+      "category": "historical_social_reference_content",
+      "category_label": "History & Heritage",
+      "confidence": "medium",
+      "facts": [
+        "Source reproduces a 1999 state notification concerning areas treated as difficult/inaccessible for administrative transfer and placement purposes.",
+        "It lists areas in Kinnaur, Lahaul-Spiti, Chamba, Sirmaur, Kangra, Mandi, Shimla and Kullu."
+      ],
+      "source_pdf_pages": [
+        35,
+        36
+      ],
+      "verification_required": true
+    },
+    "p-p-sood-commission": {
+      "category": "historical_social_reference_content",
+      "category_label": "History & Heritage",
+      "confidence": "medium",
+      "facts": [
+        "Source states that a one-member commission was set up in June 2011 concerning benami land deals and related land/property legislation.",
+        "It describes interim and final reports issued in 2012."
+      ],
+      "source_pdf_pages": [
+        36
+      ],
+      "verification_required": true
+    },
+    "re-notification-of-tribal-areas": {
+      "category": "historical_social_reference_content",
+      "category_label": "History & Heritage",
+      "confidence": "low",
+      "facts": [
+        "Source discusses a 2008 re-notification and lists areas treated as tribal under the cited notification.",
+        "Some place names are damaged by OCR and should be checked against the original document."
+      ],
+      "source_pdf_pages": [
+        36
+      ],
+      "verification_required": true
+    },
+    "smoke-free-himachal": {
+      "category": "historical_social_reference_content",
+      "category_label": "History & Heritage",
+      "confidence": "medium",
+      "facts": [
+        "Source reports Himachal being declared smoke-free in 2013 and gives compliance percentages from a cited survey.",
+        "It also discusses smoking prevalence among youth."
+      ],
+      "source_pdf_pages": [
+        36
+      ],
+      "verification_required": true
+    }
+  },
+  "hot_springs_waterfalls_kunds": {
+    "baijnath-area-spring": {
+      "category": "hot_springs_waterfalls_kunds",
+      "category_label": "Hot Springs & Waterfalls",
+      "confidence": "medium",
+      "district": "Kangra",
+      "facts": [
+        "Source mentions a spring near Baijnath."
+      ],
+      "name": "Baijnath-area Spring",
+      "source_pdf_pages": [
+        22
+      ],
+      "type": "spring",
+      "verification_required": true
+    },
+    "bhagsunag-waterfall": {
+      "category": "hot_springs_waterfalls_kunds",
+      "category_label": "Hot Springs & Waterfalls",
+      "confidence": "high",
+      "district": "Kangra",
+      "facts": [
+        "Listed near McLeod Ganj in Kangra."
+      ],
+      "name": "Bhagsunag Waterfall",
+      "source_pdf_pages": [
+        22
+      ],
+      "type": "waterfall",
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/bhagsunag-waterfall.jpg"
+    },
+    "chadwick-falls": {
+      "category": "hot_springs_waterfalls_kunds",
+      "category_label": "Hot Springs & Waterfalls",
+      "confidence": "high",
+      "district": "Shimla",
+      "facts": [
+        "Listed near Summer Hill in Shimla."
+      ],
+      "name": "Chadwick Falls",
+      "source_pdf_pages": [
+        22
+      ],
+      "type": "waterfall",
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/chadwick-falls.jpg"
+    },
+    "dhanchho-waterfall": {
+      "category": "hot_springs_waterfalls_kunds",
+      "category_label": "Hot Springs & Waterfalls",
+      "confidence": "high",
+      "district": "Chamba",
+      "facts": [
+        "Listed near Bharmaur."
+      ],
+      "name": "Dhanchho Waterfall",
+      "source_pdf_pages": [
+        22
+      ],
+      "type": "waterfall",
+      "verification_required": false
+    },
+    "jawalamukhi-spring": {
+      "category": "hot_springs_waterfalls_kunds",
+      "category_label": "Hot Springs & Waterfalls",
+      "confidence": "medium",
+      "district": "Kangra",
+      "facts": [
+        "Source lists a spring on the bank of the Beas and associates it with a 10 December 1854 discovery."
+      ],
+      "name": "Jawalamukhi Spring",
+      "source_pdf_pages": [
+        22
+      ],
+      "type": "hot/mineral spring",
+      "verification_required": true
+    },
+    "jeori-hot-springs": {
+      "category": "hot_springs_waterfalls_kunds",
+      "category_label": "Hot Springs & Waterfalls",
+      "confidence": "high",
+      "district": "Kinnaur",
+      "facts": [
+        "Located on the right bank of Unu Nallah beyond Rampur-Bushahr on the Hindustan–Tibet Road.",
+        "Identified as a hot-water spring site in Kinnaur."
+      ],
+      "name": "Jeori Hot Springs",
+      "source_pdf_pages": [
+        22
+      ],
+      "type": "hot spring",
+      "verification_required": false
+    },
+    "kalika-kund": {
+      "category": "hot_springs_waterfalls_kunds",
+      "category_label": "Hot Springs & Waterfalls",
+      "confidence": "medium",
+      "district": "Chamba",
+      "facts": [
+        "Listed at Man in Chamba."
+      ],
+      "name": "Kalika Kund",
+      "source_pdf_pages": [
+        22
+      ],
+      "type": "kund/spring",
+      "verification_required": true
+    },
+    "kasol-hot-water-spot": {
+      "category": "hot_springs_waterfalls_kunds",
+      "category_label": "Hot Springs & Waterfalls",
+      "confidence": "medium",
+      "district": "Kullu",
+      "facts": [
+        "Source places it about 49 km from Kullu and around 10 km from Pulga.",
+        "A hot-water spring site is described in the Parbati valley."
+      ],
+      "name": "Kasol Hot Water Spot",
+      "source_pdf_pages": [
+        21
+      ],
+      "type": "hot spring",
+      "verification_required": true
+    },
+    "kopra-spring": {
+      "category": "hot_springs_waterfalls_kunds",
+      "category_label": "Hot Springs & Waterfalls",
+      "confidence": "medium",
+      "district": "Kangra",
+      "facts": [
+        "Source lists a spring near Nadaun and associates it with a 10 December 1854 discovery."
+      ],
+      "name": "Kopra Spring",
+      "source_pdf_pages": [
+        22
+      ],
+      "type": "hot/mineral spring",
+      "verification_required": true
+    },
+    "lunani-spring": {
+      "category": "hot_springs_waterfalls_kunds",
+      "category_label": "Hot Springs & Waterfalls",
+      "confidence": "medium",
+      "district": "Kangra",
+      "facts": [
+        "Listed among Kangra valley springs."
+      ],
+      "name": "Lunani Spring",
+      "source_pdf_pages": [
+        22
+      ],
+      "type": "spring",
+      "verification_required": true
+    },
+    "manikaran-hot-springs": {
+      "category": "hot_springs_waterfalls_kunds",
+      "category_label": "Hot Springs & Waterfalls",
+      "confidence": "high",
+      "district": "Kullu",
+      "facts": [
+        "Multiple springs occur along the Parbati valley between the old bridge and Brahmaganga according to the source.",
+        "About 45 km from Kullu in the source.",
+        "The water is described as hot enough for cooking pulses and rice."
+      ],
+      "name": "Manikaran Hot Springs",
+      "source_pdf_pages": [
+        20,
+        21
+      ],
+      "type": "hot spring",
+      "verification_required": false
+    },
+    "rahla-waterfall": {
+      "category": "hot_springs_waterfalls_kunds",
+      "category_label": "Hot Springs & Waterfalls",
+      "confidence": "high",
+      "district": "Kullu",
+      "facts": [
+        "Listed as a notable waterfall near Manali."
+      ],
+      "name": "Rahla Waterfall",
+      "source_pdf_pages": [
+        22
+      ],
+      "type": "waterfall",
+      "verification_required": false
+    },
+    "satdhara-water-spring": {
+      "category": "hot_springs_waterfalls_kunds",
+      "category_label": "Hot Springs & Waterfalls",
+      "confidence": "high",
+      "district": "Chamba",
+      "facts": [
+        "Listed near Panjpulla in Chamba."
+      ],
+      "name": "Satdhara Water Spring",
+      "source_pdf_pages": [
+        22
+      ],
+      "type": "spring",
+      "verification_required": false
+    },
+    "tattapani": {
+      "category": "hot_springs_waterfalls_kunds",
+      "category_label": "Hot Springs & Waterfalls",
+      "confidence": "high",
+      "district": "Mandi",
+      "facts": [
+        "Source gives about 51 km from Shimla and 29 km from Naldehra.",
+        "Located on the Satluj at about 656 m.",
+        "Described as a natural sulphur spring; source notes that part of the spring area was submerged by the Kol Dam project."
+      ],
+      "name": "Tattapani",
+      "source_pdf_pages": [
+        20
+      ],
+      "type": "hot spring",
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/tattapani.jpg"
+    },
+    "vashisht-hot-springs": {
+      "category": "hot_springs_waterfalls_kunds",
+      "category_label": "Hot Springs & Waterfalls",
+      "confidence": "high",
+      "district": "Kullu",
+      "facts": [
+        "Vashisht village is described as about 3 km from Manali on the Beas.",
+        "Hot-water tanks are a major attraction; one tank is reserved for women according to the source.",
+        "The source also records a local legend linking the spring to Vashisht Rishi and Laxmana."
+      ],
+      "name": "Vashisht Hot Springs",
+      "source_pdf_pages": [
+        21,
+        22
+      ],
+      "type": "hot spring",
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/vashisht-hot-springs.jpg"
+    }
+  },
+  "lakes_reservoirs": {
+    "bhagsunag-lake": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "medium",
+      "district": "Kangra",
+      "facts": [
+        "Source associates the lake with the Bhagsunag/Lord-related religious tradition.",
+        "Altitude is given as about 1,775 m.",
+        "Also referred to in the source as Bhagsunag Lake."
+      ],
+      "name": "Bhagsunag Lake",
+      "source_pdf_pages": [
+        4
+      ],
+      "type": "lake",
+      "verification_required": true
+    },
+    "chamera-lake": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "high",
+      "district": "Chamba",
+      "facts": [
+        "Created by the Chamera hydroelectric project on the Ravi.",
+        "Source gives 540 MW for the project.",
+        "About 25 km from Dalhousie according to the source; route continues toward Bhalie temple and Bhandal Valley."
+      ],
+      "name": "Chamera Lake",
+      "source_pdf_pages": [
+        8
+      ],
+      "type": "reservoir",
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/chamera-lake.jpg"
+    },
+    "chanderkup-lake": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "medium",
+      "district": "Chamba",
+      "facts": [
+        "Located in the upper Chamba region toward Dharamshala.",
+        "Source gives altitude about 3,459 m.",
+        "Ice blocks may remain/floated during summer; terrain is steep and snow-covered for much of the year."
+      ],
+      "name": "Chanderkup Lake",
+      "source_pdf_pages": [
+        2
+      ],
+      "type": "high-altitude lake",
+      "verification_required": true
+    },
+    "chandra-tal": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "medium",
+      "district": "Lahaul-Spiti",
+      "facts": [
+        "Located in central Lahaul.",
+        "Source gives altitude about 4,270 m.",
+        "Further descriptive text is partly obscured in OCR."
+      ],
+      "name": "Chandra Tal",
+      "source_pdf_pages": [
+        6,
+        7
+      ],
+      "type": "high-altitude lake",
+      "verification_required": true
+    },
+    "dal-lake": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "medium",
+      "district": "Kangra",
+      "facts": [
+        "Located about 11 km from Dharamshala according to the source.",
+        "Set among hills and fir trees.",
+        "The scanned text continues onto a partially unreadable page; details should be verified."
+      ],
+      "name": "Dal Lake",
+      "source_pdf_pages": [
+        2,
+        3
+      ],
+      "type": "lake",
+      "verification_required": true
+    },
+    "govind-sagar": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "medium",
+      "district": "Bilaspur",
+      "facts": [
+        "Artificial lake/reservoir created by Bhakra Dam on the Satluj.",
+        "Known in the source for water sports and fishing.",
+        "Source describes the reservoir as an important fishing resource and discusses siltation concerns."
+      ],
+      "name": "Govind Sagar",
+      "source_pdf_pages": [
+        1
+      ],
+      "type": "reservoir",
+      "verification_required": true
+    },
+    "kareri-lake": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "high",
+      "district": "Kangra",
+      "facts": [
+        "About 35 km from Dharamshala according to the source.",
+        "Altitude about 1,810 m.",
+        "Surrounded by meadows, oak and pine; water drains toward the Layun river."
+      ],
+      "name": "Kareri Lake",
+      "source_pdf_pages": [
+        4
+      ],
+      "type": "trekking lake",
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/kareri-lake.jpg"
+    },
+    "khajjiar-lake": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "high",
+      "district": "Chamba",
+      "facts": [
+        "Located in the Khajjiar meadow, surrounded by cedar/conifer forest.",
+        "Source gives dimensions of about 1.5 km by 1 km and altitude about 1,951 m.",
+        "A Khajjiar Nag temple is associated with the lake.",
+        "Source records the 'Mini Switzerland' designation in 1992."
+      ],
+      "name": "Khajjiar Lake",
+      "source_pdf_pages": [
+        1,
+        2
+      ],
+      "type": "lake",
+      "verification_required": false
+    },
+    "kumarwah-lake": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "high",
+      "district": "Mandi",
+      "facts": [
+        "About 40 km from Mandi town.",
+        "Located in Chachyot tehsil; source gives altitude about 3,150 m.",
+        "Annual fair and local offering traditions are mentioned."
+      ],
+      "name": "Kumarwah Lake",
+      "source_pdf_pages": [
+        4
+      ],
+      "type": "sacred lake",
+      "verification_required": false
+    },
+    "lama-dal-lake": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "high",
+      "district": "Chamba",
+      "facts": [
+        "Part of a group of seven lakes on the Dhauladhar slopes.",
+        "Source gives altitude about 3,962 m and area about 2 sq km.",
+        "Associated with perennial glaciers and a Janmashtami visit by local Gaddi communities."
+      ],
+      "name": "Lama Dal Lake",
+      "source_pdf_pages": [
+        2
+      ],
+      "type": "high-altitude lake",
+      "verification_required": false
+    },
+    "mahakali-lake": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "high",
+      "district": "Chamba",
+      "facts": [
+        "Located in the Churah area of Chamba.",
+        "Source gives altitude about 3,657 m.",
+        "Associated with Goddess Kali."
+      ],
+      "name": "Mahakali Lake",
+      "source_pdf_pages": [
+        2
+      ],
+      "type": "sacred lake",
+      "verification_required": false
+    },
+    "manimahesh-lake": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "high",
+      "district": "Chamba",
+      "facts": [
+        "About 35 km from Bharmaur according to the source.",
+        "Located at about 3,950 m below Mount Kailash.",
+        "Associated with Lord Shiva and an annual fair in August or September."
+      ],
+      "name": "Manimahesh Lake",
+      "source_pdf_pages": [
+        2
+      ],
+      "type": "sacred lake",
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/manimahesh-lake.jpg"
+    },
+    "pandoh-lake": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "high",
+      "district": "Mandi",
+      "facts": [
+        "About 14 km from Mandi on the Mandi–Kullu highway according to the source.",
+        "Formed by Pandoh Dam and linked to diversion of Beas water toward the Satluj at Slapper.",
+        "Source describes two long tunnels and an open channel as part of the water transfer system."
+      ],
+      "name": "Pandoh Lake",
+      "source_pdf_pages": [
+        8
+      ],
+      "type": "reservoir",
+      "verification_required": false
+    },
+    "pong-lake-pong-dam-reservoir": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "high",
+      "district": "Kangra",
+      "facts": [
+        "Formed after construction of Pong Dam on the Beas.",
+        "Important wetland and staging/wintering area for migratory waterbirds.",
+        "Source highlights islands, seasonal water-level variation and a large fringe/buffer area.",
+        "The source discusses conservation pressure from siltation, grazing, cultivation and construction."
+      ],
+      "name": "Pong Lake / Pong Dam Reservoir",
+      "source_pdf_pages": [
+        8
+      ],
+      "type": "reservoir/wetland",
+      "verification_required": false
+    },
+    "rewalsar-lake": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "high",
+      "district": "Mandi",
+      "facts": [
+        "About 25 km from Mandi according to the source.",
+        "Important pilgrimage site associated with Hindu, Buddhist and Sikh traditions.",
+        "Known for floating islands and legends involving Padmasambhava, Mandarva and Lomas Rishi.",
+        "Source mentions a Gurudwara commemorating Guru Gobind Singh's visit."
+      ],
+      "name": "Rewalsar Lake",
+      "source_pdf_pages": [
+        4
+      ],
+      "type": "pilgrimage lake",
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/rewalsar-lake.jpg"
+    },
+    "suraj-tal": {
+      "category": "lakes_reservoirs",
+      "category_label": "Lakes & Reservoirs",
+      "confidence": "high",
+      "district": "Lahaul-Spiti",
+      "facts": [
+        "Source gives altitude about 4,800 m.",
+        "Described as the source of the Bhaga river and located opposite Baralacha.",
+        "A trekking approach via Zingzing Bar is mentioned."
+      ],
+      "name": "Suraj Tal",
+      "source_pdf_pages": [
+        6
+      ],
+      "type": "high-altitude lake",
+      "verification_required": false
+    }
+  },
+  "mountain_passes_and_jots": {
+    "agai-jot": {
+      "altitude_m": 5060,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "low",
+      "name": "Agai Jot",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "jot/pass",
+      "verification_required": true
+    },
+    "agti-pass": {
+      "altitude_m": 4961,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Agti Pass",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "amilaga-pass": {
+      "altitude_m": 5151,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "low",
+      "name": "Amilaga Pass",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "asha-gali": {
+      "altitude_m": 5030,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Asha Gali",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "baleni-jot": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Baleni Jot",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "jot/pass",
+      "verification_required": true
+    },
+    "bara-lacha-la": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "name": "Bara Lacha La",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": false
+    },
+    "bara-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "district": "Chamba",
+      "facts": [
+        "Source gives altitude about 4,720 m.",
+        "Route is described through Alyas and onward toward Tandi/Udaipur."
+      ],
+      "name": "Bara Pass",
+      "source_pdf_pages": [
+        32
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "baralacha-la": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "facts": [
+        "Located on the route between Lahaul and Ladakh/Leh according to the source.",
+        "Source describes it as a high pass with roads meeting from several directions."
+      ],
+      "name": "Baralacha La",
+      "source_pdf_pages": [
+        32
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "basodan": {
+      "altitude_m": 2400,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "name": "Basodan",
+      "source_pdf_pages": [
+        32
+      ],
+      "type": "jot/pass",
+      "verification_required": false
+    },
+    "bherianga-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "low",
+      "name": "Bherianga Pass",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "bhim-ghasutri-jot": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "low",
+      "name": "Bhim Ghasutri Jot",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "jot/pass",
+      "verification_required": true
+    },
+    "bhubu": {
+      "altitude_m": 2895,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Bhubu",
+      "source_pdf_pages": [
+        32
+      ],
+      "type": "jot/pass",
+      "verification_required": true
+    },
+    "borsa-pass": {
+      "altitude_m": 5360,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Borsa Pass",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "burua-pass-buran-ghati": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "name": "Burua Pass / Buran Ghati",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": false
+    },
+    "chandrakhani-galu": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Chandrakhani Galu",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "charang-pass": {
+      "altitude_m": 5266,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "name": "Charang Pass",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "mountain pass",
+      "verification_required": false
+    },
+    "chauri": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Chauri",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "chen-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "district": "Chamba",
+      "facts": [
+        "Source places it in the Chamba region at roughly 4,000 m.",
+        "Descent through Mindhal is described as comparatively easy; a Kali temple and August fair are mentioned at Mindhal."
+      ],
+      "name": "Chen Pass",
+      "source_pdf_pages": [
+        32
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "chobu-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "low",
+      "name": "Chobu Pass",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "dulchi": {
+      "altitude_m": 2788,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "name": "Dulchi",
+      "source_pdf_pages": [
+        32
+      ],
+      "type": "jot/pass",
+      "verification_required": false
+    },
+    "faintu-ka-jot": {
+      "altitude_m": 5000,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Faintu Ka Jot",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "jot/pass",
+      "verification_required": true
+    },
+    "gharhu-jot": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Gharhu Jot",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "jot/pass",
+      "verification_required": true
+    },
+    "hamtah-jot-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Hamtah Jot Pass",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "indrahar-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "name": "Indrahar Pass",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/indrahar-pass.jpg"
+    },
+    "jalori": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Jalori",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/jalori.jpg"
+    },
+    "jalsu-ka-jot": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Jalsu Ka Jot",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "jot/pass",
+      "verification_required": true
+    },
+    "kalicho": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Kalicho",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "kunzum-la": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "district": "Lahaul-Spiti",
+      "name": "Kunzum La",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": false
+    },
+    "laluni-jot": {
+      "altitude_m": 5440,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Laluni Jot",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "jot/pass",
+      "verification_required": true
+    },
+    "lamkhaga-pass": {
+      "altitude_m": 5284,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "name": "Lamkhaga Pass",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "mountain pass",
+      "verification_required": false
+    },
+    "makori-jot": {
+      "altitude_m": 5190,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Makori Jot",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "jot/pass",
+      "verification_required": true
+    },
+    "manali-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "low",
+      "name": "Manali Pass",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "mulari-jot": {
+      "altitude_m": 4960,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "name": "Mulari Jot",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "jot/pass",
+      "verification_required": false
+    },
+    "nalgaon-pass": {
+      "altitude_m": 5030,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Nalgaon Pass",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "nikhora-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "low",
+      "name": "Nikhora Pass",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "padri": {
+      "altitude_m": 4050,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "name": "Padri",
+      "source_pdf_pages": [
+        32
+      ],
+      "type": "mountain pass",
+      "verification_required": false
+    },
+    "pin-parbati-pass": {
+      "altitude_m": 5319,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "name": "Pin Parbati Pass",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "mountain pass",
+      "verification_required": false
+    },
+    "ranjcha-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "low",
+      "name": "Ranjcha Pass",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "rashol-jot": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Rashol Jot",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "jot/pass",
+      "verification_required": true
+    },
+    "rohtang-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "district": "Kullu/Lahaul",
+      "facts": [
+        "Described as the main gateway between Kullu-Manali and Lahaul.",
+        "Source gives altitude around 3,955 m and discusses winter snow, blizzards and historic crossings."
+      ],
+      "name": "Rohtang Pass",
+      "source_pdf_pages": [
+        32,
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/rohtang-pass.jpg"
+    },
+    "rupin-ghati": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "name": "Rupin Ghati",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": false
+    },
+    "sach-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "district": "Chamba/Pangi",
+      "facts": [
+        "Source gives altitude about 4,395 m.",
+        "Described as a convenient trekking route into Pangi Valley; Killer is mentioned in connection with access."
+      ],
+      "name": "Sach Pass",
+      "source_pdf_pages": [
+        32
+      ],
+      "type": "mountain pass",
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/sach-pass.jpg"
+    },
+    "sari-galu": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Sari Galu",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "jot/pass",
+      "verification_required": true
+    },
+    "shakari": {
+      "altitude_m": 5022,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "low",
+      "name": "Shakari",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "shibaling-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Shibaling Pass",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "shinghor-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "district": "Kangra/Chamba",
+      "facts": [
+        "Approached from Alyas according to the source.",
+        "Altitude about 4,310 m; route is described as steep and waterless."
+      ],
+      "name": "Shinghor Pass",
+      "source_pdf_pages": [
+        32
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "shinka-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Shinka Pass",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "shipki-la": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "district": "Kinnaur",
+      "name": "Shipki La",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": false
+    },
+    "shipting": {
+      "altitude_m": 4980,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "low",
+      "name": "Shipting",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "singoor-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Singoor Pass",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "sora-umga-pass": {
+      "altitude_m": 5010,
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Sora Umga Pass",
+      "source_pdf_pages": [
+        34
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "talang-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Talang Pass",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "tamsar-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "name": "Tamsar Pass",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": false
+    },
+    "temp-la": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Temp La",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "tempola-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "district": "Lahaul-Spiti",
+      "facts": [
+        "Located in Lahaul-Spiti.",
+        "Source describes approach along Yoche nullah and descent via Khoksar; routes toward Spiti or Manali are mentioned."
+      ],
+      "name": "Tempola Pass",
+      "source_pdf_pages": [
+        32
+      ],
+      "type": "mountain pass",
+      "verification_required": true
+    },
+    "tori-jot": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "medium",
+      "name": "Tori Jot",
+      "source_pdf_pages": [
+        33
+      ],
+      "type": "jot/pass",
+      "verification_required": true
+    },
+    "waru-pass": {
+      "category": "mountain_passes_and_jots",
+      "category_label": "Mountain Passes",
+      "confidence": "high",
+      "district": "Kangra/Chamba",
+      "facts": [
+        "Source gives altitude about 3,870 m.",
+        "Described as windy, rough and steep, with views of surrounding peaks."
+      ],
+      "name": "Waru Pass",
+      "source_pdf_pages": [
+        32,
+        33
+      ],
+      "type": "mountain pass",
+      "verification_required": false
+    }
+  },
+  "rivers_and_tributaries": {
+    "andhra": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "medium",
+      "district": "Shimla",
+      "facts": [
+        "Tributary of the Pabbar.",
+        "Source says it rises from a small glacier/cirque northwest of Chirgaon and joins the Pabbar near Chauyan."
+      ],
+      "name": "Andhra",
+      "source_pdf_pages": [
+        10
+      ],
+      "type": "tributary",
+      "verification_required": true
+    },
+    "asni": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "high",
+      "facts": [
+        "Tributary of the Giri and ultimately the Yamuna system.",
+        "Source describes a deep V-shaped valley with steep to precipitous slopes and many spring-fed tributaries."
+      ],
+      "name": "Asni",
+      "source_pdf_pages": [
+        11
+      ],
+      "type": "tributary",
+      "verification_required": false
+    },
+    "baira": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "high",
+      "district": "Chamba",
+      "facts": [
+        "Rises on the southern slopes of the Pir Panjal.",
+        "Snow-fed tributaries make it perennial according to the source.",
+        "Joins the Siul."
+      ],
+      "name": "Baira",
+      "source_pdf_pages": [
+        15
+      ],
+      "type": "tributary",
+      "verification_required": false
+    },
+    "bata": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "medium",
+      "district": "Sirmaur",
+      "facts": [
+        "Rises near the Nahan ridge and flows through the Paonta valley.",
+        "Source says it is substantially rain-fed and has formed broad terraces.",
+        "Khara-ka-Khala and Kenser Khala are named as tributaries."
+      ],
+      "name": "Bata",
+      "source_pdf_pages": [
+        11
+      ],
+      "type": "tributary",
+      "verification_required": true
+    },
+    "beas": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "high",
+      "facts": [
+        "Source gives total length about 460 km.",
+        "Described as forming the Kullu and Kangra valleys.",
+        "Settlements listed along the river include Kullu, Mandi, Bajaura, Pandoh, Sujanpur Tira, Nadaun and Dehra-Gopipur."
+      ],
+      "name": "Beas",
+      "source_pdf_pages": [
+        10,
+        11
+      ],
+      "type": "major river",
+      "verification_required": false
+    },
+    "bhadal": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "high",
+      "district": "Chamba",
+      "facts": [
+        "Rises in the Bara Banghal area between the Pir Panjal and Dhauladhar ranges.",
+        "Joins the Tant Gari to form the Ravi mainstream.",
+        "Catchment includes U-shaped valleys, waterfalls, moraines and cirques."
+      ],
+      "name": "Bhadal",
+      "source_pdf_pages": [
+        15
+      ],
+      "type": "tributary",
+      "verification_required": false
+    },
+    "chenab": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "medium",
+      "facts": [
+        "Included among the principal Himalayan rivers connected with Himachal's drainage system.",
+        "The source connects the Chandra and Bhaga system with the Chenab around Tandi."
+      ],
+      "name": "Chenab",
+      "source_pdf_pages": [
+        12,
+        13
+      ],
+      "type": "major river",
+      "verification_required": true
+    },
+    "giri": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "medium",
+      "district": "Sirmaur/ Shimla region",
+      "facts": [
+        "Important tributary of the Yamuna system.",
+        "Source says it rises near Kupor/Kuper peak in the Jubbal-Rohru hills, flows through the Shimla hills and divides the Sirmaur region into Cis-Giri and Trans-Giri.",
+        "Joins the Yamuna system near Paonta."
+      ],
+      "name": "Giri",
+      "source_pdf_pages": [
+        11
+      ],
+      "type": "tributary",
+      "verification_required": true
+    },
+    "jalal": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "medium",
+      "district": "Sirmaur",
+      "facts": [
+        "Small rain-fed tributary described as rising from the Dharthi ranges.",
+        "Joins the Giri near Dadahu according to the source."
+      ],
+      "name": "Jalal",
+      "source_pdf_pages": [
+        10,
+        11
+      ],
+      "type": "tributary",
+      "verification_required": true
+    },
+    "markanda": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "high",
+      "district": "Sirmaur",
+      "facts": [
+        "Small river rising from the southern face of the low Shivalik/Markanda area.",
+        "Associated with the Kiarda-dun/Paonta valley and Nahan region.",
+        "Source notes low winter/summer flow and sharp monsoon rise."
+      ],
+      "name": "Markanda",
+      "source_pdf_pages": [
+        10
+      ],
+      "type": "rain-fed river",
+      "verification_required": false
+    },
+    "pabbar": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "medium",
+      "district": "Shimla",
+      "facts": [
+        "Tributary of the Tons, which joins the Yamuna system.",
+        "Source connects its headwaters with the Dhauladhar/upper Himalayan area and the Chandra Nahan glacier.",
+        "Flows through the Rohru-Chirgaon region."
+      ],
+      "name": "Pabbar",
+      "source_pdf_pages": [
+        11,
+        12
+      ],
+      "type": "tributary",
+      "verification_required": true
+    },
+    "ravi": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "medium",
+      "facts": [
+        "Source describes the Ravi as a major river of Chamba and says it eventually joins the Chenab in Pakistan.",
+        "Important settlements named include Bharmaur, Madhopur and Chamba.",
+        "Source gives total length about 720 km."
+      ],
+      "name": "Ravi",
+      "source_pdf_pages": [
+        15,
+        16
+      ],
+      "type": "major river",
+      "verification_required": true
+    },
+    "satluj": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "medium",
+      "facts": [
+        "Source describes its entry into Himachal near Shipki and course through Kinnaur, Shimla, Kullu, Mandi and Bilaspur regions.",
+        "Important tributaries listed include Spiti, Baspa, Tait/possibly Taiti, Kupa, Kanhang, Yula, Wangar, Throng and Rupi, with additional left-bank tributaries.",
+        "Bhakra is described as a major dam on the river.",
+        "Important settlements named include Namgia, Kalpa, Rampur, Tattapani and Bilaspur."
+      ],
+      "name": "Satluj",
+      "source_pdf_pages": [
+        9,
+        10
+      ],
+      "type": "major river",
+      "verification_required": true
+    },
+    "siul": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "high",
+      "district": "Chamba",
+      "facts": [
+        "Tributary of the Ravi.",
+        "Rises near the Himachal–Jammu border area and is fed by snowmelt and springs.",
+        "Baira is identified as a prominent tributary."
+      ],
+      "name": "Siul",
+      "source_pdf_pages": [
+        15
+      ],
+      "type": "tributary",
+      "verification_required": false
+    },
+    "swan-river": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "high",
+      "district": "Una",
+      "facts": [
+        "Source describes the Swan catchment in the lower Shivaliks as environmentally degraded and in need of restoration.",
+        "Agricultural expansion, river-bank cultivation, erosion, flooding and loss of vegetation are discussed.",
+        "Source states that the river has 73 tributaries and describes a channelisation programme."
+      ],
+      "name": "Swan River",
+      "source_pdf_pages": [
+        19,
+        20
+      ],
+      "type": "river/catchment",
+      "verification_required": false
+    },
+    "tant-gari": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "high",
+      "district": "Chamba",
+      "facts": [
+        "Rises east of Bharmaur.",
+        "Merges with Bhadal to form the Ravi mainstream.",
+        "Source describes a U-shaped valley with glacial/morainic deposits."
+      ],
+      "name": "Tant Gari",
+      "source_pdf_pages": [
+        15
+      ],
+      "type": "tributary",
+      "verification_required": false
+    },
+    "yamuna": {
+      "category": "rivers_and_tributaries",
+      "category_label": "Rivers & Tributaries",
+      "confidence": "medium",
+      "facts": [
+        "Source describes the Yamuna drainage and its Himachal tributary network, including the Giri, Pabbar/Tons system and Bata.",
+        "The river continues through Uttarakhand, Haryana, Delhi and Uttar Pradesh."
+      ],
+      "name": "Yamuna",
+      "source_pdf_pages": [
+        10,
+        12
+      ],
+      "type": "major river",
+      "verification_required": true
+    }
+  },
+  "trekking_routes": {
+    "chamba-dalhousie": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "high",
+      "name": "Chamba–Dalhousie",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": false
+    },
+    "chamba-manimahesh-chhari-yatra": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "high",
+      "name": "Chamba–Manimahesh (Chhari Yatra)",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "pilgrimage trek",
+      "verification_required": false
+    },
+    "dalhousie-jammu-through-bhandal-valley": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "medium",
+      "name": "Dalhousie–Jammu through Bhandal Valley",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": true
+    },
+    "dalhousie-manali-over-sach-pass": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "high",
+      "name": "Dalhousie–Manali over Sach Pass",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": false
+    },
+    "four-passes-and-two-valleys-from-manali": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "medium",
+      "name": "Four Passes and Two Valleys from Manali",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": true
+    },
+    "hanuman-tibba-circuit": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "high",
+      "name": "Hanuman Tibba Circuit",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": false
+    },
+    "kalpa-karchham-kinner-kailash-parikrama-circuit": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "medium",
+      "name": "Kalpa–Karchham: Kinner Kailash Parikrama Circuit",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "pilgrimage/trek route",
+      "verification_required": true
+    },
+    "kullu-manali": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "high",
+      "name": "Kullu–Manali",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": false
+    },
+    "manali-bhanara": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "medium",
+      "name": "Manali–Bhanara",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": true
+    },
+    "manali-bhrigu-lake": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "high",
+      "name": "Manali–Bhrigu Lake",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": false
+    },
+    "manali-kalath-via-thanpari-tibba": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "medium",
+      "name": "Manali–Kalath via Thanpari Tibba",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": true
+    },
+    "manali-leh-via-shingola-and-padam": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "medium",
+      "name": "Manali–Leh via Shingola and Padam",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": true
+    },
+    "manali-manikaran": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "high",
+      "name": "Manali–Manikaran",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": false
+    },
+    "manali-shimla-via-trekking-spiti-valley": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "medium",
+      "name": "Manali–Shimla via trekking Spiti Valley",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": true
+    },
+    "manali-three-sacred-lakes": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "medium",
+      "name": "Manali–Three Sacred Lakes",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": true
+    },
+    "manali-udaipur-via-gompa-trail": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "medium",
+      "name": "Manali–Udaipur via Gompa Trail",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": true
+    },
+    "nahan-mussoorie": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "high",
+      "name": "Nahan–Mussoorie",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": false
+    },
+    "nahan-naura-through-wildlife-sanctuary": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "medium",
+      "name": "Nahan–Naura through wildlife sanctuary",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": true
+    },
+    "nahan-shimla-via-chail": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "high",
+      "name": "Nahan–Shimla via Chail",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": false
+    },
+    "nahan-shimla-via-churdhar-and-neripul": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "medium",
+      "name": "Nahan–Shimla via Churdhar and Neripul",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": true
+    },
+    "shimla-churdhar-via-fagu-neripul-and-pul-bahal": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "medium",
+      "name": "Shimla–Churdhar via Fagu, Neripul and Pul Bahal",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": true
+    },
+    "shimla-churdhar-via-rohru-ranahat-and-haripurdhar": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "medium",
+      "name": "Shimla–Churdhar via Rohru, Ranahat and Haripurdhar",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": true
+    },
+    "shimla-manali-via-bashleo-pass": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "high",
+      "name": "Shimla–Manali via Bashleo Pass",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": false
+    },
+    "shimla-manali-via-jalori-pass": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "high",
+      "name": "Shimla–Manali via Jalori Pass",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": false
+    },
+    "shimla-mandi-via-tattapani": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "high",
+      "name": "Shimla–Mandi via Tattapani",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": false
+    },
+    "shimla-rohru-via-hatkoti": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "high",
+      "name": "Shimla–Rohru via Hatkoti",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": false
+    },
+    "shimla-shali-peak": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "high",
+      "name": "Shimla–Shali Peak",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": false
+    },
+    "shimla-tattapani-via-tara-devi-and-chail": {
+      "category": "trekking_routes",
+      "category_label": "Trekking Routes",
+      "confidence": "high",
+      "name": "Shimla–Tattapani via Tara Devi and Chail",
+      "source_pdf_pages": [
+        35
+      ],
+      "type": "trek/route",
+      "verification_required": false
+    }
+  },
+  "valleys": {
+    "balh-valley": {
+      "category": "valleys",
+      "category_label": "Valleys",
+      "confidence": "high",
+      "district": "Mandi",
+      "facts": [
+        "Also known as Sundernagar Valley.",
+        "Broad open dun-type valley; Suketi Khad divides it roughly into two parts.",
+        "Source describes agricultural land and an Indo-German agriculture project."
+      ],
+      "name": "Balh Valley",
+      "source_pdf_pages": [
+        29,
+        30
+      ],
+      "type": "valley",
+      "verification_required": false
+    },
+    "bara-banghal-valley": {
+      "category": "valleys",
+      "category_label": "Valleys",
+      "confidence": "high",
+      "district": "Kangra/Chamba",
+      "facts": [
+        "Lies between the Dhauladhar and Pir Panjal ranges.",
+        "Partly in Kangra and partly in Chamba according to the source.",
+        "Source says the Ravi rises from its slopes."
+      ],
+      "name": "Bara Banghal Valley",
+      "source_pdf_pages": [
+        29
+      ],
+      "type": "valley",
+      "verification_required": false
+    },
+    "chamba-valley": {
+      "category": "valleys",
+      "category_label": "Valleys",
+      "confidence": "high",
+      "district": "Chamba",
+      "facts": [
+        "Also referred to as the Ravi valley in the source.",
+        "Known for varied landscapes, terraces, forests, medicinal herbs and flowers.",
+        "Important towns listed include Chamba, Bharmaur, Dalhousie and Khajjiar.",
+        "Pangi Valley is described as adjoining it along the Chenab."
+      ],
+      "name": "Chamba Valley",
+      "source_pdf_pages": [
+        30
+      ],
+      "type": "valley",
+      "verification_required": false
+    },
+    "dun-and-sproon-valleys": {
+      "category": "valleys",
+      "category_label": "Valleys",
+      "confidence": "medium",
+      "district": "Solan",
+      "facts": [
+        "Mentioned as adjoining the Kiarda-dun valley.",
+        "Source describes them as mostly flat/fertile and used for cereals and off-season vegetables."
+      ],
+      "name": "Dun and Sproon Valleys",
+      "source_pdf_pages": [
+        30
+      ],
+      "type": "valley",
+      "verification_required": true
+    },
+    "kangra-valley": {
+      "category": "valleys",
+      "category_label": "Valleys",
+      "confidence": "high",
+      "district": "Kangra",
+      "facts": [
+        "Dun-type valley between the Dhauladhar and Shivalik hills.",
+        "Important towns listed include Baijnath, Palampur, Kangra, Nurpur and Dharamshala.",
+        "Source highlights Kangra paintings, historical finds, forts, temples and galleries."
+      ],
+      "name": "Kangra Valley",
+      "source_pdf_pages": [
+        29
+      ],
+      "type": "valley",
+      "verification_required": false
+    },
+    "kiarda-dun-valley": {
+      "category": "valleys",
+      "category_label": "Valleys",
+      "confidence": "high",
+      "district": "Sirmaur",
+      "facts": [
+        "Also called Paonta Valley in the source.",
+        "Associated with Markanda and Dharthi ranges and the Yamuna.",
+        "Source divides it into Neli Khera, Par-dun and Dun Proper tracts.",
+        "Giri and Bata are described as important waters."
+      ],
+      "name": "Kiarda-dun Valley",
+      "source_pdf_pages": [
+        27
+      ],
+      "type": "valley",
+      "verification_required": false
+    },
+    "kullu-valley": {
+      "category": "valleys",
+      "category_label": "Valleys",
+      "confidence": "medium",
+      "district": "Kullu",
+      "facts": [
+        "Broad valley formed by the Beas between Mandi and the Kullu/Manali region.",
+        "Source emphasizes its landscape, settlements, cultural character and hot springs."
+      ],
+      "name": "Kullu Valley",
+      "source_pdf_pages": [
+        28,
+        29
+      ],
+      "type": "valley",
+      "verification_required": true
+    },
+    "lahaul-valley": {
+      "category": "valleys",
+      "category_label": "Valleys",
+      "confidence": "high",
+      "district": "Lahaul-Spiti",
+      "facts": [
+        "Lies north of the Pir Panjal and main Himalayan ranges.",
+        "Formed by the Chandra and Bhaga rivers up to Tandi and Chenab downstream.",
+        "Source highlights severe winter and off-season vegetable/seed-potato cultivation."
+      ],
+      "name": "Lahaul Valley",
+      "source_pdf_pages": [
+        30
+      ],
+      "type": "valley",
+      "verification_required": false
+    },
+    "pangi-valley": {
+      "category": "valleys",
+      "category_label": "Valleys",
+      "confidence": "high",
+      "district": "Chamba",
+      "facts": [
+        "Described as extending along the Chenab as it cuts through the Pir Panjal and main Himalayan ranges.",
+        "Characterized in the source as remote and scenic."
+      ],
+      "name": "Pangi Valley",
+      "source_pdf_pages": [
+        30
+      ],
+      "type": "valley",
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/pangi-valley.jpg"
+    },
+    "satluj-valley": {
+      "category": "valleys",
+      "category_label": "Valleys",
+      "confidence": "high",
+      "facts": [
+        "Runs from Shipki toward Bilaspur along the Satluj.",
+        "Source says the river cuts across major Himalayan ranges and identifies Bilaspur, Rampur and Bhaba among settlements.",
+        "Source also discusses landslide stabilization and catchment treatment."
+      ],
+      "name": "Satluj Valley",
+      "source_pdf_pages": [
+        26,
+        27
+      ],
+      "type": "valley",
+      "verification_required": false
+    },
+    "spiti-valley": {
+      "category": "valleys",
+      "category_label": "Valleys",
+      "confidence": "high",
+      "district": "Lahaul-Spiti",
+      "facts": [
+        "Formed by the Spiti river and located between the main Himalaya and Zanskar ranges.",
+        "Kaza is identified as a principal town.",
+        "Source gives surrounding elevations broadly between 3,000 and 6,500 m."
+      ],
+      "name": "Spiti Valley",
+      "source_pdf_pages": [
+        30
+      ],
+      "type": "valley",
+      "verification_required": false
+    }
+  }
+}
