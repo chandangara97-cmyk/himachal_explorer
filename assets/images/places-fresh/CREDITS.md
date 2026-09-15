@@ -1,0 +1,82 @@
+# Photo credits — assets/images/places-fresh/
+
+Images sourced from Pexels (free for commercial use, attribution not required, but credited here as good practice).
+
+- **Amritsar** (amritsar.jpg) — photo by Mohit Hambiria — https://www.pexels.com/photo/hills-behind-road-in-village-19992231/
+- **Bhagsunag Waterfall** (bhagsunag-waterfall.jpg) — photo by Kunal Singh — https://www.pexels.com/photo/snowy-mountains-28379601/
+- **Bharmour** (bharmour.jpg) — photo by Raj Manohar — https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/
+- **Bhrigu Lake Trek** (bhrigu-lake-trek.jpg) — photo by Lens Of Pritam — https://www.pexels.com/photo/majestic-himalayan-landscape-with-rolling-clouds-33662598/
+- **Bhuntar** (bhuntar.jpg) — photo by Mohit Hambiria — https://www.pexels.com/photo/hills-behind-road-in-village-19992231/
+- **Bhuri Singh Museum** (bhuri-singh-museum.jpg) — photo by Ravindra Nadkarni — https://www.pexels.com/photo/traditional-indian-temple-architecture-38992913/
+- **Bon Monastery, Solan** (bon-monastery-solan.jpg) — photo by Kirandeep Singh Walia — https://www.pexels.com/photo/view-of-a-mountain-with-trees-12958053/
+- **Chamba** (chamba.jpg) — photo by Harin Daris — https://www.pexels.com/photo/serene-forest-scene-with-horse-in-chamba-india-35055847/
+- **Chandigarh** (chandigarh.jpg) — photo by Julia Volk — https://www.pexels.com/photo/traditional-domed-meditation-cave-against-misty-sky-in-mountainous-valley-5205763/
+- **Chicham Bridge** (chicham-bridge.jpg) — photo by Naren Raj — https://www.pexels.com/photo/buildings-in-a-snowy-valley-19766048/
+- **Chindi Mata Temple** (chindi-mata-temple.jpg) — photo by Rajesh S  Balouria — https://www.pexels.com/photo/intricate-wooden-temple-facade-in-shimla-38703962/
+- **Chitkul** (chitkul.jpg) — photo by Avinash Kour — https://www.pexels.com/photo/a-scenic-view-of-the-himalayas-8002501/
+- **Cholling Monastery** (cholling-monastery.jpg) — photo by Prateek Lall — https://www.pexels.com/photo/scenic-mountain-monastery-amid-snowy-peaks-38520704/
+- **Christ Church** (christ-church.jpg) — photo by Pranav Tandon — https://www.pexels.com/photo/st-patrick-s-church-tower-and-tree-in-kasauli-37092994/
+- **Dainkund Peak** (dainkund-peak.jpg) — photo by Parth  Patel — https://www.pexels.com/photo/scenic-view-of-the-himalayas-at-twilight-37763593/
+- **Dal Lake Dharamshala** (dal-lake-dharamshala.jpg) — photo by apertur 2.8 — https://www.pexels.com/photo/scenic-view-of-mountains-surrounding-urban-valley-38043207/
+- **Dalhousie** (dalhousie.jpg) — photo by Darshak Pandya — https://www.pexels.com/photo/view-of-foggy-mountain-range-5217739/
+- **Darcha** (darcha.jpg) — photo by Raj Manohar — https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/
+- **Dehnasar Lake Trek** (dehnasar-lake-trek.jpg) — photo by Lens Of Pritam — https://www.pexels.com/photo/majestic-himalayan-landscape-with-rolling-clouds-33662598/
+- **Dehradun** (dehradun.jpg) — photo by Julia Volk — https://www.pexels.com/photo/traditional-domed-meditation-cave-against-misty-sky-in-mountainous-valley-5205763/
+- **Delhi** (delhi.jpg) — photo by Julia Volk — https://www.pexels.com/photo/amazing-mountain-valley-with-green-fir-trees-and-small-village-5205541/
+- **Dharamshala** (dharamshala.jpg) — photo by apertur 2.8 — https://www.pexels.com/photo/scenic-view-of-mountains-surrounding-urban-valley-38043207/
+- **Ganji Pahari** (ganji-pahari.jpg) — photo by Enchanted Earth — https://www.pexels.com/photo/a-green-trees-on-snow-covered-ground-under-the-cloudy-sky-10193906/
+- **Gondhla Fort** (gondhla-fort.jpg) — photo by vidya nath bharti — https://www.pexels.com/photo/historic-chanderi-fort-in-madhya-pradesh-38960338/
+- **Green Valley Manali** (green-valley-manali.jpg) — photo by Kunal Gautam — https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/
+- **Hampta Pass (trailhead)** (hampta-pass-trailhead.jpg) — photo by Ex Route Adventures — https://www.pexels.com/photo/landscape-view-of-hampta-pass-himachal-pradesh-32807631/
+- **Haripurdhar Temple** (haripurdhar-temple.jpg) — photo by Rajesh S  Balouria — https://www.pexels.com/photo/intricate-wooden-temple-facade-in-shimla-38703962/
+- **Hatu Peak** (hatu-peak.jpg) — photo by gaurav sharma — https://www.pexels.com/photo/snow-capped-mountains-under-gloomy-sky-6549482/
+- **Jagatsukh** (jagatsukh.jpg) — photo by Raj Manohar — https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/
+- **Jaipur** (jaipur.jpg) — photo by Ibrahim Bennett — https://www.pexels.com/photo/scenic-shimla-mountains-at-sunrise-30550228/
+- **Jaitak Fort** (jaitak-fort.jpg) — photo by Raj Manohar — https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/
+- **Jakhu Ropeway** (jakhu-ropeway.jpg) — photo by Jaynarayan Parida — https://www.pexels.com/photo/tranquil-garden-scene-with-red-roof-pavilion-38297839/
+- **Jakhu Temple** (jakhu-temple.jpg) — photo by Rajesh S  Balouria — https://www.pexels.com/photo/intricate-wooden-temple-facade-in-shimla-38703962/
+- **Jangi Village** (jangi-village.jpg) — photo by Raj Manohar — https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/
+- **Jatoli Shiv Temple** (jatoli-shiv-temple.jpg) — photo by Daljeet Singh — https://www.pexels.com/photo/radhe-krishna-temple-in-baroh-19622759/
+- **Jibhi** (jibhi.jpg) — photo by Raghav Modi — https://www.pexels.com/photo/tranquil-lake-reflection-in-green-mountain-landscape-32859208/
+- **Joginder Nagar** (joginder-nagar.jpg) — photo by Dhanraj Priyadarshi — https://www.pexels.com/photo/quiet-mountain-village-street-scene-with-cars-30729231/
+- **Jogini Waterfall** (jogini-waterfall.jpg) — photo by Julia Volk — https://www.pexels.com/photo/picturesque-rocky-ravine-with-waterfall-and-green-vegetation-5205245/
+- **Kali Bari Temple** (kali-bari-temple.jpg) — photo by Ravindra Nadkarni — https://www.pexels.com/photo/traditional-indian-temple-architecture-38992913/
+- **Kalpa** (kalpa.jpg) — photo by Utkarsh Verma — https://www.pexels.com/photo/scenic-view-of-kalpa-village-in-himachal-pradesh-38549327/
+- **Kamlah Fort** (kamlah-fort.jpg) — photo by Raj Manohar — https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/
+- **Kamru Fort** (kamru-fort.jpg) — photo by Raj Manohar — https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/
+- **Kasol** (kasol.jpg) — photo by Swapnil RK — https://www.pexels.com/photo/scenic-view-of-snowy-mountains-at-sunset-in-kasol-36544386/
+- **Kaza** (kaza.jpg) — photo by Vaibhav V Jain — https://www.pexels.com/photo/village-by-river-5642763/
+- **Keylong** (keylong.jpg) — photo by Simon Berger — https://www.pexels.com/photo/a-gate-and-buildings-on-the-trail-in-ladakh-india-5011116/
+- **Kiarighat** (kiarighat.jpg) — photo by Mohit Hambiria — https://www.pexels.com/photo/hills-behind-road-in-village-19992231/
+- **Kinnaur** (kinnaur.jpg) — photo by Raj Manohar — https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/
+- **Koldam Dam** (koldam-dam.jpg) — photo by Vijay Richhiya — https://www.pexels.com/photo/stunning-mountain-valley-in-himachal-pradesh-36781455/
+- **Kufri Fun World** (kufri-fun-world.jpg) — photo by Alwick Gadgets — https://www.pexels.com/photo/people-in-mountains-21558505/
+- **Kullu** (kullu.jpg) — photo by Harsh  Kukadiya — https://www.pexels.com/photo/aerial-view-of-a-mountain-village-in-himachal-pradesh-37764822/
+- **Kutlehar Fort Ruins** (kutlehar-fort-ruins.jpg) — photo by Sharath G. — https://www.pexels.com/photo/brick-building-under-the-blue-sky-5918567/
+- **Lakshmi Narayan Temple** (lakshmi-narayan-temple.jpg) — photo by Roman Saienko — https://www.pexels.com/photo/majestic-birla-mandir-temple-in-new-delhi-india-28861116/
+- **Lalung Monastery** (lalung-monastery.jpg) — photo by Yogendra  Singh — https://www.pexels.com/photo/captivating-winter-view-of-key-monastery-in-spiti-valley-31307365/
+- **Lucknow** (lucknow.jpg) — photo by Kunal Gautam — https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/
+- **Manali** (manali.jpg) — photo by Kunal Gautam — https://www.pexels.com/photo/scenic-view-of-manali-mountains-and-river-29494184/
+- **McLeod Ganj** (mcleod-ganj.jpg) — photo by Mehmet Turgut  Kirkgoz — https://www.pexels.com/photo/man-with-cane-sitting-on-steps-11853895/
+- **Moorang** (moorang.jpg) — photo by Raj Manohar — https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/
+- **Mud Village** (mud-village.jpg) — photo by ASIF MANIYAR — https://www.pexels.com/photo/scenic-view-of-marango-rangarik-himachal-pradesh-37995943/
+- **Narkanda** (narkanda.jpg) — photo by Abhinav Goswami — https://www.pexels.com/photo/aerial-photography-of-a-village-in-the-countryside-13727745/
+- **Nicholas Roerich Art Gallery** (nicholas-roerich-art-gallery.jpg) — photo by Harsh  Kukadiya — https://www.pexels.com/photo/exterior-of-komic-gonpa-museum-in-spiti-valley-37484327/
+- **Norbulingka Institute** (norbulingka-institute.jpg) — photo by INDU BIKASH SARKER — https://www.pexels.com/photo/view-of-the-padam-palace-rampur-india-19330418/
+- **Palampur** (palampur.jpg) — photo by Jyoti  Pur — https://www.pexels.com/photo/scenic-view-of-dharamshala-with-snow-capped-mountains-37062365/
+- **Renuka Temple** (renuka-temple.jpg) — photo by Rajesh S  Balouria — https://www.pexels.com/photo/intricate-wooden-temple-facade-in-shimla-38703962/
+- **Rewalsar Lake** (rewalsar-lake.jpg) — photo by Raghav Modi — https://www.pexels.com/photo/tranquil-lake-reflection-in-green-mountain-landscape-32859208/
+- **Roghi Village** (roghi-village.jpg) — photo by Raj Manohar — https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/
+- **Sarahan** (sarahan.jpg) — photo by Raj Manohar — https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/
+- **Shikari Devi Temple** (shikari-devi-temple.jpg) — photo by Rajesh S  Balouria — https://www.pexels.com/photo/intricate-wooden-temple-facade-in-shimla-38703962/
+- **Shimla** (shimla.jpg) — photo by Ibrahim Bennett — https://www.pexels.com/photo/scenic-shimla-mountains-at-sunrise-30550228/
+- **St. Francis Church** (st-francis-church.jpg) — photo by Pranav Tandon — https://www.pexels.com/photo/st-patrick-s-church-tower-and-tree-in-kasauli-37092994/
+- **St. John's Church** (st-john-s-church.jpg) — photo by Pranav Tandon — https://www.pexels.com/photo/st-patrick-s-church-tower-and-tree-in-kasauli-37092994/
+- **Sundernagar Lake** (sundernagar-lake.jpg) — photo by JASPREET SINGH — https://www.pexels.com/photo/birds-eye-view-of-fields-forest-and-lake-21352768/
+- **Sunset Point Kasauli** (sunset-point-kasauli.jpg) — photo by Charanjeet Channi — https://www.pexels.com/photo/aerial-view-of-hillside-forest-and-remote-house-37919158/
+- **Tara Devi Temple** (tara-devi-temple.jpg) — photo by Rajesh S  Balouria — https://www.pexels.com/photo/intricate-wooden-temple-facade-in-shimla-38703962/
+- **Tarna Devi Temple** (tarna-devi-temple.jpg) — photo by Rajesh S  Balouria — https://www.pexels.com/photo/intricate-wooden-temple-facade-in-shimla-38703962/
+- **Tauni Devi Temple** (tauni-devi-temple.jpg) — photo by Rajesh S  Balouria — https://www.pexels.com/photo/intricate-wooden-temple-facade-in-shimla-38703962/
+- **Tosh** (tosh.jpg) — photo by Chandravardhan Singh — https://www.pexels.com/photo/a-mountain-range-with-snow-capped-peaks-and-trees-27364471/
+- **Trilokinath Temple** (trilokinath-temple.jpg) — photo by Raj Manohar — https://www.pexels.com/photo/view-of-a-traditional-wooden-temple-in-the-himalayas-at-snowfall-17148593/
+- **Vyas Cave** (vyas-cave.jpg) — photo by Melbin Jacob — https://www.pexels.com/photo/black-mountains-under-dark-blue-sky-19811583/
