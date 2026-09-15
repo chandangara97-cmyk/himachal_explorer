@@ -1,0 +1,1335 @@
+[
+  {
+    "drive_file_id": "1-1dpmqnPYXXSND6VlYEWkmxENM01WE0Y",
+    "names": [
+      "Kasol"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./kullu.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1-UaQRMe7wvPxQo3UsLObsBOoOdGwpxNl",
+    "names": [],
+    "referenced_in": [
+      "./bilaspur.html",
+      "./dist_master.html",
+      "./encyclopedia.html",
+      "./una.html"
+    ]
+  },
+  {
+    "drive_file_id": "1-sp6Cw6BF4aS5aYdesXZmUKLnX2E-qV4",
+    "names": [
+      "Sundernagar Lake"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./mandi.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "109SpFO6zjNCDasRYqNWj0JpYEkb9LL9d",
+    "names": [
+      "Roghi Village"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "10_KfuO452VEIuDthPCL8kXMQblL0URWq",
+    "names": [
+      "Sarahan",
+      "Tosh"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json",
+      "./tools/firebase-data/full-package_content-95.json",
+      "./tools/firebase-data/new-55-packages-firebase-update.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_kasol-kasol-tosh-getaway-2d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_kasol-kheerganga-trek-3d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_kasol-parvati-valley-deep-trail-8d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_kasol-parvati-valley-immersion-5d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_shimla-shimla-sarahan-circuit-6d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_spiti-spiti-kinnaur-sarahan-circuit-10d.json"
+    ]
+  },
+  {
+    "drive_file_id": "10bF_tyup4NjF3GRB1KaOqaMEa7eyWcl4",
+    "names": [
+      "Bhagsunag Waterfall"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "135QkUmJf3klUB24_JZLCOD5wtIJK-ZQk",
+    "names": [
+      "Mud Village"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "13IhN4SpsETxVvaFC5eJgLlywAC9D5_XD",
+    "names": [
+      "Prashar Lake"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./mandi.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "141r1JXaUSD6LoX52t49ng70vCEw_1Z0-",
+    "names": [
+      "St. Francis Church"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "14r4lVxdOVej8SS5grZj50P_kmEqlwoUN",
+    "names": [
+      "Delhi"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "15n0m7H4yv_-09IEIokZVkix6-_JLhZPn",
+    "names": [
+      "Sangla"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./kinnaur.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "17835CCZr4oj5XNjHxv5gzIkY3aKOoNBK",
+    "names": [
+      "Hatu Peak"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./shimla.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "18apY3jcBVtGcrMHX7BQJGFJJNOjHs4Pj",
+    "names": [
+      "Hampta Pass (trailhead)"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "197EfvHj3r9TxNoHtdVBmyn_Mgy4ULEj6",
+    "names": [
+      "Kibber Village"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "19PxfaDl_AKPetHpJfwIBsFPvuK2ZTWO8",
+    "names": [
+      "Bhuntar"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "19UtwsJQcmKYeIPipX2o-kTEudQi-_gfx",
+    "names": [
+      "Kinnaur"
+    ],
+    "referenced_in": [
+      "./about.html",
+      "./dist_master.html",
+      "./drive_photo_manifest.json",
+      "./encyclopedia.html",
+      "./images.js",
+      "./kinnaur.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "19upYXK2gJjwrC4Hv5V_3UqeOqwyz1zk6",
+    "names": [
+      "Bharmour"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json",
+      "./tools/firebase-data/full-package_content-95.json",
+      "./tools/firebase-data/new-55-packages-firebase-update.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_dalhousie-chamba-valley-explorer-5d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_dalhousie-dalhousie-chamba-bharmour-4d.json"
+    ]
+  },
+  {
+    "drive_file_id": "1BK0Oj6HjXImZhjHNM8QZIHKB7iPohhHz",
+    "names": [
+      "Norbulingka Institute"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1Bz7bhPpzISOH9rrTTtnLt5Ab8G7TFjS6",
+    "names": [
+      "Tabo Monastery"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./kinnaur.html",
+      "./spiti.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1CHfnDdwFNnCq21Wpreak0aGIeHIWZ4vo",
+    "names": [
+      "Jaipur"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1FOfwJgfzZ09u8aDqnNfkOfVy13USAsaQ",
+    "names": [
+      "Kangra Fort"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./encyclopedia.html",
+      "./index.html",
+      "./kangra.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1FUNinxrdYb7iYhFG0GlDUlxBZ4eWjKLF",
+    "names": [
+      "Jogini Waterfall"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1FlgMhpIfuFglMPoOwmAbqJhrojuTggKB",
+    "names": [
+      "Renuka Temple"
+    ],
+    "referenced_in": [
+      "./dist_master.html",
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./sirmour.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1FmipRlngRoFu_irRawmv0fcbbuLRi8T4",
+    "names": [
+      "Kunzum"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1G1fyL-y4qygleLzNCyztHmRA3M99Mgx0",
+    "names": [
+      "Green Valley Manali"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1GDqE-Eott6viSFYNiU12xr4h_SUkiY_P",
+    "names": [
+      "Haripurdhar Temple"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./sirmour.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1HObOda1AMR4C_cRREaVgc6HNmJKmBMjA",
+    "names": [
+      "Pin Valley"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1ID7IQkkHg7MxblQTRtS1-ycTif86Xluz",
+    "names": [
+      "Kaza"
+    ],
+    "referenced_in": [
+      "./dist_master.html",
+      "./drive_photo_manifest.json",
+      "./encyclopedia.html",
+      "./images.js",
+      "./index.html",
+      "./spiti.html",
+      "./tools/drive_photo_manifest.json",
+      "./tools/firebase-data/full-package_content-95.json",
+      "./tools/firebase-data/new-55-packages-firebase-update.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_kasol-parvati-grand-circuit-10d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_kasol-parvati-spiti-connector-7d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_manali-manali-spiti-gateway-7d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_shimla-shimla-grand-himalayan-loop-10d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_spiti-chandratal-spiti-combo-6d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_spiti-spiti-gateway-4d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_spiti-spiti-grand-expedition-9d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_spiti-spiti-high-altitude-villages-8d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_spiti-spiti-kinnaur-loop-7d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_spiti-spiti-monastery-circuit-5d.json"
+    ]
+  },
+  {
+    "drive_file_id": "1ISC4INjpuSNCn6Cgctn48dQAasPvpraB",
+    "names": [
+      "Dharamshala"
+    ],
+    "referenced_in": [
+      "./dist_master.html",
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./kangra.html",
+      "./tools/drive_photo_manifest.json",
+      "./tools/firebase-data/full-package_content-95.json",
+      "./tools/firebase-data/new-55-packages-firebase-update.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_dharamshala-dhauladhar-explorer-5d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_dharamshala-dhauladhar-grand-trail-9d.json"
+    ]
+  },
+  {
+    "drive_file_id": "1IiTMdi6E_Sr8ah_wOtY4K30pyXohd7YE",
+    "names": [
+      "Jatoli Shiv Temple"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1Ipwl5Th_AufIWSNr5qGjiXoG_ddYdQpi",
+    "names": [
+      "Jakhu Temple"
+    ],
+    "referenced_in": [
+      "./dist_master.html",
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./index.html",
+      "./shimla.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1KUsZ-zN5B2Wo6Iu1ftQpGD64I4lZDBXT",
+    "names": [
+      "Jagatsukh"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1Kg_ErJJHIalEIBLAYGBSORIdJfeQbVO5",
+    "names": [
+      "Janjehli Valley"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1LyvtOanuxHxHrEWJZteMHp4OUTtMZ2sO",
+    "names": [
+      "Nicholas Roerich Art Gallery"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1M6IkuSm1LeCcNbpNq3zCXNhWCjDW_T0V",
+    "names": [
+      "Dainkund Peak"
+    ],
+    "referenced_in": [
+      "./chamba.html",
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1NzWAk3lXR_-4h6tBtxWXCzMR918Df0W1",
+    "names": [
+      "Jaitak Fort"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1O52tbT-BJdh1DGeF0uC8gCWe5V9Gv7uY",
+    "names": [
+      "Dal Lake Dharamshala"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1OUvn4g55Qou8mBxYiDqntsf6VbAICIhs",
+    "names": [
+      "Manikaran Sahib"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1PNeTdpLKxYnGfphL61kJH1frYmOivf5f",
+    "names": [
+      "Kaza"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./spiti.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1Q_BsGwueyYIB6gFWQaS2pO6zUg9ETNyp",
+    "names": [
+      "Tara Devi Temple"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./shimla.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1RdXsYMhrnvba3Glc8MJyjtmr_0XEkc2T",
+    "names": [
+      "Dehradun"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1SYlxsW3qkNB7WYx1fo0LlMBtJHjSMA6e",
+    "names": [
+      "Lalung Monastery"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1StHhmmWogw5wbXWMz3ooykCwvuO-A4fI",
+    "names": [
+      "Amritsar"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1T8km-0gQXp26V9HsncBQG-Zzf4q-SbNE",
+    "names": [
+      "Jalori"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1TRR61v2H8xfjqeNqUpMq4Ih5CSHrafLn",
+    "names": [
+      "Bhrigu Lake Trek"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1UlZPn7nrX3vql1e_GUVALxheZG_1Pq0K",
+    "names": [
+      "Tauni Devi Temple"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1VwSrosvzPdwFshgZ1ygBkluZUu12eF4c",
+    "names": [
+      "Cholling Monastery"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1WBW_ab8B5ffHSjXbUT5mJxIK57xL3iF6",
+    "names": [
+      "Kullu"
+    ],
+    "referenced_in": [
+      "./contact.html",
+      "./encyclopedia.html",
+      "./images.js"
+    ]
+  },
+  {
+    "drive_file_id": "1WTKnwNtUR8TTRZ1sdiKFlGh7xaeiGlSU",
+    "names": [
+      "Reckong Peo"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./kinnaur.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1Wj2vfI0R68ZDlhPr1P06tNxRXKKK67GC",
+    "names": [
+      "Manali"
+    ],
+    "referenced_in": [
+      "./booking.html",
+      "./dist_master.html",
+      "./drive_photo_manifest.json",
+      "./encyclopedia.html",
+      "./images.js",
+      "./index.html",
+      "./kullu.html",
+      "./tools/drive_photo_manifest.json",
+      "./tools/firebase-data/full-package_content-95.json",
+      "./tools/firebase-data/new-55-packages-firebase-update.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_manali-bhrigu-lake-manali-circuit-8d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_manali-manali-discovery-2d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_manali-manali-grand-adventure-9d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_manali-rohtang-pass-expedition-3d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_manali-solang-valley-adventure-sprint-1d.json"
+    ]
+  },
+  {
+    "drive_file_id": "1Wp-66Z_Hv3vVa5xhQuYaVriX98E9PITy",
+    "names": [
+      "Jangi Village"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1Ww9hcsDDNkLZ2K4qM7n7dFNj4oniKnqG",
+    "names": [
+      "Langza"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./spiti.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1XcMQpLDnghpcoBisNshfFEAYBEp9Rczp",
+    "names": [
+      "Bhuri Singh Museum"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1ZOrPc23Sw6CmjVB8QBxtfXsZTRPOz8Z3",
+    "names": [
+      "Trilokinath Temple"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1Zrfbu5PYjXHy6asiwj-QwzQ8D-9OWq6A",
+    "names": [
+      "Sujanpur Tira Fort"
+    ],
+    "referenced_in": [
+      "./dist_master.html",
+      "./drive_photo_manifest.json",
+      "./hamirpur.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1_842Z18jnAiT0gie7bo1T36bzX1kJXFT",
+    "names": [
+      "Nako Monastery"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./kinnaur.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1akHHHxVi0uhUDreZr8RzrAl6GX_2Mhd8",
+    "names": [
+      "Lakshmi Narayan Temple"
+    ],
+    "referenced_in": [
+      "./chamba.html",
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1bHLbIYMa3xO9LkVwT-xdU_SFYGGqIFmZ",
+    "names": [
+      "Kasol"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json",
+      "./tools/firebase-data/full-package_content-95.json",
+      "./tools/firebase-data/new-55-packages-firebase-update.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_kasol-kasol-cafe-trail-1d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_kasol-malana-kasol-explorer-4d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_kasol-manikaran-pilgrimage-parvati-6d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_manali-manali-kasol-crossover-4d.json"
+    ]
+  },
+  {
+    "drive_file_id": "1bNhdDBVsd3D8tiVu72THh3eyMFDP0i4I",
+    "names": [
+      "Vyas Cave"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1c3mqiXspZk0DLJiX4Apu-ksWzaD5H8bs",
+    "names": [
+      "Sunset Point Kasauli"
+    ],
+    "referenced_in": [
+      "./dist_master.html",
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./solan.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1cLRdmVu6mU0Ds0f8KhQuYuVIQPBfSJbe",
+    "names": [
+      "Shikari Devi Temple"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./mandi.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1cOoqr4k98jjJ_RqPArC36MpvJkP9aG8i",
+    "names": [
+      "Darcha"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1cfn4vB0pjIKK5iZz5rmMng6GS0hvjvzW",
+    "names": [
+      "Jibhi"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./kullu.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1cknpkSubpzx6-lex6tze0wfd11rIE-e-",
+    "names": [
+      "Malana"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1d6tbCIrSx0j9wSIhdhhfpB8W9LKqXO77",
+    "names": [
+      "Kali Bari Temple"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1dMXqaF__bs8ndXhqFP45q1-_6vdhvyXD",
+    "names": [
+      "Rewalsar Lake"
+    ],
+    "referenced_in": [
+      "./dist_master.html",
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./mandi.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1dNklcbH64NWxji8dUJmWYnAXKSA0esH3",
+    "names": [
+      "Pong Dam Lake Una Access"
+    ],
+    "referenced_in": [
+      "./dist_master.html",
+      "./drive_photo_manifest.json",
+      "./tools/drive_photo_manifest.json",
+      "./una.html"
+    ]
+  },
+  {
+    "drive_file_id": "1dnb8e0Zh3YO0nLzL6MrzbdVm-OGmIOIs",
+    "names": [
+      "Kamlah Fort"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./mandi.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1eh7t10GnbMCF-5f4cKTKuhQbvV_r-Isc",
+    "names": [
+      "Chandigarh"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1f657QC-GQRnY86hFeVVO0vHZ5G8w7_lY",
+    "names": [
+      "Moorang"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1fn0_2stn6cEAST7dUxxQoU-byXfkWhDP",
+    "names": [
+      "Gondhla Fort"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1g1Y_sjMe-UDoJBfNJhFNl7GTXmCn1uRB",
+    "names": [
+      "Kutlehar Fort Ruins"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json",
+      "./una.html"
+    ]
+  },
+  {
+    "drive_file_id": "1gV2lT6cqXTPMR_G7VIEZVmGjL9FUj3Sl",
+    "names": [
+      "Kamru Fort"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./kinnaur.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1ggEt9j6UzwSm0i5JjHqn7wf3CF0AVDEr",
+    "names": [
+      "Komic"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1iVcDEdhNF2kA0KuhCT9tRRUtqPKBL78Q",
+    "names": [
+      "Manimahesh Lake"
+    ],
+    "referenced_in": [
+      "./chamba.html",
+      "./drive_photo_manifest.json",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1ioDKPGvIXat_JbEQPoNUGUdtTamZdArg",
+    "names": [
+      "Dehnasar Lake Trek"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1isK1Iuww4-Dyyz6hR8T8kwNHIyBQiTUX",
+    "names": [
+      "Kufri Fun World"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1j44-HG28T5q1Cyeb65MjUkFTNsATfsbk",
+    "names": [
+      "Chamba"
+    ],
+    "referenced_in": [
+      "./chamba.html",
+      "./dist_master.html",
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json",
+      "./tools/firebase-data/full-package_content-95.json",
+      "./tools/firebase-data/new-55-packages-firebase-update.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_dalhousie-chamba-heritage-circuit-3d.json"
+    ]
+  },
+  {
+    "drive_file_id": "1jF18tnj_vXu2xyakq7w19T37-qUCC2ap",
+    "names": [
+      "Sunset Point Kasauli"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1jU_FbssULoKENHPTmbUgJePBRWUOKlrF",
+    "names": [
+      "Dalhousie"
+    ],
+    "referenced_in": [
+      "./blog/index.html",
+      "./chamba.html",
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json",
+      "./tools/firebase-data/full-package_content-95.json",
+      "./tools/firebase-data/new-55-packages-firebase-update.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_dalhousie-dalhousie-colonial-trail-1d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_dalhousie-dalhousie-khajjiar-duo-2d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_dharamshala-kangra-chamba-dalhousie-expedition-10d.json"
+    ]
+  },
+  {
+    "drive_file_id": "1jlvXX_4HsXPjvn1Gu7_2LZPCROAz-B-P",
+    "names": [
+      "Kullu"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1kBzkD6sXm0akOmsHo-z4nbFWEXof45oe",
+    "names": [
+      "Pin Valley National Park"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./spiti.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1kx5pdbLu_Eb0kh1S1mCkhU8mMMxCS8AU",
+    "names": [
+      "Kalpa"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./kinnaur.html",
+      "./tools/drive_photo_manifest.json",
+      "./tools/firebase-data/full-package_content-95.json",
+      "./tools/firebase-data/new-55-packages-firebase-update.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_kasol-parvati-kinnaur-adventure-9d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_manali-manali-spiti-kinnaur-loop-10d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_shimla-shimla-kinnaur-gateway-7d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_shimla-shimla-sangla-adventure-8d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_spiti-kalpa-viewpoint-day-trip-1d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_spiti-kinnaur-valley-short-trail-3d.json"
+    ]
+  },
+  {
+    "drive_file_id": "1lJbRMTasmTMQsiKWWXovV2s9wI3J_KbU",
+    "names": [
+      "Sarahan"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./shimla.html",
+      "./sirmour.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1lr3659146iZaBL7XAawb2YGmENSDYjBd",
+    "names": [
+      "Jakhu Ropeway"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1mEdZBs_o6bK_B-yJrFd_P8JdSTTh5YHZ",
+    "names": [
+      "Khajjiar"
+    ],
+    "referenced_in": [
+      "./chamba.html",
+      "./drive_photo_manifest.json",
+      "./index.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1mdfMzWq2EJXOdPl1d-7-oHLRbgRLPu7Z",
+    "names": [
+      "Keylong"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1miTFePv3lnddFMNSf6mvvPeOdk9_zWe7",
+    "names": [
+      "Bon Monastery, Solan"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1nJZBzpoyCfglOdd_MmXBHZOrOD_iC591",
+    "names": [
+      "Masroor Rock Cut Temples"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1oEgKd5E04w7UBJbS78HRxf_FY6_6ZkLx",
+    "names": [
+      "Serolsar Lake"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1oGjcwrZ5p3tvps-HIABClNVOQmCJzDfb",
+    "names": [
+      "Chindi Mata Temple"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1oXBV5IqiUwaK2HjqD9Po5oMmHBp8ha0K",
+    "names": [
+      "Palampur"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./kangra.html",
+      "./tools/drive_photo_manifest.json",
+      "./tools/firebase-data/full-package_content-95.json",
+      "./tools/firebase-data/new-55-packages-firebase-update.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_dharamshala-bir-billing-paragliding-special-3d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_dharamshala-dharamshala-bir-circuit-4d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_dharamshala-kangra-valley-deep-dive-6d.json"
+    ]
+  },
+  {
+    "drive_file_id": "1qqOLifSM2lbajqCx8KugTowcZdXjYWyR",
+    "names": [
+      "St. John's Church"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1rRdhO4gLpQWwWO4uQe7wKSHIhzS7KNOG",
+    "names": [
+      "Chicham Bridge"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1rqOHaklRBjeBv1KCWX29kPDyXRmN5PwZ",
+    "names": [
+      "Lucknow"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1sEaHna3aQlrIxwhfEKN09F0qX20W8Uz5",
+    "names": [
+      "Tarna Devi Temple"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1sgumyeYGfoIP1UbYhplBhgKXCUEcDKnt",
+    "names": [
+      "Kamrunag Lake"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1sqrRW_NIP1Mr0-yELm6j2xsh3nQaCfDq",
+    "names": [
+      "Christ Church"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1ss1z4p4J8INkSX-J7kEo6IoWjai7IYiB",
+    "names": [
+      "Keylong"
+    ],
+    "referenced_in": [
+      "./images.js",
+      "./tools/firebase-data/full-package_content-95.json",
+      "./tools/firebase-data/new-55-packages-firebase-update.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_manali-hampta-pass-full-trek-6d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_manali-hampta-pass-trek-easy-5d.json"
+    ]
+  },
+  {
+    "drive_file_id": "1uVj-DrOTbTD_j9uTP2p5KWgvcPAEndTU",
+    "names": [
+      "Tosh"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1ut5eL2H-hIjMeELodJDuY4ZrZCauGBoZ",
+    "names": [
+      "Shimla"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./encyclopedia.html",
+      "./images.js",
+      "./shimla.html",
+      "./tools/drive_photo_manifest.json",
+      "./tools/firebase-data/full-package_content-95.json",
+      "./tools/firebase-data/new-55-packages-firebase-update.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_shimla-shimla-chail-kufri-3d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_shimla-shimla-kasauli-explorer-5d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_shimla-shimla-kufri-duo-2d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_shimla-shimla-ridge-and-mall-road-1d.json"
+    ]
+  },
+  {
+    "drive_file_id": "1vXrMsb-E_meNAPXgCCNIGqAXzmryMxfX",
+    "names": [
+      "Koldam Dam"
+    ],
+    "referenced_in": [
+      "./bilaspur.html",
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1vvpNTmvqzQN_2t5fJBgIv9eyhtzUrfAq",
+    "names": [
+      "Ganji Pahari"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1w-cA1F7Ybr2X-gyPSOjd1__5wQI96kX2",
+    "names": [
+      "Chitkul"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./kinnaur.html",
+      "./tools/drive_photo_manifest.json",
+      "./tools/firebase-data/full-package_content-95.json",
+      "./tools/firebase-data/new-55-packages-firebase-update.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_shimla-shimla-kinnaur-chitkul-9d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_spiti-sangla-chitkul-express-2d.json"
+    ]
+  },
+  {
+    "drive_file_id": "1w24nJuzPjXjJ_mOysEZlcJUrbYjuoBqZ",
+    "names": [
+      "Kufri"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./shimla.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1wND6Ogj3s-W6-S9NBiKGyyT7xSbz4x3d",
+    "names": [
+      "Joginder Nagar"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1wd5un96nu3bUfGxgHnV4KOiHC_oa7G1Z",
+    "names": [
+      "Kareri Lake Trek"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./kangra.html",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1wtjodBjPLDShRC3EZfJF9E-gdkY2qIi5",
+    "names": [
+      "Kiarighat"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json"
+    ]
+  },
+  {
+    "drive_file_id": "1ywkB_gHrhtYuwAZFLccRt-53R-25Ihlx",
+    "names": [
+      "McLeod Ganj"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./tools/drive_photo_manifest.json",
+      "./tools/firebase-data/full-package_content-95.json",
+      "./tools/firebase-data/new-55-packages-firebase-update.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_dharamshala-dharamshala-adventure-week-7d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_dharamshala-indrahar-pass-trek-8d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_dharamshala-mcleod-ganj-heritage-walk-1d.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_dharamshala-triund-trek-getaway-2d.json"
+    ]
+  },
+  {
+    "drive_file_id": "1zyML626vzyNAfQaMMYLr1lsIBCBjUvqQ",
+    "names": [
+      "Narkanda"
+    ],
+    "referenced_in": [
+      "./drive_photo_manifest.json",
+      "./images.js",
+      "./shimla.html",
+      "./tools/drive_photo_manifest.json",
+      "./tools/firebase-data/full-package_content-95.json",
+      "./tools/firebase-data/new-55-packages-firebase-update.json",
+      "./tools/firebase-import/package-expansion-2026/package_content_shimla-shimla-nature-trail-4d.json"
+    ]
+  }
+]
