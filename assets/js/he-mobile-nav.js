@@ -20,15 +20,22 @@
       // --- Hide header on scroll-down, reveal on scroll-up (mobile only) ---
       if(header){
         var lastY = window.scrollY, ticking = false;
+        var FORM_TAGS = {INPUT:1, TEXTAREA:1, SELECT:1};
         window.addEventListener('scroll', function(){
           if(ticking) return;
           ticking = true;
           requestAnimationFrame(function(){
             var y = window.scrollY;
             var navOpen = nav && nav.classList.contains('he-open');
-            if(window.innerWidth <= 760 && !navOpen){
-              if(y > lastY && y > 80){ header.classList.add('he-hide'); }
-              else { header.classList.remove('he-hide'); }
+            var formActive = document.activeElement && FORM_TAGS[document.activeElement.tagName];
+            var delta = y - lastY;
+            if(window.innerWidth <= 760 && !navOpen && !formActive){
+              // Require a deliberate scroll (not a tiny jitter) and enough
+              // distance from the top before hiding, so the header doesn't
+              // flicker on small scrolls or while a map/panel is nudging
+              // the page.
+              if(delta > 12 && y > 200){ header.classList.add('he-hide'); }
+              else if(delta < -12 || y < 200){ header.classList.remove('he-hide'); }
             } else {
               header.classList.remove('he-hide');
             }

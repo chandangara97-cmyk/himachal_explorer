@@ -55,7 +55,7 @@ img[loading="lazy"]{ background:linear-gradient(90deg,#eee,#f6f6f6,#eee); }
 
 /* ---------- Back-to-top button (injected by he-mobile-nav.js) ---------- */
 .he-top-btn{
-  position:fixed; right:16px; bottom:78px; z-index:1030;
+  position:fixed; right:16px; bottom:calc(62px + env(safe-area-inset-bottom,0px) + 16px); z-index:1030;
   width:42px; height:42px; border-radius:50%; border:none;
   background:linear-gradient(135deg,var(--he-gold-light,#ffb84d),var(--he-gold,#b07d3a));
   color:#1c1409; font-size:16px; cursor:pointer;
@@ -80,6 +80,11 @@ img[loading="lazy"]{ background:linear-gradient(90deg,#eee,#f6f6f6,#eee); }
 .eh-grid .eh-card:nth-child(4),.enc-grid .enc-card:nth-child(4),.nv-grid .nv-tile:nth-child(4){ animation-delay:.14s; }
 .eh-grid .eh-card:nth-child(5),.enc-grid .enc-card:nth-child(5),.nv-grid .nv-tile:nth-child(5){ animation-delay:.18s; }
 .eh-grid .eh-card:nth-child(n+6),.enc-grid .enc-card:nth-child(n+6),.nv-grid .nv-tile:nth-child(n+6){ animation-delay:.22s; }
+/* Cards beyond the first screenful skip the entrance animation entirely —
+   on long lists (encyclopedia runs to 150+ entries, district place grids
+   to 100+) animating every off-screen card is wasted paint work for
+   something the user never sees happen. */
+.eh-grid .eh-card:nth-child(n+13),.enc-grid .enc-card:nth-child(n+13),.nv-grid .nv-tile:nth-child(n+13){ animation:none; opacity:1; }
 @media (prefers-reduced-motion:reduce){
   .eh-grid .eh-card,.enc-grid .enc-card,.nv-grid .nv-tile,img{ animation:none!important; transition:none!important; }
 }
