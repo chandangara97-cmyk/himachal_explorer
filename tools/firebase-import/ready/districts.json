@@ -179,7 +179,7 @@
     "description": "Bilaspur has a unique and poignant history: the old Bilaspur town was submerged when the Bhakra Dam created Gobind Sagar Lake in 1954. The new town stands above the reservoir. Gobind Sagar is now among India's larger man-made lakes and a key place for water sports. Naina Devi temple, perched on a 1,219-m ridge overlooking the lake, ranks among the most important Shakti Peethas in northern India. AIIMS Bilaspur is India's newest premier medical institution.",
     "famous_for": "Gobind Sagar Lake, Bhakra Dam, Naina Devi Shakti Peetha, Water Sports, Drowned City story",
     "from_delhi_km": 340,
-    "hero_image": "",
+    "hero_image": "assets/images/districts/bilaspur_hero.jpg",
     "hq": "Bilaspur",
     "id": "bilaspur",
     "local_food": "Dham (feast), Babru, Madra, Jhol (gram lentil curry), Mittha (sweet saffron rice)",
@@ -198,7 +198,7 @@
         "lng": 76.4333,
         "name": "Bhakra Dam",
         "order": 3,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/bilaspur_bhakra_dam.jpg",
         "tourist_volume": "High",
         "type": "Engineering / Heritage"
       },
@@ -211,7 +211,7 @@
         "lng": 76.7539,
         "name": "Bilaspur Town",
         "order": 4,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/bilaspur_bilaspur_town.jpg",
         "tourist_volume": "Medium",
         "type": "Town / Heritage"
       },
@@ -224,7 +224,7 @@
         "lng": 76.6,
         "name": "Dehar Hydro",
         "order": 9,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/bilaspur_dehar_hydro.jpg",
         "tourist_volume": "Low",
         "type": "Engineering / Nature"
       },
@@ -263,7 +263,7 @@
         "lng": 76.8,
         "name": "Markand Temple",
         "order": 5,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/bilaspur_markand_temple.jpg",
         "tourist_volume": "Medium",
         "type": "Temple"
       },
@@ -276,7 +276,7 @@
         "lng": 76.65,
         "name": "Naina Devi Temple",
         "order": 2,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/bilaspur_naina_devi_temple.jpg",
         "tourist_volume": "Very High",
         "type": "Temple / Shakti Peetha"
       },
@@ -289,7 +289,7 @@
         "lng": 76.75,
         "name": "Nalwari Fair Ground",
         "order": 7,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/bilaspur_nalwari_fair_ground.jpg",
         "tourist_volume": "Medium",
         "type": "Cultural"
       },
@@ -302,7 +302,7 @@
         "lng": 76.75,
         "name": "Swarghat",
         "order": 10,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/bilaspur_swarghat.jpg",
         "tourist_volume": "Low",
         "type": "Nature / River"
       },
@@ -315,7 +315,7 @@
         "lng": 76.76,
         "name": "Vyas Gufa",
         "order": 8,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/bilaspur_vyas_gufa.jpg",
         "tourist_volume": "Low",
         "type": "Heritage / Spiritual"
       }
@@ -537,7 +537,7 @@
         "lng": 76.53,
         "name": "Bharmaur",
         "order": 8,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/chamba_bharmaur.jpg",
         "tourist_volume": "Medium",
         "type": "Heritage Town"
       },
@@ -850,7 +850,7 @@
     "description": "Hamirpur is Himachal's smallest district by area and has the highest literacy rate in the state (and historically among the highest for any district in India). This place is the political heartland of Himachal — home to several chief ministers. The district is noted for Sujanpur Tira, a princely town with a historic fort and riverside ghats on the Beas. It offers an authentic slice of Himachali culture without tourist crowds.",
     "famous_for": "Highest Literacy Rate, Sujanpur Tira Fort, Deotsidh Temple, Political Heartland of HP",
     "from_delhi_km": 385,
-    "hero_image": "",
+    "hero_image": "assets/images/districts/hamirpur_hero.jpg",
     "hq": "Hamirpur",
     "id": "hamirpur",
     "local_food": "Dham, Madra, Babru, Rajah (wheat-jaggery sweet), Siddu, Chana Madra",
@@ -869,7 +869,7 @@
         "lng": 76.52,
         "name": "Awah Devi",
         "order": 6,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/hamirpur_awah_devi.jpg",
         "tourist_volume": "Medium",
         "type": "Temple"
       },
@@ -882,7 +882,7 @@
         "lng": 76.4,
         "name": "Bangana",
         "order": 9,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/hamirpur_bangana.jpg",
         "tourist_volume": "Low",
         "type": "Town"
       },
@@ -895,7 +895,7 @@
         "lng": 76.6833,
         "name": "Bhota",
         "order": 7,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/hamirpur_bhota.jpg",
         "tourist_volume": "Low",
         "type": "Village / Nature"
       },
@@ -908,7 +908,7 @@
         "lng": 76.6,
         "name": "Bijhari",
         "order": 8,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/hamirpur_bijhari.jpg",
         "tourist_volume": "Low",
         "type": "Village"
       },
@@ -921,7 +921,7 @@
         "lng": 76.5289,
         "name": "Deotsidh Temple",
         "order": 3,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/hamirpur_deotsidh_temple.jpg",
         "tourist_volume": "High",
         "type": "Temple / Pilgrimage"
       },
@@ -934,7 +934,7 @@
         "lng": 76.5218,
         "name": "Hamirpur Town",
         "order": 4,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/hamirpur_hamirpur_town.jpg",
         "tourist_volume": "Low",
         "type": "Town"
       },
@@ -947,7 +947,7 @@
         "lng": 76.3456,
         "name": "Nadaun",
         "order": 5,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/hamirpur_nadaun.jpg",
         "tourist_volume": "Low",
         "type": "Historical Town"
       },
@@ -960,7 +960,7 @@
         "lng": 76.52,
         "name": "Ranser Lake",
         "order": 10,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/hamirpur_ranser_lake.jpg",
         "tourist_volume": "Low",
         "type": "Lake / Picnic"
       },
@@ -973,7 +973,7 @@
         "lng": 76.5061,
         "name": "Sujanpur Tira",
         "order": 1,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/hamirpur_sujanpur_tira.jpg",
         "tourist_volume": "High",
         "type": "Heritage Fort Town"
       },
@@ -986,7 +986,7 @@
         "lng": 76.5061,
         "name": "Tarapur Fort",
         "order": 2,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/hamirpur_tarapur_fort.jpg",
         "tourist_volume": "Medium",
         "type": "Fort / Heritage"
       }
@@ -1193,7 +1193,7 @@
     "description": "Kangra is Himachal's most populated and culturally rich district. Dharamshala contains the Dalai Lama and the Tibetan government-in-exile. Bir-Billing is the paragliding capital of Asia, hosting World Cup events. The Kangra Valley Railway is a delightful narrow-gauge journey. The ancient Kangra Fort, Brajeshwari temple and tea gardens of Palampur make this a district of extraordinary diversity.",
     "famous_for": "Dalai Lama residence, Paragliding at Bir-Billing, Kangra Miniature Paintings, Tea Gardens",
     "from_delhi_km": 490,
-    "hero_image": "",
+    "hero_image": "assets/images/districts/kangra_hero.jpg",
     "hq": "Dharamshala",
     "id": "kangra",
     "local_food": "Khachdi, Chukh (spicy fermented chilli), Momos (Tibetan), Thukpa, Kangri Dham",
@@ -1225,7 +1225,7 @@
         "lng": 76.2696,
         "name": "Brajeshwari Temple",
         "order": 7,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/kangra_brajeshwari_temple.jpg",
         "tourist_volume": "High",
         "type": "Temple"
       },
@@ -1238,7 +1238,7 @@
         "lng": 76.45,
         "name": "Chamunda Devi",
         "order": 10,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/kangra_chamunda_devi.jpg",
         "tourist_volume": "High",
         "type": "Temple"
       },
@@ -1251,7 +1251,7 @@
         "lng": 76.32,
         "name": "Dharamkot",
         "order": 9,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/kangra_dharamkot.jpg",
         "tourist_volume": "Medium",
         "type": "Village"
       },
@@ -1264,7 +1264,7 @@
         "lng": 76.3234,
         "name": "Dharamshala / McLeod Ganj",
         "order": 1,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/kangra_dharamshala___mcleod_ganj.jpg",
         "tourist_volume": "Very High",
         "type": "Town / Buddhist Hub"
       },
@@ -1303,7 +1303,7 @@
         "lng": 76.4242,
         "name": "Masrur Rock Cut Temple",
         "order": 6,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/kangra_masrur_rock_cut_temple.jpg",
         "tourist_volume": "Medium",
         "type": "Heritage"
       },
@@ -1329,7 +1329,7 @@
         "lng": 76.35,
         "name": "Triund Trek",
         "order": 5,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/kangra_triund_trek.jpg",
         "tourist_volume": "Very High",
         "type": "Trek"
       }
@@ -1551,7 +1551,7 @@
         "lng": 78.44,
         "name": "Chhitkul Meadows",
         "order": 8,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/kinnaur_chhitkul_meadows.jpg",
         "tourist_volume": "High",
         "type": "Nature"
       },
@@ -1577,7 +1577,7 @@
         "lng": 78.7,
         "name": "Hangrang Valley",
         "order": 9,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/kinnaur_hangrang_valley.jpg",
         "tourist_volume": "Low",
         "type": "Valley / Permit Zone"
       },
@@ -1616,7 +1616,7 @@
         "lng": 78.4,
         "name": "Lippa-Asrang Sanctuary",
         "order": 10,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/kinnaur_lippa-asrang_sanctuary.jpg",
         "tourist_volume": "Low",
         "type": "Wildlife"
       },
@@ -1629,7 +1629,7 @@
         "lng": 78.6598,
         "name": "Nako",
         "order": 6,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/kinnaur_nako.jpg",
         "tourist_volume": "Medium",
         "type": "Village / Lake"
       },
@@ -1655,7 +1655,7 @@
         "lng": 78.3333,
         "name": "Sangla Valley",
         "order": 3,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/kinnaur_sangla_valley.jpg",
         "tourist_volume": "High",
         "type": "Valley"
       },
@@ -2155,7 +2155,7 @@
         "lng": 77.1,
         "name": "Chandrakhani Pass",
         "order": 10,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/kullu_chandrakhani_pass.jpg",
         "tourist_volume": "Medium",
         "type": "Trek"
       },
@@ -2220,7 +2220,7 @@
         "lng": 77.1668,
         "name": "Naggar",
         "order": 7,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/kullu_naggar.jpg",
         "tourist_volume": "Medium",
         "type": "Heritage Town"
       },
@@ -2475,7 +2475,7 @@
     "description": "Mandi sits at the confluence of the Uhl and Beas rivers and is often described as the 'Varanasi of the Hills' for its 81 ancient temples. The Mandi Shivratri fair is one of Himachal's biggest festivals. Prashar Lake — a high-altitude lake with a 3-storey pagoda floating in it — ranks among the most mystical destinations in the state. Rewalsar Lake is sacred to Buddhists, Hindus and Sikhs alike.",
     "famous_for": "81 Temples, Shivratri Festival, Prashar Lake, Rewalsar (tri-faith pilgrimage)",
     "from_delhi_km": 425,
-    "hero_image": "",
+    "hero_image": "assets/images/districts/mandi_hero.jpg",
     "hq": "Mandi",
     "id": "mandi",
     "local_food": "Dham (traditional feast), Patande (sweet pancake), Madra, Siddu, Mitha",
@@ -2507,7 +2507,7 @@
         "lng": 76.7833,
         "name": "Jogindernagar",
         "order": 6,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/mandi_jogindernagar.jpg",
         "tourist_volume": "Low",
         "type": "Town"
       },
@@ -2533,7 +2533,7 @@
         "lng": 77.2,
         "name": "Karsog",
         "order": 10,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/mandi_karsog.jpg",
         "tourist_volume": "Low",
         "type": "Valley / Heritage"
       },
@@ -2546,7 +2546,7 @@
         "lng": 76.9325,
         "name": "Mandi Town",
         "order": 3,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/mandi_mandi_town.jpg",
         "tourist_volume": "High",
         "type": "Heritage Town"
       },
@@ -2598,7 +2598,7 @@
         "lng": 77.05,
         "name": "Shikari Devi",
         "order": 4,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/mandi_shikari_devi.jpg",
         "tourist_volume": "Medium",
         "type": "Temple / Trek"
       },
@@ -2611,7 +2611,7 @@
         "lng": 76.9,
         "name": "Sundernagar",
         "order": 7,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/mandi_sundernagar.jpg",
         "tourist_volume": "Low",
         "type": "Town / Lake"
       }
@@ -2917,7 +2917,7 @@
         "lng": 77.7497,
         "name": "Rohru",
         "order": 8,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/shimla_rohru.jpg",
         "tourist_volume": "Low",
         "type": "Valley / Town"
       },
@@ -2943,7 +2943,7 @@
         "lng": 77.1734,
         "name": "The Ridge & Mall Road",
         "order": 1,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/shimla_the_ridge_and_mall_road.jpg",
         "tourist_volume": "Very High",
         "type": "Urban / Heritage"
       },
@@ -2956,7 +2956,7 @@
         "lng": 77.1652,
         "name": "Viceregal Lodge",
         "order": 3,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/shimla_viceregal_lodge.jpg",
         "tourist_volume": "High",
         "type": "Heritage"
       }
@@ -3147,7 +3147,7 @@
     "description": "Sirmour is Himachal's southernmost district, bordering Haryana and Uttarakhand. This place is the least touristed of the accessible districts — making it a genuine offbeat destination. Renuka Lake (the largest natural lake in HP) is sacred to Lord Parashurama. The Shivalik fossil park near Suketi contains million-year-old vertebrate fossils. Churdhar (3,647 m) is the highest peak in the outer Himalayas.",
     "famous_for": "Renuka Lake Fair, Fossil Park (Asia's first), Churdhar Trek, Paonta Sahib Gurudwara",
     "from_delhi_km": 290,
-    "hero_image": "",
+    "hero_image": "assets/images/districts/sirmour_hero.jpg",
     "hq": "Nahan",
     "id": "sirmour",
     "local_food": "Patande, Sidu, Babru, Gulgule (fried wheat balls), Meetha (sweet rice with ghee)",
@@ -3179,7 +3179,7 @@
         "lng": 77.4333,
         "name": "Dadahu",
         "order": 9,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/sirmour_dadahu.jpg",
         "tourist_volume": "Low",
         "type": "Village"
       },
@@ -3218,7 +3218,7 @@
         "lng": 77.6267,
         "name": "Paonta Sahib",
         "order": 5,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/sirmour_paonta_sahib.jpg",
         "tourist_volume": "High",
         "type": "Pilgrimage / Town"
       },
@@ -3231,7 +3231,7 @@
         "lng": 77.3667,
         "name": "Rajgarh",
         "order": 7,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/sirmour_rajgarh.jpg",
         "tourist_volume": "Low",
         "type": "Town / Valley"
       },
@@ -3257,7 +3257,7 @@
         "lng": 77.57,
         "name": "Sarahan (Sirmour)",
         "order": 8,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/sirmour_sarahan_(sirmour).jpg",
         "tourist_volume": "Low",
         "type": "Temple / Village"
       },
@@ -3270,7 +3270,7 @@
         "lng": 77.7333,
         "name": "Shillai",
         "order": 10,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/sirmour_shillai.jpg",
         "tourist_volume": "Low",
         "type": "Offbeat / Border"
       },
@@ -3283,7 +3283,7 @@
         "lng": 77.38,
         "name": "Suketi Fossil Park",
         "order": 4,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/sirmour_suketi_fossil_park.jpg",
         "tourist_volume": "Medium",
         "type": "Geological Site"
       }
@@ -3541,7 +3541,7 @@
         "lng": 77.1,
         "name": "Kandaghat",
         "order": 8,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/solan_kandaghat.jpg",
         "tourist_volume": "Low",
         "type": "Nature / Viewpoint"
       },
@@ -3567,7 +3567,7 @@
         "lng": 76.965,
         "name": "Kasauli Brewery",
         "order": 2,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/solan_kasauli_brewery.jpg",
         "tourist_volume": "High",
         "type": "Heritage / Industry"
       },
@@ -3580,7 +3580,7 @@
         "lng": 77.0333,
         "name": "Kumarhatti",
         "order": 7,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/solan_kumarhatti.jpg",
         "tourist_volume": "Low",
         "type": "Gardens / Nature"
       },
@@ -3593,7 +3593,7 @@
         "lng": 77.0967,
         "name": "Shoolini Temple",
         "order": 9,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/solan_shoolini_temple.jpg",
         "tourist_volume": "Medium",
         "type": "Temple"
       },
@@ -3606,7 +3606,7 @@
         "lng": 77.0967,
         "name": "Solan Town",
         "order": 6,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/solan_solan_town.jpg",
         "tourist_volume": "Low",
         "type": "Town"
       },
@@ -3619,7 +3619,7 @@
         "lng": 76.9436,
         "name": "Subathu",
         "order": 5,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/solan_subathu.jpg",
         "tourist_volume": "Low",
         "type": "Cantonment"
       }
@@ -3825,7 +3825,7 @@
     "description": "Lahaul & Spiti is the largest and most remote district of Himachal Pradesh — a high-altitude cold desert averaging 4,000 m. Accessible via Rohtang Pass (from Manali) or Kinnaur route. The Spiti Valley contains some of the world's oldest Buddhist monasteries: Key, Tabo (1,000 years old), Dhankar. The landscape is stark, lunar and striking. Chandratal lake is one of India's most photographed Himalayan lakes.",
     "famous_for": "Key Monastery, Chandratal Lake, Tabo 1000-year monastery, Snow Leopard, Highest villages",
     "from_delhi_km": 700,
-    "hero_image": "",
+    "hero_image": "assets/images/districts/spiti_hero.jpg",
     "hq": "Keylong (Lahaul), Kaza (Spiti)",
     "id": "spiti",
     "local_food": "Tsampa (roasted barley), Chhang (fermented barley beer), Thukpa, Butter Tea (Po Cha)",
@@ -4157,7 +4157,7 @@
     "description": "Una is Himachal's gateway from Punjab, the flattest and hottest district in the state. This place is primarily a pilgrimage district — Chintpurni temple is one of the 51 Shakti Peethas and receives millions of devotees annually. The Amb temples are early medieval stone temples in excellent condition. The Swan river flows through Una and now includes for light ecotourism. Una is also HP's industrial base (Baddi-Nalagarh industrial area partly falls here).",
     "famous_for": "Chintpurni Shakti Peetha, Amb Temples, Pong Dam Wetland (Ramsar), Swan River",
     "from_delhi_km": 320,
-    "hero_image": "",
+    "hero_image": "assets/images/districts/una_hero.jpg",
     "hq": "Una",
     "id": "una",
     "local_food": "Punjabi-Himachali fusion, Chana Madra, Makki di Roti, Sarsoon da Saag, Dham",
@@ -4176,7 +4176,7 @@
         "lng": 76.12,
         "name": "Amb Temples",
         "order": 2,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/una_amb_temples.jpg",
         "tourist_volume": "High",
         "type": "Heritage / Temples"
       },
@@ -4189,7 +4189,7 @@
         "lng": 76.4,
         "name": "Bangana Craft Village",
         "order": 9,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/una_bangana_craft_village.jpg",
         "tourist_volume": "Low",
         "type": "Heritage / Craft"
       },
@@ -4215,7 +4215,7 @@
         "lng": 76.28,
         "name": "Dera Baba Rudra Nand",
         "order": 4,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/una_dera_baba_rudra_nand.jpg",
         "tourist_volume": "Medium",
         "type": "Ashram / Spiritual"
       },
@@ -4228,7 +4228,7 @@
         "lng": 76.2,
         "name": "Kutlehar Fort",
         "order": 7,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/una_kutlehar_fort.jpg",
         "tourist_volume": "Low",
         "type": "Heritage / Fort"
       },
@@ -4241,7 +4241,7 @@
         "lng": 76.3833,
         "name": "Nangal Dam",
         "order": 6,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/una_nangal_dam.jpg",
         "tourist_volume": "Medium",
         "type": "Dam / Nature"
       },
@@ -4254,7 +4254,7 @@
         "lng": 75.95,
         "name": "Pong Dam Wildlife Sanctuary",
         "order": 10,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/una_pong_dam_wildlife_sanctuary.jpg",
         "tourist_volume": "High",
         "type": "Wildlife"
       },
@@ -4267,7 +4267,7 @@
         "lng": 76.32,
         "name": "Sathali Devi Temple",
         "order": 8,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/una_sathali_devi_temple.jpg",
         "tourist_volume": "Low",
         "type": "Temple"
       },
@@ -4280,7 +4280,7 @@
         "lng": 76.27,
         "name": "Swan River Eco Park",
         "order": 5,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/una_swan_river_eco_park.jpg",
         "tourist_volume": "Medium",
         "type": "Nature / Recreation"
       },
@@ -4293,7 +4293,7 @@
         "lng": 76.2706,
         "name": "Una Town",
         "order": 3,
-        "photo_url": "",
+        "photo_url": "assets/images/districts/una_una_town.jpg",
         "tourist_volume": "Medium",
         "type": "Town"
       }

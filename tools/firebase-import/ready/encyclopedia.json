@@ -92,7 +92,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/bara-shigri-glacier.jpg"
     },
     "bhadal-glacier": {
       "category": "glaciers",
@@ -108,7 +109,8 @@
         24
       ],
       "type": "glacier",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/bhadal-glacier.jpg"
     },
     "chandi-ka-glacier": {
       "category": "glaciers",
@@ -122,7 +124,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/chandi-ka-glacier.jpg"
     },
     "chandra-glacier": {
       "category": "glaciers",
@@ -139,7 +142,8 @@
         25
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/chandra-glacier.jpg"
     },
     "chandra-nahan-glacier": {
       "category": "glaciers",
@@ -155,7 +159,8 @@
         25
       ],
       "type": "glacier",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/chandra-nahan-glacier.jpg"
     },
     "dudhon-glacier": {
       "category": "glaciers",
@@ -170,7 +175,8 @@
         25
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/dudhon-glacier.jpg"
     },
     "karpat-glacier": {
       "category": "glaciers",
@@ -185,7 +191,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/karpat-glacier.jpg"
     },
     "lady-of-keylong-glacier": {
       "category": "glaciers",
@@ -201,7 +208,8 @@
         25
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/lady-of-keylong-glacier.jpg"
     },
     "manthora-glacier": {
       "category": "glaciers",
@@ -217,7 +225,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/manthora-glacier.jpg"
     },
     "north-glacier": {
       "category": "glaciers",
@@ -231,7 +240,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/north-glacier.jpg"
     },
     "parbati-glacier": {
       "category": "glaciers",
@@ -246,7 +256,8 @@
         25
       ],
       "type": "glacier",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/parbati-glacier.jpg"
     },
     "pin-parbati-glacier": {
       "category": "glaciers",
@@ -261,7 +272,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/pin-parbati-glacier.jpg"
     },
     "rai-ghar-glacier": {
       "category": "glaciers",
@@ -275,7 +287,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/rai-ghar-glacier.jpg"
     },
     "sammuder-tapa-glacier": {
       "category": "glaciers",
@@ -289,7 +302,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/sammuder-tapa-glacier.jpg"
     },
     "sara-umga-glacier": {
       "category": "glaciers",
@@ -303,7 +317,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/sara-umga-glacier.jpg"
     },
     "shan-glacier": {
       "category": "glaciers",
@@ -317,7 +332,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/shan-glacier.jpg"
     },
     "shipting-glacier": {
       "category": "glaciers",
@@ -331,7 +347,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/shipting-glacier.jpg"
     },
     "sili-laluni-glacier": {
       "category": "glaciers",
@@ -345,7 +362,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/sili-laluni-glacier.jpg"
     },
     "south-dakka-glacier": {
       "category": "glaciers",
@@ -359,7 +377,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/south-dakka-glacier.jpg"
     },
     "tal-glacier": {
       "category": "glaciers",
@@ -373,7 +392,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/tal-glacier.jpg"
     },
     "tapni-lahuni-glacier": {
       "category": "glaciers",
@@ -387,7 +407,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/tapni-lahuni-glacier.jpg"
     },
     "taragiri-glacier": {
       "category": "glaciers",
@@ -401,7 +422,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/taragiri-glacier.jpg"
     },
     "tharong-glacier": {
       "category": "glaciers",
@@ -416,7 +438,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/tharong-glacier.jpg"
     },
     "tichu-glacier": {
       "category": "glaciers",
@@ -430,7 +453,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/tichu-glacier.jpg"
     },
     "ulthampu-glacier": {
       "category": "glaciers",
@@ -445,7 +469,8 @@
         26
       ],
       "type": "glacier",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/ulthampu-glacier.jpg"
     }
   },
   "historical_social_reference_content": {
@@ -517,7 +542,8 @@
         22
       ],
       "type": "spring",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/baijnath-area-spring.jpg"
     },
     "bhagsunag-waterfall": {
       "category": "hot_springs_waterfalls_kunds",
@@ -564,7 +590,8 @@
         22
       ],
       "type": "waterfall",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/dhanchho-waterfall.jpg"
     },
     "jawalamukhi-spring": {
       "category": "hot_springs_waterfalls_kunds",
@@ -579,7 +606,8 @@
         22
       ],
       "type": "hot/mineral spring",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/jawalamukhi-spring.jpg"
     },
     "jeori-hot-springs": {
       "category": "hot_springs_waterfalls_kunds",
@@ -595,7 +623,8 @@
         22
       ],
       "type": "hot spring",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/jeori-hot-springs.jpg"
     },
     "kalika-kund": {
       "category": "hot_springs_waterfalls_kunds",
@@ -610,7 +639,8 @@
         22
       ],
       "type": "kund/spring",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/kalika-kund.jpg"
     },
     "kasol-hot-water-spot": {
       "category": "hot_springs_waterfalls_kunds",
@@ -626,7 +656,8 @@
         21
       ],
       "type": "hot spring",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/kasol-hot-water-spot.jpg"
     },
     "kopra-spring": {
       "category": "hot_springs_waterfalls_kunds",
@@ -641,7 +672,8 @@
         22
       ],
       "type": "hot/mineral spring",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/kopra-spring.jpg"
     },
     "lunani-spring": {
       "category": "hot_springs_waterfalls_kunds",
@@ -656,7 +688,8 @@
         22
       ],
       "type": "spring",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/lunani-spring.jpg"
     },
     "manikaran-hot-springs": {
       "category": "hot_springs_waterfalls_kunds",
@@ -674,7 +707,8 @@
         21
       ],
       "type": "hot spring",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/manikaran-hot-springs.jpg"
     },
     "rahla-waterfall": {
       "category": "hot_springs_waterfalls_kunds",
@@ -689,7 +723,8 @@
         22
       ],
       "type": "waterfall",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/rahla-waterfall.jpg"
     },
     "satdhara-water-spring": {
       "category": "hot_springs_waterfalls_kunds",
@@ -704,7 +739,8 @@
         22
       ],
       "type": "spring",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/satdhara-water-spring.jpg"
     },
     "tattapani": {
       "category": "hot_springs_waterfalls_kunds",
@@ -760,7 +796,8 @@
         4
       ],
       "type": "lake",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/bhagsunag-lake.jpg"
     },
     "chamera-lake": {
       "category": "lakes_reservoirs",
@@ -795,7 +832,8 @@
         2
       ],
       "type": "high-altitude lake",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/chanderkup-lake.jpg"
     },
     "chandra-tal": {
       "category": "lakes_reservoirs",
@@ -813,7 +851,8 @@
         7
       ],
       "type": "high-altitude lake",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/chandra-tal.jpg"
     },
     "dal-lake": {
       "category": "lakes_reservoirs",
@@ -831,7 +870,8 @@
         3
       ],
       "type": "lake",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/dal-lake.jpg"
     },
     "govind-sagar": {
       "category": "lakes_reservoirs",
@@ -848,7 +888,8 @@
         1
       ],
       "type": "reservoir",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/govind-sagar.jpg"
     },
     "kareri-lake": {
       "category": "lakes_reservoirs",
@@ -885,7 +926,8 @@
         2
       ],
       "type": "lake",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/khajjiar-lake.jpg"
     },
     "kumarwah-lake": {
       "category": "lakes_reservoirs",
@@ -902,7 +944,8 @@
         4
       ],
       "type": "sacred lake",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/kumarwah-lake.jpg"
     },
     "lama-dal-lake": {
       "category": "lakes_reservoirs",
@@ -919,7 +962,8 @@
         2
       ],
       "type": "high-altitude lake",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/lama-dal-lake.jpg"
     },
     "mahakali-lake": {
       "category": "lakes_reservoirs",
@@ -936,7 +980,8 @@
         2
       ],
       "type": "sacred lake",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/mahakali-lake.jpg"
     },
     "manimahesh-lake": {
       "category": "lakes_reservoirs",
@@ -971,7 +1016,8 @@
         8
       ],
       "type": "reservoir",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/pandoh-lake.jpg"
     },
     "pong-lake-pong-dam-reservoir": {
       "category": "lakes_reservoirs",
@@ -989,7 +1035,8 @@
         8
       ],
       "type": "reservoir/wetland",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/pong-lake-pong-dam-reservoir.jpg"
     },
     "rewalsar-lake": {
       "category": "lakes_reservoirs",
@@ -1025,7 +1072,8 @@
         6
       ],
       "type": "high-altitude lake",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/suraj-tal.jpg"
     }
   },
   "mountain_passes_and_jots": {
@@ -1039,7 +1087,8 @@
         34
       ],
       "type": "jot/pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/agai-jot.jpg"
     },
     "agti-pass": {
       "altitude_m": 4961,
@@ -1051,7 +1100,8 @@
         34
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/agti-pass.jpg"
     },
     "amilaga-pass": {
       "altitude_m": 5151,
@@ -1063,7 +1113,8 @@
         34
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/amilaga-pass.jpg"
     },
     "asha-gali": {
       "altitude_m": 5030,
@@ -1075,7 +1126,8 @@
         34
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/asha-gali.jpg"
     },
     "baleni-jot": {
       "category": "mountain_passes_and_jots",
@@ -1086,7 +1138,8 @@
         33
       ],
       "type": "jot/pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/baleni-jot.jpg"
     },
     "bara-lacha-la": {
       "category": "mountain_passes_and_jots",
@@ -1097,7 +1150,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/bara-lacha-la.jpg"
     },
     "bara-pass": {
       "category": "mountain_passes_and_jots",
@@ -1113,7 +1167,8 @@
         32
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/bara-pass.jpg"
     },
     "baralacha-la": {
       "category": "mountain_passes_and_jots",
@@ -1128,7 +1183,8 @@
         32
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/baralacha-la.jpg"
     },
     "basodan": {
       "altitude_m": 2400,
@@ -1140,7 +1196,8 @@
         32
       ],
       "type": "jot/pass",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/basodan.jpg"
     },
     "bherianga-pass": {
       "category": "mountain_passes_and_jots",
@@ -1151,7 +1208,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/bherianga-pass.jpg"
     },
     "bhim-ghasutri-jot": {
       "category": "mountain_passes_and_jots",
@@ -1162,7 +1220,8 @@
         34
       ],
       "type": "jot/pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/bhim-ghasutri-jot.jpg"
     },
     "bhubu": {
       "altitude_m": 2895,
@@ -1174,7 +1233,8 @@
         32
       ],
       "type": "jot/pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/bhubu.jpg"
     },
     "borsa-pass": {
       "altitude_m": 5360,
@@ -1186,7 +1246,8 @@
         34
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/borsa-pass.jpg"
     },
     "burua-pass-buran-ghati": {
       "category": "mountain_passes_and_jots",
@@ -1197,7 +1258,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/burua-pass-buran-ghati.jpg"
     },
     "chandrakhani-galu": {
       "category": "mountain_passes_and_jots",
@@ -1208,7 +1270,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/chandrakhani-galu.jpg"
     },
     "charang-pass": {
       "altitude_m": 5266,
@@ -1220,7 +1283,8 @@
         34
       ],
       "type": "mountain pass",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/charang-pass.jpg"
     },
     "chauri": {
       "category": "mountain_passes_and_jots",
@@ -1231,7 +1295,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/chauri.jpg"
     },
     "chen-pass": {
       "category": "mountain_passes_and_jots",
@@ -1247,7 +1312,8 @@
         32
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/chen-pass.jpg"
     },
     "chobu-pass": {
       "category": "mountain_passes_and_jots",
@@ -1258,7 +1324,8 @@
         34
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/chobu-pass.jpg"
     },
     "dulchi": {
       "altitude_m": 2788,
@@ -1270,7 +1337,8 @@
         32
       ],
       "type": "jot/pass",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/dulchi.jpg"
     },
     "faintu-ka-jot": {
       "altitude_m": 5000,
@@ -1282,7 +1350,8 @@
         34
       ],
       "type": "jot/pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/faintu-ka-jot.jpg"
     },
     "gharhu-jot": {
       "category": "mountain_passes_and_jots",
@@ -1293,7 +1362,8 @@
         33
       ],
       "type": "jot/pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/gharhu-jot.jpg"
     },
     "hamtah-jot-pass": {
       "category": "mountain_passes_and_jots",
@@ -1304,7 +1374,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/hamtah-jot-pass.jpg"
     },
     "indrahar-pass": {
       "category": "mountain_passes_and_jots",
@@ -1339,7 +1410,8 @@
         33
       ],
       "type": "jot/pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/jalsu-ka-jot.jpg"
     },
     "kalicho": {
       "category": "mountain_passes_and_jots",
@@ -1350,7 +1422,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/kalicho.jpg"
     },
     "kunzum-la": {
       "category": "mountain_passes_and_jots",
@@ -1362,7 +1435,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/kunzum-la.jpg"
     },
     "laluni-jot": {
       "altitude_m": 5440,
@@ -1374,7 +1448,8 @@
         34
       ],
       "type": "jot/pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/laluni-jot.jpg"
     },
     "lamkhaga-pass": {
       "altitude_m": 5284,
@@ -1386,7 +1461,8 @@
         34
       ],
       "type": "mountain pass",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/lamkhaga-pass.jpg"
     },
     "makori-jot": {
       "altitude_m": 5190,
@@ -1398,7 +1474,8 @@
         34
       ],
       "type": "jot/pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/makori-jot.jpg"
     },
     "manali-pass": {
       "category": "mountain_passes_and_jots",
@@ -1409,7 +1486,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/manali-pass.jpg"
     },
     "mulari-jot": {
       "altitude_m": 4960,
@@ -1421,7 +1499,8 @@
         34
       ],
       "type": "jot/pass",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/mulari-jot.jpg"
     },
     "nalgaon-pass": {
       "altitude_m": 5030,
@@ -1433,7 +1512,8 @@
         34
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/nalgaon-pass.jpg"
     },
     "nikhora-pass": {
       "category": "mountain_passes_and_jots",
@@ -1444,7 +1524,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/nikhora-pass.jpg"
     },
     "padri": {
       "altitude_m": 4050,
@@ -1456,7 +1537,8 @@
         32
       ],
       "type": "mountain pass",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/padri.jpg"
     },
     "pin-parbati-pass": {
       "altitude_m": 5319,
@@ -1468,7 +1550,8 @@
         34
       ],
       "type": "mountain pass",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/pin-parbati-pass.jpg"
     },
     "ranjcha-pass": {
       "category": "mountain_passes_and_jots",
@@ -1479,7 +1562,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/ranjcha-pass.jpg"
     },
     "rashol-jot": {
       "category": "mountain_passes_and_jots",
@@ -1490,7 +1574,8 @@
         33
       ],
       "type": "jot/pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/rashol-jot.jpg"
     },
     "rohtang-pass": {
       "category": "mountain_passes_and_jots",
@@ -1519,7 +1604,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/rupin-ghati.jpg"
     },
     "sach-pass": {
       "category": "mountain_passes_and_jots",
@@ -1547,7 +1633,8 @@
         33
       ],
       "type": "jot/pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/sari-galu.jpg"
     },
     "shakari": {
       "altitude_m": 5022,
@@ -1559,7 +1646,8 @@
         34
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/shakari.jpg"
     },
     "shibaling-pass": {
       "category": "mountain_passes_and_jots",
@@ -1570,7 +1658,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/shibaling-pass.jpg"
     },
     "shinghor-pass": {
       "category": "mountain_passes_and_jots",
@@ -1586,7 +1675,8 @@
         32
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/shinghor-pass.jpg"
     },
     "shinka-pass": {
       "category": "mountain_passes_and_jots",
@@ -1597,7 +1687,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/shinka-pass.jpg"
     },
     "shipki-la": {
       "category": "mountain_passes_and_jots",
@@ -1609,7 +1700,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/shipki-la.jpg"
     },
     "shipting": {
       "altitude_m": 4980,
@@ -1621,7 +1713,8 @@
         34
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/shipting.jpg"
     },
     "singoor-pass": {
       "category": "mountain_passes_and_jots",
@@ -1632,7 +1725,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/singoor-pass.jpg"
     },
     "sora-umga-pass": {
       "altitude_m": 5010,
@@ -1644,7 +1738,8 @@
         34
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/sora-umga-pass.jpg"
     },
     "talang-pass": {
       "category": "mountain_passes_and_jots",
@@ -1655,7 +1750,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/talang-pass.jpg"
     },
     "tamsar-pass": {
       "category": "mountain_passes_and_jots",
@@ -1666,7 +1762,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/tamsar-pass.jpg"
     },
     "temp-la": {
       "category": "mountain_passes_and_jots",
@@ -1677,7 +1774,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/temp-la.jpg"
     },
     "tempola-pass": {
       "category": "mountain_passes_and_jots",
@@ -1693,7 +1791,8 @@
         32
       ],
       "type": "mountain pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/tempola-pass.jpg"
     },
     "tori-jot": {
       "category": "mountain_passes_and_jots",
@@ -1704,7 +1803,8 @@
         33
       ],
       "type": "jot/pass",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/tori-jot.jpg"
     },
     "waru-pass": {
       "category": "mountain_passes_and_jots",
@@ -1721,7 +1821,8 @@
         33
       ],
       "type": "mountain pass",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/waru-pass.jpg"
     }
   },
   "rivers_and_tributaries": {
@@ -1739,7 +1840,8 @@
         10
       ],
       "type": "tributary",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/andhra.jpg"
     },
     "asni": {
       "category": "rivers_and_tributaries",
@@ -1754,7 +1856,8 @@
         11
       ],
       "type": "tributary",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/asni.jpg"
     },
     "baira": {
       "category": "rivers_and_tributaries",
@@ -1771,7 +1874,8 @@
         15
       ],
       "type": "tributary",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/baira.jpg"
     },
     "bata": {
       "category": "rivers_and_tributaries",
@@ -1788,7 +1892,8 @@
         11
       ],
       "type": "tributary",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/bata.jpg"
     },
     "beas": {
       "category": "rivers_and_tributaries",
@@ -1805,7 +1910,8 @@
         11
       ],
       "type": "major river",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/beas.jpg"
     },
     "bhadal": {
       "category": "rivers_and_tributaries",
@@ -1822,7 +1928,8 @@
         15
       ],
       "type": "tributary",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/bhadal.jpg"
     },
     "chenab": {
       "category": "rivers_and_tributaries",
@@ -1838,7 +1945,8 @@
         13
       ],
       "type": "major river",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/chenab.jpg"
     },
     "giri": {
       "category": "rivers_and_tributaries",
@@ -1855,7 +1963,8 @@
         11
       ],
       "type": "tributary",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/giri.jpg"
     },
     "jalal": {
       "category": "rivers_and_tributaries",
@@ -1872,7 +1981,8 @@
         11
       ],
       "type": "tributary",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/jalal.jpg"
     },
     "markanda": {
       "category": "rivers_and_tributaries",
@@ -1889,7 +1999,8 @@
         10
       ],
       "type": "rain-fed river",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/markanda.jpg"
     },
     "pabbar": {
       "category": "rivers_and_tributaries",
@@ -1907,7 +2018,8 @@
         12
       ],
       "type": "tributary",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/pabbar.jpg"
     },
     "ravi": {
       "category": "rivers_and_tributaries",
@@ -1924,7 +2036,8 @@
         16
       ],
       "type": "major river",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/ravi.jpg"
     },
     "satluj": {
       "category": "rivers_and_tributaries",
@@ -1942,7 +2055,8 @@
         10
       ],
       "type": "major river",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/satluj.jpg"
     },
     "siul": {
       "category": "rivers_and_tributaries",
@@ -1959,7 +2073,8 @@
         15
       ],
       "type": "tributary",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/siul.jpg"
     },
     "swan-river": {
       "category": "rivers_and_tributaries",
@@ -1977,7 +2092,8 @@
         20
       ],
       "type": "river/catchment",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/swan-river.jpg"
     },
     "tant-gari": {
       "category": "rivers_and_tributaries",
@@ -1994,7 +2110,8 @@
         15
       ],
       "type": "tributary",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/tant-gari.jpg"
     },
     "yamuna": {
       "category": "rivers_and_tributaries",
@@ -2010,7 +2127,8 @@
         12
       ],
       "type": "major river",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/yamuna.jpg"
     }
   },
   "trekking_routes": {
@@ -2023,7 +2141,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/chamba-dalhousie.jpg"
     },
     "chamba-manimahesh-chhari-yatra": {
       "category": "trekking_routes",
@@ -2034,7 +2153,8 @@
         35
       ],
       "type": "pilgrimage trek",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/chamba-manimahesh-chhari-yatra.jpg"
     },
     "dalhousie-jammu-through-bhandal-valley": {
       "category": "trekking_routes",
@@ -2045,7 +2165,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/dalhousie-jammu-through-bhandal-valley.jpg"
     },
     "dalhousie-manali-over-sach-pass": {
       "category": "trekking_routes",
@@ -2056,7 +2177,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/dalhousie-manali-over-sach-pass.jpg"
     },
     "four-passes-and-two-valleys-from-manali": {
       "category": "trekking_routes",
@@ -2067,7 +2189,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/four-passes-and-two-valleys-from-manali.jpg"
     },
     "hanuman-tibba-circuit": {
       "category": "trekking_routes",
@@ -2078,7 +2201,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/hanuman-tibba-circuit.jpg"
     },
     "kalpa-karchham-kinner-kailash-parikrama-circuit": {
       "category": "trekking_routes",
@@ -2089,7 +2213,8 @@
         35
       ],
       "type": "pilgrimage/trek route",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/kalpa-karchham-kinner-kailash-parikrama-circuit.jpg"
     },
     "kullu-manali": {
       "category": "trekking_routes",
@@ -2100,7 +2225,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/kullu-manali.jpg"
     },
     "manali-bhanara": {
       "category": "trekking_routes",
@@ -2111,7 +2237,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/manali-bhanara.jpg"
     },
     "manali-bhrigu-lake": {
       "category": "trekking_routes",
@@ -2122,7 +2249,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/manali-bhrigu-lake.jpg"
     },
     "manali-kalath-via-thanpari-tibba": {
       "category": "trekking_routes",
@@ -2133,7 +2261,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/manali-kalath-via-thanpari-tibba.jpg"
     },
     "manali-leh-via-shingola-and-padam": {
       "category": "trekking_routes",
@@ -2144,7 +2273,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/manali-leh-via-shingola-and-padam.jpg"
     },
     "manali-manikaran": {
       "category": "trekking_routes",
@@ -2155,7 +2285,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/manali-manikaran.jpg"
     },
     "manali-shimla-via-trekking-spiti-valley": {
       "category": "trekking_routes",
@@ -2166,7 +2297,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/manali-shimla-via-trekking-spiti-valley.jpg"
     },
     "manali-three-sacred-lakes": {
       "category": "trekking_routes",
@@ -2177,7 +2309,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/manali-three-sacred-lakes.jpg"
     },
     "manali-udaipur-via-gompa-trail": {
       "category": "trekking_routes",
@@ -2188,7 +2321,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/manali-udaipur-via-gompa-trail.jpg"
     },
     "nahan-mussoorie": {
       "category": "trekking_routes",
@@ -2199,7 +2333,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/nahan-mussoorie.jpg"
     },
     "nahan-naura-through-wildlife-sanctuary": {
       "category": "trekking_routes",
@@ -2210,7 +2345,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/nahan-naura-through-wildlife-sanctuary.jpg"
     },
     "nahan-shimla-via-chail": {
       "category": "trekking_routes",
@@ -2221,7 +2357,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/nahan-shimla-via-chail.jpg"
     },
     "nahan-shimla-via-churdhar-and-neripul": {
       "category": "trekking_routes",
@@ -2232,7 +2369,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/nahan-shimla-via-churdhar-and-neripul.jpg"
     },
     "shimla-churdhar-via-fagu-neripul-and-pul-bahal": {
       "category": "trekking_routes",
@@ -2243,7 +2381,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/shimla-churdhar-via-fagu-neripul-and-pul-bahal.jpg"
     },
     "shimla-churdhar-via-rohru-ranahat-and-haripurdhar": {
       "category": "trekking_routes",
@@ -2254,7 +2393,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/shimla-churdhar-via-rohru-ranahat-and-haripurdhar.jpg"
     },
     "shimla-manali-via-bashleo-pass": {
       "category": "trekking_routes",
@@ -2265,7 +2405,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/shimla-manali-via-bashleo-pass.jpg"
     },
     "shimla-manali-via-jalori-pass": {
       "category": "trekking_routes",
@@ -2276,7 +2417,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/shimla-manali-via-jalori-pass.jpg"
     },
     "shimla-mandi-via-tattapani": {
       "category": "trekking_routes",
@@ -2287,7 +2429,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/shimla-mandi-via-tattapani.jpg"
     },
     "shimla-rohru-via-hatkoti": {
       "category": "trekking_routes",
@@ -2298,7 +2441,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/shimla-rohru-via-hatkoti.jpg"
     },
     "shimla-shali-peak": {
       "category": "trekking_routes",
@@ -2309,7 +2453,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/shimla-shali-peak.jpg"
     },
     "shimla-tattapani-via-tara-devi-and-chail": {
       "category": "trekking_routes",
@@ -2320,7 +2465,8 @@
         35
       ],
       "type": "trek/route",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/shimla-tattapani-via-tara-devi-and-chail.jpg"
     }
   },
   "valleys": {
@@ -2340,7 +2486,8 @@
         30
       ],
       "type": "valley",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/balh-valley.jpg"
     },
     "bara-banghal-valley": {
       "category": "valleys",
@@ -2357,7 +2504,8 @@
         29
       ],
       "type": "valley",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/bara-banghal-valley.jpg"
     },
     "chamba-valley": {
       "category": "valleys",
@@ -2375,7 +2523,8 @@
         30
       ],
       "type": "valley",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/chamba-valley.jpg"
     },
     "dun-and-sproon-valleys": {
       "category": "valleys",
@@ -2391,7 +2540,8 @@
         30
       ],
       "type": "valley",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/dun-and-sproon-valleys.jpg"
     },
     "kangra-valley": {
       "category": "valleys",
@@ -2408,7 +2558,8 @@
         29
       ],
       "type": "valley",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/kangra-valley.jpg"
     },
     "kiarda-dun-valley": {
       "category": "valleys",
@@ -2426,7 +2577,8 @@
         27
       ],
       "type": "valley",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/kiarda-dun-valley.jpg"
     },
     "kullu-valley": {
       "category": "valleys",
@@ -2443,7 +2595,8 @@
         29
       ],
       "type": "valley",
-      "verification_required": true
+      "verification_required": true,
+      "photo_1": "assets/images/encyclopedia/kullu-valley.jpg"
     },
     "lahaul-valley": {
       "category": "valleys",
@@ -2460,7 +2613,8 @@
         30
       ],
       "type": "valley",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/lahaul-valley.jpg"
     },
     "pangi-valley": {
       "category": "valleys",
@@ -2494,7 +2648,8 @@
         27
       ],
       "type": "valley",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/satluj-valley.jpg"
     },
     "spiti-valley": {
       "category": "valleys",
@@ -2511,7 +2666,8 @@
         30
       ],
       "type": "valley",
-      "verification_required": false
+      "verification_required": false,
+      "photo_1": "assets/images/encyclopedia/spiti-valley.jpg"
     }
   }
 }
