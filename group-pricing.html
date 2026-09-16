@@ -227,8 +227,7 @@ function render(){
       <tr class="subtotal"><td>Vehicle total ÷ ${pax} pax</td><td>${fmt(b.vehiclePP)}/person</td></tr>
       <tr><td>Hotel (${tier}, ₹${b.hotelRate.toFixed(0)}/night × ${nights}n)</td><td>${fmt(b.hotelPP)}/person</td></tr>
       <tr class="subtotal"><td>Subtotal</td><td>${fmt(b.subtotal)}/person</td></tr>
-      <tr><td>Service fee (10%)</td><td>${fmt(b.serviceFee)}</td></tr>
-      <tr><td>Operating margin (25%)</td><td>${fmt(b.marginAmt)}</td></tr>
+      <tr><td>Service &amp; trip support</td><td>${fmt(b.serviceFee + b.marginAmt)}</td></tr>
     </table>
 
     <div class="grand-total">
