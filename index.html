@@ -692,6 +692,60 @@ body{
   outline-offset:2px;
 }
 
+/* HERO TRENDING PANEL — floating glass card over the right side of the
+   hero video, ~20% width, auto-rotating through featured destination
+   packages (Kinnaur, Lahaul & Spiti, Manali, Dharamshala). Sits above
+   the video but below the edge tabs/panels (z-index 2 < 3). */
+.pp-hero-trending{
+  position:absolute;
+  top:26px;
+  right:16px;
+  width:21%;
+  min-width:230px;
+  max-width:300px;
+  z-index:2;
+}
+.pp-hero-trending-eyebrow{
+  display:flex;align-items:center;gap:6px;
+  font:700 10.5px 'Jost',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;
+  color:#f5e6c4;margin:0 0 8px 4px;
+  text-shadow:0 2px 6px rgba(0,0,0,.5);
+}
+.pp-hero-trending-card{
+  position:relative;border-radius:16px;overflow:hidden;
+  min-height:230px;
+  background:#12201a;background-size:cover;background-position:center;
+  border:1px solid rgba(245,179,59,.4);
+  box-shadow:0 16px 40px rgba(0,0,0,.45);
+  text-decoration:none;color:#fff;display:block;
+  opacity:1;transition:opacity .5s ease;
+}
+.pp-hero-trending-card.pp-fade{opacity:0}
+.pp-hero-trending-card::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,18,12,.15) 0%,rgba(8,18,12,.35) 45%,rgba(6,14,9,.92) 100%);
+}
+.pp-hero-trending-badge{
+  position:relative;z-index:1;display:inline-flex;align-items:center;gap:4px;
+  margin:12px 0 0 12px;padding:4px 10px;border-radius:20px;
+  background:rgba(245,179,59,.92);color:#1c1204;
+  font:700 9.5px 'Jost',Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;
+}
+.pp-hero-trending-body{position:relative;z-index:1;padding:70px 14px 14px;margin-top:auto}
+.pp-hero-trending-dest{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold,#f5b33b);font-weight:700;margin-bottom:3px}
+.pp-hero-trending-name{font-family:'Cormorant',serif;font-size:18px;font-weight:700;line-height:1.15;margin-bottom:8px}
+.pp-hero-trending-meta{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pp-hero-trending-days{font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#5fd4a0;background:rgba(95,212,160,.16);border-radius:20px;padding:3px 9px}
+.pp-hero-trending-price{font-size:15px;font-weight:700;color:#fff}
+.pp-hero-trending-price small{font-size:9px;font-weight:500;color:rgba(255,255,255,.65)}
+.pp-hero-trending-dots{display:flex;gap:6px;justify-content:center;margin-top:10px}
+.pp-hero-trending-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);transition:background .25s ease,transform .25s ease}
+.pp-hero-trending-dots span.active{background:#f5b33b;transform:scale(1.25)}
+
+@media(max-width:900px){
+  .pp-hero-trending{display:none}
+}
+
 </style>
 </head>
 
@@ -731,6 +785,23 @@ body{
     <a class="pp-side-btn-dark" href="/encyclopedia.html"><span class="ico">📍</span>Destinations</a>
     <a class="pp-side-btn-dark" href="/encyclopedia.html"><span class="ico">💧</span>Lakes &amp; Waterfalls</a>
     <a class="pp-side-btn-dark" href="/encyclopedia.html"><span class="ico">🧗</span>Treks &amp; Adventure</a>
+  </div>
+
+  <!-- Trending packages panel — right side, over the video, ~20% width -->
+  <div class="pp-hero-trending" aria-label="Trending packages this week">
+    <div class="pp-hero-trending-eyebrow">🔥 Trending This Week</div>
+    <a class="pp-hero-trending-card" id="heroTrendingCard" href="#">
+      <span class="pp-hero-trending-badge">Trending</span>
+      <div class="pp-hero-trending-body">
+        <div class="pp-hero-trending-dest" id="heroTrendingDest">—</div>
+        <div class="pp-hero-trending-name" id="heroTrendingName">Loading…</div>
+        <div class="pp-hero-trending-meta">
+          <span class="pp-hero-trending-days" id="heroTrendingDays"></span>
+          <span class="pp-hero-trending-price" id="heroTrendingPrice"></span>
+        </div>
+      </div>
+    </a>
+    <div class="pp-hero-trending-dots" id="heroTrendingDots"></div>
   </div>
 </section>
 
@@ -1245,6 +1316,59 @@ body{
     document.querySelectorAll("[data-close-panel]").forEach(btn=>{
       btn.addEventListener("click", closeAll);
     });
+  })();
+
+  // HERO TRENDING PANEL — rotates through one featured package each for
+  // Kinnaur, Lahaul & Spiti, Manali and Dharamshala, pulled from the same
+  // PLACE_PACKAGES data used by the map's package strip. Update the
+  // `pageUrl`/`img` below if you'd like different art or link targets.
+  (function(){
+    const stage = document.getElementById("heroTrendingCard");
+    if (!stage) return;
+
+    const FEATURED = [
+      { dest:"Kinnaur", label:"Kinnaur", img:"/assets/images/kinnaur-kailash.webp", pageUrl:"/kinnaur.html", pkg: (PLACE_PACKAGES.Kinnaur || [])[0] },
+      { dest:"Lahaul & Spiti", label:"Lahaul & Spiti", img:"/assets/images/misc-fixed/lahaul-spiti.jpg", pageUrl:"/spiti.html", pkg: (PLACE_PACKAGES.Spiti || [])[0] },
+      { dest:"Manali", label:"Manali", img:"/assets/images/manali_1.jpg", pageUrl:"/kullu.html", pkg: (PLACE_PACKAGES.Manali || [])[0] },
+      { dest:"Dharamshala", label:"Dharamshala", img:"/assets/images/dharamshala.jpg", pageUrl:"/kangra.html", pkg: (PLACE_PACKAGES.Dharamshala || [])[0] }
+    ].filter(f => f.pkg); // skip any destination missing package data
+
+    if (FEATURED.length === 0) return;
+
+    const destEl = document.getElementById("heroTrendingDest");
+    const nameEl = document.getElementById("heroTrendingName");
+    const daysEl = document.getElementById("heroTrendingDays");
+    const priceEl = document.getElementById("heroTrendingPrice");
+    const dotsWrap = document.getElementById("heroTrendingDots");
+
+    dotsWrap.innerHTML = FEATURED.map((_, i) => '<span' + (i === 0 ? ' class="active"' : '') + '></span>').join('');
+    const dots = dotsWrap.querySelectorAll("span");
+
+    let idx = 0;
+    function paint(i){
+      const f = FEATURED[i];
+      stage.style.backgroundImage = "url('" + f.img + "')";
+      stage.href = "/package-detail.html?id=" + encodeURIComponent(f.pkg.id);
+      destEl.textContent = f.label;
+      nameEl.textContent = f.pkg.name;
+      daysEl.textContent = f.pkg.days + (f.pkg.days === 1 ? " Day" : " Days");
+      priceEl.innerHTML = "₹" + f.pkg.price.toLocaleString('en-IN') + "<small> /person</small>";
+      dots.forEach((d, di) => d.classList.toggle("active", di === i));
+    }
+
+    function next(){
+      stage.classList.add("pp-fade");
+      setTimeout(() => {
+        idx = (idx + 1) % FEATURED.length;
+        paint(idx);
+        stage.classList.remove("pp-fade");
+      }, 220);
+    }
+
+    paint(0);
+    let timer = setInterval(next, 4200);
+    stage.addEventListener("mouseenter", () => clearInterval(timer));
+    stage.addEventListener("mouseleave", () => { timer = setInterval(next, 4200); });
   })();
 
 document.querySelectorAll(".pp-tab-btn").forEach(btn=>{
