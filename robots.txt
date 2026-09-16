@@ -10,4 +10,4 @@ Disallow: /thank-you.html
 Disallow: /firebase-config.js
 Disallow: /.env
 
-Sitemap: https://pineandpass.in/sitemap.xml
+Sitemap: https://himachalexplorer.in/sitemap.xml
