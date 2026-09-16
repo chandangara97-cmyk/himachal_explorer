@@ -1,5 +1,5 @@
 /**
- * images.js — Pine & Pass Image Library
+ * images.js — Himachal Explorer Image Library
  * ─────────────────────────────────────────────────────────────────────────────
  * Single source of truth for all images used across the packages page.
  * Images are self-hosted under assets/images/places-fresh/ (migrated from

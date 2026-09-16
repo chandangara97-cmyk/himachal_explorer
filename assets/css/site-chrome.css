@@ -84,6 +84,7 @@
 
 .he-logo{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
 .he-logo svg{flex:none;filter:drop-shadow(0 2px 3px rgba(28,20,9,.12))}
+.he-logo-img{flex:none;border-radius:6px;object-fit:cover;filter:drop-shadow(0 2px 3px rgba(28,20,9,.12))}
 .he-logo-text{display:block;font-family:'Cormorant',Georgia,serif;font-size:18px;font-weight:600;letter-spacing:.2px;color:var(--he-text);white-space:nowrap;line-height:1.15}
 .he-logo-text em{font-style:normal;display:block;font-family:'Jost',Arial,sans-serif;font-size:10px;color:var(--he-gold);letter-spacing:1.6px;text-transform:uppercase;font-weight:600;margin-top:1px}
 

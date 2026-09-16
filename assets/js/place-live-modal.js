@@ -1,5 +1,5 @@
 /*!
- * Pine & Pass — Live Place Modal
+ * Himachal Explorer — Live Place Modal
  * ------------------------------------------------------------------
  * Site-wide "click a location → see its live Firebase details" modal.
  * Same pattern used on package-detail.html: show whatever we already

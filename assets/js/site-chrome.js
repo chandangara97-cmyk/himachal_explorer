@@ -62,7 +62,7 @@
     {href:'/blog/index.html',  label:'Blog'},
     {href:'/about.html',       label:'About'},
     {href:'/contact.html',     label:'Contact'},
-    {href:'https://www.instagram.com/pineandpass', label:'Instagram', ext:true},
+    {href:'https://www.instagram.com/himachalexplorer', label:'Instagram', ext:true},
     {href:'https://wa.me/917018138847', label:'WhatsApp', ext:true}
   ];
 
@@ -91,12 +91,8 @@
     mount.innerHTML =
       '<header class="he-header he-visible">'+
         '<a href="/index.html" class="he-logo">'+
-          '<svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true">'+
-            '<path d="M2 30L14 12L20 21L25 14L38 30H2Z" fill="#b07d3a"/>'+
-            '<path d="M14 12L20 21L17.5 24.5L11 15.5L14 12Z" fill="#6b4415"/>'+
-            '<path d="M25 14L38 30H29L23 20.5L25 14Z" fill="#6b4415" opacity=".55"/>'+
-          '</svg>'+
-          '<span class="he-logo-text">PineAndPass<em>.in</em></span>'+
+          '<img src="/logo-512.png" alt="Himachal Explorer logo" class="he-logo-img" width="34" height="34">'+
+          '<span class="he-logo-text">HimachalExplorer<em>.in</em></span>'+
         '</a>'+
         '<nav class="he-nav-links" id="he-nav-links" aria-label="Main navigation">'+linksHTML+'</nav>'+
         '<div class="he-right">'+
@@ -164,9 +160,9 @@
     mount.innerHTML =
       '<footer class="he-footer">'+
         '<div class="he-footer-inner">'+
-          '<div class="he-foot-brand">PineAndPass<em>.in</em><span>Explore · Discover · Experience</span></div>'+
+          '<div class="he-foot-brand">HimachalExplorer<em>.in</em><span>Explore · Discover · Experience</span></div>'+
           '<ul class="he-foot-links">'+linksHTML+'</ul>'+
-          '<div class="he-foot-copy">© 2026 Pine & Pass · Garg Enterprise · +91-70181 38847</div>'+
+          '<div class="he-foot-copy">© 2026 Himachal Explorer · Garg Enterprise · +91-70181 38847</div>'+
         '</div>'+
       '</footer>';
   }
