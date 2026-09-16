@@ -1377,7 +1377,7 @@ function renderSuggestedPackages(gatewayName, dest){
         <b>${t.package_name}</b>
         <div class="pkg-card-meta"><span>${t.days} Days</span><span class="price">${t.days?fmtINR(pkgPricePP(t))+'/pax':''}</span></div>
       </div>`;
-    card.onclick = () => openPkgDetail(t.package_id);
+    card.onclick = () => { window.location.href = `/package-detail.html?slug=${encodeURIComponent(t.package_id)}`; };
     cardsBox.appendChild(card);
   });
 }

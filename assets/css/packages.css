@@ -1471,29 +1471,6 @@ footer{background:var(--ink);border-top:1px solid rgba(0,0,0,.15);padding:40px;t
 /* --- extracted style block 1 --- */
 #site-header .he-header-spacer{display:none}
 
-/* --- extracted style block 2 --- */
-.pkg-cinema-overlay{position:fixed;inset:0;z-index:6000;background:#0c0803;display:none;flex-direction:column;opacity:0;transition:opacity .35s ease}
-.pkg-cinema-overlay.open{display:flex;opacity:1}
-.pkg-cinema-topbar{height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:rgba(12,8,3,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,146,72,.22)}
-.pkg-cinema-title{font-family:'Cormorant Garamond',serif;font-size:17px;color:#f5efe4;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60vw}
-.pkg-cinema-actions{display:flex;align-items:center;gap:8px}
-.pkg-cinema-btn{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);color:#f5efe4;font-size:11px;font-weight:600;letter-spacing:.05em;padding:8px 14px;border-radius:20px;cursor:pointer;text-decoration:none;transition:all .2s}
-.pkg-cinema-btn:hover{background:var(--gold);border-color:var(--gold)}
-.pkg-cinema-close{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);color:#f5efe4;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s;flex-shrink:0}
-.pkg-cinema-close:hover{background:var(--gold);border-color:var(--gold)}
-.pkg-cinema-body{flex:1;position:relative;overflow:hidden}
-.pkg-cinema-body iframe{width:100%;height:100%;border:none;display:block;background:#fff}
-.pkg-cinema-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#0c0803;transition:opacity .3s ease}
-.pkg-cinema-loading.hide{opacity:0;pointer-events:none}
-.pkg-cinema-spinner{width:34px;height:34px;border:2.5px solid rgba(201,146,72,.25);border-top-color:var(--gold2);border-radius:50%;animation:pkgCinemaSpin .8s linear infinite}
-@keyframes pkgCinemaSpin{to{transform:rotate(360deg)}}
-.pkg-cinema-loading span{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,239,228,.55)}
-@media(max-width:600px){
-  .pkg-cinema-title{font-size:14px;max-width:42vw}
-  .pkg-cinema-btn span{display:none}
-  .pkg-cinema-btn{padding:8px 10px}
-}
-
 /* --- extracted style block 3 --- */
 @media(max-width:768px){
 

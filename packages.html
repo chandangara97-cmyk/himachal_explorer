@@ -1718,17 +1718,11 @@ function tierLabel(tier) {
 })();
 
 // ─── CARD CLICK → dedicated package page ──────────────────────────────────────
-// Clicking a package card jumps straight to its own detail page (with full
-// day-wise itinerary, photos and live per-person pricing) instead of only
-// opening the in-page quick-preview panel.
+// Clicking a package card jumps straight to its own full detail page (with
+// full day-wise itinerary, photos and live per-person pricing) — a real page
+// navigation, not an in-page popup/iframe.
 function goToPackagePage(pkgId) {
-  const pkg = (typeof PACKAGES !== 'undefined' ? PACKAGES : []).find(p => p.package_id === pkgId);
-  const label = pkg ? pkg.package_name : 'Package Details';
-  if (window.openPackageCinema) {
-    window.openPackageCinema(pkgId, label);
-  } else {
-    window.location.href = `package-detail.html?id=${encodeURIComponent(pkgId)}`;
-  }
+  window.location.href = `package-detail.html?id=${encodeURIComponent(pkgId)}`;
 }
 
 // ─── OPEN DETAIL (3-column) ───────────────────────────────────────────────────
@@ -2336,73 +2330,6 @@ setInterval(fetchWeather, 15 * 60 * 1000);
     </nav>
   </div>
 </section>
-
-<!-- ══ PACKAGE CINEMA OVERLAY — full package detail, no page navigation ══ -->
-
-
-<div class="pkg-cinema-overlay" id="pkgCinemaOverlay" role="dialog" aria-modal="true">
-  <div class="pkg-cinema-topbar">
-    <div class="pkg-cinema-title" id="pkgCinemaTitle">Package Details</div>
-    <div class="pkg-cinema-actions">
-      <a class="pkg-cinema-btn" id="pkgCinemaOpenTab" href="#" target="_blank" rel="noopener">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-        <span>Open Full Page</span>
-      </a>
-      <button class="pkg-cinema-close" id="pkgCinemaClose" aria-label="Close">✕</button>
-    </div>
-  </div>
-  <div class="pkg-cinema-body">
-    <div class="pkg-cinema-loading" id="pkgCinemaLoading">
-      <div class="pkg-cinema-spinner"></div>
-      <span>Loading Package Details…</span>
-    </div>
-    <iframe id="pkgCinemaFrame" title="Package details" src="about:blank"></iframe>
-  </div>
-</div>
-
-<script>
-(function(){
-  const overlay  = document.getElementById('pkgCinemaOverlay');
-  const frame    = document.getElementById('pkgCinemaFrame');
-  const loading  = document.getElementById('pkgCinemaLoading');
-  const titleEl  = document.getElementById('pkgCinemaTitle');
-  const openTab  = document.getElementById('pkgCinemaOpenTab');
-  const closeBtn = document.getElementById('pkgCinemaClose');
-
-  window.openPackageCinema = function(pkgId, label){
-    loading.classList.remove('hide');
-    titleEl.textContent = label || 'Package Details';
-    const url = `package-detail.html?id=${encodeURIComponent(pkgId)}&embed=1`;
-    openTab.href = `package-detail.html?id=${encodeURIComponent(pkgId)}`;
-    frame.src = url;
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    if (history.pushState) history.pushState({ pkgCinema: pkgId }, '', location.pathname + '#pkg-' + pkgId);
-  };
-
-  window.closePackageCinema = function(){
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-    setTimeout(() => { frame.src = 'about:blank'; loading.classList.remove('hide'); }, 350);
-    if (location.hash.startsWith('#pkg-') && history.pushState) {
-      history.pushState({}, '', location.pathname + location.search.replace(/[?&]?embed=1/, ''));
-    }
-  };
-
-  frame.addEventListener('load', () => {
-    if (frame.src !== 'about:blank') loading.classList.add('hide');
-  });
-
-  closeBtn.addEventListener('click', closePackageCinema);
-  overlay.addEventListener('click', e => { if (e.target === overlay) closePackageCinema(); });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && overlay.classList.contains('open')) closePackageCinema();
-  });
-  window.addEventListener('popstate', () => {
-    if (overlay.classList.contains('open')) closePackageCinema();
-  });
-})();
-</script>
 
 <div id="site-seo-links"></div>
 <link rel="stylesheet" href="assets/css/site-chrome.css">
