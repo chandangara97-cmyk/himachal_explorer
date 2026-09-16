@@ -211,6 +211,33 @@ img{max-width:100%;display:block}
 .pp-map-footer a{margin-left:auto;font-size:11.5px;color:#8a6a2c;font-weight:700;text-decoration:none;white-space:nowrap}
 .pp-route-status{font-size:10.5px;color:#6b7a70;padding:0 20px 6px;background:#fbfaf6}
 
+/* ---- Location packages moving bar: auto-scrolling strip of packages
+   for whichever marker is selected on the map ---- */
+.pp-loc-pkgs{background:#14301f;padding:14px 0 16px;border-top:1px solid rgba(245,179,59,.18)}
+.pp-loc-pkgs-head{display:flex;align-items:center;gap:8px;padding:0 20px 10px}
+.pp-loc-pkgs-eyebrow{font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#f5b33b}
+.pp-loc-pkgs-track-wrap{
+  position:relative;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent);
+}
+.pp-loc-pkgs-track{display:flex;gap:12px;width:max-content;padding:0 20px}
+.pp-loc-pkgs-track.pp-anim{animation:ppLocScroll var(--pp-scroll-dur,26s) linear infinite}
+.pp-loc-pkgs-track.pp-anim:hover,.pp-loc-pkgs-track.pp-anim:focus-within{animation-play-state:paused}
+@keyframes ppLocScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.pp-loc-pkg-card{
+  flex:0 0 auto;width:180px;text-decoration:none;padding:12px 13px;border-radius:12px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(245,179,59,.25);
+  transition:background .2s ease,border-color .2s ease,transform .2s ease;
+}
+.pp-loc-pkg-card:hover{background:rgba(245,179,59,.1);border-color:rgba(245,179,59,.5);transform:translateY(-2px)}
+.pp-loc-pkg-days{display:inline-block;font-size:8.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#5fd4a0;background:rgba(95,212,160,.12);border-radius:20px;padding:2px 8px;margin-bottom:7px}
+.pp-loc-pkg-name{font-family:'Cormorant',Georgia,serif;font-size:15px;font-weight:600;color:#fff;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pp-loc-pkg-price{margin-top:8px;font-size:13px;font-weight:700;color:#f5b33b}
+.pp-loc-pkg-price small{font-size:9px;font-weight:500;color:rgba(255,255,255,.5)}
+.pp-loc-pkgs-empty{padding:8px 20px 2px;font-size:12px;color:rgba(255,255,255,.6)}
+@media(max-width:520px){.pp-loc-pkg-card{width:154px}}
+
 /* PLAN / EXPLORE PANEL */
 .pp-plan-panel{padding:20px 20px 22px;background:#fff}
 .pp-plan-tabs{display:flex;gap:8px;margin-bottom:16px}
@@ -747,6 +774,15 @@ body{
     </div>
     <p class="pp-route-status" id="routeLoading" style="display:none">Finding route…</p>
 
+    <div class="pp-loc-pkgs" id="locPkgsSection">
+      <div class="pp-loc-pkgs-head">
+        <span class="pp-loc-pkgs-eyebrow">Packages featuring <span id="locPkgsPlaceName">Shimla</span></span>
+      </div>
+      <div class="pp-loc-pkgs-track-wrap">
+        <div class="pp-loc-pkgs-track" id="locPkgsTrack"></div>
+      </div>
+    </div>
+
     <div class="pp-plan-panel">
       <div class="pp-plan-tabs">
         <button class="pp-tab-btn active" type="button" data-tab="plan">⌁ Plan a Journey</button>
@@ -909,6 +945,106 @@ body{
     Delhi:       { coords:[28.6139,77.2090], url:"/kullu.html", image:"/assets/images/1hero.jpg", desc:"National capital · trip starting point" }
   };
 
+  // Packages featuring each destination — id/name/days/price sourced from
+  // the live packages database, matched by destination keyword. Chandigarh
+  // and Delhi are gateway cities (trip start points), not destinations, so
+  // they intentionally have no package list — the UI shows a "plan a trip
+  // from here" prompt for those instead.
+  const PLACE_PACKAGES = {
+    Shimla: [
+      {id:"chandigarh-shimla-weekend-3d", name:"Chandigarh – Shimla Weekend", days:3, price:6229},
+      {id:"chandigarh-best-value-5d", name:"Chandigarh Best Value", days:5, price:16999},
+      {id:"chandigarh-shimla-manali-6d", name:"Chandigarh – Shimla – Manali", days:6, price:16261},
+      {id:"chandigarh-shimla-manali-dharamshala-8d", name:"Shimla – Manali – Dharamshala", days:8, price:22863},
+      {id:"chandigarh-manali-spiti-shimla-14d", name:"Manali – Spiti – Shimla Grand Loop", days:14, price:37999},
+      {id:"chandigarh-grand-himachal-16d", name:"Grand Himachal Circuit", days:16, price:42999}
+    ],
+    Manali: [
+      {id:"chandigarh-shimla-manali-6d", name:"Chandigarh – Shimla – Manali", days:6, price:16261},
+      {id:"chandigarh-shimla-manali-dharamshala-8d", name:"Shimla – Manali – Dharamshala", days:8, price:22863},
+      {id:"chandigarh-manali-dharamshala-chamba-10d", name:"Manali – Dharamshala – Chamba", days:10, price:26999},
+      {id:"kinnaur-spiti-manali-loop-12d", name:"Kinnaur – Spiti – Manali Loop", days:12, price:32889},
+      {id:"chandigarh-manali-spiti-shimla-14d", name:"Manali – Spiti – Shimla Grand Loop", days:14, price:37999},
+      {id:"chandigarh-grand-himachal-16d", name:"Grand Himachal Circuit", days:16, price:42999}
+    ],
+    BirBilling: [
+      {id:"dharamshala-bir-billing-paragliding-special-3d", name:"Bir Billing Paragliding Special", days:3, price:7500},
+      {id:"dharamshala-dharamshala-bir-circuit-4d", name:"Dharamshala – Bir Circuit", days:4, price:10000}
+    ],
+    Kasol: [
+      {id:"kasol-kasol-cafe-trail-1d", name:"Kasol Café Trail", days:1, price:3200},
+      {id:"kasol-kasol-tosh-getaway-2d", name:"Kasol – Tosh Getaway", days:2, price:5000},
+      {id:"kasol-kheerganga-trek-3d", name:"Kheerganga Trek", days:3, price:7500},
+      {id:"kasol-malana-kasol-explorer-4d", name:"Malana – Kasol Explorer", days:4, price:10000},
+      {id:"amritsar-parvati-5d", name:"Amritsar – Parvati Valley", days:5, price:12900},
+      {id:"chandigarh-best-value-5d", name:"Chandigarh Best Value", days:5, price:16999}
+    ],
+    Jibhi: [
+      {id:"chandigarh-jibhi-seraj-4d", name:"Chandigarh – Jibhi – Seraj", days:4, price:15999},
+      {id:"seraj-offbeat-4d", name:"Seraj Valley Offbeat", days:4, price:15499},
+      {id:"tirthan-sainj-5d", name:"Tirthan – Sainj Valley", days:5, price:17499},
+      {id:"delhi-himachal-best-value-7d", name:"Delhi Himachal Best Value", days:7, price:19999}
+    ],
+    Khajjiar: [
+      {id:"amritsar-chamba-4d", name:"Amritsar – Chamba & Khajjiar", days:4, price:10100},
+      {id:"dalhousie-chamba-heritage-circuit-3d", name:"Dalhousie – Chamba Heritage", days:3, price:7500},
+      {id:"chamba-pangi-5d", name:"Chamba – Pangi Valley", days:5, price:11450},
+      {id:"dalhousie-chamba-valley-explorer-5d", name:"Dalhousie – Chamba Explorer", days:5, price:12500},
+      {id:"chamba-sach-6d", name:"Chamba – Sach Pass", days:6, price:14650},
+      {id:"chandigarh-manali-dharamshala-chamba-10d", name:"Manali – Dharamshala – Chamba", days:10, price:26999}
+    ],
+    Chitkul: [
+      {id:"kinnaur-spiti-connect-7d", name:"Kinnaur – Spiti Connect", days:7, price:17800},
+      {id:"kinnaur-complete-6d", name:"Kinnaur Complete", days:6, price:24999},
+      {id:"kasol-parvati-kinnaur-adventure-9d", name:"Parvati – Kinnaur Adventure", days:9, price:22500},
+      {id:"delhi-kinnaur-spiti-10d", name:"Delhi – Kinnaur – Spiti", days:10, price:38999},
+      {id:"kinnaur-spiti-manali-loop-12d", name:"Kinnaur – Spiti – Manali Loop", days:12, price:32889},
+      {id:"chandigarh-grand-himachal-16d", name:"Grand Himachal Circuit", days:16, price:42999}
+    ],
+    Kaza: [
+      {id:"kasol-parvati-spiti-connector-7d", name:"Parvati – Spiti Connector", days:7, price:17500},
+      {id:"kinnaur-spiti-connect-7d", name:"Kinnaur – Spiti Connect", days:7, price:17800},
+      {id:"delhi-kinnaur-spiti-10d", name:"Delhi – Kinnaur – Spiti", days:10, price:38999},
+      {id:"kinnaur-spiti-manali-loop-12d", name:"Kinnaur – Spiti – Manali Loop", days:12, price:32889},
+      {id:"chandigarh-manali-spiti-shimla-14d", name:"Manali – Spiti – Shimla Grand Loop", days:14, price:37999},
+      {id:"chandigarh-grand-himachal-16d", name:"Grand Himachal Circuit", days:16, price:42999}
+    ],
+    Dharamshala: [
+      {id:"dharamshala-bir-billing-paragliding-special-3d", name:"Bir Billing Paragliding Special", days:3, price:7500},
+      {id:"dharamshala-dharamshala-bir-circuit-4d", name:"Dharamshala – Bir Circuit", days:4, price:10000},
+      {id:"dharamshala-dharamshala-adventure-week-7d", name:"Dharamshala Adventure Week", days:7, price:17500},
+      {id:"chandigarh-shimla-manali-dharamshala-8d", name:"Shimla – Manali – Dharamshala", days:8, price:22863},
+      {id:"chandigarh-manali-dharamshala-chamba-10d", name:"Manali – Dharamshala – Chamba", days:10, price:26999},
+      {id:"chandigarh-grand-himachal-16d", name:"Grand Himachal Circuit", days:16, price:42999}
+    ],
+    Dalhousie: [
+      {id:"dalhousie-chamba-heritage-circuit-3d", name:"Dalhousie – Chamba Heritage", days:3, price:7500},
+      {id:"amritsar-chamba-4d", name:"Amritsar – Chamba & Khajjiar", days:4, price:10100},
+      {id:"dalhousie-chamba-valley-explorer-5d", name:"Dalhousie – Chamba Explorer", days:5, price:12500},
+      {id:"chamba-pangi-5d", name:"Chamba – Pangi Valley", days:5, price:11450},
+      {id:"chamba-sach-6d", name:"Chamba – Sach Pass", days:6, price:14650},
+      {id:"chandigarh-manali-dharamshala-chamba-10d", name:"Manali – Dharamshala – Chamba", days:10, price:26999}
+    ],
+    Kinnaur: [
+      {id:"kinnaur-complete-6d", name:"Kinnaur Complete", days:6, price:24999},
+      {id:"kinnaur-spiti-connect-7d", name:"Kinnaur – Spiti Connect", days:7, price:17800},
+      {id:"kasol-parvati-kinnaur-adventure-9d", name:"Parvati – Kinnaur Adventure", days:9, price:22500},
+      {id:"delhi-kinnaur-spiti-10d", name:"Delhi – Kinnaur – Spiti", days:10, price:38999},
+      {id:"kinnaur-spiti-manali-loop-12d", name:"Kinnaur – Spiti – Manali Loop", days:12, price:32889},
+      {id:"chandigarh-grand-himachal-16d", name:"Grand Himachal Circuit", days:16, price:42999}
+    ],
+    Spiti: [
+      {id:"kasol-parvati-spiti-connector-7d", name:"Parvati – Spiti Connector", days:7, price:17500},
+      {id:"kinnaur-spiti-connect-7d", name:"Kinnaur – Spiti Connect", days:7, price:17800},
+      {id:"delhi-kinnaur-spiti-10d", name:"Delhi – Kinnaur – Spiti", days:10, price:38999},
+      {id:"kinnaur-spiti-manali-loop-12d", name:"Kinnaur – Spiti – Manali Loop", days:12, price:32889},
+      {id:"chandigarh-manali-spiti-shimla-14d", name:"Manali – Spiti – Shimla Grand Loop", days:14, price:37999},
+      {id:"chandigarh-grand-himachal-16d", name:"Grand Himachal Circuit", days:16, price:42999}
+    ],
+    Chandigarh: [],
+    Delhi: []
+  };
+
   let map, routeLayer, selectedMarker = null;
   const markers = {};
 
@@ -970,10 +1106,48 @@ body{
       locationImg.src = p.image;
       locationImg.alt = name + " image preview";
     }
+    renderLocationPackages(name);
 
     if (!opts.silent && map) {
       map.panTo(p.coords, { animate:true, duration:.6 });
     }
+  }
+
+  // Renders the auto-scrolling "moving bar" of packages for the selected
+  // map marker. Duplicates the card set once so the CSS marquee animation
+  // loops seamlessly; falls back to a static (non-scrolling) row when
+  // there are too few cards for a loop to make sense, and to a friendly
+  // prompt for gateway cities (Chandigarh/Delhi) that have no packages
+  // of their own.
+  function renderLocationPackages(name){
+    const track = document.getElementById("locPkgsTrack");
+    const section = document.getElementById("locPkgsSection");
+    const placeNameEl = document.getElementById("locPkgsPlaceName");
+    if (!track || !section) return;
+
+    placeNameEl.textContent = name;
+    const pkgs = PLACE_PACKAGES[name] || [];
+
+    if (pkgs.length === 0) {
+      track.classList.remove("pp-anim");
+      track.innerHTML = '<div class="pp-loc-pkgs-empty">' + name + ' is a trip start point — <a href="/yui.html" style="color:#f5b33b;font-weight:700;text-decoration:none">build a custom route from here →</a></div>';
+      return;
+    }
+
+    const cardHTML = pkgs.map(pkg => (
+      '<a class="pp-loc-pkg-card" href="/package-detail.html?id=' + encodeURIComponent(pkg.id) + '">' +
+        '<span class="pp-loc-pkg-days">' + pkg.days + (pkg.days === 1 ? ' Day' : ' Days') + '</span>' +
+        '<div class="pp-loc-pkg-name">' + pkg.name + '</div>' +
+        '<div class="pp-loc-pkg-price">₹' + pkg.price.toLocaleString('en-IN') + '<small> /person</small></div>' +
+      '</a>'
+    )).join('');
+
+    const enoughForLoop = pkgs.length >= 4;
+    track.innerHTML = enoughForLoop ? (cardHTML + cardHTML) : cardHTML;
+    track.classList.toggle("pp-anim", enoughForLoop);
+    // Scale animation duration to content length so the scroll speed
+    // (px/sec) stays roughly constant whether a place has 4 or 6 packages.
+    track.style.setProperty('--pp-scroll-dur', (pkgs.length * 4.5) + 's');
   }
 
   // Free, keyless road-routing (public OSRM demo servers) — no API key needed. Two mirrors for reliability.
