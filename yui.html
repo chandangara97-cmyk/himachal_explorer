@@ -751,6 +751,7 @@ body.mode-packages [data-mode="custom"]{display:none !important;}
     <div class="panel ticket-panel" data-mode="custom">
       <h3>Route Summary</h3>
       <div class="ticket-code">HE · ROUTE-01</div>
+      <div id="routeStatusBadge" style="display:none;margin-bottom:10px;padding:6px 10px;border-radius:8px;background:#fff4e5;border:1px solid #f0c078;color:#7a4a00;font-size:11px;font-weight:700;text-align:center">⚠ Estimated route — road routing was unavailable</div>
       <div class="summary-row"><span>Total Stops</span><b id="sumStops">0</b></div>
       <div class="summary-row"><span>Total Distance</span><b id="sumDistance">—</b></div>
       <div class="summary-row"><span>Total Duration</span><b id="sumDuration">—</b></div>
@@ -890,6 +891,8 @@ function placeImgUrl(p){
 let stops = []; // {id,name,lat,lng,district,region,segment,tag}
 let routeLegs = []; // OSRM legs aligned to stops[1..n]
 let lastTotalKm = 0, lastTotalMin = 0;
+let routeRequestId = 0; // guards against a stale/slow response overwriting a newer route
+let routeIsEstimate = false; // true when the current route is the straight-line/matrix fallback, not a confirmed OSRM road route
 let pax = 2;
 // Live price for a route-builder package — same formula/source as
 // group-pricing.html, packages.html, package-detail.html and the admin
@@ -1748,6 +1751,12 @@ async function generateRoute(){
   const pts = full.filter((p,i)=> i===0 || p.id !== full[i-1].id);
   if(pts.length < 2){ showToast('Add a destination different from your starting point'); return; }
 
+  // Guards against a slow/retried request finishing after a newer one —
+  // without this, clicking Generate again while a request (esp. one that's
+  // retrying after a timeout) is still in flight could let the stale
+  // response overwrite the newer route on the map/stats.
+  const myRequestId = ++routeRequestId;
+
   const btn = document.getElementById('generateBtn');
   btn.disabled = true; btn.textContent = 'Routing…';
 
@@ -1770,6 +1779,12 @@ async function generateRoute(){
     try{ data = await tryFetch(); }
     catch(firstErr){ await new Promise(r=>setTimeout(r,1200)); data = await tryFetch(); }
 
+    if(myRequestId !== routeRequestId) return; // superseded by a newer request — drop this result
+
+    const badge = document.getElementById('routeStatusBadge');
+    if(badge) badge.style.display = 'none';
+    routeIsEstimate = false;
+
     const route = data.routes[0];
     routeLegs = route.legs;
     // OSRM's public demo router gives a real driving PATH (used for the map
@@ -1788,9 +1803,11 @@ async function generateRoute(){
     renderStats(pts);
     renderItinerary(pts);
   } catch(err){
+    if(myRequestId !== routeRequestId) return; // superseded — don't show a stale fallback either
     showToast('Routing service unavailable — showing straight-line estimate');
     fallbackStraightLine(pts);
   } finally {
+    if(myRequestId !== routeRequestId) return; // a newer request owns the button state now
     btn.disabled = false;
     btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg> Generate Route';
   }
@@ -1802,6 +1819,9 @@ function haversine(a,b){
   return 2*R*Math.asin(Math.sqrt(s));
 }
 function fallbackStraightLine(pts){
+  routeIsEstimate = true;
+  const badge = document.getElementById('routeStatusBadge');
+  if(badge) badge.style.display = 'block';
   routeLegs = [];
   let totalKm = 0;
   for(let i=1;i<pts.length;i++){
@@ -1944,7 +1964,7 @@ function renderStats(pts){
   document.getElementById('sumVehicle').textContent = cost.fleetLabel + (vehicleFlag.highAltitude ? ' (SUV recommended for altitude)' : '');
   document.getElementById('sumCost').textContent = fmtINR(cost.low) + ' – ' + fmtINR(cost.high);
 
-  lastTrip = { pts, days, nights: Math.max(days-1,0), vehicleFlag, cost, totalKm: lastTotalKm, totalMin: lastTotalMin };
+  lastTrip = { pts, days, nights: Math.max(days-1,0), vehicleFlag, cost, totalKm: lastTotalKm, totalMin: lastTotalMin, isEstimate: routeIsEstimate };
   const waBtn = document.getElementById('waBtn');
   if(waBtn) waBtn.disabled = false;
 }
@@ -2054,10 +2074,10 @@ function saveRoute(){
 function sendToWhatsApp(){
   if(!lastTrip){ showToast('Add stops and generate a route first'); return; }
   const start = startPlace;
-  const { pts, days, nights, vehicleFlag, cost, totalKm, totalMin } = lastTrip;
+  const { pts, days, nights, vehicleFlag, cost, totalKm, totalMin, isEstimate } = lastTrip;
   const route = `${start?start.name:'Start'} → ${pts.map(p=>p.name).join(' → ')}`;
   const message = `Hi Himachal Explorer! Please plan this route: ${route}. ` +
-    `Road distance: ${Math.round(totalKm)} km. Driving: ${fmtHrs(totalMin)}. ` +
+    `${isEstimate ? 'Estimated distance (road routing was unavailable)' : 'Road distance'}: ${Math.round(totalKm)} km. Driving: ${fmtHrs(totalMin)}. ` +
     `${days} days / ${nights} nights for ${pax} traveller${pax===1?'':'s'}. ` +
     `Suggested vehicle: ${cost.fleetLabel}${vehicleFlag.highAltitude ? ' (SUV recommended for altitude)' : ''}. ` +
     `Estimated budget: ${fmtINR(cost.low)} – ${fmtINR(cost.high)}. ` +

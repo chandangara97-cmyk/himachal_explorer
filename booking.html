@@ -871,6 +871,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="booking-ref-label">Booking Reference</div>
             <div class="booking-ref-val" id="bookingRef">HE-XXXXXX</div>
           </div>
+          <div id="bookingSaveWarning" style="display:none;margin:14px 0;padding:12px 14px;border-radius:10px;background:#fff4e5;border:1px solid #f0c078;color:#7a4a00;font-size:0.82rem;text-align:left">
+            ⚠️ Your payment went through, but we couldn't confirm the booking reached our system just now — it'll keep retrying in the background. To be safe, please tap <b>Continue on WhatsApp</b> below right away so our team has your payment ID on record.
+          </div>
           <br>
           <a class="whatsapp-btn" id="waConfirmBtn" href="#" target="_blank">
             <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -986,6 +989,7 @@ let state = {
 
 // ── INIT ──
 window.onload = () => {
+  flushPendingBookings(); // retry any bookings (esp. paid ones) that failed to save last visit
   // Set min date = tomorrow
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate()+1);
@@ -1008,7 +1012,14 @@ window.onload = () => {
 
     if (pkgId) {
       const found = PACKAGES.find(p => p.id === pkgId);
-      if (found) selectPackage(found);
+      if (found) {
+        selectPackage(found);
+      } else {
+        // Deep link (e.g. from an old share, or a package that's since been
+        // retired) pointing at an id we don't have — say so rather than
+        // leaving the form silently empty with no package selected.
+        pkgListEl.insertAdjacentHTML('beforebegin', '<div style="padding:10px 14px;margin-bottom:8px;border-radius:8px;background:#fff4e5;border:1px solid #f0c078;color:#7a4a00;font-size:0.78rem">That package link looks out of date — pick one below instead.</div>');
+      }
     }
   }).catch(err => {
     console.error('Failed to load packages from Firebase:', err);
@@ -1179,6 +1190,34 @@ async function saveBookingToFirebase(bookingData) {
   }
 }
 
+// A payment can succeed via Razorpay/WhatsApp even when the Firebase write
+// right after it fails (dropped connection, Firebase outage, etc). Without
+// this, that gap silently loses the booking record entirely — the customer
+// sees "confirmed" and has paid, but nothing exists on our side to fulfill
+// it. Queue anything that fails to save so it isn't lost, and retry on
+// every page load (this one or a future visit) until it lands.
+function queueUnsavedBooking(bookingData) {
+  try {
+    const key = 'he_pending_bookings';
+    const queue = JSON.parse(localStorage.getItem(key) || '[]');
+    queue.push(bookingData);
+    localStorage.setItem(key, JSON.stringify(queue));
+  } catch(e) { console.error('Could not queue booking locally for retry:', e); }
+}
+
+async function flushPendingBookings() {
+  let queue;
+  try { queue = JSON.parse(localStorage.getItem('he_pending_bookings') || '[]'); }
+  catch(e) { return; }
+  if (!queue.length) return;
+  const stillPending = [];
+  for (const b of queue) {
+    const savedId = await saveBookingToFirebase(b);
+    if (!savedId) stillPending.push(b);
+  }
+  try { localStorage.setItem('he_pending_bookings', JSON.stringify(stillPending)); } catch(e){}
+}
+
 async function initiatePayment() {
   if(!state.totalAmt) { alert('Price not calculated. Please go back and select a package.'); return; }
 
@@ -1200,7 +1239,9 @@ async function initiatePayment() {
   if(state.payMethod==='whatsapp') {
     // Save booking then redirect to WhatsApp
     document.getElementById('loadingOverlay').classList.add('show');
-    await saveBookingToFirebase({...bookingData, status:'pending_manual_payment'});
+    const pendingBooking = {...bookingData, status:'pending_manual_payment'};
+    const savedId = await saveBookingToFirebase(pendingBooking);
+    if (!savedId) queueUnsavedBooking(pendingBooking);
     document.getElementById('loadingOverlay').classList.remove('show');
     const msg = encodeURIComponent(`🏔️ *New Booking Request*\n\nRef: ${ref}\nPackage: ${state.pkg?.name}\nDate: ${state.date}\nGuest: ${state.fname} ${state.lname}\nMobile: ${state.phone}\nPax: ${state.adults}A+${state.children}C\nVehicle: ${state.fleetLabel || state.vehicle}\nHotel: ${HOTEL_LABELS[state.hotel]}\nTotal: ₹${state.totalAmt.toLocaleString('en-IN')}\nPaying: ₹${payAmt.toLocaleString('en-IN')} (${PAY_MODE_LABEL[state.payMode] || state.payMode})\n\nPlease share payment QR / account details.`);
     window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
@@ -1229,15 +1270,17 @@ async function initiatePayment() {
     theme: { color: '#b8972a' },
     handler: async function(response) {
       document.getElementById('loadingOverlay').classList.add('show');
-      await saveBookingToFirebase({
+      const paidBooking = {
         ...bookingData,
         status:'paid',
         razorpay_payment_id: response.razorpay_payment_id,
         razorpay_order_id: response.razorpay_order_id || '',
         paidAt: new Date().toISOString()
-      });
+      };
+      const savedId = await saveBookingToFirebase(paidBooking);
+      if (!savedId) queueUnsavedBooking(paidBooking); // payment succeeded — never drop this silently
       document.getElementById('loadingOverlay').classList.remove('show');
-      showSuccess(ref, payAmt, response.razorpay_payment_id);
+      showSuccess(ref, payAmt, response.razorpay_payment_id, !savedId);
     },
     modal: {
       ondismiss: function() { console.log('Payment modal closed'); }
@@ -1256,10 +1299,17 @@ async function initiatePayment() {
   }
 }
 
-function showSuccess(ref, paidAmt, paymentId) {
+function showSuccess(ref, paidAmt, paymentId, saveFailed) {
   document.getElementById('bookingRef').textContent = ref;
-  const msg = encodeURIComponent(`🎉 My booking is confirmed!\n\nRef: ${ref}\nPackage: ${state.pkg?.name}\nDate: ${state.date}\nGuest: ${state.fname} ${state.lname}\nPaid: ₹${paidAmt.toLocaleString('en-IN')}\n\nPlease share the detailed itinerary.`);
+  const paymentLine = paymentId ? `\nPayment ID: ${paymentId}` : '';
+  const msg = encodeURIComponent(`🎉 My booking is confirmed!\n\nRef: ${ref}\nPackage: ${state.pkg?.name}\nDate: ${state.date}\nGuest: ${state.fname} ${state.lname}\nPaid: ₹${paidAmt.toLocaleString('en-IN')}${paymentLine}\n\nPlease share the detailed itinerary.`);
   document.getElementById('waConfirmBtn').href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+  // If the record-keeping write failed right after a successful payment, we
+  // still queued it for background retry, but the customer shouldn't be
+  // left assuming everything is fine with no paper trail on their end —
+  // point them straight at WhatsApp with the payment ID already filled in.
+  const warningEl = document.getElementById('bookingSaveWarning');
+  if (warningEl) warningEl.style.display = saveFailed ? 'block' : 'none';
   setStep(4);
   // Update progress to all done
   [1,2,3].forEach(i=>document.getElementById('s'+i).classList.replace('active','done'));
