@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Sukoon Homestay</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">Sukoon <em>Homestay</em></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Site</a></li>
+      <li><a href="blog.html">Journal</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<div class="admin-shell">
+
+  <!-- LOGIN -->
+  <div class="admin-box" id="login-box">
+    <h2 style="margin-bottom:20px">Admin login</h2>
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" autocomplete="username">
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" id="password" autocomplete="current-password">
+    </div>
+    <button class="btn btn-gold" id="login-btn">Log in</button>
+    <p class="msg err" id="login-msg"></p>
+  </div>
+
+  <!-- EDITOR (hidden until logged in) -->
+  <div id="editor-area" style="display:none">
+    <div class="admin-box" style="margin-bottom:24px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+        <h2>Write a post</h2>
+        <button class="btn btn-dark" id="logout-btn" style="padding:8px 18px;font-size:.75rem">Log out</button>
+      </div>
+
+      <input type="hidden" id="edit-id">
+
+      <div class="field">
+        <label for="title">Title</label>
+        <input type="text" id="title" placeholder="e.g. First snow over Sukoon">
+      </div>
+      <div class="field">
+        <label for="slug">URL slug</label>
+        <input type="text" id="slug" placeholder="first-snow-kinner-kailash">
+      </div>
+      <div class="field">
+        <label for="cover">Cover image URL</label>
+        <input type="text" id="cover" placeholder="https://... (upload elsewhere, e.g. Firebase Storage or imgur, and paste link)">
+      </div>
+      <div class="field">
+        <label for="excerpt">Short excerpt (shown in listings)</label>
+        <input type="text" id="excerpt" placeholder="One or two lines for the preview card">
+      </div>
+      <div class="field">
+        <label for="body">Body (separate paragraphs with a blank line)</label>
+        <textarea id="body" placeholder="Write your post here..."></textarea>
+      </div>
+      <div class="field" style="display:flex;align-items:center;gap:10px">
+        <input type="checkbox" id="published" checked style="width:auto">
+        <label for="published" style="margin:0;text-transform:none;font-size:.9rem">Published (visible on the site)</label>
+      </div>
+
+      <div style="display:flex;gap:12px;margin-top:8px">
+        <button class="btn btn-gold" id="save-btn">Publish post</button>
+        <button class="btn btn-outline" id="clear-btn" style="border-color:var(--line);color:var(--ink)">Clear form</button>
+      </div>
+      <p class="msg" id="save-msg"></p>
+    </div>
+
+    <div class="admin-box">
+      <h2 style="margin-bottom:16px">All posts</h2>
+      <div id="post-list"><p style="color:var(--ink-soft)">Loading…</p></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/main.js"></script>
+<script>
+const loginBox = document.getElementById('login-box');
+const editorArea = document.getElementById('editor-area');
+
+// --- Auth ---
+document.getElementById('login-btn').addEventListener('click', () => {
+  const email = document.getElementById('email').value.trim();
+  const pw = document.getElementById('password').value;
+  auth.signInWithEmailAndPassword(email, pw)
+    .catch(err => { document.getElementById('login-msg').textContent = err.message; });
+});
+
+document.getElementById('logout-btn').addEventListener('click', () => auth.signOut());
+
+auth.onAuthStateChanged(user => {
+  if (user) {
+    loginBox.style.display = 'none';
+    editorArea.style.display = 'block';
+    loadPosts();
+  } else {
+    loginBox.style.display = 'block';
+    editorArea.style.display = 'none';
+  }
+});
+
+// Auto-suggest a slug from the title
+document.getElementById('title').addEventListener('input', e => {
+  const slugField = document.getElementById('slug');
+  if (!slugField.dataset.touched) {
+    slugField.value = e.target.value.toLowerCase().trim()
+      .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+  }
+});
+document.getElementById('slug').addEventListener('input', e => { e.target.dataset.touched = '1'; });
+
+// --- Save / publish ---
+document.getElementById('save-btn').addEventListener('click', () => {
+  const id = document.getElementById('edit-id').value;
+  const title = document.getElementById('title').value.trim();
+  const slug = document.getElementById('slug').value.trim();
+  const msg = document.getElementById('save-msg');
+
+  if (!title || !slug) {
+    msg.className = 'msg err'; msg.textContent = 'Title and slug are required.';
+    return;
+  }
+
+  const post = {
+    title,
+    slug,
+    coverImage: document.getElementById('cover').value.trim(),
+    excerpt: document.getElementById('excerpt').value.trim(),
+    body: document.getElementById('body').value,
+    published: document.getElementById('published').checked,
+    date: Date.now()
+  };
+
+  const ref = id ? db.ref(BLOG_PATH + '/' + id) : db.ref(BLOG_PATH).push();
+
+  const savePost = () => ref.set(post).then(() => {
+      msg.className = 'msg ok'; msg.textContent = 'Saved.';
+      clearForm();
+      loadPosts();
+    }).catch(err => { msg.className = 'msg err'; msg.textContent = err.message; });
+
+  if (id) {
+    // keep the original publish date when editing an existing post
+    ref.once('value').then(snap => {
+      const existing = snap.val();
+      if (existing && existing.date) post.date = existing.date;
+      savePost();
+    });
+  } else {
+    savePost();
+  }
+});
+
+document.getElementById('clear-btn').addEventListener('click', clearForm);
+
+function clearForm() {
+  document.getElementById('edit-id').value = '';
+  ['title','slug','cover','excerpt','body'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('published').checked = true;
+  document.getElementById('slug').dataset.touched = '';
+}
+
+// --- List / edit / delete ---
+function loadPosts() {
+  db.ref(BLOG_PATH).orderByChild('date').once('value').then(snap => {
+    const el = document.getElementById('post-list');
+    const posts = [];
+    snap.forEach(child => posts.push({ id: child.key, ...child.val() }));
+    posts.reverse();
+    if (!posts.length) { el.innerHTML = '<p style="color:var(--ink-soft)">No posts yet.</p>'; return; }
+    el.innerHTML = posts.map(p => `
+      <div class="post-list-item">
+        <span>${escapeHtml(p.title)} ${p.published === false ? '<em style="color:var(--ink-soft)">(draft)</em>' : ''}</span>
+        <span style="display:flex;gap:8px">
+          <button onclick="editPost('${p.id}')">Edit</button>
+          <button onclick="deletePost('${p.id}')">Delete</button>
+        </span>
+      </div>
+    `).join('');
+  });
+}
+
+function editPost(id) {
+  db.ref(BLOG_PATH + '/' + id).once('value').then(snap => {
+    const p = snap.val();
+    if (!p) return;
+    document.getElementById('edit-id').value = id;
+    document.getElementById('title').value = p.title || '';
+    document.getElementById('slug').value = p.slug || '';
+    document.getElementById('slug').dataset.touched = '1';
+    document.getElementById('cover').value = p.coverImage || '';
+    document.getElementById('excerpt').value = p.excerpt || '';
+    document.getElementById('body').value = p.body || '';
+    document.getElementById('published').checked = p.published !== false;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+function deletePost(id) {
+  if (!confirm('Delete this post permanently?')) return;
+  db.ref(BLOG_PATH + '/' + id).remove().then(loadPosts);
+}
+</script>
+</body>
+</html>

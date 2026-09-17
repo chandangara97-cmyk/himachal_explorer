@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal — Sukoon Homestay, Kalpa</title>
+<meta name="description" content="Notes on Kalpa, Kinnaur — orchards, walks, weather, and village life around the homestay.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">Sukoon <em>Homestay</em></a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#stay">The Stay</a></li>
+      <li><a href="index.html#gallery">Gallery</a></li>
+      <li><a href="blog.html">Journal</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<header style="padding:160px 0 60px;background:var(--cream-deep)">
+  <div class="wrap">
+    <span class="eyebrow">Journal</span>
+    <h1 style="font-size:clamp(2.2rem,5vw,3.4rem);margin-top:10px">Notes from Kalpa</h1>
+    <p style="color:var(--ink-soft);font-weight:300;max-width:52ch;margin-top:14px">
+      Seasonal notes, walks around the village, and what's actually happening at the homestay —
+      written as it happens, not polished tourist copy.
+    </p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="blog-grid" id="all-posts">
+      <p style="color:var(--ink-soft)">Loading posts…</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>Sukoon Homestay</h4>
+      <p>Kalpa, Kinnaur District<br>Himachal Pradesh, India</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p><a href="tel:+919805963321">+91 98059 63321</a></p>
+      <p><a href="mailto:chandan_panwar@himachalexplorer.in">chandan_panwar@himachalexplorer.in</a></p>
+    </div>
+  </div>
+  <div class="foot-bottom">© <span id="year"></span> Sukoon Homestay, Kalpa. All rights reserved.</div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  db.ref(BLOG_PATH).orderByChild('date').once('value').then(snap => {
+    const el = document.getElementById('all-posts');
+    const posts = [];
+    snap.forEach(child => posts.push({ id: child.key, ...child.val() }));
+    posts.reverse();
+    const visible = posts.filter(p => p.published !== false);
+    if (!visible.length) { el.innerHTML = '<p style="color:var(--ink-soft)">No posts published yet.</p>'; return; }
+    el.innerHTML = visible.map(p => `
+      <div class="post-card">
+        <a href="blog-post.html?slug=${encodeURIComponent(p.slug || p.id)}">
+          <img src="${p.coverImage || 'media/gallery-1.svg'}" alt="${escapeHtml(p.title)}" loading="lazy">
+          <div class="pc-body">
+            <span class="pc-date">${formatDate(p.date)}</span>
+            <h3>${escapeHtml(p.title)}</h3>
+            <p>${escapeHtml(p.excerpt || '')}</p>
+          </div>
+        </a>
+      </div>
+    `).join('');
+  }).catch(() => {
+    document.getElementById('all-posts').innerHTML =
+      '<p style="color:var(--ink-soft)">Posts will appear here once Firebase is connected.</p>';
+  });
+</script>
+</body>
+</html>

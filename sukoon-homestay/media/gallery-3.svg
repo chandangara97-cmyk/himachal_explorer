@@ -1,0 +1,35 @@
+<svg viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a home-cooked Kinnauri thali with rice, dal, seasonal vegetables, siddu and apple">
+
+<rect width="900" height="900" fill="#6B4A2E"/>
+<line x1="0" y1="40" x2="900" y2="40" stroke="#5C3D24" stroke-width="3" opacity="0.35"/><line x1="0" y1="110" x2="900" y2="110" stroke="#5C3D24" stroke-width="3" opacity="0.35"/><line x1="0" y1="180" x2="900" y2="180" stroke="#5C3D24" stroke-width="3" opacity="0.35"/><line x1="0" y1="250" x2="900" y2="250" stroke="#5C3D24" stroke-width="3" opacity="0.35"/><line x1="0" y1="320" x2="900" y2="320" stroke="#5C3D24" stroke-width="3" opacity="0.35"/><line x1="0" y1="390" x2="900" y2="390" stroke="#5C3D24" stroke-width="3" opacity="0.35"/><line x1="0" y1="460" x2="900" y2="460" stroke="#5C3D24" stroke-width="3" opacity="0.35"/><line x1="0" y1="530" x2="900" y2="530" stroke="#5C3D24" stroke-width="3" opacity="0.35"/><line x1="0" y1="600" x2="900" y2="600" stroke="#5C3D24" stroke-width="3" opacity="0.35"/><line x1="0" y1="670" x2="900" y2="670" stroke="#5C3D24" stroke-width="3" opacity="0.35"/><line x1="0" y1="740" x2="900" y2="740" stroke="#5C3D24" stroke-width="3" opacity="0.35"/><line x1="0" y1="810" x2="900" y2="810" stroke="#5C3D24" stroke-width="3" opacity="0.35"/><line x1="0" y1="880" x2="900" y2="880" stroke="#5C3D24" stroke-width="3" opacity="0.35"/>
+
+<!-- thali plate -->
+<circle cx="450.0" cy="468.0" r="306.0" fill="#D9C39A"/>
+<circle cx="450.0" cy="468.0" r="279.0" fill="#F7F3EA"/>
+
+<!-- rice mound -->
+<ellipse cx="450.0" cy="414.0" rx="90" ry="72" fill="#F1E7C8"/>
+
+<!-- small bowls around -->
+<circle cx="306.0" cy="324.0" r="52" fill="#C98A3E"/>
+<circle cx="306.0" cy="324.0" r="52" fill="none" stroke="#D9C39A" stroke-width="6"/>
+
+<circle cx="594.0" cy="324.0" r="52" fill="#6E7A3E"/>
+<circle cx="594.0" cy="324.0" r="52" fill="none" stroke="#D9C39A" stroke-width="6"/>
+
+<circle cx="315.0" cy="594.0" r="40" fill="#8B3A2E"/>
+<circle cx="315.0" cy="594.0" r="40" fill="none" stroke="#D9C39A" stroke-width="5"/>
+
+<ellipse cx="585.0" cy="612.0" rx="46" ry="34" fill="#E9D7AE"/>
+<ellipse cx="585.0" cy="612.0" rx="46" ry="34" fill="none" stroke="#D9C39A" stroke-width="5"/>
+
+<!-- apple beside plate -->
+<circle cx="774.0" cy="180.0" r="34" fill="#9E3B2C"/>
+<rect x="771.0" y="140.0" width="6" height="14" fill="#5C3D24"/>
+
+<!-- cup of tea -->
+<circle cx="126.0" cy="738.0" r="46" fill="#EFE8D8"/>
+<circle cx="126.0" cy="738.0" r="34" fill="#C98A3E"/>
+<path d="M172.0,730.0 q26,4 20,26 q-6,20 -26,14" fill="none" stroke="#EFE8D8" stroke-width="8"/>
+
+</svg>

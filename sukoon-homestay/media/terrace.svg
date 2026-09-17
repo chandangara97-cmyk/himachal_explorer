@@ -1,0 +1,42 @@
+<svg viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of terrace seating with the Kinner Kailash range in view">
+
+    <defs>
+      <linearGradient id="sky61" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#F7F3EA"/>
+        <stop offset="55%" stop-color="#D9C39A"/>
+        <stop offset="100%" stop-color="#8B5A46"/>
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="900" fill="url(#sky61)"/>
+    <path d="M0.0,348.0 L0.0,238.1 L77.6,256.4 L150.0,215.3 L216.9,242.8 L300.0,133.7 L368.7,199.7 L450.0,127.6 L510.0,178.1 L600.0,177.3 L683.5,216.2 L750.0,245.7 L822.0,286.6 L900.0,188.5 L965.8,244.0 L1050.0,107.5 L1117.8,133.4 L1200.0,125.2 L1200.0,348.0 L1200.0,398.0 L0,398.0 Z" fill="#59503E" opacity="0.55"/>
+    <path d="M131.3,229.5 L150.0,215.3 L168.7,229.5 L156.6,224.0 L150.0,228.7 L143.4,224.0 Z" fill="#FFFDF8" opacity="0.5"/><path d="M278.0,150.4 L300.0,133.7 L322.0,150.4 L307.7,143.9 L300.0,149.5 L292.3,143.9 Z" fill="#FFFDF8" opacity="0.5"/><path d="M427.8,144.5 L450.0,127.6 L472.2,144.5 L457.8,138.0 L450.0,143.6 L442.2,138.0 Z" fill="#FFFDF8" opacity="0.5"/><path d="M579.7,192.6 L600.0,177.3 L620.3,192.6 L607.1,186.7 L600.0,191.8 L592.9,186.7 Z" fill="#FFFDF8" opacity="0.5"/><path d="M880.2,203.5 L900.0,188.5 L919.8,203.5 L906.9,197.6 L900.0,202.7 L893.1,197.6 Z" fill="#FFFDF8" opacity="0.5"/><path d="M1027.0,125.0 L1050.0,107.5 L1073.0,125.0 L1058.1,118.2 L1050.0,124.1 L1041.9,118.2 Z" fill="#FFFDF8" opacity="0.5"/><path d="M1177.7,142.2 L1200.0,125.2 L1222.3,142.2 L1207.8,135.6 L1200.0,141.3 L1192.2,135.6 Z" fill="#FFFDF8" opacity="0.5"/>
+    <path d="M0.0,378.0 L0.0,182.5 L96.1,253.6 L200.0,234.2 L285.4,255.6 L400.0,194.9 L514.7,217.9 L600.0,111.3 L698.1,219.4 L800.0,87.0 L874.2,181.0 L1000.0,193.7 L1113.7,247.1 L1200.0,233.8 L1200.0,378.0 L1200.0,418.0 L0,418.0 Z" fill="#3A3122" opacity="0.8"/>
+    <path d="M-27.4,202.6 L0.0,182.5 L27.4,202.6 L9.6,194.8 L0.0,201.5 L-9.6,194.8 Z" fill="#FFFDF8" opacity="0.8"/><path d="M175.0,252.6 L200.0,234.2 L225.0,252.6 L208.8,245.5 L200.0,251.6 L191.2,245.5 Z" fill="#FFFDF8" opacity="0.8"/><path d="M373.2,214.6 L400.0,194.9 L426.8,214.6 L409.4,206.9 L400.0,213.5 L390.6,206.9 Z" fill="#FFFDF8" opacity="0.8"/><path d="M569.4,133.8 L600.0,111.3 L630.6,133.8 L610.7,125.1 L600.0,132.6 L589.3,125.1 Z" fill="#FFFDF8" opacity="0.8"/><path d="M768.3,110.4 L800.0,87.0 L831.7,110.4 L811.1,101.3 L800.0,109.1 L788.9,101.3 Z" fill="#FFFDF8" opacity="0.8"/><path d="M973.2,213.5 L1000.0,193.7 L1026.8,213.5 L1009.4,205.8 L1000.0,212.4 L990.6,205.8 Z" fill="#FFFDF8" opacity="0.8"/><path d="M1175.0,252.2 L1200.0,233.8 L1225.0,252.2 L1208.8,245.0 L1200.0,251.2 L1191.2,245.0 Z" fill="#FFFDF8" opacity="0.8"/>
+    
+<rect x="0" y="584.0" width="1200" height="10" fill="#221C15" opacity="0.85"/>
+<rect x="20" y="584.0" width="8" height="46" fill="#221C15" opacity="0.85"/><rect x="110" y="584.0" width="8" height="46" fill="#221C15" opacity="0.85"/><rect x="200" y="584.0" width="8" height="46" fill="#221C15" opacity="0.85"/><rect x="290" y="584.0" width="8" height="46" fill="#221C15" opacity="0.85"/><rect x="380" y="584.0" width="8" height="46" fill="#221C15" opacity="0.85"/><rect x="470" y="584.0" width="8" height="46" fill="#221C15" opacity="0.85"/><rect x="560" y="584.0" width="8" height="46" fill="#221C15" opacity="0.85"/><rect x="650" y="584.0" width="8" height="46" fill="#221C15" opacity="0.85"/><rect x="740" y="584.0" width="8" height="46" fill="#221C15" opacity="0.85"/><rect x="830" y="584.0" width="8" height="46" fill="#221C15" opacity="0.85"/><rect x="920" y="584.0" width="8" height="46" fill="#221C15" opacity="0.85"/><rect x="1010" y="584.0" width="8" height="46" fill="#221C15" opacity="0.85"/><rect x="1100" y="584.0" width="8" height="46" fill="#221C15" opacity="0.85"/><rect x="1190" y="584.0" width="8" height="46" fill="#221C15" opacity="0.85"/>
+
+<rect x="0" y="630.0" width="1200" height="270.0" fill="#7A5233"/>
+<line x1="0" y1="650" x2="1200" y2="650" stroke="#5C3C22" stroke-width="3" opacity="0.4"/><line x1="0" y1="684" x2="1200" y2="684" stroke="#5C3C22" stroke-width="3" opacity="0.4"/><line x1="0" y1="718" x2="1200" y2="718" stroke="#5C3C22" stroke-width="3" opacity="0.4"/><line x1="0" y1="752" x2="1200" y2="752" stroke="#5C3C22" stroke-width="3" opacity="0.4"/><line x1="0" y1="786" x2="1200" y2="786" stroke="#5C3C22" stroke-width="3" opacity="0.4"/><line x1="0" y1="820" x2="1200" y2="820" stroke="#5C3C22" stroke-width="3" opacity="0.4"/><line x1="0" y1="854" x2="1200" y2="854" stroke="#5C3C22" stroke-width="3" opacity="0.4"/><line x1="0" y1="888" x2="1200" y2="888" stroke="#5C3C22" stroke-width="3" opacity="0.4"/>
+<rect x="0" y="630.0" width="1200" height="8" fill="#5C3C22"/>
+
+    <g transform="translate(288.0,700.0) scale(1.15,1.15)">
+      <rect x="-70" y="-6" width="140" height="14" fill="#7A5233" rx="4"/>
+      <rect x="-70" y="-80" width="18" height="80" fill="#7A5233" rx="3"/>
+      <rect x="52" y="-40" width="18" height="46" fill="#7A5233" rx="3"/>
+      <path d="M-70,-80 Q-20,-108 40,-40" fill="none" stroke="#7A5233" stroke-width="16" stroke-linecap="round"/>
+      <rect x="-64" y="-2" width="128" height="8" fill="#D9C39A" opacity="0.85"/>
+    </g>
+    <g transform="translate(744.0,700.0) scale(-1.15,1.15)">
+      <rect x="-70" y="-6" width="140" height="14" fill="#7A5233" rx="4"/>
+      <rect x="-70" y="-80" width="18" height="80" fill="#7A5233" rx="3"/>
+      <rect x="52" y="-40" width="18" height="46" fill="#7A5233" rx="3"/>
+      <path d="M-70,-80 Q-20,-108 40,-40" fill="none" stroke="#7A5233" stroke-width="16" stroke-linecap="round"/>
+      <rect x="-64" y="-2" width="128" height="8" fill="#D9C39A" opacity="0.85"/>
+    </g>
+<g transform="translate(516.0,686.0)">
+  <ellipse cx="0" cy="0" rx="34" ry="12" fill="#5C3C22"/>
+  <rect x="-5" y="0" width="10" height="30" fill="#5C3C22"/>
+  <circle cx="-8" cy="-6" r="9" fill="#F7F3EA"/>
+</g>
+</svg>

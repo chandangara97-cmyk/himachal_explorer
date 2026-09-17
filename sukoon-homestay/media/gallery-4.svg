@@ -1,0 +1,51 @@
+<svg viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a stone-and-timber lane in old Kalpa village with prayer flags and mountains behind">
+
+    <defs>
+      <linearGradient id="sky51" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#F7F3EA"/>
+        <stop offset="55%" stop-color="#D9C39A"/>
+        <stop offset="100%" stop-color="#8B5A46"/>
+      </linearGradient>
+    </defs>
+    <rect width="900" height="900" fill="url(#sky51)"/>
+    <path d="M0.0,276.0 L0.0,71.8 L56.3,152.1 L112.5,37.3 L159.7,98.6 L225.0,102.0 L277.8,121.4 L337.5,159.6 L395.4,186.4 L450.0,123.5 L501.5,138.9 L562.5,57.1 L635.1,90.3 L675.0,72.7 L723.1,130.2 L787.5,119.0 L832.9,155.8 L900.0,172.1 L900.0,276.0 L900.0,326.0 L0,326.0 Z" fill="#59503E" opacity="0.55"/>
+    <path d="M-16.2,88.3 L0.0,71.8 L16.2,88.3 L5.7,81.9 L0.0,87.4 L-5.7,81.9 Z" fill="#FFFDF8" opacity="0.5"/><path d="M95.2,54.8 L112.5,37.3 L129.8,54.8 L118.5,48.0 L112.5,53.8 L106.5,48.0 Z" fill="#FFFDF8" opacity="0.5"/><path d="M209.7,117.6 L225.0,102.0 L240.3,117.6 L230.4,111.5 L225.0,116.7 L219.6,111.5 Z" fill="#FFFDF8" opacity="0.5"/><path d="M435.3,138.4 L450.0,123.5 L464.7,138.4 L455.1,132.6 L450.0,137.5 L444.9,132.6 Z" fill="#FFFDF8" opacity="0.5"/><path d="M545.8,74.0 L562.5,57.1 L579.2,74.0 L568.3,67.4 L562.5,73.1 L556.7,67.4 Z" fill="#FFFDF8" opacity="0.5"/><path d="M658.8,89.1 L675.0,72.7 L691.2,89.1 L680.7,82.7 L675.0,88.2 L669.3,82.7 Z" fill="#FFFDF8" opacity="0.5"/><path d="M772.7,134.0 L787.5,119.0 L802.3,134.0 L792.7,128.2 L787.5,133.2 L782.3,128.2 Z" fill="#FFFDF8" opacity="0.5"/>
+    <path d="M0.0,306.0 L0.0,107.4 L77.7,163.9 L150.0,39.8 L237.0,67.5 L300.0,29.6 L362.9,117.7 L450.0,123.7 L531.4,142.4 L600.0,174.5 L686.7,224.0 L750.0,94.9 L827.6,161.5 L900.0,51.0 L900.0,306.0 L900.0,346.0 L0,346.0 Z" fill="#3A3122" opacity="0.8"/>
+    <path d="M-21.0,128.0 L0.0,107.4 L21.0,128.0 L7.3,120.0 L0.0,126.9 L-7.3,120.0 Z" fill="#FFFDF8" opacity="0.8"/><path d="M126.6,62.8 L150.0,39.8 L173.4,62.8 L158.2,53.9 L150.0,61.5 L141.8,53.9 Z" fill="#FFFDF8" opacity="0.8"/><path d="M276.2,52.9 L300.0,29.6 L323.8,52.9 L308.3,43.8 L300.0,51.6 L291.7,43.8 Z" fill="#FFFDF8" opacity="0.8"/><path d="M429.6,143.7 L450.0,123.7 L470.4,143.7 L457.1,135.9 L450.0,142.6 L442.9,135.9 Z" fill="#FFFDF8" opacity="0.8"/><path d="M728.6,115.9 L750.0,94.9 L771.4,115.9 L757.5,107.7 L750.0,114.8 L742.5,107.7 Z" fill="#FFFDF8" opacity="0.8"/><path d="M877.0,73.5 L900.0,51.0 L923.0,73.5 L908.0,64.8 L900.0,72.3 L892.0,64.8 Z" fill="#FFFDF8" opacity="0.8"/>
+    
+    <rect x="36.0" y="434.0" width="190.0" height="150.0" fill="#8A7A5E"/>
+    <rect x="36.0" y="570.0" width="190.0" height="14" fill="#6B5D45"/>
+    <path d="M26.0,434.0 L131.0,374.0 L236.0,434.0 Z" fill="#4E3520"/>
+    <rect x="89.2" y="494.0" width="38.0" height="52.5" fill="#3A281A"/>
+    <rect x="150.0" y="456.5" width="41.8" height="41.8" fill="#3A281A"/>
+    
+    <rect x="558.0" y="409.0" width="220.0" height="175.0" fill="#8A7A5E"/>
+    <rect x="558.0" y="570.0" width="220.0" height="14" fill="#6B5D45"/>
+    <path d="M548.0,409.0 L668.0,339.0 L788.0,409.0 Z" fill="#4E3520"/>
+    <rect x="619.6" y="479.0" width="44.0" height="61.2" fill="#3A281A"/>
+    <rect x="690.0" y="435.3" width="48.4" height="48.4" fill="#3A281A"/>
+    
+    <rect x="270.0" y="464.0" width="140.0" height="110.0" fill="#8A7A5E"/>
+    <rect x="270.0" y="560.0" width="140.0" height="14" fill="#6B5D45"/>
+    <path d="M260.0,464.0 L340.0,418.0 L420.0,464.0 Z" fill="#4E3520"/>
+    <rect x="309.2" y="508.0" width="28.0" height="38.5" fill="#3A281A"/>
+    <rect x="354.0" y="480.5" width="30.8" height="30.8" fill="#3A281A"/>
+    
+<polygon points="270.0,900.0 630.0,900.0 504.0,504.0 396.0,504.0"
+  fill="#C9B48C"/>
+<line x1="450.0" y1="544.0" x2="450.0" y2="562.0" stroke="#B49B6E" stroke-width="4" opacity="0.5"/><line x1="450.0" y1="584.0" x2="450.0" y2="602.0" stroke="#B49B6E" stroke-width="4" opacity="0.5"/><line x1="450.0" y1="624.0" x2="450.0" y2="642.0" stroke="#B49B6E" stroke-width="4" opacity="0.5"/><line x1="450.0" y1="664.0" x2="450.0" y2="682.0" stroke="#B49B6E" stroke-width="4" opacity="0.5"/><line x1="450.0" y1="704.0" x2="450.0" y2="722.0" stroke="#B49B6E" stroke-width="4" opacity="0.5"/><line x1="450.0" y1="744.0" x2="450.0" y2="762.0" stroke="#B49B6E" stroke-width="4" opacity="0.5"/><line x1="450.0" y1="784.0" x2="450.0" y2="802.0" stroke="#B49B6E" stroke-width="4" opacity="0.5"/><line x1="450.0" y1="824.0" x2="450.0" y2="842.0" stroke="#B49B6E" stroke-width="4" opacity="0.5"/><line x1="180.0" y1="354.0" x2="648.0" y2="329.0" stroke="#221C15" stroke-width="2" opacity="0.6"/>
+<path d="M171.0,354.0 L189.0,354.0 L180.0,370.0 Z" fill="#B8925A"/>
+<path d="M207.0,352.1 L225.0,352.1 L216.0,368.1 Z" fill="#F7F3EA"/>
+<path d="M243.0,350.2 L261.0,350.2 L252.0,366.2 Z" fill="#8B3A2E"/>
+<path d="M279.0,348.2 L297.0,348.2 L288.0,364.2 Z" fill="#59544B"/>
+<path d="M315.0,346.3 L333.0,346.3 L324.0,362.3 Z" fill="#D9C39A"/>
+<path d="M351.0,344.4 L369.0,344.4 L360.0,360.4 Z" fill="#B8925A"/>
+<path d="M387.0,342.5 L405.0,342.5 L396.0,358.5 Z" fill="#F7F3EA"/>
+<path d="M423.0,340.5 L441.0,340.5 L432.0,356.5 Z" fill="#8B3A2E"/>
+<path d="M459.0,338.6 L477.0,338.6 L468.0,354.6 Z" fill="#59544B"/>
+<path d="M495.0,336.7 L513.0,336.7 L504.0,352.7 Z" fill="#D9C39A"/>
+<path d="M531.0,334.8 L549.0,334.8 L540.0,350.8 Z" fill="#B8925A"/>
+<path d="M567.0,332.8 L585.0,332.8 L576.0,348.8 Z" fill="#F7F3EA"/>
+<path d="M603.0,330.9 L621.0,330.9 L612.0,346.9 Z" fill="#8B3A2E"/>
+<path d="M639.0,329.0 L657.0,329.0 L648.0,345.0 Z" fill="#59544B"/>
+</svg>
