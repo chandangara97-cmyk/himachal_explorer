@@ -73,77 +73,9 @@ img{max-width:100%;display:block}
   background:linear-gradient(180deg,rgba(6,17,11,.32) 0%,rgba(6,17,11,.12) 40%,rgba(6,17,11,.5) 100%);
 }
 /* EDGE TABS — trailside signpost arrows pointing into the hero, carved wood + brass */
-.pp-hero-tab{
-  position:absolute;top:50%;transform:translateY(-50%);z-index:3;cursor:pointer;border:none;
-  width:58px;padding:30px 6px 18px;
-  display:flex;flex-direction:column;align-items:center;gap:11px;
-  color:#f3e6cd;font:600 15px 'Cormorant',Georgia,serif;letter-spacing:.03em;
-  writing-mode:vertical-rl;text-orientation:mixed;
-  box-shadow:0 14px 28px rgba(0,0,0,.4),inset 0 0 0 1px rgba(201,162,39,.3);
-  transition:transform .3s cubic-bezier(.22,.8,.3,1),box-shadow .3s ease;
-}
-.pp-hero-tab::before{
-  content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);
-  width:22px;height:5px;border-radius:3px;background:rgba(0,0,0,.4);
-  box-shadow:-8px 0 0 rgba(0,0,0,.28),8px 0 0 rgba(0,0,0,.28);
-}
-.pp-hero-tab .ico{
-  writing-mode:horizontal-tb;width:32px;height:32px;border-radius:50%;flex:none;
-  display:grid;place-items:center;font-size:14px;
-  background:radial-gradient(circle at 34% 30%,#efc866,#b8862a 72%);
-  box-shadow:0 2px 5px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.3);
-}
-.pp-hero-tab.left{
-  left:0;padding-right:15px;
-  background:linear-gradient(160deg,#6b4a2c 0%,#42301c 60%,#2c1f12 100%);
-  clip-path:polygon(0 0,80% 0,100% 50%,80% 100%,0 100%);
-}
-.pp-hero-tab.right{
-  left:auto;right:0;padding-left:15px;
-  background:linear-gradient(200deg,#39492f 0%,#22301d 60%,#151f13 100%);
-  clip-path:polygon(100% 0,20% 0,0 50%,20% 100%,100% 100%);
-}
-.pp-hero-tab.left:hover{transform:translateY(-50%) translateX(5px)}
-.pp-hero-tab.right:hover{transform:translateY(-50%) translateX(-5px)}
-.pp-hero-tab:hover{box-shadow:0 18px 36px rgba(0,0,0,.5),inset 0 0 0 1px rgba(201,162,39,.55)}
-.pp-hero-tab[aria-expanded="true"]{opacity:0;pointer-events:none}
 
 /* SLIDE-IN PANELS — semi-transparent so the video stays visible (lighter) beneath them */
-.pp-hero-panel{
-  position:absolute;top:0;bottom:0;width:min(340px,84%);z-index:4;
-  background:rgba(8,20,14,.62);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
-  border-right:2px solid rgba(201,162,39,.3);
-  padding:88px 22px 22px;display:flex;flex-direction:column;gap:2px;
-  transition:transform .32s ease;
-}
-.pp-hero-panel.left{left:0;transform:translateX(-100%)}
-.pp-hero-panel.right{left:auto;right:0;border-right:none;border-left:2px solid rgba(201,162,39,.3);transform:translateX(100%)}
-.pp-hero-panel.open{transform:translateX(0)}
-.pp-hero-panel-close{
-  position:absolute;top:18px;right:18px;width:30px;height:30px;border-radius:50%;
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;
-  cursor:pointer;font-size:14px;line-height:1;
-}
-.pp-hero-panel-tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:2px}
-.pp-hero-panel-title{font-family:'Cormorant',serif;font-size:24px;font-weight:700;margin-bottom:10px}
 /* Carved-plaque link rows, replacing the boxed pill buttons */
-.pp-hero-panel a.pp-side-btn-dark{
-  position:relative;display:flex;align-items:center;gap:12px;
-  padding:13px 6px;border:none;border-top:1px solid rgba(201,162,39,.2);
-  background:transparent;color:#f3e6cd;
-  font:500 16px 'Cormorant',Georgia,serif;letter-spacing:.01em;
-  transition:padding-left .22s ease,color .22s ease;
-}
-.pp-hero-panel a.pp-side-btn-dark:first-of-type{border-top:none}
-.pp-hero-panel a.pp-side-btn-dark .ico{font-size:15px;flex:none;width:20px;text-align:center;color:#c9a227}
-.pp-hero-panel a.pp-side-btn-dark::after{
-  content:'';position:absolute;right:2px;top:50%;width:6px;height:6px;
-  border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);
-  transform:translateY(-50%) rotate(-45deg) translateX(6px);opacity:0;
-  transition:transform .22s ease,opacity .22s ease;
-}
-.pp-hero-panel a.pp-side-btn-dark:hover{padding-left:12px;color:var(--gold)}
-.pp-hero-panel a.pp-side-btn-dark:hover::after{opacity:1;transform:translateY(-50%) rotate(-45deg) translateX(0)}
 
 /* AT A GLANCE STRIP */
 .glance-grid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:14px!important;max-width:1240px;margin:0 auto;padding:0 24px}
@@ -307,7 +239,6 @@ img{max-width:100%;display:block}
   .dist-grid{grid-template-columns:repeat(4,1fr)}
 }
 @media(max-width:700px){
-  .pp-hero-panel{width:88%;padding:76px 18px 18px}
   .pp-explore-grid{grid-template-columns:repeat(2,1fr)}
   .pp-route-box{grid-template-columns:1fr}
   .jri-grid{grid-template-columns:1fr}
@@ -359,81 +290,8 @@ body{
 }
 
 /* HERO edge buttons: clearer, wider and easier to tap */
-.pp-hero-tab{
-  width:72px;
-  min-height:190px;
-  padding:22px 7px 18px;
-  gap:12px;
-  border:1px solid rgba(245,179,59,.34);
-  border-left:0;
-  border-radius:0 18px 18px 0;
-  justify-content:center;
-  background:linear-gradient(180deg,rgba(68,48,27,.97),rgba(38,28,17,.97))!important;
-}
-.pp-hero-tab.right{
-  border-left:1px solid rgba(245,179,59,.34);
-  border-right:0;
-  border-radius:18px 0 0 18px;
-  background:linear-gradient(180deg,rgba(42,57,34,.97),rgba(20,31,18,.97))!important;
-}
-.pp-hero-tab .ico{
-  width:38px;
-  height:38px;
-  font-size:17px;
-}
-.pp-hero-tab span:last-child{
-  font-size:16px;
-  font-weight:700;
-  text-shadow:0 1px 2px rgba(0,0,0,.4);
-}
 
 /* Side panels: turn links into obvious navigation rows */
-.pp-hero-panel{
-  width:min(390px,88%);
-  padding:82px 24px 26px;
-  gap:0;
-  background:rgba(8,19,13,.91);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-  box-shadow:0 0 50px rgba(0,0,0,.32);
-}
-.pp-hero-panel-title{
-  font-size:30px;
-  line-height:1.05;
-  margin-bottom:18px;
-}
-.pp-hero-panel-tag{
-  margin-bottom:7px;
-}
-.pp-hero-panel a.pp-side-btn-dark{
-  min-height:58px;
-  padding:13px 12px;
-  margin:3px 0;
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:12px;
-  background:rgba(255,255,255,.045);
-  font:600 16px 'Jost',Arial,sans-serif;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
-}
-.pp-hero-panel a.pp-side-btn-dark:first-of-type{
-  border-top:1px solid rgba(255,255,255,.10);
-}
-.pp-hero-panel a.pp-side-btn-dark:hover{
-  padding-left:16px;
-  color:#fff;
-  background:rgba(245,179,59,.14);
-  border-color:rgba(245,179,59,.45);
-}
-.pp-hero-panel a.pp-side-btn-dark .ico{
-  width:34px;
-  height:34px;
-  display:grid;
-  place-items:center;
-  border-radius:9px;
-  background:rgba(245,179,59,.13);
-  color:#f5b33b;
-  font-size:17px;
-}
 
 /* Jump-right-in cards: less empty, stronger CTA */
 .jri-grid{
@@ -578,45 +436,6 @@ body{
     height:min(50vh,420px);
     min-height:340px;
   }
-  .pp-hero-tab{
-    top:auto;
-    bottom:20px;
-    transform:none!important;
-    width:auto;
-    min-height:0;
-    height:54px;
-    padding:8px 14px;
-    writing-mode:horizontal-tb;
-    flex-direction:row;
-    border-radius:14px!important;
-    gap:8px;
-    box-shadow:0 10px 25px rgba(0,0,0,.38);
-  }
-  .pp-hero-tab.left{left:12px}
-  .pp-hero-tab.right{right:12px;left:auto}
-  .pp-hero-tab .ico{
-    width:32px;height:32px;font-size:14px;
-  }
-  .pp-hero-tab span:last-child{
-    font-family:'Jost',Arial,sans-serif;
-    font-size:12px;
-    letter-spacing:.02em;
-  }
-  .pp-hero-panel{
-    width:calc(100% - 24px);
-    left:12px!important;
-    right:12px!important;
-    top:12px;
-    bottom:12px;
-    border:1px solid rgba(245,179,59,.28)!important;
-    border-radius:18px;
-    padding:68px 16px 16px;
-  }
-  .pp-hero-panel-title{font-size:26px}
-  .pp-hero-panel a.pp-side-btn-dark{
-    min-height:54px;
-    font-size:14px;
-  }
   .nv-section{
     padding-left:16px!important;
     padding-right:16px!important;
@@ -664,19 +483,6 @@ body{
   .pp-hero{
     min-height:300px;
   }
-  .pp-hero-tab{
-    bottom:14px;
-    height:50px;
-    padding:7px 10px;
-  }
-  .pp-hero-tab.left{left:9px}
-  .pp-hero-tab.right{right:9px}
-  .pp-hero-tab span:last-child{font-size:11px}
-  .pp-hero-panel{
-    left:8px!important;
-    right:8px!important;
-    width:calc(100% - 16px);
-  }
   .pp-explore-grid{
     grid-template-columns:1fr;
   }
@@ -689,8 +495,6 @@ body{
 }
 
 /* Accessibility */
-.pp-hero-tab:focus-visible,
-.pp-hero-panel a.pp-side-btn-dark:focus-visible,
 .pp-side-btn:focus-visible,
 .pp-tab-btn:focus-visible{
   outline:3px solid #f5b33b;
@@ -762,35 +566,6 @@ body{
   <video class="pp-hero-video" autoplay muted loop playsinline poster="/assets/images/1hero.jpg" aria-hidden="true">
     <source src="/assets/videos/hero-video.mp4" type="video/mp4">
   </video>
-
-  <!-- Left edge tab: commercial / revenue pages -->
-  <button type="button" class="pp-hero-tab left" data-panel="commercial" aria-expanded="false" aria-controls="heroPanelCommercial">
-    <span class="ico">💳</span><span>Plan &amp; Book</span>
-  </button>
-  <!-- Right edge tab: informational pages -->
-  <button type="button" class="pp-hero-tab right" data-panel="informational" aria-expanded="false" aria-controls="heroPanelInfo">
-    <span class="ico">📖</span><span>Explore &amp; Learn</span>
-  </button>
-
-  <div class="pp-hero-panel left" id="heroPanelCommercial">
-    <button type="button" class="pp-hero-panel-close" data-close-panel>✕</button>
-    <div class="pp-hero-panel-tag">Book &amp; Plan</div>
-    <div class="pp-hero-panel-title">Get Moving</div>
-    <a class="pp-side-btn-dark" href="/packages.html"><span class="ico">🎒</span><span>Tour Packages</span></a>
-    <a class="pp-side-btn-dark" href="/booking.html"><span class="ico">🏨</span><span>Hotels &amp; Booking</span></a>
-    <a class="pp-side-btn-dark" href="/group-pricing.html"><span class="ico">🧮</span><span>Group Price Calculator</span></a>
-    <a class="pp-side-btn-dark" href="https://wa.me/917018138847?text=Hi%2C%20I%20want%20to%20book%20a%20Himachal%20tour." target="_blank" rel="noopener"><span class="ico">💬</span><span>WhatsApp Us</span></a>
-  </div>
-
-  <div class="pp-hero-panel right" id="heroPanelInfo">
-    <button type="button" class="pp-hero-panel-close" data-close-panel>✕</button>
-    <div class="pp-hero-panel-tag">Learn First</div>
-    <div class="pp-hero-panel-title">Encyclopedia of Himachal</div>
-    <a class="pp-side-btn-dark" href="/dist_master.html"><span class="ico">🗺️</span>All 12 Districts</a>
-    <a class="pp-side-btn-dark" href="/encyclopedia.html"><span class="ico">📍</span>Destinations</a>
-    <a class="pp-side-btn-dark" href="/encyclopedia.html"><span class="ico">💧</span>Lakes &amp; Waterfalls</a>
-    <a class="pp-side-btn-dark" href="/encyclopedia.html"><span class="ico">🧗</span>Treks &amp; Adventure</a>
-  </div>
 
   <!-- Trending packages panel — right side, over the video, ~20% width -->
   <div class="pp-hero-trending" aria-label="Trending packages this week">
@@ -922,10 +697,10 @@ body{
     <a class="dist-tile" href="/kinnaur.html" style="background-image:url('/assets/images/kinnaur-kailash.webp')"><span>Kinnaur</span></a>
     <a class="dist-tile" href="/spiti.html" style="background-image:url('/assets/images/misc-fixed/lahaul-spiti.jpg')"><span>Lahaul &amp; Spiti</span></a>
     <a class="dist-tile" href="/mandi.html" style="background-image:url('/assets/images/barot-valley_1.jpg')"><span>Mandi</span></a>
-    <a class="dist-tile" href="/sirmaur.html" style="background-image:url('/assets/images/1hero.jpg')"><span>Sirmaur</span></a>
-    <a class="dist-tile" href="/solan.html" style="background-image:url('/assets/images/1hero.jpg')"><span>Solan</span></a>
-    <a class="dist-tile" href="/bilaspur.html" style="background-image:url('/assets/images/1hero.jpg')"><span>Bilaspur</span></a>
-    <a class="dist-tile" href="/hamirpur.html" style="background-image:url('/assets/images/1hero.jpg')"><span>Hamirpur</span></a>
+    <a class="dist-tile" href="/sirmour.html" style="background-image:url('/assets/images/misc-fixed/sirmour.jpg')"><span>Sirmaur</span></a>
+    <a class="dist-tile" href="/solan.html" style="background-image:url('/assets/images/misc-fixed/solan.jpg')"><span>Solan</span></a>
+    <a class="dist-tile" href="/bilaspur.html" style="background-image:url('/assets/images/misc-fixed/bilaspur.jpg')"><span>Bilaspur</span></a>
+    <a class="dist-tile" href="/hamirpur.html" style="background-image:url('/assets/images/misc-fixed/hamirpur.jpg')"><span>Hamirpur</span></a>
     <a class="dist-tile view-all" href="/dist_master.html"><span>View All 12 Districts →</span></a>
   </div>
 </section>
@@ -1360,34 +1135,6 @@ body{
       drawRoute(from.value, to.value);
     });
   }
-
-  // HERO EDGE TABS — open a translucent panel over the video (tagline stays on top, unaffected)
-  (function(){
-    const tabs = document.querySelectorAll(".pp-hero-tab");
-    const panels = {
-      commercial: document.getElementById("heroPanelCommercial"),
-      informational: document.getElementById("heroPanelInfo")
-    };
-    function closeAll(){
-      Object.values(panels).forEach(p=> p && p.classList.remove("open"));
-      tabs.forEach(t=> t.setAttribute("aria-expanded","false"));
-    }
-    tabs.forEach(tab=>{
-      tab.addEventListener("click",()=>{
-        const key = tab.dataset.panel;
-        const panel = panels[key];
-        const willOpen = panel && !panel.classList.contains("open");
-        closeAll();
-        if (willOpen){
-          panel.classList.add("open");
-          tab.setAttribute("aria-expanded","true");
-        }
-      });
-    });
-    document.querySelectorAll("[data-close-panel]").forEach(btn=>{
-      btn.addEventListener("click", closeAll);
-    });
-  })();
 
   // HERO TRENDING PANEL — rotates through one featured, verified-sellable
   // package each for Kinnaur, Lahaul & Spiti, Manali and Dharamshala.
