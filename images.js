@@ -61,6 +61,7 @@ window.DEST_IMAGES = {
   "Jibhi": "assets/images/places-fresh/jibhi.jpg", // 21
   "Kalpa": "assets/images/places-fresh/kalpa.jpg", // 12
   "Chitkul": "assets/images/places-fresh/chitkul.jpg", // 22
+  "Sangla": "assets/images/places-fresh/sangla.jpg", // sangla
   "Keylong": "assets/images/places-fresh/keylong.jpg", // 15
   "Narkanda": "assets/images/places-fresh/narkanda.jpg", // 23
   "Palampur": "assets/images/places-fresh/palampur.jpg", // 14

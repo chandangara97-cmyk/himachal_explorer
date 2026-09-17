@@ -67,7 +67,24 @@ let pkg=null,map=null,routeLayer=null,markers=[],adults=2,tier='budget',month=ne
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money=n=>n==null?'₹—':'₹'+Math.round(Number(n)||0).toLocaleString('en-IN');
-function imageFor(name,i){try{if(window.getDestImg){const x=window.getDestImg(name);if(x)return x}}catch(e){}return STOCK[i%STOCK.length]}
+// images.js's DEST_IMAGES is keyed by Title-Case place names ("Sangla",
+// "Chitkul") — but this page's itinerary stores places as lowercase slugs
+// ("sangla", "chitkul", "reckong-peo"), so a direct getDestImg(slug) lookup
+// almost never matches. Build a slug-normalized index once so both formats
+// resolve to the same entry, and only fall back to a generic photo when a
+// place genuinely isn't in the library — window.getDestImg() always returns
+// *something* (it has its own hardcoded fallback), so that fallback value
+// has to be explicitly rejected below rather than treated as a real match.
+const DEST_SLUG_INDEX={};
+if(window.DEST_IMAGES){Object.keys(DEST_IMAGES).forEach(k=>{const slug=k.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');if(!DEST_SLUG_INDEX[slug])DEST_SLUG_INDEX[slug]=DEST_IMAGES[k]});}
+function imageFor(name,i){
+  try{
+    const slug=String(name||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+    if(DEST_SLUG_INDEX[slug])return DEST_SLUG_INDEX[slug];
+    if(window.getDestImg){const x=window.getDestImg(name);if(x&&x!==window.FALLBACK_IMG)return x}
+  }catch(e){}
+  return STOCK[i%STOCK.length]; // genuine miss — rotate a generic photo per day instead of repeating one
+}
 function wa(){const gw=$('cost-gateway')?.value||pkg?.start_point||'—';const dr=$('cost-drop')?.value||pkg?.end_point||'—';const text='Hi, I want to enquire about the '+(pkg?.name||'Himachal Explorer package')+'. Adults: '+adults+'. Tier: '+tier+'. Starting: '+gw+'. Drop: '+dr+'.';return 'https://wa.me/'+WA+'?text='+encodeURIComponent(text)}
 function setLinks(){['hero-wa','cost-wa','bottom-wa'].forEach(id=>{const el=$(id);if(el)el.href=wa()})}
 function renderHero(){const nights=(pkg.days||1)-1;document.title=pkg.name+' | Himachal Explorer';$('hero-title').textContent=pkg.name;$('hero-sub').textContent=(pkg.tags||'Mountains • Culture • Adventure').split(',').map(x=>x.trim()).filter(Boolean).join(' • ');$('hero-days').textContent=(pkg.days||'—')+' Days / '+nights+' Nights';$('hero-start').textContent='From '+(pkg.start_point||'—');$('hero-distance').textContent='Route distance '+(pkg.total_km_est||'—')+' km';$('hero-hotel').textContent=pkg.hotel_star||'Comfortable stays';const heroStart=pkg.days?PricingEngine.computePrice({days:pkg.days,pax:2,tier:'budget',month}).totalPP:null;$('hero-price').innerHTML=money(heroStart)+' <small>/ person</small>';$('q-days').textContent=(pkg.days||'—')+' Days';$('q-nights').textContent=nights+' Nights';$('q-hotel').textContent=pkg.hotel_star||'Comfortable';const img=pkg.image||imageFor((pkg.route_stops?.[0]||{}).name,0);$('hero-bg').src=img;}
