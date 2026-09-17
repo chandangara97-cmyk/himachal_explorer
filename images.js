@@ -137,6 +137,75 @@ window.HERO_IMAGES = [
 
 window.FALLBACK_IMG = "assets/images/places-fresh/manali.jpg";
 
+// ─── 4. LIVE PLACES-DB PHOTO FALLBACK ────────────────────────────────────────
+// DEST_IMAGES/START_IMAGES above only cover ~28% of the place names that
+// actually show up in package itineraries — but Firebase's /places node
+// (120 records) already has a real, verified photo (photo_1) for the vast
+// majority of the rest (Triund, Bir Billing, Kheerganga, Sangla, Kufri,
+// Chandratal, Kunzum Pass, Solang Valley, Old Manali, Rohtang Pass, etc.),
+// served from assets/images/{photo_1} — it was just never wired in here.
+// This section fetches that node once and adds it as a second-tier lookup,
+// so package-detail.html (and anything else using getDestImg/getStartImg)
+// stops silently falling back to a single generic stock photo.
+const _DEST_LOWER = {};
+Object.keys(window.DEST_IMAGES).forEach(function (k) { _DEST_LOWER[k.toLowerCase().trim()] = window.DEST_IMAGES[k]; });
+const _START_LOWER = {};
+Object.keys(window.START_IMAGES).forEach(function (k) { _START_LOWER[k.toLowerCase().trim()] = window.START_IMAGES[k]; });
+
+function _normPlaceName(s) {
+  return String(s || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\b(trek|lake|pass|valley|town|temple)\b/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+let _placesPhotoMap = null;      // normalized name -> "assets/images/xxx.jpg"
+let _placesPhotoPromise = null;
+
+// Call this once, early on any page that renders itinerary/place photos,
+// and await it before the first render pass (see package-detail.html).
+window.loadPlacesPhotoMap = function () {
+  if (_placesPhotoPromise) return _placesPhotoPromise;
+  const base = (window.PackageData && window.PackageData.DB_BASE) ||
+    "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app";
+  _placesPhotoPromise = fetch(base + "/places.json")
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (places) {
+      _placesPhotoMap = {};
+      if (places) {
+        Object.keys(places).forEach(function (pid) {
+          const rec = places[pid] || {};
+          const photo = rec.photo_1;
+          if (!photo) return;
+          const path = "assets/images/" + photo;
+          if (rec.name) _placesPhotoMap[_normPlaceName(rec.name)] = path;
+          _placesPhotoMap[_normPlaceName(pid.replace(/-/g, " "))] = path;
+        });
+      }
+      return _placesPhotoMap;
+    })
+    .catch(function () { _placesPhotoMap = _placesPhotoMap || {}; return _placesPhotoMap; });
+  return _placesPhotoPromise;
+};
+
+// Synchronous lookup — safe to call before loadPlacesPhotoMap() resolves,
+// it just won't have places-DB coverage yet (falls through to null).
+window.getPlaceImg = function (name) {
+  if (!name) return null;
+  const lower = String(name).toLowerCase().trim();
+  if (_DEST_LOWER[lower]) return _DEST_LOWER[lower];
+  if (_START_LOWER[lower]) return _START_LOWER[lower];
+  if (_placesPhotoMap) {
+    const hit = _placesPhotoMap[_normPlaceName(name)];
+    if (hit) return hit;
+  }
+  return null;
+};
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
-window.getStartImg = function(city) { return START_IMAGES[city] || FALLBACK_IMG; }
-window.getDestImg = function(dest)  { return DEST_IMAGES[dest]  || FALLBACK_IMG; }
+// Both now case-insensitive and backed by the places-DB fallback above;
+// still always return a usable path (FALLBACK_IMG as the last resort).
+window.getStartImg = function(city) { return window.getPlaceImg(city) || FALLBACK_IMG; }
+window.getDestImg = function(dest)  { return window.getPlaceImg(dest) || FALLBACK_IMG; }
