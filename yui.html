@@ -1370,7 +1370,11 @@ function renderSuggestedPackages(gatewayName, dest){
     waBtn.textContent = 'Request Custom Plan on WhatsApp';
     waBtn.onclick = () => {
       const message = `Hi Himachal Explorer! I'd like a custom plan from ${gatewayName} to ${dest.name} for ${pax} traveller${pax===1?'':'s'}. Please send a detailed itinerary and quote.`;
-      window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+      if (window.HX && window.HX.openWhatsApp) {
+        window.HX.openWhatsApp(WA_NUMBER, message, { destination: dest.name });
+      } else {
+        window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+      }
     };
     noteBox.appendChild(document.createElement('br'));
     noteBox.appendChild(waBtn);
@@ -1531,8 +1535,12 @@ function initiatePkgPayment(){
         paidAt: new Date().toISOString()
       });
       showToast(`Booked! Ref ${ref} · Paid ${fmtINR(payAmt)}`);
-      const msg = encodeURIComponent(`🎉 My booking is confirmed!\n\nRef: ${ref}\nPackage: ${template.package_name}\nPax: ${pax}\nPaid: ${fmtINR(payAmt)} (${PAY_MODE_LABEL[payMode]})\n\nPlease share the detailed itinerary.`);
-      window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
+      const msg = `🎉 My booking is confirmed!\n\nRef: ${ref}\nPackage: ${template.package_name}\nPax: ${pax}\nPaid: ${fmtINR(payAmt)} (${PAY_MODE_LABEL[payMode]})\n\nPlease share the detailed itinerary.`;
+      if (window.HX && window.HX.openWhatsApp) {
+        window.HX.openWhatsApp(WA_NUMBER, msg, { package: template.package_name });
+      } else {
+        window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+      }
     },
     modal: { ondismiss: function(){ console.log('Payment modal closed'); } }
   };
@@ -1569,7 +1577,11 @@ function sendPkgToWhatsApp(){
   if(!currentPkg){ showToast('Open a package first'); return; }
   const { template } = currentPkg;
   const message = `Hi Himachal Explorer! I'm interested in "${template.package_name}" (${template.days} Days) from ${selectedGateway} for ${pax} traveller${pax===1?'':'s'}. Please send a detailed itinerary and final quote.`;
-  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+  if (window.HX && window.HX.openWhatsApp) {
+    window.HX.openWhatsApp(WA_NUMBER, message, { package: template.package_name });
+  } else {
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+  }
 }
 
 function addStop(id){
@@ -2082,7 +2094,11 @@ function sendToWhatsApp(){
     `Suggested vehicle: ${cost.fleetLabel}${vehicleFlag.highAltitude ? ' (SUV recommended for altitude)' : ''}. ` +
     `Estimated budget: ${fmtINR(cost.low)} – ${fmtINR(cost.high)}. ` +
     `Please send a detailed itinerary and final quote.`;
-  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+  if (window.HX && window.HX.openWhatsApp) {
+    window.HX.openWhatsApp(WA_NUMBER, message, { destination: route });
+  } else {
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+  }
 }
 
 // ---------- boot ----------
@@ -2108,5 +2124,6 @@ async function boot(){
 boot();
 
 </script>
+  <script src="/js/hx-lead-tracker.js"></script>
 </body>
 </html>

@@ -167,6 +167,14 @@ const PACKAGES = {"chandigarh-best-value-5d":{"name":"Best Value Himachal Circui
 // this is the ONLY place the vehicle/hotel/fee/margin numbers are defined.
 // Every other page that shows a package cost calls that same function.
 function fmt(n){ return '₹' + Math.round(n).toLocaleString('en-IN'); }
+function hxGroupEnquire(pkgName, pax, tier, totalRounded){
+  const message = 'Hi, I would like to book: ' + pkgName + ' for ' + pax + ' pax, ' + tier + ' tier — quoted ' + fmt(totalRounded) + '/person';
+  if (window.HX && window.HX.openWhatsApp) {
+    window.HX.openWhatsApp('917018138847', message, { package: pkgName });
+  } else {
+    window.open('https://wa.me/917018138847?text=' + encodeURIComponent(message), '_blank');
+  }
+}
 
 const pkgSelect = document.getElementById('pkgSelect');
 Object.entries(PACKAGES)
@@ -237,7 +245,7 @@ function render(){
     <div class="group-total">Group total (${pax} pax): <strong>${fmt(groupTotal)}</strong></div>
 
     <div class="cta-row">
-      <button class="btn-primary" onclick="window.open('https://wa.me/917018138847?text=' + encodeURIComponent('Hi, I would like to book: ' + '${pkg.name.replace(/'/g,"\\'")}' + ' for ${pax} pax, ${tier} tier — quoted ₹${totalRounded}/person'), '_blank')">Enquire on WhatsApp</button>
+      <button class="btn-primary" onclick="hxGroupEnquire('${pkg.name.replace(/'/g,"\\'")}', ${pax}, '${tier}', ${totalRounded})">Enquire on WhatsApp</button>
       <button class="btn-ghost" onclick="window.location.href='/packages.html'">Browse Packages</button>
     </div>
   `;
@@ -246,5 +254,6 @@ function render(){
 pkgSelect.selectedIndex = 0;
 render();
 </script>
+  <script src="/js/hx-lead-tracker.js"></script>
 </body>
 </html>

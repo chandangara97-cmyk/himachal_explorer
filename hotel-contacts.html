@@ -281,7 +281,7 @@ function renderList() {
 
 function hotelCardHTML(city, key, h) {
   const mapLink = (h.lat && h.lng) ? `<a href="https://www.google.com/maps?q=${h.lat},${h.lng}" target="_blank" rel="noopener">📍 Map</a>` : "";
-  const waLink = h.contact ? `<a href="https://wa.me/91${h.contact}" target="_blank" rel="noopener">💬 ${h.contact}</a>` : "";
+  const waLink = h.contact ? `<a href="https://wa.me/91${h.contact}" target="_blank" rel="noopener" data-hx-whatsapp data-hx-phone="917018138847" data-hx-message="Hello, I want help planning my Himachal trip.">💬 ${h.contact}</a>` : "";
   
   // Build seasonal rate display
   let rateHtml = "";
@@ -472,5 +472,6 @@ populateCitySelects();
 loadAllHotels();
 </script>
 
+  <script src="/js/hx-lead-tracker.js"></script>
 </body>
 </html>

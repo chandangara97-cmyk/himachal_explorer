@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Journal — Sukoon Homestay</title>
+<meta name="description" id="page-desc" content="A note from the homestay journal.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">Sukoon <em>Homestay</em></a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#stay">The Stay</a></li>
+      <li><a href="index.html#gallery">Gallery</a></li>
+      <li><a href="blog.html">Journal</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<header style="padding:150px 0 40px">
+  <div class="wrap" style="max-width:720px">
+    <a href="blog.html" style="color:var(--gold);font-size:.85rem">← Back to journal</a>
+    <div id="post-meta" style="margin-top:20px">
+      <p style="color:var(--ink-soft)">Loading…</p>
+    </div>
+  </div>
+</header>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <img id="post-cover" src="" alt="" loading="lazy" style="width:100%;max-width:720px;margin:0 auto 32px;display:none;border-radius:2px">
+    <div class="post-body" id="post-body"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>Sukoon Homestay</h4>
+      <p>Kalpa, Kinnaur District<br>Himachal Pradesh, India</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p><a href="tel:+919805963321">+91 98059 63321</a></p>
+      <p><a href="mailto:chandan_panwar@himachalexplorer.in">chandan_panwar@himachalexplorer.in</a></p>
+    </div>
+  </div>
+  <div class="foot-bottom">© <span id="year"></span> Sukoon Homestay, Kalpa. All rights reserved.</div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const slug = new URLSearchParams(location.search).get('slug');
+
+  if (!slug) {
+    document.getElementById('post-meta').innerHTML = '<p>No post specified.</p>';
+  } else {
+    db.ref(BLOG_PATH).orderByChild('slug').equalTo(slug).once('value').then(snap => {
+      let post = null;
+      snap.forEach(child => { post = { id: child.key, ...child.val() }; });
+      // fallback: try matching by key if slug field wasn't set
+      if (!post) return db.ref(BLOG_PATH + '/' + slug).once('value').then(s => s.val() && { id: slug, ...s.val() });
+      return post;
+    }).then(post => {
+      if (!post) {
+        document.getElementById('post-meta').innerHTML = '<p>Post not found.</p>';
+        return;
+      }
+      document.getElementById('page-title').textContent = post.title + ' — Sukoon Homestay';
+      document.getElementById('page-desc').setAttribute('content', post.excerpt || '');
+      document.getElementById('post-meta').innerHTML = `
+        <span class="pc-date">${formatDate(post.date)}</span>
+        <h1 style="font-size:clamp(2rem,5vw,3rem);margin-top:10px">${escapeHtml(post.title)}</h1>
+      `;
+      if (post.coverImage) {
+        const img = document.getElementById('post-cover');
+        img.src = post.coverImage;
+        img.alt = post.title;
+        img.style.display = 'block';
+      }
+      // body stored as simple paragraphs separated by blank lines
+      const paras = (post.body || '').split(/\n\s*\n/).map(p => `<p>${escapeHtml(p).replace(/\n/g,'<br>')}</p>`).join('');
+      document.getElementById('post-body').innerHTML = paras;
+    }).catch(() => {
+      document.getElementById('post-meta').innerHTML = '<p>Could not load this post.</p>';
+    });
+  }
+</script>
+</body>
+</html>

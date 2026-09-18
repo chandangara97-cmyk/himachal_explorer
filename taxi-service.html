@@ -529,7 +529,7 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
   <h2 class="section-title" style="margin-bottom:16px">Ready to Book Your <em>Journey</em>?</h2>
   <p class="section-sub" style="margin:0 auto 24px">WhatsApp us now — we'll confirm availability, confirm fare, and have your driver ready.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-    <a href="https://wa.me/917018138847" class="btn-primary" style="text-decoration:none">
+    <a href="https://wa.me/917018138847" class="btn-primary" style="text-decoration:none" data-hx-whatsapp data-hx-phone="917018138847" data-hx-message="Hello, I want help planning my Himachal trip.">
       💬 Chat on WhatsApp
     </a>
     <a href="tel:+917018138847" class="btn-ghost" style="text-decoration:none">
@@ -883,15 +883,18 @@ function submitBookingWhatsApp() {
   }
 
   const fn = flightno ? `\n✈️ Arrival: ${flightno}` : '';
-  const msg = encodeURIComponent(
+  const msg =
     `✨ *Himachal Explorer — Taxi Reservation*\n\n` +
     `👤 Guest: ${name}\n📞 Contact: ${phone}\n📍 Pickup: ${pickup}\n🏔️ Drop: ${drop}\n` +
     `📅 Date: ${date}\n⏰ Time: ${time}${fn}\n🚗 Fleet: ${selectedVehicle}\n` +
     `📝 Notes: ${notes || 'None'}\n\n` +
-    `Thank you!`
-  );
-  
-  window.open(`https://wa.me/917018138847?text=${msg}`, '_blank');
+    `Thank you!`;
+
+  if (window.HX && window.HX.openWhatsApp) {
+    window.HX.openWhatsApp('917018138847', msg, { destination: pickup || drop });
+  } else {
+    window.open(`https://wa.me/917018138847?text=${encodeURIComponent(msg)}`, '_blank');
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -935,5 +938,6 @@ document.addEventListener('DOMContentLoaded', () => {
 <div id="site-footer"></div>
 <script src="assets/js/site-chrome.js" defer></script>
 
+  <script src="/js/hx-lead-tracker.js"></script>
 </body>
 </html>

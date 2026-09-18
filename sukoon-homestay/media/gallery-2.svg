@@ -1,0 +1,40 @@
+<svg viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a terrace with wooden chairs looking out at the Kinner Kailash range">
+
+    <defs>
+      <linearGradient id="sky41" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#F7F3EA"/>
+        <stop offset="55%" stop-color="#D9C39A"/>
+        <stop offset="100%" stop-color="#8B5A46"/>
+      </linearGradient>
+    </defs>
+    <rect width="900" height="900" fill="url(#sky41)"/>
+    <path d="M0.0,384.0 L0.0,227.2 L47.2,288.6 L112.5,261.0 L171.4,286.6 L225.0,234.6 L277.3,263.6 L337.5,160.3 L403.2,209.1 L450.0,150.8 L504.2,243.1 L562.5,248.5 L626.3,301.5 L675.0,270.2 L735.3,319.0 L787.5,213.3 L828.0,238.4 L900.0,143.9 L900.0,384.0 L900.0,434.0 L0,434.0 Z" fill="#59503E" opacity="0.55"/>
+    <path d="M-14.8,242.2 L0.0,227.2 L14.8,242.2 L5.2,236.3 L0.0,241.3 L-5.2,236.3 Z" fill="#FFFDF8" opacity="0.5"/><path d="M210.4,249.4 L225.0,234.6 L239.6,249.4 L230.1,243.6 L225.0,248.6 L219.9,243.6 Z" fill="#FFFDF8" opacity="0.5"/><path d="M320.7,177.3 L337.5,160.3 L354.3,177.3 L343.4,170.7 L337.5,176.3 L331.6,170.7 Z" fill="#FFFDF8" opacity="0.5"/><path d="M432.9,168.0 L450.0,150.8 L467.1,168.0 L456.0,161.3 L450.0,167.1 L444.0,161.3 Z" fill="#FFFDF8" opacity="0.5"/><path d="M548.4,262.8 L562.5,248.5 L576.6,262.8 L567.5,257.2 L562.5,262.0 L557.5,257.2 Z" fill="#FFFDF8" opacity="0.5"/><path d="M772.3,228.7 L787.5,213.3 L802.7,228.7 L792.8,222.8 L787.5,227.9 L782.2,222.8 Z" fill="#FFFDF8" opacity="0.5"/><path d="M882.7,161.4 L900.0,143.9 L917.3,161.4 L906.0,154.6 L900.0,160.4 L894.0,154.6 Z" fill="#FFFDF8" opacity="0.5"/>
+    <path d="M0.0,414.0 L0.0,116.3 L70.5,188.9 L150.0,195.1 L212.8,254.1 L300.0,266.1 L395.1,331.0 L450.0,242.4 L516.9,270.0 L600.0,125.3 L658.6,162.3 L750.0,140.1 L846.1,173.8 L900.0,243.2 L900.0,414.0 L900.0,454.0 L0,454.0 Z" fill="#3A3122" opacity="0.8"/>
+    <path d="M-23.8,139.6 L0.0,116.3 L23.8,139.6 L8.3,130.6 L0.0,138.3 L-8.3,130.6 Z" fill="#FFFDF8" opacity="0.8"/><path d="M128.9,215.8 L150.0,195.1 L171.1,215.8 L157.4,207.8 L150.0,214.7 L142.6,207.8 Z" fill="#FFFDF8" opacity="0.8"/><path d="M281.2,284.5 L300.0,266.1 L318.8,284.5 L306.6,277.3 L300.0,283.5 L293.4,277.3 Z" fill="#FFFDF8" opacity="0.8"/><path d="M430.4,261.6 L450.0,242.4 L469.6,261.6 L456.8,254.1 L450.0,260.5 L443.2,254.1 Z" fill="#FFFDF8" opacity="0.8"/><path d="M576.5,148.3 L600.0,125.3 L623.5,148.3 L608.2,139.3 L600.0,147.0 L591.8,139.3 Z" fill="#FFFDF8" opacity="0.8"/><path d="M727.0,162.6 L750.0,140.1 L773.0,162.6 L758.0,153.9 L750.0,161.4 L742.0,153.9 Z" fill="#FFFDF8" opacity="0.8"/><path d="M880.5,262.3 L900.0,243.2 L919.5,262.3 L906.8,254.9 L900.0,261.3 L893.2,254.9 Z" fill="#FFFDF8" opacity="0.8"/>
+    
+<g transform="translate(180.0,612.0)">
+  <rect x="-38" y="0" width="76" height="10" fill="#6B4A2E"/>
+  <rect x="-38" y="-58" width="10" height="58" fill="#6B4A2E"/>
+  <rect x="28" y="-58" width="10" height="58" fill="#6B4A2E"/>
+  <rect x="-38" y="-58" width="76" height="10" fill="#6B4A2E"/>
+  <rect x="-34" y="10" width="8" height="34" fill="#4E3520"/>
+  <rect x="26" y="10" width="8" height="34" fill="#4E3520"/>
+</g>
+<g transform="translate(405.0,628.0)">
+  <ellipse cx="0" cy="0" rx="60" ry="16" fill="#6B4A2E"/>
+  <rect x="-6" y="0" width="12" height="40" fill="#4E3520"/>
+</g>
+<g transform="translate(630.0,612.0)">
+  <rect x="-38" y="0" width="76" height="10" fill="#6B4A2E"/>
+  <rect x="-38" y="-58" width="10" height="58" fill="#6B4A2E"/>
+  <rect x="28" y="-58" width="10" height="58" fill="#6B4A2E"/>
+  <rect x="-38" y="-58" width="76" height="10" fill="#6B4A2E"/>
+  <rect x="-34" y="10" width="8" height="34" fill="#4E3520"/>
+  <rect x="26" y="10" width="8" height="34" fill="#4E3520"/>
+</g>
+<rect x="0" y="594.0" width="900" height="306.0" fill="#221C15" opacity="0.92"/>
+<rect x="-10.0" y="594.0" width="14" height="306.0" fill="#4E3520"/><rect x="80.0" y="594.0" width="14" height="306.0" fill="#4E3520"/><rect x="170.0" y="594.0" width="14" height="306.0" fill="#4E3520"/><rect x="260.0" y="594.0" width="14" height="306.0" fill="#4E3520"/><rect x="350.0" y="594.0" width="14" height="306.0" fill="#4E3520"/><rect x="440.0" y="594.0" width="14" height="306.0" fill="#4E3520"/><rect x="530.0" y="594.0" width="14" height="306.0" fill="#4E3520"/><rect x="620.0" y="594.0" width="14" height="306.0" fill="#4E3520"/><rect x="710.0" y="594.0" width="14" height="306.0" fill="#4E3520"/><rect x="800.0" y="594.0" width="14" height="306.0" fill="#4E3520"/><rect x="890.0" y="594.0" width="14" height="306.0" fill="#4E3520"/>
+<rect x="0" y="584.0" width="900" height="14" fill="#4E3520"/>
+
+</svg>
