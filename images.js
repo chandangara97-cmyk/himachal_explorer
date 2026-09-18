@@ -62,6 +62,12 @@ window.DEST_IMAGES = {
   "Kalpa": "assets/images/places-fresh/kalpa.jpg", // 12
   "Chitkul": "assets/images/places-fresh/chitkul.jpg", // 22
   "Sangla": "assets/images/places-fresh/sangla.jpg", // sangla
+  "Kufri": "assets/images/places-fresh/kufri.jpg", // kufri — used 15x across packages, photo existed but was unregistered
+  "Kasauli": "assets/images/places-fresh/kasauli.jpg", // kasauli — used 9x across packages, photo existed but was unregistered
+  "Renuka Lake": "assets/images/places-fresh/renuka-lake.jpg", // renuka-lake
+  "The Ridge": "assets/images/places-fresh/the-ridge.jpg", // the-ridge
+  "Janjehli": "assets/images/places-fresh/janjehli.jpg", // janjehli
+  "Pin Valley": "assets/images/places-fresh/pin-valley.jpg", // pin-valley
   "Keylong": "assets/images/places-fresh/keylong.jpg", // 15
   "Narkanda": "assets/images/places-fresh/narkanda.jpg", // 23
   "Palampur": "assets/images/places-fresh/palampur.jpg", // 14
