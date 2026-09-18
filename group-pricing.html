@@ -25,10 +25,8 @@
 .iq-login-btn{width:100%;margin-top:8px}
 .iq-signedin-bar{display:flex;justify-content:flex-end;align-items:center;gap:10px;max-width:1240px;margin:0 auto;padding:10px 20px 0;font-size:11px;color:var(--iq-muted)}
 .iq-signedin-bar button{background:none;border:1px solid var(--iq-border);border-radius:6px;padding:5px 10px;font-size:10.5px;cursor:pointer;color:var(--iq-body)}
-.iq-otp-sent{font-size:11.5px;color:var(--iq-body);margin:0 0 14px}
-.iq-otp-links{display:flex;justify-content:space-between;margin-top:12px}
 .iq-linklike{background:none;border:0;color:var(--iq-gold);font-size:10.5px;font-weight:600;cursor:pointer;padding:0;text-decoration:underline}
-#phoneForm,#otpForm{margin:0}
+#phoneForm{margin:0}
 </style>
 </head>
 <body>
@@ -37,30 +35,13 @@
 <div class="iq-login-card">
 <div class="iq-kicker">Himachal Explorer · Team Access</div>
 <h1>Group Pricing Calculator</h1>
-<p class="iq-login-sub">Sign in with your phone number to build and share a group quotation.</p>
-
+<p class="iq-login-sub">Enter your name and phone number to build and share a group quotation.</p>
 <form id="phoneForm" novalidate>
-<div id="phoneStep">
+<label class="iq-field full"><span>Your name</span><input id="loginName" type="text" autocomplete="name" required></label>
 <label class="iq-field full"><span>Phone number</span><input id="loginPhone" type="tel" inputmode="tel" placeholder="+91 98765 43210" autocomplete="tel" required></label>
 <div id="phoneError" class="iq-login-error"></div>
-<button type="submit" id="sendOtpBtn" class="iq-generate iq-login-btn">Send OTP</button>
-</div>
+<button type="submit" id="continueBtn" class="iq-generate iq-login-btn">Continue</button>
 </form>
-
-<form id="otpForm" novalidate>
-<div id="otpStep" style="display:none">
-<p class="iq-otp-sent">Code sent to <b id="otpSentTo"></b></p>
-<label class="iq-field full"><span>Enter OTP</span><input id="loginOtp" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="one-time-code" required></label>
-<div id="otpError" class="iq-login-error"></div>
-<button type="submit" id="verifyOtpBtn" class="iq-generate iq-login-btn">Verify & sign in</button>
-<div class="iq-otp-links">
-<button type="button" id="changeNumberBtn" class="iq-linklike">Change number</button>
-<button type="button" id="resendOtpBtn" class="iq-linklike">Resend code</button>
-</div>
-</div>
-</form>
-
-<div id="recaptchaContainer"></div>
 </div>
 </div>
 <main class="iq-page" id="iqMain" style="display:none">
@@ -141,7 +122,7 @@
 </section>
 </main>
 <div id="site-footer"></div>
-<script type="module" src="/assets/js/group-pricing-auth.js"></script>
+<script src="/assets/js/group-pricing-auth.js"></script>
 <script src="/assets/js/site-chrome.js"></script>
 <script src="/assets/js/package-data.js"></script>
 <script src="/assets/js/pricing-engine.js"></script>

@@ -1,136 +1,101 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
-import {
-  getAuth, onAuthStateChanged, signOut,
-  RecaptchaVerifier, signInWithPhoneNumber
-} from "https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js";
+(function () {
+  "use strict";
 
-const app = initializeApp({
-  apiKey:            "AIzaSyBmJDsXvokR8kYs_yoLPau1DqANPBBORJY",
-  authDomain:        "garg-enterprise.firebaseapp.com",
-  databaseURL:       "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId:         "garg-enterprise",
-  storageBucket:     "garg-enterprise.firebasestorage.app",
-  messagingSenderId: "1097408452571",
-  appId:             "1:1097408452571:web:1e5803fa8bbea4fbb5b9fe",
-  measurementId:     "G-DTJFFCMFD3"
-});
-const auth = getAuth(app);
+  var STORAGE_KEY = "hx_gp_access";
+  var DB_LOG_URL = "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app/group_pricing_access.json";
 
-const gate = document.getElementById("loginGate");
-const main = document.getElementById("iqMain");
-const userLabel = document.getElementById("signedInAs");
-const signOutBtn = document.getElementById("signOutBtn");
+  var gate = document.getElementById("loginGate");
+  var main = document.getElementById("iqMain");
+  var userLabel = document.getElementById("signedInAs");
+  var signOutBtn = document.getElementById("signOutBtn");
 
-const phoneStep = document.getElementById("phoneStep");
-const otpStep = document.getElementById("otpStep");
-const phoneForm = document.getElementById("phoneForm");
-const phoneInput = document.getElementById("loginPhone");
-const phoneError = document.getElementById("phoneError");
-const sendBtn = document.getElementById("sendOtpBtn");
+  var form = document.getElementById("phoneForm");
+  var nameInput = document.getElementById("loginName");
+  var phoneInput = document.getElementById("loginPhone");
+  var errEl = document.getElementById("phoneError");
+  var submitBtn = document.getElementById("continueBtn");
 
-const otpForm = document.getElementById("otpForm");
-const otpInput = document.getElementById("loginOtp");
-const otpError = document.getElementById("otpError");
-const verifyBtn = document.getElementById("verifyOtpBtn");
-const otpSentTo = document.getElementById("otpSentTo");
-const changeNumberBtn = document.getElementById("changeNumberBtn");
-const resendBtn = document.getElementById("resendOtpBtn");
-
-let confirmationResult = null;
-let recaptchaVerifier = null;
-
-function normalizePhone(v) {
-  var digits = v.replace(/[^\d+]/g, "");
-  if (!digits.startsWith("+")) {
-    digits = digits.replace(/^0+/, "");
-    digits = "+91" + digits; // default India country code
-  }
-  return digits;
-}
-
-function ensureRecaptcha() {
-  if (recaptchaVerifier) return recaptchaVerifier;
-  recaptchaVerifier = new RecaptchaVerifier(auth, "recaptchaContainer", { size: "invisible" });
-  return recaptchaVerifier;
-}
-
-onAuthStateChanged(auth, function (user) {
-  if (user) {
+  function showMain(name, phone) {
     gate.style.display = "none";
     main.style.display = "";
-    if (userLabel) userLabel.textContent = user.phoneNumber || "";
-  } else {
+    if (userLabel) userLabel.textContent = name + " · " + phone;
+  }
+
+  function showGate() {
     gate.style.display = "";
     main.style.display = "none";
-    phoneStep.style.display = "";
-    otpStep.style.display = "none";
   }
-});
 
-phoneForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-  phoneError.textContent = "";
-  var phone = normalizePhone(phoneInput.value.trim());
-  if (!/^\+\d{8,15}$/.test(phone)) {
-    phoneError.textContent = "Enter a valid phone number with country code.";
-    return;
+  function logAccess(name, phone) {
+    try {
+      fetch(DB_LOG_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: name, phone: phone, at: new Date().toISOString() })
+      }).catch(function () {});
+    } catch (e) {}
   }
-  sendBtn.disabled = true;
-  sendBtn.textContent = "Sending OTP…";
-  signInWithPhoneNumber(auth, phone, ensureRecaptcha())
-    .then(function (result) {
-      confirmationResult = result;
-      otpSentTo.textContent = phone;
-      phoneStep.style.display = "none";
-      otpStep.style.display = "";
-      otpInput.value = "";
-      otpInput.focus();
-    })
-    .catch(function (err) {
-      var msg = "Could not send OTP. Please try again.";
-      if (err && err.code === "auth/invalid-phone-number") msg = "That phone number looks invalid.";
-      if (err && err.code === "auth/too-many-requests") msg = "Too many attempts. Please wait and try again.";
-      if (err && err.code === "auth/billing-not-enabled") msg = "SMS sign-in isn't active yet — contact the site owner.";
-      phoneError.textContent = msg;
-      if (recaptchaVerifier) { recaptchaVerifier.clear(); recaptchaVerifier = null; }
-    })
-    .finally(function () {
-      sendBtn.disabled = false;
-      sendBtn.textContent = "Send OTP";
+
+  function loadSaved() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      var data = JSON.parse(raw);
+      if (data && data.name && data.phone) return data;
+    } catch (e) {}
+    return null;
+  }
+
+  function save(name, phone) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ name: name, phone: phone }));
+    } catch (e) {}
+  }
+
+  function clearSaved() {
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+  }
+
+  var saved = loadSaved();
+  if (saved) {
+    showMain(saved.name, saved.phone);
+  } else {
+    showGate();
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    errEl.textContent = "";
+    var name = nameInput.value.trim();
+    var phone = phoneInput.value.trim();
+
+    if (name.length < 2) {
+      errEl.textContent = "Please enter your name.";
+      return;
+    }
+    var digits = phone.replace(/[^\d]/g, "");
+    if (digits.length < 10) {
+      errEl.textContent = "Please enter a valid phone number.";
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Entering…";
+
+    save(name, phone);
+    logAccess(name, phone);
+    showMain(name, phone);
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Continue";
+  });
+
+  if (signOutBtn) {
+    signOutBtn.addEventListener("click", function () {
+      clearSaved();
+      showGate();
+      nameInput.value = "";
+      phoneInput.value = "";
     });
-});
-
-otpForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-  otpError.textContent = "";
-  if (!confirmationResult) { otpError.textContent = "Please request a new OTP."; return; }
-  var code = otpInput.value.trim();
-  if (!/^\d{4,8}$/.test(code)) { otpError.textContent = "Enter the code you received."; return; }
-  verifyBtn.disabled = true;
-  verifyBtn.textContent = "Verifying…";
-  confirmationResult.confirm(code)
-    .catch(function (err) {
-      var msg = "Incorrect code. Please try again.";
-      if (err && err.code === "auth/code-expired") msg = "That code expired — request a new one.";
-      otpError.textContent = msg;
-    })
-    .finally(function () {
-      verifyBtn.disabled = false;
-      verifyBtn.textContent = "Verify & sign in";
-    });
-});
-
-changeNumberBtn.addEventListener("click", function () {
-  otpStep.style.display = "none";
-  phoneStep.style.display = "";
-  phoneError.textContent = "";
-  confirmationResult = null;
-});
-
-resendBtn.addEventListener("click", function () {
-  phoneForm.requestSubmit ? phoneForm.requestSubmit() : phoneForm.dispatchEvent(new Event("submit", {cancelable:true}));
-});
-
-if (signOutBtn) {
-  signOutBtn.addEventListener("click", function () { signOut(auth); });
-}
+  }
+})();
