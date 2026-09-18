@@ -193,6 +193,13 @@
   // Delegated on document so it works for the header/footer/mobile-nav here
   // AND for any page-specific element (e.g. a Route Builder button) that
   // adds the same attribute — no per-page wiring needed.
+  //
+  // Behavior: the popup is persistent, not a flash-and-vanish tooltip. It
+  // stays open on whichever function the person is currently on. Moving to
+  // a DIFFERENT function moves the popup there instead of hiding it in
+  // between. It only fully closes when they tap/click through the function
+  // it's currently showing (which navigates, so the popup goes with the
+  // page) or tap/click somewhere with no explanation at all.
   function initHxTips(){
     if(window.__heTipInit) return;
     window.__heTipInit = true;
@@ -202,7 +209,8 @@
     tipEl.setAttribute('role','tooltip');
     document.body.appendChild(tipEl);
 
-    var showTimer, hideTimer;
+    var current = null; // element the popup is currently attached to
+    var hideTimer;
 
     function position(target){
       var r = target.getBoundingClientRect();
@@ -218,52 +226,62 @@
       tipEl.style.setProperty('--he-tip-arrow', arrowLeft + 'px');
     }
 
-    function show(target){
+    function moveTo(target){
       var text = target.getAttribute('data-hx-tip');
       if(!text) return;
       clearTimeout(hideTimer);
+      current = target;
       tipEl.textContent = text;
-      tipEl.classList.add('he-tip-show'); // laid out (but transparent) so offsetWidth/Height are real before positioning
+      tipEl.classList.add('he-tip-show');
       position(target);
     }
-    function hide(){ tipEl.classList.remove('he-tip-show'); }
+    function hide(){
+      clearTimeout(hideTimer);
+      tipEl.classList.remove('he-tip-show');
+      current = null;
+    }
+    function scheduleHide(){
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(hide, 150); // brief grace period covers moving straight from one function to the next
+    }
 
+    // Mouse: move immediately between functions; only actually hide once
+    // the pointer leaves every function (not tip-enabled area) for a beat.
     document.addEventListener('pointerover', function(e){
       if(e.pointerType !== 'mouse') return;
       var t = e.target.closest && e.target.closest('[data-hx-tip]');
-      if(!t) return;
-      clearTimeout(showTimer);
-      showTimer = setTimeout(function(){ show(t); }, 180);
+      if(t) moveTo(t);
     });
     document.addEventListener('pointerout', function(e){
       if(e.pointerType !== 'mouse') return;
       if(!(e.target.closest && e.target.closest('[data-hx-tip]'))) return;
-      clearTimeout(showTimer);
-      hideTimer = setTimeout(hide, 120);
+      var to = e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest('[data-hx-tip]');
+      if(to) return; // heading straight into another function — pointerover on it handles the move
+      scheduleHide();
     });
     document.addEventListener('focusin', function(e){
       var t = e.target.closest && e.target.closest('[data-hx-tip]');
-      if(t) show(t);
+      if(t) moveTo(t);
     });
     document.addEventListener('focusout', function(e){
-      if(e.target.closest && e.target.closest('[data-hx-tip]')) hide();
+      if(!(e.target.closest && e.target.closest('[data-hx-tip]'))) return;
+      var to = e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest('[data-hx-tip]');
+      if(to) return;
+      scheduleHide();
     });
 
-    // Touch: first tap shows the explanation and holds the link; tapping the
-    // same target again (or after it re-primes) lets the tap through.
+    // Touch: tap a function — popup appears and stays, tap is held (doesn't
+    // navigate yet). Tap a DIFFERENT function — popup moves there instead
+    // of disappearing. Tap the SAME function again — it's already showing,
+    // so let this tap navigate through. Tap anywhere with no explanation —
+    // close the popup and behave normally.
     document.addEventListener('click', function(e){
+      if(!window.matchMedia || !matchMedia('(hover: none)').matches) return; // desktop already handled by hover
       var t = e.target.closest && e.target.closest('[data-hx-tip]');
-      if(!t || !window.matchMedia || !matchMedia('(hover: none)').matches) return;
-      if(t.__heTipPrimed){
-        t.__heTipPrimed = false;
-        hide();
-        return; // let the tap through this time
-      }
+      if(!t){ hide(); return; }
+      if(current === t){ hide(); return; } // already showing this one — let the tap through
       e.preventDefault();
-      show(t);
-      t.__heTipPrimed = true;
-      clearTimeout(t.__heTipPrimeTimer);
-      t.__heTipPrimeTimer = setTimeout(function(){ t.__heTipPrimed = false; hide(); }, 3200);
+      moveTo(t);
     }, true);
 
     window.addEventListener('scroll', hide, {passive:true});
