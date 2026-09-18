@@ -170,3 +170,52 @@
   .he-header{padding:0 14px}
   body{-webkit-text-size-adjust:100%}
 }
+
+/* ============================================================
+   FUNCTION TIPS — "what does this do" explanation shown on
+   hover/focus/tap for any [data-hx-tip] element. Single shared
+   element (assets/js/site-chrome.js), works on every page.
+   ============================================================ */
+.he-tip{
+  position:fixed;
+  z-index:9999;
+  max-width:240px;
+  padding:10px 13px;
+  border-radius:10px;
+  background:var(--nv-navy-deep,#0a1811);
+  border:1px solid rgba(245,166,35,.45);
+  color:#f5f0e4;
+  font-family:'Jost',Arial,sans-serif;
+  font-size:12.5px;
+  line-height:1.45;
+  box-shadow:0 14px 32px rgba(0,0,0,.35);
+  opacity:0;
+  transform:translateY(-4px);
+  pointer-events:none;
+  transition:opacity .16s ease, transform .16s ease;
+  left:0;top:0;
+}
+.he-tip::after{
+  content:"";
+  position:absolute;
+  left:var(--he-tip-arrow,20px);
+  top:-6px;
+  width:11px;height:11px;
+  background:var(--nv-navy-deep,#0a1811);
+  border-left:1px solid rgba(245,166,35,.45);
+  border-top:1px solid rgba(245,166,35,.45);
+  transform:translateX(-50%) rotate(45deg);
+}
+.he-tip.he-tip-above::after{
+  top:auto; bottom:-6px;
+  border-left:none; border-top:none;
+  border-right:1px solid rgba(245,166,35,.45);
+  border-bottom:1px solid rgba(245,166,35,.45);
+}
+.he-tip.he-tip-show{
+  opacity:1;
+  transform:translateY(0);
+}
+@media (max-width:480px){
+  .he-tip{ max-width:calc(100vw - 32px); font-size:12px; }
+}
