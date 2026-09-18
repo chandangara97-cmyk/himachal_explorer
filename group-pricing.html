@@ -36,7 +36,7 @@
 <div class="iq-kicker">Himachal Explorer · Team Access</div>
 <h1>Group Pricing Calculator</h1>
 <p class="iq-login-sub">Enter your name and phone number to build and share a group quotation.</p>
-<form id="phoneForm" novalidate>
+<form id="phoneForm" novalidate onsubmit="return false;">
 <label class="iq-field full"><span>Your name</span><input id="loginName" type="text" autocomplete="name" required></label>
 <label class="iq-field full"><span>Phone number</span><input id="loginPhone" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="10" placeholder="98765 43210" autocomplete="tel" required></label>
 <div id="phoneError" class="iq-login-error"></div>
