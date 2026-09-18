@@ -56,6 +56,10 @@
     try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
   }
 
+  phoneInput.addEventListener("input", function () {
+    phoneInput.value = phoneInput.value.replace(/[^\d]/g, "").slice(0, 10);
+  });
+
   var saved = loadSaved();
   if (saved) {
     showMain(saved.name, saved.phone);
@@ -74,8 +78,8 @@
       return;
     }
     var digits = phone.replace(/[^\d]/g, "");
-    if (digits.length < 10) {
-      errEl.textContent = "Please enter a valid phone number.";
+    if (digits.length !== 10) {
+      errEl.textContent = "Please enter a valid 10-digit phone number.";
       return;
     }
 

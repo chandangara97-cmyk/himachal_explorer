@@ -38,7 +38,7 @@
 <p class="iq-login-sub">Enter your name and phone number to build and share a group quotation.</p>
 <form id="phoneForm" novalidate>
 <label class="iq-field full"><span>Your name</span><input id="loginName" type="text" autocomplete="name" required></label>
-<label class="iq-field full"><span>Phone number</span><input id="loginPhone" type="tel" inputmode="tel" placeholder="+91 98765 43210" autocomplete="tel" required></label>
+<label class="iq-field full"><span>Phone number</span><input id="loginPhone" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="10" placeholder="98765 43210" autocomplete="tel" required></label>
 <div id="phoneError" class="iq-login-error"></div>
 <button type="submit" id="continueBtn" class="iq-generate iq-login-btn">Continue</button>
 </form>
