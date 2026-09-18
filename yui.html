@@ -482,6 +482,14 @@ a{color:inherit;}
 .dmb-chip:hover{background:var(--green-50);transform:translateY(-1px);}
 .dmb-chip .dmb-plus{color:var(--gold);font-weight:800;}
 .dmb-empty{font-size:11.5px;color:var(--ink-soft);}
+.dest-major-bar-primary{border-top:none;padding:14px 24px 16px;}
+.dest-major-bar-primary .dmb-label{font-size:13px;}
+.dmb-chips-primary{flex-wrap:wrap;overflow-x:visible;}
+.dmb-chips-primary .dmb-chip{padding:10px 16px;font-size:13px;}
+.dest-secondary-toggle{display:block;width:calc(100% - 48px);margin:0 24px 14px;padding:11px 14px;border:1px dashed var(--gold2);border-radius:10px;background:var(--bg);color:var(--gold);font-size:12.5px;font-weight:600;font-family:inherit;cursor:pointer;text-align:center;transition:background .15s;}
+.dest-secondary-toggle:hover{background:var(--green-50);}
+.dest-secondary-toggle.open{border-style:solid;}
+.dest-secondary-section{border-top:1px solid var(--line);}
 .dest-modal-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 24px;border-top:1px solid var(--line);background:var(--card);}
 .dest-modal-footer span{font-size:12px;color:var(--ink-soft);}
 .dest-modal-footer .btn-primary{padding:10px 22px;}
@@ -828,21 +836,26 @@ body.mode-packages [data-mode="custom"]{display:none !important;}
       <div>
         <div class="dest-modal-kicker">Build It Yourself · <span id="destModalGateway"></span></div>
         <h3 id="destModalTitle">Carve out your package</h3>
-        <p>We've picked the must-see places near your gateway — tap to add. Search if you want something specific.</p>
+        <p>Start with a major destination — tap to add it to your route.</p>
       </div>
       <button class="dest-modal-close" onclick="closeDestModal()">✕</button>
     </div>
-    <div class="dest-modal-search"><input id="destModalSearch" placeholder="Search all 120 places…" oninput="renderDestModalGrid()"></div>
     <div class="dest-picks" id="destPicksBox" style="display:none;"></div>
-    <div class="dest-major-bar" id="destMajorBar">
-      <span class="dmb-label">Not just here — jump to another major destination anytime</span>
-      <div class="dmb-chips" id="dmbChips"></div>
+    <div class="dest-major-bar dest-major-bar-primary" id="destMajorBar">
+      <span class="dmb-label">Major destinations</span>
+      <div class="dmb-chips dmb-chips-primary" id="dmbChips"></div>
     </div>
-    <div class="dest-modal-tabs" id="destModalTabs">
-      <button class="dest-modal-tab active" id="destTabRecommended" onclick="setDestModalTab('recommended')">✦ Recommended for you</button>
-      <button class="dest-modal-tab" id="destTabAll" onclick="setDestModalTab('all')">All 120 places</button>
+    <button type="button" class="dest-secondary-toggle" id="destSecondaryToggle" onclick="toggleDestSecondary()">
+      <span>Have somewhere specific in mind? Browse nearby places →</span>
+    </button>
+    <div class="dest-secondary-section" id="destSecondarySection" style="display:none;">
+      <div class="dest-modal-search"><input id="destModalSearch" placeholder="Search all 120 places…" oninput="renderDestModalGrid()"></div>
+      <div class="dest-modal-tabs" id="destModalTabs">
+        <button class="dest-modal-tab active" id="destTabRecommended" onclick="setDestModalTab('recommended')">✦ Recommended for you</button>
+        <button class="dest-modal-tab" id="destTabAll" onclick="setDestModalTab('all')">All 120 places</button>
+      </div>
+      <div class="dest-modal-grid" id="destModalGrid"></div>
     </div>
-    <div class="dest-modal-grid" id="destModalGrid"></div>
     <div class="dest-modal-footer">
       <span id="destModalCount">0 places selected</span>
       <button class="btn-primary" id="destModalContinue" onclick="confirmDestModal()" disabled>Build my route →</button>
@@ -1203,6 +1216,18 @@ function renderDestMajorBar(){
   });
 }
 
+function toggleDestSecondary(){
+  const box = document.getElementById('destSecondarySection');
+  const btn = document.getElementById('destSecondaryToggle');
+  if(!box || !btn) return;
+  const opening = box.style.display === 'none';
+  box.style.display = opening ? '' : 'none';
+  btn.classList.toggle('open', opening);
+  btn.querySelector('span').textContent = opening
+    ? '← Hide nearby places'
+    : 'Have somewhere specific in mind? Browse nearby places →';
+  if(opening) renderDestModalGrid();
+}
 function openDestModal(gatewayName){
   if(!gatewayName || !DB) return;
   destModalGatewayName = gatewayName;
@@ -1211,6 +1236,10 @@ function openDestModal(gatewayName){
   destModalSelection = new Set(destModalOrder);
   document.getElementById('destModalGateway').textContent = gatewayName;
   document.getElementById('destModalSearch').value = '';
+  const secBox = document.getElementById('destSecondarySection');
+  const secBtn = document.getElementById('destSecondaryToggle');
+  if(secBox) secBox.style.display = 'none';
+  if(secBtn){ secBtn.classList.remove('open'); secBtn.querySelector('span').textContent = 'Have somewhere specific in mind? Browse nearby places →'; }
   renderDestPicks();
   renderDestMajorBar();
   updateDestModalFooter();
