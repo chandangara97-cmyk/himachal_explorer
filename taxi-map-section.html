@@ -1,121 +1,223 @@
 <!-- ════════════════════════════════════════════ -->
-<!-- ROUTE MAP (moved here from the homepage)     -->
+<!-- ROUTE MAP + TRIP COST                        -->
 <!-- ════════════════════════════════════════════ -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <style>
 .tm-card{background:var(--surface);border:1.5px solid var(--border);border-radius:8px;overflow:hidden}
-.tm-controls{display:grid;grid-template-columns:1fr auto 1fr auto;grid-template-areas:"from swap to go";gap:12px;align-items:end;padding:18px;border-bottom:1px solid var(--border)}
-.tm-field{display:block;min-width:0}
-.tm-field.from{grid-area:from}.tm-field.to{grid-area:to}
-.tm-field label{display:block;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--body);margin-bottom:6px}
-.tm-field select{width:100%;padding:12px 14px;border:1px solid var(--border);background:var(--lift);font-family:'Jost',sans-serif;font-size:13px;color:var(--ink);border-radius:2px;outline:none}
-.tm-field select:focus{border-color:var(--gold);background:var(--surface)}
-.tm-swap{grid-area:swap;height:44px;width:44px;border:1px solid var(--border2);background:var(--surface);color:var(--gold);border-radius:50%;font-size:16px;cursor:pointer;transition:all .2s}
-.tm-swap:hover{border-color:var(--gold);background:var(--gold-bg)}
-.tm-go{grid-area:go;height:44px;padding:0 22px;white-space:nowrap;justify-content:center;border:none;cursor:pointer;font-family:'Jost',sans-serif}
-.tm-go[disabled]{opacity:.6;cursor:wait}
-#tmMap{width:100%;height:min(60vh,460px);min-height:300px;background:#eef0e6}
-.leaflet-container{font-family:'Jost',Arial,sans-serif}
-.tm-dot{width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid var(--gold2);box-shadow:0 2px 8px rgba(28,20,9,.25);display:grid;place-items:center;cursor:pointer;transition:transform .15s}
-.tm-dot::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold)}
-.tm-dot:hover{transform:scale(1.25)}
-.tm-dot.start{background:var(--gold);border-color:var(--gold)}
-.tm-dot.start::after{background:#fff}
-.tm-dot.end{background:var(--dark);border-color:var(--dark)}
-.tm-dot.end::after{background:var(--gold2)}
-.tm-label{font:700 11px 'Jost',Arial,sans-serif;color:var(--ink);white-space:nowrap;text-align:center;margin-top:3px;pointer-events:none;text-shadow:0 1px 2px rgba(255,255,255,.95),0 0 6px rgba(255,255,255,.85)}
-.tm-far .tm-label{display:none}
-.tm-far .tm-label.on{display:block}
+.tm-card [hidden]{display:none!important}
+.tm-controls{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:18px}
+.tm-field{min-width:0}
+.tm-field label,.tm-lbl{display:block;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--body);margin-bottom:6px}
+.tm-step{display:inline-grid;place-items:center;width:18px;height:18px;margin-right:6px;border-radius:50%;background:var(--gold);color:#fff;font-size:10px;letter-spacing:0}
+.tm-field select,.tm-block select{width:100%;padding:12px 14px;border:1px solid var(--border);background:var(--lift);font-family:'Jost',sans-serif;font-size:13px;color:var(--ink);border-radius:2px;outline:none}
+.tm-field select:focus,.tm-block select:focus{border-color:var(--gold);background:var(--surface)}
+.tm-field select:disabled{opacity:.55;cursor:not-allowed}
 .tm-status{font-size:12px;color:var(--caption);padding:10px 18px;background:var(--lift);border-top:1px solid var(--border);min-height:38px}
 .tm-status.warn{color:#7a4a00;background:#fef0cd}
-.tm-summary{display:none;padding:14px 18px;background:var(--gold-bg);border-top:1px solid var(--glass);gap:12px 18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-.tm-summary.open{display:flex}
-.tm-summary-main strong{display:block;font-family:'Cormorant',serif;font-size:19px;font-weight:600;color:var(--ink);line-height:1.2}
-.tm-summary-main span{display:block;font-size:12px;color:var(--body);margin-top:2px}
-.tm-actions{display:flex;flex-wrap:wrap;gap:8px}
-.tm-btn{padding:9px 14px;font-family:'Jost',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;cursor:pointer;border:1.5px solid var(--gold);background:var(--surface);color:var(--gold);transition:all .2s}
-.tm-btn:hover{background:var(--gold-bg)}
-.tm-btn.solid{background:var(--gold);color:#fff}
-.tm-btn.solid:hover{background:var(--dark);border-color:var(--dark)}
+#tmMap{width:100%;height:min(55vh,420px);min-height:280px;background:#eef0e6;border-top:1px solid var(--border)}
+.leaflet-container{font-family:'Jost',Arial,sans-serif}
+.tm-dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--gold);box-shadow:0 2px 8px rgba(28,20,9,.3);display:grid;place-items:center;background:var(--gold);color:#fff;font:700 10px 'Jost',Arial,sans-serif}
+.tm-dot.end{background:var(--dark);border-color:var(--dark);color:var(--gold2)}
+.tm-label{font:700 11px 'Jost',Arial,sans-serif;color:var(--ink);white-space:nowrap;text-align:center;margin-top:3px;pointer-events:none;text-shadow:0 1px 2px rgba(255,255,255,.95),0 0 6px rgba(255,255,255,.85)}
+.tm-summary{padding:14px 18px;background:var(--gold-bg);border-top:1px solid var(--glass)}
+.tm-summary strong{display:block;font-family:'Cormorant',serif;font-size:20px;font-weight:600;color:var(--ink);line-height:1.2}
+.tm-summary span{display:block;font-size:12px;color:var(--body);margin-top:2px}
+.tm-caution{padding:10px 18px;font-size:12px;color:#7a4a00;background:#fef0cd;border-top:1px solid #f3dca0;line-height:1.55}
+.tm-cost{padding:20px 18px 22px;border-top:1px solid var(--border)}
+.tm-cost-title{font-family:'Cormorant',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:14px}
+.tm-cost-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px 18px;margin-bottom:18px}
+.tm-block{min-width:0}
+.tm-block.wide{grid-column:1/-1}
+.tm-hint{display:block;font-size:11px;color:var(--caption);margin-top:5px;font-style:italic}
+.tm-veh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tm-veh{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 6px;border:1.5px solid var(--border2);border-radius:6px;background:var(--surface);cursor:pointer;font-family:'Jost',sans-serif;color:var(--ink);transition:all .2s}
+.tm-veh .ic{font-size:22px;line-height:1.1}
+.tm-veh .nm{font-size:12px;font-weight:600}
+.tm-veh .sub{font-size:10px;color:var(--caption)}
+.tm-veh:hover{border-color:var(--gold)}
+.tm-veh.on{border-color:var(--gold);background:var(--gold-bg);box-shadow:0 0 0 3px rgba(176,125,58,.2)}
+.tm-stepper{display:flex;align-items:stretch;border:1px solid var(--border);border-radius:2px;background:var(--lift);overflow:hidden}
+.tm-stepper button{width:44px;border:none;background:var(--muted);color:var(--ink);font-size:18px;cursor:pointer}
+.tm-stepper button:hover{background:var(--border)}
+.tm-stepper input{flex:1;min-width:0;text-align:center;border:none;background:transparent;font-family:'Jost',sans-serif;font-size:15px;font-weight:600;color:var(--ink);padding:11px 4px;outline:none;-moz-appearance:textfield}
+.tm-stepper input::-webkit-outer-spin-button,.tm-stepper input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.tm-seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border2);border-radius:2px;overflow:hidden}
+.tm-seg button{padding:12px 6px;border:none;background:var(--surface);font-family:'Jost',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--caption);cursor:pointer}
+.tm-seg button.on{background:var(--gold);color:#fff}
+.tm-fare{background:var(--gold-bg);border-left:3px solid var(--gold);border-radius:4px;padding:16px 18px}
+.tm-line{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--body);padding:5px 0;border-bottom:1px dashed var(--border2)}
+.tm-line:last-of-type{border-bottom:none}
+.tm-line b{color:var(--ink);font-weight:600;white-space:nowrap}
+.tm-total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:10px;padding-top:12px;border-top:1.5px solid var(--gold)}
+.tm-total span{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--body)}
+.tm-total strong{font-family:'Cormorant',serif;font-size:32px;font-weight:600;color:var(--gold);line-height:1}
+.tm-fine{font-size:11.5px;color:var(--caption);margin:12px 0 16px;line-height:1.6}
+.tm-book{width:100%;justify-content:center;border:none;cursor:pointer;font-family:'Jost',sans-serif}
 .tm-note{font-size:11.5px;color:var(--caption);margin-top:12px;line-height:1.6}
 @media(max-width:700px){
-  .tm-controls{grid-template-columns:1fr auto;grid-template-areas:"from swap" "to swap" "go go";padding:14px}
-  .tm-swap{align-self:center;justify-self:center}
-  .tm-go{width:100%}
-  .tm-btn{flex:1 1 auto;text-align:center}
+  .tm-controls{grid-template-columns:1fr;padding:14px}
+  .tm-cost-grid{grid-template-columns:1fr}
+  .tm-cost{padding:18px 14px 20px}
 }
 </style>
 
 <section class="section" id="route-map">
   <div class="section-eyebrow">PLAN YOUR ROUTE</div>
-  <h2 class="section-title">See Your <em>Taxi Route</em> on the Map</h2>
-  <p class="section-sub" style="margin-bottom:24px">Pick a start and a destination to see the road route and approximate distance. Then send it straight into the booking form below.</p>
+  <h2 class="section-title">Route &amp; <em>Trip Cost</em> Calculator</h2>
+  <p class="section-sub" style="margin-bottom:24px">Choose where the taxi starts, then which tourist place in Himachal Pradesh you want to visit. The map and your trip cost appear once both are selected.</p>
 
   <div class="tm-card">
     <div class="tm-controls">
-      <div class="tm-field from">
-        <label for="tmFrom">Start</label>
+      <div class="tm-field">
+        <label for="tmFrom"><span class="tm-step">1</span>Start point</label>
         <select id="tmFrom"></select>
       </div>
-      <button class="tm-swap" id="tmSwap" type="button" aria-label="Swap start and destination" title="Swap">⇅</button>
-      <div class="tm-field to">
-        <label for="tmTo">Destination</label>
-        <select id="tmTo"></select>
-      </div>
-      <button class="btn-primary tm-go" id="tmGo" type="button">Show route →</button>
-    </div>
-
-    <div id="tmMap" role="img" aria-label="Map of Himachal Pradesh and nearby gateway cities with taxi route"></div>
-
-    <div class="tm-status" id="tmStatus">Choose a start and destination, or tap a place on the map.</div>
-
-    <div class="tm-summary" id="tmPlace">
-      <div class="tm-summary-main"><strong id="tmPlaceName"></strong><span id="tmPlaceDesc"></span></div>
-      <div class="tm-actions">
-        <button class="tm-btn" id="tmPlaceStart" type="button">Start here</button>
-        <button class="tm-btn" id="tmPlaceEnd" type="button">Go here</button>
-        <button class="tm-btn solid" id="tmPlaceTaxi" type="button">Taxi to here →</button>
+      <div class="tm-field">
+        <label for="tmTo"><span class="tm-step">2</span>Tourist place in Himachal</label>
+        <select id="tmTo" disabled></select>
       </div>
     </div>
+    <div class="tm-status" id="tmStatus">Start by choosing where the taxi picks you up.</div>
 
-    <div class="tm-summary" id="tmRoute">
-      <div class="tm-summary-main"><strong id="tmRouteTitle"></strong><span id="tmRouteMeta"></span></div>
-      <div class="tm-actions">
-        <button class="tm-btn solid" id="tmBook" type="button">Book this route →</button>
+    <div id="tmResult" hidden>
+      <div id="tmMap" role="img" aria-label="Map showing the taxi route between your start point and destination"></div>
+
+      <div class="tm-summary">
+        <strong id="tmRouteTitle"></strong>
+        <span id="tmRouteMeta"></span>
+      </div>
+      <div class="tm-caution" id="tmCaution" hidden></div>
+
+      <div class="tm-cost">
+        <div class="tm-cost-title">Trip cost estimate</div>
+        <div class="tm-cost-grid">
+          <div class="tm-block">
+            <span class="tm-lbl">Vehicle type</span>
+            <div class="tm-veh-grid" id="tmVehTypes"></div>
+          </div>
+          <div class="tm-block">
+            <label class="tm-lbl" for="tmModel">Model</label>
+            <select id="tmModel"></select>
+          </div>
+          <div class="tm-block">
+            <label class="tm-lbl" for="tmDays">Number of days</label>
+            <div class="tm-stepper">
+              <button type="button" id="tmDaysMinus" aria-label="One day less">−</button>
+              <input id="tmDays" type="number" min="1" max="30" value="1" inputmode="numeric">
+              <button type="button" id="tmDaysPlus" aria-label="One day more">+</button>
+            </div>
+          </div>
+          <div class="tm-block">
+            <span class="tm-lbl">Season</span>
+            <div class="tm-seg" id="tmSeason">
+              <button type="button" data-season="off">Off-peak</button>
+              <button type="button" data-season="peak">Peak</button>
+            </div>
+            <span class="tm-hint">Peak: May–June &amp; Sep–Oct</span>
+          </div>
+        </div>
+
+        <div class="tm-fare">
+          <div id="tmLines"></div>
+          <div class="tm-total"><span>Estimated fare</span><strong id="tmTotal">₹0</strong></div>
+        </div>
+        <p class="tm-fine">Based on our 2026–27 day rates. Toll &amp; parking are extra. The final fare is confirmed on WhatsApp after you book.</p>
+        <button class="btn-primary tm-book" id="tmBook" type="button">Book this trip →</button>
       </div>
     </div>
   </div>
-  <p class="tm-note">Routes are indicative. High-altitude roads (Kaza, Chitkul, Spiti) can close for snow or landslides, so we confirm the practical route and final fare when you book. Drive time excludes stops.</p>
+  <p class="tm-note">Routes are indicative. High-altitude roads can close for snow or landslides, so we confirm the practical route when you book. Drive time excludes stops.</p>
 </section>
 
 <script>
 (function(){
   "use strict";
 
+  // ── Data ──────────────────────────────────────────────────────
   var PLACES = {
-    Delhi:       { label:"Delhi",          coords:[28.6139,77.2090], desc:"National capital · trip starting point" },
-    Chandigarh:  { label:"Chandigarh",     coords:[30.7333,76.7794], desc:"Gateway city to Himachal Pradesh" },
-    Amritsar:    { label:"Amritsar",       coords:[31.6340,74.8723], desc:"Punjab gateway · Golden Temple city" },
-    Shimla:      { label:"Shimla",         coords:[31.1048,77.1734], desc:"The Queen of Hills" },
-    Manali:      { label:"Manali",         coords:[32.2432,77.1892], desc:"Adventure, valleys & mountain escapes" },
-    Dharamshala: { label:"Dharamshala",    coords:[32.2190,76.3234], desc:"Kangra landscapes, culture & calm" },
-    BirBilling:  { label:"Bir Billing",    coords:[32.0357,76.7214], desc:"Paragliding capital & Tibetan monasteries" },
-    Kasol:       { label:"Kasol",          coords:[32.0100,77.3150], desc:"Parvati Valley hub & riverside camps" },
-    Jibhi:       { label:"Jibhi",          coords:[31.6373,77.4727], desc:"Tirthan Valley streams & pine retreats" },
-    Khajjiar:    { label:"Khajjiar",       coords:[32.5558,76.0656], desc:"Mini Switzerland of India & alpine meadows" },
-    Chitkul:     { label:"Chitkul",        coords:[31.3533,78.4357], desc:"Last village of India in Sangla Valley" },
-    Kaza:        { label:"Kaza (Spiti)",   coords:[32.2276,78.0708], desc:"Monasteries & high-altitude desert trails" }
+    // Gateway cities & hill hubs (start points)
+    Delhi:       { label:"Delhi",        coords:[28.6139,77.2090] },
+    Chandigarh:  { label:"Chandigarh",   coords:[30.7333,76.7794] },
+    Amritsar:    { label:"Amritsar",     coords:[31.6340,74.8723] },
+    Pathankot:   { label:"Pathankot",    coords:[32.2643,75.6421] },
+    // Shimla & Solan
+    Shimla:      { label:"Shimla",       coords:[31.1048,77.1734] },
+    Kufri:       { label:"Kufri",        coords:[31.0972,77.2685] },
+    Narkanda:    { label:"Narkanda",     coords:[31.2612,77.4574] },
+    Chail:       { label:"Chail",        coords:[30.9722,77.1944] },
+    Kasauli:     { label:"Kasauli",      coords:[30.8987,76.9650] },
+    // Kullu & Manali
+    Manali:      { label:"Manali",       coords:[32.2432,77.1892] },
+    Solang:      { label:"Solang Valley",coords:[32.3177,77.1573] },
+    Rohtang:     { label:"Rohtang Pass", coords:[32.3716,77.2466], seasonal:true },
+    Naggar:      { label:"Naggar",       coords:[32.1111,77.1739] },
+    Kullu:       { label:"Kullu",        coords:[31.9579,77.1095] },
+    Manikaran:   { label:"Manikaran",    coords:[32.0270,77.3490] },
+    Kasol:       { label:"Kasol",        coords:[32.0100,77.3150] },
+    Jibhi:       { label:"Jibhi",        coords:[31.6373,77.4727] },
+    // Kangra
+    Dharamshala: { label:"Dharamshala",  coords:[32.2190,76.3234] },
+    McLeodGanj:  { label:"McLeod Ganj",  coords:[32.2426,76.3213] },
+    Palampur:    { label:"Palampur",     coords:[32.1109,76.5363] },
+    BirBilling:  { label:"Bir Billing",  coords:[32.0357,76.7214] },
+    Jwalamukhi:  { label:"Jwalamukhi",   coords:[31.8813,76.3225] },
+    // Chamba
+    Dalhousie:   { label:"Dalhousie",    coords:[32.5387,75.9700] },
+    Khajjiar:    { label:"Khajjiar",     coords:[32.5558,76.0656] },
+    Chamba:      { label:"Chamba",       coords:[32.5534,76.1258] },
+    Bharmour:    { label:"Bharmour",     coords:[32.4412,76.5335] },
+    // Mandi
+    Mandi:       { label:"Mandi",        coords:[31.7080,76.9320] },
+    Rewalsar:    { label:"Rewalsar",     coords:[31.6300,76.8330] },
+    // Kinnaur
+    Sangla:      { label:"Sangla",       coords:[31.4250,78.2620] },
+    Chitkul:     { label:"Chitkul",      coords:[31.3533,78.4357], seasonal:true },
+    Kalpa:       { label:"Kalpa",        coords:[31.5344,78.2503] },
+    // Lahaul & Spiti
+    Keylong:     { label:"Keylong",      coords:[32.5700,77.0300], seasonal:true },
+    Chandratal:  { label:"Chandratal Lake", coords:[32.4756,77.6143], seasonal:true },
+    Kaza:        { label:"Kaza (Spiti)", coords:[32.2276,78.0708], seasonal:true },
+    Tabo:        { label:"Tabo",         coords:[32.0947,78.3800], seasonal:true }
   };
 
-  // Places that exist as exact options in the booking form's pickup dropdown.
-  // Everything else is sent as "Custom" with the place named in Special Requests.
+  var START_GROUPS = [
+    { label:"Gateway cities", keys:["Delhi","Chandigarh","Amritsar","Pathankot"] },
+    { label:"Himachal towns", keys:["Shimla","Manali","Dharamshala","Kullu","Mandi"] }
+  ];
+  var DEST_GROUPS = [
+    { label:"Shimla & Solan",     keys:["Shimla","Kufri","Narkanda","Chail","Kasauli"] },
+    { label:"Kullu & Manali",     keys:["Manali","Solang","Rohtang","Naggar","Kullu","Manikaran","Kasol","Jibhi"] },
+    { label:"Kangra",             keys:["Dharamshala","McLeodGanj","Palampur","BirBilling","Jwalamukhi"] },
+    { label:"Chamba",             keys:["Dalhousie","Khajjiar","Chamba","Bharmour"] },
+    { label:"Mandi",              keys:["Mandi","Rewalsar"] },
+    { label:"Kinnaur",            keys:["Sangla","Chitkul","Kalpa"] },
+    { label:"Lahaul & Spiti",     keys:["Keylong","Chandratal","Kaza","Tabo"] },
+    { label:"Drop at a gateway city", keys:["Delhi","Chandigarh","Amritsar","Pathankot"] }
+  ];
+
+  // Options that exist in the booking form's pickup dropdown. Others go in as "Custom".
   var PICKUP_OPTIONS = {
-    Shimla:"Shimla", Manali:"Manali",
-    Dharamshala:"Dharamshala / McLeod Ganj", Amritsar:"Amritsar"
+    Shimla:"Shimla", Manali:"Manali", Dharamshala:"Dharamshala / McLeod Ganj",
+    Kullu:"Kullu", Mandi:"Mandi", Amritsar:"Amritsar", Pathankot:"Pathankot"
   };
 
-  // Free, keyless OSRM servers. Both are asked at once; first good answer wins.
+  var VEHICLE_TYPES = [
+    { key:"sedan", icon:"🚗", name:"Sedan",           sub:"Up to 4" },
+    { key:"suv",   icon:"🚙", name:"SUV / Innova",    sub:"Up to 7" },
+    { key:"tempo", icon:"🚐", name:"Tempo Traveller", sub:"Up to 14" }
+  ];
+  // Used only if the page's own FLEET_CATALOG is not available.
+  var FALLBACK_FLEET = {
+    sedan: [{ name:"Sedan",           off:3200, peak:5300 }],
+    suv:   [{ name:"SUV / Innova",    off:5200, peak:6600 }],
+    tempo: [{ name:"Tempo Traveller", off:5600, peak:8800 }]
+  };
+
+  var HALT_PER_NIGHT = 50;      // driver halt, multi-day trips (per the rate card on this page)
+  var TOLL_NOTE = "₹200–500";   // toll & parking, shown as an extra
+  var MAX_DAYS = 30;
+
   var ROUTE_PROVIDERS = [
     "https://router.project-osrm.org/route/v1/driving/",
     "https://routing.openstreetmap.de/routed-car/route/v1/driving/"
@@ -124,10 +226,35 @@
 
   function $(id){ return document.getElementById(id); }
 
-  var map = null, routeLayer = null, routeSeq = 0;
-  var markers = {}, lastRoute = null, activePlace = null;
+  var state = { from:"", to:"", cat:"sedan", model:0, days:1, peak:isPeakMonth(new Date().getMonth()) };
+  var map = null, routeLayer = null, endLayer = null, routeSeq = 0, lastRoute = null;
 
-  // ── Pure helpers (no DOM) ─────────────────────────────────────
+  // ── Pure helpers ──────────────────────────────────────────────
+  function isPeakMonth(m){ return m === 4 || m === 5 || m === 8 || m === 9; } // May, Jun, Sep, Oct
+
+  function inr(n){ return "₹" + Math.round(n).toLocaleString("en-IN"); }
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c];
+    });
+  }
+
+  function computeFare(vehicle, days, peak){
+    var rate = peak ? vehicle.peak : vehicle.off;
+    var nights = Math.max(0, days - 1);
+    var base = rate * days;
+    var halt = HALT_PER_NIGHT * nights;
+    return { rate:rate, days:days, nights:nights, base:base, halt:halt, total:base + halt };
+  }
+
+  function formatDuration(sec){
+    var mins = Math.max(1, Math.round(sec / 60));
+    var h = Math.floor(mins / 60), m = mins % 60;
+    if (h === 0) return m + " min";
+    return h + " h" + (m ? " " + m + " min" : "");
+  }
+
   function fetchRoadRoute(a, b, fetchImpl){
     fetchImpl = fetchImpl || fetch;
     var ctrl = new AbortController();
@@ -154,21 +281,30 @@
     });
   }
 
-  function formatDuration(sec){
-    var mins = Math.max(1, Math.round(sec / 60));
-    var h = Math.floor(mins / 60), m = mins % 60;
-    if (h === 0) return m + " min";
-    return h + " h" + (m ? " " + m + " min" : "");
+  // ── Fleet data (reuses the page's own FLEET_CATALOG so rates stay in one place) ──
+  function vehiclesFor(cat){
+    try {
+      var list = FLEET_CATALOG[cat] && FLEET_CATALOG[cat].vehicles;
+      if (list && list.length) return list;
+    } catch (e) { /* not defined: use fallback */ }
+    return FALLBACK_FLEET[cat];
   }
+  function currentVehicle(){
+    var list = vehiclesFor(state.cat);
+    return list[Math.min(state.model, list.length - 1)];
+  }
+
+  // ── Booking-form helpers ──────────────────────────────────────
+  function markSynced(el){ if (el && el.parentElement) el.parentElement.classList.add("synced"); }
 
   function setNoteLines(lines){
     var notes = $("f-notes");
     if (!notes) return;
     var kept = notes.value.split("\n").filter(function(l){
-      return !/^(Route|Pickup point):/i.test(l.trim());
+      return !/^(Route|Pickup point|Days|Vehicle|Est\. fare):/i.test(l.trim());
     });
     notes.value = lines.concat(kept).join("\n").trim();
-    if (notes.parentElement) notes.parentElement.classList.add("synced");
+    markSynced(notes);
   }
 
   function fillPickup(key){
@@ -176,25 +312,18 @@
     if (!sel) return false;
     var exact = PICKUP_OPTIONS[key];
     sel.value = exact || "Custom";
-    if (sel.parentElement) sel.parentElement.classList.add("synced");
-    return !exact; // true => needs a note
+    markSynced(sel);
+    return !exact;
   }
 
   function fillDrop(key){
     var drop = $("f-drop");
     if (!drop) return;
     drop.value = PLACES[key].label;
-    if (drop.parentElement) drop.parentElement.classList.add("synced");
+    markSynced(drop);
   }
 
-  function toBookingForm(){
-    var book = $("book");
-    if (book) book.scrollIntoView({ behavior:"smooth", block:"start" });
-  }
-
-  function toast(title, msg){
-    if (typeof showToast === "function") showToast(title, msg);
-  }
+  function toast(title, msg){ if (typeof showToast === "function") showToast(title, msg); }
 
   // ── UI ────────────────────────────────────────────────────────
   function setStatus(text, warn){
@@ -203,47 +332,84 @@
     el.classList.toggle("warn", !!warn);
   }
 
-  function fillSelects(){
-    var keys = Object.keys(PLACES);
-    ["tmFrom","tmTo"].forEach(function(id, i){
-      var sel = $(id);
-      var html = '<option value="">' + (i === 0 ? "Select start" : "Select destination") + "</option>";
-      keys.forEach(function(k){ html += '<option value="' + k + '">' + PLACES[k].label + "</option>"; });
-      sel.innerHTML = html;
-      sel.addEventListener("change", paintEnds);
+  function optionsHtml(groups, placeholder, exclude){
+    var html = '<option value="">' + esc(placeholder) + "</option>";
+    groups.forEach(function(g){
+      var opts = g.keys.filter(function(k){ return k !== exclude; });
+      if (!opts.length) return;
+      html += '<optgroup label="' + esc(g.label) + '">';
+      opts.forEach(function(k){ html += '<option value="' + k + '">' + esc(PLACES[k].label) + "</option>"; });
+      html += "</optgroup>";
+    });
+    return html;
+  }
+
+  function populateDest(){
+    var sel = $("tmTo");
+    sel.innerHTML = optionsHtml(DEST_GROUPS, "Select a tourist place", state.from);
+    sel.value = state.to;
+  }
+
+  function renderVehicleTypes(){
+    $("tmVehTypes").innerHTML = VEHICLE_TYPES.map(function(v){
+      return '<button type="button" class="tm-veh' + (v.key === state.cat ? " on" : "") + '" data-cat="' + v.key + '">' +
+        '<span class="ic">' + v.icon + '</span><span class="nm">' + esc(v.name) + '</span><span class="sub">' + esc(v.sub) + "</span></button>";
+    }).join("");
+  }
+
+  function renderModels(){
+    var list = vehiclesFor(state.cat);
+    if (state.model >= list.length) state.model = 0;
+    $("tmModel").innerHTML = list.map(function(v, i){
+      return '<option value="' + i + '">' + esc(v.name) + " · " + inr(v.off) + " / " + inr(v.peak) + "</option>";
+    }).join("");
+    $("tmModel").value = String(state.model);
+  }
+
+  function renderSeason(){
+    Array.prototype.forEach.call($("tmSeason").querySelectorAll("button"), function(b){
+      b.classList.toggle("on", (b.getAttribute("data-season") === "peak") === state.peak);
     });
   }
 
-  function paintEnds(){
-    var from = $("tmFrom").value, to = $("tmTo").value;
-    Object.keys(markers).forEach(function(k){
-      var el = markers[k].getElement();
-      if (!el) return;
-      var dot = el.querySelector(".tm-dot"), lab = el.querySelector(".tm-label");
-      if (dot) { dot.classList.toggle("start", k === from); dot.classList.toggle("end", k === to); }
-      if (lab) lab.classList.toggle("on", k === from || k === to || k === activePlace);
-    });
+  function renderCost(){
+    var v = currentVehicle();
+    var f = computeFare(v, state.days, state.peak);
+    var lines = '<div class="tm-line"><span>' + esc(v.name) + " · " + inr(f.rate) + "/day (" + (state.peak ? "peak" : "off-peak") +
+      ") × " + f.days + (f.days === 1 ? " day" : " days") + "</span><b>" + inr(f.base) + "</b></div>";
+    if (f.nights > 0) {
+      lines += '<div class="tm-line"><span>Driver night halt · ' + inr(HALT_PER_NIGHT) + " × " + f.nights +
+        (f.nights === 1 ? " night" : " nights") + "</span><b>" + inr(f.halt) + "</b></div>";
+    }
+    lines += '<div class="tm-line"><span>Toll &amp; parking (approx., extra)</span><b>' + TOLL_NOTE + "</b></div>";
+    $("tmLines").innerHTML = lines;
+    $("tmTotal").textContent = inr(f.total);
+    return f;
   }
 
-  function showPlace(key){
-    activePlace = key;
-    var p = PLACES[key];
-    $("tmPlaceName").textContent = p.label;
-    $("tmPlaceDesc").textContent = p.desc;
-    $("tmPlace").classList.add("open");
-    paintEnds();
-    if (map) map.panTo(p.coords, { animate:true, duration:.5 });
+  function renderAll(){
+    renderVehicleTypes(); renderModels(); renderSeason();
+    $("tmDays").value = String(state.days);
+    renderCost();
   }
 
+  function setDays(n){
+    n = parseInt(n, 10);
+    if (isNaN(n)) n = 1;
+    state.days = Math.max(1, Math.min(MAX_DAYS, n));
+    $("tmDays").value = String(state.days);
+    renderCost();
+  }
+
+  // ── Map ───────────────────────────────────────────────────────
   function initMap(){
-    if (map) return;
+    if (map) return true;
     var box = $("tmMap");
     if (typeof L === "undefined") {
-      box.innerHTML = '<p style="padding:24px;text-align:center;color:#9b8a74;font-size:13px">The map could not load. You can still book using the form below.</p>';
-      return;
+      box.innerHTML = '<p style="padding:24px;text-align:center;color:#9b8a74;font-size:13px">The map could not load, but your trip cost is shown below.</p>';
+      return false;
     }
-    map = L.map("tmMap", { zoomControl:true, scrollWheelZoom:false, attributionControl:true });
-
+    map = L.map("tmMap", { zoomControl:true, scrollWheelZoom:false, attributionControl:true }).setView([31.6, 77.0], 7);
     var light = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
       maxZoom:18, subdomains:"abcd",
       attribution:"Map data: © OpenStreetMap contributors | Tiles: © CARTO"
@@ -255,119 +421,172 @@
     light.addTo(map);
     L.control.layers({ "Light": light, "Terrain": topo }, null, { position:"topright", collapsed:true }).addTo(map);
     map.zoomControl.setPosition("bottomright");
-
-    var bounds = [];
-    Object.keys(PLACES).forEach(function(key){
-      var p = PLACES[key];
-      bounds.push(p.coords);
-      var icon = L.divIcon({
-        className:"",
-        html:'<div class="tm-dot"></div><div class="tm-label">' + p.label + "</div>",
-        iconSize:[22,22], iconAnchor:[11,11]
-      });
-      var m = L.marker(p.coords, { icon:icon, keyboard:true, title:p.label }).addTo(map);
-      m.on("click", function(){ showPlace(key); });
-      markers[key] = m;
-    });
-    map.fitBounds(bounds, { padding:[24,24] });
-
-    function syncZoomClass(){ $("tmMap").classList.toggle("tm-far", map.getZoom() < 8); }
-    map.on("zoomend", syncZoomClass);
-    syncZoomClass();
-
+    endLayer = L.layerGroup().addTo(map);
     map.on("focus", function(){ map.scrollWheelZoom.enable(); });
     map.on("blur", function(){ map.scrollWheelZoom.disable(); });
-    paintEnds();
+    return true;
+  }
+
+  function endpointMarker(key, cls, letter){
+    var p = PLACES[key];
+    var icon = L.divIcon({
+      className:"",
+      html:'<div class="tm-dot ' + cls + '">' + letter + '</div><div class="tm-label">' + esc(p.label) + "</div>",
+      iconSize:[22,22], iconAnchor:[11,11]
+    });
+    return L.marker(p.coords, { icon:icon, interactive:false, keyboard:false });
   }
 
   function drawRoute(){
-    var fromKey = $("tmFrom").value, toKey = $("tmTo").value;
-    if (!fromKey || !toKey) { setStatus("Choose both a start and a destination first.", true); return; }
-    if (fromKey === toKey) { setStatus("Start and destination are the same place.", true); return; }
-    if (!map) { initMap(); if (!map) return; }
-
-    var a = PLACES[fromKey], b = PLACES[toKey];
+    var a = PLACES[state.from], b = PLACES[state.to];
     var seq = ++routeSeq;
-    var go = $("tmGo");
-    go.disabled = true;
+    lastRoute = null;
+
+    $("tmRouteTitle").textContent = a.label + " → " + b.label;
+    $("tmRouteMeta").textContent = "Finding route…";
     setStatus("Finding route…", false);
-    $("tmRoute").classList.remove("open");
-    if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
+
+    var mapOk = initMap();
+    if (mapOk) {
+      map.invalidateSize();
+      if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
+      endLayer.clearLayers();
+      endpointMarker(state.from, "start", "A").addTo(endLayer);
+      endpointMarker(state.to, "end", "B").addTo(endLayer);
+      map.fitBounds([a.coords, b.coords], { padding:[50,50], maxZoom:11 });
+    }
 
     fetchRoadRoute(a, b).then(function(route){
-      if (seq !== routeSeq) return; // a newer request replaced this one
-      go.disabled = false;
+      if (seq !== routeSeq) return; // a newer selection replaced this one
+      var road = !!route;
+      lastRoute = { from:state.from, to:state.to, km: road ? Math.round(route.distance / 1000) : null };
 
-      var latlngs, road = !!route;
-      if (road) latlngs = route.geometry.coordinates.map(function(c){ return [c[1], c[0]]; });
-      else latlngs = [a.coords, b.coords];
+      if (mapOk) {
+        var latlngs = road ? route.geometry.coordinates.map(function(c){ return [c[1], c[0]]; }) : [a.coords, b.coords];
+        routeLayer = L.polyline(latlngs, {
+          color:"#b07d3a", weight:4, opacity:.95, lineCap:"round", lineJoin:"round",
+          dashArray: road ? null : "2 10"
+        }).addTo(map);
+        map.fitBounds(routeLayer.getBounds(), { padding:[50,50], maxZoom:11 });
+      }
 
-      routeLayer = L.polyline(latlngs, {
-        color:"#b07d3a", weight:4, opacity:.95, lineCap:"round", lineJoin:"round",
-        dashArray: road ? null : "2 10"
-      }).addTo(map);
-      map.fitBounds(routeLayer.getBounds(), { padding:[40,40], maxZoom:11 });
-
-      lastRoute = { from:fromKey, to:toKey, km: road ? Math.round(route.distance / 1000) : null };
-      $("tmRouteTitle").textContent = a.label + " → " + b.label;
-      $("tmRouteMeta").textContent = road
-        ? "About " + lastRoute.km + " km by road · approx. " + formatDuration(route.duration) + " drive"
-        : "Road route unavailable right now. The line shown is a straight line, not the driving route.";
-      $("tmRoute").classList.add("open");
-      setStatus(road ? "Route ready." : "Road route unavailable right now — showing a direct line.", !road);
-      paintEnds();
+      if (road) {
+        var meta = "About " + lastRoute.km + " km by road · approx. " + formatDuration(route.duration) + " drive";
+        if (route.duration >= 8 * 3600) meta += " · long drive, consider 2 or more days";
+        $("tmRouteMeta").textContent = meta;
+        setStatus("Route ready. Now choose your vehicle and number of days below.", false);
+      } else {
+        $("tmRouteMeta").textContent = "Road route unavailable right now. The line shown is straight, not the driving route.";
+        setStatus("Road route unavailable right now — showing a direct line. Your cost estimate below is not affected.", true);
+      }
     });
   }
 
-  function init(){
-    fillSelects();
+  // ── Flow ──────────────────────────────────────────────────────
+  function hideResult(){
+    routeSeq++; // drop any in-flight route
+    $("tmResult").hidden = true;
+  }
 
-    $("tmGo").addEventListener("click", drawRoute);
-    $("tmSwap").addEventListener("click", function(){
-      var f = $("tmFrom"), t = $("tmTo"), tmp = f.value;
-      f.value = t.value; t.value = tmp;
-      paintEnds();
-    });
-
-    $("tmPlaceStart").addEventListener("click", function(){
-      if (!activePlace) return;
-      $("tmFrom").value = activePlace; paintEnds();
-      setStatus($("tmTo").value ? "Tap “Show route” to see the route." : "Start set. Now choose a destination.", false);
-    });
-    $("tmPlaceEnd").addEventListener("click", function(){
-      if (!activePlace) return;
-      $("tmTo").value = activePlace; paintEnds();
-      setStatus($("tmFrom").value ? "Tap “Show route” to see the route." : "Destination set. Now choose a start.", false);
-    });
-    $("tmPlaceTaxi").addEventListener("click", function(){
-      if (!activePlace) return;
-      fillDrop(activePlace);
-      toast("Destination added", PLACES[activePlace].label + " is filled in the booking form.");
-      toBookingForm();
-    });
-
-    $("tmBook").addEventListener("click", function(){
-      if (!lastRoute) return;
-      var needsNote = fillPickup(lastRoute.from);
-      fillDrop(lastRoute.to);
-      var lines = ["Route: " + PLACES[lastRoute.from].label + " → " + PLACES[lastRoute.to].label +
-                   (lastRoute.km ? " (~" + lastRoute.km + " km by road)" : "")];
-      if (needsNote) lines.push("Pickup point: " + PLACES[lastRoute.from].label + " (please confirm exact spot)");
-      setNoteLines(lines);
-      toast("Route added", PLACES[lastRoute.from].label + " → " + PLACES[lastRoute.to].label);
-      toBookingForm();
-    });
-
-    // Build the map only when the section is near the screen: saves data on mobile.
-    var target = $("route-map");
-    if ("IntersectionObserver" in window && target) {
-      var io = new IntersectionObserver(function(entries){
-        if (entries.some(function(e){ return e.isIntersecting; })) { io.disconnect(); initMap(); }
-      }, { rootMargin:"400px 0px" });
-      io.observe(target);
+  function onBothChosen(){
+    $("tmResult").hidden = false;
+    var to = PLACES[state.to];
+    var cau = $("tmCaution");
+    if (to.seasonal) {
+      cau.textContent = "Road access to " + to.label + " is seasonal and may need permits. Snow or landslides can close it, so we confirm access when you book.";
+      cau.hidden = false;
     } else {
-      initMap();
+      cau.hidden = true;
     }
+    renderAll();
+    drawRoute();
+    var res = $("tmResult");
+    if (res.scrollIntoView) res.scrollIntoView({ behavior:"smooth", block:"nearest" });
+  }
+
+  function onFromChange(){
+    state.from = $("tmFrom").value;
+    var toSel = $("tmTo");
+    if (!state.from) {
+      state.to = "";
+      toSel.disabled = true;
+      toSel.innerHTML = '<option value="">Choose start point first</option>';
+      hideResult();
+      setStatus("Start by choosing where the taxi picks you up.", false);
+      return;
+    }
+    if (state.to === state.from) state.to = "";
+    toSel.disabled = false;
+    populateDest();
+    if (state.to) { onBothChosen(); return; }
+    hideResult();
+    setStatus("Now choose which tourist place in Himachal you want to go to.", false);
+  }
+
+  function onToChange(){
+    state.to = $("tmTo").value;
+    if (!state.to) { hideResult(); setStatus("Now choose which tourist place in Himachal you want to go to.", false); return; }
+    onBothChosen();
+  }
+
+  function bookTrip(){
+    if (!state.from || !state.to) return;
+    var v = currentVehicle();
+    var f = computeFare(v, state.days, state.peak);
+    var a = PLACES[state.from], b = PLACES[state.to];
+    var needsNote = fillPickup(state.from);
+    fillDrop(state.to);
+
+    var routeKm = (lastRoute && lastRoute.from === state.from && lastRoute.to === state.to && lastRoute.km) ? lastRoute.km : null;
+    var lines = [
+      "Route: " + a.label + " → " + b.label + (routeKm ? " (~" + routeKm + " km by road)" : ""),
+      "Days: " + f.days,
+      "Vehicle: " + v.name + " (" + (state.peak ? "peak" : "off-peak") + " rate)",
+      "Est. fare: " + inr(f.total) + " (toll & parking extra)"
+    ];
+    if (needsNote) lines.splice(1, 0, "Pickup point: " + a.label + " (please confirm exact spot)");
+    setNoteLines(lines);
+
+    // Keep the booking card's "Vehicle & Fare" panel and WhatsApp message in sync.
+    var fareText = inr(f.total) + " (" + f.days + (f.days === 1 ? " day" : " days") + ")";
+    try { selectedVehicle = v.name; selectedFare = fareText; } catch (e) { /* page globals not available */ }
+    var vd = $("vehicle-display"), fv = $("fare-val");
+    if (vd) vd.textContent = v.name;
+    if (fv) fv.textContent = fareText;
+
+    toast("Trip added", a.label + " → " + b.label + " · " + inr(f.total));
+    var book = $("book");
+    if (book) book.scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+
+  function init(){
+    $("tmFrom").innerHTML = optionsHtml(START_GROUPS, "Select start point", "");
+    $("tmTo").innerHTML = '<option value="">Choose start point first</option>';
+
+    $("tmFrom").addEventListener("change", onFromChange);
+    $("tmTo").addEventListener("change", onToChange);
+
+    $("tmVehTypes").addEventListener("click", function(e){
+      var btn = e.target.closest ? e.target.closest("button[data-cat]") : null;
+      if (!btn) return;
+      state.cat = btn.getAttribute("data-cat");
+      state.model = 0;
+      renderVehicleTypes(); renderModels(); renderCost();
+    });
+    $("tmModel").addEventListener("change", function(){
+      state.model = parseInt($("tmModel").value, 10) || 0;
+      renderCost();
+    });
+    $("tmDaysMinus").addEventListener("click", function(){ setDays(state.days - 1); });
+    $("tmDaysPlus").addEventListener("click", function(){ setDays(state.days + 1); });
+    $("tmDays").addEventListener("change", function(){ setDays($("tmDays").value); });
+    $("tmSeason").addEventListener("click", function(e){
+      var btn = e.target.closest ? e.target.closest("button[data-season]") : null;
+      if (!btn) return;
+      state.peak = btn.getAttribute("data-season") === "peak";
+      renderSeason(); renderCost();
+    });
+    $("tmBook").addEventListener("click", bookTrip);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
