@@ -23,12 +23,21 @@
 <meta name="twitter:image" content="https://himachalexplorer.in/assets/images/1hero.jpg">
 <meta name="theme-color" content="#10261a">
 
-<link rel="stylesheet" href="/assets/css/site-chrome.css">
-<link rel="stylesheet" href="/assets/css/he-unified.css">
-<link rel="stylesheet" href="/assets/css/theme-v2.css">
+<!-- Critical CSS is already inlined above. Full stylesheets load non-blocking. -->
+<link rel="preload" href="/assets/css/site-chrome.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/assets/css/he-unified.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/assets/css/theme-v2.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+  <link rel="stylesheet" href="/assets/css/site-chrome.css">
+  <link rel="stylesheet" href="/assets/css/he-unified.css">
+  <link rel="stylesheet" href="/assets/css/theme-v2.css">
+</noscript>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<!-- Fonts: non-blocking with display=swap already in URL -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600;700&family=Jost:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"></noscript>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script src="/assets/js/he-mobile-nav.js" defer></script>
 <script src="/assets/js/package-data.js" defer></script>
@@ -47,6 +56,7 @@
 </script>
 
 <style>
+/* ===== CRITICAL CSS (above-the-fold: header, hero, first sections) ===== */
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;font-family:'Jost',Arial,sans-serif;background:#fff;color:var(--nv-text,#152233);line-height:1.6}
@@ -682,6 +692,47 @@ body{
       <div class="jri-card-body"><div class="jri-tag">Travelling Together</div><div class="jri-title">Calculate Group Price</div><div class="jri-desc">Headcount, trip length &amp; month in — live per-person cost out.</div><span class="nv-btn nv-btn-sm nv-btn-outline">Calculate Price →</span></div>
     </a>
   </div>
+</section>
+
+<!-- 2b. TAXI BOOKING & BIKE RENTAL -->
+<section class="nv-section nv-section-tight" aria-label="Taxi booking and bike rental" style="background:#f6f4ee;padding-top:48px;padding-bottom:56px;">
+  <div class="nv-section-head" style="max-width:900px;margin:0 auto 28px;padding:0 20px;text-align:left;">
+    <div class="jri-eyebrow" style="margin-bottom:6px;">— Local Transport —</div>
+    <h2 style="font-family:'Cormorant',serif;font-size:clamp(26px,3.8vw,36px);color:#152018;margin:0 0 8px;font-weight:700;">Taxi Booking &amp; Bike Rental</h2>
+    <p style="color:#6b7a70;font-size:14px;margin:0;max-width:620px;line-height:1.65;">Book a private taxi for intercity transfers or rent a bike/scooty for flexible local exploration. Both options are available across major Himachal destinations.</p>
+  </div>
+
+  <div style="max-width:1180px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <!-- Taxi Card -->
+    <a href="/taxi-service.html" class="jri-card" style="background-image:url('/assets/images/misc-fixed/shimla.jpg');min-height:240px;border-radius:16px;overflow:hidden;position:relative;display:flex;align-items:flex-end;text-decoration:none;color:#fff;box-shadow:0 14px 35px rgba(21,32,24,.10);">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,24,17,0) 35%,rgba(10,24,17,.92) 100%);"></div>
+      <div class="jri-card-body" style="position:relative;z-index:1;padding:22px;width:100%;">
+        <div class="jri-tag" style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#f5a623;font-weight:700;margin-bottom:6px;">Private Transfers</div>
+        <div class="jri-title" style="font-family:'Cormorant',serif;font-size:24px;font-weight:700;margin-bottom:6px;">Taxi Booking</div>
+        <div class="jri-desc" style="font-size:13px;color:#dce6f0;margin-bottom:14px;max-width:320px;line-height:1.5;">Airport / station pickups, intercity taxis (Chandigarh–Shimla, Delhi–Manali, Spiti circuits) and local sightseeing cars.</div>
+        <span class="nv-btn nv-btn-sm nv-btn-outline" style="display:inline-block;">Book a Taxi →</span>
+      </div>
+    </a>
+
+    <!-- Bike Card -->
+    <a href="/bike-rental.html" class="jri-card" style="background-image:url('/assets/images/bir-billing_3.jpg');min-height:240px;border-radius:16px;overflow:hidden;position:relative;display:flex;align-items:flex-end;text-decoration:none;color:#fff;box-shadow:0 14px 35px rgba(21,32,24,.10);">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,24,17,0) 35%,rgba(10,24,17,.92) 100%);"></div>
+      <div class="jri-card-body" style="position:relative;z-index:1;padding:22px;width:100%;">
+        <div class="jri-tag" style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#f5a623;font-weight:700;margin-bottom:6px;">Self-Drive &amp; Guided</div>
+        <div class="jri-title" style="font-family:'Cormorant',serif;font-size:24px;font-weight:700;margin-bottom:6px;">Bike &amp; Scooty Rental</div>
+        <div class="jri-desc" style="font-size:13px;color:#dce6f0;margin-bottom:14px;max-width:320px;line-height:1.5;">Daily rentals in Shimla and popular hubs, plus guided motorcycle packages to Spiti, Kinnaur, Manali &amp; Leh.</div>
+        <span class="nv-btn nv-btn-sm nv-btn-outline" style="display:inline-block;">Rent a Bike →</span>
+      </div>
+    </a>
+  </div>
+
+  <style>
+    @media (max-width:700px) {
+      section[aria-label="Taxi booking and bike rental"] > div:last-of-type {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
 </section>
 
 <!-- 3. INTERACTIVE MAP SECTION -->
