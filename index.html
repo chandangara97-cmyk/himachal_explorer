@@ -896,6 +896,28 @@ body{
 
 <div id="site-footer"></div>
 
+<!-- Travel agent partner access — kept in the site footer area -->
+<script>
+(function(){
+  function addPartnerFooterLink(){
+    var footer = document.getElementById("site-footer");
+    if(!footer || footer.querySelector('a[href="/agent-partner.html"]')) return;
+    var wrap = document.createElement("p");
+    wrap.className = "he-agent-partner-link";
+    wrap.style.cssText = "text-align:center;margin:0;padding:10px 16px 18px;font-size:.8rem";
+    wrap.innerHTML = '<a href="/agent-partner.html" title="For travel agents and partners" style="color:inherit;opacity:.6;text-decoration:none;border-bottom:1px dotted currentColor">Travel agent partner login</a>';
+    footer.appendChild(wrap);
+  }
+  document.addEventListener("DOMContentLoaded", addPartnerFooterLink);
+  window.addEventListener("load", addPartnerFooterLink);
+  var observer = new MutationObserver(addPartnerFooterLink);
+  document.addEventListener("DOMContentLoaded", function(){
+    var footer = document.getElementById("site-footer");
+    if(footer) observer.observe(footer, {childList:true,subtree:true});
+  });
+})();
+</script>
+
 <script src="/assets/js/site-chrome.js" defer></script>
 
 <script>
