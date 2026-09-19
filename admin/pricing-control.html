@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pricing Control | Himachal Explorer</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="/assets/css/site-chrome.css">
+<link rel="stylesheet" href="/assets/css/he-unified.css">
+<style>
+:root{--pc-ink:#241d17;--pc-muted:#766b60;--pc-gold:#b07d3a;--pc-bg:#f7f3ed;--pc-card:#fffdf9;--pc-line:#e6ddd1;--pc-green:#26734d;--pc-red:#a23a32}
+*{box-sizing:border-box}.pc-page{min-height:100vh;background:var(--pc-bg);padding:28px 18px 60px;color:var(--pc-ink)}
+.pc-shell{max-width:1180px;margin:auto}.pc-kicker{text-transform:uppercase;letter-spacing:.22em;font-size:10px;color:var(--pc-gold);font-weight:800}.pc-hero{padding:12px 0 24px}.pc-hero h1{font:400 38px Georgia,serif;margin:4px 0}.pc-hero p{max-width:720px;color:var(--pc-muted);line-height:1.6;margin:8px 0}
+.pc-status{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}.pc-badge{padding:6px 10px;border-radius:999px;background:#eee7dd;color:#5f554b;font-size:11px}.pc-badge.ok{background:#e7f3ec;color:var(--pc-green)}.pc-badge.err{background:#f8e8e6;color:var(--pc-red)}
+.pc-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.pc-card{background:var(--pc-card);border:1px solid var(--pc-line);border-radius:14px;padding:20px;box-shadow:0 8px 24px rgba(45,31,13,.05)}.pc-card h2{font:600 20px Georgia,serif;margin:0 0 5px}.pc-card>p{font-size:12px;color:var(--pc-muted);line-height:1.5;margin:0 0 18px}
+.pc-row{display:grid;grid-template-columns:minmax(160px,1fr) 130px 130px;gap:10px;align-items:center;padding:12px 0;border-top:1px solid var(--pc-line)}.pc-row:first-of-type{border-top:0}.pc-label b{display:block;font-size:13px}.pc-label span{display:block;font-size:10.5px;color:var(--pc-muted);margin-top:3px}.pc-input label{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--pc-muted);margin-bottom:4px}.pc-input input{width:100%;border:1px solid #d9cfc2;border-radius:7px;padding:9px;font:inherit;background:#fff}.pc-input input:focus{outline:2px solid #ead6bd;border-color:var(--pc-gold)}
+.pc-rate{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pc-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.pc-btn{border:0;border-radius:8px;padding:11px 16px;cursor:pointer;font-weight:700;font-size:12px}.pc-primary{background:var(--pc-gold);color:white}.pc-secondary{background:#eee7dd;color:var(--pc-ink)}.pc-danger{background:#f6e4e1;color:var(--pc-red)}
+.pc-preview{position:sticky;top:16px}.pc-preview-box{background:#f8f4ee;border:1px solid var(--pc-line);border-radius:10px;padding:16px;margin-top:14px}.pc-price{font:600 28px Georgia,serif}.pc-small{font-size:11px;color:var(--pc-muted)}.pc-breakdown{margin-top:14px;display:grid;gap:8px}.pc-breakdown div{display:flex;justify-content:space-between;font-size:12px}.pc-breakdown div span:last-child{font-weight:700}.pc-samples{margin-top:18px}.pc-sample{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--pc-line);font-size:12px}.pc-sample strong{font-size:13px}.pc-note{font-size:10.5px;color:var(--pc-muted);line-height:1.5;margin-top:14px}.pc-loading{padding:20px;text-align:center;color:var(--pc-muted)}
+@media(max-width:850px){.pc-grid{grid-template-columns:1fr}.pc-preview{position:static}.pc-row{grid-template-columns:1fr 1fr}.pc-label{grid-column:1/-1}.pc-rate{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+<main class="pc-page"><div class="pc-shell">
+<section class="pc-hero">
+<div class="pc-kicker">Himachal Explorer · Central Pricing</div>
+<h1>Pricing Control</h1>
+<p>Change the costing formula once. Every package calculator that uses the central Pricing Engine will use the new values after the page is refreshed.</p>
+<div class="pc-status"><span id="status" class="pc-badge">Loading pricing controls…</span><span id="updated" class="pc-badge"></span></div>
+</section>
+<div class="pc-grid">
+<section class="pc-card">
+<h2>Costing controls</h2><p>Percentage changes are applied to the existing component cost. Fixed adjustments are added after the percentage and are per package unless stated otherwise.</p>
+<div class="pc-row"><div class="pc-label"><b>Global package adjustment</b><span>Final adjustment before rounding</span></div><div class="pc-input"><label>%</label><input id="globalPct" type="number" step="0.1"></div><div class="pc-input"><label>Fixed ₹ / person</label><input id="globalFixed" type="number" step="50"></div></div>
+<div class="pc-row"><div class="pc-label"><b>Transport</b><span>Vehicle daily rate</span></div><div class="pc-input"><label>%</label><input id="transportPct" type="number" step="0.1"></div><div class="pc-input"><label>Fixed ₹ / day</label><input id="transportFixed" type="number" step="50"></div></div>
+<div class="pc-row"><div class="pc-label"><b>Hotel</b><span>Accommodation rate</span></div><div class="pc-input"><label>%</label><input id="hotelPct" type="number" step="0.1"></div><div class="pc-input"><label>Fixed ₹ / night</label><input id="hotelFixed" type="number" step="50"></div></div>
+<div class="pc-row"><div class="pc-label"><b>Driver & tolls</b><span>Driver halt + toll component</span></div><div class="pc-input"><label>%</label><input id="driverPct" type="number" step="0.1"></div><div class="pc-input"><label>Fixed ₹ / trip</label><input id="driverFixed" type="number" step="50"></div></div>
+<div class="pc-row"><div class="pc-label"><b>Service fee</b><span>Applied to the pre-fee subtotal</span></div><div class="pc-input"><label>Rate %</label><input id="serviceRate" type="number" step="0.1"></div><div class="pc-input"><label>Current</label><input id="serviceCurrent" type="text" readonly></div></div>
+<div class="pc-row"><div class="pc-label"><b>Margin</b><span>Applied after service fee</span></div><div class="pc-input"><label>Rate %</label><input id="marginRate" type="number" step="0.1"></div><div class="pc-input"><label>Current</label><input id="marginCurrent" type="text" readonly></div></div>
+<h2 style="margin-top:22px">Hotel tier adjustments</h2><p>Use these to move Budget, Premium and Luxury pricing independently.</p>
+<div class="pc-row"><div class="pc-label"><b>Budget</b><span>Budget hotel tier</span></div><div class="pc-input"><label>%</label><input id="budgetPct" type="number" step="0.1"></div><div class="pc-input"><label>Fixed ₹ / night</label><input id="budgetFixed" type="number" step="50"></div></div>
+<div class="pc-row"><div class="pc-label"><b>Premium</b><span>Premium hotel tier</span></div><div class="pc-input"><label>%</label><input id="premiumPct" type="number" step="0.1"></div><div class="pc-input"><label>Fixed ₹ / night</label><input id="premiumFixed" type="number" step="50"></div></div>
+<div class="pc-row"><div class="pc-label"><b>Luxury</b><span>Luxury hotel tier</span></div><div class="pc-input"><label>%</label><input id="luxuryPct" type="number" step="0.1"></div><div class="pc-input"><label>Fixed ₹ / night</label><input id="luxuryFixed" type="number" step="50"></div></div>
+<div class="pc-actions"><button class="pc-btn pc-primary" id="saveBtn">Save & Publish Prices</button><button class="pc-btn pc-secondary" id="previewBtn">Preview</button><button class="pc-btn pc-danger" id="resetBtn">Reset to Base</button></div>
+<div class="pc-note">Publishing writes the central configuration to Firebase at <b>/pricing_control</b>. It does not edit individual package pages or create duplicate price tables.</div>
+</section>
+<section class="pc-card pc-preview">
+<h2>Live package preview</h2><p>This is a live calculation using the same Pricing Engine used by the public package/booking pages.</p>
+<div class="pc-preview-box"><div class="pc-small">Example: 5 days · 2 travellers · Budget</div><div id="previewPrice" class="pc-price">₹— / person</div><div id="previewGroup" class="pc-small">Group total: ₹—</div><div class="pc-breakdown" id="breakdown"></div></div>
+<div class="pc-samples"><h2 style="font-size:16px">Available packages</h2><div id="samples" class="pc-loading">Loading packages…</div></div>
+<div class="pc-note"><b>Important:</b> Existing pages cache the latest pricing control locally for fast rendering and refresh it from Firebase. After publishing, refresh an open public page to see the new cost.</div>
+</section>
+</div></div></main>
+<div id="site-footer"></div>
+<script src="/assets/js/site-chrome.js"></script>
+<script src="/assets/js/package-data.js"></script>
+<script src="/assets/js/pricing-engine.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id), money=n=>'₹'+Math.round(n||0).toLocaleString('en-IN');
+  const fields={
+    globalPct:['global','percent'],globalFixed:['global','fixed'],transportPct:['transport','percent'],transportFixed:['transport','fixed'],
+    hotelPct:['hotel','percent'],hotelFixed:['hotel','fixed'],driverPct:['driverTolls','percent'],driverFixed:['driverTolls','fixed'],
+    serviceRate:['serviceFee','rate'],marginRate:['margin','rate'],budgetPct:['tiers','budget','percent'],budgetFixed:['tiers','budget','fixed'],
+    premiumPct:['tiers','premium','percent'],premiumFixed:['tiers','premium','fixed'],luxuryPct:['tiers','luxury','percent'],luxuryFixed:['tiers','luxury','fixed']
+  };
+  let packages=[];
+  function getAt(obj,path){return path.reduce((x,k)=>x&&x[k],obj)}
+  function setAt(obj,path,value){let x=obj;path.slice(0,-1).forEach(k=>{if(!x[k])x[k]={};x=x[k]});x[path[path.length-1]]=value}
+  function fill(c){Object.keys(fields).forEach(id=>$(id).value=getAt(c,fields[id])??0);$('serviceCurrent').value=(Number(c.serviceFee.rate||0)*100).toFixed(1)+'%';$('marginCurrent').value=(Number(c.margin.rate||0)*100).toFixed(1)+'%';}
+  function read(){const c=PricingEngine.getControl();Object.keys(fields).forEach(id=>setAt(c,fields[id],Number($(id).value)||0));c.enabled=true;c.updatedAt=new Date().toISOString();c.updatedBy='Pricing Control';return c;}
+  function status(text,kind){$('status').textContent=text;$('status').className='pc-badge '+(kind||'')}
+  function renderPreview(){const c=read();PricingEngine.setLocalControl(c);const r=PricingEngine.computePrice({days:5,pax:2,tier:'budget'});$('previewPrice').textContent=money(r.totalPP)+' / person';$('previewGroup').textContent='Group total: '+money(r.groupTotal);const b=r.breakdown;$('breakdown').innerHTML=[['Transport',money(b.vehicleBase)],['Driver + tolls',money(b.driverHalt+b.toll)],['Hotel',money(b.hotelPP*2)],['Service fee',money(b.serviceFee*2)],['Margin',money(b.marginAmt*2)],['Final / person',money(r.totalPP)]].map(x=>'<div><span>'+x[0]+'</span><span>'+x[1]+'</span></div>').join('');renderSamples();}
+  function renderSamples(){if(!packages.length)return;$('samples').innerHTML=packages.slice(0,12).map(p=>{const r=PricingEngine.computePrice({days:p.days||1,pax:2,tier:'budget'});return '<div class="pc-sample"><span>'+String(p.name||p.id).replace(/[<>&]/g,'')+'</span><strong>'+money(r.totalPP)+'/pp</strong></div>'}).join('')}
+  async function save(){const c=read();const btn=$('saveBtn');btn.disabled=true;btn.textContent='Publishing…';try{const res=await fetch(PricingEngine.DB_BASE+PricingEngine.CONFIG_PATH,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(c)});if(!res.ok)throw new Error('Firebase rejected the update');PricingEngine.setLocalControl(c);status('Published successfully','ok');$('updated').textContent='Updated '+new Date(c.updatedAt).toLocaleString('en-IN');renderSamples();}catch(e){status('Publish failed — check Firebase write permissions','err');console.error(e)}finally{btn.disabled=false;btn.textContent='Save & Publish Prices'}}
+  function reset(){const c=JSON.parse(JSON.stringify(PricingEngine.DEFAULT_CONTROL));fill(c);PricingEngine.setLocalControl(c);renderPreview();status('Base values loaded','');}
+  $('saveBtn').onclick=save;$('previewBtn').onclick=renderPreview;$('resetBtn').onclick=reset;Object.keys(fields).forEach(id=>$(id).addEventListener('input',renderPreview));
+  PricingEngine.ready().then(c=>{fill(c);if(c.updatedAt)$('updated').textContent='Last published '+new Date(c.updatedAt).toLocaleString('en-IN');status('Pricing control loaded','ok');renderPreview();});
+  PackageData.load().then(d=>{packages=d.packages||[];renderSamples()}).catch(()=>{$('samples').textContent='Package list unavailable.'});
+})();
+</script>
+</body></html>
