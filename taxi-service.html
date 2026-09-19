@@ -307,6 +307,7 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
     <div class="tab-nav-dark">
       <button class="tab-btn-dark active" onclick="switchTab(event,'del')">✈️ Delhi Airport (DEL)</button>
       <button class="tab-btn-dark" onclick="switchTab(event,'flight')">✈️ Chandigarh (IXC)</button>
+      <button class="tab-btn-dark" onclick="switchTab(event,'opensky')">📡 Live Air Traffic</button>
       <button class="tab-btn-dark" onclick="switchTab(event,'ndls')">🚂 New Delhi (NDLS)</button>
       <button class="tab-btn-dark" onclick="switchTab(event,'cdg')">🚂 Chandigarh Jn.</button>
       <button class="tab-btn-dark" onclick="switchTab(event,'klk')">🚂 Kalka (KLK)</button>
@@ -326,6 +327,18 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
         <iframe title="Chandigarh Airport live arrivals" src="https://www.avionio.com/widget/en/ixc/arrivals?style=2" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <p class="dark-updated">Live data via Avionio · <a href="https://www.avionio.com/en/airport/ixc/arrivals" target="_blank" rel="noopener" style="color:var(--gold2)">Open full board</a></p>
+    </div>
+
+    <div id="opensky" class="tab-content">
+      <p style="font-size:12px;color:#9b8a74;margin:0 0 12px">Live aircraft positions right now — via OpenSky Network (open ADS-B data, not a fixed schedule). Use this to see if your inbound flight's airspace is currently busy or clear.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px" id="opensky-airport-buttons"></div>
+      <div class="dark-table-wrap">
+        <table class="dark-table">
+          <thead><tr><th>Callsign</th><th>Altitude</th><th>Speed</th><th>Origin</th><th>Status</th><th></th></tr></thead>
+          <tbody id="opensky-tbody"><tr><td colspan="6" style="text-align:center;color:#4a3a25;padding:20px;font-style:italic">Loading…</td></tr></tbody>
+        </table>
+      </div>
+      <p class="dark-updated"><strong id="opensky-updated">Synchronizing…</strong></p>
     </div>
 
     <div id="ndls" class="tab-content">
@@ -926,6 +939,7 @@ function switchTab(e, tab) {
   
   // Flights use live Avionio embeds (no fetch). Trains use TrainTrack.
   if (tab === 'ndls' || tab === 'cdg' || tab === 'klk') loadTrains(tab);
+  if (tab === 'opensky') loadOpenSky();
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -1161,6 +1175,129 @@ async function loadTrains(station) {
 
   tbody.innerHTML = results.join('') || '<tr><td colspan="7" style="text-align:center;color:#6b5740;padding:20px">No live data right now. Try again shortly.</td></tr>';
   if (upd) upd.textContent = `Live via TrainTrack · Updated ${new Date().toLocaleTimeString('en-IN')}`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LIVE AIR TRAFFIC (OpenSky Network — no API key)
+// ═══════════════════════════════════════════════════════════════
+const OPENSKY_AIRPORTS = {
+  del: { label: 'Delhi (DEL)', lamin: 28.25, lomin: 76.85, lamax: 28.85, lomax: 77.45 },
+  ixc: { label: 'Chandigarh (IXC)', lamin: 30.35, lomin: 76.45, lamax: 30.95, lomax: 77.05 },
+  atq: { label: 'Amritsar (ATQ)', lamin: 31.40, lomin: 74.50, lamax: 32.00, lomax: 75.10 }
+};
+let openskyAirport = 'del';
+let openskyTimer = null;
+
+function initOpenSkyButtons() {
+  const wrap = document.getElementById('opensky-airport-buttons');
+  if (!wrap || wrap.children.length) return;
+  Object.keys(OPENSKY_AIRPORTS).forEach(key => {
+    const b = document.createElement('button');
+    b.textContent = OPENSKY_AIRPORTS[key].label;
+    b.className = 'tab-btn-dark' + (key === openskyAirport ? ' active' : '');
+    b.style.borderRadius = '30px';
+    b.style.background = key === openskyAirport ? 'rgba(201,146,72,.18)' : 'rgba(255,255,255,.04)';
+    b.onclick = () => {
+      openskyAirport = key;
+      Array.from(wrap.children).forEach(el => { el.classList.remove('active'); el.style.background = 'rgba(255,255,255,.04)'; });
+      b.classList.add('active');
+      b.style.background = 'rgba(201,146,72,.18)';
+      loadOpenSky();
+    };
+    wrap.appendChild(b);
+  });
+}
+
+function openskyFmtAlt(m) { return (m === null || m === undefined) ? '—' : Math.round(m * 3.28084).toLocaleString() + ' ft'; }
+function openskyFmtSpeed(ms) { return (ms === null || ms === undefined) ? '—' : Math.round(ms * 1.94384) + ' kt'; }
+
+async function loadOpenSky() {
+  initOpenSkyButtons();
+  const a = OPENSKY_AIRPORTS[openskyAirport];
+  const tbody = document.getElementById('opensky-tbody');
+  const upd = document.getElementById('opensky-updated');
+  if (!tbody) return;
+  tbody.innerHTML = '<tr class="loading-row"><td colspan="6">Retrieving live aviation data…</td></tr>';
+
+  const url = `https://opensky-network.org/api/states/all?lamin=${a.lamin}&lomin=${a.lomin}&lamax=${a.lamax}&lomax=${a.lomax}`;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    let states = data.states || [];
+    if (!states.length) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#4a3a25;padding:20px;font-style:italic">No aircraft currently detected near ' + a.label + '.</td></tr>';
+    } else {
+      states.sort((x, y) => (x[8] === y[8]) ? (y[7]||0) - (x[7]||0) : (x[8] ? 1 : -1));
+      tbody.innerHTML = states.slice(0, 20).map(s => {
+        const callsignRaw = (s[1] || '').trim();
+        const callsign = callsignRaw || '—';
+        const country = s[2] || '—';
+        const onGround = s[8];
+        const clickable = !!callsignRaw;
+        const rowAttrs = clickable
+          ? `class="clickable-row" role="button" tabindex="0" onclick="syncOpenSkyArrival('${callsign.replace(/'/g,"")}','${openskyAirport}',${s[7] === null || s[7] === undefined ? 'null' : s[7]},${s[11] === null || s[11] === undefined ? 'null' : s[11]},${onGround ? 'true' : 'false'});this.parentElement.querySelectorAll('tr').forEach(r=>r.classList.remove('selected-row'));this.classList.add('selected-row');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"`
+          : '';
+        return `<tr ${rowAttrs}>
+          <td><strong style="color:#fff">${callsign}</strong></td>
+          <td>${openskyFmtAlt(s[7])}</td>
+          <td>${openskyFmtSpeed(s[9])}</td>
+          <td>${country}</td>
+          <td><span class="status-badge ${onGround ? 'status-cancelled' : 'status-on-time'}">${onGround ? 'On ground' : 'Airborne'}</span></td>
+          <td>${clickable ? '<span class="sync-btn" aria-hidden="true">Sync</span>' : ''}</td>
+        </tr>`;
+      }).join('');
+    }
+    if (upd) upd.textContent = `Live via OpenSky Network · ${data.states ? data.states.length : 0} aircraft near ${a.label} · Updated ${new Date().toLocaleTimeString('en-IN')}`;
+  } catch (err) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#4a3a25;padding:20px;font-style:italic">Live data temporarily unavailable. Retrying shortly…</td></tr>';
+    if (upd) upd.textContent = 'Retry in progress…';
+  }
+  clearTimeout(openskyTimer);
+  openskyTimer = setTimeout(() => { if (activeStation === 'opensky') loadOpenSky(); }, 15000);
+}
+
+function estimateLandingTime(altitude, vertRate, onGround) {
+  const now = new Date();
+  if (onGround) return { time: now, estimated: false }; // already on the ground = landed now
+  if (typeof vertRate === 'number' && vertRate < -0.5 && typeof altitude === 'number' && altitude > 0) {
+    // Descending: project time-to-touchdown from current altitude / sink rate, capped at 40 min
+    const secondsToLand = Math.min(altitude / Math.abs(vertRate), 40 * 60);
+    return { time: new Date(now.getTime() + secondsToLand * 1000), estimated: true };
+  }
+  return { time: now, estimated: false }; // not clearly descending — no reliable estimate, fall back to now
+}
+
+function syncOpenSkyArrival(callsign, sourceKey, altitude, vertRate, onGround) {
+  const a = OPENSKY_AIRPORTS[sourceKey];
+  const pickupSel = document.getElementById('f-pickup');
+
+  const { time: landingTime, estimated } = estimateLandingTime(altitude, vertRate, onGround);
+  const pickupTime = new Date(landingTime.getTime() + 30 * 60000);
+  const landingTimeStr = `${String(landingTime.getHours()).padStart(2,'0')}:${String(landingTime.getMinutes()).padStart(2,'0')}`;
+  const pickupTimeStr = `${String(pickupTime.getHours()).padStart(2,'0')}:${String(pickupTime.getMinutes()).padStart(2,'0')}`;
+  const today = new Date().toISOString().slice(0,10);
+
+  document.getElementById('f-date').value = today;
+  document.getElementById('f-time').value = pickupTimeStr;
+  document.getElementById('f-flightno').value = `${callsign} (live)`;
+
+  const pickupMap = {
+    del: 'Delhi Airport (DEL)',
+    ixc: 'Chandigarh Airport (IXC)',
+    atq: 'Amritsar'
+  };
+  if (pickupSel && pickupMap[sourceKey]) pickupSel.value = pickupMap[sourceKey];
+
+  document.getElementById('f-date').parentElement.classList.add('synced');
+  document.getElementById('f-time').parentElement.classList.add('synced');
+  document.getElementById('f-flightno').parentElement.classList.add('synced');
+
+  const landingLabel = onGround ? `landed ~${landingTimeStr}` : estimated ? `est. landing ~${landingTimeStr}` : `landing time unknown, using now (${landingTimeStr})`;
+  document.getElementById('f-time-hint').textContent = `✓ ${callsign} — ${landingLabel} near ${a.label}, pickup set 30 min after`;
+
+  showToast('Live Aircraft Synced', `${callsign} · pickup at ${pickupTimeStr} (30 min after ${onGround ? 'landing' : 'est. landing'}).`);
+  document.getElementById('book')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ═══════════════════════════════════════════════════════════════
