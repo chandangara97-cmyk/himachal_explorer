@@ -252,7 +252,7 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
   <div class="hero-content">
     <div class="hero-eyebrow">🚕 Premium Transportation</div>
     <h1>Hill-Trained <em>Drivers</em> • Fixed <em>Fares</em></h1>
-    <p class="hero-desc">Expert taxi service across Himachal Pradesh. Airport pickups, railway station transfers, sightseeing tours, and outstation journeys — in sedans, SUVs, or tempo travellers. Live flight & train tracking. Book instantly via WhatsApp.</p>
+    <p class="hero-desc">Airport &amp; station pickups, local sightseeing, and outstation trips across Himachal — with hill-trained drivers, fixed fares, and live flight/train tracking. Book in under a minute on WhatsApp.</p>
     <div class="hero-actions">
       <button class="btn-primary" onclick="document.querySelector('.arrivals-hero').scrollIntoView({behavior:'smooth'})">
         📲 Live Arrivals
@@ -273,7 +273,7 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
       <h2 class="arrivals-hero-title">✈️ Live Arrivals — <em>Auto-Pickup Console</em></h2>
       <span class="live-dot">Live Data</span>
     </div>
-    <p style="font-size:12px;color:#6b5740;margin-bottom:18px">Track incoming flights &amp; trains. Click <strong style="color:var(--gold2)">Sync</strong> on any row to auto-fill your pickup time in the booking form below.</p>
+    <p style="font-size:13px;color:#9b8a74;margin-bottom:18px;line-height:1.6">Track flights into Chandigarh Airport and trains into CDG / Kalka. Tap <strong style="color:var(--gold2)">Sync</strong> on any row to auto-fill pickup time and reference in the booking form.</p>
 
     <div class="tab-nav-dark">
       <button class="tab-btn-dark active" onclick="switchTab(event,'flight')">✈️ Chandigarh Airport (IXC)</button>
@@ -320,15 +320,15 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
   <div class="stats-inner">
     <div class="stat-cell">
       <div class="stat-num">2400+</div>
-      <div class="stat-lbl">Successful Trips</div>
+      <div class="stat-lbl">Trips Completed</div>
     </div>
     <div class="stat-cell">
       <div class="stat-num">98%</div>
-      <div class="stat-lbl">On-Time Arrivals</div>
+      <div class="stat-lbl">On-Time Rate</div>
     </div>
     <div class="stat-cell">
       <div class="stat-num">15+</div>
-      <div class="stat-lbl">Expert Drivers</div>
+      <div class="stat-lbl">Hill-Trained Drivers</div>
     </div>
     <div class="stat-cell">
       <div class="stat-num">24/7</div>
@@ -337,13 +337,41 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
   </div>
 </section>
 
+<!-- HOW IT WORKS -->
+<section class="section" style="padding-top:40px;padding-bottom:20px">
+  <div class="section-eyebrow">HOW IT WORKS</div>
+  <h2 class="section-title" style="margin-bottom:24px">Book in <em>three simple steps</em></h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:960px">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:22px 20px;text-align:center">
+      <div style="font-size:28px;margin-bottom:10px">1</div>
+      <div style="font-family:'Cormorant',serif;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:6px">Choose vehicle</div>
+      <p style="font-size:13px;color:var(--caption);margin:0;line-height:1.55">Sedan, SUV or Tempo — pick what fits your group size and budget.</p>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:22px 20px;text-align:center">
+      <div style="font-size:28px;margin-bottom:10px">2</div>
+      <div style="font-family:'Cormorant',serif;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:6px">Fill pickup details</div>
+      <p style="font-size:13px;color:var(--caption);margin:0;line-height:1.55">Use live arrivals to sync flight/train time, or enter details manually.</p>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:22px 20px;text-align:center">
+      <div style="font-size:28px;margin-bottom:10px">3</div>
+      <div style="font-family:'Cormorant',serif;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:6px">Confirm on WhatsApp</div>
+      <p style="font-size:13px;color:var(--caption);margin:0;line-height:1.55">We confirm availability, final fare, and driver details within minutes.</p>
+    </div>
+  </div>
+  <style>
+    @media(max-width:700px){
+      section .section-title + div[style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr !important}
+    }
+  </style>
+</section>
+
 <!-- ════════════════════════════════════════════ -->
 <!-- FLEET SECTION                               -->
 <!-- ════════════════════════════════════════════ -->
 <section class="section">
   <div class="section-eyebrow">OUR FLEET</div>
   <h2 class="section-title">Choose Your <em>Perfect</em> Ride</h2>
-  <p class="section-sub">From compact sedans for city drives to spacious tempo travellers for group journeys. All vehicles are well-maintained, air-conditioned, and piloted by experienced hill-trained drivers.</p>
+  <p class="section-sub">Pick the vehicle that fits your group. Every option is air-conditioned, well-maintained, and driven by experienced Himachal hill drivers. Tap a card to select it for booking.</p>
   
   <div class="fleet-grid">
     <!-- SEDAN -->
@@ -359,8 +387,8 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
         <li>Audio System</li>
       </ul>
       <div class="fleet-rate">
-        <span><span class="fleet-rate-unit">From</span><span class="fleet-rate-amt">₹3,200</span></span>
-        <span style="font-size:11px;color:var(--caption)">Off-Peak</span>
+        <span><span class="fleet-rate-unit">From / day</span><span class="fleet-rate-amt">₹3,200</span></span>
+        <span style="font-size:11px;color:var(--caption)">Off-peak · Peak ₹5,300</span>
       </div>
     </div>
     
@@ -377,8 +405,8 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
         <li>Family-Friendly</li>
       </ul>
       <div class="fleet-rate">
-        <span><span class="fleet-rate-unit">From</span><span class="fleet-rate-amt">₹5,200</span></span>
-        <span style="font-size:11px;color:var(--caption)">Off-Peak</span>
+        <span><span class="fleet-rate-unit">From / day</span><span class="fleet-rate-amt">₹5,200</span></span>
+        <span style="font-size:11px;color:var(--caption)">Off-peak · Peak ₹6,600</span>
       </div>
     </div>
     
@@ -395,8 +423,8 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
         <li>Professional Service</li>
       </ul>
       <div class="fleet-rate">
-        <span><span class="fleet-rate-unit">From</span><span class="fleet-rate-amt">₹5,600</span></span>
-        <span style="font-size:11px;color:var(--caption)">Off-Peak</span>
+        <span><span class="fleet-rate-unit">From / day</span><span class="fleet-rate-amt">₹5,600</span></span>
+        <span style="font-size:11px;color:var(--caption)">Off-peak · Peak ₹8,800</span>
       </div>
     </div>
   </div>
@@ -410,6 +438,7 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
 <section class="section" id="book">
   <div class="section-eyebrow">BOOK INSTANTLY</div>
   <h2 class="section-title">Quick <em>Taxi Booking</em> Form</h2>
+  <p class="section-sub" style="margin-bottom:28px">Select a vehicle above, fill the form, then confirm by email or WhatsApp. We reply with availability and final fare within minutes.</p>
   
   <div class="booking-grid">
     <!-- BOOKING FORM -->
@@ -488,9 +517,10 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
         <span class="icon">🚗</span> Vehicle & Fare
       </div>
       
-      <div style="margin-bottom:24px;padding:16px;background:var(--gold-bg);border-radius:4px;border-left:3px solid var(--gold);text-align:center;cursor:pointer;transition:all .2s" id="vehicle-selector" onclick="document.querySelector('.fleet-card').scrollIntoView({behavior:'smooth'})">
-        <p style="font-size:11px;color:var(--caption);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;font-weight:600">Selected Vehicle</p>
-        <p style="font-family:'Cormorant',serif;font-size:20px;color:var(--gold);font-weight:600" id="vehicle-display">Select a vehicle above</p>
+      <div style="margin-bottom:24px;padding:18px;background:var(--gold-bg);border-radius:6px;border:1.5px solid var(--gold);text-align:center;cursor:pointer;transition:all .2s" id="vehicle-selector" onclick="document.querySelector('.fleet-card').scrollIntoView({behavior:'smooth'})">
+        <p style="font-size:10px;color:var(--caption);margin-bottom:6px;text-transform:uppercase;letter-spacing:.1em;font-weight:700">Selected Vehicle</p>
+        <p style="font-family:'Cormorant',serif;font-size:22px;color:var(--gold);font-weight:600;margin:0" id="vehicle-display">Select a vehicle above ↑</p>
+        <p style="font-size:11px;color:var(--caption);margin-top:6px">Tap a fleet card to choose</p>
       </div>
       
       <div class="fare-display">
@@ -504,20 +534,20 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
         </div>
       </div>
       
-      <div style="padding:16px;background:var(--muted);border-radius:4px;margin-bottom:20px">
-        <p style="font-size:11.5px;color:var(--caption);margin-bottom:8px"><strong>ℹ️ Rate Card (2026–27):</strong></p>
-        <ul style="list-style:none;font-size:12px;color:var(--body);line-height:1.7">
-          <li>🚗 <strong>Sedan:</strong> ₹3,200 (off-peak) / ₹5,300 (peak)</li>
-          <li>🚙 <strong>SUV/Innova:</strong> ₹5,200 / ₹6,600</li>
-          <li>🚐 <strong>Tempo:</strong> ₹5,600 / ₹8,800</li>
+      <div style="padding:18px;background:var(--muted);border-radius:6px;margin-bottom:20px;border:1px solid var(--border)">
+        <p style="font-size:11px;color:var(--gold);margin-bottom:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Rate Card (2026–27)</p>
+        <ul style="list-style:none;font-size:13px;color:var(--body);line-height:1.85;margin:0;padding:0">
+          <li style="display:flex;justify-content:space-between;border-bottom:1px solid var(--border);padding:6px 0"><span>🚗 Sedan</span><strong>₹3,200 – ₹5,300 / day</strong></li>
+          <li style="display:flex;justify-content:space-between;border-bottom:1px solid var(--border);padding:6px 0"><span>🚙 SUV / Innova</span><strong>₹5,200 – ₹6,600 / day</strong></li>
+          <li style="display:flex;justify-content:space-between;padding:6px 0"><span>🚐 Tempo Traveller</span><strong>₹5,600 – ₹8,800 / day</strong></li>
         </ul>
       </div>
       
-      <p style="font-size:11px;color:var(--caption);line-height:1.6">
-        <strong>Peak Season:</strong> May–June, Sep–Oct<br>
-        <strong>Toll & Permit:</strong> HP hill permit + toll charges included<br>
-        <strong>Driver Halt:</strong> ₹50/night for driver lodging (multi-day trips)
-      </p>
+      <div style="font-size:12px;color:var(--caption);line-height:1.75;background:var(--lift);padding:14px 16px;border-radius:6px;border:1px solid var(--border)">
+        <p style="margin:0 0 6px"><strong style="color:var(--ink)">Peak season:</strong> May–June &amp; Sep–Oct</p>
+        <p style="margin:0 0 6px"><strong style="color:var(--ink)">Included:</strong> HP hill permit + tolls</p>
+        <p style="margin:0"><strong style="color:var(--ink)">Driver halt:</strong> ₹50 / night (multi-day trips)</p>
+      </div>
     </div>
   </div>
 </section>
@@ -527,7 +557,7 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
 <!-- ════════════════════════════════════════════ -->
 <section class="section alt-bg" style="text-align:center">
   <h2 class="section-title" style="margin-bottom:16px">Ready to Book Your <em>Journey</em>?</h2>
-  <p class="section-sub" style="margin:0 auto 24px">WhatsApp us now — we'll confirm availability, confirm fare, and have your driver ready.</p>
+  <p class="section-sub" style="margin:0 auto 24px">Message us on WhatsApp with your pickup details. We confirm the vehicle, final fare, and driver contact within a few minutes.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
     <a href="https://wa.me/917018138847" class="btn-primary" style="text-decoration:none">
       💬 Chat on WhatsApp
