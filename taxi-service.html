@@ -213,7 +213,21 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
 .dark-table tr.clickable-row:hover td{background:#1a1108}
 .dark-table tr.selected-row td{background:#231808;border-left:3px solid var(--gold)}
 .dark-table tr.clickable-row:active td{background:#2a1f10}
+
+.backend-arrivals-wrap{max-height:560px;overflow:auto}
+.backend-arrivals-table{min-width:900px}
+.backend-arrivals-table td,.backend-arrivals-table th{vertical-align:middle}
+.backend-arrivals-table tr.clickable-row td:first-child{border-left:3px solid transparent}
+.backend-arrivals-table tr.clickable-row:hover td:first-child{border-left-color:var(--gold)}
+.backend-arrivals-table .flight-code{font-weight:700;color:#fff;letter-spacing:.02em}
+.backend-arrivals-table .airline-name{color:#b9a98f}
+.backend-arrivals-table .source-pill{font-size:8px;color:#8e7b60;border:1px solid #3a2c1b;border-radius:20px;padding:3px 7px;text-transform:uppercase;letter-spacing:.08em}
 .dark-updated{font-size:10px;color:#4a3a25;margin-top:8px;text-align:right}
+.live-widget-wrap{width:100%;overflow:hidden;border:1px solid #2a1f10;border-radius:4px;background:#0e0a04;min-height:560px}
+.live-widget-wrap iframe{display:block;width:100%;height:560px;min-height:560px;border:0;background:#0e0a04}
+@media(max-width:768px){
+  .live-widget-wrap iframe{height:520px;min-height:520px}
+}
 
 /* ──── RESPONSIVE ──── */
 @media(max-width:768px){
@@ -314,19 +328,25 @@ nav[aria-label="Main navigation"]{position:sticky;top:0;z-index:200;width:100%;h
     </div>
 
     <div id="del" class="tab-content active">
-      <p style="font-size:12px;color:#9b8a74;margin:0 0 12px">Live arrivals board — Delhi (DEL). After you land, use the booking form below with your flight number.</p>
-      <div class="live-widget-wrap">
-        <iframe title="Delhi Airport live arrivals" src="https://www.avionio.com/widget/en/del/arrivals?style=2" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <p style="font-size:12px;color:#9b8a74;margin:0 0 12px">Live arrivals board — Delhi (DEL). <strong style="color:var(--gold2)">Tap any flight row</strong> to sync the booking form.</p>
+      <div class="dark-table-wrap backend-arrivals-wrap">
+        <table class="dark-table backend-arrivals-table" aria-label="Delhi airport arrivals">
+          <thead><tr><th>Flight</th><th>Airline</th><th>From</th><th>Scheduled</th><th>ETA</th><th>Status</th><th>Terminal</th><th></th></tr></thead>
+          <tbody id="del-arrivals-tbody"><tr><td colspan="8" style="text-align:center;color:#6b5740;padding:24px;font-style:italic">Loading backend arrivals…</td></tr></tbody>
+        </table>
       </div>
-      <p class="dark-updated">Live data via Avionio · <a href="https://www.avionio.com/en/airport/del/arrivals" target="_blank" rel="noopener" style="color:var(--gold2)">Open full board</a></p>
+      <p class="dark-updated"><strong id="del-updated">Backend table · Connecting…</strong> · <a href="/admin/airport-arrivals.html" target="_blank" rel="noopener" style="color:var(--gold2)">Manage table</a></p>
     </div>
 
     <div id="flight" class="tab-content">
-      <p style="font-size:12px;color:#9b8a74;margin:0 0 12px">Live arrivals board — Chandigarh (IXC). Use the booking form with your flight number after landing.</p>
-      <div class="live-widget-wrap">
-        <iframe title="Chandigarh Airport live arrivals" src="https://www.avionio.com/widget/en/ixc/arrivals?style=2" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <p style="font-size:12px;color:#9b8a74;margin:0 0 12px">Live arrivals board — Chandigarh (IXC). <strong style="color:var(--gold2)">Tap any flight row</strong> to sync the booking form.</p>
+      <div class="dark-table-wrap backend-arrivals-wrap">
+        <table class="dark-table backend-arrivals-table" aria-label="Chandigarh airport arrivals">
+          <thead><tr><th>Flight</th><th>Airline</th><th>From</th><th>Scheduled</th><th>ETA</th><th>Status</th><th>Terminal</th><th></th></tr></thead>
+          <tbody id="ixc-arrivals-tbody"><tr><td colspan="8" style="text-align:center;color:#6b5740;padding:24px;font-style:italic">Loading backend arrivals…</td></tr></tbody>
+        </table>
       </div>
-      <p class="dark-updated">Live data via Avionio · <a href="https://www.avionio.com/en/airport/ixc/arrivals" target="_blank" rel="noopener" style="color:var(--gold2)">Open full board</a></p>
+      <p class="dark-updated"><strong id="ixc-updated">Backend table · Connecting…</strong> · <a href="/admin/airport-arrivals.html" target="_blank" rel="noopener" style="color:var(--gold2)">Manage table</a></p>
     </div>
 
     <div id="opensky" class="tab-content">
@@ -923,9 +943,70 @@ function selectVehicle(vehicle, fare) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// TAB SWITCHING
+// BACKEND AIRPORT ARRIVALS (Firebase RTDB)
 // ═══════════════════════════════════════════════════════════════
 let activeStation = 'flight';
+const AIRPORT_ARRIVAL_TABLES = { del: 'del', flight: 'ixc' };
+
+function airportStatusInfo(status) {
+  const key = String(status || 'Scheduled').toLowerCase().replace(/\s+/g, '-');
+  const map = {
+    'on-time': { cls: 'status-on-time', label: 'On Time' },
+    'scheduled': { cls: 'status-on-time', label: 'Scheduled' },
+    'delayed': { cls: 'status-delayed', label: 'Delayed' },
+    'boarding': { cls: 'status-arriving', label: 'Boarding' },
+    'arriving': { cls: 'status-arriving', label: 'Arriving' },
+    'landed': { cls: 'status-landed', label: 'Landed' },
+    'cancelled': { cls: 'status-cancelled', label: 'Cancelled' }
+  };
+  return map[key] || { cls: 'status-on-time', label: status || 'Scheduled' };
+}
+
+function escapeArrivalHtml(value) {
+  return String(value ?? '—').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+
+function renderBackendAirportTable(key, rows) {
+  const tbody = document.getElementById(`${key}-arrivals-tbody`);
+  const upd = document.getElementById(`${key}-updated`);
+  if (!tbody) return;
+  const list = Array.isArray(rows) ? rows : Object.values(rows || {});
+  list.sort((a,b) => String(a.scheduled || '').localeCompare(String(b.scheduled || '')));
+  if (!list.length) {
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#6b5740;padding:24px;font-style:italic">No arrivals published yet. The admin table can be updated from the backend panel.</td></tr>';
+  } else {
+    tbody.innerHTML = list.map((r, i) => {
+      const status = airportStatusInfo(r.status);
+      const source = key === 'del' ? 'DEL' : 'IXC';
+      const flight = escapeArrivalHtml(r.flight || r.flightNo || r.code);
+      const airline = escapeArrivalHtml(r.airline);
+      const from = escapeArrivalHtml(r.from || r.origin);
+      const scheduled = escapeArrivalHtml(r.scheduled || r.schedule);
+      const eta = escapeArrivalHtml(r.eta || r.expected || r.actual);
+      const terminal = escapeArrivalHtml(r.terminal);
+      const flightArg = String(r.flight || r.flightNo || r.code || '').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      const etaArg = String(r.eta || r.expected || r.actual || r.scheduled || '').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      return `<tr class="clickable-row" role="button" tabindex="0" data-arrival-index="${i}" onclick="syncArrival('${etaArg}','${flightArg}','${source}',new Date().toISOString().slice(0,10));this.parentElement.querySelectorAll('tr').forEach(r=>r.classList.remove('selected-row'));this.classList.add('selected-row');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+        <td><span class="flight-code">${flight}</span></td>
+        <td><span class="airline-name">${airline}</span></td>
+        <td>${from}</td>
+        <td class="nowrap">${scheduled}</td>
+        <td class="nowrap"><strong style="color:var(--gold2)">${eta}</strong></td>
+        <td><span class="status-badge ${status.cls}">${escapeArrivalHtml(status.label)}</span></td>
+        <td>${terminal}</td>
+        <td><span class="sync-btn" aria-hidden="true">Sync</span></td>
+      </tr>`;
+    }).join('');
+  }
+  if (upd) upd.textContent = `Backend table · Updated ${new Date().toLocaleTimeString('en-IN')}`;
+}
+
+// Firebase module below calls this function once per airport and refreshes every 5 minutes.
+function refreshBackendAirportTables() {
+  if (window.__refreshAirportBackend) window.__refreshAirportBackend();
+}
+
+setInterval(refreshBackendAirportTables, 5 * 60 * 1000);
 
 function switchTab(e, tab) {
   e.preventDefault();
@@ -937,7 +1018,8 @@ function switchTab(e, tab) {
   document.getElementById(tab).classList.add('active');
   e.target.classList.add('active');
   
-  // Flights use live Avionio embeds (no fetch). Trains use TrainTrack.
+  // Airport tables are served from Firebase backend data and refreshed every 5 minutes.
+  if (tab === 'del' || tab === 'flight') refreshBackendAirportTables();
   if (tab === 'ndls' || tab === 'cdg' || tab === 'klk') loadTrains(tab);
   if (tab === 'opensky') loadOpenSky();
 }
@@ -1365,6 +1447,8 @@ function showToast(title, msg) {
 // ═══════════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
   activeStation = 'del';
+  // Load backend airport tables immediately on page load.
+  refreshBackendAirportTables();
   document.getElementById('f-date').value = new Date().toISOString().slice(0,10);
   
   // Auto-reload flights/trains every 3 minutes
@@ -1391,6 +1475,44 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBmJDsXvokR8kYs_yoLPau1DqANPBBORJY",
+    authDomain: "garg-enterprise.firebaseapp.com",
+    databaseURL: "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "garg-enterprise",
+    storageBucket: "garg-enterprise.firebasestorage.app",
+    messagingSenderId: "1097408452571",
+    appId: "1:1097408452571:web:1e5803fa8bbea4fbb5b9fe",
+    measurementId: "G-DTJFFCMFD3"
+  };
+
+  const app = initializeApp(firebaseConfig, 'airport-arrivals-site');
+  const db = getDatabase(app);
+
+  async function loadAirportBackendTables() {
+    const keys = { del: 'del', ixc: 'flight' };
+    await Promise.all(Object.entries(keys).map(async ([dbKey, pageKey]) => {
+      try {
+        const snapshot = await get(ref(db, `airportArrivals/${dbKey}`));
+        renderBackendAirportTable(pageKey, snapshot.exists() ? snapshot.val() : []);
+      } catch (err) {
+        const tbody = document.getElementById(`${pageKey}-arrivals-tbody`);
+        const upd = document.getElementById(`${pageKey}-updated`);
+        if (tbody) tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#9b5d5d;padding:24px">Backend table temporarily unavailable.</td></tr>';
+        if (upd) upd.textContent = 'Backend connection error';
+        console.error('Airport backend read failed', dbKey, err);
+      }
+    }));
+  }
+
+  window.__refreshAirportBackend = loadAirportBackendTables;
+  loadAirportBackendTables();
+</script>
+
 <div id="site-footer"></div>
 <script src="assets/js/site-chrome.js" defer></script>
 

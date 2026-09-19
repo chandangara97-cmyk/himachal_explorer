@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Himachal Explorer — Airport Arrivals Backend</title>
+<script>
+(function(){
+  const k='he_admin';
+  if(sessionStorage.getItem(k)!=='HE@admin2026'){
+    const p=prompt('Admin password required:');
+    if(p!=='HE@admin2026'){
+      document.write('<h2 style="font-family:sans-serif;padding:40px">Access denied.</h2>');
+      throw new Error('Access denied');
+    }
+    sessionStorage.setItem(k,p);
+  }
+})();
+</script>
+<style>
+:root{--bg:#0d0a06;--panel:#171108;--panel2:#21170b;--line:#3a2a18;--gold:#c99248;--gold2:#e0ad63;--text:#eee4d2;--muted:#9b8a74;--danger:#b85d5d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}header{position:sticky;top:0;z-index:5;background:#130e07;border-bottom:1px solid var(--line);padding:16px 20px;display:flex;justify-content:space-between;gap:16px;align-items:center}h1{font-size:18px;margin:0}header small{display:block;color:var(--muted);margin-top:4px}.wrap{max-width:1400px;margin:auto;padding:22px}.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}.tab{border:1px solid var(--line);background:#130e07;color:var(--muted);padding:10px 16px;border-radius:5px;cursor:pointer}.tab.active{color:#fff;border-color:var(--gold);background:#2a1b0b}.btn{border:0;border-radius:5px;padding:10px 16px;font-weight:700;cursor:pointer}.save{background:var(--gold);color:#fff}.add{background:#245a3a;color:#fff}.refresh{background:#2b3d50;color:#fff}.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;overflow:auto}.status{color:var(--muted);font-size:12px;margin-left:auto}.grid{display:grid;grid-template-columns:repeat(8,minmax(130px,1fr));gap:8px;min-width:1100px}.grid.head{color:#806d53;font-size:10px;text-transform:uppercase;letter-spacing:.08em;padding:0 0 8px}.row{display:grid;grid-template-columns:repeat(8,minmax(130px,1fr));gap:8px;min-width:1100px;padding:9px 0;border-top:1px solid #24190d;align-items:center}.row input,.row select{width:100%;background:#0d0a06;color:var(--text);border:1px solid var(--line);border-radius:4px;padding:9px;font-size:12px}.row input:focus,.row select:focus{outline:1px solid var(--gold)}.delete{background:#4a2020;color:#ffd8d8;border:0;border-radius:4px;padding:9px;cursor:pointer}.hint{font-size:12px;color:var(--muted);line-height:1.5;margin:14px 0 0}.empty{text-align:center;color:var(--muted);padding:30px}.published{color:#8dd6a5}.error{color:#e28d8d}.code{font-family:monospace;color:var(--gold2)}
+@media(max-width:700px){.wrap{padding:12px}header{padding:14px}.status{width:100%;margin:0}.toolbar{align-items:stretch}.btn,.tab{flex:1}}
+</style>
+</head>
+<body>
+<header><div><h1>Himachal Explorer — Airport Arrivals Backend</h1><small>Firebase Realtime Database · <span class="code">airportArrivals</span></small></div><a href="/taxi-service.html" style="color:var(--gold2);text-decoration:none">View website →</a></header>
+<main class="wrap">
+  <div class="toolbar">
+    <button class="tab active" id="tab-del" onclick="selectAirport('del')">Delhi · DEL</button>
+    <button class="tab" id="tab-ixc" onclick="selectAirport('ixc')">Chandigarh · IXC</button>
+    <button class="btn add" onclick="addRow()">＋ Add flight</button>
+    <button class="btn refresh" onclick="loadRows()">↻ Reload</button>
+    <button class="btn save" onclick="saveRows()">Publish table</button>
+    <span class="status" id="status">Connecting…</span>
+  </div>
+  <div class="card">
+    <div class="grid head"><div>Flight</div><div>Airline</div><div>From</div><div>Scheduled</div><div>ETA</div><div>Status</div><div>Terminal</div><div>Action</div></div>
+    <div id="rows"><div class="empty">Loading backend table…</div></div>
+    <p class="hint">Rows published here are read by the public taxi page. Each public row is keyboard/mouse clickable and can sync the flight number and arrival time into the booking form.</p>
+  </div>
+</main>
+<script type="module">
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import {getDatabase,ref,get,set} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+const firebaseConfig={
+ apiKey:'AIzaSyBmJDsXvokR8kYs_yoLPau1DqANPBBORJY',
+ authDomain:'garg-enterprise.firebaseapp.com',
+ databaseURL:'https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app',
+ projectId:'garg-enterprise',storageBucket:'garg-enterprise.firebasestorage.app',
+ messagingSenderId:'1097408452571',appId:'1:1097408452571:web:1e5803fa8bbea4fbb5b9fe',measurementId:'G-DTJFFCMFD3'
+};
+const app=initializeApp(firebaseConfig,'airport-arrivals-admin');
+const db=getDatabase(app);
+let airport='del';let rows=[];
+const statusEl=document.getElementById('status');
+const rowsEl=document.getElementById('rows');
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+window.selectAirport=async function(key){airport=key;document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+key).classList.add('active');await loadRows()};
+window.addRow=function(){rows.push({flight:'',airline:'',from:'',scheduled:'',eta:'',status:'Scheduled',terminal:''});renderRows()};
+window.deleteRow=function(i){rows.splice(i,1);renderRows()};
+function renderRows(){
+ if(!rows.length){rowsEl.innerHTML='<div class="empty">No flights in this backend table. Click “Add flight” to publish one.</div>';return}
+ rowsEl.innerHTML=rows.map((r,i)=>`<div class="row">
+ <input data-i="${i}" data-k="flight" value="${esc(r.flight||'')}" placeholder="AI1879">
+ <input data-i="${i}" data-k="airline" value="${esc(r.airline||'')}" placeholder="Air India">
+ <input data-i="${i}" data-k="from" value="${esc(r.from||'')}" placeholder="Mumbai">
+ <input data-i="${i}" data-k="scheduled" value="${esc(r.scheduled||'')}" placeholder="14:20">
+ <input data-i="${i}" data-k="eta" value="${esc(r.eta||'')}" placeholder="14:35">
+ <select data-i="${i}" data-k="status">
+  ${['Scheduled','On Time','Delayed','Boarding','Arriving','Landed','Cancelled'].map(x=>`<option ${x===(r.status||'Scheduled')?'selected':''}>${x}</option>`).join('')}
+ </select>
+ <input data-i="${i}" data-k="terminal" value="${esc(r.terminal||'')}" placeholder="T3">
+ <button class="delete" onclick="deleteRow(${i})">Delete</button>
+ </div>`).join('');
+ rowsEl.querySelectorAll('[data-i]').forEach(el=>el.addEventListener('input',()=>{rows[+el.dataset.i][el.dataset.k]=el.value}));
+}
+window.loadRows=async function(){
+ statusEl.textContent='Loading…';statusEl.className='status';
+ try{const snap=await get(ref(db,'airportArrivals/'+airport));const v=snap.exists()?snap.val():{};rows=Array.isArray(v)?v:Object.values(v||{});renderRows();statusEl.textContent=`${rows.length} rows · ${airport.toUpperCase()}`;}
+ catch(e){rows=[];renderRows();statusEl.textContent='Backend read failed';statusEl.className='status error';console.error(e)}
+};
+window.saveRows=async function(){
+ statusEl.textContent='Publishing…';statusEl.className='status';
+ try{
+  const clean={};rows.forEach((r,i)=>{clean['row_'+String(i+1).padStart(3,'0')]={flight:r.flight||'',airline:r.airline||'',from:r.from||'',scheduled:r.scheduled||'',eta:r.eta||'',status:r.status||'Scheduled',terminal:r.terminal||'',updatedAt:Date.now()}});
+  await set(ref(db,'airportArrivals/'+airport),clean);
+  statusEl.textContent=`Published · ${rows.length} rows · ${new Date().toLocaleTimeString('en-IN')}`;statusEl.className='status published';
+ }catch(e){statusEl.textContent='Publish failed — check Firebase rules';statusEl.className='status error';console.error(e)}
+};
+loadRows();
+</script>
+</body></html>
