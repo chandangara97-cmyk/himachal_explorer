@@ -1,0 +1,42 @@
+// MERGE these into your existing firestore.rules (inside `match /databases/{database}/documents { ... }`).
+// Do not replace the whole file. Your existing `packages` rules stay as they are
+// (public read is fine, that is the public price). Never keep commission % on package docs.
+
+function signedIn() { return request.auth != null; }
+
+// You are an admin if your UID has a document in the `admins` collection (create it once in the console).
+function isAdmin() {
+  return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+}
+function isApprovedAgent() {
+  return signedIn()
+    && exists(/databases/$(database)/documents/agents/$(request.auth.uid))
+    && get(/databases/$(database)/documents/agents/$(request.auth.uid)).data.approved == true;
+}
+
+match /admins/{uid} {
+  allow read: if signedIn() && request.auth.uid == uid;
+  allow write: if false;                      // create admin docs only from the console
+}
+
+// Partner profile. Created by you from agent-admin.html. An agent can read only their own.
+match /agents/{uid} {
+  allow read: if signedIn() && (request.auth.uid == uid || isAdmin());
+  allow write: if isAdmin();
+}
+
+// Sign-up requests from the public form. Anyone can send one, only you can read them.
+match /agent_applications/{id} {
+  allow create: if request.resource.data.keys().hasOnly(['name','phone','city','status','createdAt'])
+    && request.resource.data.status == 'new'
+    && request.resource.data.name is string && request.resource.data.name.size() <= 80
+    && request.resource.data.phone is string && request.resource.data.phone.size() == 10
+    && request.resource.data.city is string && request.resource.data.city.size() <= 60;
+  allow read, update, delete: if isAdmin();
+}
+
+// Special per-package commission %. Doc id = package id, field commission_pct (number).
+match /agent_rates/{pkgId} {
+  allow read: if isApprovedAgent() || isAdmin();
+  allow write: if isAdmin();
+}
