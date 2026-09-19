@@ -36,9 +36,6 @@
 <!-- Fonts: non-blocking with display=swap already in URL -->
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600;700&family=Jost:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
-<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"></noscript>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 <script src="/assets/js/he-mobile-nav.js" defer></script>
 <script src="/assets/js/package-data.js" defer></script>
 <script src="/assets/js/pricing-engine.js" defer></script>
@@ -735,88 +732,7 @@ body{
   </style>
 </section>
 
-<!-- 3. INTERACTIVE MAP SECTION -->
-<section class="pp-map-section" aria-label="Interactive map of Himachal Pradesh">
-  <div class="pp-map-header">
-    <div class="jri-eyebrow">— Interactive Route &amp; Territory Map —</div>
-    <h2>Trace Your Himachal Trail</h2>
-    <p>Select key destinations across Himachal or generate a driving route on the live map.</p>
-  </div>
-  <div class="pp-map-card">
-    <div id="ppLeafletMap" role="img" aria-label="Live map of Himachal Pradesh with real roads and terrain"></div>
-
-    <div class="pp-map-footer">
-      <img id="locationImg" class="pp-location-thumb" src="/assets/images/1hero.jpg" alt="Shimla destination view">
-      <div>
-        <strong id="locationName">Shimla</strong>
-        <span id="locationText">The Queen of Hills · Explore destination</span>
-      </div>
-      <a id="locationLink" href="/shimla.html">Open →</a>
-    </div>
-    <p class="pp-route-status" id="routeLoading" style="display:none">Finding route…</p>
-
-    <div class="pp-loc-pkgs" id="locPkgsSection">
-      <div class="pp-loc-pkgs-head">
-        <span class="pp-loc-pkgs-eyebrow">Packages featuring <span id="locPkgsPlaceName">Shimla</span></span>
-      </div>
-      <div class="pp-loc-pkgs-track-wrap">
-        <div class="pp-loc-pkgs-track" id="locPkgsTrack"></div>
-      </div>
-    </div>
-
-    <div class="pp-plan-panel">
-      <div class="pp-plan-tabs">
-        <button class="pp-tab-btn active" type="button" data-tab="plan">⌁ Plan a Journey</button>
-        <button class="pp-tab-btn" type="button" data-tab="explore">⌖ Explore Himachal</button>
-      </div>
-
-      <div class="pp-tab-panel active" id="tab-plan">
-        <div class="pp-route-box">
-          <div class="pp-field">
-            <label for="routeFrom">Start</label>
-            <select id="routeFrom" class="pp-select">
-              <option value="Shimla">Shimla</option>
-              <option value="Manali">Manali</option>
-              <option value="Dharamshala">Dharamshala</option>
-              <option value="BirBilling">Bir Billing</option>
-              <option value="Kasol">Kasol</option>
-              <option value="Chandigarh">Chandigarh</option>
-              <option value="Delhi">Delhi</option>
-            </select>
-          </div>
-          <div class="pp-field">
-            <label for="routeTo">Destination</label>
-            <select id="routeTo" class="pp-select">
-              <option value="Manali">Manali</option>
-              <option value="Shimla">Shimla</option>
-              <option value="Kasol">Kasol</option>
-              <option value="Jibhi">Jibhi</option>
-              <option value="BirBilling">Bir Billing</option>
-              <option value="Khajjiar">Khajjiar</option>
-              <option value="Chitkul">Chitkul</option>
-              <option value="Kaza">Kaza (Spiti)</option>
-            </select>
-          </div>
-        </div>
-        <button class="pp-route-go" id="showRoute" type="button">SHOW JOURNEY ON MAP →</button>
-        <p style="font-size:10px;color:#82998b;margin:10px 0 0">Choose a start and destination to visualize a sample journey. Use Route Builder for a detailed itinerary.</p>
-      </div>
-
-      <div class="pp-tab-panel" id="tab-explore">
-        <div class="pp-explore-grid">
-          <a class="pp-side-btn" href="/dist_master.html"><span class="ico">🗺️</span>Districts</a>
-          <a class="pp-side-btn" href="/encyclopedia.html"><span class="ico">📍</span>Destinations</a>
-          <a class="pp-side-btn" href="/encyclopedia.html"><span class="ico">💧</span>Lakes &amp; Waterfalls</a>
-          <a class="pp-side-btn" href="/encyclopedia.html"><span class="ico">🏔️</span>Culture &amp; Heritage</a>
-          <a class="pp-side-btn" href="/encyclopedia.html"><span class="ico">🧗</span>Adventure</a>
-          <a class="pp-side-btn" href="/blog/index.html"><span class="ico">✦</span>Travel Stories</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 5. EXPLORE ALL 12 DISTRICTS (moved to right after the map, per request) -->
+<!-- 5. EXPLORE ALL 12 DISTRICTS -->
 <section class="nv-section nv-section-tight" aria-label="Explore Himachal by district">
   <div class="nv-section-head" style="margin-bottom:20px"><h2 style="font-size:clamp(20px,3vw,26px)">Explore All 12 Districts</h2><p style="font-size:13px">Pick a district to see its top places, hotels, food and travel tips.</p></div>
   <div class="dist-grid">
@@ -870,7 +786,7 @@ body{
   <div class="talk-strip-inner">
     <div class="jri-eyebrow">— Need Something Specific? —</div>
     <h2 style="font-family:'Cormorant',serif;font-size:clamp(24px,4vw,32px);margin:0 0 8px">Talk To <em style="color:var(--nv-gold,#f5a623);font-style:normal">Us</em></h2>
-    <p style="color:#b7c8db;font-size:14px;margin:0">Browse packages and the district map above — or reach us directly for a custom plan.</p>
+    <p style="color:#b7c8db;font-size:14px;margin:0">Browse packages and districts above — or reach us directly for a custom plan.</p>
     <div class="talk-row">
       <a class="talk-item" href="https://wa.me/917018138847?text=Hi%2C%20I%20want%20to%20book%20a%20Himachal%20tour." target="_blank" rel="noopener" data-hx-whatsapp data-hx-phone="917018138847" data-hx-message="Hi, I want to book a Himachal tour."><div class="ic">💬</div><div><small>Instant</small>WhatsApp Book</div></a>
       <a class="talk-item" href="/contact.html"><div class="ic">📞</div><div><small>Get in Touch</small>Contact Us</div></a>
@@ -924,90 +840,13 @@ body{
 (function(){
   "use strict";
 
-  const mapCard = document.querySelector(".pp-map-card");
-  const locationName = document.getElementById("locationName");
-  const locationText = document.getElementById("locationText");
-  const locationLink = document.getElementById("locationLink");
-  const locationImg = document.getElementById("locationImg");
-  const routeLoading = document.getElementById("routeLoading");
-
-  const PLACES = {
-    Shimla:      { coords:[31.1048,77.1734], url:"/shimla.html", image:"/assets/images/1hero.jpg", desc:"The Queen of Hills · Explore destination" },
-    Manali:      { coords:[32.2432,77.1892], url:"/kullu.html", image:"/assets/images/manali_1.jpg", desc:"Adventure, valleys & mountain escapes" },
-    BirBilling:  { coords:[32.0357,76.7214], url:"/kangra.html", image:"/assets/images/bir-billing_1.jpg", desc:"Paragliding capital & Tibetan monasteries" },
-    Kasol:       { coords:[32.0100,77.3150], url:"/kullu.html", image:"/assets/images/kasol.jpg", desc:"Parvati Valley hub & riverside camps" },
-    Jibhi:       { coords:[31.6373,77.4727], url:"/kullu.html", image:"/assets/images/jibhi.jpg", desc:"Tirthan Valley streams & pine retreats" },
-    Khajjiar:    { coords:[32.5558,76.0656], url:"/chamba.html", image:"/assets/images/khajjiar.jpg", desc:"Mini Switzerland of India & alpine meadows" },
-    Chitkul:     { coords:[31.3533,78.4357], url:"/kinnaur.html", image:"/assets/images/kinnaur-kailash.webp", desc:"Last village of India in Sangla Valley" },
-    Kaza:        { coords:[32.2276,78.0708], url:"/spiti.html", image:"/assets/images/spiti_1.jpg", desc:"Monasteries & high-altitude desert trails" },
-    Dharamshala: { coords:[32.2190,76.3234], url:"/kangra.html", image:"/assets/images/dharamshala.jpg", desc:"Kangra landscapes, culture & calm" },
-    Spiti:       { coords:[32.2246,78.0725], url:"/spiti.html", image:"/assets/images/spiti_1.jpg", desc:"High-altitude desert & ancient monasteries" },
-    Dalhousie:   { coords:[32.5387,75.9700], url:"/chamba.html", image:"/assets/images/dalhousie.jpg", desc:"Colonial charm & mountain views" },
-    Kinnaur:     { coords:[31.5480,78.2461], url:"/kinnaur.html", image:"/assets/images/kinnaur-kailash.webp", desc:"High valleys, orchards & dramatic peaks" },
-    Chandigarh:  { coords:[30.7333,76.7794], url:"/kullu.html", image:"/assets/images/1hero.jpg", desc:"Gateway city to Himachal Pradesh" },
-    Delhi:       { coords:[28.6139,77.2090], url:"/kullu.html", image:"/assets/images/1hero.jpg", desc:"National capital · trip starting point" }
-  };
-
-  // Packages featuring each destination — id/name/days/price sourced from
-  // the live packages database, matched by destination keyword. Chandigarh
-  // and Delhi are gateway cities (trip start points), not destinations, so
-  // they intentionally have no package list — the UI shows a "plan a trip
-  // from here" prompt for those instead.
+  // Hero "trending" card data: the first stub per destination is checked against
+  // the live package catalogue below, so a draft/retired package never shows up.
   const PLACE_PACKAGES = {
-    Shimla: [
-      {id:"chandigarh-shimla-weekend-3d", name:"Chandigarh – Shimla Weekend", days:3, price:6229},
-      {id:"chandigarh-best-value-5d", name:"Chandigarh Best Value", days:5, price:16999},
-      {id:"chandigarh-shimla-manali-6d", name:"Chandigarh – Shimla – Manali", days:6, price:16261},
-      {id:"chandigarh-shimla-manali-dharamshala-8d", name:"Shimla – Manali – Dharamshala", days:8, price:22863},
-      {id:"chandigarh-manali-spiti-shimla-14d", name:"Manali – Spiti – Shimla Grand Loop", days:14, price:37999},
-      {id:"chandigarh-grand-himachal-16d", name:"Grand Himachal Circuit", days:16, price:42999}
-    ],
     Manali: [
       {id:"chandigarh-shimla-manali-6d", name:"Chandigarh – Shimla – Manali", days:6, price:16261},
       {id:"chandigarh-shimla-manali-dharamshala-8d", name:"Shimla – Manali – Dharamshala", days:8, price:22863},
       {id:"chandigarh-manali-dharamshala-chamba-10d", name:"Manali – Dharamshala – Chamba", days:10, price:26999},
-      {id:"kinnaur-spiti-manali-loop-12d", name:"Kinnaur – Spiti – Manali Loop", days:12, price:32889},
-      {id:"chandigarh-manali-spiti-shimla-14d", name:"Manali – Spiti – Shimla Grand Loop", days:14, price:37999},
-      {id:"chandigarh-grand-himachal-16d", name:"Grand Himachal Circuit", days:16, price:42999}
-    ],
-    BirBilling: [
-      {id:"dharamshala-bir-billing-paragliding-special-3d", name:"Bir Billing Paragliding Special", days:3, price:7500},
-      {id:"dharamshala-dharamshala-bir-circuit-4d", name:"Dharamshala – Bir Circuit", days:4, price:10000}
-    ],
-    Kasol: [
-      {id:"kasol-kasol-cafe-trail-1d", name:"Kasol Café Trail", days:1, price:3200},
-      {id:"kasol-kasol-tosh-getaway-2d", name:"Kasol – Tosh Getaway", days:2, price:5000},
-      {id:"kasol-kheerganga-trek-3d", name:"Kheerganga Trek", days:3, price:7500},
-      {id:"kasol-malana-kasol-explorer-4d", name:"Malana – Kasol Explorer", days:4, price:10000},
-      {id:"amritsar-parvati-5d", name:"Amritsar – Parvati Valley", days:5, price:12900},
-      {id:"chandigarh-best-value-5d", name:"Chandigarh Best Value", days:5, price:16999}
-    ],
-    Jibhi: [
-      {id:"chandigarh-jibhi-seraj-4d", name:"Chandigarh – Jibhi – Seraj", days:4, price:15999},
-      {id:"seraj-offbeat-4d", name:"Seraj Valley Offbeat", days:4, price:15499},
-      {id:"tirthan-sainj-5d", name:"Tirthan – Sainj Valley", days:5, price:17499},
-      {id:"delhi-himachal-best-value-7d", name:"Delhi Himachal Best Value", days:7, price:19999}
-    ],
-    Khajjiar: [
-      {id:"amritsar-chamba-4d", name:"Amritsar – Chamba & Khajjiar", days:4, price:10100},
-      {id:"dalhousie-chamba-heritage-circuit-3d", name:"Dalhousie – Chamba Heritage", days:3, price:7500},
-      {id:"chamba-pangi-5d", name:"Chamba – Pangi Valley", days:5, price:11450},
-      {id:"dalhousie-chamba-valley-explorer-5d", name:"Dalhousie – Chamba Explorer", days:5, price:12500},
-      {id:"chamba-sach-6d", name:"Chamba – Sach Pass", days:6, price:14650},
-      {id:"chandigarh-manali-dharamshala-chamba-10d", name:"Manali – Dharamshala – Chamba", days:10, price:26999}
-    ],
-    Chitkul: [
-      {id:"kinnaur-spiti-connect-7d", name:"Kinnaur – Spiti Connect", days:7, price:17800},
-      {id:"kinnaur-complete-6d", name:"Kinnaur Complete", days:6, price:24999},
-      {id:"kasol-parvati-kinnaur-adventure-9d", name:"Parvati – Kinnaur Adventure", days:9, price:22500},
-      {id:"delhi-kinnaur-spiti-10d", name:"Delhi – Kinnaur – Spiti", days:10, price:38999},
-      {id:"kinnaur-spiti-manali-loop-12d", name:"Kinnaur – Spiti – Manali Loop", days:12, price:32889},
-      {id:"chandigarh-grand-himachal-16d", name:"Grand Himachal Circuit", days:16, price:42999}
-    ],
-    Kaza: [
-      {id:"kasol-parvati-spiti-connector-7d", name:"Parvati – Spiti Connector", days:7, price:17500},
-      {id:"kinnaur-spiti-connect-7d", name:"Kinnaur – Spiti Connect", days:7, price:17800},
-      {id:"delhi-kinnaur-spiti-10d", name:"Delhi – Kinnaur – Spiti", days:10, price:38999},
       {id:"kinnaur-spiti-manali-loop-12d", name:"Kinnaur – Spiti – Manali Loop", days:12, price:32889},
       {id:"chandigarh-manali-spiti-shimla-14d", name:"Manali – Spiti – Shimla Grand Loop", days:14, price:37999},
       {id:"chandigarh-grand-himachal-16d", name:"Grand Himachal Circuit", days:16, price:42999}
@@ -1019,14 +858,6 @@ body{
       {id:"chandigarh-shimla-manali-dharamshala-8d", name:"Shimla – Manali – Dharamshala", days:8, price:22863},
       {id:"chandigarh-manali-dharamshala-chamba-10d", name:"Manali – Dharamshala – Chamba", days:10, price:26999},
       {id:"chandigarh-grand-himachal-16d", name:"Grand Himachal Circuit", days:16, price:42999}
-    ],
-    Dalhousie: [
-      {id:"dalhousie-chamba-heritage-circuit-3d", name:"Dalhousie – Chamba Heritage", days:3, price:7500},
-      {id:"amritsar-chamba-4d", name:"Amritsar – Chamba & Khajjiar", days:4, price:10100},
-      {id:"dalhousie-chamba-valley-explorer-5d", name:"Dalhousie – Chamba Explorer", days:5, price:12500},
-      {id:"chamba-pangi-5d", name:"Chamba – Pangi Valley", days:5, price:11450},
-      {id:"chamba-sach-6d", name:"Chamba – Sach Pass", days:6, price:14650},
-      {id:"chandigarh-manali-dharamshala-chamba-10d", name:"Manali – Dharamshala – Chamba", days:10, price:26999}
     ],
     Kinnaur: [
       {id:"kinnaur-complete-6d", name:"Kinnaur Complete", days:6, price:24999},
@@ -1043,153 +874,9 @@ body{
       {id:"kinnaur-spiti-manali-loop-12d", name:"Kinnaur – Spiti – Manali Loop", days:12, price:32889},
       {id:"chandigarh-manali-spiti-shimla-14d", name:"Manali – Spiti – Shimla Grand Loop", days:14, price:37999},
       {id:"chandigarh-grand-himachal-16d", name:"Grand Himachal Circuit", days:16, price:42999}
-    ],
-    Chandigarh: [],
-    Delhi: []
+    ]
   };
 
-  let map, routeLayer, selectedMarker = null;
-  const markers = {};
-
-  function initMap(){
-    map = L.map('ppLeafletMap', {
-      zoomControl:true,
-      scrollWheelZoom:false,
-      attributionControl:true
-    }).setView([31.85,77.35], 8);
-
-    // 100% free, no API key required: Leaflet (open-source) + three free basemap sources.
-    const lightLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      maxZoom:18,
-      subdomains:'abcd',
-      attribution:'Map data: © OpenStreetMap contributors | Tiles: © CARTO'
-    });
-
-    // Topographic layer with visible contour/altitude lines — free, no key (OpenTopoMap).
-    const topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-      maxZoom:17,
-      subdomains:'abc',
-      attribution:'Map data: © OpenStreetMap contributors, SRTM | Tiles: © OpenTopoMap (CC-BY-SA)'
-    });
-
-    // Satellite imagery — free, no key (Esri World Imagery).
-    const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom:18,
-      attribution:'Tiles: © Esri, Maxar, Earthstar Geographics'
-    });
-
-    lightLayer.addTo(map);
-
-    L.control.layers({
-      'Light': lightLayer,
-      'Terrain (altitude lines)': topoLayer,
-      'Satellite': satelliteLayer
-    }, null, { position:'topright', collapsed:true }).addTo(map);
-
-    map.zoomControl.setPosition('bottomright');
-
-    Object.keys(PLACES).forEach(name=>{
-      const p = PLACES[name];
-      const icon = L.divIcon({
-        className:'',
-        html:'<div class="pp-leaflet-marker"></div><div class="pp-leaflet-label">'+name+'</div>',
-        iconSize:[22,22],
-        iconAnchor:[11,11]
-      });
-      const marker = L.marker(p.coords, { icon, keyboard:true, title:name }).addTo(map);
-      marker.on('click', ()=> showPlace(name));
-      markers[name] = marker;
-    });
-
-    map.on('focus', ()=> map.scrollWheelZoom.enable());
-    map.on('blur', ()=> map.scrollWheelZoom.disable());
-
-    showPlace("Shimla", { silent:true });
-  }
-
-  function showPlace(name, opts){
-    opts = opts || {};
-    const p = PLACES[name];
-    if (!p) return;
-
-    if (selectedMarker) {
-      const prevEl = selectedMarker.getElement();
-      if (prevEl) prevEl.querySelector('.pp-leaflet-marker')?.classList.remove('selected');
-    }
-    const marker = markers[name];
-    if (marker) {
-      const el = marker.getElement();
-      if (el) el.querySelector('.pp-leaflet-marker')?.classList.add('selected');
-      selectedMarker = marker;
-    }
-
-    locationName.textContent = name;
-    locationText.textContent = p.desc;
-    locationLink.href = p.url;
-    if (locationImg && p.image) {
-      locationImg.src = p.image;
-      locationImg.alt = name + " image preview";
-    }
-    renderLocationPackages(name);
-
-    if (!opts.silent && map) {
-      map.panTo(p.coords, { animate:true, duration:.6 });
-    }
-  }
-
-  // Renders the auto-scrolling "moving bar" of packages for the selected
-  // map marker. Duplicates the card set once so the CSS marquee animation
-  // loops seamlessly; falls back to a static (non-scrolling) row when
-  // there are too few cards for a loop to make sense, and to a friendly
-  // prompt for gateway cities (Chandigarh/Delhi) that have no packages
-  // of their own.
-  function renderLocationPackages(name){
-    const track = document.getElementById("locPkgsTrack");
-    const section = document.getElementById("locPkgsSection");
-    const placeNameEl = document.getElementById("locPkgsPlaceName");
-    if (!track || !section) return;
-
-    placeNameEl.textContent = name;
-    const stubs = PLACE_PACKAGES[name] || [];
-
-    if (stubs.length === 0) {
-      track.classList.remove("pp-anim");
-      track.innerHTML = '<div class="pp-loc-pkgs-empty">' + name + ' is a trip start point — <a href="/yui.html" style="color:#f5b33b;font-weight:700;text-decoration:none">build a custom route from here →</a></div>';
-      return;
-    }
-
-    // Only render once we know which of these are actually sellable — see
-    // resolveSellablePackages() below. Avoids a flash of the full, unfiltered
-    // list before the live check comes back.
-    track.innerHTML = '<div class="pp-loc-pkgs-empty">Loading packages…</div>';
-
-    const seq = ++_pkgRenderSeq;
-    resolveSellablePackages(stubs).then(sellable => {
-      if (seq !== _pkgRenderSeq) return; // a newer place was clicked meanwhile
-
-      if (sellable.length === 0) {
-        track.classList.remove("pp-anim");
-        track.innerHTML = '<div class="pp-loc-pkgs-empty">' + name + ' is a trip start point — <a href="/yui.html" style="color:#f5b33b;font-weight:700;text-decoration:none">build a custom route from here →</a></div>';
-        return;
-      }
-
-      const cardHTML = sellable.map(pkg => (
-        '<a class="pp-loc-pkg-card" href="/package-detail.html?id=' + encodeURIComponent(pkg.id) + '">' +
-          '<span class="pp-loc-pkg-days">' + (pkg.days || '—') + (pkg.days === 1 ? ' Day' : ' Days') + '</span>' +
-          '<div class="pp-loc-pkg-name">' + pkg.name + '</div>' +
-          '<div class="pp-loc-pkg-price">' + (pkg.price ? '₹' + pkg.price.toLocaleString('en-IN') : 'Price on request') + '<small> /person</small></div>' +
-        '</a>'
-      )).join('');
-
-      const enoughForLoop = sellable.length >= 4;
-      track.innerHTML = enoughForLoop ? (cardHTML + cardHTML) : cardHTML;
-      track.classList.toggle("pp-anim", enoughForLoop);
-      // Scale animation duration to content length so the scroll speed
-      // (px/sec) stays roughly constant whether a place has 4 or 6 packages.
-      track.style.setProperty('--pp-scroll-dur', (sellable.length * 4.5) + 's');
-    });
-  }
-  let _pkgRenderSeq = 0;
   let _packageDataPromise = null;
 
   // Cross-checks the hardcoded PLACE_PACKAGES stubs above against the real
@@ -1219,79 +906,10 @@ body{
     });
   }
 
-  // Free, keyless road-routing (public OSRM demo servers) — no API key needed. Two mirrors for reliability.
-  const ROUTE_PROVIDERS = [
-    'https://router.project-osrm.org/route/v1/driving/',
-    'https://routing.openstreetmap.de/routed-car/route/v1/driving/'
-  ];
-
-  async function fetchRoadRoute(a, b){
-    const coordsPath = a.coords[1] + ',' + a.coords[0] + ';' + b.coords[1] + ',' + b.coords[0];
-    for (const base of ROUTE_PROVIDERS){
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 9000);
-      try {
-        const url = base + coordsPath + '?overview=full&geometries=geojson';
-        const res = await fetch(url, { signal: controller.signal });
-        clearTimeout(timeoutId);
-        if (!res.ok) continue;
-        const data = await res.json();
-        if (data.code === 'Ok' && data.routes && data.routes[0]) {
-          return data.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
-        }
-      } catch (err) {
-        clearTimeout(timeoutId);
-        // try next provider
-      }
-    }
-    return null; // every road-routing provider failed
-  }
-
-  async function drawRoute(from, to, opts){
-    opts = opts || {};
-    const a = PLACES[from], b = PLACES[to];
-    if (!a || !b || !map) return;
-
-    if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
-    routeLoading.style.display = "block";
-    routeLoading.textContent = "Finding route…";
-
-    let latlngs = await fetchRoadRoute(a, b);
-    let isRoadRoute = !!latlngs;
-    if (!latlngs) {
-      latlngs = [a.coords, b.coords]; // last-resort straight line only if every road provider fails
-    }
-
-    routeLoading.style.display = isRoadRoute ? "none" : "block";
-    if (!isRoadRoute) routeLoading.textContent = "Road route unavailable right now — showing a direct line.";
-
-    routeLayer = L.polyline(latlngs, {
-      color:'#f5b33b', weight:4, opacity:.95,
-      lineCap:'round', lineJoin:'round',
-      dashArray: isRoadRoute ? null : '2 10',
-      className:'pp-route-anim'
-    }).addTo(map);
-
-    map.fitBounds(routeLayer.getBounds(), { padding:[60,60], maxZoom:11 });
-    showPlace(to);
-    if (!opts.silent) {
-      mapCard.scrollIntoView({ behavior:'smooth', block:'center' });
-    }
-  }
-
-  const routeButton = document.getElementById("showRoute");
-  if(routeButton){
-    routeButton.addEventListener("click",()=>{
-      const from = document.getElementById("routeFrom");
-      const to = document.getElementById("routeTo");
-      drawRoute(from.value, to.value);
-    });
-  }
-
   // HERO TRENDING PANEL — rotates through one featured, verified-sellable
   // package each for Kinnaur, Lahaul & Spiti, Manali and Dharamshala.
-  // Resolved through resolveSellablePackages() (same live Firebase check
-  // the map's package strip uses) rather than the raw PLACE_PACKAGES stub,
+  // Resolved through resolveSellablePackages() (the live Firebase check
+  // in resolveSellablePackages() above) rather than the raw PLACE_PACKAGES stub,
   // so this card can never link to a draft/retired package with no real
   // itinerary — and its price always comes from PricingEngine, not a
   // stale static number. Update the img/pageUrl below for different art.
@@ -1355,22 +973,6 @@ body{
       }
     });
   })();
-
-document.querySelectorAll(".pp-tab-btn").forEach(btn=>{
-    btn.addEventListener("click",()=>{
-      document.querySelectorAll(".pp-tab-btn").forEach(b=>b.classList.remove("active"));
-      document.querySelectorAll(".pp-tab-panel").forEach(p=>p.classList.remove("active"));
-      btn.classList.add("active");
-      document.getElementById("tab-"+btn.dataset.tab).classList.add("active");
-    });
-  });
-
-  window.addEventListener('load', () => {
-    if (typeof L !== 'undefined') {
-      initMap();
-      drawRoute("Shimla", "Manali", { silent:true });
-    }
-  });
 })();
 </script>
   <script src="/js/hx-lead-tracker.js"></script>

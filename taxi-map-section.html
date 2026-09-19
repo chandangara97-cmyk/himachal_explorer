@@ -1,0 +1,377 @@
+<!-- ════════════════════════════════════════════ -->
+<!-- ROUTE MAP (moved here from the homepage)     -->
+<!-- ════════════════════════════════════════════ -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
+<style>
+.tm-card{background:var(--surface);border:1.5px solid var(--border);border-radius:8px;overflow:hidden}
+.tm-controls{display:grid;grid-template-columns:1fr auto 1fr auto;grid-template-areas:"from swap to go";gap:12px;align-items:end;padding:18px;border-bottom:1px solid var(--border)}
+.tm-field{display:block;min-width:0}
+.tm-field.from{grid-area:from}.tm-field.to{grid-area:to}
+.tm-field label{display:block;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--body);margin-bottom:6px}
+.tm-field select{width:100%;padding:12px 14px;border:1px solid var(--border);background:var(--lift);font-family:'Jost',sans-serif;font-size:13px;color:var(--ink);border-radius:2px;outline:none}
+.tm-field select:focus{border-color:var(--gold);background:var(--surface)}
+.tm-swap{grid-area:swap;height:44px;width:44px;border:1px solid var(--border2);background:var(--surface);color:var(--gold);border-radius:50%;font-size:16px;cursor:pointer;transition:all .2s}
+.tm-swap:hover{border-color:var(--gold);background:var(--gold-bg)}
+.tm-go{grid-area:go;height:44px;padding:0 22px;white-space:nowrap;justify-content:center;border:none;cursor:pointer;font-family:'Jost',sans-serif}
+.tm-go[disabled]{opacity:.6;cursor:wait}
+#tmMap{width:100%;height:min(60vh,460px);min-height:300px;background:#eef0e6}
+.leaflet-container{font-family:'Jost',Arial,sans-serif}
+.tm-dot{width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid var(--gold2);box-shadow:0 2px 8px rgba(28,20,9,.25);display:grid;place-items:center;cursor:pointer;transition:transform .15s}
+.tm-dot::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.tm-dot:hover{transform:scale(1.25)}
+.tm-dot.start{background:var(--gold);border-color:var(--gold)}
+.tm-dot.start::after{background:#fff}
+.tm-dot.end{background:var(--dark);border-color:var(--dark)}
+.tm-dot.end::after{background:var(--gold2)}
+.tm-label{font:700 11px 'Jost',Arial,sans-serif;color:var(--ink);white-space:nowrap;text-align:center;margin-top:3px;pointer-events:none;text-shadow:0 1px 2px rgba(255,255,255,.95),0 0 6px rgba(255,255,255,.85)}
+.tm-far .tm-label{display:none}
+.tm-far .tm-label.on{display:block}
+.tm-status{font-size:12px;color:var(--caption);padding:10px 18px;background:var(--lift);border-top:1px solid var(--border);min-height:38px}
+.tm-status.warn{color:#7a4a00;background:#fef0cd}
+.tm-summary{display:none;padding:14px 18px;background:var(--gold-bg);border-top:1px solid var(--glass);gap:12px 18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.tm-summary.open{display:flex}
+.tm-summary-main strong{display:block;font-family:'Cormorant',serif;font-size:19px;font-weight:600;color:var(--ink);line-height:1.2}
+.tm-summary-main span{display:block;font-size:12px;color:var(--body);margin-top:2px}
+.tm-actions{display:flex;flex-wrap:wrap;gap:8px}
+.tm-btn{padding:9px 14px;font-family:'Jost',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;cursor:pointer;border:1.5px solid var(--gold);background:var(--surface);color:var(--gold);transition:all .2s}
+.tm-btn:hover{background:var(--gold-bg)}
+.tm-btn.solid{background:var(--gold);color:#fff}
+.tm-btn.solid:hover{background:var(--dark);border-color:var(--dark)}
+.tm-note{font-size:11.5px;color:var(--caption);margin-top:12px;line-height:1.6}
+@media(max-width:700px){
+  .tm-controls{grid-template-columns:1fr auto;grid-template-areas:"from swap" "to swap" "go go";padding:14px}
+  .tm-swap{align-self:center;justify-self:center}
+  .tm-go{width:100%}
+  .tm-btn{flex:1 1 auto;text-align:center}
+}
+</style>
+
+<section class="section" id="route-map">
+  <div class="section-eyebrow">PLAN YOUR ROUTE</div>
+  <h2 class="section-title">See Your <em>Taxi Route</em> on the Map</h2>
+  <p class="section-sub" style="margin-bottom:24px">Pick a start and a destination to see the road route and approximate distance. Then send it straight into the booking form below.</p>
+
+  <div class="tm-card">
+    <div class="tm-controls">
+      <div class="tm-field from">
+        <label for="tmFrom">Start</label>
+        <select id="tmFrom"></select>
+      </div>
+      <button class="tm-swap" id="tmSwap" type="button" aria-label="Swap start and destination" title="Swap">⇅</button>
+      <div class="tm-field to">
+        <label for="tmTo">Destination</label>
+        <select id="tmTo"></select>
+      </div>
+      <button class="btn-primary tm-go" id="tmGo" type="button">Show route →</button>
+    </div>
+
+    <div id="tmMap" role="img" aria-label="Map of Himachal Pradesh and nearby gateway cities with taxi route"></div>
+
+    <div class="tm-status" id="tmStatus">Choose a start and destination, or tap a place on the map.</div>
+
+    <div class="tm-summary" id="tmPlace">
+      <div class="tm-summary-main"><strong id="tmPlaceName"></strong><span id="tmPlaceDesc"></span></div>
+      <div class="tm-actions">
+        <button class="tm-btn" id="tmPlaceStart" type="button">Start here</button>
+        <button class="tm-btn" id="tmPlaceEnd" type="button">Go here</button>
+        <button class="tm-btn solid" id="tmPlaceTaxi" type="button">Taxi to here →</button>
+      </div>
+    </div>
+
+    <div class="tm-summary" id="tmRoute">
+      <div class="tm-summary-main"><strong id="tmRouteTitle"></strong><span id="tmRouteMeta"></span></div>
+      <div class="tm-actions">
+        <button class="tm-btn solid" id="tmBook" type="button">Book this route →</button>
+      </div>
+    </div>
+  </div>
+  <p class="tm-note">Routes are indicative. High-altitude roads (Kaza, Chitkul, Spiti) can close for snow or landslides, so we confirm the practical route and final fare when you book. Drive time excludes stops.</p>
+</section>
+
+<script>
+(function(){
+  "use strict";
+
+  var PLACES = {
+    Delhi:       { label:"Delhi",          coords:[28.6139,77.2090], desc:"National capital · trip starting point" },
+    Chandigarh:  { label:"Chandigarh",     coords:[30.7333,76.7794], desc:"Gateway city to Himachal Pradesh" },
+    Amritsar:    { label:"Amritsar",       coords:[31.6340,74.8723], desc:"Punjab gateway · Golden Temple city" },
+    Shimla:      { label:"Shimla",         coords:[31.1048,77.1734], desc:"The Queen of Hills" },
+    Manali:      { label:"Manali",         coords:[32.2432,77.1892], desc:"Adventure, valleys & mountain escapes" },
+    Dharamshala: { label:"Dharamshala",    coords:[32.2190,76.3234], desc:"Kangra landscapes, culture & calm" },
+    BirBilling:  { label:"Bir Billing",    coords:[32.0357,76.7214], desc:"Paragliding capital & Tibetan monasteries" },
+    Kasol:       { label:"Kasol",          coords:[32.0100,77.3150], desc:"Parvati Valley hub & riverside camps" },
+    Jibhi:       { label:"Jibhi",          coords:[31.6373,77.4727], desc:"Tirthan Valley streams & pine retreats" },
+    Khajjiar:    { label:"Khajjiar",       coords:[32.5558,76.0656], desc:"Mini Switzerland of India & alpine meadows" },
+    Chitkul:     { label:"Chitkul",        coords:[31.3533,78.4357], desc:"Last village of India in Sangla Valley" },
+    Kaza:        { label:"Kaza (Spiti)",   coords:[32.2276,78.0708], desc:"Monasteries & high-altitude desert trails" }
+  };
+
+  // Places that exist as exact options in the booking form's pickup dropdown.
+  // Everything else is sent as "Custom" with the place named in Special Requests.
+  var PICKUP_OPTIONS = {
+    Shimla:"Shimla", Manali:"Manali",
+    Dharamshala:"Dharamshala / McLeod Ganj", Amritsar:"Amritsar"
+  };
+
+  // Free, keyless OSRM servers. Both are asked at once; first good answer wins.
+  var ROUTE_PROVIDERS = [
+    "https://router.project-osrm.org/route/v1/driving/",
+    "https://routing.openstreetmap.de/routed-car/route/v1/driving/"
+  ];
+  var ROUTE_TIMEOUT_MS = 7000;
+
+  function $(id){ return document.getElementById(id); }
+
+  var map = null, routeLayer = null, routeSeq = 0;
+  var markers = {}, lastRoute = null, activePlace = null;
+
+  // ── Pure helpers (no DOM) ─────────────────────────────────────
+  function fetchRoadRoute(a, b, fetchImpl){
+    fetchImpl = fetchImpl || fetch;
+    var ctrl = new AbortController();
+    var timer = setTimeout(function(){ ctrl.abort(); }, ROUTE_TIMEOUT_MS);
+    var path = a.coords[1] + "," + a.coords[0] + ";" + b.coords[1] + "," + b.coords[0];
+    var attempts = ROUTE_PROVIDERS.map(function(base){
+      return fetchImpl(base + path + "?overview=full&geometries=geojson", { signal: ctrl.signal })
+        .then(function(r){ if (!r.ok) throw new Error("http " + r.status); return r.json(); })
+        .then(function(d){
+          if (d && d.code === "Ok" && d.routes && d.routes[0]) return d.routes[0];
+          throw new Error("no route");
+        });
+    });
+    return new Promise(function(resolve){
+      var pending = attempts.length;
+      attempts.forEach(function(p){
+        p.then(function(route){
+          clearTimeout(timer); ctrl.abort(); resolve(route);
+        }, function(){
+          pending -= 1;
+          if (pending === 0) { clearTimeout(timer); resolve(null); }
+        });
+      });
+    });
+  }
+
+  function formatDuration(sec){
+    var mins = Math.max(1, Math.round(sec / 60));
+    var h = Math.floor(mins / 60), m = mins % 60;
+    if (h === 0) return m + " min";
+    return h + " h" + (m ? " " + m + " min" : "");
+  }
+
+  function setNoteLines(lines){
+    var notes = $("f-notes");
+    if (!notes) return;
+    var kept = notes.value.split("\n").filter(function(l){
+      return !/^(Route|Pickup point):/i.test(l.trim());
+    });
+    notes.value = lines.concat(kept).join("\n").trim();
+    if (notes.parentElement) notes.parentElement.classList.add("synced");
+  }
+
+  function fillPickup(key){
+    var sel = $("f-pickup");
+    if (!sel) return false;
+    var exact = PICKUP_OPTIONS[key];
+    sel.value = exact || "Custom";
+    if (sel.parentElement) sel.parentElement.classList.add("synced");
+    return !exact; // true => needs a note
+  }
+
+  function fillDrop(key){
+    var drop = $("f-drop");
+    if (!drop) return;
+    drop.value = PLACES[key].label;
+    if (drop.parentElement) drop.parentElement.classList.add("synced");
+  }
+
+  function toBookingForm(){
+    var book = $("book");
+    if (book) book.scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+
+  function toast(title, msg){
+    if (typeof showToast === "function") showToast(title, msg);
+  }
+
+  // ── UI ────────────────────────────────────────────────────────
+  function setStatus(text, warn){
+    var el = $("tmStatus");
+    el.textContent = text;
+    el.classList.toggle("warn", !!warn);
+  }
+
+  function fillSelects(){
+    var keys = Object.keys(PLACES);
+    ["tmFrom","tmTo"].forEach(function(id, i){
+      var sel = $(id);
+      var html = '<option value="">' + (i === 0 ? "Select start" : "Select destination") + "</option>";
+      keys.forEach(function(k){ html += '<option value="' + k + '">' + PLACES[k].label + "</option>"; });
+      sel.innerHTML = html;
+      sel.addEventListener("change", paintEnds);
+    });
+  }
+
+  function paintEnds(){
+    var from = $("tmFrom").value, to = $("tmTo").value;
+    Object.keys(markers).forEach(function(k){
+      var el = markers[k].getElement();
+      if (!el) return;
+      var dot = el.querySelector(".tm-dot"), lab = el.querySelector(".tm-label");
+      if (dot) { dot.classList.toggle("start", k === from); dot.classList.toggle("end", k === to); }
+      if (lab) lab.classList.toggle("on", k === from || k === to || k === activePlace);
+    });
+  }
+
+  function showPlace(key){
+    activePlace = key;
+    var p = PLACES[key];
+    $("tmPlaceName").textContent = p.label;
+    $("tmPlaceDesc").textContent = p.desc;
+    $("tmPlace").classList.add("open");
+    paintEnds();
+    if (map) map.panTo(p.coords, { animate:true, duration:.5 });
+  }
+
+  function initMap(){
+    if (map) return;
+    var box = $("tmMap");
+    if (typeof L === "undefined") {
+      box.innerHTML = '<p style="padding:24px;text-align:center;color:#9b8a74;font-size:13px">The map could not load. You can still book using the form below.</p>';
+      return;
+    }
+    map = L.map("tmMap", { zoomControl:true, scrollWheelZoom:false, attributionControl:true });
+
+    var light = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+      maxZoom:18, subdomains:"abcd",
+      attribution:"Map data: © OpenStreetMap contributors | Tiles: © CARTO"
+    });
+    var topo = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+      maxZoom:17, subdomains:"abc",
+      attribution:"Map data: © OpenStreetMap contributors, SRTM | Tiles: © OpenTopoMap (CC-BY-SA)"
+    });
+    light.addTo(map);
+    L.control.layers({ "Light": light, "Terrain": topo }, null, { position:"topright", collapsed:true }).addTo(map);
+    map.zoomControl.setPosition("bottomright");
+
+    var bounds = [];
+    Object.keys(PLACES).forEach(function(key){
+      var p = PLACES[key];
+      bounds.push(p.coords);
+      var icon = L.divIcon({
+        className:"",
+        html:'<div class="tm-dot"></div><div class="tm-label">' + p.label + "</div>",
+        iconSize:[22,22], iconAnchor:[11,11]
+      });
+      var m = L.marker(p.coords, { icon:icon, keyboard:true, title:p.label }).addTo(map);
+      m.on("click", function(){ showPlace(key); });
+      markers[key] = m;
+    });
+    map.fitBounds(bounds, { padding:[24,24] });
+
+    function syncZoomClass(){ $("tmMap").classList.toggle("tm-far", map.getZoom() < 8); }
+    map.on("zoomend", syncZoomClass);
+    syncZoomClass();
+
+    map.on("focus", function(){ map.scrollWheelZoom.enable(); });
+    map.on("blur", function(){ map.scrollWheelZoom.disable(); });
+    paintEnds();
+  }
+
+  function drawRoute(){
+    var fromKey = $("tmFrom").value, toKey = $("tmTo").value;
+    if (!fromKey || !toKey) { setStatus("Choose both a start and a destination first.", true); return; }
+    if (fromKey === toKey) { setStatus("Start and destination are the same place.", true); return; }
+    if (!map) { initMap(); if (!map) return; }
+
+    var a = PLACES[fromKey], b = PLACES[toKey];
+    var seq = ++routeSeq;
+    var go = $("tmGo");
+    go.disabled = true;
+    setStatus("Finding route…", false);
+    $("tmRoute").classList.remove("open");
+    if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
+
+    fetchRoadRoute(a, b).then(function(route){
+      if (seq !== routeSeq) return; // a newer request replaced this one
+      go.disabled = false;
+
+      var latlngs, road = !!route;
+      if (road) latlngs = route.geometry.coordinates.map(function(c){ return [c[1], c[0]]; });
+      else latlngs = [a.coords, b.coords];
+
+      routeLayer = L.polyline(latlngs, {
+        color:"#b07d3a", weight:4, opacity:.95, lineCap:"round", lineJoin:"round",
+        dashArray: road ? null : "2 10"
+      }).addTo(map);
+      map.fitBounds(routeLayer.getBounds(), { padding:[40,40], maxZoom:11 });
+
+      lastRoute = { from:fromKey, to:toKey, km: road ? Math.round(route.distance / 1000) : null };
+      $("tmRouteTitle").textContent = a.label + " → " + b.label;
+      $("tmRouteMeta").textContent = road
+        ? "About " + lastRoute.km + " km by road · approx. " + formatDuration(route.duration) + " drive"
+        : "Road route unavailable right now. The line shown is a straight line, not the driving route.";
+      $("tmRoute").classList.add("open");
+      setStatus(road ? "Route ready." : "Road route unavailable right now — showing a direct line.", !road);
+      paintEnds();
+    });
+  }
+
+  function init(){
+    fillSelects();
+
+    $("tmGo").addEventListener("click", drawRoute);
+    $("tmSwap").addEventListener("click", function(){
+      var f = $("tmFrom"), t = $("tmTo"), tmp = f.value;
+      f.value = t.value; t.value = tmp;
+      paintEnds();
+    });
+
+    $("tmPlaceStart").addEventListener("click", function(){
+      if (!activePlace) return;
+      $("tmFrom").value = activePlace; paintEnds();
+      setStatus($("tmTo").value ? "Tap “Show route” to see the route." : "Start set. Now choose a destination.", false);
+    });
+    $("tmPlaceEnd").addEventListener("click", function(){
+      if (!activePlace) return;
+      $("tmTo").value = activePlace; paintEnds();
+      setStatus($("tmFrom").value ? "Tap “Show route” to see the route." : "Destination set. Now choose a start.", false);
+    });
+    $("tmPlaceTaxi").addEventListener("click", function(){
+      if (!activePlace) return;
+      fillDrop(activePlace);
+      toast("Destination added", PLACES[activePlace].label + " is filled in the booking form.");
+      toBookingForm();
+    });
+
+    $("tmBook").addEventListener("click", function(){
+      if (!lastRoute) return;
+      var needsNote = fillPickup(lastRoute.from);
+      fillDrop(lastRoute.to);
+      var lines = ["Route: " + PLACES[lastRoute.from].label + " → " + PLACES[lastRoute.to].label +
+                   (lastRoute.km ? " (~" + lastRoute.km + " km by road)" : "")];
+      if (needsNote) lines.push("Pickup point: " + PLACES[lastRoute.from].label + " (please confirm exact spot)");
+      setNoteLines(lines);
+      toast("Route added", PLACES[lastRoute.from].label + " → " + PLACES[lastRoute.to].label);
+      toBookingForm();
+    });
+
+    // Build the map only when the section is near the screen: saves data on mobile.
+    var target = $("route-map");
+    if ("IntersectionObserver" in window && target) {
+      var io = new IntersectionObserver(function(entries){
+        if (entries.some(function(e){ return e.isIntersecting; })) { io.disconnect(); initMap(); }
+      }, { rootMargin:"400px 0px" });
+      io.observe(target);
+    } else {
+      initMap();
+    }
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+
