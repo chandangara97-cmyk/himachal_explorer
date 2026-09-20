@@ -704,7 +704,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
-        <div class="section-label">Vehicle Type <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— preference only; final vehicle is auto-matched to group size</span></div>
+        <div class="section-label">Vehicle Type <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— preference; final vehicle is auto-matched to group size and capacity</span></div>
         <div class="vehicle-select" id="vehicleSelect">
           <div class="vehicle-option selected" onclick="selectVehicle(this,'Sedan')" data-vehicle="Sedan">
             <div class="vehicle-name">🚗 Sedan</div>
@@ -730,7 +730,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="price-row"><span class="label">Service &amp; trip support</span><span id="transportAmt">—</span></div>
           <div class="price-row"><span class="label">GST (5%)</span><span id="gstAmt">—</span></div>
           <div class="price-row total"><span>Total</span><span class="amt" id="totalAmt">Select a package</span></div>
-          <div class="gst-note">* Prices inclusive of GST. Subject to availability.</div>
+          <div class="gst-note">* Total is from the central PricingEngine. GST treatment follows the configured package price. Subject to availability.</div>
         </div>
 
         <button class="btn-primary" onclick="goStep2()">Continue to Guest Details →</button>
@@ -876,8 +876,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="panel-body">
         <div class="success-screen">
           <div class="success-icon">✓</div>
-          <h2>Booking Confirmed!</h2>
-          <p>Your Himachal adventure is booked. Our team will contact you within 2 hours to confirm itinerary details.</p>
+          <h2 id="successTitle">Booking Confirmed!</h2>
+          <p id="successText">Your Himachal adventure is booked. Our team will contact you within 2 hours to confirm itinerary details.</p>
           <div class="booking-ref">
             <div class="booking-ref-label">Booking Reference</div>
             <div class="booking-ref-val" id="bookingRef">HE-XXXXXX</div>
@@ -987,7 +987,7 @@ function fromPackageData(pkg) {
     days: pkg.days,
     gateway: pkg.start_point || '—',
     // "From" price shown on the package list — PricingEngine at 2 pax, budget tier.
-    base: pkg.days ? PricingEngine.computePrice({ days: pkg.days, pax: 2, tier: 'budget' }).totalPP : 3000,
+    base: pkg.days ? PricingEngine.computePrice({ days: pkg.days, pax: 2, tier: 'budget', packageId: pkg.id }).totalPP : 3000,
   };
 }
 
@@ -1086,21 +1086,23 @@ function recalcPrice() {
   const tier = HOTEL_TIER_MAP[state.hotel] || 'budget';
   const month = state.date ? (new Date(state.date).getMonth() + 1) : undefined;
 
-  const result = PricingEngine.computePrice({ days: pkg.days, pax, tier, month });
+  const result = PricingEngine.computePrice({ days: pkg.days, pax, tier, month, packageId: pkg.id });
   const b = result.breakdown;
 
-  const vehicleTotal = Math.round(b.vehiclePP * pax);
+  const vehicleTotal = Math.round(b.vehicleTotal);
   const hotelTotal = Math.round(b.hotelPP * pax);
   const serviceMarginTotal = Math.round((b.serviceFee + b.marginAmt) * pax);
   const subtotal = result.groupTotal;
-  const gst = Math.round(subtotal * 0.05);
-  state.totalAmt = subtotal + gst;
+  // PricingEngine is the single source of truth and currently returns the
+  // customer-facing package total. Do not add GST a second time here.
+  state.totalAmt = subtotal;
   state.fleetLabel = result.fleetLabel;
+  state.priceBreakdown = { vehicleTotal, hotelTotal, serviceMarginTotal, subtotal };
 
   document.getElementById('baseAmt').textContent = `₹${vehicleTotal.toLocaleString('en-IN')}` + (b.isTransportPeak ? ' (peak season)' : '');
   document.getElementById('hotelAmt').textContent = `₹${hotelTotal.toLocaleString('en-IN')}`;
   document.getElementById('transportAmt').textContent = `₹${serviceMarginTotal.toLocaleString('en-IN')}`;
-  document.getElementById('gstAmt').textContent = `₹${gst.toLocaleString('en-IN')}`;
+  document.getElementById('gstAmt').textContent = 'Included';
   document.getElementById('totalAmt').textContent = `₹${state.totalAmt.toLocaleString('en-IN')}`;
 
   // Summary card
@@ -1146,8 +1148,15 @@ function goStep1() { setStep(1); }
 function goStep2() {
   if(!state.pkg) { alert('Please select a package first.'); return; }
   if(!state.date) { alert('Please select a travel date.'); return; }
+  const selected = new Date(state.date + 'T00:00:00');
+  const tomorrow = new Date(); tomorrow.setHours(0,0,0,0); tomorrow.setDate(tomorrow.getDate()+1);
+  if(Number.isNaN(selected.getTime()) || selected < tomorrow) { alert('Please select a valid travel date from tomorrow onward.'); return; }
+  recalcPrice();
   setStep(2);
 }
+
+function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+function validPhone(v) { const digits = v.replace(/\D/g,''); return digits.length >= 10 && digits.length <= 15; }
 
 function goStep3() {
   const req = [{id:'fname',label:'First name'},{id:'lname',label:'Last name'},{id:'email',label:'Email'},{id:'phone',label:'Mobile number'}];
@@ -1155,10 +1164,11 @@ function goStep3() {
   req.forEach(r=>{
     const v = document.getElementById(r.id).value.trim();
     const fp = document.getElementById('f_'+r.id);
-    if(!v) { if(fp) fp.classList.add('error'); ok=false; }
+    const valid = r.id==='email' ? validEmail(v) : r.id==='phone' ? validPhone(v) : v.length >= 2;
+    if(!valid) { if(fp) fp.classList.add('error'); ok=false; }
     else { if(fp) fp.classList.remove('error'); state[r.id]=v; }
   });
-  if(!ok) { alert('Please fill all required fields.'); return; }
+  if(!ok) { alert('Please enter valid first/last names, email address, and mobile number.'); return; }
   state.lname = document.getElementById('lname').value.trim();
   state.email = document.getElementById('email').value.trim();
   state.phone = document.getElementById('phone').value.trim();
@@ -1230,7 +1240,9 @@ async function flushPendingBookings() {
 }
 
 async function initiatePayment() {
-  if(!state.totalAmt) { alert('Price not calculated. Please go back and select a package.'); return; }
+  if(!state.pkg || !state.date || !state.totalAmt) { alert('Please select a package and valid travel date before payment.'); return; }
+  recalcPrice();
+  if(!state.totalAmt) { alert('Price not calculated. Please try again.'); return; }
 
   const ref = generateRef();
   const payAmt = Math.round(state.totalAmt * (PAY_MODE_PCT[state.payMode] ?? 1));
@@ -1260,7 +1272,7 @@ async function initiatePayment() {
     } else {
       window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
     }
-    showSuccess(ref, payAmt);
+    showSuccess(ref, payAmt, null, !savedId, true);
     return;
   }
 
@@ -1314,8 +1326,14 @@ async function initiatePayment() {
   }
 }
 
-function showSuccess(ref, paidAmt, paymentId, saveFailed) {
+function showSuccess(ref, paidAmt, paymentId, saveFailed, manualPending=false) {
   document.getElementById('bookingRef').textContent = ref;
+  const titleEl = document.getElementById('successTitle');
+  const textEl = document.getElementById('successText');
+  if (titleEl) titleEl.textContent = manualPending ? 'Booking Request Received' : 'Booking Confirmed!';
+  if (textEl) textEl.textContent = manualPending
+    ? 'Your booking request has been saved and payment is still pending. Continue on WhatsApp to receive payment instructions and complete the payment.'
+    : 'Your Himachal adventure is booked. Our team will contact you within 2 hours to confirm itinerary details.';
   const paymentLine = paymentId ? `\nPayment ID: ${paymentId}` : '';
   const msg = `🎉 My booking is confirmed!\n\nRef: ${ref}\nPackage: ${state.pkg?.name}\nDate: ${state.date}\nGuest: ${state.fname} ${state.lname}\nPaid: ₹${paidAmt.toLocaleString('en-IN')}${paymentLine}\n\nPlease share the detailed itinerary.`;
   const waConfirmBtn = document.getElementById('waConfirmBtn');
@@ -1327,7 +1345,7 @@ function showSuccess(ref, paidAmt, paymentId, saveFailed) {
   // left assuming everything is fine with no paper trail on their end —
   // point them straight at WhatsApp with the payment ID already filled in.
   const warningEl = document.getElementById('bookingSaveWarning');
-  if (warningEl) warningEl.style.display = saveFailed ? 'block' : 'none';
+  if (warningEl) { warningEl.style.display = (saveFailed || manualPending) ? 'block' : 'none'; if (manualPending) warningEl.innerHTML = '💳 Payment is pending. Your booking request is saved; please tap <b>Continue on WhatsApp</b> to receive payment instructions and complete payment.'; }
   setStep(4);
   // Update progress to all done
   [1,2,3].forEach(i=>document.getElementById('s'+i).classList.replace('active','done'));
