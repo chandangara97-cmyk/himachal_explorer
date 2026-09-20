@@ -13,3 +13,19 @@ Important:
 - Submit https://pineandpass.in/sitemap.xml in Google Search Console.
 - Request indexing for important destination and package URLs.
 - SEO metadata improves relevance but does not guarantee rankings; useful, original page content and internal links remain important.
+
+----------------------------------------------------------------
+Update — 20 Sep 2026
+- Live domain is https://himachalexplorer.in (earlier note above mentions pineandpass.in; ignore it).
+  Search Console property + sitemap: https://himachalexplorer.in/sitemap.xml
+- 12 district pages: removed the duplicated head block added in the 31 Aug pass (two descriptions/canonicals/OG sets;
+  og:image was key-monastery-spiti.jpg on every district). Each page now has one set, og/twitter image = its own hero image.
+- Added BreadcrumbList schema to district pages; homepage now has TravelAgency (@id #business) + WebSite schema.
+- blog/spiti-valley-7-days.html: removed schema copied from packages.html (ItemList, FAQPage, AggregateRating) that did not
+  match page content; replaced with BlogPosting + BreadcrumbList; twitter tags now match og tags.
+- Added missing canonical / OG / Twitter tags on about, contact, booking, hotels, plan-your-trip, options, bike-rental,
+  dist_master, himachal-treks, agent-partner, blog index, encyclopedia (all), trip-gate, yui, sukoon-homestay pages.
+- dist_index.html is a redirect -> canonical to dist_master.html, noindex,follow, removed from sitemap; internal links now
+  point to dist_master.html.
+- sitemap.xml regenerated from indexable pages only (self-canonical, not noindex, not redirect): +agent-partner,
+  +sukoon-homestay/index, +sukoon-homestay/blog, -dist_index. Homepage <loc> now has trailing slash to match canonical.
