@@ -8,6 +8,7 @@
  *   5 resolution types -> answer | page | tool | recommend | human
  *   Journey memory -> interest, duration, startPoint, season, intent (kept in sessionStorage across pages)
  *   Link validation-> registry URLs are HEAD-checked on first open; dead links are hidden and logged
+ *   Position       -> always bottom-right. To lift it above another floating button: window.HX_CONFIG = { offsetBottom: 80 }
  *   AI fallback    -> optional: window.HX_CONFIG.aiFallback = async (text, session) => "reply html"
  */
 (function () {
@@ -275,9 +276,10 @@
 
   /* ================= 6. UI ================= */
   var css = ""
-    + "#hx-btn{position:fixed;right:16px;bottom:16px;z-index:99998;background:#f28c28;color:#fff;border:0;border-radius:28px;padding:12px 18px;font:600 15px/1 inherit;font-family:inherit;box-shadow:0 4px 14px rgba(18,40,90,.3);cursor:pointer}"
+    + ":root{--hx-bottom:" + (parseInt(HX.offsetBottom, 10) || 16) + "px}"
+    + "#hx-btn{position:fixed!important;top:auto!important;left:auto!important;margin:0!important;right:max(16px,env(safe-area-inset-right))!important;bottom:calc(var(--hx-bottom) + env(safe-area-inset-bottom))!important;z-index:2147483000!important;background:#f28c28;color:#fff;border:0;border-radius:28px;padding:12px 18px;font:600 15px/1 inherit;font-family:inherit;box-shadow:0 4px 14px rgba(18,40,90,.3);cursor:pointer}"
     + "#hx-btn:focus-visible,#hx-panel button:focus-visible,#hx-panel input:focus-visible,#hx-panel a:focus-visible{outline:3px solid #1f6feb;outline-offset:2px}"
-    + "#hx-panel{position:fixed;right:16px;bottom:16px;z-index:99999;width:min(380px,calc(100vw - 24px));height:min(600px,calc(100vh - 32px));background:#f6f8fb;border-radius:14px;box-shadow:0 10px 40px rgba(18,40,90,.35);display:none;flex-direction:column;overflow:hidden;font-family:inherit;color:#1b2333}"
+    + "#hx-panel{position:fixed!important;top:auto!important;left:auto!important;margin:0!important;right:max(12px,env(safe-area-inset-right))!important;bottom:calc(var(--hx-bottom) + env(safe-area-inset-bottom))!important;z-index:2147483001!important;width:min(380px,calc(100vw - 24px));height:min(600px,calc(100vh - 64px));background:#f6f8fb;border-radius:14px;box-shadow:0 10px 40px rgba(18,40,90,.35);display:none;flex-direction:column;overflow:hidden;font-family:inherit;color:#1b2333}"
     + "#hx-panel.open{display:flex}"
     + "#hx-head{background:#12285a;color:#fff;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px}"
     + "#hx-head b{font-size:15px}#hx-head small{display:block;opacity:.75;font-size:12px;margin-top:2px}"
