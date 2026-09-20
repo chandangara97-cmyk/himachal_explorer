@@ -32,6 +32,7 @@ body.site-dark{--bg:#120e09;--surface:#21170e;--surface2:#2a1d11;--ink:#f5ecdd;-
 .bottom-cta{margin:38px 0 60px;padding:34px;border-radius:var(--r);background:linear-gradient(130deg,var(--pine),var(--pine2));color:#fff;display:flex;align-items:center;justify-content:space-between;gap:25px}.bottom-cta h2{font:300 34px 'Cormorant',serif;margin:0 0 5px}.bottom-cta p{margin:0;color:#d6dfd5;font-size:12px}.bottom-cta .btn{background:linear-gradient(145deg,var(--gold),var(--gold2));color:#fff}.loading{padding:50px;text-align:center;color:var(--muted)}
 @media(max-width:1000px){.hero-inner{grid-template-columns:1fr}.hero-card{max-width:600px}.main-grid{grid-template-columns:1fr}.sticky-side{position:static}.stay-grid{grid-template-columns:1fr 1fr}.day-top{grid-template-columns:64px 150px 1fr}.day-photo{width:150px}}
 @media(max-width:700px){.wrap{width:min(100% - 22px,1320px)}.topnav{height:62px}.brand{font-size:22px}.back{display:none}.hero,.hero-inner{min-height:480px}.hero-inner{padding:40px 0 30px}.hero h1{font-size:38px}.hero-sub{font-size:13px}.hero-price{font-size:34px}.day-top{grid-template-columns:52px 1fr;gap:13px}.day-photo{grid-column:2;width:100%;height:170px;order:2}.day-info{grid-column:2;order:3}.day-num{width:48px;height:48px}.day-bottom{margin-left:52px}.cost-options,.selectors,.info-grid,.stay-grid{grid-template-columns:1fr}.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:120px}.gallery a:first-child{grid-column:span 2;grid-row:span 1}.section-head{display:block}.section-head p{margin-top:6px}.bottom-cta{display:block;padding:25px}.bottom-cta .btn{margin-top:18px;width:100%}#route-map{height:360px}}
+.field input{width:100%;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:9px;padding:9px;font-size:11px;font-family:inherit;min-height:37px}.btn-outline{border:1px solid var(--gold);color:var(--gold2);background:transparent}.btn-outline:disabled{opacity:.6;cursor:wait}
 </style>
 <meta name="robots" content="noindex,follow">
 </head>
@@ -39,7 +40,7 @@ body.site-dark{--bg:#120e09;--surface:#21170e;--surface2:#2a1d11;--ink:#f5ecdd;-
 <div class="topnav"><div class="wrap topnav-inner"><a class="brand" href="index.html"><span class="mark">⌁</span>Himachal Explorer</a><div class="nav-actions"><a class="back" href="packages.html">← All Packages</a><button class="theme-btn" id="themeToggle">☀ Light</button></div></div></div>
 <section class="hero" id="heroSection"><img id="hero-bg" class="hero-bg" src="/assets/images/misc-fixed/manali.jpg" alt="Himachal mountains"><div class="wrap hero-inner"><div><div class="eyebrow">Curated Himachal Journey</div><h1 id="hero-title">Loading package…</h1><p class="hero-sub" id="hero-sub">Your complete day-wise Himalayan experience.</p><div class="meta"><span id="hero-days">—</span><span id="hero-start">From —</span><span id="hero-distance">Route distance —</span><span id="hero-hotel">—</span></div><div class="hero-price" id="hero-price">₹— <small>/ person</small></div><div class="hero-actions"><a class="btn btn-primary" id="hero-wa" target="_blank" rel="noopener" data-hx-whatsapp data-hx-phone="917018138847">Enquire on WhatsApp</a><a class="btn btn-ghost" href="#itinerary">View Itinerary ↓</a></div></div><div class="hero-card"><h3>Package at a glance</h3><div class="quick"><div><small>Duration</small><strong id="q-days">—</strong></div><div><small>Nights</small><strong id="q-nights">—</strong></div><div><small>Transport</small><strong>Private</strong></div><div><small>Stay</small><strong id="q-hotel">—</strong></div></div><p class="note">Prices shown are package starting prices. Use the costing panel to explore traveller, hotel and vehicle options.</p></div></div></section>
 <div class="wrap"><section class="routebar"><div class="eyebrow">Your route</div><div class="route-scroll" id="route-strip"><div class="loading">Loading route…</div></div></section>
-<section id="itinerary"><div class="section-head"><div><div class="section-kicker">Day by day</div><h2>Detailed itinerary</h2><p>Each day includes the route, places, activities, photos and overnight plan.</p></div></div><div class="main-grid"><div class="itinerary" id="itinerary-list"><div class="loading">Loading itinerary…</div></div><aside class="sticky-side"><div class="panel"><div class="map-head"><div><div class="section-kicker">Live route</div><h3>Package map</h3></div><div class="map-tools"><button id="fitMap">Fit</button><button id="mapZoom">＋</button></div></div><div id="route-map"></div><div class="map-footer" id="map-status">Road route loading…</div></div><div class="panel"><div class="panel-pad"><div class="section-kicker">Build your quote</div><h3>Package costing</h3><div class="cost-options"><button class="choice active" data-tier="budget"><strong>Budget</strong><small>Calculator rate</small></button><button class="choice" data-tier="premium"><strong>Premium</strong><small>Calculator rate</small></button><button class="choice" data-tier="luxury"><strong>Luxury</strong><small>Calculator rate</small></button></div><div class="selectors"><div class="field"><label>Starting From</label><select id="cost-gateway"></select></div><div class="field"><label>Drop At</label><select id="cost-drop"></select></div><div class="field"><label>Travel Month</label><select id="cost-month"><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select></div></div><div class="field" style="margin-top:12px"><label>Adults</label><div class="pax"><button id="minus">−</button><strong id="adults">2</strong><button id="plus">+</button></div></div><div class="cost-lines"><div class="cost-row"><span>Rate / person</span><strong id="cost-base">₹—</strong></div><div class="cost-row"><span>Travellers</span><strong id="cost-pax">2</strong></div><div class="cost-row"><span>Vehicle included</span><strong id="cost-vehicle">—</strong></div><div class="cost-row"><span>Season</span><strong id="cost-season">—</strong></div><div class="cost-row total"><span>Total package estimate</span><strong id="cost-total">₹—</strong></div></div><div class="cost-chart"><div class="cc-label">Where the price goes</div><div class="cc-bar"><div class="cc-seg cc-transport" id="cc-transport" style="width:34%"></div><div class="cc-seg cc-hotel" id="cc-hotel" style="width:33%"></div><div class="cc-seg cc-fees" id="cc-fees" style="width:33%"></div></div><div class="cc-legend"><span><i class="cc-dot cc-dot-transport"></i>Transport <b id="cc-transport-pct">—</b></span><span><i class="cc-dot cc-dot-hotel"></i>Stay <b id="cc-hotel-pct">—</b></span><span><i class="cc-dot cc-dot-fees"></i>Service &amp; support <b id="cc-fees-pct">—</b></span></div></div><div class="price-note" id="price-source-note">Calculating your package rate…</div><a class="btn btn-primary full-btn" id="cost-wa" target="_blank" rel="noopener" data-hx-whatsapp data-hx-phone="917018138847">Get this quote on WhatsApp</a></div></div></aside></div></section>
+<section id="itinerary"><div class="section-head"><div><div class="section-kicker">Day by day</div><h2>Detailed itinerary</h2><p>Each day includes the route, places, activities, photos and overnight plan.</p></div></div><div class="main-grid"><div class="itinerary" id="itinerary-list"><div class="loading">Loading itinerary…</div></div><aside class="sticky-side"><div class="panel"><div class="map-head"><div><div class="section-kicker">Live route</div><h3>Package map</h3></div><div class="map-tools"><button id="fitMap">Fit</button><button id="mapZoom">＋</button></div></div><div id="route-map"></div><div class="map-footer" id="map-status">Road route loading…</div></div><div class="panel"><div class="panel-pad"><div class="section-kicker">Build your quote</div><h3>Package costing</h3><div class="cost-options"><button class="choice active" data-tier="budget"><strong>Budget</strong><small>Calculator rate</small></button><button class="choice" data-tier="premium"><strong>Premium</strong><small>Calculator rate</small></button><button class="choice" data-tier="luxury"><strong>Luxury</strong><small>Calculator rate</small></button></div><div class="selectors"><div class="field"><label>Starting From</label><select id="cost-gateway"></select></div><div class="field"><label>Drop At</label><select id="cost-drop"></select></div><div class="field"><label>Travel Month</label><select id="cost-month"><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select></div></div><div class="field" style="margin-top:12px"><label>Adults</label><div class="pax"><button id="minus">−</button><strong id="adults">2</strong><button id="plus">+</button></div></div><div class="cost-lines"><div class="cost-row"><span>Rate / person</span><strong id="cost-base">₹—</strong></div><div class="cost-row"><span>Travellers</span><strong id="cost-pax">2</strong></div><div class="cost-row"><span>Vehicle included</span><strong id="cost-vehicle">—</strong></div><div class="cost-row"><span>Season</span><strong id="cost-season">—</strong></div><div class="cost-row total"><span>Total package estimate</span><strong id="cost-total">₹—</strong></div></div><div class="cost-chart"><div class="cc-label">Where the price goes</div><div class="cc-bar"><div class="cc-seg cc-transport" id="cc-transport" style="width:34%"></div><div class="cc-seg cc-hotel" id="cc-hotel" style="width:33%"></div><div class="cc-seg cc-fees" id="cc-fees" style="width:33%"></div></div><div class="cc-legend"><span><i class="cc-dot cc-dot-transport"></i>Transport <b id="cc-transport-pct">—</b></span><span><i class="cc-dot cc-dot-hotel"></i>Stay <b id="cc-hotel-pct">—</b></span><span><i class="cc-dot cc-dot-fees"></i>Service &amp; support <b id="cc-fees-pct">—</b></span></div></div><div class="price-note" id="price-source-note">Calculating your package rate…</div><div class="selectors" style="margin-top:12px"><div class="field"><label>Guest name (optional)</label><input id="quote-guest" type="text" placeholder="Name on quote" autocomplete="name"></div><div class="field"><label>Travel date (optional)</label><input id="quote-date" type="date"></div></div><button class="btn btn-outline full-btn" id="quote-pdf-btn" type="button">⬇ Download Quote (PDF)</button><a class="btn btn-primary full-btn" id="cost-wa" target="_blank" rel="noopener" data-hx-whatsapp data-hx-phone="917018138847">Get this quote on WhatsApp</a></div></div></aside></div></section>
 <section><div class="section-head"><div><div class="section-kicker">Overnight stays</div><h2>Stay experience</h2></div></div><div class="stay-grid" id="stay-list"></div></section>
 <section><div class="section-head"><div><div class="section-kicker">What is covered</div><h2>Inclusions & exclusions</h2></div></div><div class="info-grid"><div class="info-card"><h3>✓ Included</h3><ul id="inc-list"></ul></div><div class="info-card"><h3>× Not included</h3><ul id="exc-list"></ul></div></div></section>
 <section><div class="section-head"><div><div class="section-kicker">Destination moments</div><h2>Package gallery</h2></div></div><div class="gallery" id="gallery"></div></section>
@@ -114,10 +115,132 @@ function renderCostChart(live){const parts=live?[Math.max(0,live.vehiclePP||0),M
 function renderCost(){if(!pkg)return;const live=livePrice();if(!live){$('cost-base').textContent='₹—';$('cost-total').textContent='₹—';$('cost-pax').textContent=adults;$('cost-vehicle').textContent='—';$('cost-season').textContent='—';$('price-source-note').textContent='Trip length is required to calculate a rate for this package.';renderCostChart(null);return}const total=live.pp*adults;$('cost-base').textContent=money(live.pp);$('cost-pax').textContent=adults;$('cost-vehicle').textContent=live.vehicle;$('cost-season').textContent=live.season;$('cost-total').textContent=money(total);$('hero-price').innerHTML=money(live.pp)+' <small>/ person</small>';$('price-source-note').textContent='Calculated by the same formula as the Group Pricing Calculator — '+adults+' travellers, '+tier+' tier, '+live.season.toLowerCase()+'. Hotel + vehicle are already included in this per-person rate.';renderCostChart(live);setLinks()}
 function initMap(){const stops=pkg.route_stops||[];if(!stops.length||typeof L==='undefined'){$('map-status').textContent='Map route data is not available for this package.';return}map=L.map('route-map',{scrollWheelZoom:false,zoomControl:true}).setView([stops[0].lat,stops[0].lng],8);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);const bounds=[];stops.forEach((s,i)=>{const m=L.marker([s.lat,s.lng]).addTo(map).bindPopup('<b>'+esc(s.name)+'</b><br>Stop '+(i+1));markers.push(m);bounds.push([s.lat,s.lng])});const coords=stops.map(s=>s.lng+','+s.lat).join(';');fetch('https://router.project-osrm.org/route/v1/driving/'+coords+'?overview=full&geometries=geojson').then(r=>r.ok?r.json():Promise.reject()).then(data=>{if(!data.routes?.[0])throw 0;const c=data.routes[0].geometry.coordinates.map(x=>[x[1],x[0]]);routeLayer=L.geoJSON({type:'Feature',geometry:{type:'LineString',coordinates:data.routes[0].geometry.coordinates}}).addTo(map);routeLayer.setStyle({color:'#b07d3a',weight:5,opacity:.9});map.fitBounds(c,{padding:[25,25]});$('map-status').textContent='Road route shown between '+stops.length+' package stops.'}).catch(()=>{routeLayer=L.polyline(stops.map(s=>[s.lat,s.lng]),{color:'#b07d3a',weight:4,dashArray:'7,7'}).addTo(map);map.fitBounds(bounds,{padding:[25,25]});$('map-status').textContent='Road routing unavailable — showing package stop route.'});$('fitMap').onclick=()=>map.fitBounds(bounds,{padding:[25,25]});$('mapZoom').onclick=()=>map.setZoom(map.getZoom()+1)}
 function focusPlace(name){const stops=pkg.route_stops||[];const idx=stops.findIndex(s=>s.name?.toLowerCase()===name.toLowerCase());if(idx>=0&&markers[idx]){document.querySelector('.map-head').scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>{map?.setView(markers[idx].getLatLng(),10);markers[idx].openPopup()},350)}}
+/* ================= Quote PDF (jsPDF, lazy-loaded) ================= */
+// EDIT these business terms to match your policy before sending quotes.
+const QUOTE_VALID_DAYS=7;
+const QUOTE_TERMS=[
+'This quotation is an estimate based on the selections above and is subject to availability of hotels and vehicles at the time of booking.',
+'Booking is confirmed only on receipt of the advance payment; the balance is payable as communicated at the time of booking.',
+'Cancellation and refund charges apply as per Himachal Explorer policy shared at the time of booking.',
+'Meals are as per the hotel plan; lunch and items not mentioned under Included are payable by the guest.',
+'Hill roads and high-altitude routes depend on weather and road status. The itinerary or sequence may be adjusted for safety.',
+'Hotels of a similar category may be substituted if the listed property is unavailable.',
+'Rates change with season, public holidays and group size; the final quote is confirmed on WhatsApp.'];
+const pdfText=s=>String(s??'').replace(/[\u2013\u2014]/g,'-').replace(/[\u2018\u2019]/g,"'").replace(/[\u201C\u201D]/g,'"').replace(/[\u2022\u00B7]/g,'-').replace(/\u2192/g,'>').replace(/\u20B9/g,'Rs. ').replace(/[^\x0A\x20-\x7E\u00A0-\u00FF]/g,'');
+const pretty=s=>String(s||'').replace(/[-_]+/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+const inr=n=>'Rs. '+Math.round(Number(n)||0).toLocaleString('en-IN');
+let pdfBusy=false;
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s)})}
+async function ensurePdfLibs(){
+  if(!window.jspdf)await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+  if(!window.jspdf.jsPDF.API.autoTable)await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js');
+}
+async function downloadQuote(){
+  if(pdfBusy)return;
+  if(!pkg||!pkg.days){alert('Package details are still loading. Please try again in a moment.');return}
+  const btn=$('quote-pdf-btn'),label=btn.textContent;pdfBusy=true;btn.disabled=true;btn.textContent='Preparing quote…';
+  try{await ensurePdfLibs();buildQuotePdf()}
+  catch(e){console.error(e);alert('Could not generate the PDF. Please check your connection and try again.')}
+  finally{pdfBusy=false;btn.disabled=false;btn.textContent=label}
+}
+function buildQuotePdf(){
+  const {jsPDF}=window.jspdf;const doc=new jsPDF({unit:'mm',format:'a4'});
+  const W=210,H=297,M=14,PINE=[48,69,54],GOLD=[176,125,58],PARCH=[247,243,234],INK=[33,26,18];
+  const n=Math.min(Math.max(parseInt(adults,10)||2,2),10);
+  const days=pkg.itinerary||[],nights=(pkg.days||1)-1;
+  const tierLabel=tier.charAt(0).toUpperCase()+tier.slice(1);
+  const gw=$('cost-gateway')?.value||pkg.start_point||'-',dr=$('cost-drop')?.value||pkg.end_point||'-';
+  const monthName=$('cost-month')?.selectedOptions?.[0]?.text||'';
+  const guest=($('quote-guest')?.value||'').trim(),dateVal=$('quote-date')?.value||'';
+  let start=null;if(dateVal){const p=dateVal.split('-').map(Number);start=new Date(p[0],p[1]-1,p[2])}
+  const fmt=d=>d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+  const plus=(d,k)=>{const x=new Date(d);x.setDate(x.getDate()+k);return x};
+  const live=PricingEngine.computePrice({days:pkg.days,pax:n,tier,month}),b=live.breakdown;
+  const tv=Math.round(b.vehiclePP),th=Math.round(b.hotelPP),ts=Math.round(live.totalPP)-tv-th;
+  const now=new Date(),quoteNo='HE-'+now.toISOString().slice(2,10).replace(/-/g,'')+'-'+Math.floor(1000+Math.random()*9000);
+  const T=s=>pdfText(s);
+
+  // header
+  doc.setFillColor(...PINE);doc.rect(0,0,W,30,'F');doc.setFillColor(...GOLD);doc.rect(0,30,W,1.4,'F');
+  doc.setTextColor(255);doc.setFont('times','bold');doc.setFontSize(22);doc.text('Himachal Explorer',M,14);
+  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.text('himachalexplorer.in  |  WhatsApp +91 70181 38847',M,21);
+  doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text('TOUR QUOTATION',W-M,13,{align:'right'});
+  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.text('Quote No: '+quoteNo,W-M,19,{align:'right'});doc.text('Date: '+fmt(now),W-M,24,{align:'right'});
+
+  let y=41;doc.setTextColor(...INK);doc.setFont('times','bold');doc.setFontSize(17);
+  const tl=doc.splitTextToSize(T(pkg.name||'Himachal Package'),W-2*M);doc.text(tl,M,y);y+=tl.length*7;
+  const stops=(pkg.route_stops||[]).map(s=>pretty(s.name)).join(' > ');
+  if(stops){doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(99,87,70);const rl=doc.splitTextToSize('Route: '+T(stops),W-2*M);doc.text(rl,M,y);y+=rl.length*4+2}
+  doc.setTextColor(...INK);
+
+  const need=(h)=>{if(y+h>H-20){doc.addPage();y=18}};
+  const heading=(t)=>{need(24);doc.setFont('times','bold');doc.setFontSize(14);doc.setTextColor(...PINE);doc.text(t,M,y);doc.setDrawColor(...GOLD);doc.setLineWidth(.5);doc.line(M,y+1.6,M+34,y+1.6);doc.setTextColor(...INK);y+=5};
+  const lab={0:{fontStyle:'bold',fillColor:PARCH,cellWidth:30},2:{fontStyle:'bold',fillColor:PARCH,cellWidth:30}};
+  const base={margin:{left:M,right:M},styles:{fontSize:8.5,cellPadding:2,textColor:INK,lineColor:[227,215,195],lineWidth:.2},headStyles:{fillColor:PINE,textColor:255}};
+
+  // summary
+  doc.autoTable({...base,startY:y,theme:'grid',columnStyles:lab,body:[
+    ['Guest',T(guest||'-'),'Travellers',n+' adult'+(n>1?'s':'')],
+    ['Duration',(pkg.days||'-')+' Days / '+nights+' Nights','Package tier',tierLabel],
+    ['Travel date',start?fmt(start)+' to '+fmt(plus(start,(pkg.days||1)-1)):(monthName?'Flexible ('+monthName+')':'-'),'Season',b.isPeak?'Peak season':'Off-peak'],
+    ['Starting from',T(pretty(gw)),'Drop at',T(pretty(dr))],
+    ['Vehicle',T(live.fleetLabel||'Private vehicle'),'Stay',T(pkg.hotel_star||'Comfortable hotel')],
+    ['Valid till',fmt(plus(now,QUOTE_VALID_DAYS)),'Route distance',(pkg.total_km_est?pkg.total_km_est+' km (approx.)':'-')]]});
+  y=doc.lastAutoTable.finalY+8;
+
+  // itinerary
+  heading('Day-wise Itinerary');
+  doc.autoTable({...base,startY:y,theme:'striped',styles:{...base.styles,valign:'top'},head:[['Day','Plan & activities','Overnight','Meals']],
+    body:days.map((d,i)=>{const places=d.places||[];const desc=d.description||d.desc||(d.acts||[]).join(' - ')||'';
+      const over=i<days.length-1?pretty(places[places.length-1]||d.title):'Trip concludes';
+      const plan=[d.title||'Himachal exploration',d.dist_time?'Drive: '+d.dist_time:'',desc,places.length?'Places: '+places.map(pretty).join(', '):''].filter(Boolean).join('\n');
+      return ['Day '+(d.day||i+1)+(start?'\n'+fmt(plus(start,i)):''),T(plan),T(over),'Breakfast & Dinner']}),
+    columnStyles:{0:{cellWidth:24,fontStyle:'bold'},2:{cellWidth:30},3:{cellWidth:26}}});
+  y=doc.lastAutoTable.finalY+8;
+
+  // cost
+  need(70);heading('Cost Details (per person & total)');
+  const rows=[['Transport ('+T(live.fleetLabel||'private vehicle')+')',inr(tv)],['Accommodation ('+tierLabel+')',inr(th)],['Service & support',inr(ts)],
+    ['COST PER PERSON',inr(live.totalPP)],['Number of travellers',String(n)],['TOTAL PACKAGE COST ('+n+' travellers)',inr(live.totalPP*n)]];
+  doc.autoTable({...base,startY:y,theme:'grid',head:[['Item','Amount']],body:rows,columnStyles:{1:{halign:'right',cellWidth:42}},
+    didParseCell(h){if(h.section==='body'&&(h.row.index===3||h.row.index===5)){h.cell.styles.fontStyle='bold';h.cell.styles.fillColor=PARCH}}});
+  y=doc.lastAutoTable.finalY+2;doc.setFont('helvetica','italic');doc.setFontSize(8);doc.setTextColor(99,87,70);
+  doc.text('Hotel and vehicle are included in the per-person rate. '+(b.isPeak?'Peak-season pricing applied.':'Off-peak pricing applied.'),M,y+3);doc.setTextColor(...INK);y+=9;
+
+  // tier comparison
+  try{const cmp=['budget','premium','luxury'].map(t=>{const r=PricingEngine.computePrice({days:pkg.days,pax:n,tier:t,month});return [t.charAt(0).toUpperCase()+t.slice(1)+(t===tier?'  (selected)':''),inr(r.totalPP),inr(r.totalPP*n)]});
+    need(38);heading('Compare Hotel Tiers');
+    doc.autoTable({...base,startY:y,theme:'grid',head:[['Tier','Per person','Total for '+n]],body:cmp,columnStyles:{1:{halign:'right'},2:{halign:'right'}},
+      didParseCell(h){if(h.section==='body'&&cmp[h.row.index][0].indexOf('selected')>-1){h.cell.styles.fontStyle='bold';h.cell.styles.fillColor=PARCH}}});
+    y=doc.lastAutoTable.finalY+8}catch(e){}
+
+  // inclusions / exclusions (same lists shown on the page)
+  const lis=id=>[...document.querySelectorAll('#'+id+' li')].map(li=>'- '+T(li.textContent)).join('\n')||'-';
+  need(50);heading('What is Included / Not Included');
+  doc.autoTable({...base,startY:y,theme:'grid',styles:{...base.styles,valign:'top'},head:[['Included','Not included']],body:[[lis('inc-list'),lis('exc-list')]]});
+  y=doc.lastAutoTable.finalY+8;
+
+  // terms
+  need(40);heading('Terms & Conditions');doc.setFont('helvetica','normal');doc.setFontSize(8.5);
+  QUOTE_TERMS.forEach(t=>{const ln=doc.splitTextToSize('- '+T(t),W-2*M);need(ln.length*4+2);doc.text(ln,M,y+3);y+=ln.length*4+1.5});
+
+  // footer on every page
+  const pages=doc.getNumberOfPages();
+  for(let i=1;i<=pages;i++){doc.setPage(i);doc.setDrawColor(...GOLD);doc.setLineWidth(.4);doc.line(M,H-13,W-M,H-13);doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(120);
+    doc.text('Himachal Explorer  |  himachalexplorer.in  |  WhatsApp +91 70181 38847',M,H-8);doc.text('Page '+i+' of '+pages+'  |  '+quoteNo,W-M,H-8,{align:'right'})}
+  const safe=String(pkg.name||'package').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40);
+  doc.save('Quote_'+quoteNo+'_'+safe+'.pdf');
+}
+function setupQuote(){
+  const qb=$('quote-pdf-btn');if(qb)qb.onclick=downloadQuote;
+  const qd=$('quote-date');
+  if(qd)qd.onchange=()=>{if(!qd.value)return;const mm=parseInt(qd.value.split('-')[1],10);if(mm){month=mm;const cm=$('cost-month');if(cm)cm.value=mm;renderCost()}};
+}
+
 function setup(){document.querySelectorAll('.choice').forEach(b=>b.onclick=()=>{document.querySelectorAll('.choice').forEach(x=>x.classList.remove('active'));b.classList.add('active');tier=b.dataset.tier;renderCost()});$('minus').onclick=()=>{adults=Math.max(2,adults-1);$('adults').textContent=adults;renderCost()};$('plus').onclick=()=>{adults=Math.min(10,adults+1);$('adults').textContent=adults;renderCost()};const cm=$('cost-month');if(cm){cm.value=month;cm.onchange=()=>{month=parseInt(cm.value,10)||month;renderCost()}}}
 function setupHeroFold(){const hero=$('heroSection');if(!hero)return;let lastY=window.scrollY;window.addEventListener('scroll',()=>{const y=window.scrollY;if(y>lastY&&y>60)hero.classList.add('hero-collapsed');else if(y<lastY||y<=60)hero.classList.remove('hero-collapsed');lastY=y},{passive:true})}
 function theme(){const key='pineAndPassTheme';const apply=t=>{document.body.classList.remove('site-light','site-dark');document.body.classList.add('site-'+t);document.body.dataset.theme=t;localStorage.setItem(key,t);$('themeToggle').textContent=t==='dark'?'☾ Dark':'☀ Light'};apply(localStorage.getItem(key)||'light');$('themeToggle').onclick=()=>apply(document.body.classList.contains('site-dark')?'light':'dark')}
-const params=new URLSearchParams(location.search);const slug=params.get('slug')||params.get('id');theme();setup();setupHeroFold();
+const params=new URLSearchParams(location.search);const slug=params.get('slug')||params.get('id');theme();setup();setupQuote();setupHeroFold();
 if(window.PackageData&&PackageData.load){Promise.all([PackageData.load(),window.loadPlacesPhotoMap?window.loadPlacesPhotoMap():Promise.resolve()]).then(async([data])=>{pkg=slug?data.byId[slug]:data.packages[0];if(!pkg)throw new Error('Package not found');renderHero();renderRoute();renderItinerary();renderStay();renderInfo();renderGallery();setupPricingSelectors();renderCost();initMap();setLinks()}).catch(e=>{console.error(e);$('hero-title').textContent='Package could not be loaded';$('hero-sub').textContent='Please return to All Packages and select a package again.'})}else{$('hero-title').textContent='Package data loader not found'}
 })();
 </script>
