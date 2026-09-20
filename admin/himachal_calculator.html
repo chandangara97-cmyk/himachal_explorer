@@ -428,8 +428,12 @@ function calculate(){
   if(seasonWarn){
     html += `<div class="season-warn animate-in" style="animation-delay:0.08s">${seasonWarn}</div>`;
   }
-  if(isPeak){
-    html += `<div class="season-warn animate-in" style="animation-delay:0.09s">Peak season surcharge (15%) applied for ${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][month-1]}.</div>`;
+  const monthName = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][month-1];
+  if(b.isHotelPeak){
+    html += `<div class="season-warn animate-in" style="animation-delay:0.09s">Peak season hotel surcharge (15%) applied for ${monthName}.</div>`;
+  }
+  if(b.isTransportPeak){
+    html += `<div class="season-warn animate-in" style="animation-delay:0.09s">Peak vehicle day-rate applied for ${monthName}.</div>`;
   }
 
   // Cost cards — all 3 tiers
@@ -458,7 +462,7 @@ function calculate(){
 
     <div class="breakdown animate-in" style="animation-delay:0.13s">
       <div class="breakdown-row"><span class="breakdown-label">Hotel (${b.nights} night${b.nights>1?'s':''} · ${tier})</span><span class="breakdown-val">${fmt(hotelPP)} /pp</span></div>
-      <div class="breakdown-row"><span class="breakdown-label">Transport (${totalKm} km · ${vehicleCount} vehicle${vehicleCount>1?'s':''}${isPeak?' · peak':' · off-peak'})</span><span class="breakdown-val">${fmt(transportPP)} /pp</span></div>
+      <div class="breakdown-row"><span class="breakdown-label">Transport (${b.days} day${b.days>1?'s':''} · ${vehicleCount} vehicle${vehicleCount>1?'s':''}${b.isTransportPeak?' · peak':' · off-peak'})</span><span class="breakdown-val">${fmt(transportPP)} /pp</span></div>
       <div class="breakdown-row breakdown-total"><span class="breakdown-label">Selected tier total /pp</span><span class="breakdown-val">${fmt(pricePP)}</span></div>
       <div class="breakdown-row breakdown-total"><span class="breakdown-label">Grand total (${pax} pax)</span><span class="breakdown-val" style="font-size:1.05rem;color:var(--pine)">${fmt(grandTotal)}</span></div>
     </div>

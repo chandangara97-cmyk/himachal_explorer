@@ -1097,7 +1097,7 @@ function recalcPrice() {
   state.totalAmt = subtotal + gst;
   state.fleetLabel = result.fleetLabel;
 
-  document.getElementById('baseAmt').textContent = `₹${vehicleTotal.toLocaleString('en-IN')}` + (b.isPeak ? ' (peak season)' : '');
+  document.getElementById('baseAmt').textContent = `₹${vehicleTotal.toLocaleString('en-IN')}` + (b.isTransportPeak ? ' (peak season)' : '');
   document.getElementById('hotelAmt').textContent = `₹${hotelTotal.toLocaleString('en-IN')}`;
   document.getElementById('transportAmt').textContent = `₹${serviceMarginTotal.toLocaleString('en-IN')}`;
   document.getElementById('gstAmt').textContent = `₹${gst.toLocaleString('en-IN')}`;

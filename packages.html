@@ -427,7 +427,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="prv-scale"><span id="prvMin">₹0</span><span id="prvAvgLabel">avg ₹0</span><span id="prvMax">₹0</span></div>
       </div>
       <div class="peak-banner" id="peakBanner">
-        ⚡ <span><strong>Peak Season Alert:</strong> May, June, Dec & Jan have higher transport rates. Prices shown are base.</span>
+        ⚡ <span><strong>Peak Season Alert:</strong> Transport rates rise in May, June, Sep & Oct; hotel rates in May, June, Dec & Jan. Prices shown are base.</span>
       </div>
 
       <div id="packageSectionsWrap" style="display:none">
@@ -920,7 +920,7 @@ function fmt(n) { return '₹' + n.toLocaleString('en-IN'); }
 // ─── STATE ────────────────────────────────────────────────────────────────────
 let state = { region:'all', dur:'all', tier:'budget', pax:4, month:new Date().getMonth()+1, sort:'price-asc', wishlist:new Set(), selectedId:null, gateway:'DELHI', drop:'DELHI', travelerMode:null, currentCity:null };
 let activeDay = 1;
-const PEAK_MONTHS = [5,6,12,1];
+const PEAK_MONTHS = [5,6,9,10,12,1]; // any peak: transport May-Jun & Sep-Oct, hotels May-Jun & Dec-Jan
 const isPeak = PEAK_MONTHS.includes(new Date().getMonth()+1);
 
 // ─── LEAFLET MAP ──────────────────────────────────────────────────────────────

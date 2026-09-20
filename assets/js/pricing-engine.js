@@ -20,7 +20,10 @@
   const HOTEL_TIER_RATE = { budget: 1480, premium: 2020, luxury: 3360 };
   const SERVICE_FEE = 0.10;
   const MARGIN = 0.25;
-  const PEAK_MONTHS = new Set([5, 6, 12, 1]);
+  const PEAK_MONTHS = new Set([5, 6, 12, 1]);            // hotel season (+15% hotel rate)
+  // Vehicle day-rates follow the taxi-service.html rate card:
+  // peak = May-June & Sep-Oct. Change this one line to change transport season.
+  const TRANSPORT_PEAK_MONTHS = new Set([5, 6, 9, 10]);
 
   const DEFAULT_CONTROL = {
     version: 1,
@@ -113,7 +116,10 @@
   }
 
   function getControl() { return clone(control); }
-  function isPeakMonth(month) { return PEAK_MONTHS.has(Number(month)); }
+  function isHotelPeakMonth(month) { return PEAK_MONTHS.has(Number(month)); }
+  function isTransportPeakMonth(month) { return TRANSPORT_PEAK_MONTHS.has(Number(month)); }
+  // "Peak" for display = either hotel season or transport season applies.
+  function isPeakMonth(month) { return isHotelPeakMonth(month) || isTransportPeakMonth(month); }
 
   function cheapestFleet(pax) {
     let best = null;
@@ -154,11 +160,13 @@
     const tier = HOTEL_TIER_RATE[opts.tier] ? opts.tier : 'budget';
     const month = opts.month != null ? Number(opts.month) : (new Date().getMonth() + 1);
     const packageId = opts.packageId || opts.id || '';
-    const isPeak = isPeakMonth(month);
+    const isHotelPeak = isHotelPeakMonth(month);
+    const isTransportPeak = isTransportPeakMonth(month);
+    const isPeak = isHotelPeak || isTransportPeak;   // label only
     const nights = Math.max(1, days - 1);
     const fleet = cheapestFleet(pax);
 
-    let dayRate = isPeak ? fleet.dayPeak : fleet.dayOffpeak;
+    let dayRate = isTransportPeak ? fleet.dayPeak : fleet.dayOffpeak;
     dayRate = applyAdjustment(dayRate, control.transport);
     const vehicleBase = dayRate * days;
     const driverHalt = applyAdjustment(DRIVER_HALT_PER_NIGHT * nights * fleet.count, control.driverTolls);
@@ -166,7 +174,7 @@
     const vehicleTotal = vehicleBase + driverHalt + toll;
     const vehiclePP = vehicleTotal / pax;
 
-    let hotelRate = HOTEL_TIER_RATE[tier] * (isPeak ? 1.15 : 1);
+    let hotelRate = HOTEL_TIER_RATE[tier] * (isHotelPeak ? 1.15 : 1);
     hotelRate = applyAdjustment(hotelRate, control.hotel);
     hotelRate = applyAdjustment(hotelRate, control.tiers[tier]);
     const hotelPP = hotelRate * nights;
@@ -189,7 +197,7 @@
       fleet,
       fleetLabel: fleetLabel(fleet),
       breakdown: {
-        days, nights, pax, tier, month, isPeak, dayRate,
+        days, nights, pax, tier, month, isPeak, isHotelPeak, isTransportPeak, dayRate,
         vehicleTotal,
         vehicleBase,
         driverHalt,
@@ -210,9 +218,9 @@
   }
 
   global.PricingEngine = {
-    VEHICLES, HOTEL_TIER_RATE, SERVICE_FEE, MARGIN, PEAK_MONTHS,
+    VEHICLES, HOTEL_TIER_RATE, SERVICE_FEE, MARGIN, PEAK_MONTHS, TRANSPORT_PEAK_MONTHS,
     DB_BASE, CONFIG_PATH, DEFAULT_CONTROL,
-    isPeakMonth, cheapestFleet, fleetLabel, computePrice,
+    isPeakMonth, isHotelPeakMonth, isTransportPeakMonth, cheapestFleet, fleetLabel, computePrice,
     ready, refresh, getControl, setLocalControl
   };
 
