@@ -186,13 +186,29 @@ details.by-inc ul{margin:8px 0 0 18px}
 .by-toast.show{opacity:1}
 
 @media print{
-  #site-header,#site-footer,.by-hero,.by-bar,.by-pk,.by-tools,.by-add,.by-addday,.by-link,.by-btn,.by-row2,#by-map,.he-mobile-bottom,.by-toast{display:none!important}
+  #site-header,#site-footer,.by-hero,.by-bar,.by-pk,.by-tools,.by-add,.by-addday,.by-link,.by-btn,.by-row2,#by-map,.he-mobile-bottom,.by-toast,.by-gate{display:none!important}
   body{background:#fff}
   .by-wrap{display:block;padding:0}
   .by-side{position:static;max-height:none}
   .by-price{background:#fff;color:#000;border:1px solid #999}
   .by-price *{color:#000!important}
 }
+
+/* unlock gate */
+.by-gate{position:fixed;inset:0;z-index:3500;background:rgba(14,10,4,.6);display:none;align-items:center;justify-content:center;padding:16px}
+.by-gate.open{display:flex}
+.by-gate-box{background:var(--bg);width:100%;max-width:380px;border-radius:16px;padding:22px 20px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.by-gate-box h3{font-size:20px;margin:0 0 6px;font-family:'Cormorant',serif}
+.by-gate-box p{font-size:12.5px;color:var(--caption);margin:0 0 16px;line-height:1.5}
+.by-gate-pay{width:100%;background:#b07d3a;color:#fff;border:0;border-radius:9px;padding:12px;font-size:14px;font-weight:600;margin-bottom:14px}
+.by-gate-or{text-align:center;font-size:11px;color:var(--caption);margin:6px 0 12px;position:relative}
+.by-gate-or::before,.by-gate-or::after{content:'';position:absolute;top:50%;width:38%;height:1px;background:var(--border)}
+.by-gate-or::before{left:0}.by-gate-or::after{right:0}
+.by-gate-pw{display:flex;gap:8px}
+.by-gate-pw input{flex:1;border:1px solid var(--border2);border-radius:9px;padding:10px 12px;font-size:14px;background:var(--surface);color:var(--ink)}
+.by-gate-pw button{background:var(--ink);color:#fff;border:0;border-radius:9px;padding:0 16px;font-size:13px;font-weight:600}
+.by-gate-err{color:#b3261e;font-size:11.5px;margin-top:6px;display:none}
+.by-gate-close{display:block;margin:14px auto 0;background:none;border:0;color:var(--caption);font-size:12px;text-decoration:underline}
 </style>
 </head>
 <body>
@@ -302,9 +318,25 @@ details.by-inc ul{margin:8px 0 0 18px}
 
 <div class="by-toast" id="toast"></div>
 
+<div class="by-gate" id="gate" role="dialog" aria-modal="true" aria-label="Unlock full itinerary">
+  <div class="by-gate-box">
+    <h3>Get your full itinerary</h3>
+    <p>Unlock the detailed day-by-day plan to print or send on WhatsApp — pay a small ₹70 planning fee, or enter your access password if you have one.</p>
+    <button class="by-gate-pay" id="gatePayBtn">💳 Pay ₹70 &amp; Unlock</button>
+    <div class="by-gate-or">or</div>
+    <div class="by-gate-pw">
+      <input type="text" id="gatePwInput" placeholder="Enter access password" autocomplete="off">
+      <button id="gatePwBtn">Unlock</button>
+    </div>
+    <div class="by-gate-err" id="gateErr">Incorrect password. Try again or pay ₹70 above.</div>
+    <button class="by-gate-close" id="gateCloseBtn">Cancel</button>
+  </div>
+</div>
+
 <div id="site-footer"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script src="assets/js/pricing-engine.js"></script>
 <script src="assets/js/distance-matrix.js"></script>
 <script>
@@ -318,6 +350,11 @@ window.HX_FALLBACK_PLACES = [{"id":"andretta","name":"Andretta","lat":32.0833,"l
 const WA='917018138847';
 const LS_KEY='he_custom_trip_v1';
 const DB='https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app';
+/* full-itinerary unlock gate: pay ₹70 via Razorpay, or a shared access password */
+const UNLOCK_KEY='he_itinerary_unlocked_v1';
+const UNLOCK_FEE=70; // rupees
+const UNLOCK_PASSWORD='HIMACHAL70'; // change here to rotate the password
+const RAZORPAY_KEY='OHPWkChulBwl3GwV9szQZh97'; // same key used across the site
 const COLORS=['#b07d3a','#2d5a3d','#3b6ea5','#a23b5a','#7a4fa3','#c2703a','#2c8a8a','#6b7a2a'];
 const TIERS={budget:{label:'Budget',star:'3★'},premium:{label:'Premium',star:'4★'},luxury:{label:'Luxury',star:'5★'}};
 const MAX_DAYS=30, MAX_PAX=100, AVG_KMH=35, LONG_DRIVE_HRS=7;
@@ -698,6 +735,56 @@ function copyLink(){
   else prompt('Copy this link:',u);
 }
 
+/* ─────────────────────────── unlock gate (print / WhatsApp) ─────────────────────────── */
+let gatePending=null; // 'wa' | 'print' — action waiting for unlock
+function isUnlocked(){ try{ return localStorage.getItem(UNLOCK_KEY)==='1'; }catch(e){ return false; } }
+function setUnlocked(){ try{ localStorage.setItem(UNLOCK_KEY,'1'); }catch(e){} }
+function runGated(action){
+  if(isUnlocked()){ action==='wa'?sendWA():window.print(); return; }
+  gatePending=action;
+  $('#gateErr').style.display='none';
+  $('#gatePwInput').value='';
+  $('#gate').classList.add('open');
+}
+function closeGate(){ $('#gate').classList.remove('open'); gatePending=null; }
+function unlockAndRun(){
+  setUnlocked();
+  const action=gatePending;
+  closeGate();
+  if(action==='wa') sendWA(); else if(action==='print') window.print();
+}
+function tryPassword(){
+  const v=$('#gatePwInput').value.trim();
+  if(v && v.toUpperCase()===UNLOCK_PASSWORD.toUpperCase()){ unlockAndRun(); }
+  else{ $('#gateErr').style.display='block'; }
+}
+function payToUnlock(){
+  if(typeof Razorpay==='undefined'){ toast('Payment gateway unavailable — try the password option or refresh.'); return; }
+  const ref='HE-BYT-'+Date.now().toString(36).toUpperCase().slice(-6);
+  const options={
+    key:RAZORPAY_KEY,
+    amount:UNLOCK_FEE*100,
+    currency:'INR',
+    name:'Himachal Explorer',
+    description:'Detailed itinerary unlock fee',
+    image:'https://himachalexplorer.in/logo-512.png',
+    notes:{ purpose:'itinerary-unlock', ref },
+    theme:{ color:'#b07d3a' },
+    handler:function(){ toast('Payment received — itinerary unlocked'); unlockAndRun(); },
+    modal:{ ondismiss:function(){} }
+  };
+  try{
+    const rzp=new Razorpay(options);
+    rzp.on('payment.failed',function(resp){ alert('Payment failed: '+resp.error.description+'\nPlease try again or use the password option.'); });
+    rzp.open();
+  }catch(e){ toast('Unable to open payment gateway — try the password option.'); }
+}
+$('#gatePwBtn').addEventListener('click',tryPassword);
+$('#gatePwInput').addEventListener('keydown',e=>{ if(e.key==='Enter') tryPassword(); });
+$('#gatePayBtn').addEventListener('click',payToUnlock);
+$('#gateCloseBtn').addEventListener('click',closeGate);
+$('#gate').addEventListener('click',e=>{ if(e.target.id==='gate') closeGate(); });
+
 document.addEventListener('click',function(e){
   const pick=e.target.closest('[data-pick]'); if(pick){ applyPick(pick.dataset.pick); return; }
   const trow=e.target.closest('tr[data-tier]'); if(trow){ S.tier=trow.dataset.tier; commit(); return; }
@@ -721,9 +808,9 @@ document.addEventListener('click',function(e){
     case 'pax-': S.pax=Math.max(1,S.pax-1); commit(); break;
     case 'pax+': S.pax=Math.min(MAX_PAX,S.pax+1); commit(); break;
     case 'pk-close': closePicker(); break;
-    case 'wa': sendWA(); break;
+    case 'wa': runGated('wa'); break;
     case 'share': copyLink(); break;
-    case 'print': window.print(); break;
+    case 'print': runGated('print'); break;
     case 'reset': if(confirm('Clear this plan and start over?')){ S=defaultState(); history.replaceState(null,'',location.pathname); commit(); } break;
   }
 });
