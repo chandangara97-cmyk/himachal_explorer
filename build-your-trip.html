@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/logo-512.png">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Build Your Own Himachal Trip – Day by Day | Himachal Explorer</title>
+<meta name="description" content="Design your own Himachal itinerary: choose your start point, dates, the places you want each day and where you stay. Get an instant price from our costing engine."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://himachalexplorer.in/build-your-trip.html"/>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://himachalexplorer.in/build-your-trip.html">
+<meta property="og:title" content="Build Your Own Himachal Trip | Himachal Explorer">
+<meta property="og:description" content="Pick your own places for every day, see the route and get an instant price.">
+<meta property="og:image" content="https://himachalexplorer.in/assets/images/1hero.jpg">
+<meta property="og:site_name" content="Himachal Explorer">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/site-chrome.css">
+<link rel="stylesheet" href="/assets/css/he-unified.css">
+<link rel="stylesheet" href="/assets/css/theme-v2.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+:root{
+  --bg:#f8f5ef;--surface:#fff;--lift:#fdfbf7;--muted:#f0ebe0;
+  --border:#e5ddd0;--border2:#d4c9b5;--ink:#1c1409;--body:#5a4a36;
+  --caption:#9b8a74;--gold:#b07d3a;--gold2:#c99248;--gold-bg:#fdf6ec;
+  --green:#2d5a3d;--green-bg:#eef5f0;--warn:#a5511c;--warn-bg:#fdf0e6;
+  --dark:#0e0a04;--wrap:1180px;--px:16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--body);line-height:1.55;overflow-x:hidden;width:100%}
+h1,h2,h3{font-family:'Cormorant',serif;color:var(--ink);font-weight:400;line-height:1.15}
+a{color:var(--gold);text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+input{font-family:inherit}
+
+/* hero */
+.by-hero{padding:32px var(--px) 24px;background:var(--dark);text-align:center}
+.by-eyebrow{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:10px}
+.by-hero h1{color:#fff;font-size:clamp(26px,7vw,40px);font-weight:300;margin-bottom:8px}
+.by-hero h1 em{font-style:italic;color:var(--gold2)}
+.by-hero p{color:rgba(255,255,255,.72);font-size:13.5px;max-width:520px;margin:0 auto}
+
+/* layout */
+.by-wrap{max-width:var(--wrap);margin:0 auto;padding:18px var(--px) 150px;display:block}
+.by-main{min-width:0}
+.by-side{margin-top:18px}
+@media(min-width:960px){
+  :root{--px:28px}
+  .by-wrap{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:26px;padding-bottom:60px;align-items:start}
+  .by-side{margin-top:0;position:sticky;top:84px;max-height:calc(100vh - 100px);overflow-y:auto;padding-right:2px}
+  .by-bar{display:none!important}
+}
+
+/* cards */
+.by-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px}
+.by-card h2{font-size:22px;margin-bottom:4px}
+.by-sub{font-size:12.5px;color:var(--caption);margin-bottom:14px}
+.by-grid2{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:560px){.by-grid2{grid-template-columns:1fr 1fr}}
+.by-field label,.by-lab{display:block;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--caption);margin-bottom:5px}
+.by-loc{width:100%;text-align:left;background:var(--lift);border:1.5px solid var(--border2);border-radius:9px;padding:11px 12px;font-size:14px;color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:46px}
+.by-loc.empty{color:var(--caption);border-style:dashed}
+.by-loc span.chev{color:var(--gold);font-size:12px;flex-shrink:0}
+.by-input{width:100%;background:var(--lift);border:1.5px solid var(--border2);border-radius:9px;padding:11px 12px;font-size:14px;color:var(--ink);min-height:46px}
+.by-check{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--body);margin-top:8px}
+.by-check input{width:16px;height:16px;accent-color:var(--green)}
+.by-step{display:flex;align-items:stretch;border:1.5px solid var(--border2);border-radius:9px;background:var(--lift);overflow:hidden;min-height:46px}
+.by-step button{width:46px;border:0;background:transparent;font-size:20px;color:var(--gold)}
+.by-step button:active{background:var(--gold-bg)}
+.by-step input{flex:1;min-width:0;border:0;background:transparent;text-align:center;font-size:15px;font-weight:600;color:var(--ink)}
+.by-seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.by-seg button{border:1.5px solid var(--border2);background:var(--lift);border-radius:9px;padding:8px 4px;font-size:13px;font-weight:600;color:var(--body);line-height:1.25;min-height:46px}
+.by-seg button small{display:block;font-size:10px;font-weight:400;color:var(--caption)}
+.by-seg button.on{background:var(--green);border-color:var(--green);color:#fff}
+.by-seg button.on small{color:rgba(255,255,255,.8)}
+.by-note{font-size:12px;border-radius:8px;padding:9px 11px;margin-top:10px;background:var(--gold-bg);color:var(--body);border:1px solid #ecd9b8}
+.by-note.warn{background:var(--warn-bg);border-color:#efc9a8;color:var(--warn)}
+
+/* days */
+.by-days-head{display:flex;justify-content:space-between;align-items:baseline;margin:6px 2px 10px}
+.by-days-head h2{font-size:24px}
+.by-days-head span{font-size:12px;color:var(--caption)}
+.by-day{--dc:var(--gold);background:var(--surface);border:1px solid var(--border);border-left:5px solid var(--dc);border-radius:12px;padding:14px 14px 12px;margin-bottom:12px}
+.by-dh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.by-dn{font-family:'Cormorant',serif;font-size:22px;font-weight:600;color:var(--ink)}
+.by-dd{font-size:12px;color:var(--caption)}
+.by-tools{margin-left:auto;display:flex;gap:4px}
+.by-ib{width:34px;height:34px;border-radius:8px;border:1px solid var(--border2);background:var(--lift);color:var(--body);font-size:14px;display:inline-flex;align-items:center;justify-content:center}
+.by-ib:disabled{opacity:.35}
+.by-ib:active:not(:disabled){background:var(--gold-bg)}
+.by-ib.del{color:#b23a2a}
+.by-from{font-size:12.5px;color:var(--caption);margin-bottom:8px}
+.by-from b{color:var(--ink);font-weight:600}
+.by-stops{list-style:none;margin-bottom:8px}
+.by-stop{display:flex;align-items:center;gap:8px;padding:8px 0;border-top:1px dashed var(--border)}
+.by-stop:first-child{border-top:0}
+.by-sn{width:22px;height:22px;border-radius:50%;background:var(--dc);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.by-sb{flex:1;min-width:0}
+.by-sb b{display:block;font-size:14px;color:var(--ink);font-weight:600;line-height:1.25}
+.by-sb small{display:block;font-size:11.5px;color:var(--caption)}
+.by-sb .w{color:var(--warn)}
+.by-add{width:100%;border:1.5px dashed var(--dc);background:transparent;color:var(--ink);font-size:13.5px;font-weight:600;border-radius:9px;padding:11px;min-height:44px}
+.by-add:active{background:var(--gold-bg)}
+.by-stay{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:13px}
+.by-stay .k{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--caption)}
+.by-stay b{color:var(--ink)}
+.by-link{background:none;border:0;color:var(--gold);font-weight:600;font-size:12.5px;text-decoration:underline;padding:6px 2px}
+.by-foot{margin-top:8px;font-size:12px;color:var(--body);background:var(--muted);border-radius:8px;padding:8px 10px}
+.by-foot .r{color:var(--ink);font-weight:500}
+.by-foot .w{color:var(--warn);display:block;margin-top:3px}
+.by-addday{width:100%;background:var(--green);color:#fff;border:0;border-radius:10px;padding:14px;font-size:14px;font-weight:600;min-height:48px}
+.by-addday:disabled{opacity:.5}
+
+/* map */
+#by-map{height:260px;border-radius:12px;border:1px solid var(--border);margin-bottom:14px;background:var(--muted);z-index:1}
+@media(min-width:960px){#by-map{height:300px}}
+.by-dot{background:transparent;border:0}
+
+/* price */
+.by-price{background:var(--dark);border-radius:12px;padding:18px 16px;color:#fff;margin-bottom:14px}
+.by-pl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2);font-weight:700}
+.by-pp{font-family:'Cormorant',serif;font-size:42px;font-weight:600;line-height:1.05;margin:2px 0}
+.by-pp small{font-size:14px;font-weight:400;opacity:.7;font-family:'Jost',sans-serif}
+.by-pt{font-size:13px;color:rgba(255,255,255,.78)}
+.by-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:var(--gold);color:#fff;margin-left:6px;vertical-align:middle}
+.by-badge.off{background:var(--green)}
+.by-ledger{margin-top:14px;border-top:1px solid rgba(255,255,255,.14);padding-top:10px}
+.by-ledger div{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:4px 0;color:rgba(255,255,255,.85)}
+.by-ledger div.t{border-top:1px solid rgba(255,255,255,.14);margin-top:6px;padding-top:8px;font-weight:700;color:#fff}
+.by-ledger small{opacity:.6}
+.by-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.by-stat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 6px;text-align:center}
+.by-stat b{display:block;font-family:'Cormorant',serif;font-size:22px;color:var(--ink);line-height:1.1}
+.by-stat span{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--caption)}
+.by-tiers{width:100%;border-collapse:collapse;font-size:13px}
+.by-tiers td,.by-tiers th{padding:9px 6px;text-align:left;border-bottom:1px solid var(--border)}
+.by-tiers th{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--caption);font-weight:700}
+.by-tiers td:last-child,.by-tiers th:last-child{text-align:right}
+.by-tiers tr.on td{background:var(--green-bg);font-weight:600;color:var(--ink)}
+.by-tiers tr[data-tier]{cursor:pointer}
+.by-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:10px;padding:14px;font-size:14px;font-weight:600;min-height:48px;margin-bottom:8px}
+.by-btn.wa{background:#1f9d55;color:#fff}
+.by-btn.alt{background:var(--surface);color:var(--ink);border:1.5px solid var(--border2)}
+.by-btn:disabled{opacity:.5}
+.by-row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.by-row2 .by-btn{margin-bottom:0}
+details.by-inc{margin-top:12px;font-size:12.5px}
+details.by-inc summary{cursor:pointer;font-weight:600;color:var(--ink)}
+details.by-inc ul{margin:8px 0 0 18px}
+.by-fine{font-size:11.5px;color:var(--caption);margin-top:10px}
+
+/* mobile bar */
+.by-bar{position:fixed;left:0;right:0;bottom:calc(62px + env(safe-area-inset-bottom,0px));z-index:1020;background:var(--dark);color:#fff;padding:9px var(--px);display:flex;align-items:center;gap:10px;box-shadow:0 -4px 14px rgba(0,0,0,.18)}
+.by-bar .p{flex:1;min-width:0}
+.by-bar .p b{font-family:'Cormorant',serif;font-size:24px;font-weight:600;display:block;line-height:1.1}
+.by-bar .p span{font-size:11px;color:rgba(255,255,255,.7)}
+.by-bar button{background:#1f9d55;color:#fff;border:0;border-radius:9px;padding:0 16px;min-height:44px;font-size:13.5px;font-weight:600}
+.by-bar a{color:var(--gold2);font-size:12px;font-weight:600}
+
+/* picker */
+.by-pk{position:fixed;inset:0;z-index:2000;background:rgba(14,10,4,.55);display:none;align-items:flex-end;justify-content:center}
+.by-pk.open{display:flex}
+.by-sheet{background:var(--bg);width:100%;max-width:560px;max-height:88vh;border-radius:16px 16px 0 0;display:flex;flex-direction:column;overflow:hidden}
+@media(min-width:640px){.by-pk{align-items:center}.by-sheet{border-radius:16px;max-height:80vh}}
+.by-sh{padding:14px 16px 10px;border-bottom:1px solid var(--border);background:var(--surface)}
+.by-sh h3{font-size:22px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.by-sh h3 button{background:none;border:0;font-size:22px;color:var(--caption);padding:0 4px}
+.by-pl-list{overflow-y:auto;padding:6px 10px 20px;flex:1;-webkit-overflow-scrolling:touch}
+.by-pi{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--border);padding:11px 6px;min-height:52px}
+.by-pi:active{background:var(--gold-bg)}
+.by-pi .n{flex:1;min-width:0}
+.by-pi .n b{display:block;font-size:14.5px;color:var(--ink);font-weight:600}
+.by-pi .n small{font-size:11.5px;color:var(--caption)}
+.by-pi .d{font-size:12px;color:var(--gold);font-weight:600;flex-shrink:0}
+.by-chips{display:flex;flex-wrap:wrap;gap:6px;padding:8px 6px 4px}
+.by-chip{border:1px solid var(--border2);background:var(--surface);border-radius:20px;padding:6px 12px;font-size:12.5px;color:var(--ink)}
+.by-empty{padding:26px 10px;text-align:center;font-size:13px;color:var(--caption)}
+
+.by-toast{position:fixed;left:50%;bottom:calc(140px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;padding:9px 16px;border-radius:20px;font-size:13px;z-index:3000;opacity:0;pointer-events:none;transition:opacity .2s}
+.by-toast.show{opacity:1}
+
+@media print{
+  #site-header,#site-footer,.by-hero,.by-bar,.by-pk,.by-tools,.by-add,.by-addday,.by-link,.by-btn,.by-row2,#by-map,.he-mobile-bottom,.by-toast{display:none!important}
+  body{background:#fff}
+  .by-wrap{display:block;padding:0}
+  .by-side{position:static;max-height:none}
+  .by-price{background:#fff;color:#000;border:1px solid #999}
+  .by-price *{color:#000!important}
+}
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="by-hero">
+  <div class="by-eyebrow">Custom Trip Builder</div>
+  <h1>Build your <em>own</em> Himachal trip</h1>
+  <p>Choose where you start, when you go, and the places you want each day. Your price updates instantly as you plan.</p>
+</section>
+
+<div class="by-wrap">
+  <main class="by-main">
+
+    <section class="by-card" id="setup">
+      <h2>1 · Trip basics</h2>
+      <p class="by-sub">Everything here is your choice — start anywhere, end anywhere.</p>
+      <div class="by-grid2">
+        <div class="by-field">
+          <label>Start location</label>
+          <button class="by-loc" id="startBtn" data-act="pick-start"></button>
+        </div>
+        <div class="by-field">
+          <label>End / drop location</label>
+          <div id="endBox"></div>
+          <label class="by-check"><input type="checkbox" id="sameEnd"> Return to start location</label>
+        </div>
+        <div class="by-field">
+          <label for="tripDate">Trip start date</label>
+          <input class="by-input" type="date" id="tripDate">
+        </div>
+        <div class="by-field">
+          <label for="paxIn">Travellers</label>
+          <div class="by-step">
+            <button type="button" data-act="pax-" aria-label="Fewer travellers">−</button>
+            <input id="paxIn" type="number" inputmode="numeric" min="1" max="100" value="2">
+            <button type="button" data-act="pax+" aria-label="More travellers">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="by-field" style="margin-top:12px">
+        <label>Hotel category</label>
+        <div class="by-seg" id="tierSeg">
+          <button type="button" data-tier="budget">Budget<small>3★ stay</small></button>
+          <button type="button" data-tier="premium">Premium<small>4★ stay</small></button>
+          <button type="button" data-tier="luxury">Luxury<small>5★ stay</small></button>
+        </div>
+      </div>
+      <div id="seasonNote"></div>
+    </section>
+
+    <div class="by-days-head"><h2>2 · Your days</h2><span id="daysCount"></span></div>
+    <div id="days"></div>
+    <button class="by-addday" id="addDay" data-act="add-day">＋ Add another day</button>
+    <div id="altNote"></div>
+
+  </main>
+
+  <aside class="by-side" id="side">
+    <div id="by-map"></div>
+
+    <div class="by-price" id="priceBox"></div>
+
+    <div class="by-stats" id="statBox"></div>
+
+    <section class="by-card">
+      <h2 style="font-size:20px">Compare hotel categories</h2>
+      <p class="by-sub" style="margin-bottom:8px">Same route, same days — tap a row to switch.</p>
+      <table class="by-tiers"><thead><tr><th>Category</th><th>Per person</th><th>Total</th></tr></thead><tbody id="tierRows"></tbody></table>
+      <details class="by-inc">
+        <summary>What's included</summary>
+        <ul>
+          <li>Private cab with experienced driver</li>
+          <li>Hotel accommodation for every night</li>
+          <li>Driver allowance &amp; night-halt charges</li>
+          <li>Hill state permits &amp; tolls</li>
+        </ul>
+        <div class="by-fine" style="margin-top:8px">Not included: flights/train tickets, meals unless specified, personal expenses, travel insurance.</div>
+      </details>
+      <p class="by-fine">Estimate from our live costing engine. Availability of hotels and vehicles, and any hill-road or weather changes, are confirmed on WhatsApp before booking.</p>
+    </section>
+
+    <button class="by-btn wa" data-act="wa" id="waBtn">💬 Send this plan on WhatsApp</button>
+    <div class="by-row2">
+      <button class="by-btn alt" data-act="share">🔗 Copy link</button>
+      <button class="by-btn alt" data-act="print">🖨 Save PDF</button>
+    </div>
+    <button class="by-link" data-act="reset" style="margin-top:10px">Clear and start over</button>
+  </aside>
+</div>
+
+<div class="by-bar" id="bar">
+  <div class="p"><b id="barPrice">—</b><span id="barSub"></span></div>
+  <button data-act="wa">WhatsApp ›</button>
+</div>
+
+<div class="by-pk" id="pk" role="dialog" aria-modal="true" aria-label="Choose a place">
+  <div class="by-sheet">
+    <div class="by-sh">
+      <h3><span id="pkTitle">Choose a place</span><button data-act="pk-close" aria-label="Close">✕</button></h3>
+      <input class="by-input" id="pkQ" type="search" placeholder="Search Himachal places…" autocomplete="off">
+    </div>
+    <div class="by-pl-list" id="pkList"></div>
+  </div>
+</div>
+
+<div class="by-toast" id="toast"></div>
+
+<div id="site-footer"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/js/pricing-engine.js"></script>
+<script src="assets/js/distance-matrix.js"></script>
+<script>
+window.HX_FALLBACK_PLACES = [{"id":"andretta","name":"Andretta","lat":32.0833,"lng":76.55,"region":"Kangra Valley","category":"art-village","district":"Kangra","season":"Mar–Jun, Sep–Nov"},{"id":"annandale","name":"Annandale","lat":31.1097,"lng":77.1645,"region":"Shimla Hills","category":"museum","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"atal-tunnel-viewpoint","name":"Atal Tunnel Viewpoint","lat":32.364,"lng":77.131,"region":"Lahaul Access","category":"scenic","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"awah-devi-temple","name":"Awah Devi Temple","lat":31.6333,"lng":76.5167,"region":"Hamirpur","category":"temple","district":"Hamirpur","season":"Oct–Mar"},{"id":"bada-dev-kamrunag","name":"Bada Dev Kamrunag","lat":31.505,"lng":77.06,"region":"Mandi","category":"temple","district":"Mandi","season":"Mar–Jun, Sep–Nov"},{"id":"bahu-village","name":"Bahu Village","lat":31.5583,"lng":77.35,"region":"Seraj Region","category":"village","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"baijnath-temple","name":"Baijnath Temple","lat":32.0522,"lng":76.6667,"region":"Kangra Valley","category":"temple","district":"Kangra","season":"Mar–Jun, Sep–Nov"},{"id":"barog","name":"Barog","lat":30.8833,"lng":77.0833,"region":"Solan","category":"hillstation","district":"Solan","season":"Oct–Mar"},{"id":"barot-valley","name":"Barot Valley","lat":32.0392,"lng":76.8443,"region":"Uhl River Valley","category":"scenic","district":"Mandi","season":"Mar–Jun, Sep–Nov"},{"id":"bharmour","name":"Bharmour","lat":32.4439,"lng":76.5133,"region":"Chamba Valley","category":"heritage","district":"Chamba","season":"Apr–Jun, Sep–Nov"},{"id":"bhuri-singh-museum","name":"Bhuri Singh Museum","lat":32.5533,"lng":76.1267,"region":"Chamba Valley","category":"museum","district":"Chamba","season":"Apr–Jun, Sep–Nov"},{"id":"bijli-mahadev","name":"Bijli Mahadev","lat":31.9772,"lng":77.1644,"region":"Kullu Valley","category":"temple","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"bir-billing","name":"Bir Billing","lat":32.0461,"lng":76.7161,"region":"Kangra Valley","category":"adventure","district":"Kangra","season":"Mar–Jun, Sep–Nov"},{"id":"chadwick-falls","name":"Chadwick Falls","lat":31.1215,"lng":77.1558,"region":"Shimla Hills","category":"nature","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"chail","name":"Chail","lat":30.969,"lng":77.196,"region":"Shimla Hills","category":"scenic","district":"Solan","season":"Oct–Mar"},{"id":"chalal","name":"Chalal","lat":32.0078,"lng":77.3294,"region":"Parvati Valley","category":"village","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"chamba","name":"Chamba Town","lat":32.556,"lng":76.126,"region":"Chamba Valley","category":"core","district":"Chamba","season":"Apr–Jun, Sep–Nov"},{"id":"chamera-lake","name":"Chamera Lake","lat":32.5458,"lng":76.195,"region":"Chamba Valley","category":"lake","district":"Chamba","season":"Apr–Jun, Sep–Nov"},{"id":"chandratal-lake","name":"Chandratal Lake","lat":32.482,"lng":77.615,"region":"Spiti Valley","category":"scenic","district":"Lahaul & Spiti","season":"Jun–Sep"},{"id":"charang-valley","name":"Charang Valley","lat":31.5,"lng":78.4333,"region":"Kinnaur Valley","category":"valley","district":"Kinnaur","season":"May–Jun, Sep–Oct"},{"id":"chintpurni-temple","name":"Chintpurni Temple","lat":31.7167,"lng":76.1333,"region":"Una","category":"temple","district":"Una","season":"Oct–Mar"},{"id":"chitkul","name":"Chitkul","lat":31.346,"lng":78.436,"region":"Baspa Valley","category":"scenic","district":"Kinnaur","season":"May–Jun, Sep–Oct"},{"id":"churdhar-peak","name":"Churdhar Peak","lat":30.8833,"lng":77.4,"region":"Sirmaur","category":"trek","district":"Sirmaur","season":"Oct–Mar (lower), May–Jun (peaks)"},{"id":"craignano-nature-park","name":"Craignano Nature Park","lat":31.1275,"lng":77.2115,"region":"Shimla Hills","category":"park","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"dagshai","name":"Dagshai","lat":30.8667,"lng":77.05,"region":"Solan","category":"heritage","district":"Solan","season":"Oct–Mar"},{"id":"dalhousie","name":"Dalhousie","lat":32.538,"lng":75.97,"region":"Chamba Valley","category":"scenic","district":"Chamba","season":"Apr–Jun, Sep–Nov"},{"id":"dera-baba-rudru","name":"Dera Baba Rudru","lat":31.45,"lng":76.2833,"region":"Una","category":"spiritual","district":"Una","season":"Oct–Mar"},{"id":"dhankar-lake","name":"Dhankar Lake","lat":32.092,"lng":78.215,"region":"Spiti Valley","category":"trek","district":"Lahaul & Spiti","season":"Jun–Sep"},{"id":"dharamshala","name":"Dharamshala","lat":32.219,"lng":76.3234,"region":"Kangra Valley","category":"core","district":"Kangra","season":"Mar–Jun, Sep–Nov"},{"id":"fagu","name":"Fagu","lat":31.1005,"lng":77.276,"region":"Shimla Hills","category":"scenic","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"gilbert-trail","name":"Gilbert Trail","lat":30.8833,"lng":76.9667,"region":"Solan","category":"trek","district":"Solan","season":"Oct–Mar"},{"id":"gobind-sagar-lake","name":"Gobind Sagar Lake","lat":31.4167,"lng":76.4333,"region":"Una","category":"lake","district":"Una","season":"Oct–Mar"},{"id":"great-himalayan-national-park","name":"Great Himalayan National Park","lat":31.7333,"lng":77.4,"region":"Kullu Valley","category":"national-park","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"green-valley","name":"Green Valley","lat":31.1025,"lng":77.2645,"region":"Shimla Hills","category":"scenic","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"gue-mummy-village","name":"Gue Mummy Village","lat":32.1833,"lng":78.6167,"region":"Spiti Valley","category":"heritage","district":"Lahaul & Spiti","season":"Jun–Sep"},{"id":"habban-valley","name":"Habban Valley","lat":30.8,"lng":77.35,"region":"Sirmaur","category":"valley","district":"Sirmaur","season":"Oct–Mar (lower), May–Jun (peaks)"},{"id":"hadimba-temple","name":"Hadimba Temple","lat":32.2485,"lng":77.185,"region":"Kullu Valley","category":"spiritual","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"haripurdhar","name":"Haripurdhar","lat":30.8667,"lng":77.4333,"region":"Sirmaur","category":"village","district":"Sirmaur","season":"Oct–Mar (lower), May–Jun (peaks)"},{"id":"hatu-peak","name":"Hatu Peak","lat":31.271,"lng":77.465,"region":"Upper Shimla","category":"adventure","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"hikkim","name":"Hikkim","lat":32.325,"lng":78,"region":"Spiti Valley","category":"village","district":"Lahaul & Spiti","season":"Jun–Sep"},{"id":"jakhu-temple","name":"Jakhu Temple","lat":31.106,"lng":77.184,"region":"Shimla Hills","category":"spiritual","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"jalori-pass","name":"Jalori Pass","lat":31.53,"lng":77.415,"region":"Seraj Region","category":"adventure","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"jamu-peak","name":"Jamu Peak","lat":30.8833,"lng":77.4167,"region":"Sirmaur","category":"trek","district":"Sirmaur","season":"Oct–Mar (lower), May–Jun (peaks)"},{"id":"jana-waterfall","name":"Jana Waterfall","lat":32.1001,"lng":77.195,"region":"Kullu Valley","category":"nature","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"janjehli","name":"Janjehli","lat":31.365,"lng":77.21,"region":"Mandi","category":"trek","district":"Mandi","season":"Mar–Jun, Sep–Nov"},{"id":"jibhi","name":"Jibhi","lat":31.581,"lng":77.351,"region":"Seraj Region","category":"scenic","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"kalatop-wildlife-sanctuary","name":"Kalatop Wildlife Sanctuary","lat":32.5539,"lng":76.0694,"region":"Chamba Valley","category":"wildlife","district":"Chamba","season":"Apr–Jun, Sep–Nov"},{"id":"kalga","name":"Kalga","lat":32.0006,"lng":77.465,"region":"Parvati Valley","category":"village","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"kalpa","name":"Kalpa","lat":31.539,"lng":78.254,"region":"Kinnaur Valley","category":"scenic","district":"Kinnaur","season":"May–Jun, Sep–Oct"},{"id":"kamrunag-lake","name":"Kamrunag Lake","lat":31.5,"lng":77.0667,"region":"Mandi","category":"lake","district":"Mandi","season":"Mar–Jun, Sep–Nov"},{"id":"kangra-fort","name":"Kangra Fort","lat":32.0913,"lng":76.2573,"region":"Kangra Valley","category":"fort","district":"Kangra","season":"Mar–Jun, Sep–Nov"},{"id":"kareri-lake","name":"Kareri Lake","lat":32.2858,"lng":76.305,"region":"Kangra Valley","category":"lake","district":"Kangra","season":"Mar–Jun, Sep–Nov"},{"id":"kareri-village","name":"Kareri Village","lat":32.2855,"lng":76.3055,"region":"Kangra Valley","category":"village","district":"Kangra","season":"Mar–Jun, Sep–Nov"},{"id":"karol-tibba","name":"Karol Tibba","lat":30.9333,"lng":77.1167,"region":"Solan","category":"trek","district":"Solan","season":"Oct–Mar"},{"id":"karsog-valley","name":"Karsog Valley","lat":31.3333,"lng":77.2167,"region":"Mandi","category":"heritage","district":"Mandi","season":"Mar–Jun, Sep–Nov"},{"id":"kasauli","name":"Kasauli","lat":30.9013,"lng":76.9649,"region":"Solan","category":"core","district":"Solan","season":"Oct–Mar"},{"id":"kasol","name":"Kasol","lat":32.01,"lng":77.316,"region":"Parvati Valley","category":"adventure","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"kaza","name":"Kaza","lat":32.227,"lng":78.067,"region":"Spiti Valley","category":"core","district":"Lahaul & Spiti","season":"Jun–Sep"},{"id":"key-monastery","name":"Key Monastery","lat":32.299,"lng":78.012,"region":"Spiti Valley","category":"spiritual","district":"Lahaul & Spiti","season":"Jun–Sep"},{"id":"khajjiar","name":"Khajjiar","lat":32.549,"lng":76.059,"region":"Chamba Valley","category":"scenic","district":"Chamba","season":"Apr–Jun, Sep–Nov"},{"id":"kheerganga-trek","name":"Kheerganga Trek","lat":32.033,"lng":77.451,"region":"Parvati Valley","category":"adventure","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"kibber-village","name":"Kibber Village","lat":32.3333,"lng":78.0167,"region":"Spiti Valley","category":"village","district":"Lahaul & Spiti","season":"Jun–Sep"},{"id":"kinnaur-kailash-view-point","name":"Kinnaur Kailash View Point","lat":31.5583,"lng":78.2833,"region":"Kinnaur Valley","category":"viewpoint","district":"Kinnaur","season":"May–Jun, Sep–Oct"},{"id":"komic","name":"Komic","lat":32.3083,"lng":78.0167,"region":"Spiti Valley","category":"village","district":"Lahaul & Spiti","season":"Jun–Sep"},{"id":"kotgarh","name":"Kotgarh","lat":31.2581,"lng":77.4475,"region":"Upper Shimla","category":"orchard","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"kufri","name":"Kufri","lat":31.0978,"lng":77.267,"region":"Shimla Hills","category":"scenic","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"kullu","name":"Kullu","lat":31.958,"lng":77.109,"region":"Kullu Valley","category":"core","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"kunzum-pass","name":"Kunzum Pass","lat":32.3667,"lng":77.6333,"region":"Spiti Valley","category":"pass","district":"Lahaul & Spiti","season":"Jun–Sep"},{"id":"langza","name":"Langza Village","lat":32.27,"lng":78.07,"region":"Spiti Valley","category":"heritage","district":"Lahaul & Spiti","season":"Jun–Sep"},{"id":"malana","name":"Malana Village","lat":32.062,"lng":77.265,"region":"Parvati Valley","category":"heritage","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"mall-road","name":"Mall Road","lat":31.1045,"lng":77.173,"region":"Shimla Hills","category":"core","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"manali","name":"Manali","lat":32.2432,"lng":77.1892,"region":"Kullu Valley","category":"core","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"manikaran-sahib","name":"Manikaran Sahib","lat":32.026,"lng":77.35,"region":"Parvati Valley","category":"spiritual","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"manimahesh-lake","name":"Manimahesh Lake","lat":32.3956,"lng":76.6433,"region":"Chamba Valley","category":"lake","district":"Chamba","season":"Apr–Jun, Sep–Nov"},{"id":"mashobra","name":"Mashobra","lat":31.1345,"lng":77.2198,"region":"Shimla Hills","category":"scenic","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"masroor-rock-cut-temples","name":"Masroor Rock Cut Temples","lat":32.0913,"lng":76.2573,"region":"Kangra Valley","category":"temple","district":"Kangra","season":"Mar–Jun, Sep–Nov"},{"id":"mcleod-ganj","name":"McLeod Ganj","lat":32.2426,"lng":76.3213,"region":"Kangra Valley","category":"core","district":"Kangra","season":"Mar–Jun, Sep–Nov"},{"id":"mohan-shakti-heritage-park","name":"Mohan Shakti Heritage Park","lat":30.9,"lng":77.1,"region":"Solan","category":"park","district":"Solan","season":"Oct–Mar"},{"id":"naggar-castle","name":"Naggar Castle","lat":32.112,"lng":77.164,"region":"Kullu Valley","category":"fort","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"nahan","name":"Nahan","lat":30.55,"lng":77.3,"region":"Sirmaur","category":"town","district":"Sirmaur","season":"Oct–Mar (lower), May–Jun (peaks)"},{"id":"nako-village","name":"Nako Village","lat":31.8814,"lng":78.6276,"region":"Kinnaur","category":"scenic","district":"Kinnaur","season":"May–Jun, Sep–Oct"},{"id":"naldehra","name":"Naldehra","lat":31.1664,"lng":77.2343,"region":"Shimla Hills","category":"scenic","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"narkanda","name":"Narkanda","lat":31.269,"lng":77.46,"region":"Upper Shimla","category":"scenic","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"narvadeshwar-temple","name":"Narvadeshwar Temple","lat":31.6833,"lng":76.5167,"region":"Hamirpur","category":"temple","district":"Hamirpur","season":"Oct–Mar"},{"id":"norbulingka-institute","name":"Norbulingka Institute","lat":32.2198,"lng":76.315,"region":"Kangra Valley","category":"heritage","district":"Kangra","season":"Mar–Jun, Sep–Nov"},{"id":"old-manali","name":"Old Manali","lat":32.251,"lng":77.188,"region":"Kullu Valley","category":"culture","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"palampur-tea-gardens","name":"Palampur Tea Gardens","lat":32.1158,"lng":76.54,"region":"Kangra Valley","category":"garden","district":"Kangra","season":"Mar–Jun, Sep–Nov"},{"id":"pandoh-dam","name":"Pandoh Dam","lat":31.65,"lng":77.1,"region":"Mandi","category":"dam","district":"Mandi","season":"Mar–Jun, Sep–Nov"},{"id":"pangi-valley","name":"Pangi Valley","lat":33.05,"lng":76.5,"region":"Pangi Valley","category":"valley","district":"Chamba","season":"Apr–Jun, Sep–Nov"},{"id":"pin-valley","name":"Pin Valley National Park","lat":31.9,"lng":78.2,"region":"Spiti Valley","category":"nature","district":"Lahaul & Spiti","season":"Jun–Sep"},{"id":"pong-dam-lake","name":"Pong Dam Lake","lat":32,"lng":76.0833,"region":"Kangra Valley","category":"lake","district":"Kangra","season":"Mar–Jun, Sep–Nov"},{"id":"pooh","name":"Pooh","lat":31.7583,"lng":78.3833,"region":"Kinnaur Valley","category":"village","district":"Kinnaur","season":"May–Jun, Sep–Oct"},{"id":"prashar-lake","name":"Prashar Lake","lat":31.754,"lng":77.1009,"region":"Mandi","category":"spiritual","district":"Mandi","season":"Mar–Jun, Sep–Nov"},{"id":"pulga","name":"Pulga","lat":32.0089,"lng":77.4739,"region":"Parvati Valley","category":"village","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"raison","name":"Raison","lat":31.9567,"lng":77.1667,"region":"Kullu Valley","category":"river-side","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"rakcham","name":"Rakcham","lat":31.3967,"lng":78.33,"region":"Baspa Valley","category":"village","district":"Kinnaur","season":"May–Jun, Sep–Oct"},{"id":"reckong-peo","name":"Reckong Peo","lat":31.53,"lng":78.27,"region":"Kinnaur Valley","category":"core","district":"Kinnaur","season":"May–Jun, Sep–Oct"},{"id":"renuka-lake","name":"Renuka Lake","lat":30.605,"lng":77.458,"region":"Sirmaur","category":"nature","district":"Sirmaur","season":"Oct–Mar (lower), May–Jun (peaks)"},{"id":"rewalsar-lake","name":"Rewalsar Lake","lat":31.6317,"lng":76.8167,"region":"Mandi","category":"lake","district":"Mandi","season":"Mar–Jun, Sep–Nov"},{"id":"roghi-village","name":"Roghi Village","lat":31.55,"lng":78.2667,"region":"Kinnaur Valley","category":"village","district":"Kinnaur","season":"May–Jun, Sep–Oct"},{"id":"rohtang-pass","name":"Rohtang Pass","lat":32.3716,"lng":77.2466,"region":"Kullu Valley","category":"scenic","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"sach-pass","name":"Sach Pass","lat":33.0294,"lng":76.3267,"region":"Pangi Valley","category":"pass","district":"Chamba","season":"Apr–Jun, Sep–Nov"},{"id":"sainj-valley","name":"Sainj Valley","lat":31.65,"lng":77.3833,"region":"Seraj Region","category":"valley","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"sangla","name":"Sangla","lat":31.429,"lng":78.262,"region":"Baspa Valley","category":"scenic","district":"Kinnaur","season":"May–Jun, Sep–Oct"},{"id":"saurabh-van-vihar","name":"Saurabh Van Vihar","lat":32.12,"lng":76.55,"region":"Kangra Valley","category":"park","district":"Kangra","season":"Mar–Jun, Sep–Nov"},{"id":"serolsar-lake","name":"Serolsar Lake","lat":31.54,"lng":77.42,"region":"Seraj Region","category":"trek","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"shimla-state-museum","name":"Shimla State Museum","lat":31.1035,"lng":77.182,"region":"Shimla Hills","category":"heritage","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"shoja","name":"Shoja","lat":31.554,"lng":77.382,"region":"Seraj Region","category":"scenic","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"sissu","name":"Sissu","lat":32.474,"lng":77.124,"region":"Lahaul Valley","category":"scenic","district":"Lahaul & Spiti","season":"Jun–Sep"},{"id":"solang-valley","name":"Solang Valley","lat":32.316,"lng":77.157,"region":"Kullu Valley","category":"adventure","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"sujanpur-tira-fort","name":"Sujanpur Tira Fort","lat":31.8333,"lng":76.5,"region":"Hamirpur","category":"fort","district":"Hamirpur","season":"Oct–Mar"},{"id":"sundernagar-lake","name":"Sundernagar Lake","lat":31.5333,"lng":76.8833,"region":"Mandi","category":"lake","district":"Mandi","season":"Mar–Jun, Sep–Nov"},{"id":"tabo-monastery","name":"Tabo Monastery","lat":32.093,"lng":78.383,"region":"Spiti Valley","category":"heritage","district":"Lahaul & Spiti","season":"Jun–Sep"},{"id":"tani-jubbar","name":"Tani Jubbar Lake","lat":31.28,"lng":77.42,"region":"Upper Shimla","category":"lake","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"tattapani","name":"Tattapani","lat":31.2333,"lng":77.2667,"region":"Sutlej Valley","category":"hot-spring","district":"Mandi","season":"Mar–Jun, Sep–Nov"},{"id":"the-ridge","name":"The Ridge","lat":31.1048,"lng":77.1734,"region":"Shimla Hills","category":"core","district":"Shimla","season":"Mar–Jun, Sep–Nov, Dec–Feb (snow)"},{"id":"tirthan-valley","name":"Tirthan Valley","lat":31.612,"lng":77.355,"region":"Seraj Region","category":"scenic","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"tosh","name":"Tosh","lat":32.025,"lng":77.45,"region":"Parvati Valley","category":"adventure","district":"Kullu","season":"Mar–Jun, Sep–Nov"},{"id":"triund","name":"Triund","lat":32.2618,"lng":76.3503,"region":"Kangra Valley","category":"trek","district":"Kangra","season":"Mar–Jun, Sep–Nov"},{"id":"vashisht-hot-springs","name":"Vashisht Hot Springs","lat":32.256,"lng":77.195,"region":"Kullu Valley","category":"nature","district":"Kullu","season":"Mar–Jun, Sep–Nov"}];
+</script>
+<script>
+(function(){
+'use strict';
+
+/* ─────────────────────────── constants ─────────────────────────── */
+const WA='917018138847';
+const LS_KEY='he_custom_trip_v1';
+const DB='https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app';
+const COLORS=['#b07d3a','#2d5a3d','#3b6ea5','#a23b5a','#7a4fa3','#c2703a','#2c8a8a','#6b7a2a'];
+const TIERS={budget:{label:'Budget',star:'3★'},premium:{label:'Premium',star:'4★'},luxury:{label:'Luxury',star:'5★'}};
+const MAX_DAYS=30, MAX_PAX=100, AVG_KMH=35, LONG_DRIVE_HRS=7;
+const HIGH_RE=/kinnaur|spiti|lahaul|pangi/i;
+const EXTRA_GATEWAYS=[
+  {id:'gw-delhi',name:'Delhi',lat:28.6139,lng:77.2090,region:'Gateway city',category:'gateway',district:'',season:''},
+  {id:'gw-chandigarh',name:'Chandigarh',lat:30.7333,lng:76.7794,region:'Gateway city',category:'gateway',district:'',season:''},
+  {id:'gw-shimla',name:'Shimla',lat:31.1048,lng:77.1734,region:'Shimla Hills',category:'gateway',district:'Shimla',season:''}
+];
+const START_CHIPS=['gw-delhi','gw-chandigarh','gw-shimla','manali','dharamshala'];
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const inr=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+const PE=()=>window.PricingEngine;
+
+/* ─────────────────────────── places ─────────────────────────── */
+let PLACES=(window.HX_FALLBACK_PLACES||[]).slice();
+const FB_SEASON={}; PLACES.forEach(p=>{FB_SEASON[p.id]=p.season||'';});
+let ALL=[], BYID={};
+function indexPlaces(){
+  const gwIds=new Set(EXTRA_GATEWAYS.map(g=>g.id));
+  ALL=EXTRA_GATEWAYS.concat(PLACES.filter(p=>!gwIds.has(p.id)));
+  BYID={}; ALL.forEach(p=>{BYID[p.id]=p;});
+}
+function place(id){
+  if(!id) return null;
+  if(BYID[id]) return BYID[id];
+  if(String(id).indexOf('c:')===0) return {id:id,name:String(id).slice(2),lat:null,lng:null,region:'Custom place',category:'custom',custom:true};
+  return {id:id,name:id,lat:null,lng:null,region:'',category:''};
+}
+indexPlaces();
+
+/* ─────────────────────────── state ─────────────────────────── */
+function defaultState(){
+  return {v:1,start:null,end:null,sameEnd:true,date:'',pax:2,tier:'budget',
+    days:[{stops:[],stay:null},{stops:[],stay:null},{stops:[],stay:null}]};
+}
+function clean(o){
+  const d=defaultState();
+  if(!o||typeof o!=='object') return d;
+  const id=v=>(typeof v==='string'&&v&&v.length<90)?v:null;
+  d.start=id(o.start); d.end=id(o.end); d.sameEnd=o.sameEnd!==false;
+  d.date=/^\d{4}-\d{2}-\d{2}$/.test(o.date||'')?o.date:'';
+  d.pax=Math.min(MAX_PAX,Math.max(1,parseInt(o.pax,10)||2));
+  d.tier=TIERS[o.tier]?o.tier:'budget';
+  if(Array.isArray(o.days)&&o.days.length){
+    d.days=o.days.slice(0,MAX_DAYS).map(x=>({
+      stops:Array.isArray(x&&x.stops)?x.stops.map(id).filter(Boolean).slice(0,25):[],
+      stay:id(x&&x.stay)
+    }));
+  }
+  return d;
+}
+function enc(o){return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+function dec(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';return JSON.parse(decodeURIComponent(escape(atob(s))));}
+function load(){
+  try{
+    const m=location.hash.match(/[#&]t=([^&]+)/);
+    if(m){
+      const shared=clean(dec(m[1]));
+      // adopt the shared plan as this visitor's own working copy, then drop the hash
+      try{localStorage.setItem(LS_KEY,JSON.stringify(shared));}catch(e){}
+      try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}
+      return shared;
+    }
+  }catch(e){}
+  try{ const raw=localStorage.getItem(LS_KEY); if(raw) return clean(JSON.parse(raw)); }catch(e){}
+  return defaultState();
+}
+let S=load();
+function save(){ try{localStorage.setItem(LS_KEY,JSON.stringify(S));}catch(e){} }
+
+/* ─────────────────────────── routing maths ─────────────────────────── */
+function legKm(a,b){
+  if(!a||!b) return {km:0,ok:false};
+  if(a.id===b.id) return {km:0,ok:true};
+  const m=window.HPDistance?HPDistance.getKm(a.id,b.id):null;
+  if(m!=null) return {km:m,ok:true};
+  if(a.lat!=null&&b.lat!=null&&window.HPDistance) return {km:HPDistance.getKmWithFallback(a.id,b.id,a,b),ok:true,est:true};
+  return {km:0,ok:false};
+}
+function buildPlan(){
+  const start=place(S.start);
+  const endRef=S.sameEnd?S.start:S.end;
+  const end=place(endRef);
+  let cur=start; const out=[];
+  S.days.forEach((d,i)=>{
+    const last=i===S.days.length-1;
+    const stops=d.stops.map(place);
+    let to;
+    if(last) to=end||(stops.length?stops[stops.length-1]:cur);
+    else to=d.stay?place(d.stay):(stops.length?stops[stops.length-1]:cur);
+    const pts=[]; if(cur) pts.push(cur); stops.forEach(p=>pts.push(p)); if(to) pts.push(to);
+    let km=0, unknown=false; const legs=[];
+    for(let k=0;k<pts.length-1;k++){
+      const l=legKm(pts[k],pts[k+1]); legs.push(l);
+      km+=l.km; if(!l.ok) unknown=true;
+    }
+    const seq=pts.filter((p,k)=>k===0||p.id!==pts[k-1].id);
+    out.push({i:i,last:last,from:cur,stops:stops,to:to,pts:pts,legs:legs,seq:seq,km:km,hrs:km/AVG_KMH,unknown:unknown,stayAuto:!last&&!d.stay});
+    cur=to;
+  });
+  return out;
+}
+
+/* ─────────────────────────── dates / season ─────────────────────────── */
+function dayDate(i){
+  if(!S.date) return null;
+  const d=new Date(S.date+'T00:00:00'); if(isNaN(d)) return null;
+  d.setDate(d.getDate()+i); return d;
+}
+const fmtDate=d=>d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'});
+function priceMonth(){
+  const d=dayDate(0); return d?d.getMonth()+1:new Date().getMonth()+1;
+}
+function seasonWarnFor(p){
+  // Passes/regions that are only motorable Jun–Sep (same rule as the route builder)
+  if(!p||!S.date) return false;
+  const s=p.season||FB_SEASON[p.id]||'';
+  if(!/^Jun.{1,2}Sep$/.test(s.trim())) return false;
+  for(let i=0;i<S.days.length;i++){const d=dayDate(i); const m=d.getMonth()+1; if(m<6||m>9) return true;}
+  return false;
+}
+
+/* ─────────────────────────── pricing (costing engine) ─────────────────────────── */
+function price(tier){
+  if(!PE()) return null;
+  try{ return PE().computePrice({days:S.days.length,pax:S.pax,tier:tier,month:priceMonth()}); }
+  catch(e){ return null; }
+}
+
+/* ─────────────────────────── render: setup ─────────────────────────── */
+function locBtn(id,act,emptyText){
+  const p=place(id);
+  return '<button class="by-loc'+(p?'':' empty')+'" data-act="'+act+'"><span>'+(p?'📍 '+esc(p.name):esc(emptyText))+'</span><span class="chev">'+(p?'Change':'Choose')+'</span></button>';
+}
+function renderSetup(){
+  $('#startBtn').outerHTML=locBtn(S.start,'pick-start','Choose where you start').replace('<button ','<button id="startBtn" ');
+  $('#endBox').innerHTML=S.sameEnd
+    ? '<div class="by-loc" style="cursor:default;background:var(--muted)"><span>↩ '+(S.start?esc(place(S.start).name):'Same as start')+'</span></div>'
+    : locBtn(S.end,'pick-end','Choose where you end');
+  $('#sameEnd').checked=S.sameEnd;
+  $('#tripDate').value=S.date||'';
+  $('#paxIn').value=S.pax;
+  document.querySelectorAll('#tierSeg button').forEach(b=>b.classList.toggle('on',b.dataset.tier===S.tier));
+  const r=price(S.tier), n=$('#seasonNote'); let html='';
+  if(!S.date) html='<div class="by-note">No date chosen — pricing uses the current month. Pick your travel date for accurate peak/off-peak rates.</div>';
+  else if(r){
+    const last=dayDate(S.days.length-1), pk=PE().isPeakMonth;
+    if(last&&pk(last.getMonth()+1)!==pk(priceMonth())) html='<div class="by-note warn">Your trip crosses into a different season. The estimate uses the season of your start date; the final quote is confirmed on WhatsApp.</div>';
+  }
+  n.innerHTML=html;
+}
+
+/* ─────────────────────────── render: days ─────────────────────────── */
+function renderDays(plan){
+  const n=S.days.length;
+  $('#daysCount').textContent=n+' day'+(n>1?'s':'')+' · '+Math.max(1,n-1)+' night'+(Math.max(1,n-1)>1?'s':'');
+  $('#addDay').disabled=n>=MAX_DAYS;
+  $('#days').innerHTML=S.days.map((d,i)=>{
+    const p=plan[i], col=COLORS[i%COLORS.length], dt=dayDate(i);
+    const fromTxt=p.from?'<b>'+esc(p.from.name)+'</b>':'<b style="color:var(--warn)">Set a start location above</b>';
+    const stops=d.stops.map((id,k)=>{
+      const pl=place(id);
+      const offset=p.from?1:0, idx=k+offset;
+      const leg=idx>0?p.legs[idx-1]:null;
+      let meta=esc(pl.region||'');
+      if(leg&&leg.ok&&leg.km>0) meta+=(meta?' · ':'')+'≈ '+Math.round(leg.km)+' km from previous';
+      if(leg&&!leg.ok) meta+=(meta?' · ':'')+'distance to be confirmed';
+      const w=seasonWarnFor(pl)?'<small class="w">⚠ Usually snow-closed outside Jun–Sep</small>':'';
+      return '<li class="by-stop"><span class="by-sn">'+(k+1)+'</span><div class="by-sb"><b>'+esc(pl.name)+'</b><small>'+meta+'</small>'+w+'</div>'
+        +'<button class="by-ib" data-act="stop-up" data-day="'+i+'" data-k="'+k+'" '+(k===0?'disabled':'')+' aria-label="Move up">↑</button>'
+        +'<button class="by-ib" data-act="stop-down" data-day="'+i+'" data-k="'+k+'" '+(k===d.stops.length-1?'disabled':'')+' aria-label="Move down">↓</button>'
+        +'<button class="by-ib del" data-act="stop-del" data-day="'+i+'" data-k="'+k+'" aria-label="Remove">✕</button></li>';
+    }).join('');
+    const stayName=p.to?esc(p.to.name):'—';
+    const stayRow=p.last
+      ?'<div class="by-stay"><span class="k">Trip ends at</span><b>'+stayName+'</b></div>'
+      :'<div class="by-stay"><span class="k">Overnight at</span><b>'+stayName+'</b>'+(p.stayAuto?'<small style="color:var(--caption)">(last stop)</small>':'')
+        +'<button class="by-link" data-act="pick-stay" data-day="'+i+'">'+(p.stayAuto?'Change':'Change')+'</button>'
+        +(d.stay?'<button class="by-link" data-act="stay-reset" data-day="'+i+'">Reset</button>':'')+'</div>';
+    const names=p.seq.map(x=>esc(x.name)).join(' → ');
+    let foot='';
+    if(p.seq.length>1){
+      foot='<div class="by-foot"><span class="r">'+names+'</span><br>≈ '+Math.round(p.km)+' km · about '+p.hrs.toFixed(1)+' hrs driving'+(p.unknown?' (distance for custom places to be confirmed)':'');
+      if(p.hrs>LONG_DRIVE_HRS) foot+='<span class="w">⚠ Long driving day on hill roads — consider splitting it across two days.</span>';
+      foot+='</div>';
+    }
+    return '<article class="by-day" style="--dc:'+col+'">'
+      +'<div class="by-dh"><span class="by-dn">Day '+(i+1)+'</span>'+(dt?'<span class="by-dd">'+esc(fmtDate(dt))+'</span>':'')
+      +'<div class="by-tools">'
+      +'<button class="by-ib" data-act="day-up" data-day="'+i+'" '+(i===0?'disabled':'')+' aria-label="Move day up">↑</button>'
+      +'<button class="by-ib" data-act="day-down" data-day="'+i+'" '+(i===n-1?'disabled':'')+' aria-label="Move day down">↓</button>'
+      +'<button class="by-ib del" data-act="day-del" data-day="'+i+'" '+(n<=1?'disabled':'')+' aria-label="Delete day">🗑</button></div></div>'
+      +'<div class="by-from">Starts from '+fromTxt+'</div>'
+      +(stops?'<ol class="by-stops">'+stops+'</ol>':'')
+      +'<button class="by-add" data-act="add-stop" data-day="'+i+'">＋ Add a place to visit</button>'
+      +stayRow+foot+'</article>';
+  }).join('');
+}
+
+/* ─────────────────────────── render: price / stats ─────────────────────────── */
+function renderPrice(plan){
+  const r=price(S.tier), n=S.days.length;
+  const totalKm=plan.reduce((a,p)=>a+p.km,0), totalHrs=plan.reduce((a,p)=>a+p.hrs,0);
+  $('#statBox').innerHTML=
+    '<div class="by-stat"><b>'+n+'</b><span>Days</span></div>'+
+    '<div class="by-stat"><b>'+Math.round(totalKm).toLocaleString('en-IN')+'</b><span>Km approx</span></div>'+
+    '<div class="by-stat"><b>'+totalHrs.toFixed(0)+'h</b><span>Driving</span></div>';
+  if(!r){
+    $('#priceBox').innerHTML='<div class="by-pl">Estimated price</div><div class="by-pt" style="margin-top:8px">Price is loading… if this stays, please refresh the page.</div>';
+    $('#barPrice').textContent='—'; $('#barSub').textContent='Calculating…'; $('#tierRows').innerHTML=''; return;
+  }
+  const b=r.breakdown, v=Math.round(b.vehiclePP), h=Math.round(b.hotelPP), sv=r.totalPP-v-h;
+  const t=TIERS[S.tier];
+  $('#priceBox').innerHTML=
+    '<div class="by-pl">Estimated price <span class="by-badge'+(b.isPeak?'':' off')+'">'+(b.isPeak?'Peak season':'Off-peak')+'</span></div>'
+    +'<div class="by-pp">'+inr(r.totalPP)+' <small>per person</small></div>'
+    +'<div class="by-pt">Total for '+S.pax+' traveller'+(S.pax>1?'s':'')+': <b>'+inr(r.groupTotal)+'</b><br>'+n+' days / '+b.nights+' nights · '+esc(t.label)+' ('+t.star+') · '+esc(r.fleetLabel)+'</div>'
+    +'<div class="by-ledger">'
+    +'<div><span>Transport <small>(vehicle, driver, tolls)</small></span><span>'+inr(v)+'</span></div>'
+    +'<div><span>Accommodation <small>('+b.nights+' nights)</small></span><span>'+inr(h)+'</span></div>'
+    +'<div><span>Service &amp; support</span><span>'+inr(sv)+'</span></div>'
+    +'<div class="t"><span>Per person</span><span>'+inr(r.totalPP)+'</span></div></div>';
+  $('#barPrice').textContent=inr(r.totalPP)+' /person';
+  $('#barSub').textContent='Total '+inr(r.groupTotal)+' · '+S.pax+' pax · '+n+' days';
+  $('#tierRows').innerHTML=Object.keys(TIERS).map(k=>{
+    const x=price(k); if(!x) return '';
+    return '<tr data-tier="'+k+'" class="'+(k===S.tier?'on':'')+'"><td>'+TIERS[k].label+' <small style="color:var(--caption)">'+TIERS[k].star+'</small></td><td>'+inr(x.totalPP)+'</td><td>'+inr(x.groupTotal)+'</td></tr>';
+  }).join('');
+}
+
+function renderNotes(plan){
+  const hi=[];
+  S.days.forEach(d=>{[].concat(d.stops,d.stay?[d.stay]:[]).forEach(id=>{const p=place(id); if(p&&HIGH_RE.test((p.region||'')+' '+(p.district||''))&&hi.indexOf(p.name)<0) hi.push(p.name);});});
+  $('#altNote').innerHTML=hi.length
+    ?'<div class="by-note warn" style="margin-top:12px">High-altitude stops on your route ('+esc(hi.slice(0,4).join(', '))+(hi.length>4?'…':'')+'). Keep a buffer day for acclimatisation, weather and road closures.</div>':'';
+}
+
+/* ─────────────────────────── map ─────────────────────────── */
+let map=null, layer=null, renderToken=0; const geoCache={};
+function initMap(){
+  if(map||!window.L) return;
+  map=L.map('by-map',{scrollWheelZoom:false,zoomControl:true}).setView([31.9,77.2],7);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'© OpenStreetMap'}).addTo(map);
+  layer=L.layerGroup().addTo(map);
+}
+let mapTimer=null;
+function scheduleMap(plan){ clearTimeout(mapTimer); mapTimer=setTimeout(()=>drawMap(plan),200); }
+function drawMap(plan){
+  initMap(); if(!map) return;
+  const tok=++renderToken; layer.clearLayers();
+  const bounds=[]; const seen={};
+  plan.forEach((p,i)=>{
+    const col=COLORS[i%COLORS.length];
+    const pts=p.seq.filter(x=>x.lat!=null&&x.lng!=null);
+    pts.forEach((x,k)=>{
+      bounds.push([x.lat,x.lng]);
+      const isStay=(k===pts.length-1);
+      if(seen[x.id]&&!isStay) return; seen[x.id]=1;
+      L.circleMarker([x.lat,x.lng],{radius:isStay?8:6,color:'#fff',weight:2,fillColor:col,fillOpacity:1}).bindTooltip(x.name+(isStay?(p.last?' (end)':' (night '+(i+1)+')'):'')).addTo(layer);
+    });
+    if(pts.length>1){
+      const ll=pts.map(x=>[x.lat,x.lng]);
+      const line=L.polyline(ll,{color:col,weight:4,opacity:.85,dashArray:'6 8'}).addTo(layer);
+      const key=pts.map(x=>x.lng.toFixed(4)+','+x.lat.toFixed(4)).join(';');
+      if(geoCache[key]){ line.setLatLngs(geoCache[key]); line.setStyle({dashArray:null}); }
+      else fetchRoute(key,line,tok);
+    }
+  });
+  if(bounds.length===1) map.setView(bounds[0],10);
+  else if(bounds.length>1) map.fitBounds(bounds,{padding:[28,28],maxZoom:11});
+  setTimeout(()=>map.invalidateSize(),50);
+}
+function fetchRoute(key,line,tok){
+  const ctl=('AbortController' in window)?new AbortController():null;
+  const to=setTimeout(()=>{if(ctl)ctl.abort();},9000);
+  fetch('https://router.project-osrm.org/route/v1/driving/'+key+'?overview=full&geometries=geojson',ctl?{signal:ctl.signal}:{})
+    .then(r=>r.ok?r.json():null).then(j=>{
+      clearTimeout(to);
+      if(!j||!j.routes||!j.routes[0]) return;
+      const ll=j.routes[0].geometry.coordinates.map(c=>[c[1],c[0]]);
+      geoCache[key]=ll;
+      if(tok===renderToken){ line.setLatLngs(ll); line.setStyle({dashArray:null}); }
+    }).catch(()=>{clearTimeout(to);});
+}
+
+/* ─────────────────────────── master render ─────────────────────────── */
+function renderAll(){
+  const plan=buildPlan();
+  renderSetup(); renderDays(plan); renderPrice(plan); renderNotes(plan); scheduleMap(plan);
+}
+function commit(){ save(); renderAll(); }
+
+/* ─────────────────────────── picker ─────────────────────────── */
+let pk=null;
+function refPoint(ctx){
+  const plan=buildPlan();
+  if(ctx.type==='start'||ctx.type==='end') return null;
+  const p=plan[ctx.day]; if(!p) return null;
+  if(ctx.type==='stay') return p.stops.length?p.stops[p.stops.length-1]:p.from;
+  const pts=p.pts.slice(0, (p.from?1:0)+S.days[ctx.day].stops.length);
+  return pts.length?pts[pts.length-1]:null;
+}
+function openPicker(ctx){
+  pk=ctx; pk.ref=refPoint(ctx);
+  const titles={start:'Choose start location',end:'Choose end location',stop:'Add a place – Day '+((ctx.day||0)+1),stay:'Overnight stay – Day '+((ctx.day||0)+1)};
+  $('#pkTitle').textContent=titles[ctx.type];
+  $('#pkQ').value=''; $('#pk').classList.add('open'); document.body.style.overflow='hidden';
+  renderPick(); setTimeout(()=>{try{$('#pkQ').focus();}catch(e){}},120);
+}
+function closePicker(){ $('#pk').classList.remove('open'); document.body.style.overflow=''; pk=null; }
+function renderPick(){
+  if(!pk) return;
+  const q=$('#pkQ').value.trim().toLowerCase();
+  let list=ALL.filter(p=>!q||(p.name+' '+(p.region||'')+' '+(p.district||'')+' '+(p.category||'')).toLowerCase().indexOf(q)>=0);
+  const ref=pk.ref;
+  let html='';
+  if(!q&&(pk.type==='start'||pk.type==='end')){
+    html+='<div class="by-lab" style="padding:6px 6px 0">Popular start points</div><div class="by-chips">'+START_CHIPS.map(id=>{const p=BYID[id]; return p?'<button class="by-chip" data-pick="'+esc(id)+'">'+esc(p.name)+'</button>':'';}).join('')+'</div><div class="by-lab" style="padding:10px 6px 0">All places</div>';
+  }
+  if(ref&&ref.lat!=null){
+    list=list.map(p=>({p:p,d:legKm(ref,p).km})).sort((a,b)=>(a.p.id===ref.id?1:0)-(b.p.id===ref.id?1:0)||a.d-b.d);
+    if(!q) html+='<div class="by-lab" style="padding:6px 6px 0">Nearest to '+esc(ref.name)+' first</div>';
+  } else {
+    list=list.map(p=>({p:p,d:null})).sort((a,b)=>a.p.name.localeCompare(b.p.name));
+  }
+  const shown=list.slice(0,q?80:60);
+  html+=shown.map(x=>'<button class="by-pi" data-pick="'+esc(x.p.id)+'"><div class="n"><b>'+esc(x.p.name)+'</b><small>'+esc([x.p.region,x.p.category].filter(Boolean).join(' · '))+'</small></div>'+(x.d!=null&&x.p.id!==(ref&&ref.id)?'<span class="d">≈ '+Math.round(x.d)+' km</span>':'')+'</button>').join('');
+  const exact=ALL.some(p=>p.name.toLowerCase()===q);
+  if(q.length>=2&&!exact){
+    const nm=$('#pkQ').value.trim().replace(/[\u0000-\u001f<>]/g,'').slice(0,60);
+    html+='<button class="by-pi" data-pick="c:'+esc(nm)+'"><div class="n"><b>➕ Add “'+esc(nm)+'” as a custom place</b><small>Not in our list — we\u2019ll confirm the distance and feasibility for you</small></div></button>';
+  }
+  if(!shown.length&&!html) html='<div class="by-empty">No places match. Try another name.</div>';
+  $('#pkList').innerHTML=html;
+}
+function applyPick(id){
+  if(!pk) return;
+  const c=pk;
+  if(c.type==='start'){ S.start=id; }
+  else if(c.type==='end'){ S.end=id; S.sameEnd=false; }
+  else if(c.type==='stop'){ S.days[c.day].stops.push(id); }
+  else if(c.type==='stay'){ S.days[c.day].stay=id; }
+  closePicker(); commit();
+}
+
+/* ─────────────────────────── actions ─────────────────────────── */
+function toast(msg){const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),2200);}
+function swap(a,i,j){ if(j<0||j>=a.length) return; const t=a[i]; a[i]=a[j]; a[j]=t; }
+function shareUrl(){ return location.origin+location.pathname+'#t='+enc(S); }
+function buildMessage(){
+  const plan=buildPlan(), r=price(S.tier), n=S.days.length;
+  const st=place(S.start), en=place(S.sameEnd?S.start:S.end), t=TIERS[S.tier];
+  let m='Hi Himachal Explorer! I planned a custom trip on your website:\n\n';
+  m+='Start: '+(st?st.name:'to be decided')+' | End: '+(en?en.name:'to be decided')+'\n';
+  m+='Dates: '+(S.date?fmtDate(dayDate(0))+' → '+fmtDate(dayDate(n-1)):'flexible')+' | '+n+' days / '+Math.max(1,n-1)+' nights\n';
+  m+=S.pax+' traveller'+(S.pax>1?'s':'')+' | '+t.label+' ('+t.star+') hotels\n\n';
+  plan.forEach((p,i)=>{
+    m+='Day '+(i+1)+': '+(p.seq.length?p.seq.map(x=>x.name).join(' → '):'(free day)');
+    if(p.km>0) m+=' (~'+Math.round(p.km)+' km)';
+    if(!p.last&&p.to) m+=' | Night: '+p.to.name;
+    m+='\n';
+  });
+  if(r) m+='\nEstimate on website: '+inr(r.totalPP)+' per person / '+inr(r.groupTotal)+' total ('+r.fleetLabel+').\n';
+  m+='\nPlan link: '+shareUrl()+'\n\nPlease confirm availability and the final quote.';
+  return m;
+}
+function sendWA(){
+  const msg=buildMessage(), ctx={destination:'Custom trip builder'};
+  if(window.HX&&typeof window.HX.openWhatsApp==='function'){ try{window.HX.openWhatsApp(WA,msg,ctx);return;}catch(e){} }
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');
+}
+function copyLink(){
+  const u=shareUrl();
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(u).then(()=>toast('Link copied — open it anywhere to see this plan'),()=>{prompt('Copy this link:',u);}); }
+  else prompt('Copy this link:',u);
+}
+
+document.addEventListener('click',function(e){
+  const pick=e.target.closest('[data-pick]'); if(pick){ applyPick(pick.dataset.pick); return; }
+  const trow=e.target.closest('tr[data-tier]'); if(trow){ S.tier=trow.dataset.tier; commit(); return; }
+  const seg=e.target.closest('#tierSeg button'); if(seg){ S.tier=seg.dataset.tier; commit(); return; }
+  if(e.target.id==='pk'){ closePicker(); return; }
+  const el=e.target.closest('[data-act]'); if(!el) return;
+  const act=el.dataset.act, di=parseInt(el.dataset.day,10), k=parseInt(el.dataset.k,10);
+  switch(act){
+    case 'pick-start': openPicker({type:'start'}); break;
+    case 'pick-end': openPicker({type:'end'}); break;
+    case 'add-stop': openPicker({type:'stop',day:di}); break;
+    case 'pick-stay': openPicker({type:'stay',day:di}); break;
+    case 'stay-reset': S.days[di].stay=null; commit(); break;
+    case 'stop-up': swap(S.days[di].stops,k,k-1); commit(); break;
+    case 'stop-down': swap(S.days[di].stops,k,k+1); commit(); break;
+    case 'stop-del': S.days[di].stops.splice(k,1); commit(); break;
+    case 'day-up': swap(S.days,di,di-1); commit(); break;
+    case 'day-down': swap(S.days,di,di+1); commit(); break;
+    case 'day-del': if(S.days.length>1){ S.days.splice(di,1); commit(); } break;
+    case 'add-day': if(S.days.length<MAX_DAYS){ S.days.push({stops:[],stay:null}); commit(); } break;
+    case 'pax-': S.pax=Math.max(1,S.pax-1); commit(); break;
+    case 'pax+': S.pax=Math.min(MAX_PAX,S.pax+1); commit(); break;
+    case 'pk-close': closePicker(); break;
+    case 'wa': sendWA(); break;
+    case 'share': copyLink(); break;
+    case 'print': window.print(); break;
+    case 'reset': if(confirm('Clear this plan and start over?')){ S=defaultState(); history.replaceState(null,'',location.pathname); commit(); } break;
+  }
+});
+$('#sameEnd').addEventListener('change',function(){ S.sameEnd=this.checked; if(!S.sameEnd&&!S.end) S.end=null; commit(); });
+$('#tripDate').addEventListener('change',function(){ S.date=this.value||''; commit(); });
+$('#paxIn').addEventListener('change',function(){ S.pax=Math.min(MAX_PAX,Math.max(1,parseInt(this.value,10)||1)); commit(); });
+$('#pkQ').addEventListener('input',renderPick);
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&pk) closePicker(); });
+window.addEventListener('pricing-config-updated',()=>{ renderAll(); });
+
+/* min date = today */
+(function(){ const t=new Date(); const z=n=>String(n).padStart(2,'0'); $('#tripDate').min=t.getFullYear()+'-'+z(t.getMonth()+1)+'-'+z(t.getDate()); })();
+
+/* live places from Firebase (falls back to embedded list) */
+fetch(DB+'/places_index.json').then(r=>r.ok?r.json():null).then(j=>{
+  if(!j) return;
+  const arr=Object.keys(j).map(id=>{const x=j[id]||{}; return {id:id,name:x.name,lat:x.lat,lng:x.lng,region:x.region||'',category:x.category||'',district:x.district||'',season:x.season||FB_SEASON[id]||''};})
+    .filter(p=>p.name&&typeof p.lat==='number'&&typeof p.lng==='number');
+  if(arr.length>=20){ PLACES=arr; indexPlaces(); renderAll(); }
+}).catch(()=>{});
+
+renderAll();
+})();
+</script>
+<script src="/js/hx-lead-tracker.js"></script>
+<script src="/assets/js/site-chrome.js"></script>
+</body>
+</html>
