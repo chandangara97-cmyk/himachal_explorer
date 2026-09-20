@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
 <link rel="apple-touch-icon" href="/logo-512.png">
@@ -10,7 +11,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-W6LR93V8');</script>
 
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Book Your Tour – Himachal Explorer</title>
 <meta property="og:type" content="website">
@@ -48,7 +48,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --white: #ffffff;
     --success: #2f8f6f;
     --error: #b84040;
-    --shadow: 0 4px 24px rgba(26,22,18,0.10);
+    --shadow: 0 4px 24px rgba(16,35,58,0.10);
   }
 
   body {
@@ -561,7 +561,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(26,22,18,0.7);
+    background: rgba(16,35,58,0.7);
     z-index: 1000;
     align-items: center;
     justify-content: center;
@@ -571,7 +571,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .loading-overlay.show { display: flex; }
   .spinner {
     width: 40px; height: 40px;
-    border: 3px solid rgba(184,151,42,0.3);
+    border: 3px solid rgba(245,166,35,0.3);
     border-top-color: var(--gold);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
@@ -704,7 +704,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
-        <div class="section-label">Vehicle Type <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— preference; final vehicle is auto-matched to group size and capacity</span></div>
+        <div class="section-label">Vehicle Type <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— preference only; final vehicle is auto-matched to group size</span></div>
         <div class="vehicle-select" id="vehicleSelect">
           <div class="vehicle-option selected" onclick="selectVehicle(this,'Sedan')" data-vehicle="Sedan">
             <div class="vehicle-name">🚗 Sedan</div>
@@ -730,7 +730,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="price-row"><span class="label">Service &amp; trip support</span><span id="transportAmt">—</span></div>
           <div class="price-row"><span class="label">GST (5%)</span><span id="gstAmt">—</span></div>
           <div class="price-row total"><span>Total</span><span class="amt" id="totalAmt">Select a package</span></div>
-          <div class="gst-note">* Total is from the central PricingEngine. GST treatment follows the configured package price. Subject to availability.</div>
+          <div class="gst-note">* Prices inclusive of GST. Subject to availability.</div>
         </div>
 
         <button class="btn-primary" onclick="goStep2()">Continue to Guest Details →</button>
@@ -899,7 +899,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- RIGHT: ORDER SUMMARY -->
-  <div>
+  <div style="align-self:stretch">
     <div class="summary-card">
       <div class="summary-head">
         <h3>Order Summary</h3>
@@ -987,7 +987,7 @@ function fromPackageData(pkg) {
     days: pkg.days,
     gateway: pkg.start_point || '—',
     // "From" price shown on the package list — PricingEngine at 2 pax, budget tier.
-    base: pkg.days ? PricingEngine.computePrice({ days: pkg.days, pax: 2, tier: 'budget', packageId: pkg.id }).totalPP : 3000,
+    base: pkg.days ? PricingEngine.computePrice({ days: pkg.days, pax: 2, tier: 'budget' }).totalPP : 3000,
   };
 }
 
@@ -999,12 +999,13 @@ let state = {
 };
 
 // ── INIT ──
-window.onload = () => {
+window.addEventListener('load', () => {
   flushPendingBookings(); // retry any bookings (esp. paid ones) that failed to save last visit
   // Set min date = tomorrow
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate()+1);
-  document.getElementById('travelDate').min = tomorrow.toISOString().split('T')[0];
+  const pad2 = n => String(n).padStart(2,'0');
+  document.getElementById('travelDate').min = `${tomorrow.getFullYear()}-${pad2(tomorrow.getMonth()+1)}-${pad2(tomorrow.getDate())}`;
   document.getElementById('travelDate').value = '';
   document.getElementById('travelDate').addEventListener('change', recalcPrice);
   document.getElementById('hotelCat').addEventListener('change', ()=>{ state.hotel=document.getElementById('hotelCat').value; recalcPrice(); });
@@ -1036,15 +1037,18 @@ window.onload = () => {
     console.error('Failed to load packages from Firebase:', err);
     if (pkgListEl) pkgListEl.innerHTML = '<div style="padding:24px;text-align:center;color:#c33;font-size:0.8rem;">Couldn\u2019t load packages — please refresh.</div>';
   });
-};
+});
+
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 function renderPackages(list) {
   const el = document.getElementById('pkgList');
+  if (!list.length) { el.innerHTML = '<div style="padding:24px;text-align:center;color:#888;font-size:0.8rem;">No packages match your search.</div>'; return; }
   el.innerHTML = list.map(p=>`
-    <div class="pkg-item ${state.pkg?.id===p.id?'selected':''}" onclick="selectPackage(PACKAGES.find(x=>x.id==='${p.id}'))">
+    <div class="pkg-item ${state.pkg?.id===p.id?'selected':''}" data-id="${esc(p.id)}" onclick="selectPackage(PACKAGES.find(x=>x.id===this.dataset.id))">
       <div>
-        <div class="pkg-name">${p.name}</div>
-        <div class="pkg-nights">${p.nights}N/${p.days}D${p.gateway && p.gateway!=='—' ? ' · via '+p.gateway : ''}</div>
+        <div class="pkg-name">${esc(p.name)}</div>
+        <div class="pkg-nights">${p.nights}N/${p.days}D${p.gateway && p.gateway!=='—' ? ' · via '+esc(p.gateway) : ''}</div>
       </div>
       <div class="pkg-base-price">₹${(p.base*2).toLocaleString('en-IN')}+</div>
     </div>
@@ -1052,7 +1056,7 @@ function renderPackages(list) {
 }
 
 function filterPackages(q) {
-  const filtered = q ? PACKAGES.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())||p.gateway.toLowerCase().includes(q.toLowerCase())) : PACKAGES;
+  const filtered = q ? PACKAGES.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())||String(p.gateway).toLowerCase().includes(q.toLowerCase())) : PACKAGES;
   renderPackages(filtered);
 }
 
@@ -1084,31 +1088,29 @@ function recalcPrice() {
   const pkg = state.pkg;
   const pax = Math.max(1, state.adults + state.children);
   const tier = HOTEL_TIER_MAP[state.hotel] || 'budget';
-  const month = state.date ? (new Date(state.date).getMonth() + 1) : undefined;
+  const month = state.date ? Number(state.date.split('-')[1]) : undefined;
 
-  const result = PricingEngine.computePrice({ days: pkg.days, pax, tier, month, packageId: pkg.id });
+  const result = PricingEngine.computePrice({ days: pkg.days, pax, tier, month });
   const b = result.breakdown;
 
-  const vehicleTotal = Math.round(b.vehicleTotal);
+  const vehicleTotal = Math.round(b.vehiclePP * pax);
   const hotelTotal = Math.round(b.hotelPP * pax);
   const serviceMarginTotal = Math.round((b.serviceFee + b.marginAmt) * pax);
   const subtotal = result.groupTotal;
-  // PricingEngine is the single source of truth and currently returns the
-  // customer-facing package total. Do not add GST a second time here.
-  state.totalAmt = subtotal;
+  const gst = Math.round(subtotal * 0.05);
+  state.totalAmt = subtotal + gst;
   state.fleetLabel = result.fleetLabel;
-  state.priceBreakdown = { vehicleTotal, hotelTotal, serviceMarginTotal, subtotal };
 
   document.getElementById('baseAmt').textContent = `₹${vehicleTotal.toLocaleString('en-IN')}` + (b.isTransportPeak ? ' (peak season)' : '');
   document.getElementById('hotelAmt').textContent = `₹${hotelTotal.toLocaleString('en-IN')}`;
   document.getElementById('transportAmt').textContent = `₹${serviceMarginTotal.toLocaleString('en-IN')}`;
-  document.getElementById('gstAmt').textContent = 'Included';
+  document.getElementById('gstAmt').textContent = `₹${gst.toLocaleString('en-IN')}`;
   document.getElementById('totalAmt').textContent = `₹${state.totalAmt.toLocaleString('en-IN')}`;
 
   // Summary card
   document.getElementById('sum_pkg').textContent = pkg.name;
   document.getElementById('sum_dur').textContent = `${pkg.nights} Nights / ${pkg.days} Days`;
-  document.getElementById('sum_date').textContent = state.date ? new Date(state.date).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : 'Not set';
+  document.getElementById('sum_date').textContent = state.date ? (([y,m,d]) => new Date(y,m-1,d))(state.date.split('-').map(Number)).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : 'Not set';
   document.getElementById('sum_pax').textContent = `${state.adults} Adult${state.adults>1?'s':''}${state.children?', '+state.children+' Child'+( state.children>1?'ren':''):''}`;
   document.getElementById('sum_vehicle').textContent = result.fleetLabel;
   document.getElementById('sum_hotel').textContent = HOTEL_LABELS[state.hotel];
@@ -1148,15 +1150,10 @@ function goStep1() { setStep(1); }
 function goStep2() {
   if(!state.pkg) { alert('Please select a package first.'); return; }
   if(!state.date) { alert('Please select a travel date.'); return; }
-  const selected = new Date(state.date + 'T00:00:00');
-  const tomorrow = new Date(); tomorrow.setHours(0,0,0,0); tomorrow.setDate(tomorrow.getDate()+1);
-  if(Number.isNaN(selected.getTime()) || selected < tomorrow) { alert('Please select a valid travel date from tomorrow onward.'); return; }
-  recalcPrice();
+  const minDate = document.getElementById('travelDate').min;
+  if(minDate && state.date < minDate) { alert('Please choose a travel date from tomorrow onwards.'); return; }
   setStep(2);
 }
-
-function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
-function validPhone(v) { const digits = v.replace(/\D/g,''); return digits.length >= 10 && digits.length <= 15; }
 
 function goStep3() {
   const req = [{id:'fname',label:'First name'},{id:'lname',label:'Last name'},{id:'email',label:'Email'},{id:'phone',label:'Mobile number'}];
@@ -1164,11 +1161,14 @@ function goStep3() {
   req.forEach(r=>{
     const v = document.getElementById(r.id).value.trim();
     const fp = document.getElementById('f_'+r.id);
-    const valid = r.id==='email' ? validEmail(v) : r.id==='phone' ? validPhone(v) : v.length >= 2;
-    if(!valid) { if(fp) fp.classList.add('error'); ok=false; }
+    if(!v) { if(fp) fp.classList.add('error'); ok=false; }
     else { if(fp) fp.classList.remove('error'); state[r.id]=v; }
   });
-  if(!ok) { alert('Please enter valid first/last names, email address, and mobile number.'); return; }
+  if(!ok) { alert('Please fill all required fields.'); return; }
+  const emailV = document.getElementById('email').value.trim();
+  const phoneDigits = document.getElementById('phone').value.replace(/\D/g,'');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailV)) { document.getElementById('f_email').classList.add('error'); alert('Please enter a valid email address.'); return; }
+  if(phoneDigits.length < 10 || phoneDigits.length > 13) { document.getElementById('f_phone').classList.add('error'); alert('Please enter a valid mobile number.'); return; }
   state.lname = document.getElementById('lname').value.trim();
   state.email = document.getElementById('email').value.trim();
   state.phone = document.getElementById('phone').value.trim();
@@ -1240,9 +1240,9 @@ async function flushPendingBookings() {
 }
 
 async function initiatePayment() {
-  if(!state.pkg || !state.date || !state.totalAmt) { alert('Please select a package and valid travel date before payment.'); return; }
-  recalcPrice();
-  if(!state.totalAmt) { alert('Price not calculated. Please try again.'); return; }
+  if(!state.totalAmt) { alert('Price not calculated. Please go back and select a package.'); return; }
+  if(state.paying) return;
+  state.paying = true;
 
   const ref = generateRef();
   const payAmt = Math.round(state.totalAmt * (PAY_MODE_PCT[state.payMode] ?? 1));
@@ -1266,13 +1266,14 @@ async function initiatePayment() {
     const savedId = await saveBookingToFirebase(pendingBooking);
     if (!savedId) queueUnsavedBooking(pendingBooking);
     document.getElementById('loadingOverlay').classList.remove('show');
+    state.paying = false;
     const msg = `🏔️ *New Booking Request*\n\nRef: ${ref}\nPackage: ${state.pkg?.name}\nDate: ${state.date}\nGuest: ${state.fname} ${state.lname}\nMobile: ${state.phone}\nPax: ${state.adults}A+${state.children}C\nVehicle: ${state.fleetLabel || state.vehicle}\nHotel: ${HOTEL_LABELS[state.hotel]}\nTotal: ₹${state.totalAmt.toLocaleString('en-IN')}\nPaying: ₹${payAmt.toLocaleString('en-IN')} (${PAY_MODE_LABEL[state.payMode] || state.payMode})\n\nPlease share payment QR / account details.`;
     if (window.HX && window.HX.openWhatsApp) {
       window.HX.openWhatsApp(WA_NUMBER, msg, { package: state.pkg?.name });
     } else {
       window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
     }
-    showSuccess(ref, payAmt, null, !savedId, true);
+    showSuccess(ref, payAmt, undefined, false, true);
     return;
   }
 
@@ -1294,7 +1295,7 @@ async function initiatePayment() {
       package: state.pkg?.name,
       travel_date: state.date
     },
-    theme: { color: '#b8972a' },
+    theme: { color: '#f5a623' },
     handler: async function(response) {
       document.getElementById('loadingOverlay').classList.add('show');
       const paidBooking = {
@@ -1310,32 +1311,34 @@ async function initiatePayment() {
       showSuccess(ref, payAmt, response.razorpay_payment_id, !savedId);
     },
     modal: {
-      ondismiss: function() { console.log('Payment modal closed'); }
+      ondismiss: function() { state.paying = false; }
     }
   };
 
   try {
     const rzp = new Razorpay(options);
     rzp.on('payment.failed', function(resp){
+      state.paying = false;
       alert('Payment failed: ' + resp.error.description + '\nPlease try again or use WhatsApp payment.');
     });
     rzp.open();
   } catch(e) {
+    state.paying = false;
     alert('Unable to open payment gateway. Please check your internet connection or use WhatsApp payment option.');
     console.error(e);
   }
 }
 
-function showSuccess(ref, paidAmt, paymentId, saveFailed, manualPending=false) {
+function showSuccess(ref, paidAmt, paymentId, saveFailed, manual) {
   document.getElementById('bookingRef').textContent = ref;
-  const titleEl = document.getElementById('successTitle');
-  const textEl = document.getElementById('successText');
-  if (titleEl) titleEl.textContent = manualPending ? 'Booking Request Received' : 'Booking Confirmed!';
-  if (textEl) textEl.textContent = manualPending
-    ? 'Your booking request has been saved and payment is still pending. Continue on WhatsApp to receive payment instructions and complete the payment.'
+  document.getElementById('successTitle').textContent = manual ? 'Booking Request Received!' : 'Booking Confirmed!';
+  document.getElementById('successText').textContent = manual
+    ? 'Your booking request is saved. Our team will share UPI / bank details on WhatsApp — your booking is confirmed once payment is received.'
     : 'Your Himachal adventure is booked. Our team will contact you within 2 hours to confirm itinerary details.';
   const paymentLine = paymentId ? `\nPayment ID: ${paymentId}` : '';
-  const msg = `🎉 My booking is confirmed!\n\nRef: ${ref}\nPackage: ${state.pkg?.name}\nDate: ${state.date}\nGuest: ${state.fname} ${state.lname}\nPaid: ₹${paidAmt.toLocaleString('en-IN')}${paymentLine}\n\nPlease share the detailed itinerary.`;
+  const msg = manual
+    ? `Hi! I've requested a booking.\n\nRef: ${ref}\nPackage: ${state.pkg?.name}\nDate: ${state.date}\nGuest: ${state.fname} ${state.lname}\nAmount to pay: ₹${paidAmt.toLocaleString('en-IN')}\n\nPlease share the payment QR / account details.`
+    : `🎉 My booking is confirmed!\n\nRef: ${ref}\nPackage: ${state.pkg?.name}\nDate: ${state.date}\nGuest: ${state.fname} ${state.lname}\nPaid: ₹${paidAmt.toLocaleString('en-IN')}${paymentLine}\n\nPlease share the detailed itinerary.`;
   const waConfirmBtn = document.getElementById('waConfirmBtn');
   waConfirmBtn.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`; // no-JS fallback
   waConfirmBtn.setAttribute('data-hx-message', msg); // click handler (bound at load) reads this, appends the HX Reference, and opens the tracked URL
@@ -1345,7 +1348,7 @@ function showSuccess(ref, paidAmt, paymentId, saveFailed, manualPending=false) {
   // left assuming everything is fine with no paper trail on their end —
   // point them straight at WhatsApp with the payment ID already filled in.
   const warningEl = document.getElementById('bookingSaveWarning');
-  if (warningEl) { warningEl.style.display = (saveFailed || manualPending) ? 'block' : 'none'; if (manualPending) warningEl.innerHTML = '💳 Payment is pending. Your booking request is saved; please tap <b>Continue on WhatsApp</b> to receive payment instructions and complete payment.'; }
+  if (warningEl) warningEl.style.display = saveFailed ? 'block' : 'none';
   setStep(4);
   // Update progress to all done
   [1,2,3].forEach(i=>document.getElementById('s'+i).classList.replace('active','done'));
