@@ -281,6 +281,11 @@ details.by-inc ul{margin:8px 0 0 18px}
   .pdf-cta .row div{color:rgba(255,255,255,.85)}
   .pdf-cta .row small{display:block;font-size:6.8pt;letter-spacing:.16em;text-transform:uppercase;color:#c99248;font-weight:700}
   .pdf-issued{margin-top:3mm;font-size:7.5pt;color:#9b8a74;text-align:center}
+  .pdf-hist{margin-top:6mm}
+  .pdf-hp{break-inside:avoid;page-break-inside:avoid;border-left:1.2mm solid #c99248;background:#fdfbf7;border-radius:0 2mm 2mm 0;padding:2.4mm 4mm 2.6mm;margin-bottom:3mm}
+  .pdf-hp h3{font-size:12.5pt;display:flex;align-items:baseline;gap:2.5mm;flex-wrap:wrap}
+  .pdf-hp .m{font-family:'Jost',sans-serif;font-size:7.5pt;letter-spacing:.06em;color:#9b8a74;font-weight:500}
+  .pdf-hp p{margin:1.2mm 0 0;font-size:9pt;line-height:1.55;color:#3a2f22}
 }
 
 /* unlock gate */
@@ -1110,6 +1115,55 @@ function preloadTiles(){
   ]).then(()=>{ document.querySelectorAll('#pdfDoc image').forEach(el=>{ if(!ok.has(el.getAttribute('href'))) el.remove(); }); });
 }
 
+/* ── place history for the PDF: read from Firebase  /places/<placeId>  ──
+   If the history is stored under a different field name, add it to HIST_FIELDS (first match wins). */
+const HIST_FIELDS=['history','historyText','history_text','placeHistory'];
+const HIST_MAX=1200, HIST_TIMEOUT=9000;
+const HIST_CACHE={}; // placeId -> history text ('' = place has none); failed fetches are not cached
+function histText(v){
+  if(!v) return '';
+  if(typeof v==='string') return v;
+  if(Array.isArray(v)) return v.map(histText).filter(Boolean).join('\n\n');
+  if(typeof v==='object') return histText(v.text||v.content||v.body||v.summary||'');
+  return '';
+}
+function histFromRecord(rec){
+  if(!rec||typeof rec!=='object') return '';
+  for(let i=0;i<HIST_FIELDS.length;i++){ const t=histText(rec[HIST_FIELDS[i]]); if(t.trim()) return t; }
+  return '';
+}
+function trimHist(t){
+  t=String(t).replace(/<br\s*\/?>|<\/p>/gi,'\n').replace(/<[^>]+>/g,'').replace(/[ \t]+/g,' ').replace(/\n\s*\n+/g,'\n\n').trim();
+  if(t.length<=HIST_MAX) return t;
+  const cut=t.slice(0,HIST_MAX), k=Math.max(cut.lastIndexOf('. '),cut.lastIndexOf('.\n'));
+  return k>HIST_MAX*0.5?cut.slice(0,k+1):cut.replace(/\s+\S*$/,'')+'…';
+}
+function fetchHistory(id){
+  if(id in HIST_CACHE) return Promise.resolve(HIST_CACHE[id]);
+  const ctl=('AbortController' in window)?new AbortController():null;
+  const to=setTimeout(()=>{if(ctl)ctl.abort();},HIST_TIMEOUT);
+  return fetch(DB+'/places/'+encodeURIComponent(id)+'.json',ctl?{signal:ctl.signal}:{})
+    .then(r=>r.ok?r.json():null)
+    .then(j=>{ clearTimeout(to); const t=trimHist(histFromRecord(j)); HIST_CACHE[id]=t; return t; })
+    .catch(()=>{ clearTimeout(to); return ''; });
+}
+/* unique real places on the trip, in order of first appearance, with the day numbers they appear on
+   (gateway cities and custom "c:" places have no Firebase record, so they are skipped) */
+function planPlaces(plan){
+  const out=[],idx={};
+  plan.forEach((p,i)=>p.seq.forEach(x=>{
+    if(!x||!x.id||x.custom||String(x.id).indexOf('gw-')===0) return;
+    if(idx[x.id]==null){ idx[x.id]=out.length; out.push({pl:x,days:[]}); }
+    const d=out[idx[x.id]].days; if(d.indexOf(i+1)<0) d.push(i+1);
+  }));
+  return out;
+}
+function ensureHistory(plan){
+  const ids=planPlaces(plan).map(o=>o.pl.id).filter(id=>!(id in HIST_CACHE));
+  if(!ids.length) return Promise.resolve();
+  return Promise.race([Promise.all(ids.map(fetchHistory)),new Promise(r=>setTimeout(r,HIST_TIMEOUT+1000))]);
+}
+
 /* self-contained SVG map: map tiles + road route + numbered markers with collision-free name labels.
    Being SVG (not a live Leaflet map) it prints reliably, and still shows the route if tiles fail to load. */
 function mapSVG(cfg){
@@ -1260,6 +1314,15 @@ function buildItineraryHTML(plan){
   if(!S.date) notes.push('No travel date was selected, so pricing uses the current month. Final peak / off-peak rates are confirmed once dates are fixed.');
   if(unknown) notes.push('Distances for custom places will be confirmed by our team.');
 
+  const hp=planPlaces(plan).map(o=>({o:o,t:HIST_CACHE[o.pl.id]||''})).filter(h=>h.t);
+  const histSec=hp.length?'<section class="pdf-sec pdf-hist"><h2 class="pdf-h2" style="margin-top:0">History of the places you&rsquo;ll visit</h2>'
+    +hp.map(h=>{
+      const x=h.o.pl, ds=h.o.days;
+      const meta=[x.region,(x.district&&x.district!==x.region)?x.district:'',ds.length?((ds.length>1?'Days ':'Day ')+ds.join(', ')):''].filter(Boolean).join(' · ');
+      return '<div class="pdf-hp"><h3>'+esc(x.name)+(meta?'<span class="m">'+esc(meta)+'</span>':'')+'</h3>'
+        +h.t.split(/\n+/).map(s=>'<p>'+esc(s)+'</p>').join('')+'</div>';
+    }).join('')+'</section>':'';
+
   let priceSec='';
   if(r){
     const b=r.breakdown, v=Math.round(b.vehiclePP), h=Math.round(b.hotelPP), sv=r.totalPP-v-h;
@@ -1282,6 +1345,7 @@ function buildItineraryHTML(plan){
     +'<h2 class="pdf-h2">Your route at a glance</h2><div class="pdf-map">'+overviewMap(plan)+'</div><div class="pdf-legend">'+legend+'</div>'
     +'<h2 class="pdf-h2">Day by day summary</h2><table class="pdf-glance"><thead><tr><th>Day</th><th>Route</th><th class="r">Distance</th><th>Overnight</th></tr></thead><tbody>'+glance+'</tbody></table></section>'
     +'<section class="pdf-sec pdf-days"><h2 class="pdf-h2" style="margin-top:0">Your detailed itinerary</h2>'+dayCards+'</section>'
+    +histSec
     +'<section class="pdf-sec pdf-price">'+priceSec
     +'<div class="pdf-cols"><div><h3 style="font-size:13pt;margin:5mm 0 1.5mm">What&rsquo;s included</h3><ul><li>Private cab with experienced driver</li><li>Hotel accommodation for every night</li><li>Driver allowance &amp; night-halt charges</li><li>Hill state permits &amp; tolls</li></ul></div>'
     +'<div class="x"><h3 style="font-size:13pt;margin:5mm 0 1.5mm">Not included</h3><ul><li>Flights / train tickets</li><li>Meals unless specified</li><li>Personal expenses</li><li>Travel insurance</li></ul></div></div>'
@@ -1296,7 +1360,7 @@ function printItinerary(){
   const plan=buildPlan();
   if(!S.start||!plan.some(p=>p.seq.length>1)){ toast('Choose a start location and add places to your days first'); return; }
   printing=true; toast('Preparing your itinerary & maps…',15000);
-  ensureGeometry(plan).then(()=>{
+  ensureGeometry(plan).then(()=>ensureHistory(plan)).then(()=>{
     $('#pdfDoc').innerHTML=buildItineraryHTML(plan);
     return preloadTiles();
   }).then(()=>{
