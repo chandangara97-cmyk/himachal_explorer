@@ -1,0 +1,146 @@
+diff --git a/assets/css/he-unified.css b/assets/css/he-unified.css
+index da9c4fa..0a815ab 100644
+--- a/assets/css/he-unified.css
++++ b/assets/css/he-unified.css
+@@ -56,17 +56,35 @@ img[loading="lazy"]{ background:linear-gradient(90deg,#eee,#f6f6f6,#eee); }
+ /* ---------- Back-to-top button (injected by he-mobile-nav.js) ---------- */
+ .he-top-btn{
+   position:fixed; right:16px; bottom:calc(62px + env(safe-area-inset-bottom,0px) + 16px); z-index:1030;
+-  width:42px; height:42px; border-radius:50%; border:none;
++  width:44px; height:44px; border-radius:50%; border:none;
+   background:linear-gradient(135deg,var(--he-gold-light,#ffb84d),var(--he-gold,#b07d3a));
+   color:#1c1409; font-size:16px; cursor:pointer;
+   box-shadow:0 6px 16px rgba(176,125,58,.4);
+   display:flex; align-items:center; justify-content:center;
+   opacity:0; transform:translateY(12px); pointer-events:none;
+-  transition:opacity .25s ease, transform .25s ease;
++  visibility:hidden;                      /* hidden button must not be tabbable / read by screen readers */
++  transition:opacity .25s ease, transform .25s ease, visibility 0s linear .25s;
+ }
+-.he-top-btn.he-show{ opacity:1; transform:translateY(0); pointer-events:auto; }
++.he-top-btn.he-show{ opacity:1; transform:translateY(0); pointer-events:auto; visibility:visible; transition-delay:0s; }
+ @media (min-width:761px){ .he-top-btn{ bottom:24px; } }
+ 
++/* ---------- Mobile menu drawer fixes (pairs with he-mobile-nav.js) ---------- */
++@media (max-width:900px){
++  /* The drawer (z-index 1049, inside the header) painted over the burger, so the X could not be tapped.
++     Lift only the burger above it. */
++  .he-header .he-burger{ position:relative; z-index:1051; min-width:44px; min-height:44px; }
++  /* Closed drawer is only translated off-screen; take it out of the tab order / a11y tree too.
++     Visibility flips after the slide-out finishes so the close animation still plays. */
++  .he-header .he-nav-links{ visibility:hidden; overscroll-behavior:contain; transition:transform .25s ease, visibility 0s linear .25s; }
++  .he-header .he-nav-links.he-open{ visibility:visible; transition:transform .25s ease, visibility 0s; }
++}
++/* Stop the page scrolling behind the open drawer */
++html.he-menu-lock, html.he-menu-lock body{ overflow:hidden; }
++
++@media (prefers-reduced-motion: reduce){
++  .he-top-btn, .he-header, .he-header .he-nav-links, .he-header .he-nav-links.he-open{ transition:none; }
++}
++
+ /* ---------- Card-grid entrance animation (encyclopedia, packages, district tiles) ---------- */
+ @keyframes heFadeUp{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:translateY(0); } }
+ .eh-grid .eh-card,
+diff --git a/assets/js/he-mobile-nav.js b/assets/js/he-mobile-nav.js
+index 25d57d7..4cb7d9c 100644
+--- a/assets/js/he-mobile-nav.js
++++ b/assets/js/he-mobile-nav.js
+@@ -1,8 +1,9 @@
+ /* ============================================================
+    HE-MOBILE-NAV — small mobile UX polish that layers on top of
+    site-chrome.js's header/footer/bottom-nav. Adds: hide-header
+-   on scroll-down (mobile), a back-to-top button, and closing the
+-   open nav menu on Escape or an outside tap.
++   on scroll-down (mobile), a back-to-top button, and menu
++   accessibility (Escape to close + focus return, focus trap,
++   page scroll lock while the drawer is open).
+    ============================================================ */
+ (function(){
+   function ready(fn){
+@@ -16,6 +17,9 @@
+       var header = document.querySelector('.he-header');
+       var nav = document.getElementById('he-nav-links');
+       var burger = document.getElementById('he-burger');
++      var root = document.documentElement;
++      var mqMobile = window.matchMedia('(max-width: 900px)');   // must match the drawer breakpoint in site-chrome.css
++      var mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+ 
+       // --- Hide header on scroll-down, reveal on scroll-up (mobile only) ---
+       if(header){
+@@ -45,21 +49,57 @@
+         }, {passive:true});
+       }
+ 
+-      // --- Close open mobile menu on Escape or outside click ---
++      // --- Mobile menu: close on Escape / outside tap, return focus, trap focus, lock scroll ---
+       if(nav && burger){
+-        document.addEventListener('keydown', function(e){
+-          if(e.key === 'Escape' && nav.classList.contains('he-open')){
+-            nav.classList.remove('he-open');
+-            burger.classList.remove('he-open');
+-            burger.setAttribute('aria-expanded','false');
++        burger.setAttribute('aria-controls', 'he-nav-links');
++
++        function isOpen(){ return nav.classList.contains('he-open'); }
++
++        function closeMenu(returnFocus){
++          nav.classList.remove('he-open');
++          burger.classList.remove('he-open');
++          burger.setAttribute('aria-expanded','false');
++          if(returnFocus) burger.focus();
++        }
++
++        // Keep the page-scroll lock in step with the drawer, however it was opened/closed
++        // (site-chrome.js toggles the class; we just observe it).
++        function syncMenuState(){
++          var open = isOpen();
++          if(open && !mqMobile.matches){ closeMenu(false); return; }   // resized up to desktop while open
++          root.classList.toggle('he-menu-lock', open && mqMobile.matches);
++        }
++        new MutationObserver(syncMenuState).observe(nav, {attributes:true, attributeFilter:['class']});
++        if(mqMobile.addEventListener){ mqMobile.addEventListener('change', syncMenuState); }
++        else if(mqMobile.addListener){ mqMobile.addListener(syncMenuState); }
++
++        // Opened from the keyboard -> move focus into the menu so Tab starts there.
++        // (event.detail === 0 means the click came from Enter/Space, not a pointer.)
++        burger.addEventListener('click', function(e){
++          if(e.detail === 0 && isOpen()){
++            var first = nav.querySelector('a[href]');
++            if(first) first.focus();
+           }
+         });
++
++        document.addEventListener('keydown', function(e){
++          if(!isOpen()) return;
++          if(e.key === 'Escape'){ closeMenu(true); return; }
++          if(e.key !== 'Tab') return;
++          // Trap Tab inside the drawer: burger (visually on top) then the links.
++          var list = [burger].concat([].slice.call(nav.querySelectorAll('a[href]')));
++          var i = list.indexOf(document.activeElement);
++          var step = e.shiftKey ? -1 : 1;
++          var next = (i === -1) ? (e.shiftKey ? list.length - 1 : 0)
++                                : (i + step + list.length) % list.length;
++          e.preventDefault();
++          list[next].focus();
++        });
++
+         document.addEventListener('click', function(e){
+-          if(!nav.classList.contains('he-open')) return;
++          if(!isOpen()) return;
+           if(nav.contains(e.target) || burger.contains(e.target)) return;
+-          nav.classList.remove('he-open');
+-          burger.classList.remove('he-open');
+-          burger.setAttribute('aria-expanded','false');
++          closeMenu(false);   // pointer user tapped elsewhere: don't yank focus to the burger
+         });
+       }
+ 
+@@ -71,7 +111,7 @@
+       topBtn.innerHTML = '&uarr;';
+       document.body.appendChild(topBtn);
+       topBtn.addEventListener('click', function(){
+-        window.scrollTo({top:0, behavior:'smooth'});
++        window.scrollTo({top:0, behavior: mqReduce.matches ? 'auto' : 'smooth'});
+       });
+       window.addEventListener('scroll', function(){
+         topBtn.classList.toggle('he-show', window.scrollY > 500);

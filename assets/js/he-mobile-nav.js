@@ -1,8 +1,9 @@
 /* ============================================================
    HE-MOBILE-NAV — small mobile UX polish that layers on top of
    site-chrome.js's header/footer/bottom-nav. Adds: hide-header
-   on scroll-down (mobile), a back-to-top button, and closing the
-   open nav menu on Escape or an outside tap.
+   on scroll-down (mobile), a back-to-top button, and menu
+   accessibility (Escape to close + focus return, focus trap,
+   page scroll lock while the drawer is open).
    ============================================================ */
 (function(){
   function ready(fn){
@@ -16,6 +17,9 @@
       var header = document.querySelector('.he-header');
       var nav = document.getElementById('he-nav-links');
       var burger = document.getElementById('he-burger');
+      var root = document.documentElement;
+      var mqMobile = window.matchMedia('(max-width: 900px)');   // must match the drawer breakpoint in site-chrome.css
+      var mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 
       // --- Hide header on scroll-down, reveal on scroll-up (mobile only) ---
       if(header){
@@ -45,21 +49,57 @@
         }, {passive:true});
       }
 
-      // --- Close open mobile menu on Escape or outside click ---
+      // --- Mobile menu: close on Escape / outside tap, return focus, trap focus, lock scroll ---
       if(nav && burger){
-        document.addEventListener('keydown', function(e){
-          if(e.key === 'Escape' && nav.classList.contains('he-open')){
-            nav.classList.remove('he-open');
-            burger.classList.remove('he-open');
-            burger.setAttribute('aria-expanded','false');
-          }
-        });
-        document.addEventListener('click', function(e){
-          if(!nav.classList.contains('he-open')) return;
-          if(nav.contains(e.target) || burger.contains(e.target)) return;
+        burger.setAttribute('aria-controls', 'he-nav-links');
+
+        function isOpen(){ return nav.classList.contains('he-open'); }
+
+        function closeMenu(returnFocus){
           nav.classList.remove('he-open');
           burger.classList.remove('he-open');
           burger.setAttribute('aria-expanded','false');
+          if(returnFocus) burger.focus();
+        }
+
+        // Keep the page-scroll lock in step with the drawer, however it was opened/closed
+        // (site-chrome.js toggles the class; we just observe it).
+        function syncMenuState(){
+          var open = isOpen();
+          if(open && !mqMobile.matches){ closeMenu(false); return; }   // resized up to desktop while open
+          root.classList.toggle('he-menu-lock', open && mqMobile.matches);
+        }
+        new MutationObserver(syncMenuState).observe(nav, {attributes:true, attributeFilter:['class']});
+        if(mqMobile.addEventListener){ mqMobile.addEventListener('change', syncMenuState); }
+        else if(mqMobile.addListener){ mqMobile.addListener(syncMenuState); }
+
+        // Opened from the keyboard -> move focus into the menu so Tab starts there.
+        // (event.detail === 0 means the click came from Enter/Space, not a pointer.)
+        burger.addEventListener('click', function(e){
+          if(e.detail === 0 && isOpen()){
+            var first = nav.querySelector('a[href]');
+            if(first) first.focus();
+          }
+        });
+
+        document.addEventListener('keydown', function(e){
+          if(!isOpen()) return;
+          if(e.key === 'Escape'){ closeMenu(true); return; }
+          if(e.key !== 'Tab') return;
+          // Trap Tab inside the drawer: burger (visually on top) then the links.
+          var list = [burger].concat([].slice.call(nav.querySelectorAll('a[href]')));
+          var i = list.indexOf(document.activeElement);
+          var step = e.shiftKey ? -1 : 1;
+          var next = (i === -1) ? (e.shiftKey ? list.length - 1 : 0)
+                                : (i + step + list.length) % list.length;
+          e.preventDefault();
+          list[next].focus();
+        });
+
+        document.addEventListener('click', function(e){
+          if(!isOpen()) return;
+          if(nav.contains(e.target) || burger.contains(e.target)) return;
+          closeMenu(false);   // pointer user tapped elsewhere: don't yank focus to the burger
         });
       }
 
@@ -71,7 +111,7 @@
       topBtn.innerHTML = '&uarr;';
       document.body.appendChild(topBtn);
       topBtn.addEventListener('click', function(){
-        window.scrollTo({top:0, behavior:'smooth'});
+        window.scrollTo({top:0, behavior: mqReduce.matches ? 'auto' : 'smooth'});
       });
       window.addEventListener('scroll', function(){
         topBtn.classList.toggle('he-show', window.scrollY > 500);
