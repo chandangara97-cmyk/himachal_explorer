@@ -1117,7 +1117,7 @@ function preloadTiles(){
 
 /* ── place history for the PDF: read from Firebase  /places/<placeId>  ──
    If the history is stored under a different field name, add it to HIST_FIELDS (first match wins). */
-const HIST_FIELDS=['history','historyText','history_text','placeHistory'];
+const HIST_FIELDS=['history_tagline','history','historyText','history_text','placeHistory'];
 const HIST_MAX=1200, HIST_TIMEOUT=9000;
 const HIST_CACHE={}; // placeId -> history text ('' = place has none); failed fetches are not cached
 function histText(v){
