@@ -196,13 +196,91 @@ details.by-inc ul{margin:8px 0 0 18px}
 .by-toast{position:fixed;left:50%;bottom:calc(140px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;padding:9px 16px;border-radius:20px;font-size:13px;z-index:3000;opacity:0;pointer-events:none;transition:opacity .2s}
 .by-toast.show{opacity:1}
 
+/* ── itinerary PDF (built into #pdfDoc, shown only when printing) ── */
+#pdfDoc{display:none}
 @media print{
-  #site-header,#site-footer,.by-hero,.by-bar,.by-pk,.by-tools,.by-add,.by-addday,.by-link,.by-btn,.by-row2,#by-map,.he-mobile-bottom,.by-toast,.by-gate{display:none!important}
-  body{background:#fff}
-  .by-wrap{display:block;padding:0}
-  .by-side{position:static;max-height:none}
-  .by-price{background:#fff;color:#000;border:1px solid #999}
-  .by-price *{color:#000!important}
+  @page{size:A4;margin:12mm 12mm 16mm;
+    @bottom-left{content:"Himachal Explorer \00B7  himachalexplorer.in";font:7.5pt 'Jost',sans-serif;color:#9b8a74;vertical-align:top;padding-top:2mm}
+    @bottom-right{content:"WhatsApp +91 70181 38847   \00B7   Page " counter(page) " of " counter(pages);font:7.5pt 'Jost',sans-serif;color:#9b8a74;vertical-align:top;padding-top:2mm}}
+  html,body{background:#fff!important;width:auto!important;overflow:visible!important;height:auto!important}
+  body>*:not(#pdfDoc){display:none!important}
+  #pdfDoc{display:block!important;padding-right:1.2mm;-webkit-print-color-adjust:exact;print-color-adjust:exact;font-family:'Jost',sans-serif;color:#3a2f22;font-size:10pt;line-height:1.5}
+  #pdfDoc *{box-sizing:border-box}
+  #pdfDoc h1,#pdfDoc h2,#pdfDoc h3{font-family:'Cormorant',serif;color:#1c1409;font-weight:600;margin:0;line-height:1.15}
+  #pdfDoc a{color:#b07d3a;text-decoration:none}
+  .pdf-cover{break-after:page;page-break-after:always}
+  #pdfDoc h2,#pdfDoc h3{break-after:avoid;page-break-after:avoid}
+  .pdf-pricebox,.pdf-tiers,.pdf-cols,.pdf-notes,.pdf-cta{break-inside:avoid;page-break-inside:avoid}
+  .pdf-hero{background:#0e0a04;color:#fff;border-radius:3mm;padding:8mm 9mm 7mm;border-bottom:1.2mm solid #c99248}
+  .pdf-brand{font-size:7.5pt;letter-spacing:.32em;text-transform:uppercase;color:#c99248;font-weight:700}
+  #pdfDoc .pdf-hero h1{color:#fff;font-size:30pt;font-weight:300;margin:3mm 0 1.5mm}
+  #pdfDoc .pdf-hero h1 em{color:#c99248;font-style:italic}
+  .pdf-headline{font-family:'Cormorant',serif;font-size:14pt;color:rgba(255,255,255,.9)}
+  .pdf-route{font-size:9.5pt;color:rgba(255,255,255,.65);margin-top:1mm}
+  .pdf-dates{display:inline-block;margin-top:3.5mm;font-size:9pt;color:#0e0a04;background:#c99248;border-radius:5mm;padding:.8mm 3.5mm;font-weight:600;letter-spacing:.03em}
+  .pdf-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5mm;margin:4.5mm 0 1mm}
+  .pdf-fact{border:.5pt solid #e5ddd0;border-radius:2.5mm;padding:2.6mm 3.4mm;background:#fdfbf7}
+  .pdf-fact b{display:block;font-family:'Cormorant',serif;font-size:15pt;color:#1c1409;line-height:1.1;font-weight:600}
+  .pdf-fact span{font-size:7pt;letter-spacing:.15em;text-transform:uppercase;color:#9b8a74;font-weight:600}
+  #pdfDoc .pdf-h2{font-size:15pt;margin:4.2mm 0 2.4mm;padding-bottom:1.3mm;border-bottom:.7pt solid #c99248}
+  .pdf-map{border:.5pt solid #d4c9b5;border-radius:2.5mm;overflow:hidden;background:#e9eee4;line-height:0}
+  .pdf-map svg{width:100%;height:auto;display:block}
+  .pdf-nomap{padding:10mm;text-align:center;font-size:9pt;color:#9b8a74;line-height:1.4}
+  .pdf-legend{display:flex;flex-wrap:wrap;gap:1mm 3.2mm;margin-top:2mm;font-size:7.5pt;color:#5a4a36}
+  .pdf-legend i{display:inline-block;width:5mm;height:1.3mm;border-radius:1mm;vertical-align:middle;margin-right:1mm}
+  .pdf-legend em{font-style:normal;color:#9b8a74;flex-basis:100%}
+  table.pdf-glance{width:100%;border-collapse:collapse;font-size:8.5pt}
+  .pdf-glance th{text-align:left;font-size:6.8pt;letter-spacing:.15em;text-transform:uppercase;color:#9b8a74;border-bottom:.6pt solid #c99248;padding:1.4mm 2mm}
+  .pdf-glance td{padding:1.5mm 2mm;border-bottom:.4pt solid #ece5d8;vertical-align:top}
+  .pdf-glance tr{break-inside:avoid;page-break-inside:avoid}
+  .pdf-glance .dn{font-weight:700;color:#1c1409;white-space:nowrap}
+  .pdf-glance .dn i{display:inline-block;width:2.2mm;height:2.2mm;border-radius:50%;margin-right:1.5mm;vertical-align:baseline}
+  .pdf-glance .r{text-align:right;white-space:nowrap}
+  .pdf-day{break-inside:avoid;page-break-inside:avoid;border:.5pt solid #e5ddd0;border-left:1.7mm solid var(--dc);border-radius:2.5mm;padding:3.2mm 4mm 3.4mm;margin-bottom:4.2mm;background:#fff}
+  .pdf-dh{display:flex;align-items:baseline;gap:2.5mm;flex-wrap:wrap;margin-bottom:1.6mm}
+  .pdf-dn{background:var(--dc);color:#fff;font-size:7.5pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-radius:5mm;padding:.6mm 3mm}
+  .pdf-dd{font-size:8.5pt;color:#9b8a74;font-weight:500}
+  #pdfDoc .pdf-dt{font-size:13pt;flex-basis:100%;margin-top:.6mm}
+  .pdf-chips{display:flex;gap:1.8mm;flex-wrap:wrap;margin:1.4mm 0 2.4mm}
+  .pdf-chips span{font-size:7.8pt;background:#f7f2e8;border:.4pt solid #e5ddd0;border-radius:5mm;padding:.5mm 2.6mm;color:#5a4a36;font-weight:500}
+  .pdf-body{display:flex;gap:4.5mm;margin-top:1mm;align-items:flex-start}
+  .pdf-body .pdf-map{flex:0 0 57%;max-width:57%}
+  .pdf-side{flex:1 1 0;min-width:0}
+  ol.pdf-stops{list-style:none;margin:0;padding:0}
+  .pdf-stops li{display:flex;gap:2.4mm;padding:1.1mm 0;break-inside:avoid}
+  .pdf-stops .n{flex:0 0 5.2mm;height:5.2mm;border-radius:50%;background:var(--dc);color:#fff;font-size:7pt;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:.3mm}
+  .pdf-stops b{color:#1c1409;font-size:9.5pt}
+  .pdf-stops .role{font-style:normal;font-size:6.6pt;letter-spacing:.13em;text-transform:uppercase;color:var(--dc);font-weight:700;margin-left:1.2mm}
+  .pdf-stops small{display:block;font-size:7.8pt;color:#9b8a74;line-height:1.35}
+  .pdf-stops .w,.pdf-warn{font-size:7.8pt;color:#a5511c;background:#fdf0e6;border-radius:1.5mm;padding:.5mm 2mm;display:block;margin-top:.8mm}
+  .pdf-stay{margin-top:2mm;padding-top:1.8mm;border-top:.4pt dashed #d4c9b5;font-size:8.8pt}
+  .pdf-stay span{font-size:6.8pt;letter-spacing:.15em;text-transform:uppercase;color:#9b8a74;font-weight:700;margin-right:1.5mm}
+  .pdf-stay b{color:#1c1409}
+  .pdf-price{margin-top:7mm}
+  .pdf-pricebox{background:#fdf6ec;border:.6pt solid #e5c98f;border-radius:3mm;padding:5mm 6mm;display:flex;gap:6mm;align-items:center}
+  .pdf-pricebox .big{flex:0 0 auto}
+  .pdf-pricebox .big b{display:block;font-family:'Cormorant',serif;font-size:26pt;color:#1c1409;line-height:1;font-weight:600}
+  .pdf-pricebox .big span{font-size:8pt;color:#9b8a74;letter-spacing:.1em;text-transform:uppercase}
+  .pdf-pricebox .sub{font-size:8.6pt;margin-top:1.6mm;color:#5a4a36}
+  .pdf-ledger{flex:1;font-size:8.8pt}
+  .pdf-ledger div{display:flex;justify-content:space-between;padding:1mm 0;border-bottom:.4pt solid #ecdcbc}
+  .pdf-ledger div.t{border:0;border-top:.8pt solid #b07d3a;margin-top:.6mm;font-weight:700;color:#1c1409}
+  table.pdf-tiers{width:100%;border-collapse:collapse;font-size:9pt;margin-top:1mm}
+  .pdf-tiers th{text-align:left;font-size:6.8pt;letter-spacing:.15em;text-transform:uppercase;color:#9b8a74;border-bottom:.6pt solid #c99248;padding:1.4mm 2.2mm}
+  .pdf-tiers td{padding:1.8mm 2.2mm;border-bottom:.4pt solid #ece5d8}
+  .pdf-tiers tr.on td{background:#fdf6ec;font-weight:700;color:#1c1409}
+  .pdf-cols{display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:1mm}
+  .pdf-cols ul,.pdf-notes{margin:0;padding-left:4.2mm;font-size:8.8pt}
+  .pdf-cols li,.pdf-notes li{margin-bottom:1.1mm}
+  .pdf-cols .x li{color:#5a4a36}
+  .pdf-cta{margin-top:6mm;background:#0e0a04;color:#fff;border-radius:3mm;padding:5mm 6mm;border-bottom:1.2mm solid #c99248;break-inside:avoid;page-break-inside:avoid}
+  #pdfDoc .pdf-cta h3{color:#fff;font-size:15pt;font-weight:400}
+  .pdf-cta p{font-size:9pt;color:rgba(255,255,255,.75);margin:1mm 0 0}
+  #pdfDoc .pdf-cta a{color:#c99248;font-weight:600}
+  .pdf-cta .row{display:flex;gap:7mm;margin-top:2.6mm;font-size:9pt;flex-wrap:wrap}
+  .pdf-cta .row div{color:rgba(255,255,255,.85)}
+  .pdf-cta .row small{display:block;font-size:6.8pt;letter-spacing:.16em;text-transform:uppercase;color:#c99248;font-weight:700}
+  .pdf-issued{margin-top:3mm;font-size:7.5pt;color:#9b8a74;text-align:center}
 }
 
 /* unlock gate */
@@ -364,7 +442,10 @@ details.by-inc ul{margin:8px 0 0 18px}
 <div class="by-gate" id="pkgSaveGate" role="dialog" aria-modal="true" aria-label="Confirm package update">
   <div class="by-gate-box">
     <h3>Update this package</h3>
-    <p>This overwrites "<b id="pkgSaveGateTitle"></b>" on the live site with the days shown above. Enter the edit password to continue.</p>
+    <p>This updates "<b id="pkgSaveGateTitle"></b>" on the live site with the days shown above, or saves them as a new package. Enter the edit password to continue.</p>
+    <div class="by-note" id="pkgSaveCalc" style="margin:0 0 12px"></div>
+    <label class="by-check" style="margin:0 0 10px"><input type="checkbox" id="pkgSaveNew"> Save as a <b>new</b> package (keep the original unchanged)</label>
+    <input class="by-input" id="pkgNewTitle" type="text" placeholder="New package name" autocomplete="off" style="display:none;margin-bottom:12px">
     <div class="by-gate-pw">
       <input type="password" id="pkgSavePwInput" placeholder="Edit password" autocomplete="off">
       <button id="pkgSavePwBtn">Save</button>
@@ -374,6 +455,7 @@ details.by-inc ul{margin:8px 0 0 18px}
   </div>
 </div>
 
+<div id="pdfDoc" aria-hidden="true"></div>
 <div id="site-footer"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -751,7 +833,7 @@ const PKG_LS_KEY='he_custom_trip_pkg_v1';
 const PKG_EDIT_PASSWORD='123'; // change here to rotate the package-edit password
 const STOP_KEYS=['places','stops','locations','spots','sightseeing','visit','points'];
 const STAY_KEYS=['stay','overnight','night_halt','hotel_at','staying_at','halt','base'];
-let PACKAGES=[], pkgLoaded=null, RAW_PKG={}; // pkgLoaded:{id,title}; RAW_PKG[id]=original package_content record, kept so saving only touches the fields we understood
+let PACKAGES=[], pkgLoaded=null, RAW_PKG={}, RAW_IDX={}; // pkgLoaded:{id,title}; RAW_PKG[id]=original package_content record, kept so saving only touches the fields we understood
 function firstOf(obj,keys){
   if(!obj) return null;
   for(let i=0;i<keys.length;i++){ const v=obj[keys[i]]; if(v!=null&&v!==''&&!(Array.isArray(v)&&!v.length)) return v; }
@@ -818,7 +900,7 @@ function loadPackagesFromFirebase(){
   ]).then(([idxRaw,contentRaw])=>{
     const idx=idxRaw||{}, content=contentRaw||{};
     const ids=Object.keys(Object.keys(idx).length?idx:content);
-    RAW_PKG=content;
+    RAW_PKG=content; RAW_IDX=idx;
     const list=ids.map(id=>{ try{ return normalizePackage(id,idx[id]||{},content[id]||{}); }catch(e){ return null; } }).filter(Boolean);
     if(list.length){ PACKAGES=list.sort((a,b)=>a.title.localeCompare(b.title)); }
     const cta=$('#pkgCta'); if(cta) cta.style.display=PACKAGES.length?'':'none';
@@ -858,6 +940,10 @@ function applyPackage(id){
 function openPkgSaveGate(){
   if(!pkgLoaded){ toast('Load a package first'); return; }
   $('#pkgSaveGateTitle').textContent=pkgLoaded.title;
+  { const plan=buildPlan(), n=S.days.length, km=Math.round(plan.reduce((a,p)=>a+p.km,0));
+    $('#pkgSaveCalc').textContent='Will save: '+n+' day'+(n>1?'s':'')+' · '+Math.max(1,n-1)+' night'+(Math.max(1,n-1)>1?'s':'')+(km>0?' · ≈ '+km+' km':'')+' — package day count, itinerary and route update together.';
+    $('#pkgSaveNew').checked=false; $('#pkgNewTitle').style.display='none';
+    $('#pkgNewTitle').value=pkgLoaded.title.replace(/\s*\(\d+D\)\s*/,'').trim()+' (Custom)'; }
   $('#pkgSaveGateErr').style.display='none';
   $('#pkgSavePwInput').value='';
   $('#pkgSaveGate').classList.add('open');
@@ -866,29 +952,87 @@ function openPkgSaveGate(){
 function closePkgSaveGate(){ $('#pkgSaveGate').classList.remove('open'); }
 function tryPkgSavePassword(){
   const v=$('#pkgSavePwInput').value.trim();
-  if(v===PKG_EDIT_PASSWORD){ closePkgSaveGate(); savePackageToFirebase(); }
+  if(v===PKG_EDIT_PASSWORD){ const asNew=$('#pkgSaveNew').checked, title=$('#pkgNewTitle').value; closePkgSaveGate(); savePackageToFirebase({asNew:asNew,title:title}); }
   else{ $('#pkgSaveGateErr').style.display='block'; }
 }
-function savePackageToFirebase(){
-  const p=PACKAGES.find(x=>x.id===(pkgLoaded&&pkgLoaded.id)); if(!p) return;
-  const raw=RAW_PKG[p.id]||{};
-  const origItin=Array.isArray(raw[p.itinKey])?raw[p.itinKey]:[];
-  const newItin=S.days.map((d,i)=>{
-    const base=Object.assign({},origItin[i]||{});
-    base[p.stopsKey]=d.stops.map(id=>place(id).name);
-    base[p.stayKey]=d.stay?place(d.stay).name:null;
+function savePackageToFirebase(opts){
+  opts=opts||{};
+  const src=PACKAGES.find(x=>x.id===(pkgLoaded&&pkgLoaded.id)); if(!src) return;
+  const plan=buildPlan();
+  const n=S.days.length, nights=Math.max(1,n-1), km=Math.round(plan.reduce((a,p)=>a+p.km,0));
+  const rawC=RAW_PKG[src.id]||{}, rawI=RAW_IDX[src.id]||{};
+  const orig=Array.isArray(rawC[src.itinKey])?rawC[src.itinKey]:[];
+  const sample=orig[0]||{};
+  const distKey=['dist_time','drive','distance'].find(k=>k in sample)||'dist_time';
+  const dayNumKey=('day' in sample||!orig.length)?'day':null;
+
+  /* 1 · day-by-day itinerary — day numbers, titles and drive time follow the new route */
+  const itin=S.days.map((d,i)=>{
+    const o=orig[i], base=Object.assign({},o||{}), pl=plan[i];
+    const changed=!o||JSON.stringify(dayStopsOf(o))!==JSON.stringify(d.stops)||(dayStayOf(o)||null)!==(d.stay||null);
+    base[src.stopsKey]=d.stops.map(id=>place(id).name);
+    base[src.stayKey]=d.stay?place(d.stay).name:null;
+    if(dayNumKey) base[dayNumKey]=i+1;
+    if(changed||!base.title) base.title=pl.seq.map(x=>x.name).join(' → ')||('Day '+(i+1));
+    if(pl.km>0&&(changed||!base[distKey])) base[distKey]='≈ '+Math.round(pl.km)+' km · ~'+pl.hrs.toFixed(1)+' hrs';
+    if(!o&&!Array.isArray(base.acts)) base.acts=[];
     return base;
   });
-  const updated=Object.assign({},raw);
-  updated[p.itinKey]=newItin;
-  ['start','gateway','starting_point','pickup'].forEach(k=>{ if(raw[k]!=null&&S.start) updated[k]=place(S.start).name; });
-  if(!S.sameEnd&&S.end){ ['end','drop','ending_point'].forEach(k=>{ if(raw[k]!=null) updated[k]=place(S.end).name; }); }
-  toast('Saving to package…');
-  fetch(DB+'/package_content/'+encodeURIComponent(p.id)+'.json',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(updated)})
-    .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-    .then(()=>{ RAW_PKG[p.id]=updated; p.days=S.days.map(d=>({stops:d.stops.slice(),stay:d.stay})); toast('Package updated — live on packages.html'); })
-    .catch(e=>{ toast('Could not save — check Firebase write rules for package_content'); console.error('package save failed',e); });
+
+  /* 2 · counts: days / nights / km are recalculated from the days you built, wherever the package already stores them */
+  const NAME_KEYS=['title','name','package_name'];
+  const retitle=(rec,t)=>NAME_KEYS.forEach(k=>{ if(typeof rec[k]==='string') rec[k]=t!=null?t:rec[k].replace(/\(\d+D\)/,'('+n+'D)'); });
+  const setNum=(rec,keys,val,skip)=>{ let hit=false; keys.forEach(k=>{ if(k===skip||!(k in rec)) return; const v=rec[k]; if(v!==null&&typeof v==='object') return; rec[k]=typeof v==='string'?String(val):val; hit=true; }); return hit; };
+  const setLabel=rec=>['duration','duration_label','duration_text'].forEach(k=>{ if(typeof rec[k]==='string'&&/^\d+\s*D\s*\/\s*\d+\s*N$/i.test(rec[k].trim())) rec[k]=n+'D/'+nights+'N'; });
+  const styled=(oldv,name)=>(typeof oldv==='string'&&oldv===oldv.toUpperCase())?name.toUpperCase():name;
+  const content=Object.assign({},rawC), idx=Object.assign({},rawI);
+  content[src.itinKey]=itin;
+  if(S.start){ const nm=place(S.start).name; ['start','gateway','starting_point','pickup','start_point'].forEach(k=>{ if(rawC[k]!=null) content[k]=styled(rawC[k],nm); if(rawI[k]!=null) idx[k]=styled(rawI[k],nm); }); }
+  if(!S.sameEnd&&S.end){ const nm=place(S.end).name; ['end','drop','ending_point','end_point'].forEach(k=>{ if(rawC[k]!=null) content[k]=styled(rawC[k],nm); if(rawI[k]!=null) idx[k]=styled(rawI[k],nm); }); }
+  if(!setNum(idx,['duration_days','days','total_days'],n)){ idx.duration_days=n; idx.days=n; }
+  setNum(idx,['nights','duration_nights'],nights);
+  setNum(content,['duration_days','total_days','days'],n,src.itinKey);
+  setNum(content,['nights','duration_nights'],nights);
+  if(km>0){ setNum(idx,['total_km_est','total_km','km'],km); setNum(content,['total_km_est','total_km','km'],km,src.itinKey); }
+  setLabel(idx); setLabel(content);
+
+  /* 3 · save as a brand-new package (clone of the loaded one, so the data shape always matches) */
+  let id=src.id;
+  if(opts.asNew){
+    const nm=(opts.title||'').trim()||(src.title.replace(/\s*\(\d+D\)\s*/,'').trim()+' (Custom)');
+    const hasN=/\(\d+D\)/.test(src.title);
+    const title=hasN?(/\(\d+D\)/.test(nm)?nm.replace(/\(\d+D\)/,'('+n+'D)'):nm+' ('+n+'D)'):nm;
+    const slug=nm.toLowerCase().replace(/\([^)]*\)/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')||'custom';
+    id=slug+'-'+n+'d'; let u=2;
+    while(PACKAGES.some(x=>x.id===id)||RAW_PKG[id]||RAW_IDX[id]) id=slug+'-'+n+'d-'+(u++);
+    ['package_id','id'].forEach(k=>{ if(k in idx) idx[k]=id; if(k in content) content[k]=id; });
+    ['featured'].forEach(k=>{ if(k in idx) idx[k]=false; if(k in content) content[k]=false; });
+    retitle(idx,title); retitle(content,title);
+    if(!NAME_KEYS.some(k=>typeof idx[k]==='string')) idx.title=title;
+  } else { retitle(idx,null); retitle(content,null); }
+
+  /* 4 · write: content first, then the index record (so packages.html never lists a package without its itinerary) */
+  const diff=(a,b)=>{ const o={}; Object.keys(a).forEach(k=>{ if(JSON.stringify(a[k])!==JSON.stringify(b[k])) o[k]=a[k]; }); return o; };
+  const send=(path,body,method)=>fetch(DB+path+'.json',{method:method,headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+    .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status+' on '+path); return r.json(); });
+  const key=encodeURIComponent(id);
+  toast('Saving to package…',8000);
+  const job=opts.asNew
+    ? send('/package_content/'+key,content,'PUT').then(()=>send('/templates_index/'+key,idx,'PUT'))
+    : send('/package_content/'+key,diff(content,rawC),'PATCH').then(()=>send('/templates_index/'+key,diff(idx,rawI),'PATCH'));
+  job.then(()=>{
+    RAW_PKG[id]=content; RAW_IDX[id]=idx;
+    const np=normalizePackage(id,idx,content);
+    if(np){
+      const at=PACKAGES.findIndex(x=>x.id===id);
+      if(at>=0) PACKAGES[at]=np; else PACKAGES.push(np);
+      PACKAGES.sort((a,b)=>a.title.localeCompare(b.title));
+      pkgLoaded={id:np.id,title:np.title}; savePkgLoaded(); renderPkgBanner();
+    }
+    toast((opts.asNew?'New package published':'Package updated')+' — '+n+' days / '+nights+' nights'+(km>0?' · ≈ '+km+' km':'')+'. Live on packages.html',4200);
+  }).catch(e=>{ toast('Could not save — check Firebase write rules for package_content / templates_index',4200); console.error('package save failed',e); });
 }
+$('#pkgSaveNew').addEventListener('change',function(){ $('#pkgNewTitle').style.display=this.checked?'block':'none'; });
 $('#pkgSavePwBtn').addEventListener('click',tryPkgSavePassword);
 $('#pkgSavePwInput').addEventListener('keydown',e=>{ if(e.key==='Enter') tryPkgSavePassword(); });
 $('#pkgSaveGateCloseBtn').addEventListener('click',closePkgSaveGate);
@@ -899,7 +1043,7 @@ loadPackagesFromFirebase();
 
 
 /* ─────────────────────────── actions ─────────────────────────── */
-function toast(msg){const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),2200);}
+function toast(msg,ms){const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),ms||2200);}
 function swap(a,i,j){ if(j<0||j>=a.length) return; const t=a[i]; a[i]=a[j]; a[j]=t; }
 function shareUrl(){ return location.origin+location.pathname+'#t='+enc(S); }
 function buildMessage(){
@@ -931,11 +1075,246 @@ function copyLink(){
 }
 
 /* ─────────────────────────── unlock gate (print / WhatsApp) ─────────────────────────── */
+/* ─────────────────────────── polished PDF itinerary (built into #pdfDoc, printed as A4) ─────────────────────────── */
+const TILE_URL='https://a.basemaps.cartocdn.com/rastertiles/voyager/';
+let TILE_SET=new Set(), printing=false;
+const cap=s=>String(s||'').replace(/[-_]+/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+const mercX=(lng,z)=>(lng+180)/360*256*Math.pow(2,z);
+const mercY=(lat,z)=>{const s=Math.sin(lat*Math.PI/180);return (0.5-Math.log((1+s)/(1-s))/(4*Math.PI))*256*Math.pow(2,z);};
+function thin(ll,max){ if(ll.length<=max) return ll; const out=[],step=(ll.length-1)/(max-1); for(let i=0;i<max;i++) out.push(ll[Math.round(i*step)]); return out; }
+function dayKey(p){ const pts=p.seq.filter(x=>x.lat!=null&&x.lng!=null); return pts.length>1?pts.map(x=>x.lng.toFixed(4)+','+x.lat.toFixed(4)).join(';'):null; }
+function getRoute(key){
+  if(geoCache[key]) return Promise.resolve(geoCache[key]);
+  const ctl=('AbortController' in window)?new AbortController():null;
+  const to=setTimeout(()=>{if(ctl)ctl.abort();},9000);
+  return fetch('https://router.project-osrm.org/route/v1/driving/'+key+'?overview=full&geometries=geojson',ctl?{signal:ctl.signal}:{})
+    .then(r=>r.ok?r.json():null).then(j=>{
+      clearTimeout(to);
+      if(!j||!j.routes||!j.routes[0]) return null;
+      const ll=j.routes[0].geometry.coordinates.map(c=>[c[1],c[0]]); geoCache[key]=ll; return ll;
+    }).catch(()=>{clearTimeout(to);return null;});
+}
+/* road geometry for every day (falls back to straight lines for anything that can't be fetched in time) */
+function ensureGeometry(plan){
+  const keys=Array.from(new Set(plan.map(dayKey).filter(Boolean))).filter(k=>!geoCache[k]);
+  if(!keys.length) return Promise.resolve();
+  let i=0; const worker=()=>i>=keys.length?Promise.resolve():getRoute(keys[i++]).then(worker);
+  return Promise.race([Promise.all([worker(),worker(),worker(),worker()]),new Promise(r=>setTimeout(r,20000))]);
+}
+function preloadTiles(){
+  const urls=Array.from(TILE_SET);
+  const ok=new Set();
+  return Promise.race([
+    Promise.all(urls.map(u=>new Promise(res=>{const im=new Image(); im.onload=()=>{ok.add(u);res();}; im.onerror=()=>res(); im.src=u;}))),
+    new Promise(r=>setTimeout(r,9000))
+  ]).then(()=>{ document.querySelectorAll('#pdfDoc image').forEach(el=>{ if(!ok.has(el.getAttribute('href'))) el.remove(); }); });
+}
+
+/* self-contained SVG map: map tiles + road route + numbered markers with collision-free name labels.
+   Being SVG (not a live Leaflet map) it prints reliably, and still shows the route if tiles fail to load. */
+function mapSVG(cfg){
+  const W=cfg.w,H=cfg.h,PAD=cfg.pad||36;
+  const all=[]; cfg.lines.forEach(l=>l.ll.forEach(q=>all.push(q))); cfg.marks.forEach(m=>all.push([m.lat,m.lng]));
+  if(!all.length) return '<div class="pdf-nomap">The map will be added once the locations are confirmed.</div>';
+  let a=90,b=-90,c=180,d=-180;
+  all.forEach(q=>{a=Math.min(a,q[0]);b=Math.max(b,q[0]);c=Math.min(c,q[1]);d=Math.max(d,q[1]);});
+  let z=cfg.maxZ||11;
+  while(z>4){
+    const dx=mercX(d,z)-mercX(c,z), dy=mercY(a,z)-mercY(b,z);
+    if(dx<=W-2*PAD&&dy<=H-2*PAD) break; z--;
+  }
+  const ox=Math.round((mercX(c,z)+mercX(d,z))/2-W/2), oy=Math.round((mercY(a,z)+mercY(b,z))/2-H/2);
+  const P=(lat,lng)=>[mercX(lng,z)-ox,mercY(lat,z)-oy];
+  let svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid slice"><rect width="'+W+'" height="'+H+'" fill="#e9eee4"/>';
+  if(cfg.tiles!==false){
+    const n=Math.pow(2,z), suf=cfg.retina?'@2x':'';
+    for(let ty=Math.floor(oy/256);ty<=Math.floor((oy+H)/256);ty++){
+      if(ty<0||ty>=n) continue;
+      for(let tx=Math.floor(ox/256);tx<=Math.floor((ox+W)/256);tx++){
+        const url=TILE_URL+z+'/'+(((tx%n)+n)%n)+'/'+ty+suf+'.png';
+        TILE_SET.add(url);
+        svg+='<image href="'+url+'" x="'+(tx*256-ox)+'" y="'+(ty*256-oy)+'" width="256" height="256"/>';
+      }
+    }
+  }
+  cfg.lines.forEach(l=>{
+    const pts=thin(l.ll,260).map(q=>{const p=P(q[0],q[1]);return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ');
+    const w=l.w||4.5;
+    svg+='<polyline points="'+pts+'" fill="none" stroke="#fff" stroke-width="'+(w+3)+'" stroke-linecap="round" stroke-linejoin="round" opacity=".92"/>'
+       +'<polyline points="'+pts+'" fill="none" stroke="'+l.color+'" stroke-width="'+w+'" stroke-linecap="round" stroke-linejoin="round"'+(l.dash?' stroke-dasharray="9 8"':'')+'/>';
+  });
+  const marks=cfg.marks.map(m=>{const p=P(m.lat,m.lng);return Object.assign({},m,{x:p[0],y:p[1],r:m.r||11});});
+  const boxes=[]; marks.forEach(m=>boxes.push([m.x-m.r,m.y-m.r,m.r*2,m.r*2]));
+  const hit=(x,y,w,h)=>boxes.some(q=>x<q[0]+q[2]&&x+w>q[0]&&y<q[1]+q[3]&&y+h>q[1]);
+  let dots='',labels='';
+  marks.forEach(m=>{
+    dots+='<circle cx="'+m.x.toFixed(1)+'" cy="'+m.y.toFixed(1)+'" r="'+m.r+'" fill="'+m.color+'" stroke="#fff" stroke-width="2.5"/>';
+    if(m.text) dots+='<text x="'+m.x.toFixed(1)+'" y="'+m.y.toFixed(1)+'" text-anchor="middle" dominant-baseline="central" font-family="Jost,Arial,sans-serif" font-size="'+(m.r>=11?11:8.5)+'" font-weight="700" fill="#fff">'+esc(m.text)+'</text>';
+    if(m.name){
+      const tw=m.name.length*6.3+6, th=15, gap=m.r+4;
+      const cand=[[m.x+gap,m.y-th/2,'start'],[m.x-gap-tw,m.y-th/2,'end'],[m.x-tw/2,m.y-m.r-th-2,'middle'],[m.x-tw/2,m.y+m.r+3,'middle']];
+      for(let k=0;k<cand.length;k++){
+        const q=cand[k];
+        if(q[0]>=2&&q[1]>=2&&q[0]+tw<=W-2&&q[1]+th<=H-2&&!hit(q[0],q[1],tw,th)){
+          boxes.push([q[0],q[1],tw,th]);
+          const tx=q[2]==='start'?q[0]:(q[2]==='end'?q[0]+tw:q[0]+tw/2);
+          labels+='<text x="'+tx.toFixed(1)+'" y="'+(q[1]+th-4).toFixed(1)+'" text-anchor="'+q[2]+'" font-family="Jost,Arial,sans-serif" font-size="12" font-weight="600" fill="#1c1409" stroke="#fff" stroke-width="3.6" paint-order="stroke" stroke-linejoin="round">'+esc(m.name)+'</text>';
+          break;
+        }
+      }
+    }
+  });
+  svg+=dots+labels;
+  if(cfg.tiles!==false) svg+='<text x="'+(W-6)+'" y="'+(H-6)+'" text-anchor="end" font-family="Jost,Arial,sans-serif" font-size="9" fill="#5a4a36" opacity=".85">© OpenStreetMap contributors © CARTO</text>';
+  return svg+'</svg>';
+}
+function overviewMap(plan){
+  const lines=[],marks=[],groups={},order=[];
+  const tag=(pl,t,col)=>{ if(!pl||pl.lat==null) return; if(!groups[pl.id]){groups[pl.id]={pl:pl,tags:[],col:col};order.push(pl.id);} groups[pl.id].tags.push(t); if(groups[pl.id].tags.length>1) groups[pl.id].col='#1c1409'; };
+  const st=place(S.start), en=place(S.sameEnd?S.start:S.end);
+  tag(st,'S','#1c1409');
+  plan.forEach((p,i)=>{
+    const col=COLORS[i%COLORS.length], key=dayKey(p), pts=p.seq.filter(x=>x.lat!=null&&x.lng!=null);
+    if(pts.length>1) lines.push({ll:(key&&geoCache[key])||pts.map(x=>[x.lat,x.lng]),color:col,dash:!(key&&geoCache[key])});
+    if(!p.last&&p.to) tag(p.to,String(i+1),col);
+  });
+  tag(en,'E','#1c1409');
+  order.forEach(id=>{ const g=groups[id]; marks.push({lat:g.pl.lat,lng:g.pl.lng,color:g.col,text:g.tags.join('/'),name:g.pl.name,r:g.tags.join('/').length>2?15:11}); });
+  plan.forEach((p,i)=>p.stops.forEach(x=>{ if(x&&x.lat!=null&&!groups[x.id]) marks.push({lat:x.lat,lng:x.lng,color:COLORS[i%COLORS.length],r:5}); }));
+  return mapSVG({w:900,h:350,lines:lines,marks:marks,retina:true,pad:60,maxZ:9});
+}
+function dayMap(p,i,tiles){
+  const col=COLORS[i%COLORS.length], key=dayKey(p), pts=p.seq.filter(x=>x.lat!=null&&x.lng!=null);
+  const lines=pts.length>1?[{ll:(key&&geoCache[key])||pts.map(x=>[x.lat,x.lng]),color:col,dash:!(key&&geoCache[key])}]:[];
+  const g={}, marks=[];
+  p.seq.forEach((x,k)=>{ if(x.lat==null) return; (g[x.id]=g[x.id]||{x:x,n:[]}).n.push(k+1); });
+  Object.keys(g).forEach(id=>{ const o=g[id]; marks.push({lat:o.x.lat,lng:o.x.lng,color:col,text:o.n.join(','),name:o.x.name,r:o.n.length>1?14:11}); });
+  return mapSVG({w:540,h:350,lines:lines,marks:marks,tiles:tiles,pad:40,maxZ:11});
+}
+
+function buildItineraryHTML(plan){
+  TILE_SET=new Set();
+  const n=S.days.length, nights=Math.max(1,n-1);
+  const st=place(S.start), en=place(S.sameEnd?S.start:S.end), t=TIERS[S.tier], r=price(S.tier);
+  const totalKm=plan.reduce((a,p)=>a+p.km,0), totalHrs=plan.reduce((a,p)=>a+p.hrs,0);
+  const d0=dayDate(0), dN=dayDate(n-1);
+  const longD=d=>d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const shortD=d=>d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'});
+  const names=[]; plan.forEach(p=>p.seq.forEach(x=>{ if(names.indexOf(x.name)<0) names.push(x.name); }));
+  const headline=names.slice(0,4).join('  ·  ')||'Himachal Pradesh';
+  const routeLine=st?(esc(st.name)+(en&&en.id!==st.id?' &rarr; '+esc(en.name):' &middot; round trip')):'Himachal Pradesh';
+  const datesTxt=d0?(shortD(d0)+(n>1?' &ndash; '+shortD(dN):'')+', '+dN.getFullYear()):'Flexible dates';
+  const unknown=plan.some(p=>p.unknown);
+  const facts=[
+    [n+' Days / '+nights+' Nights','Duration'],
+    [(totalKm>0?'&asymp; '+Math.round(totalKm).toLocaleString('en-IN')+' km':'To be confirmed'),'Road distance'],
+    [(totalHrs>0?'&asymp; '+totalHrs.toFixed(0)+' hrs':'&mdash;'),'Driving time'],
+    [S.pax+' traveller'+(S.pax>1?'s':''),'Group size'],
+    [esc(t.label)+' ('+t.star+')','Hotel category'],
+    [r?inr(r.totalPP)+' <small style="font-size:9pt;font-weight:400">/ person</small>':'On request','Estimated price']
+  ].map(f=>'<div class="pdf-fact"><b>'+f[0]+'</b><span>'+f[1]+'</span></div>').join('');
+  const legend=plan.map((p,i)=>'<span><i style="background:'+COLORS[i%COLORS.length]+'"></i>Day '+(i+1)+'</span>').join('')
+    +'<em>S = start &middot; E = end &middot; numbered pins show where you spend each night &middot; small dots are places you visit along the way.</em>';
+  const glance=plan.map((p,i)=>{
+    const dt=dayDate(i);
+    return '<tr><td class="dn"><i style="background:'+COLORS[i%COLORS.length]+'"></i>Day '+(i+1)+(dt?' <span style="font-weight:400;color:#9b8a74;font-size:7.5pt">&middot; '+esc(shortD(dt))+'</span>':'')+'</td>'
+      +'<td>'+(p.seq.length>1?p.seq.map(x=>esc(x.name)).join(' &rarr; '):(p.seq[0]?'Rest / free day at '+esc(p.seq[0].name):'Free day'))+'</td>'
+      +'<td class="r">'+(p.km>0?'&asymp; '+Math.round(p.km)+' km':'&mdash;')+'</td>'
+      +'<td>'+(p.last?'Trip ends &middot; '+esc(p.to?p.to.name:''):esc(p.to?p.to.name:'&mdash;'))+'</td></tr>';
+  }).join('');
+
+  const tiles=n<=14;
+  const dayCards=plan.map((p,i)=>{
+    const col=COLORS[i%COLORS.length], dt=dayDate(i);
+    const rows=p.seq.map((x,k)=>{
+      const prev=k>0?p.seq[k-1]:null, leg=prev?legKm(prev,x):null;
+      const role=k===0?(i===0?'Start':'Depart'):(k===p.seq.length-1?(p.last?'Trip ends':'Overnight'):'Visit');
+      let meta=[x.region,cap(x.category==='gateway'?'':x.category)].filter(Boolean).join(' · ');
+      if(leg&&leg.ok&&leg.km>0) meta+=(meta?' · ':'')+'≈ '+Math.round(leg.km)+' km from previous';
+      if(leg&&!leg.ok) meta+=(meta?' · ':'')+'distance to be confirmed';
+      const w=seasonWarnFor(x)?'<span class="w">Usually snow-closed outside Jun–Sep</span>':'';
+      return '<li><span class="n">'+(k+1)+'</span><div><b>'+esc(x.name)+'</b><em class="role">'+role+'</em>'+(meta?'<small>'+esc(meta)+'</small>':'')+w+'</div></li>';
+    }).join('');
+    const warns=(p.hrs>LONG_DRIVE_HRS?'<span class="pdf-warn">Long driving day on hill roads — we suggest an early start; consider splitting it across two days.</span>':'')
+      +(p.unknown?'<span class="pdf-warn">Distance for custom places will be confirmed by our team.</span>':'');
+    const chips='<span>'+(p.km>0?'&asymp; '+Math.round(p.km)+' km':'Local / rest')+'</span>'
+      +(p.km>0?'<span>&asymp; '+p.hrs.toFixed(1)+' hrs driving</span>':'')
+      +'<span>'+(p.last?'Trip ends at '+esc(p.to?p.to.name:'—'):'Night at '+esc(p.to?p.to.name:'—'))+'</span>';
+    const title=p.seq.length>1?p.seq.map(x=>esc(x.name)).join(' &rarr; '):(p.seq[0]?'Rest / free day at '+esc(p.seq[0].name):'Free day');
+    return '<section class="pdf-day" style="--dc:'+col+'"><div class="pdf-dh"><span class="pdf-dn">Day '+(i+1)+'</span>'+(dt?'<span class="pdf-dd">'+esc(longD(dt))+'</span>':'')+'<h3 class="pdf-dt">'+title+'</h3></div>'
+      +'<div class="pdf-chips">'+chips+'</div>'
+      +'<div class="pdf-body"><div class="pdf-map">'+dayMap(p,i,tiles)+'</div><div class="pdf-side"><ol class="pdf-stops">'+rows+'</ol>'+warns+'</div></div></section>';
+  }).join('');
+
+  /* good-to-know notes: only statements that are true of this plan */
+  const notes=[];
+  notes.push('This is an estimate from our live costing engine. Availability of hotels and vehicles, and any hill-road or weather changes, are confirmed on WhatsApp before booking.');
+  notes.push('Distances and driving times are planning estimates (about '+AVG_KMH+' km/h on hill roads); actual times depend on road and weather conditions.');
+  const hi=[]; S.days.forEach(d=>{[].concat(d.stops,d.stay?[d.stay]:[]).forEach(id=>{const p=place(id); if(p&&HIGH_RE.test((p.region||'')+' '+(p.district||''))&&hi.indexOf(p.name)<0) hi.push(p.name);});});
+  if(hi.length) notes.push('High-altitude stops on your route ('+hi.slice(0,5).join(', ')+(hi.length>5?'…':'')+'). Keep a buffer day for acclimatisation, weather and road closures.');
+  const snow=[]; S.days.forEach(d=>d.stops.forEach(id=>{const p=place(id); if(seasonWarnFor(p)&&snow.indexOf(p.name)<0) snow.push(p.name);}));
+  if(snow.length) notes.push('Some stops ('+snow.slice(0,5).join(', ')+') are usually motorable only Jun–Sep and may be closed on your travel dates.');
+  const longDays=plan.map((p,i)=>p.hrs>LONG_DRIVE_HRS?i+1:0).filter(Boolean);
+  if(longDays.length) notes.push('Long driving days: Day '+longDays.join(', ')+'. Plan an early start.');
+  if(r&&S.date){ const last=dayDate(n-1); if(last&&PE().isPeakMonth(last.getMonth()+1)!==PE().isPeakMonth(priceMonth())) notes.push('Your trip crosses into a different season. The estimate uses the season of your start date; the final quote is confirmed on WhatsApp.'); }
+  if(!S.date) notes.push('No travel date was selected, so pricing uses the current month. Final peak / off-peak rates are confirmed once dates are fixed.');
+  if(unknown) notes.push('Distances for custom places will be confirmed by our team.');
+
+  let priceSec='';
+  if(r){
+    const b=r.breakdown, v=Math.round(b.vehiclePP), h=Math.round(b.hotelPP), sv=r.totalPP-v-h;
+    const tierRows=Object.keys(TIERS).map(k=>{const x=price(k); return x?'<tr class="'+(k===S.tier?'on':'')+'"><td>'+TIERS[k].label+' ('+TIERS[k].star+')</td><td>'+inr(x.totalPP)+'</td><td>'+inr(x.groupTotal)+'</td></tr>':'';}).join('');
+    priceSec='<h2 class="pdf-h2">Trip cost estimate</h2>'
+      +'<div class="pdf-pricebox"><div class="big"><b>'+inr(r.totalPP)+'</b><span>per person</span>'
+      +'<div class="sub">Total for '+S.pax+' traveller'+(S.pax>1?'s':'')+': <b>'+inr(r.groupTotal)+'</b><br>'+(b.isPeak?'Peak season':'Off-peak')+' &middot; '+esc(t.label)+' ('+t.star+') &middot; '+esc(r.fleetLabel)+'</div></div>'
+      +'<div class="pdf-ledger"><div><span>Transport (vehicle, driver, tolls)</span><span>'+inr(v)+'</span></div>'
+      +'<div><span>Accommodation ('+b.nights+' nights)</span><span>'+inr(h)+'</span></div>'
+      +'<div><span>Service &amp; support</span><span>'+inr(sv)+'</span></div>'
+      +'<div class="t"><span>Per person</span><span>'+inr(r.totalPP)+'</span></div></div></div>'
+      +'<h3 style="font-size:13pt;margin:5mm 0 1mm">Compare hotel categories</h3>'
+      +'<table class="pdf-tiers"><thead><tr><th>Category</th><th>Per person</th><th>Total</th></tr></thead><tbody>'+tierRows+'</tbody></table>';
+  } else priceSec='<h2 class="pdf-h2">Trip cost</h2><p>Your quote will be shared on WhatsApp.</p>';
+
+  const today=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+  return '<section class="pdf-sec pdf-cover"><div class="pdf-hero"><div class="pdf-brand">Himachal Explorer &middot; Custom Itinerary</div>'
+    +'<h1>Your <em>Himachal</em> journey</h1><div class="pdf-headline">'+esc(headline)+'</div><div class="pdf-route">'+routeLine+'</div><span class="pdf-dates">'+datesTxt+'</span></div>'
+    +'<div class="pdf-facts">'+facts+'</div>'
+    +'<h2 class="pdf-h2">Your route at a glance</h2><div class="pdf-map">'+overviewMap(plan)+'</div><div class="pdf-legend">'+legend+'</div>'
+    +'<h2 class="pdf-h2">Day by day summary</h2><table class="pdf-glance"><thead><tr><th>Day</th><th>Route</th><th class="r">Distance</th><th>Overnight</th></tr></thead><tbody>'+glance+'</tbody></table></section>'
+    +'<section class="pdf-sec pdf-days"><h2 class="pdf-h2" style="margin-top:0">Your detailed itinerary</h2>'+dayCards+'</section>'
+    +'<section class="pdf-sec pdf-price">'+priceSec
+    +'<div class="pdf-cols"><div><h3 style="font-size:13pt;margin:5mm 0 1.5mm">What&rsquo;s included</h3><ul><li>Private cab with experienced driver</li><li>Hotel accommodation for every night</li><li>Driver allowance &amp; night-halt charges</li><li>Hill state permits &amp; tolls</li></ul></div>'
+    +'<div class="x"><h3 style="font-size:13pt;margin:5mm 0 1.5mm">Not included</h3><ul><li>Flights / train tickets</li><li>Meals unless specified</li><li>Personal expenses</li><li>Travel insurance</li></ul></div></div>'
+    +'<h2 class="pdf-h2">Good to know</h2><ul class="pdf-notes">'+notes.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>'
+    +'<div class="pdf-cta"><h3>Ready to make it happen?</h3><p>Send this plan to our team on WhatsApp and we&rsquo;ll confirm hotels, vehicle and the final quote.</p>'
+    +'<div class="row"><div><small>WhatsApp / Call</small>+91 70181 38847</div><div><small>Website</small><a href="https://himachalexplorer.in">himachalexplorer.in</a></div>'
+    +'<div><small>Your plan online</small><a href="'+esc(shareUrl())+'">Open &amp; edit this itinerary</a></div></div></div>'
+    +'<div class="pdf-issued">Prepared on '+today+' &middot; Himachal Explorer</div></section>';
+}
+function printItinerary(){
+  if(printing) return;
+  const plan=buildPlan();
+  if(!S.start||!plan.some(p=>p.seq.length>1)){ toast('Choose a start location and add places to your days first'); return; }
+  printing=true; toast('Preparing your itinerary & maps…',15000);
+  ensureGeometry(plan).then(()=>{
+    $('#pdfDoc').innerHTML=buildItineraryHTML(plan);
+    return preloadTiles();
+  }).then(()=>{
+    const old=document.title, st=place(S.start), d0=dayDate(0);
+    document.title='Himachal-Itinerary-'+(st?st.name.replace(/[^A-Za-z0-9]+/g,'-'):'Trip')+'-'+S.days.length+'D'+(d0?'-'+d0.toISOString().slice(0,10):'');
+    $('#toast').classList.remove('show'); printing=false;
+    window.print();
+    setTimeout(()=>{document.title=old;},2000);
+  }).catch(e=>{ printing=false; console.error('itinerary build failed',e); toast('Could not prepare the itinerary — please try again'); });
+}
+window.addEventListener('afterprint',()=>{ const d=$('#pdfDoc'); if(d) d.innerHTML=''; });
+
+
 let gatePending=null; // 'wa' | 'print' — action waiting for unlock
 function isUnlocked(){ try{ return localStorage.getItem(UNLOCK_KEY)==='1'; }catch(e){ return false; } }
 function setUnlocked(){ try{ localStorage.setItem(UNLOCK_KEY,'1'); }catch(e){} }
 function runGated(action){
-  if(isUnlocked()){ action==='wa'?sendWA():window.print(); return; }
+  if(isUnlocked()){ action==='wa'?sendWA():printItinerary(); return; }
   gatePending=action;
   $('#gateErr').style.display='none';
   $('#gatePwInput').value='';
@@ -946,7 +1325,7 @@ function unlockAndRun(){
   setUnlocked();
   const action=gatePending;
   closeGate();
-  if(action==='wa') sendWA(); else if(action==='print') window.print();
+  if(action==='wa') sendWA(); else if(action==='print') printItinerary();
 }
 function tryPassword(){
   const v=$('#gatePwInput').value.trim();
