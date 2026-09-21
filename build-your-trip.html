@@ -182,6 +182,17 @@ details.by-inc ul{margin:8px 0 0 18px}
 .by-chip{border:1px solid var(--border2);background:var(--surface);border-radius:20px;padding:6px 12px;font-size:12.5px;color:var(--ink)}
 .by-empty{padding:26px 10px;text-align:center;font-size:13px;color:var(--caption)}
 
+/* package quick-fill */
+.by-pkg-cta{border:1.5px dashed var(--gold);border-radius:10px;padding:12px;margin-bottom:14px;background:var(--gold-bg)}
+.by-pkg-cta .row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.by-pkg-cta b{font-size:13.5px;color:var(--ink)}
+.by-pkg-cta small{display:block;font-size:11.5px;color:var(--caption);margin-top:2px}
+.by-pkg-btn{background:var(--gold);color:#fff;border:0;border-radius:8px;padding:9px 14px;font-size:12.5px;font-weight:600;min-height:38px;white-space:nowrap}
+.by-pkg-loaded{margin-top:8px;font-size:12px;color:var(--green);display:none;align-items:center;gap:6px}
+.by-pkg-loaded.show{display:flex}
+.by-pkg-loaded button{background:none;border:0;color:var(--body);text-decoration:underline;font-size:12px;padding:0}
+.by-pi .tag{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);background:var(--gold-bg);border-radius:10px;padding:2px 8px;flex-shrink:0}
+
 .by-toast{position:fixed;left:50%;bottom:calc(140px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;padding:9px 16px;border-radius:20px;font-size:13px;z-index:3000;opacity:0;pointer-events:none;transition:opacity .2s}
 .by-toast.show{opacity:1}
 
@@ -227,6 +238,13 @@ details.by-inc ul{margin:8px 0 0 18px}
     <section class="by-card" id="setup">
       <h2>1 · Trip basics</h2>
       <p class="by-sub">Everything here is your choice — start anywhere, end anywhere.</p>
+      <div class="by-pkg-cta" id="pkgCta">
+        <div class="row">
+          <div><b>Already know which package you like?</b><small>Load one of our ready-made itineraries and tweak it here.</small></div>
+          <button type="button" class="by-pkg-btn" data-act="pick-package">📦 Choose a package</button>
+        </div>
+        <div class="by-pkg-loaded" id="pkgLoaded"><span id="pkgLoadedTxt"></span> · <button type="button" data-act="pick-package">change</button></div>
+      </div>
       <div class="by-grid2">
         <div class="by-field">
           <label>Start location</label>
@@ -313,6 +331,16 @@ details.by-inc ul{margin:8px 0 0 18px}
       <input class="by-input" id="pkQ" type="search" placeholder="Search Himachal places…" autocomplete="off">
     </div>
     <div class="by-pl-list" id="pkList"></div>
+  </div>
+</div>
+
+<div class="by-pk" id="pkgPk" role="dialog" aria-modal="true" aria-label="Choose a package">
+  <div class="by-sheet">
+    <div class="by-sh">
+      <h3><span>Choose a ready-made package</span><button data-act="pkg-close" aria-label="Close">✕</button></h3>
+      <input class="by-input" id="pkgQ" type="search" placeholder="Search packages (e.g. Spiti, 5 days, Manali)…" autocomplete="off">
+    </div>
+    <div class="by-pl-list" id="pkgList"></div>
   </div>
 </div>
 
@@ -646,7 +674,7 @@ function fetchRoute(key,line,tok){
 /* ─────────────────────────── master render ─────────────────────────── */
 function renderAll(){
   const plan=buildPlan();
-  renderSetup(); renderDays(plan); renderPrice(plan); renderNotes(plan); scheduleMap(plan);
+  renderSetup(); renderDays(plan); renderPrice(plan); renderNotes(plan); scheduleMap(plan); renderPkgBanner();
 }
 function commit(){ save(); renderAll(); }
 
@@ -702,6 +730,102 @@ function applyPick(id){
   else if(c.type==='stay'){ S.days[c.day].stay=id; }
   closePicker(); commit();
 }
+
+/* ─────────────────────────── ready-made packages (sync from packages.html data) ─────────────────────────── */
+const PKG_LS_KEY='he_custom_trip_pkg_v1';
+let PACKAGES=[], pkgLoaded=null; // pkgLoaded:{id,title} of the package currently used to seed the plan
+function firstOf(obj,keys){
+  if(!obj) return null;
+  for(let i=0;i<keys.length;i++){ const v=obj[keys[i]]; if(v!=null&&v!==''&&!(Array.isArray(v)&&!v.length)) return v; }
+  return null;
+}
+function resolveRef(v){
+  if(v==null) return null;
+  if(typeof v==='object') v=firstOf(v,['id','name','title','place'])||'';
+  const s=String(v).trim(); if(!s) return null;
+  if(BYID[s]) return s;
+  const low=s.toLowerCase();
+  const hit=ALL.find(p=>p.name.toLowerCase()===low)||ALL.find(p=>p.name.toLowerCase().indexOf(low)>=0||low.indexOf(p.name.toLowerCase())>=0);
+  return hit?hit.id:'c:'+s.slice(0,60);
+}
+function dayStopsOf(day){
+  const arr=firstOf(day,['places','stops','locations','spots','sightseeing','visit','points'])||[];
+  return (Array.isArray(arr)?arr:[arr]).map(resolveRef).filter(Boolean).slice(0,25);
+}
+function dayStayOf(day){
+  const v=firstOf(day,['stay','overnight','night_halt','hotel_at','staying_at','halt','base']);
+  return v?resolveRef(v):null;
+}
+function normalizePackage(id,idx,content){
+  const title=firstOf(idx,['title','name','package_name'])||firstOf(content,['title','name'])||id;
+  const itin=Array.isArray(content&&content.itinerary)?content.itinerary:(Array.isArray(content&&content.days)?content.days:[]);
+  let days=itin.map(d=>({stops:dayStopsOf(d),stay:dayStayOf(d)}));
+  if(!days.length){
+    const n=parseInt(firstOf(idx,['duration_days','days'])||0,10);
+    if(n>0) days=Array.from({length:n},()=>({stops:[],stay:null}));
+  }
+  if(!days.length) return null;
+  days=days.slice(0,MAX_DAYS);
+  const startRef=firstOf(content,['start','gateway','starting_point','pickup'])||firstOf(idx,['start','gateway','starting_point']);
+  const endRef=firstOf(content,['end','drop','ending_point']);
+  const region=firstOf(idx,['region','category','district'])||firstOf(content,['region','category'])||'';
+  const tagsArr=[].concat(firstOf(idx,['tags'])||[]);
+  const nights=Math.max(1,days.length-1);
+  return {
+    id:id,title:String(title),
+    start:startRef?resolveRef(startRef):null,
+    end:endRef?resolveRef(endRef):null,
+    sameEnd:!endRef,
+    days:days,
+    region:String(region||''),
+    tags:tagsArr.join(' '),
+    search:(title+' '+region+' '+tagsArr.join(' ')).toLowerCase(),
+    label:days.length+'D/'+nights+'N'
+  };
+}
+function loadPackagesFromFirebase(){
+  Promise.all([
+    fetch(DB+'/templates_index.json').then(r=>r.ok?r.json():null).catch(()=>null),
+    fetch(DB+'/package_content.json').then(r=>r.ok?r.json():null).catch(()=>null)
+  ]).then(([idxRaw,contentRaw])=>{
+    const idx=idxRaw||{}, content=contentRaw||{};
+    const ids=Object.keys(Object.keys(idx).length?idx:content);
+    const list=ids.map(id=>{ try{ return normalizePackage(id,idx[id]||{},content[id]||{}); }catch(e){ return null; } }).filter(Boolean);
+    if(list.length){ PACKAGES=list.sort((a,b)=>a.title.localeCompare(b.title)); }
+    const cta=$('#pkgCta'); if(cta) cta.style.display=PACKAGES.length?'':'none';
+  }).catch(()=>{ const cta=$('#pkgCta'); if(cta) cta.style.display='none'; });
+}
+function savePkgLoaded(){ try{ pkgLoaded?localStorage.setItem(PKG_LS_KEY,JSON.stringify(pkgLoaded)):localStorage.removeItem(PKG_LS_KEY); }catch(e){} }
+function renderPkgBanner(){
+  const el=$('#pkgLoaded'); if(!el) return;
+  if(pkgLoaded){ el.classList.add('show'); $('#pkgLoadedTxt').textContent='Loaded from "'+pkgLoaded.title+'"'; }
+  else el.classList.remove('show');
+}
+function openPkgPicker(){
+  $('#pkgQ').value=''; $('#pkgPk').classList.add('open'); document.body.style.overflow='hidden';
+  renderPkgPick(); setTimeout(()=>{try{$('#pkgQ').focus();}catch(e){}},120);
+}
+function closePkgPicker(){ $('#pkgPk').classList.remove('open'); document.body.style.overflow=''; }
+function renderPkgPick(){
+  const q=$('#pkgQ').value.trim().toLowerCase();
+  const list=PACKAGES.filter(p=>!q||p.search.indexOf(q)>=0);
+  if(!PACKAGES.length){ $('#pkgList').innerHTML='<div class="by-empty">Packages are still loading — please try again in a moment, or build your custom trip below.</div>'; return; }
+  if(!list.length){ $('#pkgList').innerHTML='<div class="by-empty">No package matches. Try another search.</div>'; return; }
+  $('#pkgList').innerHTML=list.map(p=>
+    '<button class="by-pi" data-pkg-pick="'+esc(p.id)+'"><div class="n"><b>'+esc(p.title)+'</b><small>'+esc([p.region,p.tags].filter(Boolean).join(' · '))+'</small></div><span class="tag">'+esc(p.label)+'</span></button>'
+  ).join('');
+}
+function applyPackage(id){
+  const p=PACKAGES.find(x=>x.id===id); if(!p) return;
+  S.days=p.days.map(d=>({stops:d.stops.slice(),stay:d.stay}));
+  if(p.start) S.start=p.start;
+  if(p.end){ S.end=p.end; S.sameEnd=false; } else { S.sameEnd=true; }
+  pkgLoaded={id:p.id,title:p.title}; savePkgLoaded(); renderPkgBanner();
+  closePkgPicker(); commit();
+  toast('Loaded "'+p.title+'" — customize any day below');
+}
+(function(){ try{ const raw=localStorage.getItem(PKG_LS_KEY); if(raw) pkgLoaded=JSON.parse(raw); }catch(e){} })();
+loadPackagesFromFirebase();
 
 /* ─────────────────────────── actions ─────────────────────────── */
 function toast(msg){const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),2200);}
@@ -787,9 +911,11 @@ $('#gate').addEventListener('click',e=>{ if(e.target.id==='gate') closeGate(); }
 
 document.addEventListener('click',function(e){
   const pick=e.target.closest('[data-pick]'); if(pick){ applyPick(pick.dataset.pick); return; }
+  const pkgPick=e.target.closest('[data-pkg-pick]'); if(pkgPick){ applyPackage(pkgPick.dataset.pkgPick); return; }
   const trow=e.target.closest('tr[data-tier]'); if(trow){ S.tier=trow.dataset.tier; commit(); return; }
   const seg=e.target.closest('#tierSeg button'); if(seg){ S.tier=seg.dataset.tier; commit(); return; }
   if(e.target.id==='pk'){ closePicker(); return; }
+  if(e.target.id==='pkgPk'){ closePkgPicker(); return; }
   const el=e.target.closest('[data-act]'); if(!el) return;
   const act=el.dataset.act, di=parseInt(el.dataset.day,10), k=parseInt(el.dataset.k,10);
   switch(act){
@@ -808,6 +934,8 @@ document.addEventListener('click',function(e){
     case 'pax-': S.pax=Math.max(1,S.pax-1); commit(); break;
     case 'pax+': S.pax=Math.min(MAX_PAX,S.pax+1); commit(); break;
     case 'pk-close': closePicker(); break;
+    case 'pick-package': openPkgPicker(); break;
+    case 'pkg-close': closePkgPicker(); break;
     case 'wa': runGated('wa'); break;
     case 'share': copyLink(); break;
     case 'print': runGated('print'); break;
@@ -818,7 +946,11 @@ $('#sameEnd').addEventListener('change',function(){ S.sameEnd=this.checked; if(!
 $('#tripDate').addEventListener('change',function(){ S.date=this.value||''; commit(); });
 $('#paxIn').addEventListener('change',function(){ S.pax=Math.min(MAX_PAX,Math.max(1,parseInt(this.value,10)||1)); commit(); });
 $('#pkQ').addEventListener('input',renderPick);
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&pk) closePicker(); });
+$('#pkgQ').addEventListener('input',renderPkgPick);
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&pk) closePicker();
+  if(e.key==='Escape'&&$('#pkgPk').classList.contains('open')) closePkgPicker();
+});
 window.addEventListener('pricing-config-updated',()=>{ renderAll(); });
 
 /* min date = today */
