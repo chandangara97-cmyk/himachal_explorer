@@ -243,7 +243,7 @@ details.by-inc ul{margin:8px 0 0 18px}
           <div><b>Already know which package you like?</b><small>Load one of our ready-made itineraries and tweak it here.</small></div>
           <button type="button" class="by-pkg-btn" data-act="pick-package">📦 Choose a package</button>
         </div>
-        <div class="by-pkg-loaded" id="pkgLoaded"><span id="pkgLoadedTxt"></span> · <button type="button" data-act="pick-package">change</button></div>
+        <div class="by-pkg-loaded" id="pkgLoaded"><span id="pkgLoadedTxt"></span> · <button type="button" data-act="pick-package">change</button> · <button type="button" data-act="pkg-save">💾 save changes to package</button></div>
       </div>
       <div class="by-grid2">
         <div class="by-field">
@@ -358,6 +358,19 @@ details.by-inc ul{margin:8px 0 0 18px}
     </div>
     <div class="by-gate-err" id="gateErr">Incorrect password. Try again or pay ₹70 above.</div>
     <button class="by-gate-close" id="gateCloseBtn">Cancel</button>
+  </div>
+</div>
+
+<div class="by-gate" id="pkgSaveGate" role="dialog" aria-modal="true" aria-label="Confirm package update">
+  <div class="by-gate-box">
+    <h3>Update this package</h3>
+    <p>This overwrites "<b id="pkgSaveGateTitle"></b>" on the live site with the days shown above. Enter the edit password to continue.</p>
+    <div class="by-gate-pw">
+      <input type="password" id="pkgSavePwInput" placeholder="Edit password" autocomplete="off">
+      <button id="pkgSavePwBtn">Save</button>
+    </div>
+    <div class="by-gate-err" id="pkgSaveGateErr">Incorrect password.</div>
+    <button class="by-gate-close" id="pkgSaveGateCloseBtn">Cancel</button>
   </div>
 </div>
 
@@ -508,10 +521,11 @@ function seasonWarnFor(p){
   return false;
 }
 
-/* ─────────────────────────── pricing (costing engine) ─────────────────────────── */
+/* ─────────────────────────── pricing (costing engine — same PricingEngine.computePrice() used by group-pricing.html's "Calculate Group Price") ─────────────────────────── */
+let ROUTE_KM=0; // actual route distance for this plan, fed into computePrice() so the surcharge matches real per-package callers instead of the generic per-day km fallback
 function price(tier){
   if(!PE()) return null;
-  try{ return PE().computePrice({days:S.days.length,pax:S.pax,tier:tier,month:priceMonth()}); }
+  try{ return PE().computePrice({days:S.days.length,pax:S.pax,tier:tier,month:priceMonth(),km:ROUTE_KM}); }
   catch(e){ return null; }
 }
 
@@ -674,6 +688,7 @@ function fetchRoute(key,line,tok){
 /* ─────────────────────────── master render ─────────────────────────── */
 function renderAll(){
   const plan=buildPlan();
+  ROUTE_KM=plan.reduce((a,p)=>a+p.km,0);
   renderSetup(); renderDays(plan); renderPrice(plan); renderNotes(plan); scheduleMap(plan); renderPkgBanner();
 }
 function commit(){ save(); renderAll(); }
@@ -733,10 +748,18 @@ function applyPick(id){
 
 /* ─────────────────────────── ready-made packages (sync from packages.html data) ─────────────────────────── */
 const PKG_LS_KEY='he_custom_trip_pkg_v1';
-let PACKAGES=[], pkgLoaded=null; // pkgLoaded:{id,title} of the package currently used to seed the plan
+const PKG_EDIT_PASSWORD='123'; // change here to rotate the package-edit password
+const STOP_KEYS=['places','stops','locations','spots','sightseeing','visit','points'];
+const STAY_KEYS=['stay','overnight','night_halt','hotel_at','staying_at','halt','base'];
+let PACKAGES=[], pkgLoaded=null, RAW_PKG={}; // pkgLoaded:{id,title}; RAW_PKG[id]=original package_content record, kept so saving only touches the fields we understood
 function firstOf(obj,keys){
   if(!obj) return null;
   for(let i=0;i<keys.length;i++){ const v=obj[keys[i]]; if(v!=null&&v!==''&&!(Array.isArray(v)&&!v.length)) return v; }
+  return null;
+}
+function matchedKey(obj,keys){
+  if(!obj) return null;
+  for(let i=0;i<keys.length;i++){ const v=obj[keys[i]]; if(v!=null&&v!==''&&!(Array.isArray(v)&&!v.length)) return keys[i]; }
   return null;
 }
 function resolveRef(v){
@@ -749,16 +772,17 @@ function resolveRef(v){
   return hit?hit.id:'c:'+s.slice(0,60);
 }
 function dayStopsOf(day){
-  const arr=firstOf(day,['places','stops','locations','spots','sightseeing','visit','points'])||[];
+  const arr=firstOf(day,STOP_KEYS)||[];
   return (Array.isArray(arr)?arr:[arr]).map(resolveRef).filter(Boolean).slice(0,25);
 }
 function dayStayOf(day){
-  const v=firstOf(day,['stay','overnight','night_halt','hotel_at','staying_at','halt','base']);
+  const v=firstOf(day,STAY_KEYS);
   return v?resolveRef(v):null;
 }
 function normalizePackage(id,idx,content){
   const title=firstOf(idx,['title','name','package_name'])||firstOf(content,['title','name'])||id;
-  const itin=Array.isArray(content&&content.itinerary)?content.itinerary:(Array.isArray(content&&content.days)?content.days:[]);
+  const itinKey=Array.isArray(content&&content.itinerary)?'itinerary':(Array.isArray(content&&content.days)?'days':'itinerary');
+  const itin=Array.isArray(content&&content[itinKey])?content[itinKey]:[];
   let days=itin.map(d=>({stops:dayStopsOf(d),stay:dayStayOf(d)}));
   if(!days.length){
     const n=parseInt(firstOf(idx,['duration_days','days'])||0,10);
@@ -780,7 +804,11 @@ function normalizePackage(id,idx,content){
     region:String(region||''),
     tags:tagsArr.join(' '),
     search:(title+' '+region+' '+tagsArr.join(' ')).toLowerCase(),
-    label:days.length+'D/'+nights+'N'
+    label:days.length+'D/'+nights+'N',
+    // remembered so a save-back writes the same shape the package already used
+    itinKey:itinKey,
+    stopsKey:matchedKey(itin[0]||{},STOP_KEYS)||'places',
+    stayKey:matchedKey(itin[0]||{},STAY_KEYS)||'stay'
   };
 }
 function loadPackagesFromFirebase(){
@@ -790,6 +818,7 @@ function loadPackagesFromFirebase(){
   ]).then(([idxRaw,contentRaw])=>{
     const idx=idxRaw||{}, content=contentRaw||{};
     const ids=Object.keys(Object.keys(idx).length?idx:content);
+    RAW_PKG=content;
     const list=ids.map(id=>{ try{ return normalizePackage(id,idx[id]||{},content[id]||{}); }catch(e){ return null; } }).filter(Boolean);
     if(list.length){ PACKAGES=list.sort((a,b)=>a.title.localeCompare(b.title)); }
     const cta=$('#pkgCta'); if(cta) cta.style.display=PACKAGES.length?'':'none';
@@ -824,8 +853,50 @@ function applyPackage(id){
   closePkgPicker(); commit();
   toast('Loaded "'+p.title+'" — customize any day below');
 }
+
+/* ── save edited days back into the live package (password-gated) ── */
+function openPkgSaveGate(){
+  if(!pkgLoaded){ toast('Load a package first'); return; }
+  $('#pkgSaveGateTitle').textContent=pkgLoaded.title;
+  $('#pkgSaveGateErr').style.display='none';
+  $('#pkgSavePwInput').value='';
+  $('#pkgSaveGate').classList.add('open');
+  setTimeout(()=>{try{$('#pkgSavePwInput').focus();}catch(e){}},120);
+}
+function closePkgSaveGate(){ $('#pkgSaveGate').classList.remove('open'); }
+function tryPkgSavePassword(){
+  const v=$('#pkgSavePwInput').value.trim();
+  if(v===PKG_EDIT_PASSWORD){ closePkgSaveGate(); savePackageToFirebase(); }
+  else{ $('#pkgSaveGateErr').style.display='block'; }
+}
+function savePackageToFirebase(){
+  const p=PACKAGES.find(x=>x.id===(pkgLoaded&&pkgLoaded.id)); if(!p) return;
+  const raw=RAW_PKG[p.id]||{};
+  const origItin=Array.isArray(raw[p.itinKey])?raw[p.itinKey]:[];
+  const newItin=S.days.map((d,i)=>{
+    const base=Object.assign({},origItin[i]||{});
+    base[p.stopsKey]=d.stops.map(id=>place(id).name);
+    base[p.stayKey]=d.stay?place(d.stay).name:null;
+    return base;
+  });
+  const updated=Object.assign({},raw);
+  updated[p.itinKey]=newItin;
+  ['start','gateway','starting_point','pickup'].forEach(k=>{ if(raw[k]!=null&&S.start) updated[k]=place(S.start).name; });
+  if(!S.sameEnd&&S.end){ ['end','drop','ending_point'].forEach(k=>{ if(raw[k]!=null) updated[k]=place(S.end).name; }); }
+  toast('Saving to package…');
+  fetch(DB+'/package_content/'+encodeURIComponent(p.id)+'.json',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(updated)})
+    .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(()=>{ RAW_PKG[p.id]=updated; p.days=S.days.map(d=>({stops:d.stops.slice(),stay:d.stay})); toast('Package updated — live on packages.html'); })
+    .catch(e=>{ toast('Could not save — check Firebase write rules for package_content'); console.error('package save failed',e); });
+}
+$('#pkgSavePwBtn').addEventListener('click',tryPkgSavePassword);
+$('#pkgSavePwInput').addEventListener('keydown',e=>{ if(e.key==='Enter') tryPkgSavePassword(); });
+$('#pkgSaveGateCloseBtn').addEventListener('click',closePkgSaveGate);
+$('#pkgSaveGate').addEventListener('click',e=>{ if(e.target.id==='pkgSaveGate') closePkgSaveGate(); });
+
 (function(){ try{ const raw=localStorage.getItem(PKG_LS_KEY); if(raw) pkgLoaded=JSON.parse(raw); }catch(e){} })();
 loadPackagesFromFirebase();
+
 
 /* ─────────────────────────── actions ─────────────────────────── */
 function toast(msg){const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),2200);}
@@ -936,6 +1007,7 @@ document.addEventListener('click',function(e){
     case 'pk-close': closePicker(); break;
     case 'pick-package': openPkgPicker(); break;
     case 'pkg-close': closePkgPicker(); break;
+    case 'pkg-save': openPkgSaveGate(); break;
     case 'wa': runGated('wa'); break;
     case 'share': copyLink(); break;
     case 'print': runGated('print'); break;
@@ -950,6 +1022,7 @@ $('#pkgQ').addEventListener('input',renderPkgPick);
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'&&pk) closePicker();
   if(e.key==='Escape'&&$('#pkgPk').classList.contains('open')) closePkgPicker();
+  if(e.key==='Escape'&&$('#pkgSaveGate').classList.contains('open')) closePkgSaveGate();
 });
 window.addEventListener('pricing-config-updated',()=>{ renderAll(); });
 
