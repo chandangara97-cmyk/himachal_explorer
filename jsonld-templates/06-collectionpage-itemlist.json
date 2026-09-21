@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "{{Page title}}",
+  "url": "https://himachalexplorer.in/{{page}}.html",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "url": "https://himachalexplorer.in/{{item-1}}.html",
+        "name": "{{Item 1 as shown}}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "url": "https://himachalexplorer.in/{{item-2}}.html",
+        "name": "{{Item 2 as shown}}"
+      }
+    ]
+  }
+}

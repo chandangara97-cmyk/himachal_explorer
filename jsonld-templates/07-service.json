@@ -1,0 +1,14 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "{{Taxi service / Bike rental / Hotel booking}}",
+  "url": "https://himachalexplorer.in/{{page}}.html",
+  "provider": {
+    "@id": "https://himachalexplorer.in/#organization"
+  },
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Himachal Pradesh, India"
+  },
+  "description": "{{Description shown on the page}}"
+}

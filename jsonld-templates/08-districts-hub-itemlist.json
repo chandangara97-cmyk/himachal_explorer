@@ -1,0 +1,83 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Himachal Pradesh districts",
+  "url": "https://himachalexplorer.in/dist_master.html",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "url": "https://himachalexplorer.in/bilaspur.html",
+        "name": "Bilaspur district guide"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "url": "https://himachalexplorer.in/chamba.html",
+        "name": "Chamba district guide"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "url": "https://himachalexplorer.in/hamirpur.html",
+        "name": "Hamirpur district guide"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "url": "https://himachalexplorer.in/kangra.html",
+        "name": "Kangra district guide"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "url": "https://himachalexplorer.in/kinnaur.html",
+        "name": "Kinnaur district guide"
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "url": "https://himachalexplorer.in/kullu.html",
+        "name": "Kullu district guide"
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "url": "https://himachalexplorer.in/mandi.html",
+        "name": "Mandi district guide"
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "url": "https://himachalexplorer.in/shimla.html",
+        "name": "Shimla district guide"
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "url": "https://himachalexplorer.in/sirmour.html",
+        "name": "Sirmour district guide"
+      },
+      {
+        "@type": "ListItem",
+        "position": 10,
+        "url": "https://himachalexplorer.in/solan.html",
+        "name": "Solan district guide"
+      },
+      {
+        "@type": "ListItem",
+        "position": 11,
+        "url": "https://himachalexplorer.in/spiti.html",
+        "name": "Spiti district guide"
+      },
+      {
+        "@type": "ListItem",
+        "position": 12,
+        "url": "https://himachalexplorer.in/una.html",
+        "name": "Una district guide"
+      }
+    ]
+  }
+}

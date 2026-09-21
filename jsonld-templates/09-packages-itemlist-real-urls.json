@@ -1,0 +1,125 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Himachal tour packages",
+  "url": "https://himachalexplorer.in/packages.html",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "url": "https://himachalexplorer.in/pkg/chandigarh-kasauli-barog-2d.html",
+        "name": "Chandigarh Kasauli Barog (2 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "url": "https://himachalexplorer.in/pkg/chandigarh-prashar-mandi-3d.html",
+        "name": "Chandigarh Prashar Mandi (3 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "url": "https://himachalexplorer.in/pkg/delhi-renuka-tattapani-3d.html",
+        "name": "Delhi Renuka Tattapani (3 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "url": "https://himachalexplorer.in/pkg/lower-hp-offbeat-3d.html",
+        "name": "Lower HP Offbeat (3 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "url": "https://himachalexplorer.in/pkg/shimla-hidden-3d.html",
+        "name": "Shimla Hidden (3 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "url": "https://himachalexplorer.in/pkg/chandigarh-jibhi-seraj-4d.html",
+        "name": "Chandigarh Jibhi Seraj (4 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "url": "https://himachalexplorer.in/pkg/shimla-apple-belt-4d.html",
+        "name": "Shimla Apple Belt (4 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "url": "https://himachalexplorer.in/pkg/chamba-pangi-5d.html",
+        "name": "Chamba Pangi (5 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "url": "https://himachalexplorer.in/pkg/chandigarh-best-value-5d.html",
+        "name": "Chandigarh Best Value (5 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 10,
+        "url": "https://himachalexplorer.in/pkg/chamba-sach-6d.html",
+        "name": "Chamba Sach (6 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 11,
+        "url": "https://himachalexplorer.in/pkg/kinnaur-complete-6d.html",
+        "name": "Kinnaur Complete (6 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 12,
+        "url": "https://himachalexplorer.in/pkg/shimla-rohru-chandan-nahan-6d.html",
+        "name": "Shimla Rohru Chandan Nahan (6 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 13,
+        "url": "https://himachalexplorer.in/pkg/delhi-himachal-best-value-7d.html",
+        "name": "Delhi Himachal Best Value (7 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 14,
+        "url": "https://himachalexplorer.in/pkg/shimla-rohru-deep-adventure-7d.html",
+        "name": "Shimla Rohru Deep Adventure (7 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 15,
+        "url": "https://himachalexplorer.in/pkg/chandigarh-manali-dharamshala-chamba-10d.html",
+        "name": "Chandigarh Manali Dharamshala Chamba (10 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 16,
+        "url": "https://himachalexplorer.in/pkg/delhi-himachal-complete-10d.html",
+        "name": "Delhi Himachal Complete (10 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 17,
+        "url": "https://himachalexplorer.in/pkg/delhi-kinnaur-spiti-10d.html",
+        "name": "Delhi Kinnaur Spiti (10 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 18,
+        "url": "https://himachalexplorer.in/pkg/chandigarh-manali-spiti-shimla-14d.html",
+        "name": "Chandigarh Manali Spiti Shimla (14 days)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 19,
+        "url": "https://himachalexplorer.in/pkg/chandigarh-grand-himachal-16d.html",
+        "name": "Chandigarh Grand Himachal (16 days)"
+      }
+    ]
+  }
+}

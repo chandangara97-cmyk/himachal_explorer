@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{Section}}",
+      "item": "https://himachalexplorer.in/{{section-page}}.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{Current page}}"
+    }
+  ]
+}

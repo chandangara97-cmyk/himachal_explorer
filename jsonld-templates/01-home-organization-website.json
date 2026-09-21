@@ -1,0 +1,35 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://himachalexplorer.in/#organization",
+      "name": "Himachal Explorer",
+      "url": "https://himachalexplorer.in/",
+      "logo": "{{LOGO_URL}}",
+      "sameAs": [
+        "{{INSTAGRAM_URL}}",
+        "{{OTHER_PROFILE_URL}}"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": "{{+91XXXXXXXXXX}}",
+        "areaServed": "IN",
+        "availableLanguage": [
+          "en",
+          "hi"
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://himachalexplorer.in/#website",
+      "url": "https://himachalexplorer.in/",
+      "name": "Himachal Explorer",
+      "publisher": {
+        "@id": "https://himachalexplorer.in/#organization"
+      }
+    }
+  ]
+}

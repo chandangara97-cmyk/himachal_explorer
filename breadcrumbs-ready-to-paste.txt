@@ -1,0 +1,1633 @@
+READY-TO-PASTE BREADCRUMB MARKUP (one block per page)
+============================================================
+Paste the block into the page's <head> (or just above </body>). One BreadcrumbList per page.
+The visible breadcrumb on the page should say the same thing.
+Assumes /dist_master.html is your 'Districts' page. If not, change that URL.
+
+##### FILE: packages.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: explore.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Explore",
+      "item": "https://himachalexplorer.in/explore.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: yui.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Yui",
+      "item": "https://himachalexplorer.in/yui.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: build-your-trip.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Build Your Trip",
+      "item": "https://himachalexplorer.in/build-your-trip.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: bike-rental.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Bike Rental",
+      "item": "https://himachalexplorer.in/bike-rental.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: hotels.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Hotels",
+      "item": "https://himachalexplorer.in/hotels.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: booking.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Booking",
+      "item": "https://himachalexplorer.in/booking.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: taxi-service.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Taxi Service",
+      "item": "https://himachalexplorer.in/taxi-service.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: himachal-treks.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Himachal Treks",
+      "item": "https://himachalexplorer.in/himachal-treks.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: dist_master.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Districts",
+      "item": "https://himachalexplorer.in/dist_master.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: plan-your-trip.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Plan Your Trip",
+      "item": "https://himachalexplorer.in/plan-your-trip.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: trip-gate.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Trip Gate",
+      "item": "https://himachalexplorer.in/trip-gate.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: about.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "About",
+      "item": "https://himachalexplorer.in/about.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: contact.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Contact",
+      "item": "https://himachalexplorer.in/contact.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: shimla.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Districts",
+      "item": "https://himachalexplorer.in/dist_master.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Shimla",
+      "item": "https://himachalexplorer.in/shimla.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: kullu.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Districts",
+      "item": "https://himachalexplorer.in/dist_master.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Kullu",
+      "item": "https://himachalexplorer.in/kullu.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: spiti.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Districts",
+      "item": "https://himachalexplorer.in/dist_master.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Spiti",
+      "item": "https://himachalexplorer.in/spiti.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: kangra.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Districts",
+      "item": "https://himachalexplorer.in/dist_master.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Kangra",
+      "item": "https://himachalexplorer.in/kangra.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: kinnaur.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Districts",
+      "item": "https://himachalexplorer.in/dist_master.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Kinnaur",
+      "item": "https://himachalexplorer.in/kinnaur.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: chamba.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Districts",
+      "item": "https://himachalexplorer.in/dist_master.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Chamba",
+      "item": "https://himachalexplorer.in/chamba.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: mandi.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Districts",
+      "item": "https://himachalexplorer.in/dist_master.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Mandi",
+      "item": "https://himachalexplorer.in/mandi.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: bilaspur.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Districts",
+      "item": "https://himachalexplorer.in/dist_master.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Bilaspur",
+      "item": "https://himachalexplorer.in/bilaspur.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: hamirpur.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Districts",
+      "item": "https://himachalexplorer.in/dist_master.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Hamirpur",
+      "item": "https://himachalexplorer.in/hamirpur.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: sirmour.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Districts",
+      "item": "https://himachalexplorer.in/dist_master.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Sirmour",
+      "item": "https://himachalexplorer.in/sirmour.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: solan.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Districts",
+      "item": "https://himachalexplorer.in/dist_master.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Solan",
+      "item": "https://himachalexplorer.in/solan.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: una.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Districts",
+      "item": "https://himachalexplorer.in/dist_master.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Una",
+      "item": "https://himachalexplorer.in/una.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: options.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Options",
+      "item": "https://himachalexplorer.in/options.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: encyclopedia.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Encyclopedia",
+      "item": "https://himachalexplorer.in/encyclopedia.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: encyclopedia-lakes.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Encyclopedia",
+      "item": "https://himachalexplorer.in/encyclopedia.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Lakes",
+      "item": "https://himachalexplorer.in/encyclopedia-lakes.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: encyclopedia-rivers.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Encyclopedia",
+      "item": "https://himachalexplorer.in/encyclopedia.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Rivers",
+      "item": "https://himachalexplorer.in/encyclopedia-rivers.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: encyclopedia-hot-springs.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Encyclopedia",
+      "item": "https://himachalexplorer.in/encyclopedia.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Hot Springs",
+      "item": "https://himachalexplorer.in/encyclopedia-hot-springs.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: encyclopedia-glaciers.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Encyclopedia",
+      "item": "https://himachalexplorer.in/encyclopedia.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Glaciers",
+      "item": "https://himachalexplorer.in/encyclopedia-glaciers.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: encyclopedia-valleys.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Encyclopedia",
+      "item": "https://himachalexplorer.in/encyclopedia.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Valleys",
+      "item": "https://himachalexplorer.in/encyclopedia-valleys.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: encyclopedia-passes.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Encyclopedia",
+      "item": "https://himachalexplorer.in/encyclopedia.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Passes",
+      "item": "https://himachalexplorer.in/encyclopedia-passes.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: encyclopedia-trek-routes.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Encyclopedia",
+      "item": "https://himachalexplorer.in/encyclopedia.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Trek Routes",
+      "item": "https://himachalexplorer.in/encyclopedia-trek-routes.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: encyclopedia-conservation.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Encyclopedia",
+      "item": "https://himachalexplorer.in/encyclopedia.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Conservation",
+      "item": "https://himachalexplorer.in/encyclopedia-conservation.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: encyclopedia-history.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Encyclopedia",
+      "item": "https://himachalexplorer.in/encyclopedia.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "History",
+      "item": "https://himachalexplorer.in/encyclopedia-history.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: blog/index.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://himachalexplorer.in/blog/index.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: blog/manali-to-leh-road-trip-guide.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://himachalexplorer.in/blog/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Manali To Leh Road Trip Guide",
+      "item": "https://himachalexplorer.in/blog/manali-to-leh-road-trip-guide.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: blog/best-time-to-visit-spiti-valley.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://himachalexplorer.in/blog/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Best Time To Visit Spiti Valley",
+      "item": "https://himachalexplorer.in/blog/best-time-to-visit-spiti-valley.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: blog/shimla-complete-travel-guide.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://himachalexplorer.in/blog/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Shimla Complete Travel Guide",
+      "item": "https://himachalexplorer.in/blog/shimla-complete-travel-guide.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: blog/spiti-valley-7-days.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://himachalexplorer.in/blog/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Spiti Valley 7 Days",
+      "item": "https://himachalexplorer.in/blog/spiti-valley-7-days.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/chamba-pangi-5d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Chamba Pangi",
+      "item": "https://himachalexplorer.in/pkg/chamba-pangi-5d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/chamba-sach-6d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Chamba Sach",
+      "item": "https://himachalexplorer.in/pkg/chamba-sach-6d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/chandigarh-best-value-5d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Chandigarh Best Value",
+      "item": "https://himachalexplorer.in/pkg/chandigarh-best-value-5d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/chandigarh-grand-himachal-16d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Chandigarh Grand Himachal",
+      "item": "https://himachalexplorer.in/pkg/chandigarh-grand-himachal-16d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/chandigarh-jibhi-seraj-4d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Chandigarh Jibhi Seraj",
+      "item": "https://himachalexplorer.in/pkg/chandigarh-jibhi-seraj-4d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/chandigarh-kasauli-barog-2d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Chandigarh Kasauli Barog",
+      "item": "https://himachalexplorer.in/pkg/chandigarh-kasauli-barog-2d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/chandigarh-manali-dharamshala-chamba-10d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Chandigarh Manali Dharamshala Chamba",
+      "item": "https://himachalexplorer.in/pkg/chandigarh-manali-dharamshala-chamba-10d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/chandigarh-manali-spiti-shimla-14d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Chandigarh Manali Spiti Shimla",
+      "item": "https://himachalexplorer.in/pkg/chandigarh-manali-spiti-shimla-14d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/chandigarh-prashar-mandi-3d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Chandigarh Prashar Mandi",
+      "item": "https://himachalexplorer.in/pkg/chandigarh-prashar-mandi-3d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/delhi-himachal-best-value-7d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Delhi Himachal Best Value",
+      "item": "https://himachalexplorer.in/pkg/delhi-himachal-best-value-7d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/delhi-himachal-complete-10d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Delhi Himachal Complete",
+      "item": "https://himachalexplorer.in/pkg/delhi-himachal-complete-10d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/delhi-kinnaur-spiti-10d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Delhi Kinnaur Spiti",
+      "item": "https://himachalexplorer.in/pkg/delhi-kinnaur-spiti-10d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/delhi-renuka-tattapani-3d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Delhi Renuka Tattapani",
+      "item": "https://himachalexplorer.in/pkg/delhi-renuka-tattapani-3d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/kinnaur-complete-6d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Kinnaur Complete",
+      "item": "https://himachalexplorer.in/pkg/kinnaur-complete-6d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/lower-hp-offbeat-3d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Lower HP Offbeat",
+      "item": "https://himachalexplorer.in/pkg/lower-hp-offbeat-3d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/shimla-apple-belt-4d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Shimla Apple Belt",
+      "item": "https://himachalexplorer.in/pkg/shimla-apple-belt-4d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/shimla-hidden-3d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Shimla Hidden",
+      "item": "https://himachalexplorer.in/pkg/shimla-hidden-3d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/shimla-rohru-chandan-nahan-6d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Shimla Rohru Chandan Nahan",
+      "item": "https://himachalexplorer.in/pkg/shimla-rohru-chandan-nahan-6d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: pkg/shimla-rohru-deep-adventure-7d.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Packages",
+      "item": "https://himachalexplorer.in/packages.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Shimla Rohru Deep Adventure",
+      "item": "https://himachalexplorer.in/pkg/shimla-rohru-deep-adventure-7d.html"
+    }
+  ]
+}
+</script>
+
+##### FILE: agent-partner.html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://himachalexplorer.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Agent Partner",
+      "item": "https://himachalexplorer.in/agent-partner.html"
+    }
+  ]
+}
+</script>
