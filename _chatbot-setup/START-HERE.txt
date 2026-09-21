@@ -1,0 +1,50 @@
+START HERE - PUT THE CHATBOT ON EVERY PAGE (no Python, works from a phone)
+==========================================================================
+
+You need: your GitHub repo for himachalexplorer.in, and your WhatsApp number
+(digits only, country code first, e.g. 919876543210).
+
+On a phone, open github.com in your browser and turn on "Desktop site".
+
+STEP 1 - Upload the bot file
+  Repo > Add file > Upload files > choose  hx-chatbot.js  (from this zip) > Commit changes.
+  It must be in the ROOT, next to index.html.
+
+STEP 2 - Add the helper
+  Repo > Add file > Create new file.
+  In the name box type exactly:   .github/workflows/add-chatbot.yml
+  Open  _chatbot-setup/add-chatbot.yml  from this zip, copy ALL of it, paste it in the editor.
+  Commit changes.
+
+STEP 3 - Preview (changes nothing)
+  Repo > Actions tab > "Add chatbot to all pages" > Run workflow.
+  Enter your WhatsApp number. Leave "dry_run" ticked. Run.
+  Open the finished run > Summary: it lists every page it would change (about 63).
+
+STEP 4 - Apply
+  Run workflow again, this time UNtick "dry_run". It edits the pages and commits for you.
+
+STEP 5 - Check (1 to 3 minutes later)
+  Open the site in a private tab. The orange "Plan your trip" button is in the lower right.
+  Test: home page, a district page, packages.html (asks only "Where will you start?" and shows
+  package tiles), a /pkg/ page, and a blog post.
+
+OPTIONS in the Run workflow form
+  offset_bottom   lift the button up (e.g. 80) if another floating button is in that corner
+  include_sukoon  also add it to the /sukoon-homestay/ pages
+  action = remove take the chatbot off every page
+  Running again with a new number updates the pages; it never adds a second copy.
+
+IF SOMETHING GOES WRONG
+  - Site not updating after 5 minutes: make a tiny edit to any file (e.g. a space in README) and commit.
+  - Push error in the run: Settings > Actions > General > Workflow permissions > "Read and write".
+  - Button missing: open  https://himachalexplorer.in/hx-chatbot.js . A 404 means the file is not in the root.
+  - Open the browser console (F12) for warnings about links the bot hid because the page returned 404.
+
+BEFORE REAL VISITORS
+  - Tell us which page is your cost calculator (/group-costing.html is not in your sitemap).
+  - Replace the placeholder payment / cancellation / group answers in hx-chatbot.js (search "VERIFY").
+  - Each page needs <meta name="viewport" content="width=device-width, initial-scale=1"> in <head>.
+
+OTHER WAYS (see README.txt): paste by hand using PAGES-TO-EDIT.txt + SNIPPET.html, VS Code
+find-and-replace, or the optional Python helper add-chatbot.py.

@@ -20,7 +20,7 @@ BODY_RE = re.compile(r"</body\s*>", re.I)
 REFRESH_RE = re.compile(r"http-equiv\s*=\s*[\"']?refresh", re.I)
 
 DEFAULT_SKIP_DIRS = {".git", ".github", "node_modules", "_chatbot-setup", "admin", "legacy", "docs",
-                     "android", "app", "build", "dist", "vendor"}
+                     "android", "app", "build", "dist", "vendor", "sukoon-homestay"}
 
 
 def read(path):
@@ -57,6 +57,7 @@ def main():
     ap.add_argument("--whatsapp", default="", help="WhatsApp number, digits only with country code, e.g. 919876543210")
     ap.add_argument("--base", default="/", help='URL prefix where hx-chatbot.js is served (default "/" for a custom domain)')
     ap.add_argument("--skip", action="append", default=[], help="extra folder name to skip (repeatable)")
+    ap.add_argument("--include", action="append", default=[], help="folder name to include even though it is skipped by default (e.g. sukoon-homestay)")
     ap.add_argument("--dry-run", action="store_true", help="show what would change, write nothing")
     ap.add_argument("--remove", action="store_true", help="remove the chatbot from all pages")
     a = ap.parse_args()
@@ -71,7 +72,7 @@ def main():
     if not a.base.endswith("/"):
         a.base += "/"
 
-    skip_dirs = DEFAULT_SKIP_DIRS | set(a.skip)
+    skip_dirs = (DEFAULT_SKIP_DIRS | set(a.skip)) - set(a.include)
     version = time.strftime("%Y%m%d%H%M")
     added, updated, removed, skipped, unchanged = [], [], [], [], []
 

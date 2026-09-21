@@ -32,15 +32,23 @@
    * They are validated live (see validateRegistry) so the bot never links to a 404.
    * Keys of the form "district:kullu" resolve to /districts/kullu.html automatically. */
   var PAGE_REGISTRY = {
-    home: { url: "/index.html", label: "Explore Himachal" },
+    home: { url: "/", label: "Explore Himachal" },
     packages: { url: "/packages.html", label: "View Tour Packages" },
     routeBuilder: { url: "/yui.html", label: "Open Route Builder" },
+    buildYourTrip: { url: "/build-your-trip.html", label: "Build Your Trip" },
+    planYourTrip: { url: "/plan-your-trip.html", label: "Plan Your Trip" },
+    explore: { url: "/explore.html", label: "Explore Himachal" },
     encyclopedia: { url: "/encyclopedia.html", label: "Explore Encyclopedia" },
-    groupCosting: { url: "/group-costing.html", label: "Calculate Trip Cost" },
+    hotels: { url: "/hotels.html", label: "Browse Hotels & Stays" },
+    bikeRental: { url: "/bike-rental.html", label: "Bike Rental" },
+    taxi: { url: "/taxi-service.html", label: "Taxi Service" },
+    treks: { url: "/himachal-treks.html", label: "Explore Treks" },
+    groupCosting: { url: "/group-costing.html", label: "Calculate Trip Cost" }, // NOT in sitemap: hidden automatically if it 404s
     booking: { url: "/booking.html", label: "Go to Booking" },
     contact: { url: "/contact.html", label: "Contact Travel Expert" },
     about: { url: "/about.html", label: "About Us" },
-    blog: { url: "/blog/", label: "Read Travel Guides" }
+    agent: { url: "/agent-partner.html", label: "Agent & Partner Page" },
+    blog: { url: "/blog/index.html", label: "Read Travel Guides" }
   };
 
   var DISTRICTS = {
@@ -58,13 +66,15 @@
     una: { name: "Una", best: "Oct to Mar", pts: "Chintpurni temple, Swan river area", tags: ["spiritual"] }
   };
 
+  Object.keys(DISTRICTS).forEach(function (id) { DISTRICTS[id].url = "/" + id + ".html"; }); // sitemap lists districts at the site root
+
   var dead = {}; // pageKeys that failed validation
 
   function resolveKey(key) {
     if (!key) return null;
     if (key.indexOf("district:") === 0) {
       var id = key.slice(9);
-      return DISTRICTS[id] ? { url: "/districts/" + id + ".html", label: DISTRICTS[id].name + " Guide" } : null;
+      return DISTRICTS[id] ? { url: DISTRICTS[id].url, label: DISTRICTS[id].name + " Guide" } : null;
     }
     var p = PAGE_REGISTRY[key];
     return p && !dead[key] ? p : null;
@@ -81,24 +91,34 @@
       }).catch(function () { /* offline or blocked: assume ok */ });
     });
     Object.keys(DISTRICTS).forEach(function (id) {
-      fetch("/districts/" + id + ".html", { method: "HEAD" }).then(function (r) {
-        if (r.status === 404) { delete DISTRICTS[id]; console.warn("[hx-chatbot] District page missing:", id); }
+      var head = function (u) { return fetch(u, { method: "HEAD" }); };
+      head(DISTRICTS[id].url).then(function (r) {
+        if (r.status !== 404) return;
+        head("/districts/" + id + ".html").then(function (r2) {
+          if (r2.status === 404) { delete DISTRICTS[id]; console.warn("[hx-chatbot] District page not found at root or /districts/:", id); }
+          else { DISTRICTS[id].url = "/districts/" + id + ".html"; }
+        }).catch(function () {});
       }).catch(function () {});
     });
   }
 
   /* Page detector: URL -> page context key used by FAQ.pageContext */
   var PAGE_PATTERNS = [
-    { re: /\/districts\/([a-z]+)\.html/, type: "district" },
+    { re: new RegExp("^\\/(?:districts\\/)?(" + Object.keys(DISTRICTS).join("|") + ")\\.html$"), type: "district" },
     { re: /package-detail|\/pkg\//, type: "package-detail" },
     { re: /packages/, type: "packages" },
-    { re: /yui\.html|route-builder/, type: "route-builder" },
+    { re: /yui\.html|route-builder|build-your-trip|plan-your-trip|trip-gate/, type: "route-builder" },
     { re: /group-costing|costing|calculator/, type: "costing" },
     { re: /booking/, type: "booking" },
+    { re: /hotels/, type: "hotels" },
+    { re: /bike-rental/, type: "bike" },
+    { re: /taxi-service/, type: "taxi" },
+    { re: /himachal-treks/, type: "treks" },
     { re: /contact/, type: "contact" },
+    { re: /agent-partner/, type: "agent" },
     { re: /about/, type: "about" },
     { re: /\/blog\//, type: "blog" },
-    { re: /encyclopedia|dist_master/, type: "encyclopedia" },
+    { re: /encyclopedia|dist_master|explore|options/, type: "encyclopedia" },
     { re: /^\/(index\.html|home\.html)?$/, type: "home" }
   ];
   var GREETINGS = {
@@ -111,6 +131,11 @@
     contact: "Need to reach us? WhatsApp is the fastest way. Or ask me something first.",
     about: "Welcome! Ask me anything about " + CFG.brand + " or start planning a trip.",
     blog: "Reading our guides? I can turn what you read into a trip plan.",
+    hotels: "Looking for a stay? Tell me your dates and area and I can point you to options or check with our team.",
+    bike: "Thinking of a bike trip? I can help with routes, seasons and what to plan for.",
+    taxi: "Need a taxi? Tell me your route and dates and I can connect you with our team for a quote.",
+    treks: "Interested in trekking? I can help you pick a trek by season and difficulty.",
+    agent: "Are you a travel agent or partner? Ask me about working with " + CFG.brand + ".",
     encyclopedia: "Exploring destinations? Ask about any place, or tell me your dates and interests and I will narrow it down.",
     fallback: "Hi! I am the " + CFG.brand + " assistant. How can I help?"
   };
@@ -131,7 +156,7 @@
   function byId(id) { for (var i = 0; i < FAQ.length; i++) if (FAQ[i].id === id) return FAQ[i]; return null; }
 
   // Actions (not answers; handled by the engine)
-  F("plan", "Plan my trip", "", { res: { type: "action" }, ctx: ["home", "packages", "contact", "about", "blog", "encyclopedia", "route-builder"], pri: 10, kw: ["plan my trip", "plan a trip", "suggest a trip", "help me plan"] });
+  F("plan", "Plan my trip", "", { res: { type: "action" }, ctx: ["home", "packages", "contact", "about", "blog", "encyclopedia", "route-builder", "district"], pri: 10, kw: ["plan my trip", "plan a trip", "suggest a trip", "help me plan"] });
   F("whatsapp", "Talk to a travel expert", "", { res: { type: "action" }, pri: 9 });
   F("d-best", "Best time for this district", "", { res: { type: "action" }, ctx: ["district"], pri: 10 });
   F("d-see", "What to see here", "", { res: { type: "action" }, ctx: ["district"], pri: 9 });
@@ -144,7 +169,7 @@
   F("cost-calc", "How much will my trip cost?",
     "Cost depends on season, hotel category, vehicle and group size. Use the calculator for an estimate. I don't quote fixed numbers here because live prices change.",
     { kw: ["price", "cost", "how much", "budget", "rate", "cheap", "expensive", "estimate", "calculate"], ctx: ["home", "packages", "package-detail", "costing", "route-builder", "booking"], intent: "estimate_cost", live: true,
-      next: ["inclusions", "customize", "whatsapp"], res: { type: "tool", pageKey: "groupCosting", label: "Calculate Your Trip" }, rel: [{ pageKey: "packages", label: "Compare Packages" }], pri: 10 });
+      next: ["inclusions", "customize", "whatsapp"], res: { type: "tool", pageKey: "groupCosting", label: "Calculate Your Trip" }, rel: [{ pageKey: "packages", label: "Compare Packages" }, { pageKey: "buildYourTrip" }], pri: 10 });
   F("start-where", "Where should I start my journey?",
     "Most travellers start from Chandigarh or Delhi and continue by road. Your start point decides which circuits are practical in your days.",
     { kw: ["start point", "where to start", "starting point", "begin", "start from"], ctx: ["route-builder", "home"], intent: "choose_start", next: ["how-many-days", "route-builder", "plan"], res: { type: "tool", pageKey: "routeBuilder", label: "Set My Start Point" }, pri: 6 });
@@ -167,7 +192,7 @@
     { kw: ["hidden gem", "offbeat", "off beat", "less crowded", "no crowd", "quiet", "lesser known", "unexplored"], ctx: ["encyclopedia", "home", "blog"], intent: "find_offbeat", next: ["best-time", "plan"], res: { type: "page", pageKey: "encyclopedia", label: "Explore Encyclopedia" }, rel: [{ pageKey: "district:chamba" }, { pageKey: "district:kinnaur" }], pri: 7 });
   F("bir-billing", "Tell me about Bir Billing",
     "Bir Billing is a popular destination in Kangra district, known for paragliding, mountain views, Tibetan cultural influence and nearby attractions. Flying depends on weather and season.",
-    { kw: ["bir", "billing", "paragliding", "paraglide"], ctx: ["encyclopedia", "district", "home"], intent: "destination_info", next: ["best-time", "adventure", "route-builder"], res: { type: "page", pageKey: "district:kangra", label: "Explore Bir Billing Guide" }, rel: [{ pageKey: "routeBuilder", label: "Plan a Bir Billing Trip" }, { pageKey: "packages", label: "Explore Activities" }], pri: 6 });
+    { kw: ["bir", "billing", "paragliding", "paraglide"], ctx: ["encyclopedia", "home"], intent: "destination_info", next: ["best-time", "adventure", "route-builder"], res: { type: "page", pageKey: "district:kangra", label: "Explore Bir Billing Guide" }, rel: [{ pageKey: "routeBuilder", label: "Plan a Bir Billing Trip" }, { pageKey: "packages", label: "Explore Activities" }], pri: 6 });
   F("contact", "How do I contact you?", "WhatsApp is fastest. Use the button below and we will carry your details over.",
     { kw: ["contact", "phone", "call you", "email", "number", "reach you"], ctx: ["contact", "home", "about"], intent: "contact", res: { type: "page", pageKey: "contact", label: "Contact Travel Expert" }, next: ["whatsapp"], pri: 6 });
   F("who", "Who are you?", CFG.brand + " is a Himachal Pradesh travel platform for packages, stays and trip planning across all 12 districts.",
@@ -199,17 +224,61 @@
   F("cancel", "What is the cancellation policy?", CFG.cancel, { kw: ["cancel", "cancellation", "refund", "reschedule"], ctx: ["booking"], intent: "cancellation", next: ["payment", "whatsapp"], res: { type: "human" }, pri: 7 });
   F("group", "Do you do group or family trips?", CFG.group, { kw: ["group", "corporate", "friends", "kids", "children", "senior"], intent: "group_trip", next: ["plan", "whatsapp"], res: { type: "human" }, pri: 5 });
   F("stay", "What kind of stays do you offer?", "We work with hotels, homestays and partner properties across Himachal. Plum Valley Cottage is one of our official partner stays. Tell us your dates and we will check availability.",
-    { kw: ["hotel", "stay", "homestay", "cottage", "resort", "accommodation", "plum valley"], intent: "stay", next: ["customize", "whatsapp"], res: { type: "human" }, pri: 5 });
+    { kw: ["hotel", "stay", "homestay", "cottage", "resort", "accommodation", "plum valley"], intent: "stay", next: ["customize", "whatsapp"], res: { type: "page", pageKey: "hotels", label: "Browse Hotels & Stays" }, pri: 5 });
   F("transport", "How do I reach Himachal?", "Most travellers come via Chandigarh or Delhi, then continue by road. Nearest airports include Chandigarh, Bhuntar (Kullu), Kangra (Gaggal) and Shimla. Ask us about pickups and taxis from your arrival point.",
-    { kw: ["reach", "train", "flight", "airport", "bus", "how to get", "pickup", "taxi"], intent: "transport", next: ["start-where", "whatsapp"], pri: 4 });
+    { kw: ["reach", "train", "flight", "airport", "bus", "how to get", "pickup", "taxi"], intent: "transport", next: ["start-where", "whatsapp"], res: { type: "page", pageKey: "taxi", label: "Taxi Service" }, pri: 4 });
   F("safety", "Is it safe for solo or women travellers?", "Himachal is popular with solo and women travellers. Use normal precautions, avoid night driving on mountain roads and share your itinerary with someone. We can suggest well-reviewed stays and drivers.",
     { kw: ["safe", "safety", "solo", "women", "female", "alone"], intent: "safety", next: ["whatsapp", "plan"], pri: 4 });
   F("adventure", "What adventure activities are there?", "Popular options include paragliding at Bir Billing, treks around Kullu and Kinnaur, and camping in Spiti. Availability depends on season and weather.",
-    { kw: ["adventure", "trek", "trekking", "rafting", "camping", "solang"], intent: "adventure", next: ["best-time", "plan"], res: { type: "page", pageKey: "district:kullu", label: "Kullu Guide" }, rel: [{ pageKey: "district:kangra" }], pri: 5 });
+    { kw: ["adventure", "trek", "trekking", "rafting", "camping", "solang"], intent: "adventure", next: ["best-time", "plan"], res: { type: "page", pageKey: "district:kullu", label: "Kullu Guide" }, rel: [{ pageKey: "treks" }, { pageKey: "district:kangra" }], pri: 5 });
   F("spiritual", "Temples and monasteries", "Kangra has Baijnath and Kangra Fort, Mandi has Rewalsar Lake, Chamba has its old stone temples, Una has Chintpurni, and Spiti has Key Monastery and Tabo.",
     { kw: ["temple", "monastery", "spiritual", "pilgrimage", "buddhist", "devi", "gompa"], intent: "spiritual", next: ["plan", "which-district"], res: { type: "page", pageKey: "encyclopedia", label: "Explore Encyclopedia" }, pri: 4 });
 
+  // Pages confirmed by the sitemap. Answers are deliberately light: they send people to the page instead of guessing its contents.
+  F("hotels", "Where can I find hotels and stays?", "Our hotels page lists the stays we work with. Tell us your dates and area and we will check availability.",
+    { kw: ["hotels", "book a hotel", "where to stay"], ctx: ["hotels", "home", "packages"], intent: "find_hotel", next: ["customize", "cost-calc"], res: { type: "page", pageKey: "hotels", label: "Browse Hotels & Stays" }, pri: 8, live: true });
+  F("bike", "Can I rent a bike?", "Bike rentals are on our bike rental page. Check it for what is offered, and ask our team about routes and season before you ride in the mountains.",
+    { kw: ["bike", "bike rental", "motorcycle", "royal enfield", "scooter", "ride"], ctx: ["bike", "home"], intent: "bike_rental", next: ["best-time", "permit", "whatsapp"], res: { type: "page", pageKey: "bikeRental", label: "Bike Rental" }, pri: 8, live: true });
+  F("taxi", "Do you offer taxi service?", "Taxi service details are on our taxi page. Send us your route and dates for a quote.",
+    { kw: ["taxi", "cab", "driver", "car rental", "innova", "tempo traveller"], ctx: ["taxi", "home", "packages"], intent: "taxi", next: ["transport", "cost-calc", "whatsapp"], res: { type: "page", pageKey: "taxi", label: "Taxi Service" }, pri: 8, live: true });
+  F("treks", "Which treks do you offer?", "Our treks page lists trekking options in Himachal. Season and fitness matter a lot, so tell us your dates and experience.",
+    { kw: ["trek", "treks", "trekking", "hike", "hiking"], ctx: ["treks", "home", "blog"], intent: "trekking", next: ["altitude", "best-time", "whatsapp"], res: { type: "page", pageKey: "treks", label: "Explore Treks" }, pri: 8 });
+  F("agent", "I am a travel agent. Can we partner?", "Yes, we have a page for agents and partners with the details of how to work with us.",
+    { kw: ["agent", "partner", "b2b", "commission", "collaborate", "tie up", "reseller"], ctx: ["agent", "about"], intent: "partnership", next: ["contact", "whatsapp"], res: { type: "page", pageKey: "agent", label: "Agent & Partner Page" }, pri: 8 });
+  F("build-trip", "I want to build my own trip", "You can shape a trip step by step on our trip-building pages, or start with the route builder.",
+    { kw: ["build my trip", "build your trip", "plan your trip", "trip planner", "design my trip"], ctx: ["home", "packages", "route-builder"], intent: "build_trip", next: ["route-builder", "plan", "cost-calc"], res: { type: "page", pageKey: "buildYourTrip", label: "Build Your Trip" }, rel: [{ pageKey: "routeBuilder" }, { pageKey: "planYourTrip" }], pri: 9 });
+
   var GENERIC_FALLBACK_CHIPS = ["plan", "best-time", "cost-calc", "whatsapp"];
+
+  /* ===== Package catalogue: slugs from your sitemap (/pkg/*.html). Prices are deliberately NOT here: they are live on the site.
+   * If you add packages, add the slug here (or ask us to regenerate this list from the new sitemap). ===== */
+  var PACKAGE_SLUGS = ["chamba-pangi-5d", "chamba-sach-6d", "chandigarh-best-value-5d", "chandigarh-grand-himachal-16d", "chandigarh-jibhi-seraj-4d",
+    "chandigarh-kasauli-barog-2d", "chandigarh-manali-dharamshala-chamba-10d", "chandigarh-manali-spiti-shimla-14d", "chandigarh-prashar-mandi-3d",
+    "delhi-himachal-best-value-7d", "delhi-himachal-complete-10d", "delhi-kinnaur-spiti-10d", "delhi-renuka-tattapani-3d", "kinnaur-complete-6d",
+    "lower-hp-offbeat-3d", "shimla-apple-belt-4d", "shimla-hidden-3d", "shimla-rohru-chandan-nahan-6d", "shimla-rohru-deep-adventure-7d"];
+  var SLUG_TO_DISTRICT = { manali: "kullu", jibhi: "kullu", dharamshala: "kangra", kasauli: "solan", barog: "solan", prashar: "mandi", renuka: "sirmour", nahan: "sirmour", pangi: "chamba", sach: "chamba", rohru: "shimla" };
+  function slugInfo(slug) {
+    var t = slug.split("-"), m = slug.match(/-(\d+)d$/), days = m ? parseInt(m[1], 10) : 0, ds = {};
+    t.forEach(function (w) { if (DISTRICTS[w]) ds[w] = 1; if (SLUG_TO_DISTRICT[w]) ds[SLUG_TO_DISTRICT[w]] = 1; });
+    var label = t.filter(function (w) { return !/^\d+d$/.test(w); }).map(function (w) { return w.charAt(0).toUpperCase() + w.slice(1); }).join(" ") + " (" + days + " days)";
+    return { slug: slug, days: days, districts: Object.keys(ds), start: t[0], label: label, adventure: /adventure|deep|spiti|kinnaur/.test(slug), offbeat: /hidden|offbeat/.test(slug) };
+  }
+  var PACKAGES = PACKAGE_SLUGS.map(slugInfo);
+  /* Type 4 (dynamic recommendation): filter the real package list by start city, length, districts, interest, season */
+  function suggestPackages(districtIds) {
+    var P = session.plan, start = (P.startPoint || "").toLowerCase();
+    return PACKAGES.map(function (k) {
+      var sc = 0;
+      k.districts.forEach(function (d) { if (districtIds.indexOf(d) > -1) sc += 3; });
+      if (start && k.start === start) sc += 2;
+      if (P.duration) sc -= Math.abs(k.days - P.duration) * 0.5;
+      if (P.interest === "adventure" && k.adventure) sc += 2;
+      if ((P.interest === "relax" || P.interest === "family" || P.interest === "honeymoon") && k.offbeat) sc += 1;
+      if (P.season === "winter" && /spiti|kinnaur/.test(k.slug)) sc -= 6;
+      return { k: k, sc: sc };
+    }).filter(function (x) { return x.sc > 0; }).sort(function (a, b) { return b.sc - a.sc; }).slice(0, 2)
+      .map(function (x) { return { label: x.k.label, href: "/pkg/" + x.k.slug + ".html" }; });
+  }
 
   /* ================= 4. JOURNEY MEMORY ================= */
   var session = { lead: null, plan: {}, lastQ: "", await: null };
@@ -234,17 +303,18 @@
   ];
   /* Pull journey facts out of free text so the bot doesn't re-ask what was already said */
   function learn(text) {
-    var t = text.toLowerCase(), P = session.plan, got = false;
+    var t = text.toLowerCase(), P = session.plan, found = {};
     var m = t.match(/\b(\d{1,2})\s*(?:-\s*\d{1,2}\s*)?(?:day|days|night|nights)\b/);
-    if (m) { P.duration = parseInt(m[1], 10); got = true; }
-    CITIES.forEach(function (c) { if (new RegExp("\\b(from|start|starting|leaving|in)\\s+" + c).test(t) || (session.await === "start" && t.indexOf(c) > -1)) { P.startPoint = c.charAt(0).toUpperCase() + c.slice(1); got = true; } });
-    INTEREST_WORDS.forEach(function (iw) { iw[1].forEach(function (w) { if (t.indexOf(w) > -1) { P.interest = iw[0]; got = true; } }); });
-    if (/\bwinter\b|december|january|february/.test(t)) { P.season = "winter"; got = true; }
-    else if (/\bsummer\b|in may\b|\bjune\b|april/.test(t)) { P.season = "summer"; got = true; }
-    else if (/monsoon|july|august/.test(t)) { P.season = "monsoon"; got = true; }
-    else if (/autumn|october|november|september/.test(t)) { P.season = "autumn"; got = true; }
-    if (got) persist();
-    return got;
+    if (m) { P.duration = parseInt(m[1], 10); found.duration = 1; }
+    CITIES.forEach(function (c) { if (new RegExp("\\b(from|start|starting|leaving|in)\\s+" + c).test(t) || (session.await === "start" && t.indexOf(c) > -1)) { P.startPoint = c.charAt(0).toUpperCase() + c.slice(1); found.start = 1; } });
+    INTEREST_WORDS.forEach(function (iw) { iw[1].forEach(function (w) { if (t.indexOf(w) > -1) { P.interest = iw[0]; found.interest = 1; } }); });
+    if (/\bwinter\b|december|january|february/.test(t)) { P.season = "winter"; found.season = 1; }
+    else if (/\bsummer\b|in may\b|\bjune\b|april/.test(t)) { P.season = "summer"; found.season = 1; }
+    else if (/monsoon|july|august/.test(t)) { P.season = "monsoon"; found.season = 1; }
+    else if (/autumn|october|november|september/.test(t)) { P.season = "autumn"; found.season = 1; }
+    var n = Object.keys(found).length;
+    if (n) persist();
+    return n; // how many trip facts this message gave us
   }
 
   /* ================= 5. HELPERS ================= */
@@ -293,6 +363,13 @@
     + ".hx-links a{background:#eaf1fe;border-radius:14px;padding:5px 10px;text-decoration:none;font-size:13px}"
     + ".hx-links a.hx-main{background:#1f6feb;color:#fff}"
     + ".hx-links a.hx-wa{background:#f28c28;color:#fff}"
+    + ".hx-m.hx-wide{max-width:100%;width:100%;box-sizing:border-box}"
+    + ".hx-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}"
+    + ".hx-m a.hx-tile{display:flex;flex-direction:column;gap:5px;background:#fff;border:1px solid #cfd8e8;border-radius:10px;padding:10px;text-decoration:none;color:#12285a;font-weight:400;min-height:78px}"
+    + ".hx-m a.hx-tile:hover{border-color:#1f6feb;box-shadow:0 2px 8px rgba(31,111,235,.18)}"
+    + ".hx-tile b{font-size:13px;line-height:1.25;font-weight:700}"
+    + ".hx-tile small{font-size:12px;color:#5a6780;line-height:1.3}"
+    + ".hx-badge{align-self:flex-start;background:#f28c28;color:#fff;border-radius:10px;padding:2px 8px;font-size:11px;font-weight:600}"
     + "#hx-chips{padding:0 12px 8px;display:flex;flex-wrap:wrap;gap:6px}"
     + "#hx-chips button{background:#fff;border:1px solid #1f6feb;color:#1f6feb;border-radius:16px;padding:6px 11px;font-size:13px;cursor:pointer;font-family:inherit}"
     + "#hx-chips button.hx-cta{background:#f28c28;border-color:#f28c28;color:#fff;font-weight:600}"
@@ -312,7 +389,7 @@
   document.body.appendChild(btn); document.body.appendChild(panel);
   var log = panel.querySelector("#hx-log"), chips = panel.querySelector("#hx-chips"), input = panel.querySelector("#hx-in");
 
-  function say(html, who, links) {
+  function say(html, who, links, tiles) {
     var el = document.createElement("div");
     el.className = "hx-m " + (who === "me" ? "hx-me" : "hx-bot");
     if (who === "me") el.textContent = html; else el.innerHTML = html;
@@ -321,6 +398,17 @@
       var w = document.createElement("div"); w.className = "hx-links";
       ls.forEach(function (l, i) { var a = document.createElement("a"); a.href = l.href; a.textContent = l.label; if (l.kind) a.className = l.kind; else if (i === 0) a.className = "hx-main"; w.appendChild(a); });
       el.appendChild(w);
+    }
+    if (tiles && tiles.length) {
+      var g = document.createElement("div"); g.className = "hx-grid";
+      tiles.forEach(function (t) {
+        var a = document.createElement("a"); a.className = "hx-tile"; a.href = t.href; a.setAttribute("aria-label", t.title + ", " + t.badge);
+        var bd = document.createElement("span"); bd.className = "hx-badge"; bd.textContent = t.badge; a.appendChild(bd);
+        var b = document.createElement("b"); b.textContent = t.title; a.appendChild(b);
+        if (t.sub) { var sm = document.createElement("small"); sm.textContent = t.sub; a.appendChild(sm); }
+        g.appendChild(a);
+      });
+      el.className += " hx-wide"; el.appendChild(g);
     }
     log.appendChild(el); log.scrollTop = log.scrollHeight;
     return el;
@@ -400,9 +488,14 @@
   function onText(text) {
     say(text, "me");
     session.lastQ = text;
+    if (page.type === "packages") {
+      var low = text.toLowerCase();
+      for (var ci = 0; ci < START_CITIES.length; ci++) if (low.indexOf(START_CITIES[ci]) > -1) { session.lastQ = text; return showPackages(START_CITIES[ci]); }
+    }
     var learned = learn(text);
     if (session.await === "start") { session.await = null; persist(); return planner(); }
     persist();
+    if (learned >= 2 && page.type !== "packages") return planner(); // e.g. "adventure, 7 days from Delhi in June": enough to plan, skip FAQ matching
     var m = match(text);
     if (m && m.district) {
       var d = DISTRICTS[m.district];
@@ -419,6 +512,31 @@
     }
     say("I'm not sure I understood that. Try one of these, or send it to our team.", "bot");
     setChips(GENERIC_FALLBACK_CHIPS);
+  }
+
+  /* ================= 7b. PACKAGES PAGE: ask only "where do you start?", answer with a tile grid ================= */
+  var START_CITIES = ["chandigarh", "delhi", "shimla"];
+  function cap(w) { return w === "hp" ? "HP" : w.charAt(0).toUpperCase() + w.slice(1); }
+  function startKey(k) { return START_CITIES.indexOf(k.start) > -1 ? k.start : "other"; }
+  function tileFor(k) {
+    var words = k.slug.split("-").filter(function (w) { return !/^\d+d$/.test(w); });
+    if (START_CITIES.indexOf(k.start) > -1) words.shift(); // "delhi-himachal-best-value-7d" -> "Himachal Best Value"
+    var ds = k.districts.map(function (d) { return DISTRICTS[d] ? DISTRICTS[d].name : null; }).filter(Boolean).join(" \u00b7 ");
+    return { title: words.map(cap).join(" "), badge: k.days + " days", sub: ds, href: "/pkg/" + k.slug + ".html" };
+  }
+  function packagesFor(key) { return PACKAGES.filter(function (k) { return startKey(k) === key; }).sort(function (a, b) { return a.days - b.days; }); }
+  function showPackages(key) {
+    var list = packagesFor(key);
+    if (key !== "other") { session.plan.startPoint = cap(key); session.plan.intent = "browse_packages"; persist(); }
+    var where = key === "other" ? "Packages based in other regions of Himachal" : "Packages starting from <b>" + cap(key) + "</b>";
+    say(where + " (" + list.length + "). Tap a tile to open it.", "bot", null, list.map(tileFor));
+    setChips([{ label: "Change start point", fn: function () { packageStart(false); } }, "whatsapp"]);
+  }
+  function packageStart(silent) {
+    if (!silent) say("Where will you start your trip?", "bot");
+    var opts = START_CITIES.filter(function (c) { return packagesFor(c).length; }).map(function (c) { return { label: cap(c) + " (" + packagesFor(c).length + ")", fn: function () { showPackages(c); } }; });
+    if (packagesFor("other").length) opts.push({ label: "Other regions (" + packagesFor("other").length + ")", fn: function () { showPackages("other"); } });
+    setChips(opts);
   }
 
   /* ================= 8. JOURNEY PLANNER (skips anything already known) ================= */
@@ -454,6 +572,8 @@
     P.intent = "build_itinerary"; persist();
     var wanted = { family: ["relax"], honeymoon: ["snow", "relax"], all: ["adventure", "snow", "relax", "spiritual"] }[P.interest] || [P.interest];
     var ids = Object.keys(DISTRICTS).filter(function (k) { return DISTRICTS[k].tags.some(function (t) { return wanted.indexOf(t) > -1; }); });
+    var POP = { kullu: 10, shimla: 9, kangra: 8, spiti: 8, kinnaur: 7, chamba: 6, mandi: 5, solan: 4, sirmour: 3, bilaspur: 2, una: 2, hamirpur: 1 }; // most-visited first
+    ids.sort(function (a, b) { return (POP[b] || 0) - (POP[a] || 0); });
     if (P.season === "winter") { ids = ids.filter(function (k) { return k !== "spiti"; }); note += "Spiti is left out because its roads are usually closed by snow in winter. "; }
     if (P.season === "monsoon") { note += "Monsoon roads can be disrupted, so we'd keep the plan flexible. Spiti is drier than most areas. "; ids.sort(function (a, b) { return (b === "spiti") - (a === "spiti"); }); }
     if (P.interest === "snow" && (P.season === "summer" || P.season === "monsoon")) note += "Snow isn't reliable in this season except at high passes; Dec to Feb is the sure window. ";
@@ -466,7 +586,7 @@
 
     var lines = ids.map(function (k) { return "<b>" + DISTRICTS[k].name + "</b>: " + DISTRICTS[k].pts; }).join("<br>");
     var head = "For " + P.duration + " days from " + esc(P.startPoint) + " (" + esc(P.interest) + "), start with:<br>";
-    var links = [link("routeBuilder", "Build a " + P.duration + "-day route"), link("packages", "Explore packages"), link("groupCosting", "Calculate budget")]
+    var links = [link("routeBuilder", "Build a " + P.duration + "-day route"), link("packages", "Explore packages"), link("groupCosting", "Calculate budget")].concat(suggestPackages(ids))
       .concat(ids.map(function (k) { return link("district:" + k); }));
     say(head + lines + "<br><small>" + note + "</small>", "bot", links);
     setChips([{ label: "Speak to a travel expert", cta: true, fn: function () { handoff("Please quote: " + ids.map(function (k) { return DISTRICTS[k].name; }).join(", ")); } },
@@ -483,8 +603,14 @@
       var hi = GREETINGS[page.type] || GREETINGS.fallback;
       if (page.type === "district" && DISTRICTS[page.district]) hi = "You're reading about <b>" + DISTRICTS[page.district].name + "</b>. Want the best season, top sights, or a plan around it?";
       if (session.plan.interest || session.plan.duration) hi += "<br><small>Picking up your trip plan: " + esc(planSummary().join(", ")) + ".</small>";
-      say(hi, "bot");
-      setChips(pageChips());
+      if (page.type === "packages") {
+        var known = (session.plan.startPoint || "").toLowerCase();
+        if (START_CITIES.indexOf(known) > -1) showPackages(known);
+        else { say("Where will you start your trip? Pick a starting point and I'll show the matching packages.", "bot"); packageStart(true); }
+      } else {
+        say(hi, "bot");
+        setChips(pageChips());
+      }
     }
     input.focus();
   }

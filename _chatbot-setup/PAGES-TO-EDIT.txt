@@ -1,0 +1,91 @@
+PAGES THAT SHOULD GET THE CHATBOT SNIPPET (built from your sitemap.xml)
+======================================================================
+
+Paste the 4-line snippet from SNIPPET.html just above </body> in each file below.
+Tick them off as you go.
+
+MAIN PAGES  (17)
+  [ ] index.html
+  [ ] packages.html
+  [ ] explore.html
+  [ ] yui.html
+  [ ] build-your-trip.html
+  [ ] bike-rental.html
+  [ ] hotels.html
+  [ ] booking.html
+  [ ] taxi-service.html
+  [ ] himachal-treks.html
+  [ ] dist_master.html
+  [ ] plan-your-trip.html
+  [ ] trip-gate.html
+  [ ] about.html
+  [ ] contact.html
+  [ ] options.html
+  [ ] agent-partner.html
+
+DISTRICT PAGES  (12)
+  [ ] shimla.html
+  [ ] kullu.html
+  [ ] spiti.html
+  [ ] kangra.html
+  [ ] kinnaur.html
+  [ ] chamba.html
+  [ ] mandi.html
+  [ ] bilaspur.html
+  [ ] hamirpur.html
+  [ ] sirmour.html
+  [ ] solan.html
+  [ ] una.html
+
+ENCYCLOPEDIA  (10)
+  [ ] encyclopedia.html
+  [ ] encyclopedia-lakes.html
+  [ ] encyclopedia-rivers.html
+  [ ] encyclopedia-hot-springs.html
+  [ ] encyclopedia-glaciers.html
+  [ ] encyclopedia-valleys.html
+  [ ] encyclopedia-passes.html
+  [ ] encyclopedia-trek-routes.html
+  [ ] encyclopedia-conservation.html
+  [ ] encyclopedia-history.html
+
+BLOG  (5)
+  [ ] blog/index.html
+  [ ] blog/manali-to-leh-road-trip-guide.html
+  [ ] blog/best-time-to-visit-spiti-valley.html
+  [ ] blog/shimla-complete-travel-guide.html
+  [ ] blog/spiti-valley-7-days.html
+
+PACKAGE PAGES (pkg/)  (19)
+  [ ] pkg/chamba-pangi-5d.html
+  [ ] pkg/chamba-sach-6d.html
+  [ ] pkg/chandigarh-best-value-5d.html
+  [ ] pkg/chandigarh-grand-himachal-16d.html
+  [ ] pkg/chandigarh-jibhi-seraj-4d.html
+  [ ] pkg/chandigarh-kasauli-barog-2d.html
+  [ ] pkg/chandigarh-manali-dharamshala-chamba-10d.html
+  [ ] pkg/chandigarh-manali-spiti-shimla-14d.html
+  [ ] pkg/chandigarh-prashar-mandi-3d.html
+  [ ] pkg/delhi-himachal-best-value-7d.html
+  [ ] pkg/delhi-himachal-complete-10d.html
+  [ ] pkg/delhi-kinnaur-spiti-10d.html
+  [ ] pkg/delhi-renuka-tattapani-3d.html
+  [ ] pkg/kinnaur-complete-6d.html
+  [ ] pkg/lower-hp-offbeat-3d.html
+  [ ] pkg/shimla-apple-belt-4d.html
+  [ ] pkg/shimla-hidden-3d.html
+  [ ] pkg/shimla-rohru-chandan-nahan-6d.html
+  [ ] pkg/shimla-rohru-deep-adventure-7d.html
+
+OPTIONAL: separate homestay site  (2)
+  [ ] sukoon-homestay/blog.html
+  [ ] sukoon-homestay/index.html
+
+NOT IN YOUR SITEMAP - check if these exist and add the snippet if so:
+  [ ] package-detail.html   (dynamic package page)
+  [ ] 404.html              (if you have one)
+
+DO NOT ADD to: admin/ files, tool pages that are not for visitors, and the tiny redirect files
+(pages that only contain a meta refresh).
+
+Total pages listed above: 65 (sukoon-homestay pages are optional).
