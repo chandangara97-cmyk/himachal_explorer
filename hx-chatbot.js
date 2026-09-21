@@ -43,7 +43,7 @@
     bikeRental: { url: "/bike-rental.html", label: "Bike Rental" },
     taxi: { url: "/taxi-service.html", label: "Taxi Service" },
     treks: { url: "/himachal-treks.html", label: "Explore Treks" },
-    groupCosting: { url: "/group-costing.html", label: "Calculate Trip Cost" }, // NOT in sitemap: hidden automatically if it 404s
+    groupCosting: { url: "/group-pricing.html", label: "Calculate Group Price" }, // fixed: real file is group-pricing.html, not group-costing.html
     booking: { url: "/booking.html", label: "Go to Booking" },
     contact: { url: "/contact.html", label: "Contact Travel Expert" },
     about: { url: "/about.html", label: "About Us" },
