@@ -908,7 +908,10 @@ body{
   // active AND have real itinerary/route content. A stub whose id doesn't
   // resolve there is a draft, retired, or never-finished package — not
   // sellable — and gets dropped rather than shown as a dead link. Price
-  // also comes from PricingEngine instead of the stub's stale static number.
+  // also comes from PricingEngine instead of the stub's stale static number,
+  // including the same km-based distance surcharge every other real caller
+  // (packages.html, package-detail.html, booking.html, trip-gate.html,
+  // yui.html, admin/himachal_calculator.html, build-your-trip.html) passes in.
   function resolveSellablePackages(stubs){
     if (!window.PackageData) return Promise.resolve(stubs); // loader missing — show stubs as-is rather than nothing
     if (!_packageDataPromise) _packageDataPromise = PackageData.load().catch(() => ({ byId: {} }));
@@ -921,7 +924,7 @@ body{
         .map(pkg => {
           let price = null;
           if (window.PricingEngine && pkg.days) {
-            try { price = PricingEngine.computePrice({ days: pkg.days, pax: 2, tier: 'budget', month }).totalPP; }
+            try { price = PricingEngine.computePrice({ days: pkg.days, pax: 2, tier: 'budget', month, km: pkg.total_km_est }).totalPP; }
             catch(e) { price = null; }
           }
           return { id: pkg.id, name: pkg.name, days: pkg.days, price };
