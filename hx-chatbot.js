@@ -345,8 +345,13 @@
   })();
 
   /* ================= 6. UI ================= */
+  // Raise button above mobile bottom nav (≈62px) when present; keep 16px on desktop
+  var _hxBottom = parseInt(HX.offsetBottom, 10);
+  if (isNaN(_hxBottom)) {
+    _hxBottom = (typeof window !== "undefined" && window.matchMedia && window.matchMedia("(max-width:760px)").matches) ? 76 : 16;
+  }
   var css = ""
-    + ":root{--hx-bottom:" + (parseInt(HX.offsetBottom, 10) || 16) + "px}"
+    + ":root{--hx-bottom:" + _hxBottom + "px}"
     + "#hx-btn{position:fixed!important;top:auto!important;left:auto!important;margin:0!important;right:max(16px,env(safe-area-inset-right))!important;bottom:calc(var(--hx-bottom) + env(safe-area-inset-bottom))!important;z-index:2147483000!important;background:#f28c28;color:#fff;border:0;border-radius:28px;padding:12px 18px;font:600 15px/1 inherit;font-family:inherit;box-shadow:0 4px 14px rgba(18,40,90,.3);cursor:pointer}"
     + "#hx-btn:focus-visible,#hx-panel button:focus-visible,#hx-panel input:focus-visible,#hx-panel a:focus-visible{outline:3px solid #1f6feb;outline-offset:2px}"
     + "#hx-panel{position:fixed!important;top:auto!important;left:auto!important;margin:0!important;right:max(12px,env(safe-area-inset-right))!important;bottom:calc(var(--hx-bottom) + env(safe-area-inset-bottom))!important;z-index:2147483001!important;width:min(380px,calc(100vw - 24px));height:min(600px,calc(100vh - 64px));background:#f6f8fb;border-radius:14px;box-shadow:0 10px 40px rgba(18,40,90,.35);display:none;flex-direction:column;overflow:hidden;font-family:inherit;color:#1b2333}"

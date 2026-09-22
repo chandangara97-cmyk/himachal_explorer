@@ -44,7 +44,8 @@ img[loading="lazy"]{ background:linear-gradient(90deg,#eee,#f6f6f6,#eee); }
 
 @media (max-width:760px){
   .he-mobile-bottom{ display:block; }
-  body.he-unified-page{ padding-bottom:62px; }
+  body.he-unified-page{ padding-bottom:72px; } /* extra room so content is not covered by bottom nav + FAB */
+  html, body{ overflow-x:hidden; } /* prevent off-screen fixed panels from causing horizontal scroll */
 }
 
 /* Auto-hide header on scroll-down / reveal on scroll-up (mobile only, driven by he-mobile-nav.js) */
