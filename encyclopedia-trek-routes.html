@@ -62,6 +62,7 @@ body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);line-he
 .enc-empty{padding:40px 0;text-align:center;color:var(--caption);font-size:13px}
 .enc-footnote{margin-top:26px;font-size:11px;color:var(--caption);font-family:'Jost',sans-serif;border-top:1px solid var(--border);padding-top:16px}
 </style>
+<link rel="stylesheet" href="/assets/css/encyclopedia.css">
 <link rel="stylesheet" href="assets/css/site-chrome.css">
 <link rel="stylesheet" href="/assets/css/he-unified.css">
 <link rel="stylesheet" href="/assets/css/theme-v2.css">
@@ -81,7 +82,26 @@ body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);line-he
 
 <div class="wrap enc-body">
   <div class="enc-toolbar">
-    <input id="encSearch" class="enc-search" type="text" placeholder="Search by name or district…" oninput="encRender()"/>
+    <div class="enc-toolbar-row">
+      <input id="encSearch" class="enc-search" type="search" placeholder="Search by name, district, type or keyword…" autocomplete="off"/>
+      <select id="encSort" class="enc-sort" aria-label="Sort entries">
+        <option value="name">Sort: Name A–Z</option>
+        <option value="district">Sort: District</option>
+        <option value="altitude-asc">Sort: Altitude ↑</option>
+        <option value="altitude-desc">Sort: Altitude ↓</option>
+      </select>
+      <span id="encCount" class="enc-count">—</span>
+    </div>
+    <div class="enc-filters">
+      <div>
+        <div class="enc-filter-label">District</div>
+        <div id="encDistrictFilters" class="enc-chips"></div>
+      </div>
+      <div>
+        <div class="enc-filter-label">Type</div>
+        <div id="encTypeFilters" class="enc-chips"></div>
+      </div>
+    </div>
   </div>
   <div id="encGrid" class="enc-grid"><div class="enc-empty">Loading…</div></div>
   <div class="enc-footnote">Sourced from a scanned reference document; entries marked "unverified" are OCR-derived and pending confirmation against the original source.</div>
@@ -91,75 +111,12 @@ body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);line-he
 <script src="assets/js/site-chrome.js" defer></script>
 
 <script>
-(function(){
-  const DB = "https://garg-enterprise-default-rtdb.asia-southeast1.firebasedatabase.app";
-  const CAT_KEY = "trekking_routes";
-  const DISTRICT_MAP = {
-  "Bilaspur":"bilaspur.html","Chamba":"chamba.html","Hamirpur":"hamirpur.html",
-  "Kangra":"kangra.html","Kinnaur":"kinnaur.html","Kullu":"kullu.html",
-  "Mandi":"mandi.html","Shimla":"shimla.html","Sirmaur":"sirmour.html",
-  "Solan":"solan.html","Una":"una.html","Lahaul-Spiti":"spiti.html","Lahaul":"spiti.html","Spiti":"spiti.html"
+window.ENC_CONFIG = {
+  catKey: "trekking_routes",
+  placeholderImg: "assets/images/bir-billing_3.jpg"
 };
-  let items = [];
-
-  function districtLink(d){
-    if(!d) return null;
-    const first = d.split('/')[0].trim();
-    if (DISTRICT_MAP[first]) return DISTRICT_MAP[first];
-    for (const k in DISTRICT_MAP){
-      if (first.toLowerCase().indexOf(k.toLowerCase()) !== -1) return DISTRICT_MAP[k];
-    }
-    return null;
-  }
-
-  async function load(){
-    const grid = document.getElementById('encGrid');
-    try{
-      const res = await fetch(`${DB}/encyclopedia/${CAT_KEY}.json`);
-      const data = await res.json();
-      if (!data){ grid.innerHTML = '<div class="enc-empty">Not available yet — check back soon.</div>'; return; }
-      items = Object.keys(data).map(id => data[id]);
-      items.sort((a,b) => (a.name||'').localeCompare(b.name||''));
-      encRender();
-    } catch(err){
-      grid.innerHTML = '<div class="enc-empty">Could not load right now.</div>';
-    }
-  }
-
-  window.encRender = function(){
-    const grid = document.getElementById('encGrid');
-    const q = (document.getElementById('encSearch').value||'').trim().toLowerCase();
-    let list = items;
-    if (q){
-      list = items.filter(it => (it.name||'').toLowerCase().includes(q) || (it.district||'').toLowerCase().includes(q));
-    }
-    if (!list.length){ grid.innerHTML = '<div class="enc-empty">No matches.</div>'; return; }
-    grid.innerHTML = list.map(it => {
-      const dLink = districtLink(it.district);
-      const facts = (it.facts||[]).slice(0,4).map(f => `<li>${f}</li>`).join('');
-      const photo = it.photo_1
-        ? `<img class="enc-card-img" src="${it.photo_1}" alt="${it.name||''}" loading="lazy">`
-        : `<div class="enc-card-img enc-card-img--placeholder"></div>`;
-      return `
-        <div class="enc-card">
-          ${photo}
-          <div class="enc-card-top">
-            <div class="enc-card-name">${it.name||''}</div>
-            ${it.district?`<div class="enc-card-dist">${it.district}</div>`:''}
-          </div>
-          <div class="enc-card-meta">${it.type||''}${it.altitude_m?` · ~${it.altitude_m} m`:''}</div>
-          ${facts?`<ul>${facts}</ul>`:''}
-          <div class="enc-card-flags">
-            ${it.verification_required?'<span class="enc-unverified">Unverified — OCR sourced.</span>':'<span></span>'}
-            ${dLink?`<a class="enc-dist-link" href="${dLink}">View ${it.district.split('/')[0].trim()} District →</a>`:''}
-          </div>
-        </div>`;
-    }).join('');
-  };
-
-  load();
-})();
 </script>
+<script src="/assets/js/encyclopedia.js?v=20260927" defer></script>
 
 <!-- hx-chatbot:start -->
 <script>window.HX_CONFIG={whatsapp:"917018138847"};</script>

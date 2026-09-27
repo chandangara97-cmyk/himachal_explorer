@@ -1,35 +1,43 @@
-Himachal Explorer — Layout Fixes
-================================
+Himachal Explorer — Encyclopedia enhancement pack
+================================================
 
-What was fixed
+Files included
 --------------
-1. packages.html (mobile)
-   - White "Select a package" panel overflowing to the right
-   - Horizontal scroll caused by off-screen map/detail panels
-   - Fixed by using left:100% + visibility:hidden instead of translateX only
+assets/js/encyclopedia.js     Shared engine (filters, sort, search, skeleton)
+assets/css/encyclopedia.css   Toolbar, chips, improved CSS Grid, skeleton
+encyclopedia-*.html           9 category pages wired to the shared assets
+README.txt                    This file
 
-2. Site-wide mobile
-   - Bottom nav + "Plan your trip" FAB covering page content
-   - Extra padding-bottom and overflow-x:hidden on mobile
-
-3. hx-chatbot.js
-   - Floating "Plan your trip" button sat on top of the bottom nav
-   - Now automatically lifts to 76px on screens ≤760px
-
-Files to replace (keep the same paths)
---------------------------------------
-assets/css/packages.css
-assets/css/he-unified.css
-hx-chatbot.js
-
-How to apply
+What changed
 ------------
-1. Download and unzip this archive
-2. Copy the three files into your repo root (overwrite existing)
-3. Commit and push to GitHub (or deploy via your normal method)
+• District filter chips (auto-built from data)
+• Type filter chips
+• Sort: Name A–Z | District | Altitude ↑ | Altitude ↓
+• Search by name, district, type, or keyword in facts
+• Live result count (“Showing 9 of 16”)
+• Skeleton loading cards
+• Clear-filters button on empty state
+• CSS Grid: auto-fit + min(280px,100%) + fluid gap (no overflow on mobile)
+• Slightly denser columns on viewports ≥1200px
 
-   git add assets/css/packages.css assets/css/he-unified.css hx-chatbot.js
-   git commit -m "Fix mobile layout: packages panel overflow + bottom nav/FAB overlap"
-   git push
+How to install
+--------------
+1. Copy assets/js/encyclopedia.js   →  your repo’s assets/js/
+2. Copy assets/css/encyclopedia.css →  your repo’s assets/css/
+3. Replace each encyclopedia-*.html in the repo root with the matching
+   file from this folder (or merge if you have local edits)
 
-After deploy, hard-refresh on mobile (Ctrl+Shift+R / clear cache) to see the changes.
+After deploy, hard-refresh a category page (e.g. encyclopedia-lakes.html)
+and you should see the new toolbar + chips.
+
+Category → Firebase key mapping
+-------------------------------
+encyclopedia-lakes.html         lakes_reservoirs
+encyclopedia-rivers.html        rivers_and_tributaries
+encyclopedia-hot-springs.html   hot_springs_waterfalls_kunds
+encyclopedia-glaciers.html      glaciers
+encyclopedia-valleys.html       valleys
+encyclopedia-passes.html        mountain_passes_and_jots
+encyclopedia-trek-routes.html   trekking_routes
+encyclopedia-conservation.html  environment_and_conservation
+encyclopedia-history.html       historical_social_reference_content
