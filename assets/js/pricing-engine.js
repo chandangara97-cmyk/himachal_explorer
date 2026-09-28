@@ -19,7 +19,7 @@
   const TOLL_PER_VEHICLE = 350;
   const HOTEL_TIER_RATE = { budget: 1480, premium: 2020, luxury: 3360 };
   const SERVICE_FEE = 0.10;
-  const MARGIN = 0.25;
+  const MARGIN = 0.08;
   const PEAK_MONTHS = new Set([5, 6, 12, 1]);            // hotel season (+15% hotel rate)
   // Vehicle day-rates follow the taxi-service.html rate card:
   // peak = May-June & Sep-Oct. Change this one line to change transport season.
@@ -47,6 +47,13 @@
 
   function clone(x) { return JSON.parse(JSON.stringify(x)); }
   function num(v, fallback) { const n = Number(v); return Number.isFinite(n) ? n : fallback; }
+  // Rates are decimals (0.08 = 8%). If someone types a whole percent (8 or 10)
+  // in the admin panel, treat anything above 1 as a percent so it can't become 800%.
+  function rate(v, fallback) {
+    let n = num(v, fallback);
+    if (n > 1) n = n / 100;
+    return Math.min(1, Math.max(0, n));
+  }
   function adjustment(obj) {
     obj = obj || {};
     return { percent: num(obj.percent, 0), fixed: num(obj.fixed, 0) };
@@ -78,8 +85,8 @@
     c.transport = adjustment(raw.transport);
     c.hotel = adjustment(raw.hotel);
     c.driverTolls = adjustment(raw.driverTolls);
-    c.serviceFee = { rate: Math.max(0, num(raw.serviceFee && raw.serviceFee.rate, SERVICE_FEE)) };
-    c.margin = { rate: Math.max(0, num(raw.margin && raw.margin.rate, MARGIN)) };
+    c.serviceFee = { rate: rate(raw.serviceFee && raw.serviceFee.rate, SERVICE_FEE) };
+    c.margin = { rate: rate(raw.margin && raw.margin.rate, MARGIN) };
     ['budget','premium','luxury'].forEach(t => { c.tiers[t] = adjustment(raw.tiers && raw.tiers[t]); });
     c.packages = {};
     if (raw.packages && typeof raw.packages === 'object') {
@@ -180,15 +187,18 @@
     const hotelPP = hotelRate * nights;
 
     const subtotal = vehiclePP + hotelPP;
-    const serviceFeeRate = Math.max(0, num(control.serviceFee.rate, SERVICE_FEE));
+    const serviceFeeRate = rate(control.serviceFee.rate, SERVICE_FEE);
     const serviceFee = subtotal * serviceFeeRate;
     const preMargin = subtotal + serviceFee;
-    const marginRate = Math.max(0, num(control.margin.rate, MARGIN));
+    const marginRate = rate(control.margin.rate, MARGIN);
     const marginAmt = preMargin * marginRate;
     const beforePackageAdjustment = preMargin + marginAmt;
     const globalAdjusted = applyAdjustment(beforePackageAdjustment, control.enabled ? control.global : { percent: 0, fixed: 0 });
     const packageAdjusted = applyAdjustment(globalAdjusted, packageAdjustment(packageId));
-    const totalRounded = Math.round(packageAdjusted / 50) * 50;
+    // Price floor: global/package discounts can never take the price below
+    // cost + service fee (i.e. zero margin), so a bad setting can't sell at a loss.
+    const floorPrice = Math.ceil(preMargin / 50) * 50;
+    const totalRounded = Math.max(Math.round(packageAdjusted / 50) * 50, floorPrice);
     const groupTotal = totalRounded * pax;
 
     return {
@@ -211,6 +221,8 @@
         marginAmt,
         marginRate,
         beforePackageAdjustment,
+        floorPrice,
+        floorApplied: Math.round(packageAdjusted / 50) * 50 < floorPrice,
         globalAdjustment: adjustment(control.global),
         packageAdjustment: packageAdjustment(packageId)
       }
