@@ -658,35 +658,35 @@ body{
   .hx-pkg-head p{color:#aebfb2;font-size:14.5px;line-height:1.65;margin:0}
 
   .hx-pkg-grid{display:grid;grid-template-columns:1.35fr 1fr 1fr;grid-template-rows:auto auto;gap:18px;grid-template-areas:"flag card2 card3" "flag card4 card5"}
-  .hx-pkg-card{position:relative;border-radius:16px;overflow:hidden;text-decoration:none;display:flex;align-items:flex-end;background-size:cover;background-position:center;min-height:200px;box-shadow:0 18px 40px rgba(0,0,0,.35);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+  .hx-pkg-card{border-radius:16px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;background:#17291d;box-shadow:0 18px 40px rgba(0,0,0,.35);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
   .hx-pkg-card:hover{transform:translateY(-4px)}
-  .hx-pkg-card::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,16,11,0) 30%,rgba(6,13,9,.94) 100%)}
-  .hx-pkg-card-flag{grid-area:flag;min-height:100%}
+  .hx-pkg-img{width:100%;aspect-ratio:4/3;background-size:cover;background-position:center}
+  .hx-pkg-card-flag{grid-area:flag}
+  .hx-pkg-card-flag .hx-pkg-img{aspect-ratio:16/11}
   .hx-pkg-card-c2{grid-area:card2}
   .hx-pkg-card-c3{grid-area:card3}
   .hx-pkg-card-c4{grid-area:card4}
   .hx-pkg-card-c5{grid-area:card5}
-  .hx-pkg-body{position:relative;z-index:1;padding:20px 22px;width:100%}
-  .hx-pkg-card-flag .hx-pkg-body{padding:30px 30px 32px}
-  .hx-pkg-badge{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#14301f;background:#f5b33b;border-radius:20px;padding:4px 10px;margin-bottom:10px}
-  .hx-pkg-route{font-size:11px;letter-spacing:.04em;color:#dce6d9;margin-bottom:4px;opacity:.85}
+  .hx-pkg-body{padding:18px 20px 20px;width:100%;display:flex;flex-direction:column;flex:1}
+  .hx-pkg-card-flag .hx-pkg-body{padding:24px 26px 26px}
+  .hx-pkg-badge{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#14301f;background:#f5b33b;border-radius:20px;padding:4px 10px;margin-bottom:10px;align-self:flex-start}
+  .hx-pkg-route{font-size:11px;letter-spacing:.04em;color:#9db39f;margin-bottom:4px}
   .hx-pkg-name{font-family:'Cormorant',Georgia,serif;font-weight:700;color:#fff;line-height:1.12;margin-bottom:8px}
-  .hx-pkg-card-flag .hx-pkg-name{font-size:clamp(24px,2.6vw,32px)}
-  .hx-pkg-card-c2 .hx-pkg-name,.hx-pkg-card-c3 .hx-pkg-name{font-size:19px}
-  .hx-pkg-card-c4 .hx-pkg-name,.hx-pkg-card-c5 .hx-pkg-name{font-size:17px}
-  .hx-pkg-desc{font-size:12.5px;line-height:1.55;color:#cdd9cf;margin-bottom:14px;max-width:420px}
+  .hx-pkg-card-flag .hx-pkg-name{font-size:clamp(22px,2.4vw,28px)}
+  .hx-pkg-card-c2 .hx-pkg-name,.hx-pkg-card-c3 .hx-pkg-name{font-size:18px}
+  .hx-pkg-card-c4 .hx-pkg-name,.hx-pkg-card-c5 .hx-pkg-name{font-size:16px}
+  .hx-pkg-desc{font-size:12.5px;line-height:1.55;color:#aebfb2;margin-bottom:14px}
   .hx-pkg-card-c4 .hx-pkg-desc,.hx-pkg-card-c5 .hx-pkg-desc{display:none}
   .hx-pkg-meta{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap}
   .hx-pkg-days{font-size:11.5px;color:#aebfb2}
   .hx-pkg-price{font-size:15px;font-weight:700;color:#f5b33b}
   .hx-pkg-price small{font-weight:500;font-size:10px;color:#aebfb2}
-  .hx-pkg-cta{display:inline-block;font:600 11px Jost,Arial,sans-serif;letter-spacing:.03em;color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:9px;padding:8px 14px}
+  .hx-pkg-cta{display:inline-block;font:600 11px Jost,Arial,sans-serif;letter-spacing:.03em;color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:9px;padding:8px 14px;align-self:flex-start;margin-top:auto}
   .hx-pkg-card:hover .hx-pkg-cta{background:#f5b33b;border-color:#f5b33b;color:#14301f}
 
-  .hx-pkg-finale{margin-top:18px;position:relative;border-radius:16px;overflow:hidden;text-decoration:none;display:flex;min-height:150px;box-shadow:0 18px 40px rgba(0,0,0,.35)}
-  .hx-pkg-finale-img{flex:0 0 42%;background-size:cover;background-position:center}
-  .hx-pkg-finale-body{flex:1;background:#17291d;padding:26px 28px;display:flex;flex-direction:column;justify-content:center}
-  .hx-pkg-finale .hx-pkg-route,.hx-pkg-finale .hx-pkg-name,.hx-pkg-finale .hx-pkg-desc{max-width:560px}
+  .hx-pkg-finale{margin-top:18px;border-radius:16px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;background:#17291d;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+  .hx-pkg-finale-img{width:100%;aspect-ratio:21/8;background-size:cover;background-position:center}
+  .hx-pkg-finale-body{padding:24px 28px}
   .hx-pkg-finale .hx-pkg-name{font-size:clamp(20px,2.4vw,26px)}
   .hx-pkg-finale:hover .hx-pkg-cta{background:#f5b33b;border-color:#f5b33b;color:#14301f}
 
@@ -695,12 +695,10 @@ body{
 
   @media(max-width:900px){
     .hx-pkg-grid{grid-template-columns:1fr 1fr;grid-template-areas:"flag flag" "card2 card3" "card4 card5"}
-    .hx-pkg-card-flag{min-height:260px}
   }
   @media(max-width:600px){
     .hx-pkg-grid{grid-template-columns:1fr;grid-template-areas:"flag" "card2" "card3" "card4" "card5"}
-    .hx-pkg-finale{flex-direction:column}
-    .hx-pkg-finale-img{flex:0 0 160px}
+    .hx-pkg-finale-img{aspect-ratio:16/9}
   }
 </style>
 <section class="hx-pkg-section" aria-label="Featured Himachal packages">
@@ -712,7 +710,8 @@ body{
     </div>
 
     <div class="hx-pkg-grid">
-      <a class="hx-pkg-card hx-pkg-card-flag" id="hxPkgFlag" href="#" style="background-image:url('/assets/images/packages/chandigarh-manali-spiti-shimla-14d.jpg')">
+      <a class="hx-pkg-card hx-pkg-card-flag" id="hxPkgFlag" href="#">
+        <div class="hx-pkg-img" style="background-image:url('/assets/images/packages/chandigarh-manali-spiti-shimla-14d.jpg')"></div>
         <div class="hx-pkg-body">
           <div class="hx-pkg-badge">Flagship Circuit</div>
           <div class="hx-pkg-route">Shimla · Manali · Kaza (Spiti) — Grand Loop</div>
@@ -723,7 +722,8 @@ body{
         </div>
       </a>
 
-      <a class="hx-pkg-card hx-pkg-card-c2" id="hxPkgC2" href="#" style="background-image:url('/assets/images/packages/chandigarh-shimla-manali-6d.jpg')">
+      <a class="hx-pkg-card hx-pkg-card-c2" id="hxPkgC2" href="#">
+        <div class="hx-pkg-img" style="background-image:url('/assets/images/packages/chandigarh-shimla-manali-6d.jpg')"></div>
         <div class="hx-pkg-body">
           <div class="hx-pkg-badge">Most Booked · Local Favourite</div>
           <div class="hx-pkg-route">Shimla · Manali</div>
@@ -733,7 +733,8 @@ body{
         </div>
       </a>
 
-      <a class="hx-pkg-card hx-pkg-card-c3" id="hxPkgC3" href="#" style="background-image:url('/assets/images/packages/kinnaur-spiti-manali-loop-12d.jpg')">
+      <a class="hx-pkg-card hx-pkg-card-c3" id="hxPkgC3" href="#">
+        <div class="hx-pkg-img" style="background-image:url('/assets/images/packages/kinnaur-spiti-manali-loop-12d.jpg')"></div>
         <div class="hx-pkg-body">
           <div class="hx-pkg-badge">Adventure Circuit</div>
           <div class="hx-pkg-route">Kinnaur · Spiti (Kaza) · Manali</div>
@@ -743,7 +744,8 @@ body{
         </div>
       </a>
 
-      <a class="hx-pkg-card hx-pkg-card-c4" id="hxPkgC4" href="#" style="background-image:url('/assets/images/packages/chandigarh-shimla-manali-dharamshala-8d.jpg')">
+      <a class="hx-pkg-card hx-pkg-card-c4" id="hxPkgC4" href="#">
+        <div class="hx-pkg-img" style="background-image:url('/assets/images/packages/chandigarh-shimla-manali-dharamshala-8d.jpg')"></div>
         <div class="hx-pkg-body">
           <div class="hx-pkg-badge">Extended Hills</div>
           <div class="hx-pkg-route">Shimla · Manali · Dharamshala</div>
@@ -753,7 +755,8 @@ body{
         </div>
       </a>
 
-      <a class="hx-pkg-card hx-pkg-card-c5" id="hxPkgC5" href="#" style="background-image:url('/assets/images/packages/delhi-kinnaur-spiti-10d.jpg')">
+      <a class="hx-pkg-card hx-pkg-card-c5" id="hxPkgC5" href="#">
+        <div class="hx-pkg-img" style="background-image:url('/assets/images/packages/delhi-kinnaur-spiti-10d.jpg')"></div>
         <div class="hx-pkg-body">
           <div class="hx-pkg-badge">From Delhi</div>
           <div class="hx-pkg-route">Kinnaur · Spiti (Kaza)</div>
@@ -764,7 +767,7 @@ body{
       </a>
     </div>
 
-    <a class="hx-pkg-finale" id="hxPkgFinale" href="#" style="background:#17291d">
+    <a class="hx-pkg-finale" id="hxPkgFinale" href="#">
       <div class="hx-pkg-finale-img" style="background-image:url('/assets/images/packages/chandigarh-grand-himachal-16d.jpg')"></div>
       <div class="hx-pkg-finale-body">
         <div class="hx-pkg-badge" style="align-self:flex-start">Ultimate Grand Tour</div>
