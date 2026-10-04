@@ -1009,6 +1009,26 @@ body{
   // including the same km-based distance surcharge every other real caller
   // (packages.html, package-detail.html, booking.html, trip-gate.html,
   // yui.html, admin/himachal_calculator.html, build-your-trip.html) passes in.
+  // The per-person price PricingEngine returns depends on group size (a
+  // shared vehicle costs less per head the more people split it), so a
+  // single fixed pax doesn't give a genuine "starting from" figure — it
+  // only reflects what that one group size would pay. This checks the
+  // engine across a spread of group sizes (budget tier, the cheapest tier,
+  // for the current travel month) and keeps the lowest totalPP it returns —
+  // the real floor price PricingEngine can produce for that trip length.
+  const STARTING_PRICE_PAX_CANDIDATES = [2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 16, 20];
+  function startingPriceForDays(days, month){
+    if (!window.PricingEngine || !days) return null;
+    let lowest = null;
+    STARTING_PRICE_PAX_CANDIDATES.forEach(pax => {
+      try {
+        const r = PricingEngine.computePrice({ days, pax, tier: 'budget', month });
+        if (r && Number.isFinite(r.totalPP) && (lowest === null || r.totalPP < lowest)) lowest = r.totalPP;
+      } catch(e) { /* skip this pax if the engine rejects it */ }
+    });
+    return lowest;
+  }
+
   function resolveSellablePackages(stubs){
     if (!window.PackageData) return Promise.resolve(stubs); // loader missing — show stubs as-is rather than nothing
     if (!_packageDataPromise) _packageDataPromise = PackageData.load().catch(() => ({ byId: {} }));
@@ -1018,14 +1038,7 @@ body{
       return stubs
         .map(stub => byId[stub.id])
         .filter(pkg => pkg && (pkg.itinerary.length > 0 || pkg.route_stops.length > 0))
-        .map(pkg => {
-          let price = null;
-          if (window.PricingEngine && pkg.days) {
-            try { price = PricingEngine.computePrice({ days: pkg.days, pax: 2, tier: 'budget', month, km: pkg.total_km_est }).totalPP; }
-            catch(e) { price = null; }
-          }
-          return { id: pkg.id, name: pkg.name, days: pkg.days, price };
-        });
+        .map(pkg => ({ id: pkg.id, name: pkg.name, days: pkg.days, price: startingPriceForDays(pkg.days, month) }));
     });
   }
 
@@ -1052,7 +1065,7 @@ body{
         const daysEl = c.el.querySelector("[data-days]");
         const priceEl = c.el.querySelector("[data-price]");
         if (daysEl && pkg.days) daysEl.textContent = pkg.days + (pkg.days === 1 ? " Day" : " Days");
-        if (priceEl) priceEl.innerHTML = pkg.price ? ("from ₹" + pkg.price.toLocaleString('en-IN') + "<small> /person</small>") : "Price on request";
+        if (priceEl) priceEl.innerHTML = pkg.price ? ("Starting ₹" + pkg.price.toLocaleString('en-IN') + "<small> /person</small>") : "Price on request";
       });
     });
   })();
