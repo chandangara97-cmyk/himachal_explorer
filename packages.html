@@ -1693,9 +1693,13 @@ function tierLabel(tier) {
   return { budget:'Budget', premium:'Premium', luxury:'Luxury' }[tier] || 'any budget';
 }
 // Restore a previously answered trip-gate choice (if any) before the first render.
-// Only skip the quiz entirely when ALL four answers were saved — an old
-// partial save (from before the duration/budget steps existed) should not
-// let someone skip straight to an unfiltered list.
+// If nothing is saved yet, default to the Master Plan list (unfiltered,
+// budget tier) rather than leaving travelerMode null — previously that left
+// every first-time visitor (and any search engine crawler, which never
+// clicks through a 4-step quiz) looking at an empty gate with zero packages
+// rendered anywhere in the page. The quiz is still one click away via the
+// "Change" button on the summary bar for anyone who wants to refine by
+// duration/budget or switch to "already in Himachal" local tours.
 (function loadTripGateFromStorage() {
   try {
     const saved = JSON.parse(localStorage.getItem('heTripGate') || 'null');
@@ -1705,10 +1709,12 @@ function tierLabel(tier) {
       state.dur = saved.dur;
       state.tier = saved.tier;
     } else {
-      state.travelerMode = null;
+      state.travelerMode = 'planning';
       state.currentCity = null;
     }
-  } catch (e) {}
+  } catch (e) {
+    state.travelerMode = 'planning';
+  }
   updateTripGateUI();
 })();
 
