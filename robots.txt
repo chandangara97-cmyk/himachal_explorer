@@ -1,13 +1,30 @@
 User-agent: *
 Allow: /
+
+# Block private / admin / utility pages
 Disallow: /admin/
 Disallow: /legacy/
 Disallow: /tools/
+Disallow: /_chatbot-setup/
+Disallow: /js/
+Disallow: /assets/data/
 Disallow: /hotel-contacts.html
 Disallow: /group-pricing.html
 Disallow: /package-detail.html
 Disallow: /thank-you.html
+Disallow: /agent-admin.html
+Disallow: /airport-arrivals-admin.html
 Disallow: /firebase-config.js
 Disallow: /.env
+Disallow: /.github/
 
+# Allow important assets
+Allow: /assets/css/
+Allow: /assets/images/
+Allow: /assets/js/
+Allow: /logo-512.png
+Allow: /favicon-32.png
+Allow: /favicon-16.png
+
+# Sitemap location
 Sitemap: https://himachalexplorer.in/sitemap.xml
